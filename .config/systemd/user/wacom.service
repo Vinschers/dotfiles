@@ -1,0 +1,11 @@
+[Unit]
+Description=Configure my Wacom tablet
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/wacom/wacom.sh
+
+[Install]
+WantedBy=graphical-session.target
