@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -53,3 +54,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
 alias xfce4='/usr/bin/git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME'
 alias v='nvim'
 alias yay='yay --sudoloop'
+alias c='$HOME/.local/scripts/utils/compile.sh'
+alias cr='$HOME/.local/scripts/utils/compileAndRun.sh'
+alias ex='$HOME/.local/scripts/utils/extractor.sh'
+alias scim='sc-im'

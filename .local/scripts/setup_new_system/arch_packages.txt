@@ -8,6 +8,7 @@ nvidia-settings
 xorg
 xorg-xinit
 xf86-video-intel
+xf86-input-wacom
 noto-fonts
 simple-scan
 htop

@@ -27,4 +27,4 @@ ex ()
     fi
 }
 
-export ex
+ex $1

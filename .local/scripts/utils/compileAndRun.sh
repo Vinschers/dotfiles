@@ -24,11 +24,5 @@ runFile() {
     esac
 }
 
-cr() {
-    c "$1"
-
-    runFile "$1" ||
-    return 1
-}
-
-export cr
+$HOME/.local/scripts/utils/compile.sh "$1"
+runFile "$1"
