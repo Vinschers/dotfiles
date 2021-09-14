@@ -9,6 +9,8 @@ xorg
 xorg-xinit
 xf86-video-intel
 xf86-input-wacom
+picom
+nitrogen
 noto-fonts
 simple-scan
 htop
@@ -28,3 +30,4 @@ community/adobe-source-han-serif-jp-fonts
 community/adobe-source-han-serif-kr-fonts
 community/adobe-source-han-serif-otc-fonts
 community/adobe-source-han-serif-tw-fonts
+slock

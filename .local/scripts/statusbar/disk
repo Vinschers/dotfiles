@@ -1,0 +1,52 @@
+#!/bin/bash
+
+get_used_avail () {
+	df -B KB | awk -v device=$1 '$0 ~ device { print $3" "$4 }' | tr -dc '[\s0-9.]+|[ ]|[\n]' | awk -F ' ' '{used += $1; avail += $2} END {print used " " avail}'
+}
+
+format_output () {
+	BASE=$3
+	[ "$BASE" -eq "1000" ] && symbol="GB"
+	[ "$BASE" -eq "1024" ] && symbol="GiB"
+
+	echo "$1" | {
+		read used avail
+		used=$(( used / (BASE*BASE) ))
+		avail=$(( avail / (BASE*BASE) ))
+		printf "%s %s %s/%s %s (%s%%)" "$2" "$used" "$symbol" "$avail" "$symbol" "$(( 100 * used / avail ))"
+	}
+}
+
+update_opt () {
+	param=$1
+	opt=$(( (opt + param) % n ))
+	opt=${opt#-}
+}
+
+switch_base () {
+	if [ "$base" = "1000" ]
+	then
+		base="1024"
+	elif [ "$base" = "1024" ]
+	then
+		base="1000"
+	fi
+}
+
+n=2
+logfile="${XDG_CACHE_HOME:-$HOME/.cache}/diskspace"
+read opt base < "$logfile"
+
+
+case $BUTTON in
+	0|1) update_opt 1 ;;
+	3) switch_base ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+case $opt in
+	0) format_output "$(get_used_avail "nvme")" "🖥" "$base" ;;
+	1) format_output "$(get_used_avail "sdb")" "💽" "$base" ;;
+esac
+
+echo "$opt $base" > "$logfile"

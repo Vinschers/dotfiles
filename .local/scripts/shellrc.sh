@@ -8,4 +8,6 @@ source_directory() {
 	for script in $directory*; do source $script; done
 }
 
-source_directory ~/.local/scripts/shell/
+source $SCRIPTS_DIR/env_variables.sh
+source_directory $SCRIPTS_DIR/shell/
+
