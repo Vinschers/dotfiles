@@ -1,7 +1,0 @@
-#!/bin/sh
-
-sensors | awk '/Core / {print substr($3, 2, length($3)-3)}' | sort -n | tail -1 | awk '{ printf("🌡 %.1f°C", $0) }'
-
-case $BUTTON in
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac
