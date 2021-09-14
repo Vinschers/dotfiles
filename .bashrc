@@ -10,4 +10,4 @@
 complete -cf sudo
 [ -r /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
-source ~/.local/scripts/shellrc.sh
+source $SCRIPTS_DIR/shellrc.sh
