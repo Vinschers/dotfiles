@@ -12,8 +12,8 @@ tx=txcurrent-txprev
 # ! [ -z $BUTTON ] && notify-send "aeee $BUTTON"
 
 printf "⬇ %sKbps ⬆ %sKbps\\n" \
-       "$(( 8*(rx)/(1024) ))" \
-       "$(( 8*(tx)/(1024) ))"
+       "$(( (rx)/(128) ))" \
+       "$(( (tx)/(128) ))"
 
 echo "$rxcurrent $txcurrent" > "$logfile"
 
