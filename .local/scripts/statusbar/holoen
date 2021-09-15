@@ -1,0 +1,54 @@
+#!/bin/python3
+
+
+# read key < "${XDG_CACHE_HOME:-$HOME/.cache}/ytkey"
+
+import requests
+import os
+import json
+
+
+CHANNELS = {
+        'UCoSrY_IQQVpmIRZ9Xf-y93g': '🔱',
+        'UCyl1z3jo3XHR1riLFKG5UAg': '🔎',
+        'UCL_qhgtOy0dy1Agp8vkySQg': '💀',
+        'UCHsx4Hqa-1ORjQTh9TYDhww': '🐔',
+        'UCMwGHR0BTZuLsmjY_NT5Pwg': '🐙',
+
+        'UC8rcEBzJSleTkf_-agPM20g': '💎',
+
+        'UCsUj0dszADCGbF3gNrQEuSQ': '🪐',
+        'UCO_aKKYxn4tvrqPjcTzZ6EQ': '🌿',
+        'UC3n5uGu18FoCy23ggWWp8tA': '🪶 ',
+        'UCmbs8T6MWqUHP1tIQvSgKrg': '⏳',
+        'UCgmPnx-EEeOrZSg5Tiw7ZRQ': '🎲',
+
+        'UCKYyiJwNg2nV7hM86U5_wvw': 'α',
+
+}
+KEY_FILE = f'{os.getenv("HOME")}/.cache/ytkey'
+
+
+def check_live(key: str, channel_id: str) -> bool:
+    res = requests.get(f'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&eventType=live&channelId={channel_id}&key={key}')
+    data = json.loads(res.content)
+
+    return data['items']
+
+
+def main():
+    with open(KEY_FILE, 'r') as file:
+        key = file.readline()
+
+    status = ''
+
+    for channel_id, symbol in CHANNELS.items():
+        if check_live(key, channel_id):
+            status += f' {symbol}'
+
+    status = status[1:]
+    print(status)
+
+
+if __name__ == '__main__':
+    main()
