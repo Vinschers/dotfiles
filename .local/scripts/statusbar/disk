@@ -1,7 +1,7 @@
 #!/bin/bash
 
 get_used_avail () {
-	df -B KB | awk -v device=$1 '$0 ~ device { print $3" "$4 }' | tr -dc '[\s0-9.]+|[ ]|[\n]' | awk -F ' ' '{used += $1; avail += $2} END {print used " " avail}'
+	df -B KB | awk -v device=$1 '$0 ~ device { print $3" "$2 }' | tr -dc '[\s0-9.]+|[ ]|[\n]' | awk -F ' ' '{used += $1; avail += $2} END {print used " " avail}'
 }
 
 format_output () {

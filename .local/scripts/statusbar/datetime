@@ -1,19 +1,17 @@
 #!/bin/sh
 
 date_str=$(date "+%d/%m/%y %T")
-hour=$(date "+%I")
-min=$(date "+%M")
+hour=$(date "+%I" | sed 's/^0*//')
+min=$(date "+%M" | sed 's/^0*//')
 first_unicode=128335 # 🕐
 
 [ $((min)) -gt 45 ] && hour="$((hour+1))"
 
-if [ $((min)) -lt 45 ] && [ $((min)) -gt 15 ]
-then
-	first_unicode=first_unicode + 12
-fi
+[ $((min)) -lt 45 ] && [ $((min)) -gt 15 ] && first_unicode=first_unicode + 12
 
 printf "\U$(printf %x $(( hour + first_unicode )) ) %s" "$date_str"
 
 case $BUTTON in
+	1) notify-send "$(cal)" ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac

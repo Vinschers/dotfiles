@@ -1,54 +1,37 @@
-#!/bin/python3
+#!/bin/sh
 
 
-# read key < "${XDG_CACHE_HOME:-$HOME/.cache}/ytkey"
-
-import requests
-import os
-import json
+THRESHOLD=850000
 
 
-CHANNELS = {
-        'UCoSrY_IQQVpmIRZ9Xf-y93g': '🔱',
-        'UCyl1z3jo3XHR1riLFKG5UAg': '🔎',
-        'UCL_qhgtOy0dy1Agp8vkySQg': '💀',
-        'UCHsx4Hqa-1ORjQTh9TYDhww': '🐔',
-        'UCMwGHR0BTZuLsmjY_NT5Pwg': '🐙',
+check_lives () {
+	res=""
 
-        'UC8rcEBzJSleTkf_-agPM20g': '💎',
+	while read id symbol; do
+		content_length=$(curl -Is "https://www.youtube.com/channel/$id/live" | awk '/ength/ { print $2 }' | cat -A | sed 's/\^M.*//')
 
-        'UCsUj0dszADCGbF3gNrQEuSQ': '🪐',
-        'UCO_aKKYxn4tvrqPjcTzZ6EQ': '🌿',
-        'UC3n5uGu18FoCy23ggWWp8tA': '🪶 ',
-        'UCmbs8T6MWqUHP1tIQvSgKrg': '⏳',
-        'UCgmPnx-EEeOrZSg5Tiw7ZRQ': '🎲',
+		[ $content_length -gt $THRESHOLD ] && res="$(printf "%s %s" "$res" "$symbol")"
+	done
 
-        'UCKYyiJwNg2nV7hM86U5_wvw': 'α',
-
+	printf "%s\n" "$res"
 }
-KEY_FILE = f'{os.getenv("HOME")}/.cache/ytkey'
 
+input () {
+	echo "UCoSrY_IQQVpmIRZ9Xf-y93g 🔱"
+        echo "UCyl1z3jo3XHR1riLFKG5UAg 🔎"
+        echo "UCL_qhgtOy0dy1Agp8vkySQg 💀"
+        echo "UCHsx4Hqa-1ORjQTh9TYDhww 🐔"
+        echo "UCMwGHR0BTZuLsmjY_NT5Pwg 🐙"
 
-def check_live(key: str, channel_id: str) -> bool:
-    res = requests.get(f'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&eventType=live&channelId={channel_id}&key={key}')
-    data = json.loads(res.content)
+        echo "UC8rcEBzJSleTkf_-agPM20g 💎"
 
-    return data['items']
+        echo "UCsUj0dszADCGbF3gNrQEuSQ 🪐"
+        echo "UCO_aKKYxn4tvrqPjcTzZ6EQ 🌿"
+        echo "UC3n5uGu18FoCy23ggWWp8tA 🪶 "
+        echo "UCmbs8T6MWqUHP1tIQvSgKrg ⏳"
+        echo "UCgmPnx-EEeOrZSg5Tiw7ZRQ 🎲"
 
+        echo "UCKYyiJwNg2nV7hM86U5_wvw α"
+}
 
-def main():
-    with open(KEY_FILE, 'r') as file:
-        key = file.readline()
-
-    status = ''
-
-    for channel_id, symbol in CHANNELS.items():
-        if check_live(key, channel_id):
-            status += f' {symbol}'
-
-    status = status[1:]
-    print(status)
-
-
-if __name__ == '__main__':
-    main()
+input | awk '{print $0}' | check_lives
