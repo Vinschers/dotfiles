@@ -1,19 +1,31 @@
 #!/bin/sh
 
 
-THRESHOLD=850000
+check_started () {
+	scheduled_time=$(curl -s "$1" | grep -Po "\bscheduledStartTime\"\:\"(\d+)\"" | sed 's/"//g' | awk -F':' '{print $2}')
+	now_time=$(date +%s)
 
+	[ -z "$scheduled_time" ] || [ "$now_time" -ge "$scheduled_time" ]
+}
+
+check_live () {
+    printf 'location.href\nquit\n' | \
+    chromium --headless --disable-gpu --disable-software-rasterizer \
+    --disable-dev-shm-usage --no-sandbox --repl "$@" 2> /dev/null \
+    | tr -d '>>> ' | jq -r '.result.value'
+}
 
 check_lives () {
 	res=""
 
 	while read id symbol; do
-		content_length=$(curl -Is "https://www.youtube.com/channel/$id/live" | awk '/ength/ { print $2 }' | cat -A | sed 's/\^M.*//')
+		url="https://www.youtube.com/channel/$id/live"
+		redirect_url="$(check_live "$url")"
 
-		[ $content_length -gt $THRESHOLD ] && res="$(printf "%s %s" "$res" "$symbol")"
+		! [ "$redirect_url" = "$url" ] && check_started "$redirect_url" && res="$(printf "%s %s" "$res" "$symbol")"
 	done
 
-	printf "%s\n" "$res"
+	printf "%s" "$res"
 }
 
 input () {
