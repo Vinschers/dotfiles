@@ -13,5 +13,6 @@ printf "\U$(printf %x $(( hour + first_unicode )) ) %s" "$date_str"
 
 case $BUTTON in
 	1) notify-send "$(cal)" ;;
+	3) notify-send "$(cal -3)" ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac

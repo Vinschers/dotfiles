@@ -9,10 +9,10 @@ check_started () {
 }
 
 check_live () {
-    printf 'location.href\nquit\n' | \
+	printf 'for(var i = 0; i < 999999999; i++) {i / ((i-1)/(i-2))}\nlocation.href\nquit\n' | \
     chromium --headless --disable-gpu --disable-software-rasterizer \
     --disable-dev-shm-usage --no-sandbox --repl "$@" 2> /dev/null \
-    | tr -d '>>> ' | jq -r '.result.value'
+    | head -n 2 | tail -n 1 | tr -d '>>> ' | jq -r '.result.value'
 }
 
 check_lives () {
@@ -29,6 +29,8 @@ check_lives () {
 }
 
 input () {
+	echo "UCYz_5n-uDuChHtLo7My1HnQ 🧟"
+
 	echo "UCoSrY_IQQVpmIRZ9Xf-y93g 🔱"
         echo "UCyl1z3jo3XHR1riLFKG5UAg 🔎"
         echo "UCL_qhgtOy0dy1Agp8vkySQg 💀"

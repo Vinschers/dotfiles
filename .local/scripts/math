@@ -1,0 +1,73 @@
+# Greek letters
+
+α;alpha
+β;beta
+γ;gamma;gama
+Γ;GAMMA;GAMA;Gamma;Gama
+δ;delta
+Δ;DELTA;Delta
+ε;epsilon;epsolon
+ζ;zeta
+η;eta
+θ;theta;teta
+Θ;THETA;TETA;Theta;Teta
+ι;iota
+κ;kappa
+λ;lambda;labda
+Λ;LAMBDA;LABDA;Lambda;Labda
+μ;mu;mi
+ν;nu;ni
+ξ;xi
+Ξ;XI;Xi
+π;pi
+Π;PI;Pi
+ρ;rho
+σ;sigma
+ς;sigma
+Σ;SIGMA;Sigma
+τ;tau
+υ;upsilon;upsolon
+φ;phi
+Φ;PHI;Phi
+χ;chi
+ψ;psi
+Ψ;PSI;Psi
+ω;omega
+Ω;OMEGA;Omega
+
+
+# Sets
+
+⊕;direct sum;soma direta
+∩;intersection;intersecao;interseccao;interseção;intersecção
+⋂;intersection;intersecao;interseccao;interseção;intersecção
+⋃;union;uniao;união
+⊆;subset;contido;subconjunto
+⊂;subset;contido;subconjunto
+∊;element of;pertence
+∉;not element of;nao pertence;não pertence
+∅;empty;empty set;vazio;conjunto vazio
+
+
+# Calculus
+
+∂;drho;d rho;d;partial derivative;derivada parcial
+∇;gradient;gradiente
+∫;integral
+
+
+# Logical
+
+≌;approximately;aproximadamente
+∀;for all;para todos
+∃;exist;exists;there is;existe
+∄;not exist;not exists;does not exist;doesn't exist;
+≡;identical;identica
+⇔;if and only if;se e somente se
+≥;greater or equal;maior ou igual
+≤;lesser or equal;menor ou igual
+
+
+# Geometry
+
+⟂;perpendicular
