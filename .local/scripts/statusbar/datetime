@@ -1,6 +1,6 @@
 #!/bin/sh
 
-date_str=$(date "+%d/%m/%y %T")
+date_str=$(date "+%d/%m/%Y %T")
 hour=$(date "+%I" | sed 's/^0*//')
 min=$(date "+%M" | sed 's/^0*//')
 first_unicode=128335 # 🕐

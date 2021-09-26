@@ -1,6 +1,6 @@
 #!/bin/sh
 
-chosen=$(sed '/^\s*#/ d' $SCRIPTS_DIR/$1 | column -ts ';' | dmenu -i -l 30 -fn Monospace-14 | sed "s/ .*//")
+chosen=$(sed '/^\s*#/ d' $SCRIPTS_DIR/$1 | column -ts ';' | dmenu -i -s -l 30 -fn Monospace-14 | sed "s/ .*//")
 
 # Exit if none chosen.
 [ -z "$chosen" ] && exit

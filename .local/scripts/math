@@ -1,8 +1,103 @@
+# Sets
+
+⊕;direct sum;soma direta
+∩;intersection;intersecao;interseccao;interseção;intersecção
+⋂;intersection;intersecao;interseccao;interseção;intersecção
+⋃;union;uniao;união
+⊆;subset;contido;subconjunto
+⊂;subset;contido;subconjunto
+∊;element of;pertence
+∉;not element of;nao pertence;não pertence
+∅;empty;empty set;vazio;conjunto vazio
+ℕ;N;natural;naturais
+ℝ;R;real
+ℤ;Z;integers;inteiros
+ℚ;Q;rational;racionais
+ℂ;C;complex;complexos
+ℳ;M;matrices;matrix;matrizes
+℘;P;polynoms;polinomios
+
+
+# Sub and underscript
+
+⁰;0
+¹;1
+²;2
+³;3
+⁴;4
+⁵;5
+⁶;6
+⁷;7
+⁸;8
+⁹;9
+⁺;+
+⁻;-
+⁽;(
+⁾;)
+ᵃ;a
+ᵇ;b
+ᶜ;c
+ᵈ;d
+ᵉ;e
+ᶠ;f
+ᶢ;g
+ᵸ;H
+ᴴ;H
+ᶨ;j;i
+ᴶ;J
+ᶤ;i
+ᴵ;I
+ᵏ;k
+ᵐ;m
+ⁿ;n
+ᵒ;o
+ᵖ;p
+ᵗ;t
+ᵘ;u
+ᵛ;v
+ᶻ;z
+
+₀;0
+₁;1
+₂;2
+₃;3
+₄;4
+₅;5
+₆;6
+₇;7
+₈;8
+₉;9
+₊;+
+₋;-
+₍;(
+₎;)
+ₐ;a
+ₑ;e
+ₒ;o
+ₓ;x
+ₕ;h
+ᵢ;i
+ⱼ;j
+ₖ;k
+ₗ;l
+ₘ;m
+ₙ;n
+ₒ;o
+ₚ;p
+ᵣ;r
+ₛ;s
+ₜ;t
+ᵤ;u
+ᵥ;v
+ᵧ;y
+
+
 # Greek letters
 
 α;alpha
 β;beta
 γ;gamma;gama
+ᵧ;gamma;gama
 Γ;GAMMA;GAMA;Gamma;Gama
 δ;delta
 Δ;DELTA;Delta
@@ -30,27 +125,16 @@
 φ;phi
 Φ;PHI;Phi
 χ;chi
+ᵡ;chi
 ψ;psi
 Ψ;PSI;Psi
 ω;omega
 Ω;OMEGA;Omega
 
 
-# Sets
-
-⊕;direct sum;soma direta
-∩;intersection;intersecao;interseccao;interseção;intersecção
-⋂;intersection;intersecao;interseccao;interseção;intersecção
-⋃;union;uniao;união
-⊆;subset;contido;subconjunto
-⊂;subset;contido;subconjunto
-∊;element of;pertence
-∉;not element of;nao pertence;não pertence
-∅;empty;empty set;vazio;conjunto vazio
-
-
 # Calculus
 
+ƒ;f;function
 ∂;drho;d rho;d;partial derivative;derivada parcial
 ∇;gradient;gradiente
 ∫;integral
@@ -64,6 +148,9 @@
 ∄;not exist;not exists;does not exist;doesn't exist;
 ≡;identical;identica
 ⇔;if and only if;se e somente se
+⇒;if then;implies;se entao;se então;implica
+⇐;if then;implies;se entao;se então;implica
+∴;therefore;portanto
 ≥;greater or equal;maior ou igual
 ≤;lesser or equal;menor ou igual
 
@@ -71,27 +158,5 @@
 # Geometry
 
 ⟂;perpendicular
-
-
-# Numbers
-
-⁰;0
-¹;1
-²;2
-³;3
-⁴;4
-⁵;5
-⁶;6
-⁷;7
-⁸;8
-⁹;9
-₀;0;zero;zero sub;sub zero
-₁;1;one;one sub;sub one;um;um sub;sub um
-₂;2;two;two sub;sub two;dois;dois sub;sub dois
-₃;3;three;three sub;sub three;tres;tres sub;sub tres;três;três sub;sub três
-₄;4;four;four sub;sub four;quatro;quatro sub;sub quatro
-₅;5;five;five sub;sub five;cinco;cinco sub;sub cinco
-₆;6;six;six sub;sub six;seis;seis sub;sub seis
-₇;7;seven;seven sub;sub seven;sete;sete sub;sub sete
-₈;8;eight;eight sub;sub eight;oito;oito sub;sub oito
-₉;9;nine;nine sub;sub nine;nove;nove sub;sub nove
+〈;angle bracket;internal product;produto interno
+〉;angle bracket;internal product;produto interno
