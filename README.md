@@ -11,6 +11,14 @@ git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME config --local status.showU
 ```
 
 # [rice-xfce4](https://github.com/Vinschers/rice-xfce4)
+## Installation
+
+```sh
+git clone --bare https://github.com/Vinschers/rice-xfce4.git $HOME/.rice-xfce4-git
+git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} rm $HOME/{}
+git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME checkout
+git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME config --local status.showUntrackedFiles no
+```
 ## Dependencies
 - xf86-video-intel
 - xorg
