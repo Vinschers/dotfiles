@@ -1,3 +1,4 @@
 uBlock origin;
 Extensions names (or links);
 user.js for each profile of firefox;
+Browsers' Bookmarks;
