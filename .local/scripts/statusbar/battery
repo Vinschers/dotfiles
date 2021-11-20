@@ -2,18 +2,20 @@
 
 for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
+	battery_status="$(cat "$battery/status" 2>&1)"
 
-	case "$(cat "$battery/status" 2>&1)" in
+	case "$battery_status" in
 		"Full") status="🟩" ;;
-		"Discharging") [ "$capacity" -le 20 ] && status="🔋" || status="🪫" ;;
 		"Charging") status="⚡" ;;
-		"Unknown") status="🔋" ;;
+		*) status="🔋" ;;
 	esac
 
-	battery_status="$(printf "%s%s %d%% " "$battery_status" "$status"  "$capacity")"
+	[ "$capacity" -le 20 ] && [ "$battery_status" = "Discharging" ] && status="a"
+
+	battery_info="$(printf "%s%s %d%% " "$battery_info" "$status"  "$capacity")"
 done
 
-echo "${battery_status%?}"
+echo "${battery_info%?}"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
