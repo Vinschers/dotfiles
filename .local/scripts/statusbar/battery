@@ -1,9 +1,8 @@
 #!/bin/sh
 
-ls "/sys/class/power_supply" | grep "BAT" || exit 1
+ls "/sys/class/power_supply" | grep -q "BAT" || exit 1
 
 for battery in /sys/class/power_supply/BAT?*; do
-	echo $battery
 	capacity="$(cat "$battery/capacity" 2>&1)"
 	battery_status="$(cat "$battery/status" 2>&1)"
 
