@@ -1,0 +1,20 @@
+#!/bin/sh
+
+for battery in /sys/class/power_supply/BAT?*; do
+	capacity="$(cat "$battery/capacity" 2>&1)"
+
+	case "$(cat "$battery/status" 2>&1)" in
+		"Full") status="🟩" ;;
+		"Discharging") [ "$capacity" -le 20 ] && status="🔋" || status="🪫" ;;
+		"Charging") status="⚡" ;;
+		"Unknown") status="🔋" ;;
+	esac
+
+	battery_status="$(printf "%s%s %d%% " "$battery_status" "$status"  "$capacity")"
+done
+
+echo "${battery_status%?}"
+
+case $BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
