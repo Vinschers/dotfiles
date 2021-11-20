@@ -20,7 +20,7 @@ alias \
 	rm="rm -v" \
 	mkd="mkdir -pv" \
 	yt="youtube-dl --add-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
+	yta="yt -x -f bestaudio/best --audio-format mp3" \
 	ffmpeg="ffmpeg -hide_banner" \
   	ka="killall" \
 	g="git" \
@@ -57,6 +57,7 @@ alias yay='yay --sudoloop'
 alias c='$SCRIPTS_DIR/utils/compile.sh'
 alias cr='$SCRIPTS_DIR/utils/compileAndRun.sh'
 alias ex='$SCRIPTS_DIR/utils/extractor.sh'
+alias o='$SCRIPTS_DIR/utils/open.sh'
 alias scim='sc-im'
 alias scripts='cd $SCRIPTS_DIR && ls'
 alias unicamp='cd /mnt/Unicamp/"$SEMESTER"semestre/ && ls'
