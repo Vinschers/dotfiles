@@ -1,0 +1,10 @@
+#!/bin/sh
+
+volume=$(pamixer --get-volume)
+
+emoji="🔉"
+
+[ "$volume" -le 10 ] && emoji="🔈"
+[ "$volume" -ge 80 ] && emoji="🔊"
+[ "$volume" = "0" ] && emoji="🔇"
+printf "%s%s%%" "$emoji" "$volume"
