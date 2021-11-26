@@ -20,7 +20,7 @@ case $BUTTON in
 esac
 
 case $opt in
-	0) output="$(free --mebi | sed -n '2{p;q}' | awk '{printf ("🧠 %2.2fGiB/%2.2fGiB", ( $3 / 1024), ($2 / 1024))}')" ;; # RAM
+	0) output="$(free --mebi | sed -n '2{p;q}' | awk '{printf (" %2.2fGiB/%2.2fGiB", ( $3 / 1024), ($2 / 1024))}')" ;; # RAM
 	1) output="$(sensors | awk '/Core / {print substr($3, 2, length($3)-3)}' | sort -n | tail -1 | awk '{ printf("🌡 %.1f°C", $0) }')" ;; # CPU TEMPERATURE
 esac
 

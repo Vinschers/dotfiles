@@ -17,7 +17,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 	battery_info="$(printf "%s%s %d%% " "$battery_info" "$status"  "$capacity")"
 done
 
-echo "${battery_info%?}"
+printf "%s" "${battery_info%?}"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

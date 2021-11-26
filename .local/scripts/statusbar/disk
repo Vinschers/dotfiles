@@ -46,7 +46,7 @@ esac
 
 case $opt in
 	0) format_output "$(get_used_avail "nvme")" "🖥" "$base" ;;
-	1) format_output "$(get_used_avail "sdb")" "💽" "$base" ;;
+	1) format_output "$(get_used_avail "sdb")" "" "$base" ;;
 esac
 
 echo "$opt $base" > "$logfile"

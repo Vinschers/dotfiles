@@ -12,13 +12,13 @@ create_pdf () {
 	tex="$(echo "\documentclass[12pt]{article}
 \usepackage{color}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\DeclareMathOperator{\tr}{tr}
 \pagestyle{empty}
 \pagecolor{white}
 \begin{document}{
 \color{black}
-\begin{eqnarray*}
 $equation
-\end{eqnarray*}
 }\end{document}")"
 
 	# echo "$tex" | sed -e "s/\r//g" > "$tex_file"

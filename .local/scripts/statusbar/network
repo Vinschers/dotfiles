@@ -11,7 +11,7 @@ tx=txcurrent-txprev
 
 # ! [ -z $BUTTON ] && notify-send "aeee $BUTTON"
 
-printf "⬇ %5sKbps ⬆ %5sKbps\\n" \
+printf " %5sKbps  %5sKbps\\n" \
        "$(( (rx)/(128) ))" \
        "$(( (tx)/(128) ))"
 
