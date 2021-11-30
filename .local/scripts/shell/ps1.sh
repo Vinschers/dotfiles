@@ -38,12 +38,13 @@ write_with_color() {
 
 get_git_info() {
 	git_info_open=$(write_with_color "(" "$GIT_TEXT_COLOR")
+	git_symbol=$(write_with_color " " "$GIT_BRANCH_COLOR")
 
 	git_branch=$(write_with_color "$BRANCH" "$GIT_BRANCH_COLOR")
 
 	git_info_close=$(write_with_color ")" "$GIT_TEXT_COLOR")
 
-	git_info="$git_info_open$git_branch$git_info_close"
+	git_info="$git_info_open$git_symbol$git_branch$git_info_close"
 	echo "$git_info"
 }
 

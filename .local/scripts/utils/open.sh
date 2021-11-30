@@ -26,17 +26,17 @@ then
 	exit 0
 fi
 
-if is_video "$1" || is_audio "$1"
-then
-	echo "Playing $1 with mpv"
-	mpv "$1"
-	exit 0
-fi
-
 if is_pdf "$1"
 then
 	echo "Opening $1 with zathura"
 	zathura "$1"
+	exit 0
+fi
+
+if is_audio "$1" || is_video "$1"
+then
+	echo "Playing $1 with mpv"
+	mpv "$1"
 	exit 0
 fi
 
