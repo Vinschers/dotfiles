@@ -1,0 +1,9 @@
+#!/bin/sh
+
+num_packages="$(pacman -Qu | grep -Fcv "[ignored]")"
+
+printf "📦%s" "$num_packages"
+
+case $BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac

@@ -24,7 +24,7 @@ install_packages () {
 }
 
 install_essentials () {
-	install_packages "rar unrar zip unzip imv zathura zathura-pdf-mupdf mpv texlive-most texlive-lang"
+	install_packages "unrar zip unzip imv zathura zathura-pdf-mupdf mpv texlive-most texlive-lang"
 }
 
 install_general () {
@@ -41,7 +41,7 @@ install_fonts () {
 }
 
 install_gui () {
-	install_packages "nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
+	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
 	yay -S picom-jonaburg-git
 
 	amixer sset Master unmute
