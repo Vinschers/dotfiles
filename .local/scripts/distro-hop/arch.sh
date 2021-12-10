@@ -20,7 +20,7 @@ check () {
 }
 
 install_packages () {
-	pacman -S --noconfirm --needed $1
+	sudo pacman -S --noconfirm --needed $1
 }
 
 install_essentials () {
