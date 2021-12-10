@@ -27,21 +27,14 @@ THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
 
 case "$opt" in
-	"1")
-		SCRIPT="arch.sh"
-		;;
+	"1") SCRIPT="arch.sh" ;;
+	"*") exit 1 ;;
 esac
 
-[ "$SCRIPT" = "" ] && exit 1
-
 center "Running $SCRIPT script"
-"/bin/sh" "$THIS_DIRECTORY/distros_scripts/$SCRIPT" || exit 1
+"/bin/sh" "$THIS_DIRECTORY/$SCRIPT" || exit 1
 center ""
 
 center "Setting up git ssh configurations"
 "/bin/sh" "$THIS_DIRECTORY/git-ssh.sh" || exit 1
-center ""
-
-center "Creating symlinks"
-ln -s "$THIS_DIRECTORY/symlinks/xorg.conf.d" "/etc/X11/"
 center ""
