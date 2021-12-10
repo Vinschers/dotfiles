@@ -9,6 +9,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 	case "$battery_status" in
 		"Full") status="🟩" ;;
 		"Charging") status="⚡" ;;
+		"Unknown") status="♻" ;;
 		*) status="🔋" ;;
 	esac
 
