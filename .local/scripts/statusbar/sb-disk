@@ -13,7 +13,7 @@ format_output () {
 		read used avail
 		used=$(( used / (BASE*BASE) ))
 		avail=$(( avail / (BASE*BASE) ))
-		printf "%s %s %s/%s %s (%s%%)" "$2" "$used" "$symbol" "$avail" "$symbol" "$(( 100 * used / avail ))"
+		printf "%s %s %s (%s%%)" "$2" "$used" "$symbol" "$(( 100 * used / avail ))"
 	}
 }
 
@@ -45,8 +45,8 @@ case $BUTTON in
 esac
 
 case $opt in
-	0) format_output "$(get_used_avail "nvme")" "🖥" "$base" ;;
-	1) format_output "$(get_used_avail "sdb")" "" "$base" ;;
+	0) format_output "$(get_used_avail "nvme")" "" "$base" ;;
+	1) format_output "$(get_used_avail "sdb")" "" "$base" ;;
 esac
 
 echo "$opt $base" > "$logfile"

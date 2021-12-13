@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+curl -sf "wttr.in?format=%m+^v^%c++^cE06C75^^t^+%t++^v^^cADD8E6^^t^+%w++^v^^c7DCFFF^揄^t^+%h" | tr -d '+' | sed -e "s/\^c/\^c#/g" -e "s/☀️/\^c#FEDF00\^/g" -e "s/⛅️/\^c#E5E9F0\^/g"

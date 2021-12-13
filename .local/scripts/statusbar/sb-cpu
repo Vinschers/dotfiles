@@ -1,0 +1,131 @@
+#!/bin/bash
+
+get_core_usage () {
+
+	#load arrays
+	IFS=' ' read -r -a firstarr <<< "$1"
+	IFS=' ' read -r -a secondarr <<< "$2"
+
+	#clear name fields in array so that calculations don't get messy
+	firstarr[0]=0 ;
+	secondarr[0]=0 ;
+
+	#clear values 
+	totalcpu0=0
+	totalcpu=0
+
+	#calculate the begining interrupt counts
+	for value in ${firstarr[@]}; 
+    	do 
+        	let totalcpu0+=$value; 
+	done
+	firstidle=$((${firstarr[4]}+${firstarr[5]})); 
+
+	#calculate the ending interrupt counts
+	for value in ${secondarr[@]}; 
+    	do
+        	let totalcpu+=$value; 
+    	done; 
+	secondidle=$((${secondarr[4]}+${secondarr[5]})); 
+
+	#calculate the relative change counts
+	deltacpu=$(( totalcpu - totalcpu0 ))
+	deltaidle=$(( secondidle - firstidle ))
+
+	#calculate the utilization percentage. must be done external to bash as it's a
+	#floating calculation
+	cpu_load=$( echo | awk -v cpu=$deltacpu -v idle=$deltaidle ' { print ( ( ( cpu - idle ) / cpu ) * 100 ) } ' )
+
+	echo -n "$cpu_load"
+} 
+
+draw_core () {
+	core="$1"
+	num="$2"
+
+
+	x=$(( 8*num ))
+	fill=$(echo | awk -v cpu=$core '{ printf "%.0f", 20*(cpu/100) }')
+
+	printf "^v^^c#4C566A^^r$x,1,4,20^^t^^r$x,$(( 20 - fill )),4,$fill^"
+}
+
+draw_cores () {
+	oldIFS=$IFS
+
+	IFS=$'\n' cpu_start=( $( grep cpu /proc/stat ) )
+	sleep $delay
+
+	read opt < "$logfile"
+
+	if [ "$opt" -ne 0 ];
+	then
+		printf "%s" "$(get_temps)"
+	else
+		IFS=$'\n' cpu_end=( $( grep cpu /proc/stat ) )
+
+		cpucount=${#cpu_start[@]}
+
+		for (( i=1; i<$cpucount; i++ )) do
+			core="$(get_core_usage "${cpu_start[$i]}" "${cpu_end[$i]}")"
+			draw_core "$core" "$i"
+		done
+		printf "^f70^"
+	fi
+
+	IFS=$oldIFS
+}
+
+get_temp () {
+	temp="$1"
+	term=""
+	[ "$temp" -ge 26 ] && term=""
+	[ "$temp" -ge 51 ] && term=""
+	[ "$temp" -ge 86 ] && term=""
+
+	printf "  %s %s°" "$term" "$temp"
+}
+
+get_temps () {
+	oldIFS=$IFS
+	IFS=$'\n' temps=( $(sensors | awk '/Core / {print substr($3, 2, length($3)-5)}') )
+	tempcount=${#temps[@]}
+
+	for (( i=0; i<$tempcount; i++ )) do
+		get_temp "${temps[$i]}"
+	done
+
+	IFS=$oldIFS
+}
+
+get_ram () {
+	free --mebi | sed -n '2{p;q}' | awk '{ printf "%2.2fGiB", ($3 / 1024) }'
+}
+
+update_opt () {
+	param=$1
+	opt=$(( (opt + param) % n ))
+	opt=${opt#-}
+	echo "$opt" > "$logfile"
+}
+
+delay=1
+n=2
+logfile="${XDG_CACHE_HOME:-$HOME/.cache}/cpustatus"
+
+read opt < "$logfile" || opt=0
+BUTTON=$(( BUTTON + 0 ))
+
+case $BUTTON in
+	1) update_opt 1 ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+cpustatus=""
+
+case $opt in
+	0) cpustatus="$(draw_cores)" ;;
+	1) cpustatus="$(get_temps)" ;;
+esac
+
+printf "%s" "$cpustatus"

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+n=2
+logfile="${XDG_CACHE_HOME:-$HOME/.cache}/netlog"
+read rxprev txprev opt < "$logfile"
+
+rxcurrent="$(($(cat /sys/class/net/*/statistics/rx_bytes | paste -sd '+')))"
+txcurrent="$(($(cat /sys/class/net/*/statistics/tx_bytes | paste -sd '+')))"
+
+rx=rxcurrent-rxprev
+tx=txcurrent-txprev
+
+update_opt () {
+	param=$1
+	opt=$(( (opt + param) % n ))
+	opt=${opt#-}
+}
+
+case $BUTTON in
+	1) update_opt 1 ;;
+esac
+
+case $opt in
+	0) printf " %s Kbps" "$(( (rx)/(128) ))" ;;
+	1) printf " %s Kbps" "$(( (tx)/(128) ))" ;;
+esac
+
+echo "$rxcurrent $txcurrent $opt" > "$logfile"
+
+case $BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+logfile="${XDG_CACHE_HOME:-$HOME/.cache}/price"
+read base_currency show_currency < "$logfile" || base_currency="brl" && show_currency="btc"
+
+BUTTON=$(( BUTTON + 0 ))
+
+price="$(curl -s "$base_currency.rate.sx/1$show_currency")"
+
+printf "%s" "${price%.*}"

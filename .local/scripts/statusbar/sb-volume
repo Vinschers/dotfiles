@@ -1,0 +1,15 @@
+#!/bin/sh
+
+volume=$(pamixer --get-volume)
+
+symbol="墳"
+
+[ "$volume" -le 10 ] && symbol="奔"
+[ "$volume" -ge 80 ] && symbol=""
+[ "$volume" = "0" ] && symbol="婢"
+
+printf "%s %s%%" "$symbol" "$volume"
+
+case $BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac

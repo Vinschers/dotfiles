@@ -1,0 +1,7 @@
+#!/bin/sh
+
+printf " %s" "$(date +%T)"
+
+case $BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
