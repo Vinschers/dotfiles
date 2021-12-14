@@ -1,0 +1,26 @@
+#!/bin/sh
+
+n=3
+logfile="${XDG_CACHE_HOME:-$HOME/.cache}/hardware"
+read opt < "$logfile" || opt=0
+
+update_opt () {
+	param=$1
+	opt=$(( (opt + param) % n ))
+	opt=${opt#-}
+	echo "$opt" > "$logfile"
+}
+
+case $BUTTON in
+	1) update_opt 1 ;;
+esac
+
+statuscpu="$(sb-cpu)"
+statusmem="$(sb-memory)"
+statusdisk="$(sb-disk)"
+
+case $opt in
+	0) printf "%s" "$statuscpu" ;;
+	1) printf "%s" "$statusmem" ;;
+	2) printf "%s" "$statusdisk" ;;
+esac

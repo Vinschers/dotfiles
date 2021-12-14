@@ -1,3 +1,3 @@
 #!/bin/sh
 
-printf " %s" "$(xkb-switch)"
+printf "^c#FFC784^ %s" "$(xkb-switch)"

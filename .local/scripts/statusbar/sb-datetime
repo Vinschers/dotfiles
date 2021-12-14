@@ -1,0 +1,21 @@
+#!/bin/sh
+
+n=2
+logfile="${XDG_CACHE_HOME:-$HOME/.cache}/datetime"
+read opt < "$logfile" || opt=0
+
+update_opt () {
+	param=$1
+	opt=$(( (opt + param) % n ))
+	opt=${opt#-}
+	echo "$opt" > "$logfile"
+}
+
+case $BUTTON in
+	1) update_opt 1 ;;
+esac
+
+case $opt in
+	0) sb-time ;;
+	1) sb-date ;;
+esac

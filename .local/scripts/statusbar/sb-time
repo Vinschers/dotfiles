@@ -1,6 +1,6 @@
 #!/bin/sh
 
-printf " %s" "$(date +%T)"
+printf "^c#84E5FF^ %s" "$(date +%T)"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

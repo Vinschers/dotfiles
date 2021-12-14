@@ -20,6 +20,8 @@ case $BUTTON in
 	1) update_opt 1 ;;
 esac
 
+printf "^c#84FFE6^"
+
 case $opt in
 	0) printf " %s Kbps" "$(( (rx)/(128) ))" ;;
 	1) printf " %s Kbps" "$(( (tx)/(128) ))" ;;

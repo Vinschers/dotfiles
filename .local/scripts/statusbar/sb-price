@@ -48,6 +48,6 @@ case $opt_base in
 	3) base_symbol="" && base="btc" ;;
 esac
 
-printf "%s %s%.2f" "$symbol" "$base_symbol" "$(curl -sf "$base.rate.sx/1$currency")"
+printf "^c#FFE767^%s %s%.2f" "$symbol" "$base_symbol" "$(curl -sf "$base.rate.sx/1$currency")"
 
 echo "$opt_currency $opt_base" > "$logfile"

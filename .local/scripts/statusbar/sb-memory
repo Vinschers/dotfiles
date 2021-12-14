@@ -1,4 +1,4 @@
 #!/bin/sh
 
 memused="$(free --mebi | sed -n '2{p;q}' | awk '{ printf "%2.2f GiB", ($3 / 1024) }')"
-printf " %s" "$memused"
+printf "^c#CB9EFF^ %s" "$memused"

@@ -2,9 +2,7 @@
 
 num_packages="$(pacman -Qu | grep -Fcv "[ignored]")"
 
-bg_color="#434C5E"
-color="^v^^c$bg_color^$(echo -e "\Ue0b2")^t^^b$bg_color^ "
-printf "\Uf139 %s" "$num_packages"
+printf "^c#FF9484^ %s" "$num_packages"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
