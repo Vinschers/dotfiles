@@ -32,8 +32,8 @@ install_general () {
 }
 
 install_dwm () {
-	install_packages "pamixer dunst simple-scan flameshot ttf-font-awesome ttf-joypixels noto-fonts noto-fonts-emoji ttf-inconsolata ttf-nerd-fonts-symbols otf-latinmodern-math adobe-source-code-pro-fonts colorpicker"
-	yay -S ttf-ubraille libxft-bgra
+	install_packages "pamixer dunst simple-scan flameshot ttf-font-awesome ttf-joypixels noto-fonts noto-fonts-emoji ttf-inconsolata ttf-nerd-fonts-symbols otf-latinmodern-math adobe-source-code-pro-fonts"
+	yay -S ttf-ubraille libxft-bgra colorpicker
 }
 
 install_fonts () {
