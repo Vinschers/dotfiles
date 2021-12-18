@@ -23,7 +23,8 @@ let g:edge_disable_italic_comment = 1
 
 set background=dark
 "colorscheme PaperColor
-colorscheme edge
+"colorscheme edge
+colorscheme zephyr
 
 let g:python_highlight_all = 1
 "let g:airline_theme='papercolor'

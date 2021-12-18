@@ -1,19 +1,21 @@
 call plug#begin()
 
 "Theme
-"Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/edge'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'folke/lsp-colors.nvim'
+Plug 'glepnir/zephyr-nvim'
 
 "Syntax highlight
 Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
 
@@ -24,26 +26,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'neovim/nvim-lspconfig'
+"Plug 'glepnir/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'mfussenegger/nvim-jdtls'
+Plug 'folke/trouble.nvim'
 
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'hrsh7th/nvim-compe'
-"Plug 'mattn/efm-langserver'
+Plug 'cohama/lexima.vim'
 
-"Plug 'kyazdani42/nvim-web-devicons'
-"Plug 'folke/lsp-colors.nvim'
-"Plug 'folke/trouble.nvim'
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 
-"if has('nvim')
-  "Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-  "Plug 'gelguy/wilder.nvim'
-
-  " To use Python remote plugin features in Vim, can be skipped
-  "Plug 'roxma/nvim-yarp'
-  "Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-
+Plug 'puremourning/vimspector'
 
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 

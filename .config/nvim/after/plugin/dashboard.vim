@@ -372,7 +372,6 @@ let g:dashboard_custom_header19=[
 \]
 
 let g:dashboard_custom_header = g:dashboard_custom_header15
-let g:dashboard_default_executive = 'fzf'
 
 
 nmap <Leader>ss :<C-u>SessionSave<CR>
