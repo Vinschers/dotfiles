@@ -49,7 +49,7 @@ return packer.startup(function(use)
 
 	use("numToStr/Comment.nvim") -- Easily comment stuff
 
-	use("akinsho/bufferline.nvim")
+	--use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
 
 	use("kyazdani42/nvim-web-devicons")
@@ -57,7 +57,19 @@ return packer.startup(function(use)
 
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
+	use("nvim-lualine/lualine.nvim")
+
+	use("akinsho/toggleterm.nvim")
+
+	use("ahmedkhalf/project.nvim")
+
+	use("lewis6991/impatient.nvim")
+
+	use("lukas-reineke/indent-blankline.nvim")
+
 	use("goolord/alpha-nvim")
+
+	use("folke/which-key.nvim")
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out

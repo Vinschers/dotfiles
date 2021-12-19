@@ -24,6 +24,8 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-w>", ":tabclose<CR>", opts)
+keymap("n", "<C-t>", ":tabnew<CR>", opts)
 
 -- nvim-tree
 keymap("n", "<C-n>", ":NvimTreeToggle<cr>", opts)
@@ -42,8 +44,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<C-A-j>", "<Esc>:m .+1<CR>==", opts)
 keymap("n", "<C-A-k>", "<Esc>:m .-2<CR>==", opts)
 
--- Close dialog in lsp
-keymap("n", "<C-l>", "i <ESC>u", opts)
+keymap("n", "<A-h>", ":noh<CR>", opts)
 
 -- Show git info
 keymap("n", "<C-g>", ":Gitsigns toggle_current_line_blame<CR>", opts)
