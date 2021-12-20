@@ -5,17 +5,17 @@ espaco () {
 }
 
 check () {
-    if [ "$2" == "1" ]
+    if [ "$2" = "1" ]
     then
         echo -n "$1 [Y/n] " >&2
         read ans
 
-        [ "$ans" == "" ] || [ "$ans" == "Y" ] || [ "$ans" == "y" ]
+        [ "$ans" = "" ] || [ "$ans" = "Y" ] || [ "$ans" = "y" ]
     else
         echo -n "$1 [y/N] " >&2
         read ans
 
-        ! [ "$ans" == "" ] || [ "$ans" == "N" ] || [ "$ans" == "n" ]
+        ! [ "$ans" = "" ] || [ "$ans" = "N" ] || [ "$ans" = "n" ]
     fi
 }
 
@@ -37,8 +37,7 @@ install_dwm () {
 }
 
 install_fonts () {
-	install_packages "ttf-font-awesome ttf-joypixels noto-fonts noto-fonts-emoji ttf-inconsolata otf-latinmodern-math adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-cn-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-otc-fonts adobe-source-han-serif-tw-fonts"
-	yay -S ttf-ubraille nerd-fonts-complete
+	install_packages "ttf-font-awesome ttf-joypixels noto-fonts-emoji otf-latinmodern-math adobe-source-code-pro-fonts"
 }
 
 install_latex () {
@@ -46,7 +45,7 @@ install_latex () {
 }
 
 install_gui () {
-	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
+	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom picom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
 	yay -S picom-jonaburg-git
 
 	amixer sset Master unmute
