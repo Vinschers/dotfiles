@@ -24,21 +24,25 @@ install_packages () {
 }
 
 install_essentials () {
-	install_packages "unrar zip unzip imv zathura zathura-pdf-mupdf mpv texlive-most texlive-lang"
+	install_packages "unrar zip unzip imv zathura zathura-pdf-mupdf mpv"
 }
 
 install_general () {
-	install_packages "htop gtop neofetch openssh python-pip shellcheck"
+	install_packages "htop gtop neofetch openssh shellcheck"
 }
 
 install_dwm () {
-	install_packages "pamixer dunst simple-scan flameshot ttf-font-awesome ttf-joypixels noto-fonts noto-fonts-emoji ttf-inconsolata ttf-nerd-fonts-symbols otf-latinmodern-math adobe-source-code-pro-fonts"
-	yay -S ttf-ubraille libxft-bgra colorpicker
+	install_packages "imlib2 pamixer dunst simple-scan flameshot"
+	yay -S libxft-bgra colorpicker
 }
 
 install_fonts () {
-	install_packages "adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-cn-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-otc-fonts adobe-source-han-serif-tw-fonts"
-	yay -S nerd-fonts-complete
+	install_packages "ttf-font-awesome ttf-joypixels noto-fonts noto-fonts-emoji ttf-inconsolata otf-latinmodern-math adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-cn-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-otc-fonts adobe-source-han-serif-tw-fonts"
+	yay -S ttf-ubraille nerd-fonts-complete
+}
+
+install_latex () {
+  install_packages "texlive-most texlive-lang"
 }
 
 install_gui () {
@@ -51,6 +55,7 @@ install_gui () {
 
 	check "Install dwm related packages?" 1 && install_dwm ; espaco
 	check "Install additional fonts?" 1 && install_fonts ; espaco
+  check "Install LaTeX packages?" 1 && install_latex ; espaco
 }
 
 cp_xorg () {
