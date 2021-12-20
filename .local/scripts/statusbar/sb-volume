@@ -4,7 +4,7 @@ volume=$(pamixer --get-volume)
 
 symbol="墳"
 
-[ "$volume" -le 10 ] && symbol="奔"
+[ "$volume" -le 25 ] && symbol="奔"
 [ "$volume" -ge 80 ] && symbol=""
 [ "$volume" = "0" ] && symbol="婢"
 
