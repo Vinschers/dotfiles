@@ -1,5 +1,8 @@
 #!/bin/sh
 
+
+THIS_DIRECTORY="$(dirname "$0")"
+
 espaco () {
     echo -e "\n\n\n" >&2
 }
@@ -58,7 +61,7 @@ install_gui () {
 }
 
 cp_xorg () {
-	sudo cp -r ./xorg.conf.d/* /etc/X11/xorg.conf.d/
+	sudo cp -r "$THIS_DIRECTORY"/xorg.conf.d/* /etc/X11/xorg.conf.d/
 }
 
 check "Install essential dotfiles packages?" 1 && install_essentials ; espaco

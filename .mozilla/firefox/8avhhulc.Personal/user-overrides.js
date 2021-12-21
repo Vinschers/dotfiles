@@ -20,5 +20,7 @@ user_pref("privacy.cpd.history", false); // 2812 to match when you use Ctrl-Shif
 
 /* Custom settings */
 user_pref("browser.startup.homepage", "https://searx.xyz");
+user_pref("keyword.enabled", true);
+user_pref("privacy.resistFingerprinting", false);
 
 user_pref("_user.js.parrot", "overrides section successful");

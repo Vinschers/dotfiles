@@ -1,8 +1,7 @@
 #!/bin/sh
 
-if ! [ ls "/sys/class/power_supply" | grep -q "BAT" ];
+if [ "$(ls /sys/class/power_supply)" = "" ];
 then
-	printf "^c#FFFFFF^battery"
 	exit 0
 fi
 

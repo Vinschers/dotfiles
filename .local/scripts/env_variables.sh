@@ -3,7 +3,7 @@
 export SCRIPTS_DIR=~/.local/scripts
 
 export TERMINAL=st
-export EDITOR=vim
+export EDITOR=nvim
 export LOCK_TIME=15
 
 export SEMESTER=2

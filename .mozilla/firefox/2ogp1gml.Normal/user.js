@@ -1365,5 +1365,6 @@ user_pref("privacy.cpd.cookies", false); // 2812 optional: default false arkenfo
 user_pref("webgl.disabled", false);
 user_pref("privacy.resistFingerprinting", false);
 user_pref("network.cookie.lifetimePolicy", 0);
+user_pref("keyword.enabled", true);
 
 user_pref("_user.js.parrot", "overrides section successful");
