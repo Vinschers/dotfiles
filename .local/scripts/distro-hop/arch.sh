@@ -55,7 +55,6 @@ install_latex () {
 
 install_gui () {
 	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom picom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
-	yay -S picom-jonaburg-git
 
 	check "Install dwm related packages?" 1 && install_dwm ; espaco
 	check "Install additional fonts?" 1 && install_fonts ; espaco
