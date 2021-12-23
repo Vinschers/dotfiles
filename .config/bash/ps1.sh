@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 PS1_STYLE=2
