@@ -5,9 +5,8 @@ source_directory() {
 
 	[ "$directory" = "*/" ] || directory="$directory/"
 
-	for script in $directory*; do source $script; done
+	for script in "$directory"*; do . "$script"; done
 }
 
-source $SCRIPTS_DIR/env_variables.sh
-source_directory $SCRIPTS_DIR/shell/
-
+. "$SCRIPTS_DIR"/shell/env_variables.sh
+source_directory "$SCRIPTS_DIR"/shell/

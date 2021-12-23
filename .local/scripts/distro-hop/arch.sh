@@ -31,7 +31,7 @@ install_essentials () {
 }
 
 install_general () {
-	install_packages "htop gtop neofetch openssh shellcheck"
+	install_packages "htop gtop neofetch openssh shellcheck xclip neovim"
 }
 
 install_dwm_fonts () {
@@ -40,7 +40,7 @@ install_dwm_fonts () {
 
 install_dwm () {
 	install_packages "imlib2 pamixer dunst simple-scan flameshot"
-	yay -S libxft-bgra colorpicker
+	yay -S libxft-bgra colorpicker xkb_switch
 
     check "Install dwm related fonts?" 1 && install_dwm_fonts ; espaco
 }
@@ -54,7 +54,8 @@ install_latex () {
 }
 
 install_gui () {
-	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom picom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
+	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
+    yay -S picom-jonaburg-git
 
 	check "Install dwm related packages?" 1 && install_dwm ; espaco
 	check "Install additional fonts?" 1 && install_fonts ; espaco
@@ -69,7 +70,14 @@ cp_xorg () {
 	sudo cp -r "$THIS_DIRECTORY"/xorg.conf.d/* /etc/X11/xorg.conf.d/
 }
 
+create_cache () {
+    echo "0 1000" > "$HOME"/.cache/diskspace
+    echo "0 0" > "$HOME"/.cache/price
+    echo "0 0 0" > "$HOME"/.cache/netlog
+}
+
 check "Install essential dotfiles packages?" 1 && install_essentials ; espaco
 check "Install general usage packages?" 1 && install_general ; espaco
 check "Install GUI packages?" 1 && install_gui ; espaco
 check "Override xorg.conf.d?" 1 && cp_xorg ; espaco
+check "Create .cache files for dwmblocks?" 1 && create_cache ; espaco

@@ -1,2 +1,4 @@
-export SCRIPTS_DIR="$HOME/.local/scripts"
-source $SCRIPTS_DIR/on_login.sh
+#!/bin/sh
+
+export SCRIPTS_DIR="$HOME"/.local/scripts
+. "$SCRIPTS_DIR"/on_login.sh
