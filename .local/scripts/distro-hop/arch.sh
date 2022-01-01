@@ -56,7 +56,7 @@ install_latex () {
 }
 
 install_gui () {
-	yay -S libxft-bgra
+	yay -S libxft-bgra-git
 	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
     yay -S picom-jonaburg-git
 
