@@ -31,11 +31,12 @@ install_essentials () {
 }
 
 install_general () {
-	install_packages "htop gtop neofetch openssh shellcheck xclip neovim"
+	install_packages "htop gtop neofetch openssh shellcheck xclip neovim python-pip linux-headers"
 }
 
 install_dwm_fonts () {
 	install_packages "ttf-font-awesome ttf-joypixels noto-fonts-emoji otf-latinmodern-math adobe-source-code-pro-fonts"
+    yay -S adobe-source-han-mono-tw-fonts
 }
 
 install_dwm () {

@@ -42,4 +42,4 @@ mkdir "$tmp_dir"
 
 create_pdf && convert_png && copy_to_clipboard && notify-send "Copied LaTeX output to clipboard."
 
-rm -rf "$tmp_dir"
+# rm -rf "$tmp_dir"
