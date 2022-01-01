@@ -1,1 +1,4 @@
-source ~/.config/bash/bashrc.sh
+#!/bin/bash
+
+. "$BASHDIR"/bashrc.sh
+. "$SCRIPTS_DIR"/shellrc.sh

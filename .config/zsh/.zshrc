@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-. "$ZDOTDIR"/zshrc.sh
+. "$ZDOTDIR/prompt1.sh"
+. "$SCRIPTS_DIR"/shellrc.sh

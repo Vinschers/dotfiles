@@ -69,3 +69,9 @@ local python = Terminal:new({ cmd = "python", hidden = true })
 function _PYTHON_TOGGLE()
 	python:toggle()
 end
+
+local compile = Terminal:new({ cmd = "c", hidden = true })
+
+function _COMPILE_TOGGLE()
+    compile:toggle()
+end

@@ -1,12 +1,7 @@
-HISTFILE=~/.zsh_history
-setopt appendhistory
+#!/bin/sh
 
-setopt autocd extendedglob nomatch menucomplete
-setopt interactive_comments
-stty stop undef
-zle_highlight=('paste:none')
 
-unsetopt BEEP
+HISTFILE="$ZDOTDIR"/.zsh_history
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -23,28 +18,25 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
-# Useful Functions
-source "$ZDOTDIR/zsh-functions.sh"
-
-# Normal files to source
-zsh_add_file "zsh-vim-mode.sh"
-zsh_add_file "zsh-prompt.sh"
+source "$ZDOTDIR/functions.sh"
+source "$ZDOTDIR/vim-mode.sh"
+source "$ZDOTDIR/prompt.sh"
 
 # Plugins
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-zsh_add_plugin "hlissner/zsh-autopair"
-zsh_add_completion "esc/conda-zsh-completion" false
+# zsh_add_plugin "zsh-users/zsh-autosuggestions"
+# zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+# zsh_add_plugin "hlissner/zsh-autopair"
+# zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-bindkey -s '^o' 'ranger^M'
-bindkey -s '^f' 'zi^M'
-bindkey -s '^s' 'ncdu^M'
+# bindkey -s '^o' 'ranger^M'
+# bindkey -s '^f' 'zi^M'
+# bindkey -s '^s' 'ncdu^M'
 # bindkey -s '^n' 'nvim $(fzf)^M'
 # bindkey -s '^v' 'nvim\n'
-bindkey -s '^z' 'zi^M'
+# bindkey -s '^z' 'zi^M'
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
 bindkey "^n" down-line-or-beginning-search # Down
@@ -55,12 +47,12 @@ bindkey -r "^d"
 
 # FZF 
 # TODO update for mac
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
+# [ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
+# [ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
+# [ -f /usr/share/doc/fzf/examples/completion.zsh ] && . /usr/share/doc/fzf/examples/completion.zsh
+# [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && . /usr/share/doc/fzf/examples/key-bindings.zsh
+# [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+# [ -f "$ZDOTDIR"/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
 
@@ -69,6 +61,4 @@ autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
 # Speedy keys
-xset r rate 210 40
-
-source "$SCRIPTS_DIR"/shellrc.sh
+# xset r rate 210 40
