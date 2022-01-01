@@ -41,7 +41,8 @@ install_dwm_fonts () {
 
 install_dwm () {
 	install_packages "imlib2 pamixer dunst simple-scan flameshot"
-	yay -S libxft-bgra colorpicker xkb_switch
+	yay -S colorpicker
+	yay -S xkb_switch
 
     check "Install dwm related fonts?" 1 && install_dwm_fonts ; espaco
 }
@@ -55,6 +56,7 @@ install_latex () {
 }
 
 install_gui () {
+	yay -S libxft-bgra
 	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
     yay -S picom-jonaburg-git
 
