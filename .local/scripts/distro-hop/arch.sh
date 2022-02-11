@@ -42,13 +42,13 @@ install_dwm_fonts () {
 install_dwm () {
 	install_packages "imlib2 pamixer dunst simple-scan flameshot"
 	yay -S colorpicker
-	yay -S xkb_switch
+	yay -S xkb-switch
 
     check "Install dwm related fonts?" 1 && install_dwm_fonts ; espaco
 }
 
 install_fonts () {
-	install_packages "adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-cn-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-otc-fonts adobe-source-han-serif-tw-fonts"
+	install_packages "adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts adobe-source-han-sans-tw-fonts adobe-source-han-serif-cn-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-otc-fonts adobe-source-han-serif-tw-fonts ttf-liberation"
 }
 
 install_latex () {
@@ -56,7 +56,6 @@ install_latex () {
 }
 
 install_gui () {
-	yay -S libxft-bgra-git
 	install_packages "xorg xorg-xinit xf86-video-intel xf86-input-wacom nvidia nvidia-utils nvidia-settings nitrogen slock pulseaudio pavucontrol alsa-utils alsa-firmware thunar"
     yay -S picom-jonaburg-git
 
@@ -84,3 +83,5 @@ check "Install general usage packages?" 1 && install_general ; espaco
 check "Install GUI packages?" 1 && install_gui ; espaco
 check "Override xorg.conf.d?" 1 && cp_xorg ; espaco
 check "Create .cache files for dwmblocks?" 1 && create_cache ; espaco
+
+echo "Install libxft-bgra and reboot"

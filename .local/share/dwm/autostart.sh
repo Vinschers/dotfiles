@@ -1,8 +1,8 @@
 #!/bin/sh
 
-xautolock -time $LOCK_TIME -locker slock &
-xrandr --output DP-1 --left-of HDMI-0 &
+#xrandr --output DP-1 --left-of HDMI-0 &
 picom -f &
 #run_nitrogen &
 nitrogen --restore &
 dwmblocks &
+xautolock -time $LOCK_TIME -locker slock &

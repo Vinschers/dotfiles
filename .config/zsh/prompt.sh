@@ -28,13 +28,6 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 zstyle ':vcs_info:*' check-for-changes true
-# zstyle ':vcs_info:git:*' formats " %r/%S %b %m%u%c "
-zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
+zstyle ':vcs_info:git:*' formats " %F{blue}(%F{#ff75cc} %F{#ff75cc}%m%u%c %F{#ffa875}%b%F{blue})"
 
-# format our main prompt for hostname current folder, and permissions.
-PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
-# PROMPT="%{$fg[green]%}%n@%m %~ %{$reset_color%}%#> "
-PROMPT+="\$vcs_info_msg_0_ "
-# TODO look into this for more colors
-# https://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
-# also ascii escape codes
+PROMPT=" %B%F{#75ffa8}%n%F{34}@%F{#75ffa8}%m%(?:%F{#a284e0}:%F{red}) ∷ %F{#75ccff}%3~\$vcs_info_msg_0_ %F{yellow}∭  %b%f"

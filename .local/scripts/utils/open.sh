@@ -28,8 +28,8 @@ fi
 
 if is_pdf "$1"
 then
-	echo "Opening $1 with zathura"
-	zathura "$1"
+	echo "Opening $1 with okular"
+	okular "$1"
 	exit 0
 fi
 
