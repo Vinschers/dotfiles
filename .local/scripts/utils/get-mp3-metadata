@@ -1,0 +1,145 @@
+#!/bin/python
+
+import sys
+import os
+import requests
+import json
+
+
+def get_song_id(song_name, artist_name):
+    if artist_name:
+        artist_search = f'%20AND%20artist:{artist_name.replace(" ", "+")}'
+    else:
+        artist_search = ''
+    json_str = requests.get(f'https://musicbrainz.org/ws/2/recording/?query=title:{song_name.replace(" ", "+")}{artist_search}&limit=1000&fmt=json').content
+    results = json.loads(json_str)
+
+    recordings = results['recordings']
+
+    for i, recording in enumerate(recordings):
+        if 'artist-credit' in recording:
+            artist = recording['artist-credit'][0]['name']
+            album = ''
+            if 'releases' in recording:
+                for release in recording['releases']:
+                    album += f'({release["title"]}) '
+            print(f'{i}\t{artist}\t{album}')
+
+    index = int(input("\nArtist name index (-1 for manual input): "))
+
+    if index == -1:
+        return ""
+    else:
+        return recordings[index]['id']
+
+def get_info(song_id):
+    if not song_id:
+        return get_manual_info()
+
+    url = f'https://musicbrainz.org/ws/2/recording/{song_id}?fmt=json&inc=artists+genres+releases+media'
+    print(url)
+    song_json = requests.get(url).content
+    song_dict = json.loads(song_json)
+
+    info = {}
+
+    if 'title' in song_dict and song_dict['title']:
+        info['title'] = song_dict['title']
+    else:
+        info['title'] = input('Title: ')
+
+    if 'first-release-date' in song_dict and song_dict['first-release-date']:
+        info['date'] = song_dict['first-release-date']
+    else:
+        info['date'] = input('Release date: ')
+
+    if 'genres' in song_dict and song_dict['genres']:
+        info['genre'] = '; '.join(song_dict['genres'])
+    else:
+        info['genre'] = input('Genre(s): ')
+
+    if 'releases' in song_dict and song_dict['releases']:
+        release_id = song_dict['releases'][0]['id']
+        info['album'] = song_dict['releases'][0]['title']
+        info['track'] = song_dict['releases'][0]['media'][0]['tracks'][0]['position']
+        try:
+            info['img'] = json.loads(requests.get(f'https://coverartarchive.org/release/{release_id}').content)['images'][0]['thumbnails']['large']
+            if requests.get(info['img']).status_code != 200:
+                raise Exception()
+        except Exception:
+            info['img'] = input('Album cover image: ')
+
+        for release in song_dict['releases']:
+            if 'media' in release:
+                for media in release['media']:
+                    for track in media['tracks']:
+                        if track['title'] not in info['title']:
+                            info['title'] += f'; {track["title"]}'
+            elif release['title'] not in info['title']:
+                info['title'] += f'; {release["title"]}'
+    else:
+        info['album'] = info['title']
+        info['track'] = ''
+        info['img'] = input('Album cover image: ')
+
+    info['artist'] = []
+    for artist in song_dict['artist-credit']:
+        info['artist'].append(artist['name'])
+    info['artist'] = ', '.join(info['artist'])
+
+    if not info['artist']:
+        info['artist'] = input('Artist(s): ')
+
+    return info
+
+
+def get_manual_info():
+    info = {}
+
+    info['title'] = input('Title: ')
+    info['date'] = input('Release date: ')
+    info['album'] = input('Album: ')
+    info['genre'] = input('Genre(s): ')
+    info['track'] = input('Track: ')
+    info['artist'] = '; '.join(input('Artist(s): ').split(','))
+    info['img'] = input('Album cover image: ')
+
+    return info
+
+
+def get_metadata_str(info):
+    metadata = ''
+
+    for key, value in info.items():
+        metadata += f'-metadata {key}=\"{value}\" '
+
+    return metadata[:-1]
+
+
+def main(args):
+    if len(args) != 2:
+        print('Usage: get-mp3-metadata [MP3 FILE]')
+        quit()
+
+    song_name = input("Name of song: ")
+    artist_name = input("Name of artist (optional): ")
+    song_id = get_song_id(song_name, artist_name)
+
+    info = get_info(song_id)
+
+    print('Current title:', info['title'])
+    additional_titles = input('Additional titles: ').split('; ')
+
+    for additional_title in additional_titles:
+        if additional_title not in info['title']:
+            info['title'] = f'{additional_title}; {info["title"]}'
+
+    metadata = get_metadata_str(info)
+
+    if info['img']:
+        os.system(f'ffmpeg -i \"{args[1]}\" -i \"{info["img"]}\" -map 0 -map 1:0 -codec copy {metadata} -y \"{info["title"]}.mp3\" && rm \"{args[1]}\"')
+    else:
+        os.system(f'ffmpeg -i \"{args[1]}\" -c:a copy {metadata} -y \"{info["title"]}.mp3\" && rm \"{args[1]}\"')
+
+
+main(sys.argv)

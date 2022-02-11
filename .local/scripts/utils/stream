@@ -1,0 +1,21 @@
+#!/bin/sh
+
+STREAMCACHEDIR="$HOME"/.cache/stream
+SITES="nyaa;1337.wtf"
+
+[ -d "$STREAMCACHEDIR" ] && rm -rf "$STREAMCACHEDIR"
+mkdir -p "$STREAMCACHEDIR"
+
+query="$(dmenu -p "Search: " <&-)"
+[ -z "$query" ] && exit 1
+
+site="$(echo "$SITES" | sed 's/;/\n/g' | dmenu -i -l 25 | awk '{$1=$1; print}')"
+[ -z "$site" ] && exit 1
+
+case "$site" in
+    "nyaa") magnet="$(STREAMCACHEDIR="$STREAMCACHEDIR" stream-nyaa "$query")" ;;
+    "1337.wtf") magnet="$(STREAMCACHEDIR="$STREAMCACHEDIR" stream-1337 "$query")" ;;
+esac
+
+echo "$magnet"
+webtorrent "$magnet" --playlist --mpv -o "$STREAMCACHEDIR"
