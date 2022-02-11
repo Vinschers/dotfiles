@@ -28,6 +28,6 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats " %F{blue}(%F{#ff75cc} %F{#ff75cc}%m%u%c %F{#ffa875}%b%F{blue})"
+zstyle ':vcs_info:git:*' formats " %F{blue}(%F{#ff75cc} %F{#ffa875}%b%F{red}%m%u%c%F{blue})"
 
-PROMPT=" %B%F{#75ffa8}%n%F{34}@%F{#75ffa8}%m%(?:%F{#a284e0}:%F{red}) ∷ %F{#75ccff}%3~\$vcs_info_msg_0_ %F{yellow}∭  %b%f"
+PROMPT="%B%F{#75ffa8}%n%F{34}@%F{#75ffa8}%m%F{#a284e0} ∷ %F{#75ccff}%3~\$vcs_info_msg_0_ %(?:%F{yellow}:%F{red})∭  %b%f"
