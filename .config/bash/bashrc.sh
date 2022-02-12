@@ -9,3 +9,5 @@ source "$BASHDIR"/shopt.sh
 # Autocomplete using sudo
 complete -cf sudo
 # [ -r /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
+
+source "$SCRIPTS_DIR"/shellrc.sh

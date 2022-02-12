@@ -7,6 +7,7 @@ end
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
 local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup({
@@ -14,20 +15,15 @@ null_ls.setup({
 	sources = {
 		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		formatting.black.with({ extra_args = { "--fast" } }),
-        formatting.isort,
 		formatting.stylua,
-        formatting.clang_format,
-        formatting.fixjson,
         formatting.google_java_format,
+        formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" } }),
+        formatting.shellharden,
 
-        diagnostics.eslint,
-        diagnostics.flake8,
-        diagnostics.chktex,
-        diagnostics.cppcheck,
+		diagnostics.flake8,
+        diagnostics.cppcheck.with({ extra_args = {"--enable=all"} }),
         diagnostics.shellcheck,
-        diagnostics.vint,
 
-        code_actions.eslint,
         code_actions.shellcheck,
 	},
 })
