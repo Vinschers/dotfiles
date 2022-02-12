@@ -21,8 +21,6 @@ vim.g.maplocalleader = " "
 -- Normal --
 -- Better window navigation
 
-keymap("n", "<C-c>", "lh:noh<CR>", opts) -- Closes open floats and clears highlights
-
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
@@ -39,29 +37,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Git
-keymap("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", opts)
-keymap("n", "<leader>gn", ":Gitsigns next_hunk<CR>", opts)
-keymap("n", "<leader>gr", ":Gitsigns preview_hunk<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>tf", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<leader>tg", ":Telescope live_grep<cr>", opts)
-keymap("n", "<leader>tb", ":Telescope git_branches<cr>", opts)
-keymap("n", "<leader>th", ":Telescope help_tags<cr>", opts)
-keymap("n", "<leader>tm", ":Telescope media_files<cr>", opts)
-
--- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- Null-LS
-keymap("n", "<leader>f", ":Format<CR>", opts)
-
--- Toggleterm
-keymap("n", "<leader>lg", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<leader>ht", ":lua _HTOP_TOGGLE()<CR>", opts)
-keymap("n", "<leader>py", ":lua _PYTHON_TOGGLE()<CR>", opts)
-keymap("n", "<leader>nc", ":lua _NCDU_TOGGLE()<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode

@@ -94,7 +94,7 @@ local function has_value (tab, val)
     return false
 end
 
-local disable_formatting = {'tsserver', 'clangd', 'jdtls'}
+local disable_formatting = {'tsserver', 'clangd'}
 
 M.on_attach = function(client, bufnr)
 	if has_value(disable_formatting, client.name) then
