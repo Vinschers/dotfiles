@@ -78,10 +78,18 @@ create_cache () {
     echo "0 0 0" > "$HOME"/.cache/netlog
 }
 
-check "Install essential dotfiles packages?" 1 && install_essentials ; espaco
-check "Install general usage packages?" 1 && install_general ; espaco
-check "Install GUI packages?" 1 && install_gui ; espaco
-check "Override xorg.conf.d?" 1 && cp_xorg ; espaco
-check "Create .cache files for dwmblocks?" 1 && create_cache ; espaco
+full_install () {
+    THIS_DIRECTORY="$(dirname "$0")"
 
-echo "Install libxft-bgra and reboot"
+    install_packages "$(cat "$THIS_DIRECTORY/pacman_full")"
+    install_packages "texlive-most texlive-lang"
+
+    yay -S "$(cat "$THIS_DIRECTORY/yay_full")"
+
+	amixer sset Master unmute
+	pulseaudio --check
+	pulseaudio -D
+}
+
+check "Full install?" 1 && full_install ; espaco
+check "Override xorg.conf.d?" 1 && cp_xorg
