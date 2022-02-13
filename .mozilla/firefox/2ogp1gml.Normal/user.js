@@ -131,31 +131,19 @@ user_pref("browser.region.update.enabled", false); // [FF79+]
  * [SETTING] General>Language and Appearance>Language>Choose your preferred language...
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
-/* 0211: use US English locale regardless of the system locale
+/* 0211: use en-US locale regardless of the system or region locale
  * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
+ * [TEST] https://arkenfox.github.io/TZP/tests/formatting.html
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
 /*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /** UPDATES ***/
-/* 0301: disable auto-INSTALLING Firefox updates [NON-WINDOWS]
- * [NOTE] You will still get prompts to update, and should do so in a timely manner
- * [SETTING] General>Firefox Updates>Check for updates but let you choose to install them ***/
-user_pref("app.update.auto", false);
 /* 0302: disable auto-INSTALLING Firefox updates via a background service [FF90+] [WINDOWS]
  * [SETTING] General>Firefox Updates>Automatically install updates>When Firefox is not running
  * [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows ***/
 user_pref("app.update.background.scheduling.enabled", false);
-/* 0303: disable auto-CHECKING for extension and theme updates ***/
-   // user_pref("extensions.update.enabled", false);
-/* 0304: disable auto-INSTALLING extension and theme updates (after the check in 0303)
- * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
-   // user_pref("extensions.update.autoUpdateDefault", false);
-/* 0305: disable extension metadata
- * used when installing/updating an extension, and in daily background update checks:
- * when false, extension detail tabs will have no description ***/
-   // user_pref("extensions.getAddons.cache.enabled", false);
 /* 0306: disable search engine updates (e.g. OpenSearch)
  * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines ***/
 user_pref("browser.search.update", false);
@@ -481,17 +469,18 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * safe from the attack if it disables renegotiations but the problem is that the browser can't
  * know that. Setting this pref to true is the only way for the browser to ensure there will be
  * no unsafe renegotiations on the channel between the browser and the server.
- * [STATS] SSL Labs (July 2021) reports over 99% of sites have secure renegotiation [4]
+ * [STATS] SSL Labs (July 2021) reports over 99% of top sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
  * [4] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.require_safe_negotiation", true);
-/* 1203: reset TLS 1.0 and 1.1 downgrades i.e. session only ***/
-user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
+ * This data is not forward secret, as it is encrypted solely under keys derived using
+ * the offered PSK. There are no guarantees of non-replay between connections
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
- * [2] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
+ * [2] https://www.rfc-editor.org/rfc/rfc9001.html#name-replay-attacks-with-0-rtt
+ * [3] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
 user_pref("security.tls.enable_0rtt_data", false);
 
 /** OCSP (Online Certificate Status Protocol)
@@ -657,11 +646,13 @@ user_pref("media.peerconnection.ice.default_address_only", true);
  * [NOTE] This is covered by the EME master switch (2022) ***/
    // user_pref("media.gmp-widevinecdm.enabled", false);
 /* 2022: disable all DRM content (EME: Encryption Media Extension)
+ * Optionally hide the setting which also disables the DRM prompt
  * [SETUP-WEB] e.g. Netflix, Amazon Prime, Hulu, HBO, Disney+, Showtime, Starz, DirectTV
  * [SETTING] General>DRM Content>Play DRM-controlled content
  * [TEST] https://bitmovin.com/demos/drm
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", false);
+   // user_pref("browser.eme.ui.enabled", false);
 /* 2030: disable autoplay of HTML5 media [FF63+]
  * 0=Allow all, 1=Block non-muted media (default), 5=Block all
  * [NOTE] You can set exceptions under site permissions
@@ -687,18 +678,6 @@ user_pref("dom.disable_window_move_resize", true);
 user_pref("dom.disable_open_during_load", true);
 /* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-/* 2410: disable Web Notifications
- * [NOTE] Web Notifications are behind a prompt (7002) ***/
-   // user_pref("dom.webnotifications.enabled", false); // [FF22+]
-   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
-/* 2411: disable Push Notifications [FF44+]
- * Push allows websites to send you subscribed messages through Mozilla's Push Server,
- * and requires service workers to subscribe to and display, and is behind a prompt (7002)
- * [NOTE] Disabling service workers alone doesn't stop Firefox polling the Mozilla Push Server
- * [NOTE] To remove all subscriptions, reset "dom.push.userAgentID"
- * [1] https://support.mozilla.org/kb/push-notifications-firefox
- * [2] https://developer.mozilla.org/docs/Web/API/Push_API ***/
-   // user_pref("dom.push.enabled", false);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -954,7 +933,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 /* 4506: set RFP's font visibility level (1402) [FF94+] ***/
-   // user_pref("layout.css.font-visibility.resistFingerprinting", 1);
+   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 /* 4507: disable showing about:blank as soon as possible during startup [FF60+]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
@@ -1127,6 +1106,10 @@ user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
  * In FF96+ these are listed in about:compat
  * [1] https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/ ***/
 user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
+/* 6010: enforce/reset TLS 1.0/1.1 downgrades to session only
+ * [NOTE] In FF97+ the TLS 1.0/1.1 downgrade UX was removed
+ * [TEST] https://tls-v1-1.badssl.com:1010/ ***/
+user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
@@ -1169,7 +1152,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
 /* 7004: control TLS versions
- * [WHY] Passive fingerprinting. Downgrades are still possible: behind user interaction ***/
+ * [WHY] Passive fingerprinting and security ***/
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
    // user_pref("security.tls.version.max", 4);
 /* 7005: disable SSL session IDs [FF36+]
@@ -1179,6 +1162,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7006: onions
  * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
    // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
+   // user_pref("dom.securecontext.allowlist_onions", true); // [FF97+] 1382359/1744006
    // user_pref("network.http.referer.hideOnionSource", true); // 1305144
 /* 7007: referers
  * [WHY] Only cross-origin referers (1600s) need control ***/
@@ -1233,6 +1217,16 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2710)
  * or blocked with TCP in 3rd parties (FF95 or lower) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
+/* 7018: disable Web Notifications
+ * [WHY] Web Notifications are behind a prompt (7002)
+ * [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/ ***/
+   // user_pref("dom.webnotifications.enabled", false); // [FF22+]
+   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
+/* 7019: disable Push Notifications [FF44+]
+ * [WHY] Push requires subscription
+ * [NOTE] To remove all subscriptions, reset "dom.push.userAgentID"
+ * [1] https://support.mozilla.org/kb/push-notifications-firefox ***/
+   // user_pref("dom.push.enabled", false);
 
 /*** [SECTION 8000]: DON'T BOTHER: FINGERPRINTING
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
@@ -1282,6 +1276,14 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("browser.warnOnQuitShortcut", false); // [FF94+]
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
+/* UPDATES ***/
+   // user_pref("app.update.auto", false); // [NON-WINDOWS] disable auto app updates
+     // [NOTE] You will still get prompts to update, and should do so in a timely manner
+     // [SETTING] General>Firefox Updates>Check for updates but let you choose to install them
+   // user_pref("extensions.update.enabled", false); // disable extension and theme update checks
+   // user_pref("extensions.update.autoUpdateDefault", false); // disable installing extension and theme updates
+      // [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle)
+   // user_pref("extensions.getAddons.cache.enabled", false); // disable extension metadata (extension detail tab)
 /* APPEARANCE ***/
    // user_pref("browser.download.autohideButton", false); // [FF57+]
    // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
@@ -1344,27 +1346,30 @@ user_pref("_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!"
 /*** MY OVERRIDES ***/
 user_pref("_user.js.parrot", "overrides section syntax error");
 
+/* Mental Outlaw recomendations */
+user_pref("geo.enabled", false);
+//user_pref("network.http.sendRefererHeader", 0);
+
 /* override recipe: enable DRM and let me watch videos ***/
    // user_pref("media.gmp-widevinecdm.enabled", true); // 2021 default-inactive in user.js
 user_pref("media.eme.enabled", true); // 2022
 
 /* override recipe: enable session restore ***/
 user_pref("browser.startup.page", 3); // 0102
-// user_pref("browser.privatebrowsing.autostart", false); // 0110 required if you had it set as true
-// user_pref("places.history.enabled", true); // 0862 required if you had it set as false
+  // user_pref("browser.privatebrowsing.autostart", false); // 0110 required if you had it set as true
+  // user_pref("places.history.enabled", true); // 0862 required if you had it set as false
 user_pref("browser.sessionstore.privacy_level", 0); // 1003 [to restore cookies/formdata if not sanitized]
-// user_pref("network.cookie.lifetimePolicy", 0); // 2801 [DON'T: add cookie + site data exceptions instead]
+  // user_pref("network.cookie.lifetimePolicy", 0); // 2801 [DON'T: add cookie + site data exceptions instead]
 user_pref("privacy.clearOnShutdown.history", false); // 2811
-user_pref("privacy.clearOnShutdown.cookies", false); // 2811 optional: default false arkenfox v94
-// user_pref("privacy.clearOnShutdown.formdata", false); // 2811 optional
+  // user_pref("privacy.clearOnShutdown.cookies", false); // 2811 optional: default false arkenfox v94
+  // user_pref("privacy.clearOnShutdown.formdata", false); // 2811 optional
 user_pref("privacy.cpd.history", false); // 2812 to match when you use Ctrl-Shift-Del
-user_pref("privacy.cpd.cookies", false); // 2812 optional: default false arkenfox v94
-// user_pref("privacy.cpd.formdata", false); // 2812 optional
+  // user_pref("privacy.cpd.cookies", false); // 2812 optional: default false arkenfox v94
+  // user_pref("privacy.cpd.formdata", false); // 2812 optional
 
-/* Custom changes */
-user_pref("webgl.disabled", false);
-user_pref("privacy.resistFingerprinting", false);
-user_pref("network.cookie.lifetimePolicy", 0);
+/* Custom settings */
+user_pref("browser.startup.homepage", "https://searx.xyz");
 user_pref("keyword.enabled", true);
+user_pref("privacy.resistFingerprinting", false);
 
 user_pref("_user.js.parrot", "overrides section successful");

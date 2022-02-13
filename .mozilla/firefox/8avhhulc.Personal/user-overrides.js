@@ -1,9 +1,9 @@
-/*** MY OVERRIDES ***/
+/* MY OVERRIDES */
 user_pref("_user.js.parrot", "overrides section syntax error");
 
 /* Mental Outlaw recomendations */
 user_pref("geo.enabled", false);
-user_pref("network.http.sendRefererHeader", 0);
+//user_pref("network.http.sendRefererHeader", 0);
 
 /* override recipe: enable session restore ***/
 user_pref("browser.startup.page", 3); // 0102
@@ -22,5 +22,6 @@ user_pref("privacy.cpd.history", false); // 2812 to match when you use Ctrl-Shif
 user_pref("browser.startup.homepage", "https://searx.xyz");
 user_pref("keyword.enabled", true);
 user_pref("privacy.resistFingerprinting", false);
+user_pref("media.autoplay.blocking_policy", 0); // Moe.listen
 
 user_pref("_user.js.parrot", "overrides section successful");
