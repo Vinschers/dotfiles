@@ -140,6 +140,7 @@ local mappings = {
 			"Workspace Diagnostics",
 		},
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+        g = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<cr>", "Show dialog" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = {

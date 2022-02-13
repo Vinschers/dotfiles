@@ -18,4 +18,4 @@ case "$site" in
 esac
 
 echo "$magnet"
-webtorrent "$magnet" --playlist --mpv -o "$STREAMCACHEDIR"
+peerflix -k "$magnet" --playlist -rf "$STREAMCACHEDIR"
