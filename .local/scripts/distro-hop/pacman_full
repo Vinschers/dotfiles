@@ -16,7 +16,6 @@ imlib2
 keepassxc
 lazygit
 linux-headers
-magic-wormhole
 mousepad
 neofetch
 neovim
@@ -52,7 +51,6 @@ ttf-font-awesome
 ttf-joypixels
 ttf-liberation
 ttf-sazanami
-ueberzug
 unrar
 unzip
 vim
