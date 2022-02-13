@@ -30,6 +30,7 @@ nvidia
 nvidia-settings
 nvidia-utils
 okular
+openssh
 os-prober
 otf-latinmodern-math
 pamixer
@@ -61,6 +62,8 @@ xclip
 xf86-input-wacom
 xf86-video-intel
 xf86-video-vesa
+xorg
+xorg-xinit
 yamllint
 youtube-dl
 zip
