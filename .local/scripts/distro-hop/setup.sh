@@ -27,12 +27,12 @@ THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
 
 case "$opt" in
-	"1") SCRIPT="arch.sh" ;;
+	"1") SCRIPT="arch.py" ;;
 	"*") exit 1 ;;
 esac
 
 center "Running $SCRIPT script"
-"/bin/sh" "$THIS_DIRECTORY/$SCRIPT" || exit 1
+python "$THIS_DIRECTORY/$SCRIPT" || exit 1
 center ""
 
 center "Setting up git ssh configurations"
