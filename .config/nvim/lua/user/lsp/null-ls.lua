@@ -13,7 +13,7 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.prettier,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
         formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" }, filetypes = { "c", "cpp" } }),
@@ -22,6 +22,7 @@ null_ls.setup({
 		diagnostics.flake8,
         diagnostics.cppcheck.with({ extra_args = {"--enable=all"} }),
         diagnostics.shellcheck,
+        diagnostics.yamllint,
 
         code_actions.shellcheck,
 	},
