@@ -48,8 +48,15 @@ return packer.startup(function(use)
 	-- Colorschemes
 	use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
 	use("sainnhe/edge")
-	--use("glepnir/zephyr-nvim")
     use("folke/tokyonight.nvim")
+    use("mangeshrex/uwu.vim")
+    use("rafamadriz/neon")
+    use("marko-cerovac/material.nvim")
+    use("nekonako/xresources-nvim")
+    use("shaunsingh/nord.nvim")
+    use("navarasu/onedark.nvim")
+    use("dracula/vim")
+    use("nxvu699134/vn-night.nvim")
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -121,6 +128,12 @@ return packer.startup(function(use)
 
     -- whichkey
     use("folke/which-key.nvim")
+
+    -- Colorizer
+    use("norcalli/nvim-colorizer.lua")
+
+    -- Tetris
+    use("alec-gibson/nvim-tetris")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

@@ -1,4 +1,4 @@
-local colorschemes = {"tokyonight", "zephyr", "edge"}
+local colorschemes = {"tokyonight", "system76", "material", "neon"}
 local _, i, status_ok
 local num_colors = #(colorschemes)
 

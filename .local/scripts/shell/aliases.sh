@@ -66,3 +66,4 @@ alias gs='git status'
 alias dmenu='dmenu -x 12 -y 12 -z 1896'
 alias ds='dotfiles status'
 alias da='dotfiles add'
+#alias clang-format="clang-format --style='{BasedOnStyle: gnu}'"
