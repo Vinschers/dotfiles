@@ -1,3 +1,5 @@
+xorg
+xorg-xinit
 alacritty
 alsa-firmware
 alsa-utils
@@ -58,8 +60,6 @@ xclip
 xf86-input-wacom
 xf86-video-intel
 xf86-video-vesa
-xorg
-xorg-xinit
 yamllint
 youtube-dl
 zip

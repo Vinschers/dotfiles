@@ -30,5 +30,9 @@ compileMake() {
     make && return 0 || return 1
 }
 
-compileMake "$1" ||
-compileFile "$1"
+compile () {
+    compileMake "$1" ||
+    compileFile "$1"
+}
+
+export compile

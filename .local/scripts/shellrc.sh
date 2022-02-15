@@ -8,4 +8,5 @@ source_directory() {
 	for script in "$directory"*; do . "$script"; done
 }
 
+source_directory "$SCRIPTS_DIR"/functions/
 source_directory "$SCRIPTS_DIR"/shell/

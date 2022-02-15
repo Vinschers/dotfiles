@@ -135,6 +135,10 @@ return packer.startup(function(use)
     -- Tetris
     use("alec-gibson/nvim-tetris")
 
+    -- Debugging
+    use("mfussenegger/nvim-dap")
+    use("rcarriga/nvim-dap-ui")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
