@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pamixer -d 1 && update_dwmblocks 4

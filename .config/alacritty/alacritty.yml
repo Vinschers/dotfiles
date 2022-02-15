@@ -81,17 +81,17 @@ window:
   #startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  # title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  dynamic_title: true
 
   # Window class (Linux/BSD only):
-  #class:
+  class:
     # Application instance name
-    #instance: Alacritty
+    instance: Alacrittyy
     # General application class
-    #general: Alacritty
+    general: Alacritty
 
   # GTK theme variant (Linux/BSD only)
   #

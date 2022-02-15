@@ -1,9 +1,6 @@
 #!/bin/sh
 
-# # ex - archive extractor
-# # usage: ex <file>
-
-ex ()
+extract ()
 {
     if [ -f $1 ] ; then
         case $1 in
@@ -27,4 +24,4 @@ ex ()
     fi
 }
 
-ex $1
+export extract
