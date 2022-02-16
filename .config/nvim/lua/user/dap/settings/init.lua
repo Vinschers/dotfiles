@@ -3,6 +3,9 @@ if not status_ok then
 	return
 end
 
+-- BELOW CODE WAS TAKEN FROM https://github.com/hallettj/dot-vim/blob/master/home/.config/nvim/lua/config/init.lua
+
+
 -- Require all other `.lua` files in the same directory
 
 local info = debug.getinfo(1, "S")
