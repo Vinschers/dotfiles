@@ -1,5 +1,6 @@
 xorg
 xorg-xinit
+adobe-source-code-pro-fonts
 alacritty
 alsa-firmware
 alsa-utils
@@ -11,6 +12,7 @@ eslint
 firefox
 flake8
 flameshot
+gdb
 gtop
 htop
 imagemagick
@@ -18,7 +20,10 @@ imlib2
 keepassxc
 lazygit
 linux-headers
+lldb
 mousepad
+mpv
+ncdu
 neofetch
 neovim
 networkmanager
@@ -40,7 +45,7 @@ pulseaudio
 python-black
 python-pip
 qbittorrent
-ranger
+lf
 rkhunter
 shellcheck
 shellharden
@@ -48,6 +53,8 @@ simple-scan
 slock
 sxiv
 syncthing
+texlive-most
+texlive-lang
 thunar
 ttf-font-awesome
 ttf-joypixels
@@ -55,7 +62,9 @@ ttf-liberation
 ttf-sazanami
 unrar
 unzip
+valgrind
 vim
+xautolock
 xclip
 xf86-input-wacom
 xf86-video-intel

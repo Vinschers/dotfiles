@@ -37,6 +37,15 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Running code
+keymap("n", "<F4>", ":lua _COMPILE_CODE()<cr>", opts)
+keymap("n", "<F5>", ":lua _RUN_CODE()<cr>", opts)
+
+-- Debugging
+keymap("n", "<F6>", ":lua require'dap'.continue()<cr>", opts)
+keymap("n", "<F9>", ":lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<F10>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_over() else require'dap'.continue() end<cr>", opts)
+keymap("n", "<F11>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_into() else require'dap'.continue() end<cr>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -44,8 +53,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "<C-A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<C-A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --

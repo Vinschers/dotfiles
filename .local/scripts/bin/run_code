@@ -1,0 +1,25 @@
+#!/bin/sh
+
+
+tmp="$(mktemp)"
+compile "$1" > "$tmp"
+
+while IFS= read -r line
+do
+    if [ -z "$BIN_FILE" ]
+    then
+        BIN_FILE="$line"
+    else
+        EXEC_CMD="$line"
+    fi
+done < "$tmp"
+
+rm "$tmp"
+
+printf "\$ %s\n\n" "$EXEC_CMD"
+$EXEC_CMD ; printf "Press any key to exit..." && wait_key_press
+
+if [ -z "$BIN_FILE" ]
+then
+    rm "$BIN_FILE"
+fi
