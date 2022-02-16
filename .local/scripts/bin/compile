@@ -1,0 +1,40 @@
+#!/bin/sh
+
+compileFile() {
+    ! [ -f "$1" ] && return 1
+
+    dir=$(dirname "$1")
+    file=$(basename -- "$1")
+    ext="${file##*.}"
+    file="${file%.*}"
+
+    case $ext in
+        c)
+            gcc -g -std=c99 -Wall "$dir/$file.$ext" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
+            ;;
+        java)
+            javac "$1" && bin_file="$dir/$file.class" ; cmd="java $file"
+            ;;
+        py)
+            cmd="python $1"
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+
+    printf "%s\n%s\n" "$bin_file" "$cmd"
+}
+
+compileMake() {
+    make -Bnd | make2graph -f L | sed '/all\|\<ROOT\>/d' | head -1
+}
+
+path="$1"
+
+if [ -d "$path" ] || [ "${path#*Makefile}" != "$path" ]
+then
+    compileMake "$path"
+else
+    compileFile "$path"
+fi

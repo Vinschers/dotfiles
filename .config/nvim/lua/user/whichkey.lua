@@ -186,8 +186,8 @@ local mappings = {
 
 	d = {
 		name = "Debug",
-		t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-		b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+		b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+		B = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
 		c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
 		C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
 		d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },

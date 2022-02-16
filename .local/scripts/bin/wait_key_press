@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "${SHELL#*bash}" != "$SHELL" ]
+then
+    bash -i -c "read -srn 1"
+elif [ "${SHELL#*zsh}" != "$SHELL" ]
+then
+    zsh -i -c "read -k1 -s"
+fi

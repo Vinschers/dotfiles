@@ -25,6 +25,8 @@ alias \
 	yta="yt -x -f bestaudio/best --audio-format mp3" \
     cvenv="create_venv" \
     avenv="activate_venv" \
+    p="pacman" \
+    sp="sudo pacman" \
 
 # Git
 alias \
