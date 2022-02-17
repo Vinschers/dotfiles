@@ -2,7 +2,13 @@ local M = {}
 
 M.setup = function(dap)
 	local venv = os.getenv("VIRTUAL_ENV")
-	local python_path = string.format("%s/bin/python", venv)
+    local python_path = ''
+
+    if (venv == nil) then
+        python_path = '/usr/bin/python3'
+    else
+	    python_path = string.format("%s/bin/python", venv)
+    end
 
 	dap.adapters.python = {
 		type = "executable",

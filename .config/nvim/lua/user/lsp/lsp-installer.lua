@@ -26,12 +26,6 @@ lsp_installer.on_server_ready(function(server)
 	 	opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	 end
 
-    if server.name == "jdtls" then
-        local jdtls_opts = require("user.lsp.settings.java")
-        opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
-        require("jdtls").start_or_attach(opts)
-    end
-
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(opts)

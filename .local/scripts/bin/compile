@@ -10,13 +10,19 @@ compileFile() {
 
     case $ext in
         c)
-            gcc -g -std=c99 -Wall "$dir/$file.$ext" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
+            gcc -g -std=c99 -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
+            ;;
+        cpp)
+            g++ -g -Wall -o "$dir/$file" -lm "$1" && bin_file="$dir/$file" ; cmd="$dir/file"
             ;;
         java)
             javac "$1" && bin_file="$dir/$file.class" ; cmd="java $file"
             ;;
         py)
             cmd="python $1"
+            ;;
+        exs)
+            cmd="elixir $1"
             ;;
         *)
             return 1

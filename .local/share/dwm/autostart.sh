@@ -5,4 +5,5 @@ picom -f &
 #run_nitrogen &
 nitrogen --restore &
 dwmblocks &
+spotifyd &
 xautolock -time $LOCK_TIME -locker slock &

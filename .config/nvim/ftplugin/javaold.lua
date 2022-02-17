@@ -6,15 +6,20 @@ local workspace_folder = vim.fn.stdpath("data") .. "/eclipse/" .. project_name
 --                                               ^^
 --                                               string concattenation in Lua
 
-local jdtls_path = vim.fn.stdpath("data") .. "/lsp_servers/jdtls"
+local jdtls_path = "/usr/share/java/jdtls"
+local java_debug_path = vim.fn.stdpath("data") .. "/java-debug"
+
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-return {
+local config = {
 	settings = {
 		java = {
-			signatureHelp = { enabled = true },
+			--[[ signatureHelp = { enabled = true },
 			contentProvider = { preferred = "fernflower" },
 			completion = {
 				favoriteStaticMembers = {
@@ -26,7 +31,7 @@ return {
 					"java.util.Objects.requireNonNullElse",
 					"org.mockito.Mockito.*",
 				},
-			},
+			}, ]]
 		},
 	},
 	cmd = {
@@ -43,17 +48,25 @@ return {
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
 		"-jar",
-		jdtls_path .. "/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
+		"/home/scherer/.local/share/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400*.jar",
 		"-configuration",
-		jdtls_path .. "/config_linux",
+		"/home/scherer/.local/share/jdtls/config_linux",
 		"-data",
-		workspace_folder,
+		"/home/scherer/eclipse",
 	},
 	init_options = {
 		bundles = {
-			vim.fn.stdpath("data")
-				.. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+			-- java_debug_path .. "/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
 		},
-		extendedClientCapabilities = extendedClientCapabilities,
+		-- extendedClientCapabilities = extendedClientCapabilities,
 	},
+	--[[ on_attach = function(client, bufnr)
+        require("user.lsp.handlers").on_attach(client, bufnr)
+
+		jdtls.add_commands()
+		jdtls.setup_dap({ hotcodereplace = "auto" })
+	end,
+	capabilities = capabilities, ]]
 }
+
+jdtls.start_or_attach(config)

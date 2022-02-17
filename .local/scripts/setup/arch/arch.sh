@@ -37,10 +37,6 @@ show_menu() {
 	echo -n "Option: "
 }
 
-cp_xorg () {
-	sudo cp -r "$THIS_DIRECTORY/xorg.conf.d" /etc/X11/
-}
-
 install_packages () {
     THIS_DIRECTORY="$(dirname "$0")"
 
@@ -75,6 +71,3 @@ esac
 
 
 install_packages "$TYPE"
-echo -e "\n\n\n"
-check "Override xorg.conf.d?" 1 && cp_xorg
-check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"

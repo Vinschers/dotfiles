@@ -43,7 +43,7 @@ keymap("n", "<F5>", ":lua _RUN_CODE()<cr>", opts)
 
 -- Debugging
 keymap("n", "<F6>", ":lua require'dap'.continue()<cr>", opts)
-keymap("n", "<F9>", ":lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<F9>", ":lua if (vim.bo.filetype == 'java') then require('jdtls.dap').setup_dap_main_class_configs() end require'dap'.toggle_breakpoint()<cr>", opts)
 keymap("n", "<F10>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_over() else require'dap'.continue() end<cr>", opts)
 keymap("n", "<F11>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_into() else require'dap'.continue() end<cr>", opts)
 

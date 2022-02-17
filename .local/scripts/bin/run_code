@@ -3,12 +3,14 @@
 
 tmp="$(mktemp)"
 compile "$1" > "$tmp"
+bin_file_read=false
 
 while IFS= read -r line
 do
-    if [ -z "$BIN_FILE" ]
+    if ! [ $bin_file_read ]
     then
         BIN_FILE="$line"
+        bin_file_read=true
     else
         EXEC_CMD="$line"
     fi
@@ -19,7 +21,7 @@ rm "$tmp"
 printf "\$ %s\n\n" "$EXEC_CMD"
 $EXEC_CMD ; printf "Press any key to exit..." && wait_key_press
 
-if [ -z "$BIN_FILE" ]
+if [ -n "$BIN_FILE" ]
 then
     rm "$BIN_FILE"
 fi

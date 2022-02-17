@@ -4,6 +4,7 @@ adobe-source-code-pro-fonts
 alacritty
 alsa-firmware
 alsa-utils
+archlinux-keyring
 chromium
 cppcheck
 discord
@@ -17,6 +18,8 @@ gtop
 htop
 imagemagick
 imlib2
+jdk11-openjdk
+jre11-openjdk-headless
 keepassxc
 lazygit
 linux-headers
