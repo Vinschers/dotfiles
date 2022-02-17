@@ -50,8 +50,10 @@ install_packages () {
     while read -r PACKAGE
     do
         echo -e "\n\n\nInstalling $PACKAGE..."
-        yay -S "$PACKAGE"
+        yay --noconfirm -S "$PACKAGE"
     done < "$THIS_DIRECTORY/yay_$1"
+
+    yay -S libxft-bgra
 
 	amixer sset Master unmute
 	pulseaudio --check
