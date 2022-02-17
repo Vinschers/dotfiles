@@ -49,6 +49,7 @@ python-black
 python-pip
 qbittorrent
 lf
+ripgrep
 rkhunter
 shellcheck
 shellharden
