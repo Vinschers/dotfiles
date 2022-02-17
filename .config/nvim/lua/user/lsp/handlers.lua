@@ -96,6 +96,13 @@ M.on_attach = function(client, bufnr)
 
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
+
+    if client.name == 'jdtls' then
+        local jdtls = require('jdtls')
+        jdtls.setup.add_commands()
+		jdtls.setup_dap({ hotcodereplace = "auto" })
+        jdtls.dap.setup_dap_main_class_configs()
+    end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

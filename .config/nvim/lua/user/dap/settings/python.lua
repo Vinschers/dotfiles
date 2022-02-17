@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.setup = function(dap)
 	local venv = os.getenv("VIRTUAL_ENV")
 	local python_path = string.format("%s/bin/python", venv)
