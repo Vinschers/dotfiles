@@ -17,7 +17,7 @@ M.setup = function(dap)
 			stopOnEntry = false,
 			args = {},
 			initCommands = {
-				"platform shell compile ${file}",
+				"platform shell compile ${file}", -- Custom script to compile file
 			},
 			env = {
 				PATH = "${env:PATH}",

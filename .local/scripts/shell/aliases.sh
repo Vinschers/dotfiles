@@ -45,7 +45,7 @@ alias \
     chmime='selectdefaultapplication' \
     chtitle='change_title' \
     c='compile' \
-    ex='extractor' \
+    ex='extract' \
     o='xdg-open' \
     v="nvim" \
 
