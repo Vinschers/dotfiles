@@ -6,17 +6,17 @@ colors:
 
   normal:
     black:   '#000000'
-    red:     '#ff4d4d'
+    red:     '#ff6767'
     green:   '#38de21'
     yellow:  '#ffe50a'
     blue:    '#1460d2'
-    magenta: '#ff005d'
+    magenta: '#ff4d8e'
     cyan:    '#00bbbb'
     white:   '#bbbbbb'
 
   bright:
-    black:   '#555555'
-    red:     '#f63f46'
+    black:   '#6f6f6f'
+    red:     '#f7575d'
     green:   '#3bd01d'
     yellow:  '#edc809'
     blue:    '#5555ff'

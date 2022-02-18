@@ -49,6 +49,10 @@ alias \
     ex='extract' \
     o='xdg-open' \
     v="nvim" \
+    get-keys="xev" \
+    ct="compact_tar" \
+    cz="compact_zip" \
+    lf="lf-ueberzug" \
 
 # Utils
 alias \

@@ -10,10 +10,13 @@ cppcheck
 discord
 dunst
 eslint
+ffmpeg
 firefox
 flake8
 flameshot
 gdb
+ghostscript
+graphicsmagick
 gtop
 htop
 imagemagick
@@ -64,6 +67,7 @@ ttf-font-awesome
 ttf-joypixels
 ttf-liberation
 ttf-sazanami
+ueberzug
 unrar
 unzip
 valgrind
