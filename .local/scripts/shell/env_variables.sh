@@ -4,8 +4,8 @@
 export BASHDIR="$HOME"/.config/bash
 export ZDOTDIR="$HOME"/.config/zsh
 
-export TERMINAL="alacritty"
-export TERMINAL_NAME="Alacritty"
+export TERMINAL="st"
+export TERMINAL_NAME="st"
 export EDITOR="nvim"
 export LOCK_TIME=15
 

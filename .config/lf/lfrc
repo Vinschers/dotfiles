@@ -1,0 +1,127 @@
+# Basic settings
+
+
+# interpreter for shell commands
+set shell sh
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-eu'
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# leave some space at the top and the bottom of the screen
+set scrolloff 10
+
+# Show hidden files by default
+set hidden true
+
+# Case insensitive search
+set ignorecase true
+
+# Icons
+set icons true
+
+# Previews
+set previewer lf-ueberzug-previewer
+set cleaner lf-ueberzug-cleaner
+
+
+# Commands (cmd)
+
+
+# define a custom 'open' command
+# This command is called when current file is not a directory. You may want to
+# use either file extensions and/or mime types here. Below uses an editor for
+# text files and a file opener for the rest.
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    xdg-open $f
+}}
+
+# define a custom 'delete' command
+cmd delete ${{
+    set -f
+    printf "$fx\n"
+    printf "delete?[y/n]"
+    read ans
+    [ $ans = "y" ] && rm -rf $fx
+}}
+
+cmd mkdir ${{
+    curr_dir="$(dirname $f)"
+    printf "Create new directory: %s/" "$curr_dir"
+    read directory
+    [ -n $directory ] && mkdir $directory
+}}
+
+cmd mkfile ${{
+    curr_dir="$(dirname $f)"
+    printf "Create new file: %s/" "$curr_dir"
+    read file
+    [ -n $file ] && touch $file
+}}
+
+# cmd setwallpaper %cp "$f" ~/.config/wallpaper.
+
+cmd extract ${{
+    extract "$f"
+}}
+
+cmd compress_zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+cmd compress_tar ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+cmd cd_scripts ${{
+    lf -remote "send $id cd $SCRIPTS_DIR/"
+}}
+
+
+# Maps
+
+
+# Remove defaults
+map a
+map d
+map c
+
+
+map cz compress_zip
+map ct compress_tar
+map ce extract $f
+map . set hidden!
+map af mkfile
+map ad mkdir
+map dd delete
+map <delete> delete
+map <enter> open $f
+map x cut
+map t shell
+
+map gs cd_scripts
+map gS cd "~/git/suckless/"
+map gc cd "~/.config/"
+map ~ cd ~
+map Q &lf -remote 'send quit'; lf -remote 'quit'

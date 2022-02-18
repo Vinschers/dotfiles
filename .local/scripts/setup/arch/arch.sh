@@ -46,14 +46,13 @@ install_packages () {
         sudo pacman -S --noconfirm --needed "$PACKAGE"
     done < "$THIS_DIRECTORY/pacman_$1"
 
+    yay -S libxft-bgra
 
     while read -r PACKAGE
     do
         echo -e "\n\n\nInstalling $PACKAGE..."
         yay --noconfirm -S "$PACKAGE"
     done < "$THIS_DIRECTORY/yay_$1"
-
-    yay -S libxft-bgra
 
 	amixer sset Master unmute
 	pulseaudio --check
