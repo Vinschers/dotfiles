@@ -19,7 +19,7 @@ done < "$tmp"
 rm "$tmp"
 
 printf "\$ %s\n\n" "$EXEC_CMD"
-$EXEC_CMD ; printf "Press any key to exit..." && wait_key_press
+time $EXEC_CMD ; printf "Press any key to exit..." && wait_key_press
 
 if [ -n "$BIN_FILE" ]
 then

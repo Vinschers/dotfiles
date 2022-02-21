@@ -46,17 +46,13 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
 	-- Colorschemes
-	use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
 	use("sainnhe/edge")
     use("folke/tokyonight.nvim")
-    use("mangeshrex/uwu.vim")
-    use("rafamadriz/neon")
     use("marko-cerovac/material.nvim")
     use("nekonako/xresources-nvim")
-    use("shaunsingh/nord.nvim")
     use("navarasu/onedark.nvim")
     use("dracula/vim")
-    use("nxvu699134/vn-night.nvim")
 
 	-- Completion
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -91,9 +87,6 @@ return packer.startup(function(use)
 
     -- Autopairs
     use("windwp/nvim-autopairs")
-
-    -- Debugging
-    use("mfussenegger/nvim-dap")
 
     -- Comments
     use("numToStr/Comment.nvim")
@@ -137,6 +130,12 @@ return packer.startup(function(use)
     -- Debugging
     use("mfussenegger/nvim-dap")
     use("rcarriga/nvim-dap-ui")
+
+    -- mkdir
+    use("jghauser/mkdir.nvim")
+
+    -- Smooth scrolling
+    use("karb94/neoscroll.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

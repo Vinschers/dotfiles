@@ -94,6 +94,7 @@ local mappings = {
 		"Find files",
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
 
 	p = {
@@ -175,6 +176,7 @@ local mappings = {
 
 	t = {
 		name = "Terminal",
+		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
 		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },

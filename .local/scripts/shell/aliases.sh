@@ -36,6 +36,7 @@ alias \
     ds='dotfiles status' \
     da='dotfiles add' \
     gs='git status' \
+    ga='git add' \
     gc='git clone' \
 
 # Actual aliases
