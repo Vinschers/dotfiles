@@ -123,5 +123,9 @@ map t shell
 map gs cd_scripts
 map gS cd "~/git/suckless/"
 map gc cd "~/.config/"
+map gl cd "~/.local/"
+map ga cd "~/animes/"
+map gd cd "~/Downloads/"
+map gu cd "~/Unicamp/"
 map ~ cd ~
 map Q &lf -remote 'send quit'; lf -remote 'quit'

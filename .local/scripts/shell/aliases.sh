@@ -16,6 +16,7 @@ alias \
     htop="open_htop" \
     gtop="open_gtop" \
     nvim="open_nvim" \
+    discord="discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy" \
     mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" # This alias is important. It enables the `pauseallmpv` command.
 
 # Shortenings
