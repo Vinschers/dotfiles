@@ -7,3 +7,5 @@ if [ "${SHELL#*bash}" != "$SHELL" ]
 then
 	. "$HOME/.bashrc"
 fi
+
+python "$SCRIPTS_DIR/localhost/server.py" &
