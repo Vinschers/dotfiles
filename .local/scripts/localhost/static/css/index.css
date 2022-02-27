@@ -1,0 +1,118 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("/static/img/car.png");
+    font-family: Hack Nerd Font;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px); 
+    border-radius: 10px; 
+
+    color: white;
+}
+
+#greeting{
+    margin-top: 2vw;
+    font-size: 2vw;
+    text-align: center;
+    text-shadow: -1px 1px 0 #333, 1px 1px 0 #333, 1px -1px 0 #333, -1px -1px 0 #333;
+}
+
+#time {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    font-size: 10vw;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Liberation Sans";
+    text-shadow: -1px 1px 0 #333, 1px 1px 0 #333, 1px -1px 0 #333, -1px -1px 0 #333;
+}
+
+.bookmarks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
+}
+
+.bookmark-item {
+    padding: 0.4vw;
+    transition: 0.3s;
+    font-family: fontawesomebrands, fontawesome;
+    text-decoration: none;
+    font-size: 3em;
+    font-weight: bold;
+    color: #fdfeff;
+}
+
+.bookmark-item:hover {
+    transform: scale(1.2);
+}
+
+.bookmark-item img {
+    width: 3vw;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+
+    width: 40vw;
+    height: 6vh;
+    margin: 1vw;
+
+    border-radius: 5px;
+    background-color: #333333AA;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+    overflow: none;
+    text-align: center;
+}
+
+.search-input {
+    height: 100%;
+    width: 95%;
+    padding-left: 1vw;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    color: #eeeeee;
+    background-color: inherit;
+    font-size: 1.1em;
+}
+
+.search-submit {
+    display: inline-block;
+    width: 10%;
+
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    padding-right: 10px;
+
+    background-color: inherit;
+    transition: 0.1s;
+
+    color: #999;
+    font-size: 1.7em;
+}
+ 
+.search-icon {
+}
+
+.search-submit:focus, .search-submit:hover {
+    background-color: #444444;
+    color: #eeeeee;
+    cursor: pointer;
+}

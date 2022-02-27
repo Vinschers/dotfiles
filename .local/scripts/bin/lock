@@ -1,6 +1,7 @@
 #!/bin/sh
 
 BACKGROUND='#13273888'
+KEY_STROKE='#6ae3fabb'
 BLANK='#00000000'
 CLEAR='#ffffff22'
 DEFAULT='#5555ffcc'
@@ -10,5 +11,5 @@ VERIFYING='#1460d2bb'
 
 i3lock \
 -c $BACKGROUND --insidever-color=$CLEAR --ringver-color=$VERIFYING --insidewrong-color=$CLEAR --ringwrong-color=$WRONG --inside-color=$BLANK --ring-color=$DEFAULT --line-color=$BLANK --separator-color=$DEFAULT \
---verif-color=$TEXT --wrong-color=$TEXT --time-color=$TEXT --date-color=$TEXT --layout-color=$TEXT --keyhl-color=$WRONG --bshl-color=$WRONG \
+--verif-color=$TEXT --wrong-color=$TEXT --time-color=$TEXT --date-color=$TEXT --layout-color=$TEXT --keyhl-color=$KEY_STROKE --bshl-color=$WRONG \
 --screen 0 --clock --indicator --time-str="%H:%M:%S" --date-str="%d/%m/%Y"
