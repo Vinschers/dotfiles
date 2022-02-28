@@ -38,7 +38,7 @@ copy_to_clipboard () {
 	xclip -selection clipboard -t image/png -i "$tmp_dir/temp.png"
 }
 
-mkdir "$tmp_dir"
+mkdir -p "$tmp_dir"
 
 create_pdf && convert_png && copy_to_clipboard && notify-send "Copied LaTeX output to clipboard."
 

@@ -6,7 +6,7 @@ body {
 
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("/static/img/car.png");
+    background-image: url("/images/car.png");
     font-family: Hack Nerd Font;
 }
 
@@ -49,7 +49,8 @@ body {
 .bookmark-item {
     padding: 0.4vw;
     transition: 0.3s;
-    font-family: fontawesomebrands, fontawesome;
+    /* font-family: fontawesomebrands, fontawesome; */
+    font-family: "Source Code Pro";
     text-decoration: none;
     font-size: 3em;
     font-weight: bold;
@@ -80,11 +81,16 @@ body {
     text-align: center;
 }
 
+.search-icon {
+    background: url("/images/ddg.svg");
+    width: 3vw;
+}
+
 .search-input {
-    height: 100%;
+    display: inline-block;
     width: 95%;
     padding-left: 1vw;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
     border: 0;
     outline: 0;
     color: #eeeeee;
@@ -95,10 +101,11 @@ body {
 .search-submit {
     display: inline-block;
     width: 10%;
+    height: 100%;
 
     border: 0;
     outline: 0;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0;
     padding-right: 10px;
 
     background-color: inherit;
