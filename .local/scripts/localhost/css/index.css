@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(5px); 
     border-radius: 10px; 
 
@@ -43,18 +43,27 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     border-radius: 0 0 10px 10px;
+    padding-bottom: 1vw;
 }
 
 .bookmark-item {
-    padding: 0.4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5vw;
+    height: 4vw;
+    width: 4vw;
     transition: 0.3s;
-    /* font-family: fontawesomebrands, fontawesome; */
-    font-family: "Source Code Pro";
+    font-family: "fontawesomebrands";
     text-decoration: none;
     font-size: 3em;
     font-weight: bold;
     color: #fdfeff;
+    background-color: #132738DD;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .bookmark-item:hover {
@@ -63,6 +72,7 @@ body {
 
 .bookmark-item img {
     width: 3vw;
+    border-radius: 5px;
 }
 
 .search-form {
@@ -82,15 +92,24 @@ body {
 }
 
 .search-icon {
-    background: url("/images/ddg.svg");
-    width: 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2vw;
+    border: none;
+    padding-left: 0.5vw;
+    border-radius: 5px 0 0 5px;
+    background-color: inherit;
+}
+
+.search-icon img {
+    width: 100%;
 }
 
 .search-input {
     display: inline-block;
     width: 95%;
     padding-left: 1vw;
-    border-radius: 5px 0 0 5px;
     border: 0;
     outline: 0;
     color: #eeeeee;

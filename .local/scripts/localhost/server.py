@@ -17,7 +17,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 Handler = MyHttpRequestHandler
 
 if __name__ == "__main__":
-    # port = int(os.environ.get("PORT", 3160))
+    port = int(os.environ.get("PORT", 5000))
 
-    with socketserver.TCPServer(("", 3160), Handler) as httpd:
+    with socketserver.TCPServer(("", port), Handler) as httpd:
         httpd.serve_forever()
