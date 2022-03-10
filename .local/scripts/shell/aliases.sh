@@ -42,6 +42,8 @@ alias \
     gs='git status' \
     ga='git add' \
     gc='git clone' \
+    gd='git diff' \
+    gr='git restore' \
 
 # Actual aliases
 alias \
