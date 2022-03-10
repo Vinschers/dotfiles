@@ -23,6 +23,8 @@ vim.g.maplocalleader = " "
 
 keymap("n", "K", "I<BS> <esc>", opts)
 
+keymap("n", "<C-a>", "ggVG", opts)
+
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
