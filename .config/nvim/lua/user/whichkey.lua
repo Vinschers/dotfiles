@@ -69,7 +69,7 @@ local setup = {
 	},
 }
 
-local opts = {
+local opts_normal = {
 	mode = "n", -- NORMAL mode
 	prefix = "<leader>",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -78,7 +78,17 @@ local opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
-local mappings = {
+
+local opts_visual = {
+	mode = "v", -- NORMAL mode
+	prefix = "<leader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+}
+
+local mappings_normal = {
 	["a"] = { "<cmd>Alpha<cr>", "Alpha" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -174,7 +184,20 @@ local mappings = {
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
 
-	t = {
+    t = {
+        name = "Vimtex",
+        c = { "<cmd>VimtexCompile<CR>", "Compile" },
+        C = { "<cmd>VimtexClean!<CR> <cmd>VimtexClearCache vim.fn.expand('%')<CR> <cmd>!rm *_vimtex_selected*<CR>", "Clean auxiliary and cache files" },
+        d = { "<cmd>VimtexDocPackage<CR>", "Download documentation of package under cursor" },
+        e = { "<cmd>VimtexErrors<CR>", "Check errors log" },
+        i = { "<cmd>VimtexTocOpen<CR>", "Open index" },
+        m = { "<cmd>VimtexToggleMain<CR>", "Change main project file" },
+        s = { "<cmd>VimtexStop<CR>", "Stop compilation" },
+        v = { "<cmd>VimtexView<CR>", "Open preview" },
+        w = { "<cmd>VimtexCountWords!<CR>", "Count number of words" },
+    },
+
+	T = {
 		name = "Terminal",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
@@ -204,5 +227,13 @@ local mappings = {
 	},
 }
 
+local mappings_visual = {
+    t = {
+        name = 'Vimtex',
+        S = { ":VimtexCompileSelected<CR>", "Compile selected" },
+    }
+}
+
 which_key.setup(setup)
-which_key.register(mappings, opts)
+which_key.register(mappings_normal, opts_normal)
+which_key.register(mappings_visual, opts_visual)
