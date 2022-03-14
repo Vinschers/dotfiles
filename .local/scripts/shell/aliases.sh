@@ -31,6 +31,8 @@ alias \
     mi="make install" \
     mci="make clean install" \
     mc="make clean" \
+    mic="make install clean" \
+    mcic="make clean install && make clean" \
 
 # Git
 alias \
@@ -65,4 +67,4 @@ alias \
 alias \
     alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"' \
     scripts='cd $SCRIPTS_DIR && ls' \
-    unicamp='cd /mnt/Unicamp/"$SEMESTER"semestre/ && ls' \
+    unicamp='cd /mnt/hdd/academic/unicamp/Disciplinas/ && ls' \

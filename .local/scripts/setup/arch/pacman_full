@@ -5,6 +5,7 @@ alacritty
 alsa-firmware
 alsa-utils
 archlinux-keyring
+btop
 chromium
 cppcheck
 discord
@@ -79,6 +80,7 @@ xf86-video-intel
 xf86-video-vesa
 yamllint
 youtube-dl
+zathura
 zip
 zsh
 zsh-completions

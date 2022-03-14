@@ -98,7 +98,7 @@ local mappings_normal = {
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-	["h"] = { "hllh<cmd>nohlsearch<CR>", "No Highlight" },
+	["h"] = { "<cmd>noh<CR>", "No Highlight" },
 	["f"] = {
 		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Find files",
@@ -225,6 +225,12 @@ local mappings_normal = {
 		s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
 		q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
 	},
+
+    v = {
+        name = "Vista",
+        o = { "<cmd>Vista<CR>", "Open Vista" },
+        c = { "<cmd>Vista!<CR>", "Close Vista" },
+    },
 }
 
 local mappings_visual = {

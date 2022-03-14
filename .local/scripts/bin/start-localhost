@@ -1,0 +1,3 @@
+#!/bin/sh
+
+python "$SCRIPTS_DIR/localhost/server.py"
