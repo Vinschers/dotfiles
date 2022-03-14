@@ -70,7 +70,6 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
     use("mfussenegger/nvim-jdtls")
     use("jose-elias-alvarez/null-ls.nvim") -- Null-LS
 
@@ -84,6 +83,7 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 	})
     use("p00f/nvim-ts-rainbow")
+    use("romgrk/nvim-treesitter-context")
 
     -- Autopairs
     use("windwp/nvim-autopairs")
@@ -139,6 +139,9 @@ return packer.startup(function(use)
 
     -- LaTeX
     use("lervag/vimtex")
+
+    -- Vista
+    use("liuchengxu/vista.vim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

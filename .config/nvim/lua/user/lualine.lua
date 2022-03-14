@@ -74,8 +74,16 @@ lualine.setup({
 	sections = {
 		lualine_a = { mode },
 		lualine_b = { branch, diagnostics },
-		lualine_c = { "filename" },
-		lualine_x = { diff, spaces, "encoding", filetype },
+		lualine_c = { {
+            'filename',
+            file_status = true,
+            path = 1
+        } },
+		lualine_x = { diff, spaces, "encoding", {
+            'filetype',
+            colored = true,
+            icon_only = false
+        } },
 		lualine_y = { location },
 		lualine_z = { progress },
 	},

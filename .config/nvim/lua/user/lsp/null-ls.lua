@@ -14,16 +14,19 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier,
-		formatting.black.with({ extra_args = { "--fast" } }),
+		formatting.black.with({ extra_args = { "-l", "130" } }),
 		formatting.stylua,
-        formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" }, filetypes = { "c", "cpp" } }),
-        formatting.shellharden,
+		formatting.clang_format.with({
+			extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" },
+			filetypes = { "c", "cpp" },
+		}),
+		formatting.shellharden,
 
-		diagnostics.flake8,
-        diagnostics.cppcheck.with({ extra_args = {"--enable=all"} }),
-        diagnostics.shellcheck,
-        diagnostics.yamllint,
+		diagnostics.flake8.with({ extra_args = { "--max-line-length", "130" } }),
+		-- diagnostics.cppcheck.with({ extra_args = {"--enable=all"} }),
+		diagnostics.shellcheck,
+		diagnostics.yamllint,
 
-        code_actions.shellcheck,
+		code_actions.shellcheck,
 	},
 })
