@@ -55,12 +55,14 @@ SCRIPT=""
 
 case "$opt" in
 	"1") SCRIPT="arch/arch.sh" ;;
-	"*") exit 1 ;;
 esac
 
-center "Running $SCRIPT script"
-"/bin/sh" "$THIS_DIRECTORY/$SCRIPT"
-center ""
+if ! [ -z "$SCRIPT" ]
+then
+    center "Running $SCRIPT script"
+    "/bin/sh" "$THIS_DIRECTORY/$SCRIPT"
+    center ""
+fi
 
 check "Set up git ssh configuration?" && "/bin/sh" "$THIS_DIRECTORY/git-ssh.sh"
 check "Install java support for Neovim?" 1 && setup_jdtls
