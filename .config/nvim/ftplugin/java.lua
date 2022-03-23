@@ -50,6 +50,7 @@ local config = {
         require("user.lsp.handlers").on_attach(client, bufnr)
         jdtls.setup_dap({ hotcodereplace = 'auto' })
         jdtls.setup.add_commands()
+        require('jdtls.dap').setup_dap_main_class_configs()
     end,
 }
 jdtls.start_or_attach(config)

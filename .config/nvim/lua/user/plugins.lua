@@ -72,6 +72,7 @@ return packer.startup(function(use)
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
     use("mfussenegger/nvim-jdtls")
     use("jose-elias-alvarez/null-ls.nvim") -- Null-LS
+    use({ 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' })
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -142,6 +143,8 @@ return packer.startup(function(use)
 
     -- Vista
     use("liuchengxu/vista.vim")
+
+
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

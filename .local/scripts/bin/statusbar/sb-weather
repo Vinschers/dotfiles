@@ -17,7 +17,7 @@ esac
 
 printf "^c#D8DEE9^"
 case $opt in
-	0) curl -sf "wttr.in?format=^v^%c++^cE06C75^^t^+%t" | tr -d '+' | sed -e "s/\^c/\^c#/g" -e "s/☀️/\^c#FEDF00\^/g" -e "s/⛅️/\^c#E5E9F0\^/g" -e "s/☁️/\^c#DCDCDC\^/g" ;;
-	1) curl -sf "wttr.in?format=^v^^cADD8E6^^t^+%w++^v^^c7DCFFF^^t^+%h++^v^^c88C0D0^^t^+%p" | sed -e "s/\^c/\^c#/g" ;;
-	2) curl -sf "wttr.in?format=%m+%P" ;;
+	# 0) curl -sf "wttr.in?format=^v^%c++^cE06C75^^t^+%t" | tr -d '+' | sed -e "s/\^c/\^c#/g" -e "s/☀️/\^c#FEDF00\^/g" -e "s/⛅️/\^c#E5E9F0\^/g" -e "s/☁️/\^c#DCDCDC\^/g" ;;
+	# 1) curl -sf "wttr.in?format=^v^^cADD8E6^^t^+%w++^v^^c7DCFFF^^t^+%h++^v^^c88C0D0^^t^+%p" | sed -e "s/\^c/\^c#/g" ;;
+	# 2) curl -sf "wttr.in?format=%m+%P" ;;
 esac
