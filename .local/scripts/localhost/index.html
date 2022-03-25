@@ -25,10 +25,10 @@
         <!-- Time -->
         <div id="time">00:00</div>
 
-        <form class="search-form" action="https://duckduckgo.com/">
+        <form class="search-form" action="https://duckduckgo.com/" onsubmit="return onSearch(event)">
             <input type="submit" style="display: none" />
             <div class="search-icon"><img src="images/ddg.svg" /></div>
-            <input class="search-input" type="text" placeholder="DuckDuckGo search" name="q" autofocus />
+            <input class="search-input" id="search_query" type="text" placeholder="DuckDuckGo search" name="q" autofocus />
             <input class="search-submit" type="submit" value="" />
         </form>
 

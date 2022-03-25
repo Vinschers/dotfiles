@@ -36,4 +36,25 @@ function onload () {
     displayClock();
 }
 
+function isValidUrl(string) {
+    const regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    return regexp.test(string);
+}
+
+function onSearch(event) {
+    let input = document.getElementById('search_query').value
+
+    if (isValidUrl(input)) {
+        if (!input.startsWith('http'))
+            input = 'https://' + input
+
+        const anchorTag = document.createElement('a');
+        anchorTag.href = input;
+        anchorTag.click();
+        return false;
+    }
+    
+    return true;
+}
+
 onload();

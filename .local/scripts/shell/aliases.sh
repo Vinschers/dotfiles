@@ -21,7 +21,7 @@ alias \
 # Shortenings
 alias \
     la="ls -1A" \
-	yt="youtube-dl --add-metadata -i" \
+	yt="youtube-dl --add-metadata -f best -i" \
 	yta="yt -x -f bestaudio/best --audio-format mp3" \
     cvenv="create_venv" \
     avenv="activate_venv" \
@@ -67,4 +67,4 @@ alias \
 alias \
     alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"' \
     scripts='cd $SCRIPTS_DIR && ls' \
-    unicamp='cd /mnt/hdd/academic/unicamp/Disciplinas/ && ls' \
+    u='cd ~/hdd/academic/unicamp/ && ls' \
