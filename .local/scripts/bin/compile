@@ -21,6 +21,9 @@ compileFile() {
         py)
             cmd="python $1"
             ;;
+        tex)
+            pdflatex "$1" > /dev/null && pdflatex "$1" > /dev/null && find "$dir" -maxdepth 1 -type f -name "$file.*" -not \( -name "$file.tex" -or -name "$file.pdf" \) -delete && bin_file="$dir/$file.pdf" ; cmd="xdg-open $dir/$file.pdf"
+            ;;
         exs)
             cmd="elixir $1"
             ;;
