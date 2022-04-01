@@ -1,27 +1,12 @@
 #!/bin/sh
 
 
-tmp="$(mktemp)"
-compile "$1" > "$tmp"
-bin_file_read=false
+eval "$(compile "$1" | awk '{print "line"NR"=\""$0"\""}')"
 
-while IFS= read -r line
-do
-    if ! [ $bin_file_read ]
-    then
-        BIN_FILE="$line"
-        bin_file_read=true
-    else
-        EXEC_CMD="$line"
-    fi
-done < "$tmp"
-
-rm "$tmp"
+BIN_FILE="$line1"
+EXEC_CMD="$line2"
 
 printf "\$ %s\n\n" "$EXEC_CMD"
 time $EXEC_CMD ; printf "Press any key to exit..." && wait_key_press
 
-if [ -n "$BIN_FILE" ]
-then
-    rm "$BIN_FILE"
-fi
+[ -n "$BIN_FILE" ] && rm "$BIN_FILE"
