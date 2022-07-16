@@ -82,9 +82,9 @@ draw_cores () {
 get_temp () {
 	temp="$1"
 	term=""
-	[ "$temp" -ge 26 ] && term=""
-	[ "$temp" -ge 51 ] && term=""
-	[ "$temp" -ge 86 ] && term=""
+	[ "$temp" -gt 25 ] && term=""
+	[ "$temp" -gt 50 ] && term=""
+	[ "$temp" -gt 85 ] && term=""
 
 	printf "  %s %s°" "$term" "$temp"
 }
@@ -132,4 +132,4 @@ case $opt in
 	1) cpustatus="$(get_temps)" ;;
 esac
 
-printf "^c#84B2FF^%s" "$cpustatus"
+printf "%s" "$cpustatus"

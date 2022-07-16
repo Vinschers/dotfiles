@@ -8,7 +8,7 @@ symbol="墳"
 [ "$volume" -ge 80 ] && symbol=""
 [ "$volume" = "0" ] && symbol="婢"
 
-printf "^c#FF84A8^%s %s%%" "$symbol" "$volume"
+printf "^c%s^%s %s%%" "$1" "$symbol" "$volume"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

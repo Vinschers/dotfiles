@@ -15,12 +15,10 @@ case $BUTTON in
 	1) update_opt 1 ;;
 esac
 
-statuscpu="$(sb-cpu)"
-statusmem="$(sb-memory)"
-statusdisk="$(sb-disk)"
+printf "^c%s^" "$1"
 
 case $opt in
-	0) printf "%s" "$statuscpu" ;;
-	1) printf "%s" "$statusmem" ;;
-	2) printf "%s" "$statusdisk" ;;
+    0) sb-cpu ;;
+    1) sb-memory ;;
+    2) sb-disk ;;
 esac

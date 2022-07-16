@@ -15,6 +15,7 @@ case $BUTTON in
 	1) update_opt 1 ;;
 esac
 
+printf "^c%s^" "$1"
 case $opt in
 	0) sb-time ;;
 	1) sb-date ;;

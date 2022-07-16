@@ -33,12 +33,12 @@ currency=""
 base=""
 
 case $opt_currency in
-	0) symbol="^v^^c#A8FF00^$^t^" && currency="usd" ;;
-	1) symbol="^v^^c#E7E4D3^€^t^" && currency="eur" ;;
-	2) symbol="^v^^c#F7931A^^t^" && currency="btc" ;;
-	3) symbol="^v^^c#627EEA^^t^" && currency="eth" ;;
-	4) symbol="^v^^c#FA6800^^t^" && currency="xmr" ;;
-	5) symbol="^v^^c#F0E4B1^Ð^t^" && currency="doge" ;;
+	0) symbol="$" && currency="usd" ;;
+	1) symbol="€" && currency="eur" ;;
+	2) symbol="" && currency="btc" ;;
+	3) symbol="" && currency="eth" ;;
+	4) symbol="" && currency="xmr" ;;
+	5) symbol="Ð" && currency="doge" ;;
 esac
 
 case $opt_base in
@@ -48,6 +48,6 @@ case $opt_base in
 	3) base_symbol="" && base="btc" ;;
 esac
 
-printf "^c#FFE767^%s %s%.2f" "$symbol" "$base_symbol" "$(curl -sf "$base.rate.sx/1$currency")"
+printf "^c%s^%s %s%.2f" "$1" "$symbol" "$base_symbol" "$(curl -sf "$base.rate.sx/1$currency")"
 
 echo "$opt_currency $opt_base" > "$logfile"
