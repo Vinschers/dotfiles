@@ -1,6 +1,6 @@
 #!/bin/sh
 
-printf "^c#89FF84^ %s" "$(date "+%d/%m/%Y")"
+printf " %s" "$(date "+%d/%m/%Y")"
 
 case $BUTTON in
 	1) notify-send "$(cal)" ;;

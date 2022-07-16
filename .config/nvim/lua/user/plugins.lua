@@ -84,7 +84,7 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 	})
     use("p00f/nvim-ts-rainbow")
-    use("romgrk/nvim-treesitter-context")
+    use("lewis6991/nvim-treesitter-context")
 
     -- Autopairs
     use("windwp/nvim-autopairs")

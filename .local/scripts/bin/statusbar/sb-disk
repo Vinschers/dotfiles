@@ -13,7 +13,7 @@ format_output () {
 		read used avail
 		used=$(( used / (BASE*BASE) ))
 		avail=$(( avail / (BASE*BASE) ))
-		printf "^c#BCFF84^%s %s %s (%s%%)" "$2" "$used" "$symbol" "$(( 100 * used / avail ))"
+		printf "%s %s %s (%s%%)" "$2" "$used" "$symbol" "$(( 100 * used / avail ))"
 	}
 }
 

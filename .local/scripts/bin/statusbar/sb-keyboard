@@ -1,3 +1,4 @@
 #!/bin/sh
 
-printf "^c#FFC784^ %s" "$(xkb-switch)"
+printf "^c%s^ %s" "$1" "$(xkb-switch)"
+notify-send " Keyboard" "Changed keyboard layout to $(xkb-switch)"
