@@ -17,7 +17,7 @@ esac
 
 printf "^c%s^" "$1"
 case $opt in
-	0) curl -sf "wttr.in?format=%c%t" | sed -e "s/☀️//g" -e "s/⛅️//g" -e "s/☁️//g" ;;
+	0) curl -sf "wttr.in?format=%c%t" | sed -e "s/  / /g" -e "s/☀️//g" -e "s/⛅️//g" -e "s/☁️//g" ;;
 	1) curl -sf "wttr.in?format=+%w+++%h+++%p" ;;
 	2) curl -sf "wttr.in?format=%m+%P" ;;
 esac

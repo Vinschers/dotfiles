@@ -15,7 +15,7 @@ draw_battery () {
     printf "^v^"
     printf "^c%s^^r0,0,%s,%s^" "$2" "$(( WIDTH + 2 + PADDING ))" "$SIZE"
 
-    printf "^c#D8DEE9^"
+    printf "^c#A7A7A7^"
     printf "^r%s,%s,%s,2^" "$(( WIDTH / 2 ))" "$MARGIN" "$HEAD_SIZE"
 
     printf "^r0,%s,%s,%s^" "$(( MARGIN + 1 ))" "$(( WIDTH + 2 ))" "$(( HEIGHT + 2 ))"
