@@ -123,6 +123,7 @@ lvim.builtin.telescope.defaults.mappings = {
 
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["l"]["g"] = { vim.lsp.buf.hover, "Show hover" }
+lvim.builtin.which_key.mappings["l"]["s"] = { "<cmd>SymbolsOutline<cr>", "Show symbols outline" }
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["l"]["t"] = {
     name = "+Trouble",
@@ -445,11 +446,11 @@ lvim.plugins = {
     },
     {
         "tpope/vim-surround",
-        keys = { "c", "d", "y" }
+        keys = { "c", "d", "y" },
         -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
-        -- setup = function()
-        --  vim.o.timeoutlen = 500
-        -- end
+        setup = function()
+         vim.o.timeoutlen = 500
+        end
     },
     {
         "lervag/vimtex"
