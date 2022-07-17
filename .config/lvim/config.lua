@@ -27,6 +27,16 @@ local function run_code()
     Terminal:new({ cmd = "run_code '" .. vim.fn.expand('%') .. "'", hidden = true }):toggle()
 end
 
+local function run_ncdu()
+    local Terminal = require("toggleterm.terminal").Terminal
+    Terminal:new({ cmd = "ncdu", hidden = true }):toggle()
+end
+
+local function run_btop()
+    local Terminal = require("toggleterm.terminal").Terminal
+    Terminal:new({ cmd = "btop", hidden = true }):toggle()
+end
+
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
@@ -114,7 +124,7 @@ lvim.builtin.telescope.defaults.mappings = {
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["l"]["g"] = { vim.lsp.buf.hover, "Show hover" }
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
+lvim.builtin.which_key.mappings["l"]["t"] = {
     name = "+Trouble",
     r = { "<cmd>Trouble lsp_references<cr>", "References" },
     f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
@@ -122,6 +132,28 @@ lvim.builtin.which_key.mappings["t"] = {
     q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
     l = { "<cmd>Trouble loclist<cr>", "LocationList" },
     w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+}
+lvim.builtin.which_key.mappings["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find text" }
+lvim.builtin.which_key.mappings["t"] = {
+    name = "Vimtex",
+    c = { "<cmd>VimtexCompile<CR>", "Compile" },
+    C = { "<cmd>VimtexClean!<CR> <cmd>VimtexClearCache vim.fn.expand('%')<CR> <cmd>!rm *_vimtex_selected*<CR>",
+        "Clean auxiliary and cache files" },
+    d = { "<cmd>VimtexDocPackage<CR>", "Download documentation of package under cursor" },
+    e = { "<cmd>VimtexErrors<CR>", "Check errors log" },
+    i = { "<cmd>VimtexTocOpen<CR>", "Open index" },
+    m = { "<cmd>VimtexToggleMain<CR>", "Change main project file" },
+    s = { "<cmd>VimtexStop<CR>", "Stop compilation" },
+    v = { "<cmd>VimtexView<CR>", "Open preview" },
+    w = { "<cmd>VimtexCountWords!<CR>", "Count number of words" },
+}
+lvim.builtin.which_key.mappings["T"] = {
+    name = "Terminal",
+    n = { run_ncdu, "NCDU" },
+    b = { run_btop, "btop" },
+    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -141,13 +173,14 @@ lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.ensure_installed = {
     "bash",
     "c",
+    "css",
+    "dart",
+    "java",
     "javascript",
     "json",
     "lua",
     "python",
-    "css",
     "rust",
-    "java",
     "yaml",
 }
 
@@ -418,7 +451,9 @@ lvim.plugins = {
         --  vim.o.timeoutlen = 500
         -- end
     },
-
+    {
+        "lervag/vimtex"
+    }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -435,7 +470,4 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.cmd([[
-    autocmd BufWinEnter * :set formatoptions-=cro
-    set whichwrap-=h,l
-]])
+vim.api.nvim_command("set whichwrap-=h,l")
