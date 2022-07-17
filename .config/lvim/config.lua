@@ -50,6 +50,10 @@ lvim.keys.normal_mode["<F11>"] = ":lua local row, _ = unpack(vim.api.nvim_win_ge
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
+vim.keymap.del("i", "jj")
+vim.keymap.del("i", "jk")
+vim.keymap.del("i", "kj")
+
 lvim.lsp.buffer_mappings.normal_mode = {
     ["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
     ["gD"] = { vim.lsp.buf.declaration, "Goto declaration" },
