@@ -9,6 +9,9 @@ compileFile() {
     file="${file%.*}"
 
     case $ext in
+        sh)
+            cmd="./$1"
+            ;;
         c)
             gcc -g -std=c99 -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
             ;;
