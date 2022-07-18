@@ -11,7 +11,26 @@ telescope.setup({
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
-		file_ignore_patterns = { ".git/", "node_modules" },
+		file_ignore_patterns = {
+			".git/",
+			"node_modules",
+
+			"%.jpg",
+			"%.jpeg",
+			"%.png",
+			"%.svg",
+			"%.otf",
+			"%.ttf",
+            "%.mp4",
+            "%.mp3",
+            "%.mkv",
+            "%.zip",
+            "%.tar.xz",
+            "%.tar.gz",
+            "%.rar",
+            "%.so",
+            "%.out",
+		},
 
 		mappings = {
 			i = {
