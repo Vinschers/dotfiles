@@ -20,6 +20,7 @@ null_ls.setup({
 		formatting.stylua,
         formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" } }),
         formatting.dart_format,
+        formatting.beautysh,
 
 
 		diagnostics.flake8,

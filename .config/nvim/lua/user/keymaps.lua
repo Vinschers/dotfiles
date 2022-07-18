@@ -22,7 +22,11 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+keymap("n", "<C-a>", "ggVG", opts)
+keymap("n", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
 keymap("n", "<C-w>", "<cmd>Bdelete!<CR>", opts)
+
+keymap("n", "c", "\"_c")
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -55,4 +59,7 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Insert --
+keymap("i", "<C-a>", "<ESC>ggVG", opts)
 keymap("i", "<C-f>", "<cmd>Telescope find_files<cr>", opts)
+keymap("i", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
+keymap("i", "<C-w>", "<cmd>Bdelete!<CR>", opts)

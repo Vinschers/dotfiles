@@ -12,6 +12,26 @@ telescope.setup({
 		selection_caret = " ",
 		path_display = { "smart" },
 
+		file_ignore_patterns = {
+			"node_modules",
+
+			"%.jpg",
+			"%.jpeg",
+			"%.png",
+			"%.svg",
+			"%.otf",
+			"%.ttf",
+			"%.mp4",
+			"%.mp3",
+			"%.mkv",
+			"%.zip",
+			"%.tar.xz",
+			"%.tar.gz",
+			"%.rar",
+			"%.so",
+			"%.out",
+		},
+
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,
@@ -87,6 +107,25 @@ telescope.setup({
 		-- builtin picker
 	},
 	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({
+				-- even more opts
+			}),
+
+			-- pseudo code / specification for writing custom displays, like the one
+			-- for "codeactions"
+			-- specific_opts = {
+			--   [kind] = {
+			--     make_indexed = function(items) -> indexed_items, width,
+			--     make_displayer = function(widths) -> displayer
+			--     make_display = function(displayer) -> function(e)
+			--     make_ordinal = function(e) -> string
+			--   },
+			--   -- for example to disable the custom builtin "codeactions" display
+			--      do the following
+			--   codeactions = false,
+			-- }
+		},
 		-- Your extension configuration goes here:
 		-- extension_name = {
 		--   extension_config_key = value,
@@ -94,3 +133,5 @@ telescope.setup({
 		-- please take a look at the readme of the extension you want to configure
 	},
 })
+
+telescope.load_extension("ui-select")
