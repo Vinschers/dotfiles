@@ -57,7 +57,7 @@ alias \
     c='compile' \
     ex='extract' \
     o='xdg-open' \
-    v="lvim" \
+    v="nvim" \
     get-keys="xev" \
     ct="compact_tar" \
     cz="compact_zip" \
