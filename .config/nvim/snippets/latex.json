@@ -1,7 +1,7 @@
 {
     "Package": {
         "prefix": "pac",
-        "body" : "\\usepackage[${1:options}]{${2:package}}$0"
+        "body": "\\usepackage[${1:options}]{${2:package}}$0"
     },
     "Less or equals": {
         "prefix": "<=",
@@ -28,7 +28,10 @@
         "body": "\\forall"
     },
     "Leads to": {
-        "prefix": ["leads", "~>"],
+        "prefix": [
+            "leads",
+            "~>"
+        ],
         "body": "\\leadsto"
     },
     "Implies": {
@@ -40,23 +43,38 @@
         "body": "\\impliedby"
     },
     "If and only if": {
-        "prefix": ["sse", "iff"],
+        "prefix": [
+            "sse",
+            "iff"
+        ],
         "body": "\\iff"
     },
     "Up simple arrow": {
-        "prefix": ["uarrow", "-^"],
+        "prefix": [
+            "uarrow",
+            "-^"
+        ],
         "body": "\\uparrow"
     },
     "Up double arrow": {
-        "prefix": ["Uarrow", "-^"],
+        "prefix": [
+            "Uarrow",
+            "-^"
+        ],
         "body": "\\Uparrow"
     },
     "Down simple arrow": {
-        "prefix": ["darrow", "-v"],
+        "prefix": [
+            "darrow",
+            "-v"
+        ],
         "body": "\\downarrow"
     },
     "Down double arrow": {
-        "prefix": ["Darrow", "=v"],
+        "prefix": [
+            "Darrow",
+            "=v"
+        ],
         "body": "\\Downarrow"
     },
     "<=>": {
@@ -68,7 +86,11 @@
         "body": "\\leftrightarrow"
     },
     "Big O-plus": {
-        "prefix": ["Oplus", "bigplus", "plusO"],
+        "prefix": [
+            "Oplus",
+            "bigplus",
+            "plusO"
+        ],
         "body": "\\bigoplus"
     },
     "To": {
@@ -104,23 +126,38 @@
         "body": "\\mid"
     },
     "Sub set": {
-        "prefix": ["cc", "sub"],
+        "prefix": [
+            "cc",
+            "sub"
+        ],
         "body": "\\subset"
     },
     "Not in": {
-        "prefix": ["nin", "notin"],
+        "prefix": [
+            "nin",
+            "notin"
+        ],
         "body": "\\not\\in"
     },
     "Intersection": {
-        "prefix": ["inter", "inn"],
+        "prefix": [
+            "inter",
+            "inn"
+        ],
         "body": "\\cap"
     },
     "Union": {
-        "prefix": ["UU", "union"],
+        "prefix": [
+            "UU",
+            "union"
+        ],
         "body": "\\cup"
     },
     "All inter": {
-        "prefix": ["Inn", "Inter"],
+        "prefix": [
+            "Inn",
+            "Inter"
+        ],
         "body": "\\bigcap_{${1:i} \\in ${2:I}}"
     },
     "All union": {
@@ -169,7 +206,10 @@
         ]
     },
     "Column vector": {
-        "prefix": ["cvec", "colvec"],
+        "prefix": [
+            "cvec",
+            "colvec"
+        ],
         "body": "\\begin{pmatrix} ${1:x}_${2:1}\\\\\\ \\vdots\\\\\\ $1_${2:n} \\end{pmatrix}"
     },
     "Bar": {
@@ -177,19 +217,32 @@
         "body": "\\overline{$0}"
     },
     "Hat": {
-        "prefix": ["hat", "chapeu"],
+        "prefix": [
+            "hat",
+            "chapeu"
+        ],
         "body": "\\hat{$0}"
     },
     "Alter epsilon": {
-        "prefix": ["epsilon", "episolon", "epsolon"],
+        "prefix": [
+            "epsilon",
+            "episolon",
+            "epsolon"
+        ],
         "body": "\\varepsilon"
     },
     "Alter phi": {
-        "prefix": ["phi", "fi"],
+        "prefix": [
+            "phi",
+            "fi"
+        ],
         "body": "\\varphi"
     },
     "Alter theta": {
-        "prefix": ["theta", "teta"],
+        "prefix": [
+            "theta",
+            "teta"
+        ],
         "body": "\\vartheta"
     },
     "Align*": {
@@ -243,19 +296,28 @@
         ]
     },
     "italic": {
-        "prefix": ["italic", "it"],
+        "prefix": [
+            "italic",
+            "it"
+        ],
         "body": [
             "\\textit{$0}"
         ]
     },
     "underbrace": {
-        "prefix": ["under", "anotu"],
+        "prefix": [
+            "under",
+            "anotu"
+        ],
         "body": [
             "\\underbrace{$1}_{$2}"
         ]
     },
     "overbrace": {
-        "prefix": ["over", "anoto"],
+        "prefix": [
+            "over",
+            "anoto"
+        ],
         "body": [
             "\\overbrace{$1}_{$2}"
         ]
@@ -434,7 +496,11 @@
         "body": "\\sqrt[$1]{$0}"
     },
     "Vector arrow": {
-        "prefix": ["vector", "arrow", "vec"],
+        "prefix": [
+            "vector",
+            "arrow",
+            "vec"
+        ],
         "body": "\\overrightarrow{$0}"
     },
     "Fancy l": {
@@ -450,11 +516,17 @@
         "body": "\\cdot"
     },
     "Composition": {
-        "prefix": ["o", "comp"],
+        "prefix": [
+            "o",
+            "comp"
+        ],
         "body": "\\circ"
     },
     "Plus minus": {
-        "prefix": ["pm", "plusminus"],
+        "prefix": [
+            "pm",
+            "plusminus"
+        ],
         "body": "\\pm"
     },
     "hbar": {
@@ -490,9 +562,14 @@
         ]
     },
     "Theorem": {
-        "prefix": ["thr", "theor"],
+        "prefix": [
+            "thr",
+            "theor"
+        ],
         "body": [
-            "\\begin{theorem}{${1:Nome}}{${2:label}}",
+            "\\begin{theorem}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{theorem}"
         ]
@@ -500,7 +577,9 @@
     "Definition": {
         "prefix": "def",
         "body": [
-            "\\begin{definition}{${1:Nome}}{${2:label}}",
+            "\\begin{definition}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{definition}"
         ]
@@ -508,7 +587,9 @@
     "Proof": {
         "prefix": "proof",
         "body": [
-            "\\begin{proof}",
+            "\\begin{proof}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{proof}"
         ]
@@ -516,23 +597,32 @@
     "Corollary": {
         "prefix": "coro",
         "body": [
-            "\\begin{corollary}{${1:Nome}}{${2:label}}",
+            "\\begin{corollary}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{corollary}"
         ]
     },
-    "Properties": {
+    "Proposition": {
         "prefix": "prop",
         "body": [
-            "\\begin{properties}{${1:Nome}}{${2:label}}",
+            "\\begin{proposition}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
-            "\\end{properties}"
+            "\\end{proposition}"
         ]
     },
     "Remark": {
-        "prefix": ["obs", "remark"],
+        "prefix": [
+            "obs",
+            "remark"
+        ],
         "body": [
-            "\\begin{remark}{${1:Nome}}{${2:label}}",
+            "\\begin{remark}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{remark}"
         ]
@@ -540,7 +630,9 @@
     "Lemma": {
         "prefix": "lem",
         "body": [
-            "\\begin{lemma}{${1:Nome}}{${2:label}}",
+            "\\begin{lemma}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{lemma}"
         ]
@@ -548,7 +640,9 @@
     "Example": {
         "prefix": "eg",
         "body": [
-            "\\begin{eg}{${1:Nome}}{${2:label}}",
+            "\\begin{eg}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{eg}"
         ]
@@ -556,7 +650,9 @@
     "Exercise": {
         "prefix": "ex",
         "body": [
-            "\\begin{ex}{${1:Nome}}{${2:label}}",
+            "\\begin{ex}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{ex}"
         ]
@@ -564,7 +660,9 @@
     "Explanation": {
         "prefix": "expl",
         "body": [
-            "\\begin{explanation}{${1:Nome}}{${2:label}}",
+            "\\begin{explanation}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{explanation}"
         ]
@@ -572,9 +670,19 @@
     "Note": {
         "prefix": "note",
         "body": [
-            "\\begin{note}{${1:Nome}}{${2:label}}",
+            "\\begin{note}[${1:Nome}]",
+            "\t\\label{${2:label}}",
+            "",
             "\t$0",
             "\\end{note}"
+        ]
+    },
+    "Previously seen": {
+        "prefix": ["prev", "relem"],
+        "body": [
+            "\\begin{previouslyseen}",
+            "\t$0",
+            "\\end{previouslyseen}"
         ]
     },
     "Basic Template": {
@@ -586,250 +694,272 @@
             "\\usepackage{textcomp}",
             "\\usepackage[portuguese,english]{babel}",
             "\\usepackage{amsmath, amssymb}",
-
             "\\begin{document}",
-	            "\t$0",
+            "\t$0",
             "\\end{document}"
         ]
     },
     "Preamble": {
         "prefix": "preamble",
         "body": [
-"\\usepackage[utf8]{inputenc}",
-"\\usepackage[T1]{fontenc}",
-"\\usepackage{textcomp}",
-
-"\\usepackage{hyperref}",
-"\\hypersetup{",
-"    colorlinks,",
-"    linkcolor={black},",
-"    citecolor={black},",
-"    urlcolor={blue!80!black}",
-"}",
-"",
-"\\usepackage{graphicx}",
-"\\usepackage{float}",
-"\\usepackage{xcolor}",
-"",
-"\\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}",
-"\\usepackage{mathrsfs}",
-"\\usepackage{cancel}",
-"",
-"",
-" horizontal rule",
-"\\newcommand\\hr{",
-"\\noindent\\rule[0.5ex]{\\linewidth}{0.5pt}",
-"}",
-"",
-"\\usepackage{tikz}",
-"\\usepackage{tikz-cd}",
-"",
-" theorems",
-"\\usepackage{thmtools}",
-"\\usepackage[framemethod=TikZ]{mdframed}",
-"\\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=5pt, innerbottommargin=6pt}",
-"",
-"",
-"\\theoremstyle{definition}",
-"",
-"\\makeatletter",
-"",
-"",
-"\\@ifclasswith{report}{nocolor}{",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{thmstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{corostyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{defstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{egstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{exstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{propstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{lemstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{proofstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{explstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{remarkstyle}",
-"    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{notecolor}",
-"}{",
-"    \\definecolor{ThmColor}{HTML}{228B22}",
-"    \\definecolor{CoroColor}{HTML}{202A44}",
-"    \\definecolor{DefColor}{HTML}{d68a59}",
-"    \\definecolor{EgColor}{HTML}{d68a59}",
-"    \\definecolor{ExColor}{HTML}{d68a59}",
-"    \\definecolor{PropColor}{HTML}{d68a59}",
-"    \\definecolor{LemColor}{HTML}{d68a59}",
-"    \\definecolor{ProofColor}{HTML}{d68a59}",
-"    \\definecolor{ExplColor}{HTML}{d68a59}",
-"    \\definecolor{RemarkColor}{HTML}{d68a59}",
-"    \\definecolor{NoteColor}{HTML}{d68a59}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{DefColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=DefColor, backgroundcolor=DefColor!5,",
-"        }",
-"    ]{defstyle}",
-"    ",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{EgColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=EgColor, backgroundcolor=EgColor!5,",
-"        }",
-"    ]{egstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{ExColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=ExColor, backgroundcolor=ExColor!5,",
-"        }",
-"    ]{exstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{PropColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=PropColor, backgroundcolor=PropColor!5,",
-"        }",
-"    ]{propstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{ThmColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=ThmColor, backgroundcolor=ThmColor!5,",
-"        }",
-"    ]{thmstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{LemColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=LemColor, backgroundcolor=LemColor!5,",
-"        }",
-"    ]{lemstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{CoroColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=CoroColor, backgroundcolor=CoroColor!5,",
-"        }",
-"    ]{corostyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{ExplColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=ExplColor, backgroundcolor=ExplColor!5,",
-"        }",
-"    ]{explstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{RemarkColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=RemarkColor, backgroundcolor=RemarkColor!5,",
-"        }",
-"    ]{remarkstyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\bfseries\\sffamily\\color{NoteColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=NoteColor, backgroundcolor=NoteColor!5,",
-"        }",
-"    ]{notestyle}",
-"",
-"    \\declaretheoremstyle[",
-"        headfont=\\it\\bfseries\\sffamily\\color{ProofColor!70!black}, bodyfont=\\normalfont,",
-"        postheadspace=\\newline,",
-"        numbered=no,",
-"        mdframed={",
-"            linewidth=2pt,",
-"            rightline=false, topline=false, bottomline=false,",
-"            linecolor=ProofColor, backgroundcolor=ProofColor!1,",
-"        },",
-"        qed=\\qedsymbol",
-"    ]{proofstyle}",
-"}",
-"",
-"",
-"\\declaretheorem[style=defstyle, name=Definition]{definition}",
-"\\declaretheorem[style=egstyle, numbered=no, name=Example]{eg}",
-"\\declaretheorem[style=exstyle, numbered=no, name=Exercise]{ex}",
-"\\declaretheorem[style=propstyle, name=Proposition]{prop}",
-"\\declaretheorem[style=thmstyle, name=Theorem]{theorem}",
-"\\declaretheorem[style=lemstyle, name=Lemma]{lemma}",
-"\\declaretheorem[style=corostyle, numbered=no, name=Corollary]{corollary}",
-"",
-"\\@ifclasswith{report}{nocolor}{",
-"    \\declaretheorem[style=proofstyle, name=Proof]{replacementproof}",
-"    \\declaretheorem[style=explstyle, name=Proof]{explanation}",
-"    \\renewenvironment{proof}[1][\\proofname]{\\begin{replacementproof}}{\\end{replacementproof}}",
-"}{",
-"    \\declaretheorem[style=proofstyle, name=Proof]{replacementproof}",
-"    \\renewenvironment{proof}[1][\\proofname]{\\vspace{-10pt}\\begin{replacementproof}}{\\end{replacementproof}}",
-"",
-"    \\declaretheorem[style=explstyle, name=Proof]{tmpexplanation}",
-"    \\newenvironment{explanation}[1][]{\\vspace{-10pt}\\begin{tmpexplanation}}{\\end{tmpexplanation}}",
-"}",
-"",
-"\\makeatother",
-"",
-"",
-"\\declaretheorem[style=remarkstyle, numbered=no, name=Remark]{remark}",
-"\\declaretheorem[style=notestyle, numbered=no, name=Note]{note}",
-"",
-"",
-" http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm",
-" \\def\\thm@space@setup{%",
-"   \\thm@preskip=\\parskip \\thm@postskip=0pt",
-" }",
-"",
-"",
-" fancy headers",
-"\\usepackage{fancyhdr}",
-"\\pagestyle{fancy}",
-"",
-"",
-" figure support (https://castel.dev/post/lecture-notes-2)",
-"\\usepackage{import}",
-"\\usepackage{xifthen}",
-"\\usepackage{pdfpages}",
-"\\usepackage{transparent}",
-"\\newcommand{\\incfig}[1]{%",
-"\\def\\svgwidth{\\columnwidth}",
-"\\import{./figures/}{#1.pdf_tex}",
-"}",
-"",
-" http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning",
-"\\pdfsuppresswarningpagegroup=1",
-"",
-"\\author{Felipe Scherer Vicentin}",
+            "\\usepackage[utf8]{inputenc}",
+            "\\usepackage[T1]{fontenc}",
+            "\\usepackage{textcomp}",
+            "\\usepackage[portuguese]{babel}",
+            "\\usepackage{hyperref}",
+            "\\hypersetup{",
+            "    colorlinks,",
+            "    linkcolor={black},",
+            "    citecolor={black},",
+            "    urlcolor={blue!80!black}",
+            "}",
+            "",
+            "\\usepackage{graphicx}",
+            "\\usepackage{float}",
+            "\\usepackage{xcolor}",
+            "",
+            "\\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}",
+            "\\usepackage{mathrsfs}",
+            "\\usepackage{cancel}",
+            "",
+            "",
+            "% horizontal rule",
+            "\\newcommand\\hr{",
+            "\\noindent\\rule[0.5ex]{\\linewidth}{0.5pt}",
+            "}",
+            "",
+            "\\usepackage{tikz}",
+            "\\usepackage{tikz-cd}",
+            "",
+            "% theorems",
+            "\\usepackage{thmtools}",
+            "\\usepackage[framemethod=TikZ]{mdframed}",
+            "\\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=5pt, innerbottommargin=6pt}",
+            "",
+            "",
+            "\\theoremstyle{definition}",
+            "",
+            "\\makeatletter",
+            "",
+            "",
+            "\\@ifclasswith{report}{nocolor}{",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{thmstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{corostyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{defstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{egstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{exstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{propstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{lemstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{proofstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{explstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{remarkstyle}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{notecolor}",
+            "}{",
+            "\\definecolor{ThmColor}{HTML}{1F75FE}",
+            "\\definecolor{CoroColor}{HTML}{008B8B}",
+            "\\definecolor{DefColor}{HTML}{DC143C}",
+            "\\definecolor{EgColor}{HTML}{32CD32}",
+            "\\definecolor{ExColor}{HTML}{009F6B}",
+            "\\definecolor{PropColor}{HTML}{32174D}",
+            "\\definecolor{LemColor}{HTML}{7851A9}",
+            "\\definecolor{ProofColor}{HTML}{717171}",
+            "\\definecolor{ExplColor}{HTML}{F4A460}",
+            "\\definecolor{RemarkColor}{HTML}{FF7F50}",
+            "\\definecolor{NoteColor}{HTML}{d68a59}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{DefColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=DefColor, backgroundcolor=DefColor!5,",
+            "        }",
+            "    ]{defstyle}",
+            "    ",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{EgColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=EgColor, backgroundcolor=EgColor!5,",
+            "        }",
+            "    ]{egstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{ExColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=ExColor, backgroundcolor=ExColor!5,",
+            "        }",
+            "    ]{exstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{PropColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=PropColor, backgroundcolor=PropColor!5,",
+            "        }",
+            "    ]{propstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{ThmColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=ThmColor, backgroundcolor=ThmColor!5,",
+            "        }",
+            "    ]{thmstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{LemColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=LemColor, backgroundcolor=LemColor!5,",
+            "        }",
+            "    ]{lemstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{CoroColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=CoroColor, backgroundcolor=CoroColor!5,",
+            "        }",
+            "    ]{corostyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{ExplColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        numbered=no,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=ExplColor, backgroundcolor=ExplColor!5,",
+            "        }",
+            "    ]{explstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{RemarkColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=RemarkColor, backgroundcolor=RemarkColor!5,",
+            "        }",
+            "    ]{remarkstyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{NoteColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=NoteColor, backgroundcolor=NoteColor!5,",
+            "        }",
+            "    ]{notestyle}",
+            "",
+            "    \\declaretheoremstyle[",
+            "        headfont=\\it\\bfseries\\sffamily\\color{ProofColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        numbered=no,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=ProofColor, backgroundcolor=ProofColor!1,",
+            "        },",
+            "        qed=\\qedsymbol",
+            "    ]{proofstyle}",
+            "}",
+            "",
+            "",
+            "\\declaretheorem[style=defstyle, numberwithin=chapter, name=Definição]{definition}",
+            "\\declaretheorem[style=egstyle, numberwithin=chapter, name=Exemplo]{eg}",
+            "\\declaretheorem[style=exstyle, numberwithin=chapter, name=Exercício]{ex}",
+            "\\declaretheorem[style=propstyle, numberwithin=chapter, name=Proposição]{proposition}",
+            "\\declaretheorem[style=thmstyle, numberwithin=chapter, name=Teorema]{theorem}",
+            "\\declaretheorem[style=lemstyle, numberwithin=chapter, name=Lema]{lemma}",
+            "\\declaretheorem[style=corostyle, numberwithin=chapter, name=Corolário]{corollary}",
+            "",
+            "\\@ifclasswith{report}{nocolor}{",
+            "    \\declaretheorem[style=proofstyle, name=Demonstração]{replacementproof}",
+            "    \\declaretheorem[style=explstyle, name=Explicação]{explanation}",
+            "    \\renewenvironment{proof}[1][\\proofname]{\\begin{replacementproof}}{\\end{replacementproof}}",
+            "}{",
+            "    \\declaretheorem[style=proofstyle, name=Demonstração]{replacementproof}",
+            "    \\renewenvironment{proof}[1][\\proofname]{\\vspace{-12pt}\\begin{replacementproof}}{\\end{replacementproof}}",
+            "",
+            "    \\declaretheorem[style=explstyle, name=Explicação]{tmpexplanation}",
+            "    \\newenvironment{explanation}[1][]{\\vspace{-12pt}\\begin{tmpexplanation}}{\\end{tmpexplanation}}",
+            "}",
+            "",
+            "\\makeatother",
+            "",
+            "\\declaretheoremstyle[",
+            "   headpunct={},",
+            "]{previousstyle}",
+            "",
+            "\\declaretheorem[style=remarkstyle, numberwithin=chapter, name=Observação]{remark}",
+            "\\declaretheorem[style=notestyle, numbered=no, name=Nota]{note}",
+            "\\declaretheorem[style=previousstyle, numbered=no, name=Relembrando...]{previouslyseen}",
+            "",
+            "",
+            "% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm",
+            "% \\def\\thm@space@setup{%",
+            "%   \\thm@preskip=\\parskip \\thm@postskip=0pt",
+            "% }",
+            "",
+            "",
+            "% fancy headers",
+            "\\usepackage{fancyvrb}",
+            "\\usepackage{fancyhdr}",
+            "\\pagestyle{fancy}",
+            "\\fancyhead[LE]{\\nouppercase\\leftmark}",
+            "\\fancyhead[RO]{\\nouppercase\\rightmark}",
+            "\\setlength\\headheight{14.62pt}",
+            "",
+            "",
+            "% figure support (https://castel.dev/post/lecture-notes-2)",
+            "\\usepackage{import}",
+            "\\usepackage{xifthen}",
+            "\\usepackage{pdfpages}",
+            "\\usepackage{transparent}",
+            "\\newcommand{\\incfig}[1]{%",
+            "\\def\\svgwidth{\\columnwidth}",
+            "\\import{./figures/}{#1.pdf_tex}",
+            "}",
+            "",
+            "% http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning",
+            "\\pdfsuppresswarningpagegroup=1",
+            "",
+            "\\author{Felipe Scherer Vicentin}"
         ]
     },
     "Notes": {
-        "prefix": ["notes", "notas"],
+        "prefix": [
+            "notes",
+            "notas"
+        ],
         "body": [
             "\\documentclass[a4paper]{report}",
             "\\input{preamble.tex}",
