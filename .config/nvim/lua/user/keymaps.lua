@@ -28,6 +28,9 @@ keymap("n", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
 keymap("n", "c", "\"_c")
 
+keymap("n", "<C-A-j>", "<Esc>:m .+1<CR>", opts)
+keymap("n", "<C-A-k>", "<Esc>:m .-2<CR>", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -49,6 +52,8 @@ keymap("n", "<F11>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
+keymap("v", "<C-A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<C-A-k>", ":m .-2<CR>==", opts)
 
 -- Save
 keymap("n", "<C-s>", ":w<cr>", opts)
@@ -57,6 +62,9 @@ keymap("n", "<C-s>", ":w<cr>", opts)
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
+
+keymap("x", "<C-A-j>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<C-A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Insert --
 keymap("i", "<C-a>", "<ESC>ggVG", opts)
