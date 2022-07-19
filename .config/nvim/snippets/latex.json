@@ -97,7 +97,7 @@
     },
     "Set": {
         "prefix": "set",
-        "body": "\\{$1\\} $0"
+        "body": "\\{$0\\}"
     },
     "Such that": {
         "prefix": "|",
@@ -121,11 +121,11 @@
     },
     "All inter": {
         "prefix": ["Inn", "Inter"],
-        "body": "\\bigcap_{${1:i} \\in ${2:I}} $0"
+        "body": "\\bigcap_{${1:i} \\in ${2:I}}"
     },
     "All union": {
         "prefix": "UUU",
-        "body": "\\bigcup_{${1:i} \\in ${2:I}} $0"
+        "body": "\\bigcup_{${1:i} \\in ${2:I}}"
     },
     "Complex": {
         "prefix": "CC",
@@ -147,11 +147,15 @@
         "prefix": "NN",
         "body": "\\mathbb{N}"
     },
+    "Math bb": {
+        "prefix": "bb",
+        "body": "\\mathbb{$0}"
+    },
     "Cases": {
         "prefix": "cases",
         "body": [
             "\\begin{cases}",
-            "\t$1",
+            "\t$0",
             "\\end{cases}"
         ]
     },
@@ -170,11 +174,11 @@
     },
     "Bar": {
         "prefix": "bar",
-        "body": "\\overline{$1}$0"
+        "body": "\\overline{$0}"
     },
     "Hat": {
         "prefix": ["hat", "chapeu"],
-        "body": "\\hat{$1}$0"
+        "body": "\\hat{$0}"
     },
     "Alter epsilon": {
         "prefix": ["epsilon", "episolon", "epsolon"],
@@ -210,7 +214,7 @@
     },
     "Equals": {
         "prefix": "==",
-        "body": "&= $1 \\\\"
+        "body": "&= $0 \\\\"
     },
     "Not equals": {
         "prefix": "!=",
@@ -218,78 +222,70 @@
     },
     "Ceil": {
         "prefix": "ceil",
-        "body": "\\left\\lceil $1 \\right\\rceil $0"
+        "body": "\\left\\lceil $0 \\right\\rceil"
     },
     "Teto": {
         "prefix": "teto",
-        "body": "\\left\\lceil $1 \\right\\rceil $0"
+        "body": "\\left\\lceil $0 \\right\\rceil"
     },
     "Floor": {
         "prefix": "floor",
-        "body": "\\left\\lfloor $1 \\right\\rfloor $0"
+        "body": "\\left\\lfloor $0 \\right\\rfloor"
     },
     "Piso": {
         "prefix": "piso",
-        "body": "\\left\\lfloor $1 \\right\\rfloor $0"
+        "body": "\\left\\lfloor $0 \\right\\rfloor"
     },
     "bold": {
         "prefix": "bold",
         "body": [
-            "\\textbf{${1:${TM_SELECTED_TEXT}}} $0"
+            "\\textbf{$0}"
         ]
     },
     "italic": {
-        "prefix": "italic",
+        "prefix": ["italic", "it"],
         "body": [
-            "\\textit{${1:${TM_SELECTED_TEXT}}} $0"
+            "\\textit{$0}"
         ]
     },
     "underbrace": {
         "prefix": ["under", "anotu"],
         "body": [
-            "\\underbrace{$1}_{$2} $0"
+            "\\underbrace{$1}_{$2}"
         ]
     },
     "overbrace": {
         "prefix": ["over", "anoto"],
         "body": [
-            "\\overbrace{$1}_{$2} $0"
+            "\\overbrace{$1}_{$2}"
         ]
     },
     "underset": {
         "prefix": "underset",
         "body": [
-            "\\underset{$1}{${2:${TM_SELECTED_TEXT}}} $0"
+            "\\underset{$1}{$2}"
         ]
     },
     "overset": {
         "prefix": "overset",
         "body": [
-            "\\overset{$1}{${2:${TM_SELECTED_TEXT}}} $0"
-        ]
-    },
-    "thm": {
-        "prefix": "thm",
-        "body": [
-            "\\begin{thm} $1 \\end{thm} $0"
+            "\\overset{$1}{$2}"
         ]
     },
     "itemize": {
         "prefix": "itemize",
         "body": [
             "\\begin{itemize}",
-            "\t\\item $1",
-            "\\end{itemize}",
-            "$0"
+            "\t\\item $0",
+            "\\end{itemize}"
         ]
     },
     "enumerate": {
         "prefix": "enum",
         "body": [
             "\\begin{enumerate}",
-            "\t\\item $1",
-            "\\end{enumerate}",
-            "$0"
+            "\t\\item $0",
+            "\\end{enumerate}"
         ]
     },
     "Environment": {
@@ -311,7 +307,7 @@
         "body": [
             "\\begin{figure}[H]",
             "\t\\centering",
-            "\t\\includegraphics[width=0.5\\textwidth]{${1:${TM_SELECTED_TEXT}}}",
+            "\t\\includegraphics[width=0.5\\textwidth]{$1}",
             "\t\\caption{${2:caption}\\label{fig:${3:sample}}}",
             "\\end{figure}",
             "$0"
@@ -337,18 +333,16 @@
         "prefix": "pmat",
         "body": [
             "\\begin{pmatrix}",
-            "$1",
-            "\\end{pmatrix}",
-            "$0"
+            "$0",
+            "\\end{pmatrix}"
         ]
     },
     "bmatrix": {
         "prefix": "bmat",
         "body": [
             "\\begin{bmatrix}",
-            "$1",
-            "\\end{bmatrix}",
-            "$0"
+            "$0",
+            "\\end{bmatrix}"
         ]
     },
     "Infinity": {
@@ -358,7 +352,7 @@
     "Integral": {
         "prefix": "int",
         "body": [
-            "\\int_{${1:0}}^{${2:\\infty}} $4 \\,d$3 $0"
+            "\\int_{${1:0}}^{${2:\\infty}} $0 \\,d$3"
         ]
     },
     "Sum Full": {
@@ -376,31 +370,31 @@
     "parenthesis1": {
         "prefix": "lr(",
         "body": [
-            "\\left($1\\right)"
+            "\\left($0\\right)"
         ]
     },
     "parenthesis2": {
         "prefix": "lr[",
         "body": [
-            "\\left[$1\\right]"
+            "\\left[$0\\right]"
         ]
     },
     "parenthesis3": {
         "prefix": "lr{",
         "body": [
-            "\\left\\$1\\right\\}"
+            "\\left\\$0\\right\\}"
         ]
     },
     "parenthesis4": {
         "prefix": "lr|",
         "body": [
-            "\\left|$1\\right|"
+            "\\left|$0\\right|"
         ]
     },
     "average": {
         "prefix": "avg",
         "body": [
-            "\\langle $1 \\rangle$0"
+            "\\langle $0 \\rangle"
         ]
     },
     "Sum": {
@@ -433,15 +427,15 @@
     },
     "Square root": {
         "prefix": "sq",
-        "body": "\\sqrt{$1}"
+        "body": "\\sqrt{$0}"
     },
     "Nth root": {
         "prefix": "sqn",
-        "body": "\\sqrt[$1]{$2}"
+        "body": "\\sqrt[$1]{$0}"
     },
     "Vector arrow": {
         "prefix": ["vector", "arrow", "vec"],
-        "body": "\\overrightarrow{$1}"
+        "body": "\\overrightarrow{$0}"
     },
     "Fancy l": {
         "prefix": "ll",
@@ -472,27 +466,27 @@
     "section": {
         "prefix": "sec",
         "body": [
-            "\\section{$1}",
+            "\\section{$0}",
             "$0"
         ]
     },
     "subsection": {
         "prefix": "ssec",
         "body": [
-            "\\subsection{$1}",
+            "\\subsection{$0}",
             "$0"
         ]
     },
     "operatorname": {
         "prefix": "op",
         "body": [
-            "\\operatorname{$1} $0"
+            "\\operatorname{$0}"
         ]
     },
     "mathrm": {
         "prefix": "rm",
         "body": [
-            "\\mathrm{$1} $0"
+            "\\mathrm{$0}"
         ]
     },
     "Basic Template": {
