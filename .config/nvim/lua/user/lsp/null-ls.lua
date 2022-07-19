@@ -21,11 +21,12 @@ null_ls.setup({
         formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" } }),
         formatting.dart_format,
         formatting.beautysh,
-
+        formatting.latexindent,
 
 		diagnostics.flake8,
         diagnostics.shellcheck,
         diagnostics.yamllint,
+        diagnostics.chktex,
 
         code_actions.shellcheck,
 	},

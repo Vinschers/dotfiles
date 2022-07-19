@@ -77,7 +77,6 @@ local nopts = {
 }
 
 local nmappings = {
-	["a"] = { "<cmd>Alpha<cr>", "Alpha" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 
