@@ -79,6 +79,7 @@ local nopts = {
 local nmappings = {
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	["Q"] = { "<cmd>qa!<CR>", "Close all" },
 
 	["f"] = { "<cmd>Telescope find_files<cr>", "Find files" },
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
