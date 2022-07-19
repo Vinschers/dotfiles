@@ -660,8 +660,8 @@
     "Explanation": {
         "prefix": "expl",
         "body": [
-            "\\begin{explanation}[${1:Nome}]",
-            "\t\\label{${2:label}}",
+            "\\begin{explanation}",
+            "\t\\label{${1:label}}",
             "",
             "\t$0",
             "\\end{explanation}"
@@ -670,8 +670,8 @@
     "Note": {
         "prefix": "note",
         "body": [
-            "\\begin{note}[${1:Nome}]",
-            "\t\\label{${2:label}}",
+            "\\begin{note}",
+            "\t\\label{${1:label}}",
             "",
             "\t$0",
             "\\end{note}"
