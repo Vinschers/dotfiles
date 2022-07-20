@@ -338,6 +338,10 @@
         "prefix": "piso",
         "body": "\\left\\lfloor $0 \\right\\rfloor"
     },
+    "Cross": {
+        "prefix": "cross",
+        "body": "\\crossout{$0}"
+    },
     "bold": {
         "prefix": "bold",
         "body": [
@@ -560,7 +564,7 @@
         "prefix": "ll",
         "body": "\\ell"
     },
-    "Cross": {
+    "Cartesian product": {
         "prefix": "xx",
         "body": "\\times"
     },
@@ -800,6 +804,24 @@
             "",
             "\\usepackage{tikz}",
             "\\usepackage{tikz-cd}",
+            "\\usepackage{pict2e}",
+            "",
+            "\\makeatletter",
+            "\\newcommand{\\crossout}[1]{%",
+            "   \\begingroup",
+            "   \\settowidth{\\dimen@}{#1}%",
+            "   \\setlength{\\unitlength}{0.05\\dimen@}%",
+            "   \\settoheight{\\dimen@}{#1}%",
+            "   \\count@=\\dimen@",
+            "   \\divide\\count@ by \\unitlength",
+            "   \\begin{picture}(0,0)",
+            "   \\put(0,0){\\line(20,\\count@){20}}",
+            "   \\put(0,\\count@){\\line(20,-\\count@){20}}",
+            "   \\end{picture}%",
+            "   #1%",
+            "   \\endgroup",
+            "}",
+            "\\makeatother",
             "",
             "% theorems",
             "\\usepackage{thmtools}",
