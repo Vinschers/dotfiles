@@ -311,6 +311,11 @@ return packer.startup(function(use)
 
 	use({ "antoinemadec/FixCursorHold.nvim" })
 
+	use({
+		"RishabhRD/nvim-cheat.sh",
+		requires = "RishabhRD/popfix",
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

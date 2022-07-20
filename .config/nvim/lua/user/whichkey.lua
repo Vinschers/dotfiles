@@ -86,6 +86,8 @@ local nmappings = {
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
 	["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
 
+    ["c"] = { "<cmd>Cheat<cr>", "Cheat" },
+
 	["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
 
 	p = {
@@ -121,6 +123,14 @@ local nmappings = {
 		g = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<cr>", "Show dialog" },
 		w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+        F = {
+            name = "Flutter tools",
+            d = { "<cmd>FlutterDevices<cr>", "Devices" },
+            r = { "<cmd>FlutterRun<cr>", "Run" },
+            R = { "<cmd>FlutterRestart<cr>", "Restart" },
+            q = { "<cmd>FlutterQuit<cr>", "Quit" },
+            l = { "<cmd>FlutterLspRestart<cr>", "Restart LSP server" },
+        },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
