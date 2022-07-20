@@ -274,6 +274,10 @@
             "\\end{tikzpicture}"
         ]
     },
+    "SI": {
+        "prefix": ["si", "fis", "phy"],
+        "body": "\\SI{$1}{$2}"
+    },
     "Equation": {
         "prefix": "eq",
         "body": [
@@ -758,7 +762,7 @@
             "\\usepackage[T1]{fontenc}",
             "\\usepackage{textcomp}",
             "\\usepackage[portuguese,english]{babel}",
-            "\\usepackage{amsmath, amssymb}",
+            "\\usepackage{amsmath, amssymb, siunitx}",
             "\\begin{document}",
             "\t$0",
             "\\end{document}"
@@ -783,11 +787,12 @@
             "\\usepackage{float}",
             "\\usepackage{xcolor}",
             "",
-            "\\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb, lipsum, pgfplots}",
+            "\\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb, lipsum, pgfplots, siunitx}",
             "\\usepackage{mathrsfs}",
             "\\usepackage{cancel}",
             "",
             "\\pgfplotsset{compat=1.18}",
+            "\\sisetup{inter-unit-product =$\\cdot$}",
             "",
             "\\usepackage",
             "[",
