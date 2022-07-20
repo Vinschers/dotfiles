@@ -507,7 +507,7 @@
         ]
     },
     "average": {
-        "prefix": "avg",
+        "prefix": ["avg", "dot", "esc", "prod", "<"],
         "body": [
             "\\langle $0 \\rangle"
         ]
