@@ -266,11 +266,11 @@ return packer.startup(function(use)
 	})
 
 	use({
-        "lervag/vimtex",
-        config = function ()
-            vim.g.vimtex_view_method = "zathura"
-        end
-    })
+		"lervag/vimtex",
+		config = function()
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	})
 
 	use({
 		"akinsho/flutter-tools.nvim",
@@ -310,8 +310,6 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 	use({ "antoinemadec/FixCursorHold.nvim" })
-
-	-- use({ "nvim-telescope/telescope-project.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
