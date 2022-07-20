@@ -1082,10 +1082,10 @@
             "\\title{$1}",
             "",
             "\\begin{document}",
-            "\\maketitle",
-            "\\tableofcontents",
+            "\t\\maketitle",
+            "\t\\tableofcontents",
             "",
-            "\\input{$2}",
+            "\t\\input{$2}",
             "\\end{document}"
         ]
     }
