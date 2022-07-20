@@ -54,3 +54,5 @@ vim.opt.wildignore = {
     -- version control
     ".git,.svn",
 }
+vim.opt.conceallevel = 1
+vim.g.tex_conceal = "abdmg"

@@ -63,9 +63,7 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(1) then
-                luasnip.jump(1)
-            elseif cmp.visible() then
+			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expandable() then
 				luasnip.expand()
@@ -81,14 +79,28 @@ cmp.setup({
 			"s",
 		}),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-            elseif cmp.visible() then
+			if cmp.visible() then
 				cmp.select_prev_item()
 			else
 				fallback()
 			end
 		end, {
+			"i",
+			"s",
+		}),
+		["<C-;>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            end
+        end, {
+			"i",
+			"s",
+		}),
+		["<C-i>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            end
+        end, {
 			"i",
 			"s",
 		}),
@@ -115,12 +127,12 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 	},
-    source_names = {
-        nvim_lsp = "(LSP)",
-        luasnip = "(Snippet)",
-        buffer = "(Buffer)",
-        path = "(Path)",
-    },
+	source_names = {
+		nvim_lsp = "(LSP)",
+		luasnip = "(Snippet)",
+		buffer = "(Buffer)",
+		path = "(Path)",
+	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,

@@ -31,6 +31,8 @@ keymap("n", "c", "\"_c")
 keymap("n", "<C-A-j>", "<Esc>:m .+1<CR>", opts)
 keymap("n", "<C-A-k>", "<Esc>:m .-2<CR>", opts)
 
+keymap("n", "<F1>", "", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)

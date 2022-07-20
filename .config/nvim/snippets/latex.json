@@ -245,6 +245,55 @@
         ],
         "body": "\\vartheta"
     },
+    "Verbatim": {
+        "prefix": ["code", "verbatim"],
+        "body": [
+            "\\begin{verbatim}",
+            "\t$0",
+            "\\end{verbatim}"
+        ]
+    },
+    "Plot 2D": {
+        "prefix": "plot2d",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[xmin=-1, xmax=1, ymin=-1, ymax=1, axis lines=middle] % other arguments: xlabel, ylabel, title, xtick, xticklabel, xticklabel style={anchor=south west}, xmajorgrids, grid style=dashed",
+            "\t\t\\addplot[color=blue]{$1}; % domain=-1:1",
+            "\t\t% node[right,pos=0.9]{$f(x)=$1$}",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+    "Plot 3D": {
+        "prefix": "plot3d",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[xmin=-5, xmax=5, ymin=-5, ymax=5, zmin=-50, zmax=50, colormap/viridis, view={60}{30}] % other arguments: hide axis, xlabel, ylabel, title, xtick, xticklabel, xticklabel style={anchor=south west}, xmajorgrids, grid style=dashed",
+            "\t\t\\addplot3[surf,shader=interp]{$1}; % could be ({x(x)}, {y(x)}, {z(x)}); removing surf and shader",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+    "Equation": {
+        "prefix": "eq",
+        "body": [
+            "\\begin{equation}",
+            "\t\\begin{split}",
+            "\t$0",
+            "\t\\end{split}",
+            "\\end{equation}"
+        ]
+    },
+    "Equation*": {
+        "prefix": "eq*",
+        "body": [
+            "\\begin{equation*}",
+            "\t\\begin{split}",
+            "\t$0",
+            "\t\\end{split}",
+            "\\end{equation*}"
+        ]
+    },
     "Align*": {
         "prefix": "al",
         "body": [
@@ -267,7 +316,7 @@
     },
     "Equals": {
         "prefix": "==",
-        "body": "&= $0 \\\\"
+        "body": "&= $0 \\\\\\"
     },
     "Not equals": {
         "prefix": "!=",
@@ -495,6 +544,10 @@
         "prefix": "sqn",
         "body": "\\sqrt[$1]{$0}"
     },
+    "Exponential": {
+        "prefix": "exp",
+        "body": "e^{$0}"
+    },
     "Vector arrow": {
         "prefix": [
             "vector",
@@ -661,18 +714,22 @@
         "prefix": "expl",
         "body": [
             "\\begin{explanation}",
-            "\t\\label{${1:label}}",
-            "",
             "\t$0",
             "\\end{explanation}"
+        ]
+    },
+    "Solution": {
+        "prefix": "sol",
+        "body": [
+            "\\begin{solution}",
+            "\t$0",
+            "\\end{solution}"
         ]
     },
     "Note": {
         "prefix": "note",
         "body": [
             "\\begin{note}",
-            "\t\\label{${1:label}}",
-            "",
             "\t$0",
             "\\end{note}"
         ]
@@ -684,6 +741,10 @@
             "\t$0",
             "\\end{previouslyseen}"
         ]
+    },
+    "Lorem ipsum": {
+        "prefix": "lorem",
+        "body": "\\lipsum[$0]"
     },
     "Basic Template": {
         "prefix": "article",
@@ -718,10 +779,19 @@
             "\\usepackage{float}",
             "\\usepackage{xcolor}",
             "",
-            "\\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}",
+            "\\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb, lipsum, pgfplots}",
             "\\usepackage{mathrsfs}",
             "\\usepackage{cancel}",
             "",
+            "\\pgfplotsset{compat=1.18}",
+            "",
+            "\\usepackage",
+            "[",
+            "   a4paper,% other options: a3paper, a5paper, etc",
+            "   vmargin=2cm,",
+            "   hmargin=2cm",
+            "]",
+            "{geometry}",
             "",
             "% horizontal rule",
             "\\newcommand\\hr{",
@@ -754,6 +824,7 @@
             "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{explstyle}",
             "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{remarkstyle}",
             "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{notecolor}",
+            "    \\declaretheoremstyle[headfont=\\bfseries\\sffamily, bodyfont=\\normalfont]{solstyle}",
             "}{",
             "\\definecolor{ThmColor}{HTML}{1F75FE}",
             "\\definecolor{CoroColor}{HTML}{008B8B}",
@@ -766,6 +837,7 @@
             "\\definecolor{ExplColor}{HTML}{F4A460}",
             "\\definecolor{RemarkColor}{HTML}{FF7F50}",
             "\\definecolor{NoteColor}{HTML}{d68a59}",
+            "\\definecolor{SolColor}{HTML}{EEED09}",
             "",
             "    \\declaretheoremstyle[",
             "        headfont=\\bfseries\\sffamily\\color{DefColor!70!black}, bodyfont=\\normalfont,",
@@ -857,6 +929,18 @@
             "    ]{explstyle}",
             "",
             "    \\declaretheoremstyle[",
+            "        headfont=\\bfseries\\sffamily\\color{SolColor!70!black}, bodyfont=\\normalfont,",
+            "        headpunct={},",
+            "        postheadspace=\\newline,",
+            "        numbered=no,",
+            "        mdframed={",
+            "            linewidth=2pt,",
+            "            rightline=false, topline=false, bottomline=false,",
+            "            linecolor=SolColor, backgroundcolor=SolColor!5,",
+            "        }",
+            "    ]{solstyle}",
+            "",
+            "    \\declaretheoremstyle[",
             "        headfont=\\bfseries\\sffamily\\color{RemarkColor!70!black}, bodyfont=\\normalfont,",
             "        headpunct={},",
             "        postheadspace=\\newline,",
@@ -904,6 +988,7 @@
             "\\@ifclasswith{report}{nocolor}{",
             "    \\declaretheorem[style=proofstyle, name=Demonstração]{replacementproof}",
             "    \\declaretheorem[style=explstyle, name=Explicação]{explanation}",
+            "    \\declaretheorem[style=solstyle, name=Solução]{solution}",
             "    \\renewenvironment{proof}[1][\\proofname]{\\begin{replacementproof}}{\\end{replacementproof}}",
             "}{",
             "    \\declaretheorem[style=proofstyle, name=Demonstração]{replacementproof}",
@@ -911,6 +996,9 @@
             "",
             "    \\declaretheorem[style=explstyle, name=Explicação]{tmpexplanation}",
             "    \\newenvironment{explanation}[1][]{\\vspace{-12pt}\\begin{tmpexplanation}}{\\end{tmpexplanation}}",
+            "",
+            "    \\declaretheorem[style=solstyle, name=Solução]{tmpsolution}",
+            "    \\newenvironment{solution}[1][]{\\vspace{-12pt}\\begin{tmpsolution}}{\\end{tmpsolution}}",
             "}",
             "",
             "\\makeatother",
@@ -936,7 +1024,7 @@
             "\\pagestyle{fancy}",
             "\\fancyhead[LE]{\\nouppercase\\leftmark}",
             "\\fancyhead[RO]{\\nouppercase\\rightmark}",
-            "\\setlength\\headheight{14.62pt}",
+            "\\setlength\\headheight{15pt}",
             "",
             "",
             "% figure support (https://castel.dev/post/lecture-notes-2)",
