@@ -20,12 +20,12 @@ static const int topbar                 = 1;        /* 0 means bottom bar */
 
 #define ICONSIZE 15    /* icon size */
 #define ICONSPACING 5  /* space between icon and title */
-#define FLEXWINTITLE_BORDERS 0       // 0 = off, 1 = on
+#define BARTAB_BORDERS 0       // 0 = off, 1 = on
 
 /* Status is to be shown on: -1 (all monitors), 0 (a specific monitor by index), 'A' (active monitor) */
 static const int statusmon               = -1;
 static const int horizpadbar             = 0;   /* horizontal padding for statusbar */
-static const int vertpadbar              = 4;   /* vertical padding for statusbar */
+static const int vertpadbar              = 6;   /* vertical padding for statusbar */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int showsystray             = 1;   /* 0 means no systray */
 static const unsigned int ulinepad       = 5;   /* horizontal padding between the underline and tag */
