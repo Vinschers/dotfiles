@@ -1,5 +1,6 @@
 /* Patches */
 #include "externalpipe.h"
+#include "iso14755.h"
 #include "newterm.h"
 #include "scrollback.h"
 #include "sixel_st.h"
