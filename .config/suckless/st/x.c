@@ -264,7 +264,7 @@ zoomreset(const Arg *arg)
 int
 evcol(XEvent *e)
 {
-	int x = e->xbutton.x - win.hborderpx;
+	int x = e->xbutton.x - borderpx;
 	LIMIT(x, 0, win.tw - 1);
 	return x / win.cw;
 }
@@ -272,7 +272,7 @@ evcol(XEvent *e)
 int
 evrow(XEvent *e)
 {
-	int y = e->xbutton.y - win.vborderpx;
+	int y = e->xbutton.y - borderpx;
 	LIMIT(y, 0, win.th - 1);
 	return y / win.ch;
 }
@@ -680,8 +680,6 @@ cresize(int width, int height)
 	col = MAX(1, col);
 	row = MAX(1, row);
 
-	win.hborderpx = (win.w - col * win.cw) / 2;
-	win.vborderpx = (win.h - row * win.ch) / 2;
 
 	tresize(col, row);
 	xresize(col, row);
@@ -812,9 +810,12 @@ xsetcolorname(int x, const char *name)
 void
 xclear(int x1, int y1, int x2, int y2)
 {
-	XftDrawRect(xw.draw,
-			&dc.col[IS_SET(MODE_REVERSE)? defaultfg : defaultbg],
-			x1, y1, x2-x1, y2-y1);
+	Color c;
+	c = dc.col[IS_SET(MODE_REVERSE)? defaultfg : defaultbg];
+	if (invertcolors) {
+		c = invertedcolor(&c);
+	}
+	XftDrawRect(xw.draw, &c, x1, y1, x2-x1, y2-y1);
 }
 
 void
@@ -826,8 +827,8 @@ xclearwin(void)
 void
 xhints(void)
 {
-	XClassHint class = {opt_name ? opt_name : termname,
-	                    opt_class ? opt_class : termname};
+	XClassHint class = {opt_name ? opt_name : "st",
+	                    opt_class ? opt_class : "St"};
 	XWMHints wm = {.flags = InputHint, .input = 1};
 	XSizeHints *sizeh;
 
@@ -836,8 +837,8 @@ xhints(void)
 	sizeh->flags = PSize | PResizeInc | PBaseSize | PMinSize;
 	sizeh->height = win.h;
 	sizeh->width = win.w;
-	sizeh->height_inc = 1;
-	sizeh->width_inc = 1;
+	sizeh->height_inc = win.ch;
+	sizeh->width_inc = win.cw;
 	sizeh->base_height = 2 * borderpx;
 	sizeh->base_width = 2 * borderpx;
 	sizeh->min_height = win.ch + 2 * borderpx;
@@ -1107,8 +1108,6 @@ xinit(int cols, int rows)
 	XWindowAttributes attr;
 	XVisualInfo vis;
 
-	if (!(xw.dpy = XOpenDisplay(NULL)))
-		die("can't open display\n");
 	xw.scr = XDefaultScreen(xw.dpy);
 
 	if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0)))) {
@@ -1137,8 +1136,8 @@ xinit(int cols, int rows)
 	xloadcols();
 
 	/* adjust fixed window geometry */
-	win.w = 2 * win.hborderpx + cols * win.cw;
-	win.h = 2 * win.vborderpx + rows * win.ch;
+	win.w = 2 * borderpx + cols * win.cw;
+	win.h = 2 * borderpx + rows * win.ch;
 	if (xw.gm & XNegative)
 		xw.l += DisplayWidth(xw.dpy, xw.scr) - win.w - 2;
 	if (xw.gm & YNegative)
@@ -1230,7 +1229,7 @@ xinit(int cols, int rows)
 int
 xmakeglyphfontspecs(XftGlyphFontSpec *specs, const Glyph *glyphs, int len, int x, int y)
 {
-	float winx = win.hborderpx + x * win.cw, winy = win.vborderpx + y * win.ch, xp, yp;
+	float winx = borderpx + x * win.cw, winy = borderpx + y * win.ch, xp, yp;
 	ushort mode, prevmode = USHRT_MAX;
 	Font *font = &dc.font;
 	int frcflags = FRC_NORMAL;
@@ -1412,7 +1411,7 @@ void
 xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, int y, int dmode)
 {
 	int charlen = len * ((base.mode & ATTR_WIDE) ? 2 : 1);
-	int winx = win.hborderpx + x * win.cw, winy = win.vborderpx + y * win.ch;
+	int winx = borderpx + x * win.cw, winy = borderpx + y * win.ch;
 	int width = charlen * win.cw;
 	Color *fg, *bg, *temp, revfg, revbg, truefg, truebg;
 	XRenderColor colfg, colbg;
@@ -1448,6 +1447,9 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 		bg = &dc.col[base.bg];
 	}
 
+	/* Change basic system colors [0-7] to bright system colors [8-15] */
+	if ((base.mode & ATTR_BOLD_FAINT) == ATTR_BOLD && BETWEEN(base.fg, 0, 7))
+		fg = &dc.col[base.fg + 8];
 
 	if (IS_SET(MODE_REVERSE)) {
 		if (fg == &dc.col[defaultfg]) {
@@ -1496,22 +1498,28 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 	if (base.mode & ATTR_INVISIBLE)
 		fg = bg;
 
+	if (invertcolors) {
+		revfg = invertedcolor(fg);
+		revbg = invertedcolor(bg);
+		fg = &revfg;
+		bg = &revbg;
+	}
 
 
 	if (dmode & DRAW_BG) {
 	/* Intelligent cleaning up of the borders. */
 	if (x == 0) {
-		xclear(0, (y == 0)? 0 : winy, win.vborderpx,
+		xclear(0, (y == 0)? 0 : winy, borderpx,
 			winy + win.ch +
-			((winy + win.ch >= win.vborderpx + win.th)? win.h : 0));
+			((winy + win.ch >= borderpx + win.th)? win.h : 0));
 	}
-	if (winx + width >= win.hborderpx + win.tw) {
+	if (winx + width >= borderpx + win.tw) {
 		xclear(winx + width, (y == 0)? 0 : winy, win.w,
-			((winy + win.ch >= win.vborderpx + win.th)? win.h : (winy + win.ch)));
+			((winy + win.ch >= borderpx + win.th)? win.h : (winy + win.ch)));
 	}
 	if (y == 0)
-		xclear(winx, 0, winx + width, win.hborderpx);
-	if (winy + win.ch >= win.vborderpx + win.th)
+		xclear(winx, 0, winx + width, borderpx);
+	if (winy + win.ch >= borderpx + win.th)
 		xclear(winx, winy + win.ch, winx + width, win.h);
 
 	/* Clean up the region we want to draw to. */
@@ -1961,35 +1969,35 @@ xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og, Line line, int le
 		case 3: /* Blinking underline */
 		case 4: /* Steady underline */
 			XftDrawRect(xw.draw, &drawcol,
-					win.hborderpx + cx * win.cw,
-					win.vborderpx + (cy + 1) * win.ch - \
+					borderpx + cx * win.cw,
+					borderpx + (cy + 1) * win.ch - \
 						cursorthickness,
 					win.cw, cursorthickness);
 			break;
 		case 5: /* Blinking bar */
 		case 6: /* Steady bar */
 			XftDrawRect(xw.draw, &drawcol,
-					win.hborderpx + cx * win.cw,
-					win.vborderpx + cy * win.ch,
+					borderpx + cx * win.cw,
+					borderpx + cy * win.ch,
 					cursorthickness, win.ch);
 			break;
 		}
 	} else {
 		XftDrawRect(xw.draw, &drawcol,
-				win.hborderpx + cx * win.cw,
-				win.vborderpx + cy * win.ch,
+				borderpx + cx * win.cw,
+				borderpx + cy * win.ch,
 				win.cw - 1, 1);
 		XftDrawRect(xw.draw, &drawcol,
-				win.hborderpx + cx * win.cw,
-				win.vborderpx + cy * win.ch,
+				borderpx + cx * win.cw,
+				borderpx + cy * win.ch,
 				1, win.ch - 1);
 		XftDrawRect(xw.draw, &drawcol,
-				win.hborderpx + (cx + 1) * win.cw - 1,
-				win.vborderpx + cy * win.ch,
+				borderpx + (cx + 1) * win.cw - 1,
+				borderpx + cy * win.ch,
 				1, win.ch - 1);
 		XftDrawRect(xw.draw, &drawcol,
-				win.hborderpx + cx * win.cw,
-				win.vborderpx + (cy + 1) * win.ch - 1,
+				borderpx + cx * win.cw,
+				borderpx + (cy + 1) * win.ch - 1,
 				win.cw, 1);
 	}
 }
@@ -2157,7 +2165,7 @@ xfinishdraw(void)
 		memset(&gcvalues, 0, sizeof(gcvalues));
 		gc = XCreateGC(xw.dpy, xw.win, 0, &gcvalues);
 
-		XCopyArea(xw.dpy, (Drawable)im->pixmap, xw.buf, gc, 0, 0, im->width, im->height, win.hborderpx + im->x * win.cw, win.vborderpx + im->y * win.ch);
+		XCopyArea(xw.dpy, (Drawable)im->pixmap, xw.buf, gc, 0, 0, im->width, im->height, borderpx + im->x * win.cw, borderpx + im->y * win.ch);
 		XFreeGC(xw.dpy, gc);
 
 	}
@@ -2496,7 +2504,6 @@ run(void)
 			}
 		}
 
-
 		draw();
 		XFlush(xw.dpy);
 		drawing = 0;
@@ -2581,6 +2588,10 @@ run:
 
 	setlocale(LC_CTYPE, "");
 	XSetLocaleModifiers("");
+	if (!(xw.dpy = XOpenDisplay(NULL)))
+		die("Can't open display\n");
+
+	config_init(xw.dpy);
 	cols = MAX(cols, 1);
 	rows = MAX(rows, 1);
 	tnew(cols, rows);

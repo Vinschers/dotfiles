@@ -177,6 +177,42 @@ static unsigned int mousebg = 0;
  */
 static unsigned int defaultattr = 11;
 
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "font",         STRING,  &font },
+		{ "color0",       STRING,  &colorname[0] },
+		{ "color1",       STRING,  &colorname[1] },
+		{ "color2",       STRING,  &colorname[2] },
+		{ "color3",       STRING,  &colorname[3] },
+		{ "color4",       STRING,  &colorname[4] },
+		{ "color5",       STRING,  &colorname[5] },
+		{ "color6",       STRING,  &colorname[6] },
+		{ "color7",       STRING,  &colorname[7] },
+		{ "color8",       STRING,  &colorname[8] },
+		{ "color9",       STRING,  &colorname[9] },
+		{ "color10",      STRING,  &colorname[10] },
+		{ "color11",      STRING,  &colorname[11] },
+		{ "color12",      STRING,  &colorname[12] },
+		{ "color13",      STRING,  &colorname[13] },
+		{ "color14",      STRING,  &colorname[14] },
+		{ "color15",      STRING,  &colorname[15] },
+		{ "background",   STRING,  &colorname[258] },
+		{ "foreground",   STRING,  &colorname[259] },
+		{ "cursorColor",  STRING,  &colorname[256] },
+		{ "termname",     STRING,  &termname },
+		{ "shell",        STRING,  &shell },
+		{ "minlatency",   INTEGER, &minlatency },
+		{ "maxlatency",   INTEGER, &maxlatency },
+		{ "blinktimeout", INTEGER, &blinktimeout },
+		{ "bellvolume",   INTEGER, &bellvolume },
+		{ "tabspaces",    INTEGER, &tabspaces },
+		{ "borderpx",     INTEGER, &borderpx },
+		{ "cwscale",      FLOAT,   &cwscale },
+		{ "chscale",      FLOAT,   &chscale },
+		{ "alpha",        FLOAT,   &alpha },
+};
 
 /*
  * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
@@ -225,6 +261,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,         {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,         {.i =  0} },
 	{ TERMMOD,              XK_U,           externalpipe,    { .v = openurlcmd } },
+	{ TERMMOD,              XK_I,           iso14755,        {.i =  0} },
+	{ TERMMOD,              XK_X,           invert,          { 0 } },
 };
 
 /*
