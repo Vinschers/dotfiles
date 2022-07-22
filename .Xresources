@@ -1,8 +1,8 @@
 *background: #24283b
-*foreground: #a9b1d6
+*foreground: #c0caf5
 
 *color0: #1d202f
-*color1: #cfc9c2
+*color1: #f7768e
 *color2: #73daca
 *color3: #ff9e64
 *color4: #7aa2f7
@@ -18,6 +18,23 @@
 *color13: #bb9af7
 *color14: #7dcfff
 *color15: #ffffff
+
+
+dmenu.background:           #24283b
+dmenu.foreground:           #c0caf5
+
+dmenu.selbackground:        #414868
+dmenu.selforeground:        #7dcfff
+
+dmenu.midbackground:        #7dcfff
+dmenu.midforeground:        #1a1b26
+
+dmenu.selhlbackground:      #e0af68
+dmenu.selhlforeground:      #1a1b26
+
+dmenu.hlbackground:         #ff9e64
+dmenu.hlforeground:         #1a1b26
+
 
 dwm.normfgcolor:            #c0caf5
 dwm.normbgcolor:            #24283b
