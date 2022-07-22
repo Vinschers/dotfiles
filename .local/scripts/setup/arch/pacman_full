@@ -51,6 +51,7 @@ otf-latinmodern-math
 pamixer
 parted
 pavucontrol
+picom
 prettier
 pulseaudio
 python-black
@@ -82,6 +83,7 @@ xclip
 xf86-input-wacom
 xf86-video-intel
 xf86-video-vesa
+xournalpp
 yamllint
 youtube-dl
 zathura

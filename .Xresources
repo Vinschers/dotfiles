@@ -1,28 +1,3 @@
-! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
-! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
-
-! Project:    Nord XResources
-! Version:    0.1.0
-! Repository: https://github.com/arcticicestudio/nord-xresources
-! License:    MIT
-
-#define nord0 #2E3440
-#define nord1 #3B4252
-#define nord2 #434C5E
-#define nord3 #4C566A
-#define nord4 #D8DEE9
-#define nord5 #E5E9F0
-#define nord6 #ECEFF4
-#define nord7 #8FBCBB
-#define nord8 #88C0D0
-#define nord9 #81A1C1
-#define nord10 #5E81AC
-#define nord11 #BF616A
-#define nord12 #D08770
-#define nord13 #EBCB8B
-#define nord14 #A3BE8C
-#define nord15 #B48EAD
-
 *background: #24283b
 *foreground: #a9b1d6
 
@@ -45,58 +20,74 @@
 *color15: #ffffff
 
 dwm.normfgcolor:            #c0caf5
-dwm.normbgcolor:            #15161e
+dwm.normbgcolor:            #24283b
 dwm.normbordercolor:        #1a1b26
-dwm.normfloatcolor:         #15161e
+dwm.normfloatcolor:         #1a1b26
 
 dwm.selfgcolor:             #ffffff
-dwm.selbgcolor:             #7aa2f7
-dwm.selbordercolor:         #7aa2f7
-dwm.selfloatcolor:          #7aa2f7
+dwm.selbgcolor:             #414868
+dwm.selbordercolor:         #7dcfff
+dwm.selfloatcolor:          #7dcfff
 
-dwm.titlenormfgcolor:       #9ece6a
-dwm.titlenormbgcolor:       #15161e
+dwm.titlenormfgcolor:       #c0caf5
+dwm.titlenormbgcolor:       #24283b
 dwm.titlenormbordercolor:   #1a1b26
-dwm.titlenormfloatcolor:    #15161e
+dwm.titlenormfloatcolor:    #1a1b26
 
-dwm.titleselfgcolor:        #9ece6a
-dwm.titleselbgcolor:        #15161e
-dwm.titleselbordercolor:    #15161e
-dwm.titleselfloatcolor:     #7aa2f7
+dwm.titleselfgcolor:        #c0caf5
+dwm.titleselbgcolor:        #24283b
+dwm.titleselbordercolor:    #1a1b26
+dwm.titleselfloatcolor:     #1a1b26
 
 dwm.tagsnormfgcolor:        #c0caf5
-dwm.tagsnormbgcolor:        #15161e
+dwm.tagsnormbgcolor:        #1a1b26
 dwm.tagsnormbordercolor:    #1a1b26
-dwm.tagsnormfloatcolor:     #15161e
+dwm.tagsnormfloatcolor:     #1a1b26
 
-dwm.tagsselfgcolor:         #7dcfff
-dwm.tagsselbgcolor:         #1a1b26
-dwm.tagsselbordercolor:     #7dcfff
-dwm.tagsselfloatcolor:      #7dcfff
+dwm.tagsselfgcolor:         #eeeeee
+dwm.tagsselbgcolor:         #414868
+dwm.tagsselbordercolor:     #1a1b26
+dwm.tagsselfloatcolor:      #1a1b26
 
-dwm.hidnormfgcolor:         #f7768e
+dwm.hidnormfgcolor:         #ff9e64
 dwm.hidnormbgcolor:         #7dcfff
-dwm.hidselfgcolor:          #15161e
-dwm.hidselbgcolor:          #15161e
+dwm.hidselfgcolor:          #1a1b26
+dwm.hidselbgcolor:          #1a1b26
 
-dwm.urgfgcolor:             #c0caf5
-dwm.urgbgcolor:             #15161e
+dwm.urgfgcolor:             #f7768e
+dwm.urgbgcolor:             #1a1b26
 dwm.urgbordercolor:         #6bb2c0
-dwm.urgfloatcolor:          #15161e
+dwm.urgfloatcolor:          #1a1b26
 
 
-sb.style1.fg:               #282828
-sb.style1.bg_icon:          #2ac3de
-sb.style1.bg_text:          #7dcfff
+sb.style1.fg:               #24283b
+sb.style1.bg_icon:          #31b3ff
+sb.style1.bg_text:          #97d8ff
 
-sb.style2.fg:               #282828
-sb.style2.bg_icon:          #98971a
-sb.style2.bg_text:          #b8bb26
+sb.style2.fg:               #24283b
+sb.style2.bg_icon:          #78b13a
+sb.style2.bg_text:          #9ece6a
 
-sb.style3.fg:               #282828
-sb.style3.bg_icon:          #d79921
-sb.style3.bg_text:          #fabd2f
+sb.style3.fg:               #24283b
+sb.style3.bg_icon:          #fcb54c
+sb.style3.bg_text:          #fdd497
 
-sb.style4.fg:               #282828
-sb.style4.bg_icon:          #d65d0e
-sb.style4.bg_text:          #fe8019
+sb.style4.fg:               #24283b
+sb.style4.bg_icon:          #ab82f5
+sb.style4.bg_text:          #cbb2f9
+
+sb.style5.fg:               #24283b
+sb.style5.bg_icon:          #ff6e18
+sb.style5.bg_text:          #ffae7e
+
+sb.style6.fg:               #24283b
+sb.style6.bg_icon:          #36cab3
+sb.style6.bg_text:          #73daca
+
+sb.style7.fg:               #24283b
+sb.style7.bg_icon:          #7e92eb
+sb.style7.bg_text:          #c0caf5
+
+sb.style8.fg:               #24283b
+sb.style8.bg_icon:          #89b0ae
+sb.style8.bg_text:          #bee3db

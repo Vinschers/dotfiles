@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . sb-style
-STYLE=3
+STYLE=2
 
 fg="$(get_fg $STYLE)"
 bg_icon="$(get_bg_icon $STYLE)"
@@ -21,13 +21,14 @@ draw_battery () {
     printf " %s%% " "$1"
 }
 
-icon="" #
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "$icon"
-printf "%s" "$bg_text"
+icon=""
 
 if [ "$(ls /sys/class/power_supply)" = "" ];
 then
+    printf "%s%s" "$bg_icon" "$fg"
+    printf " %s " "$icon"
+    printf "%s" "$bg_text"
+
     draw_battery 100
     printf "%s" "$(get_color_reset)"
 	exit 0
@@ -39,18 +40,26 @@ for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
 	battery_status="$(cat "$battery/status" 2>&1)"
 
-    battery_info="$battery_info^v^"
-
     if [ "$battery_status" = "Charging" ]
     then
-        battery_info="$battery_info^c#00B300^"
+        STYLE=3
+        icon=""
+    else
+        STYLE=2
     fi
+
+    fg="$(get_fg $STYLE)"
+    bg_icon="$(get_bg_icon $STYLE)"
+    bg_text="$(get_bg_text $STYLE)"
 
     battery_info="$battery_info$(draw_battery "$capacity" "$2")"
 
-    battery_info="$battery_info^t^ "
+    battery_info="$battery_info "
 done
 
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "$icon"
+printf "%s" "$bg_text"
 printf "%s" "${battery_info%?}"
 printf "%s" "$(get_color_reset)"
 
