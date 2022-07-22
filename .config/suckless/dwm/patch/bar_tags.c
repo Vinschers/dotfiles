@@ -80,8 +80,12 @@ draw_tags(Bar *bar, BarArg *a)
         }
 
 		drawindicator(m, NULL, occ, x, a->y, w, a->h, i, -1, invert, tagindicatortype);
-		if (ulineall || m->tagset[m->seltags] & 1 << i)
-			drw_rect(drw, x + ulinepad + BAR_OFFSET, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+		if (ulineall || m->tagset[m->seltags] & 1 << i) {
+            if (i == 0)
+			    drw_rect(drw, x + ulinepad + BAR_OFFSET, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+            else
+			    drw_rect(drw, x + ulinepad + BAR_OFFSET/2, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+        }
 		x += w;
 	}
 
