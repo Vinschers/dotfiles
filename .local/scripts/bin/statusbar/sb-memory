@@ -1,4 +1,4 @@
 #!/bin/sh
 
 memused="$(free --mebi | sed -n '2{p;q}' | awk '{ printf "%s MiB", $3 }')"
-printf " %s" "$memused"
+printf "%s" "$memused"

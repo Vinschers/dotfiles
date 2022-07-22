@@ -1,5 +1,12 @@
 #!/bin/sh
 
+. sb-style
+STYLE=1
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
 n=2
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/netlog"
 read rxprev txprev opt < "$logfile"
@@ -20,12 +27,16 @@ case $BUTTON in
 	1) update_opt 1 ;;
 esac
 
-printf "^c%s^" "$1"
-
 case $opt in
-	0) printf " %s Kbps" "$(( (rx)/(128) ))" ;;
-	1) printf " %s Kbps" "$(( (tx)/(128) ))" ;;
+    0) icon="" && text="$(( (rx)/(128) )) Kbps" ;;
+    1) icon="" && text="$(( (tx)/(128) )) Kbps" ;;
 esac
+
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "$icon"
+printf "%s" "$bg_text"
+printf " %s " "$text"
+printf "%s" "$(get_color_reset)"
 
 echo "$rxcurrent $txcurrent $opt" > "$logfile"
 

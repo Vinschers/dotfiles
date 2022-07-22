@@ -1,0 +1,102 @@
+! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
+! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
+
+! Project:    Nord XResources
+! Version:    0.1.0
+! Repository: https://github.com/arcticicestudio/nord-xresources
+! License:    MIT
+
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+*background: #24283b
+*foreground: #a9b1d6
+
+*color0: #1d202f
+*color1: #cfc9c2
+*color2: #73daca
+*color3: #ff9e64
+*color4: #7aa2f7
+*color5: #c0caf5
+*color6: #73daca
+*color7: #a9b1d6
+
+*color8: #414868
+*color9: #f7768e
+*color10: #9ece6a
+*color11: #e0af68
+*color12: #2ac3de
+*color13: #bb9af7
+*color14: #7dcfff
+*color15: #ffffff
+
+dwm.normfgcolor:            #c0caf5
+dwm.normbgcolor:            #15161e
+dwm.normbordercolor:        #1a1b26
+dwm.normfloatcolor:         #15161e
+
+dwm.selfgcolor:             #ffffff
+dwm.selbgcolor:             #7aa2f7
+dwm.selbordercolor:         #7aa2f7
+dwm.selfloatcolor:          #7aa2f7
+
+dwm.titlenormfgcolor:       #9ece6a
+dwm.titlenormbgcolor:       #15161e
+dwm.titlenormbordercolor:   #1a1b26
+dwm.titlenormfloatcolor:    #15161e
+
+dwm.titleselfgcolor:        #9ece6a
+dwm.titleselbgcolor:        #15161e
+dwm.titleselbordercolor:    #15161e
+dwm.titleselfloatcolor:     #7aa2f7
+
+dwm.tagsnormfgcolor:        #c0caf5
+dwm.tagsnormbgcolor:        #15161e
+dwm.tagsnormbordercolor:    #1a1b26
+dwm.tagsnormfloatcolor:     #15161e
+
+dwm.tagsselfgcolor:         #7dcfff
+dwm.tagsselbgcolor:         #1a1b26
+dwm.tagsselbordercolor:     #7dcfff
+dwm.tagsselfloatcolor:      #7dcfff
+
+dwm.hidnormfgcolor:         #f7768e
+dwm.hidnormbgcolor:         #7dcfff
+dwm.hidselfgcolor:          #15161e
+dwm.hidselbgcolor:          #15161e
+
+dwm.urgfgcolor:             #c0caf5
+dwm.urgbgcolor:             #15161e
+dwm.urgbordercolor:         #6bb2c0
+dwm.urgfloatcolor:          #15161e
+
+
+sb.style1.fg:               #282828
+sb.style1.bg_icon:          #2ac3de
+sb.style1.bg_text:          #7dcfff
+
+sb.style2.fg:               #282828
+sb.style2.bg_icon:          #98971a
+sb.style2.bg_text:          #b8bb26
+
+sb.style3.fg:               #282828
+sb.style3.bg_icon:          #d79921
+sb.style3.bg_text:          #fabd2f
+
+sb.style4.fg:               #282828
+sb.style4.bg_icon:          #d65d0e
+sb.style4.bg_text:          #fe8019

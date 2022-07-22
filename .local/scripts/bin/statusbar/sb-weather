@@ -1,5 +1,12 @@
 #!/bin/sh
 
+. sb-style
+STYLE=1
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
 n=3
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/weather"
 read -r opt < "$logfile" || opt=0
@@ -15,9 +22,16 @@ case $BUTTON in
 	1) update_opt 1 ;;
 esac
 
-printf "^c%s^" "$1"
+icon="$(curl -sf "wttr.in?format=%c" | sed -e "s/  / /g" -e "s/☀️//g" -e "s/⛅️//g" -e "s/☁️//g")"
+
 case $opt in
-	0) curl -sf "wttr.in?format=%c%t" | sed -e "s/  / /g" -e "s/☀️//g" -e "s/⛅️//g" -e "s/☁️//g" ;;
-	1) curl -sf "wttr.in?format=+%w+++%h+++%p" ;;
-	2) curl -sf "wttr.in?format=%m+%P" ;;
+    0) text="$(curl -sf "wttr.in?format=%t")" ;;
+    1) text="$(curl -sf "wttr.in?format=+%w+++%h+++%p")" ;;
+    2) text="$(curl -sf "wttr.in?format=%m+%P")" ;;
 esac
+
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s" "$icon"
+printf "%s" "$bg_text"
+printf " %s " "$text"
+printf "%s" "$(get_color_reset)"

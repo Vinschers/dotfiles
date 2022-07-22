@@ -1,9 +1,0 @@
-#!/bin/sh
-
-printf " %s" "$(date "+%d/%m/%Y")"
-
-case $BUTTON in
-	1) notify-send "$(cal)" ;;
-	3) notify-send "$(cal -3)" ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac

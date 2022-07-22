@@ -1,5 +1,12 @@
 #!/bin/sh
 
+. sb-style
+STYLE=2
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
 n=3
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/hardware"
 read opt < "$logfile" || opt=0
@@ -15,10 +22,15 @@ case $BUTTON in
 	1) update_opt 1 ;;
 esac
 
-printf "^c%s^" "$1"
-
 case $opt in
-    0) sb-cpu ;;
-    1) sb-memory ;;
-    2) sb-disk ;;
+    0) icon="" && text="$(sb-cpu)" ;;
+    1) icon="" && text="$(sb-memory)" ;;
+    2) icon="" && text="$(sb-disk)" ;;
 esac
+
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "$icon"
+printf "%s" "$bg_text"
+printf " %s " "$text"
+printf "%s" "$(get_color_reset)"
+

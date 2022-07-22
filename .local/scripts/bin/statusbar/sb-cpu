@@ -132,4 +132,4 @@ case $opt in
 	1) cpustatus="$(get_temps)" ;;
 esac
 
-printf "%s" "$cpustatus"
+printf "%s" "$cpustatus"

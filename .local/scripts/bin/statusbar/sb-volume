@@ -1,14 +1,25 @@
 #!/bin/sh
 
+. sb-style
+STYLE=1
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
 volume=$(pamixer --get-volume)
 
-symbol="墳"
+icon="墳"
 
-[ "$volume" -le 25 ] && symbol="奔"
-[ "$volume" -ge 80 ] && symbol=""
-[ "$volume" = "0" ] && symbol="婢"
+[ "$volume" -le 25 ] && icon="奔"
+[ "$volume" -ge 80 ] && icon=""
+[ "$volume" = "0" ] && icon="婢"
 
-printf "^c%s^%s %s%%" "$1" "$symbol" "$volume"
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "$icon"
+printf "%s" "$bg_text"
+printf " %s%% " "$volume"
+printf "%s" "$(get_color_reset)"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

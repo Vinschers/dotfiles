@@ -51,3 +51,10 @@ vim.cmd([[
         autocmd VimResized * tabdo wincmd = 
     augroup end
 ]])
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { ".Xresources" },
+    callback = function ()
+        os.execute("xrdb ~/.Xresources")
+    end,
+})
