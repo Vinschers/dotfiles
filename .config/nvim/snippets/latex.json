@@ -201,9 +201,13 @@
         "body": [
             "\\begin{align*}",
             "\t$1: $2 &\\longrightarrow $3 \\\\\\",
-            "\t$4 &\\longrightarrow $1($4) = $0",
+            "\t$4 &\\mapsto $1($4) = $0",
             "\\end{align*}"
         ]
+    },
+    "Big O": {
+        "prefix": ["O", "bigo"],
+        "body": "\\mathcal{O}($0)"
     },
     "Column vector": {
         "prefix": [
@@ -342,9 +346,13 @@
         "prefix": "piso",
         "body": "\\left\\lfloor $0 \\right\\rfloor"
     },
-    "Cross": {
-        "prefix": "cross",
+    "CrossX": {
+        "prefix": "crossx",
         "body": "\\crossout{$0}"
+    },
+    "Cross/": {
+        "prefix": "cross/",
+        "body": "\\not$0"
     },
     "bold": {
         "prefix": "bold",
@@ -599,8 +607,7 @@
     "section": {
         "prefix": "sec",
         "body": [
-            "\\section{$0}",
-            "$0"
+            "\\section{$0}"
         ]
     },
     "subsection": {

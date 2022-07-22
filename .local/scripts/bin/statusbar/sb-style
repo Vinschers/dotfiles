@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+get_fg () {
+    color="$(xrdb -get "sb.style$1.fg")"
+    echo "^c$color^"
+}
+
+get_bg_icon () {
+    color="$(xrdb -get "sb.style$1.bg_icon")"
+    echo "^b$color^"
+}
+
+get_bg_text () {
+    color="$(xrdb -get "sb.style$1.bg_text")"
+    echo "^b$color^"
+}
+
+get_color_reset () {
+    echo "^d^"
+}

@@ -1,7 +1,16 @@
 #!/bin/sh
 
-SIZE=20
-MARGIN=2
+. sb-style
+STYLE=3
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
+SIZE=25
+BAR_MARGIN=1
+BAR_PAD=2
+MARGIN=$(( BAR_PAD + BAR_MARGIN ))
 HEAD_SIZE=2
 WIDTH=4
 PADDING=3
@@ -9,27 +18,18 @@ PADDING=3
 HEIGHT=$(( SIZE - 2 * MARGIN - 4 ))
 
 draw_battery () {
-    PERCENTAGE="$1"
-    PERCENTAGE=$(( HEIGHT * PERCENTAGE / 100 ))
-
-    printf "^v^"
-    printf "^c%s^^r0,0,%s,%s^" "$2" "$(( WIDTH + 2 + PADDING ))" "$SIZE"
-
-    printf "^c#A7A7A7^"
-    printf "^r%s,%s,%s,2^" "$(( WIDTH / 2 ))" "$MARGIN" "$HEAD_SIZE"
-
-    printf "^r0,%s,%s,%s^" "$(( MARGIN + 1 ))" "$(( WIDTH + 2 ))" "$(( HEIGHT + 2 ))"
-    printf "^c#4C566A^^r1,%s,%s,%s^" "$(( MARGIN + 2 ))" "$WIDTH" "$HEIGHT"
-    printf "^t^"
-
-    printf "^r1,%s,%s,%s^" "$(( HEIGHT -  PERCENTAGE + MARGIN + 2 ))" "$WIDTH" "$PERCENTAGE"
-    printf "^f%s^%s%%" "$(( WIDTH + 2 + PADDING ))" "$1"
+    printf " %s%% " "$1"
 }
 
-printf "^c%s^" "$1"
+icon="" #
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "$icon"
+printf "%s" "$bg_text"
+
 if [ "$(ls /sys/class/power_supply)" = "" ];
 then
-    draw_battery 100 "$2"
+    draw_battery 100
+    printf "%s" "$(get_color_reset)"
 	exit 0
 fi
 
@@ -52,6 +52,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 done
 
 printf "%s" "${battery_info%?}"
+printf "%s" "$(get_color_reset)"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

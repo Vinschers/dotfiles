@@ -1,5 +1,12 @@
 #!/bin/sh
 
+. sb-style
+STYLE=1
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
 n=2
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/datetime"
 read opt < "$logfile" || opt=0
@@ -13,10 +20,16 @@ update_opt () {
 
 case $BUTTON in
 	1) update_opt 1 ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-printf "^c%s^" "$1"
 case $opt in
-	0) sb-time ;;
-	1) sb-date ;;
+	0) icon="" && text="$(date +%T)" ;;
+	1) icon="" && text="$(date "+%d/%m/%Y")" ;;
 esac
+
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "$icon"
+printf "%s" "$bg_text"
+printf " %s " "$text"
+printf "%s" "$(get_color_reset)"
