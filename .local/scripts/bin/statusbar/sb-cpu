@@ -1,5 +1,9 @@
 #!/bin/bash
 
+BAR_PAD=3
+SIZE=26
+MARGIN=2
+
 get_core_usage () {
 
 	#load arrays
@@ -40,14 +44,17 @@ get_core_usage () {
 } 
 
 draw_core () {
-	core="$1"
+	core=$1
 	num="$2"
 
-
 	x=$(( 8*num ))
-	fill=$(echo | awk -v cpu=$core '{ printf "%.0f", 20*(cpu/100) }')
+    HEIGHT=$(( SIZE - 2 * (BAR_PAD + MARGIN) ))
+    fill=$(echo | awk -v cpu="$core" -v h=$HEIGHT '{ printf "%.0f", h*(cpu/100) }')
 
-	printf "^v^^c#4C566A^^r$x,1,4,20^^t^^r$x,$(( 20 - fill )),4,$fill^"
+    printf "^r%s,%s,4,%s^" "$x" "$(( MARGIN + BAR_PAD ))" "$(( SIZE - 2 * (BAR_PAD + MARGIN) ))"
+    printf "^v^%s" "^c#7b3bef^"
+    printf "^r%s,%s,4,%s^" "$x" "$(( SIZE - (BAR_PAD + MARGIN + fill) ))" "$fill"
+    printf "^t^"
 }
 
 draw_cores () {
@@ -67,7 +74,7 @@ draw_cores () {
 
 		cpucount=${#cpu_start[@]}
 
-		printf "^w^^r0,0,$(( cpucount*8 )), 20^^w^"
+        printf "^w^^r0,%s,%s,%s^^w^" "$(( BAR_PAD ))" "$(( cpucount*8 ))" "$(( SIZE - 2*BAR_PAD ))"
 
 		for (( i=1; i<$cpucount; i++ )) do
 			core="$(get_core_usage "${cpu_start[$i]}" "${cpu_end[$i]}")"

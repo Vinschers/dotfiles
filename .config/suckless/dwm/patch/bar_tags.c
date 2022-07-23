@@ -43,6 +43,7 @@ draw_tags(Bar *bar, BarArg *a)
 	Client *c;
     Picture img;
     int imgw, imgh;
+    int offset;
 
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags;
@@ -71,20 +72,25 @@ draw_tags(Bar *bar, BarArg *a)
 
         drw_text(drw, x, a->y, w, a->h, lrpad / 2, "", invert, False);
 
+        if (i == 0)
+            offset = BAR_OFFSET;
+        else
+            offset = BAR_OFFSET / 2;
+
         if (imgw > 0) {
-            drw_text(drw, x + BAR_OFFSET + imgw, a->y, TEXTW(icon), a->h, lrpad / 2, icon, invert, False);
-            drw_pic(drw, x + BAR_OFFSET + lrpad / 2, a->y + (a->h - imgh)/2, imgw, imgh, img);
+            drw_text(drw, x + offset + imgw, a->y, TEXTW(icon), a->h, lrpad / 2, icon, invert, False);
+            drw_pic(drw, x + offset + lrpad / 2, a->y + (a->h - imgh)/2, imgw, imgh, img);
         } else {
-            drw_text(drw, x + BAR_OFFSET, a->y, w, a->h, lrpad / 2, icon, invert, False);
+            drw_text(drw, x + offset, a->y, w, a->h, lrpad / 2, icon, invert, False);
             drw_text(drw, x + w, a->y, w, a->h, lrpad / 2, "", invert, False);
         }
 
 		drawindicator(m, NULL, occ, x, a->y, w, a->h, i, -1, invert, tagindicatortype);
 		if (ulineall || m->tagset[m->seltags] & 1 << i) {
             if (i == 0)
-			    drw_rect(drw, x + ulinepad + BAR_OFFSET, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+			    drw_rect(drw, x + ulinepad + offset, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
             else
-			    drw_rect(drw, x + ulinepad + BAR_OFFSET/2, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+			    drw_rect(drw, x + ulinepad + offset, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
         }
 		x += w;
 	}

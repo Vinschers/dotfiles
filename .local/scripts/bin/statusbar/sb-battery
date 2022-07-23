@@ -7,16 +7,6 @@ fg="$(get_fg $STYLE)"
 bg_icon="$(get_bg_icon $STYLE)"
 bg_text="$(get_bg_text $STYLE)"
 
-SIZE=25
-BAR_MARGIN=1
-BAR_PAD=2
-MARGIN=$(( BAR_PAD + BAR_MARGIN ))
-HEAD_SIZE=2
-WIDTH=4
-PADDING=3
-
-HEIGHT=$(( SIZE - 2 * MARGIN - 4 ))
-
 draw_battery () {
     printf " %s%% " "$1"
 }
