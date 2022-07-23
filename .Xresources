@@ -66,8 +66,8 @@ dwm.tagsselbgcolor:         #414868
 dwm.tagsselbordercolor:     #1a1b26
 dwm.tagsselfloatcolor:      #1a1b26
 
-dwm.hidnormfgcolor:         #ff9e64
-dwm.hidnormbgcolor:         #7dcfff
+dwm.hidnormfgcolor:         #5e6997
+dwm.hidnormbgcolor:         #1a1b26
 dwm.hidselfgcolor:          #1a1b26
 dwm.hidselbgcolor:          #1a1b26
 
