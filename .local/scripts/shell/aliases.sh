@@ -41,6 +41,7 @@ alias \
     xfce4='git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME' \
     ds='dotfiles status' \
     da='dotfiles add' \
+    ddiff="dotfiles diff" \
     gs='git status' \
     ga='git add' \
     gc='git clone' \

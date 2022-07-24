@@ -7,21 +7,14 @@ archlinux-keyring
 android-file-transfer
 bc
 btop
-chromium
 cppcheck
-discord
 dunst
-element-desktop
 ffmpeg
-firefox
 flake8
 flameshot
 gdb
 gparted
-graphicsmagick
-gtop
 htop
-imagemagick
 imlib2
 imv
 jdk-openjdk
@@ -52,7 +45,6 @@ pamixer
 parted
 pavucontrol
 picom
-prettier
 pulseaudio
 python-black
 python-pip
@@ -62,8 +54,6 @@ ripgrep
 rkhunter
 shellcheck
 simple-scan
-slock
-sxiv
 syncthing
 texlive-most
 texlive-lang
@@ -85,7 +75,6 @@ xf86-video-intel
 xf86-video-vesa
 xournalpp
 yamllint
-youtube-dl
 zathura
 zip
 zsh
