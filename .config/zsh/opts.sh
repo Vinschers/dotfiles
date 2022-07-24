@@ -26,3 +26,7 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 autoload -Uz colors && colors
+
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[4~"  end-of-line
+bindkey  "^[[P"   delete-char
