@@ -75,3 +75,5 @@ alias \
     books='cd ~/hdd/books/ && ls' \
     b='books' \
     se='sudoedit' \
+    cv="cd ~/.config/nvim/" \
+    cs="cd ~/.config/suckless/" \
