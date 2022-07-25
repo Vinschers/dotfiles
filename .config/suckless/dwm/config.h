@@ -70,6 +70,7 @@ static char occupiedicons[][3][50] = {
 	{ "neovim",		    "",    "#019833" },
     { "htop",           "",    "#BA9FD7" },
     { "gtop",           "",    "#BA9FD7" },
+	{ "pdf", 		    "",    "#DC1D00" },
 	{ "zathura", 		"",    "#DC1D00" },
 	{ "okular", 		"",    "#DC1D00" },
 	{ "sxiv", 		    "",    "" },

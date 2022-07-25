@@ -7,6 +7,7 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
+keymap("n", "Ç", ":", opts)
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",

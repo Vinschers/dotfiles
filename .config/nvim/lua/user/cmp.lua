@@ -96,6 +96,14 @@ cmp.setup({
 			"i",
 			"s",
 		}),
+		["<C-ç>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            end
+        end, {
+			"i",
+			"s",
+		}),
 		["<C-i>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)

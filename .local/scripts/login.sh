@@ -9,3 +9,4 @@ then
 fi
 
 python "$SCRIPTS_DIR/localhost/server.py" &
+startx
