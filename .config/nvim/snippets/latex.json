@@ -11,6 +11,14 @@
         "prefix": ">=",
         "body": "\\ge"
     },
+    "Curly less": {
+        "prefix": "c<",
+        "body": "\\prec"
+    },
+    "Curly greater": {
+        "prefix": "c>",
+        "body": "\\succ"
+    },
     "Curly less or equals": {
         "prefix": "c<=",
         "body": "\\preccurlyeq"
@@ -628,6 +636,10 @@
         "body": [
             "\\mathrm{$0}"
         ]
+    },
+    "Cursive": {
+        "prefix": ["scr", "cursive"],
+        "body": "\\mathscr{$0}"
     },
     "Theorem": {
         "prefix": [
