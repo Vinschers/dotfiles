@@ -209,7 +209,7 @@
         "body": [
             "\\begin{align*}",
             "\t$1: $2 &\\longrightarrow $3 \\\\\\",
-            "\t$4 &\\mapsto $1($4) = $0",
+            "\t$4 &\\longmapsto $1($4) = $0",
             "\\end{align*}"
         ]
     },
@@ -295,7 +295,7 @@
         "body": [
             "\\begin{equation}",
             "\t\\begin{split}",
-            "\t$0",
+            "\t\t$0",
             "\t\\end{split}",
             "\\end{equation}"
         ]
@@ -305,7 +305,7 @@
         "body": [
             "\\begin{equation*}",
             "\t\\begin{split}",
-            "\t$0",
+            "\t\t$0",
             "\t\\end{split}",
             "\\end{equation*}"
         ]

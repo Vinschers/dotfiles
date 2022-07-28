@@ -8,6 +8,7 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
 keymap("n", "Ç", ":", opts)
+keymap("i", "<C-l>", "\\", opts)
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -60,6 +61,9 @@ keymap("v", "<C-A-k>", ":m .-2<CR>==", opts)
 
 -- Save
 keymap("n", "<C-s>", ":w<cr>", opts)
+
+keymap("n", "<F4>", ":lua _COMPILE_CODE()<cr>", opts)
+keymap("n", "<F5>", ":lua _RUN_CODE()<cr>", opts)
 
 -- Visual --
 -- Stay in indent mode
