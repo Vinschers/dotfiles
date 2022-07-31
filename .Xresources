@@ -72,7 +72,7 @@ dwm.hidselfgcolor:          #1a1b26
 dwm.hidselbgcolor:          #1a1b26
 
 dwm.urgfgcolor:             #f7768e
-dwm.urgbgcolor:             #1a1b26
+dwm.urgbgcolor:             #e0af68
 dwm.urgbordercolor:         #6bb2c0
 dwm.urgfloatcolor:          #1a1b26
 

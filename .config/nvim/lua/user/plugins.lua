@@ -272,6 +272,8 @@ return packer.startup(function(use)
 		end,
 	})
 
+	use({ "dart-lang/dart-vim-plugin" })
+
 	use({
 		"akinsho/flutter-tools.nvim",
 		requires = "nvim-lua/plenary.nvim",
