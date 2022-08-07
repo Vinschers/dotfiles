@@ -769,6 +769,22 @@
             "\\end{previouslyseen}"
         ]
     },
+    "Bible quote": {
+        "prefix": ["bible", "bquote"],
+        "body": [
+            "\\begin{biblequote}{${1:Livro}}",
+            "\t\\verse{${2:verse}}{$0}",
+            "\\end{biblequote}"
+        ]
+    },
+    "Bible verse": {
+        "prefix": "verse",
+        "body": "\\verse{$1}{$0}"
+    },
+    "Bible tabbed verse": {
+        "prefix": ["tverse", "songverse"],
+        "body": "\\tverse{$1}{$0}"
+    },
     "Lorem ipsum": {
         "prefix": "lorem",
         "body": "\\lipsum[$0]"
@@ -777,11 +793,26 @@
         "prefix": "article",
         "body": [
             "\\documentclass[a4paper]{article}",
+            "",
             "\\usepackage[utf8]{inputenc}",
             "\\usepackage[T1]{fontenc}",
             "\\usepackage{textcomp}",
             "\\usepackage[portuguese,english]{babel}",
             "\\usepackage{amsmath, amssymb, siunitx}",
+            "",
+            "\\usepackage{verse}",
+            "\\def\\signed #1{{\\leavevmode\\unskip\\nobreak\\hfil\\penalty50\\hskip2em",
+            "\\hbox{}\\nobreak\\hfil#1%",
+            "\\parfillskip=0pt \\finalhyphendemerits=0 \\endgraf}}",
+            "",
+            "\\newsavebox\\mybox",
+            "\\newenvironment{biblequote}[1]",
+            "{\\savebox\\mybox{#1}\\begin{quote}}",
+            "{\\signed{\\usebox\\mybox}\\end{quote}}",
+            "",
+            "\\def\\verse#1#2 {\\raisebox{.5ex}{\\scriptsize#1}\\textit{#2 }}",
+            "\\newcommand\\tverse[2]{\\vin \\verse{#1}{#2}}",
+            "",
             "\\begin{document}",
             "\t$0",
             "\\end{document}"
@@ -820,6 +851,19 @@
             "   hmargin=2cm",
             "]",
             "{geometry}",
+            "",
+            "\\usepackage{verse}",
+            "\\def\\signed #1{{\\leavevmode\\unskip\\nobreak\\hfil\\penalty50\\hskip2em",
+            "\\hbox{}\\nobreak\\hfil(#1)%",
+            "\\parfillskip=0pt \\finalhyphendemerits=0 \\endgraf}}",
+            "",
+            "\\newsavebox\\mybox",
+            "\\newenvironment{biblequote}[1]",
+            "{\\savebox\\mybox{#1}\\begin{quote}}",
+            "{\\signed{\\usebox\\mybox}\\end{quote}}",
+            "",
+            "\\def\\verse#1#2 {\\raisebox{.5ex}{\\scriptsize#1}\\textit{#2 }}",
+            "\\newcommand\\tverse[2]{\\vin \\verse{#1}{#2}}",
             "",
             "% horizontal rule",
             "\\newcommand\\hr{",
