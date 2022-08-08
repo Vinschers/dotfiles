@@ -54,5 +54,5 @@ then
 fi
 
 check "Set up git ssh configuration?" && "/bin/sh" "$THIS_DIRECTORY/git-ssh.sh"
-check "Copy xorg.conf.d?" 1 && sudo cp -r "$THIS_DIRECTORY/xorg.conf.d" /etc/X11/
+check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh"
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"

@@ -1,7 +1,22 @@
 #!/bin/sh
 
+sys_type="$(cat /sys/class/dmi/id/chassis_type)"
+
+if [ "$sys_type" -eq 3 ] # Desktop
+then
+    echo "Desktop"
+elif [ "$sys_type" -eq 10 ] # Notebook
+then
+    echo "Notebook"
+
+    nm-applet &
+else
+    echo "Unknown system"
+fi
 #xrandr --output DP-1 --left-of HDMI-0 &
 picom -f &
-#run_nitrogen &
 nitrogen --restore &
 xautolock -time $LOCK_TIME -locker lock -corners +00- &
+dwmblocks &
+
+[ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"

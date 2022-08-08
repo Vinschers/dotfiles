@@ -16,35 +16,24 @@ check () {
     fi
 }
 
-center() {
-	termwidth="60"
-	padding="$(printf '%0.1s' ={1..500})"
-	txt=""
-	! [ "$1" = "" ] && txt=" $1 " && termwidth=$(( termwidth-2 ))
-	printf '%*.*s%s%*.*s\n' 0 "$(((termwidth-${#1})/2))" "$padding" "$txt" 0 "$(((termwidth-1-${#1})/2))" "$padding"
-}
+THIS_DIRECTORY="$(dirname "$0")"
 
-show_menu() {
-	center "Select installation type"
-	echo ""
-	echo -e "1.\tFull"
-    echo -e "2.\tMinimal"
-    echo -e "3.\tEssential"
+setup_wacom () {
+    sudo mkdir /usr/share/wacom
+    sudo ln -s "$SCRIPTS_DIR/devices/wacom.sh" /usr/share/wacom/wacom.sh
 
-	echo ""
-	center ""
-	echo ""
-	echo -n "Option: "
+    echo "ACTION==\"add\", SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"056a\", TAG+=\"systemd\", ENV{SYSTEMD_USER_WANTS}+=\"wacom.service\"" | sudo tee /etc/udev/rules.d/99-wacom.rules
+
+    systemctl enable --user "$HOME/.config/systemd/user/wacom.service"
 }
 
 install_packages () {
-    THIS_DIRECTORY="$(dirname "$0")"
 
     while read -r PACKAGE
     do
         echo -e "\n\n\nInstalling $PACKAGE..."
         sudo pacman -S --noconfirm --needed "$PACKAGE"
-    done < "$THIS_DIRECTORY/pacman_$1"
+    done < "$THIS_DIRECTORY/pacman"
 
     yay -S libxft-bgra
 
@@ -52,23 +41,12 @@ install_packages () {
     do
         echo -e "\n\n\nInstalling $PACKAGE..."
         yay --noconfirm -S "$PACKAGE"
-    done < "$THIS_DIRECTORY/yay_$1"
+    done < "$THIS_DIRECTORY/yay"
 
 	amixer sset Master unmute
 	pulseaudio --check
 	pulseaudio -D
 }
 
-
-show_menu
-read opt
-
-case "$opt" in
-    "1") TYPE="full" ;;
-    "2") TYPE="minimal" ;;
-    "3") TYPE="essential" ;;
-    "*") exit 1 ;;
-esac
-
-
-install_packages "$TYPE"
+check "Setup wacom?" 1 && setup_wacom
+check "Install packages?" 1 && install_packages
