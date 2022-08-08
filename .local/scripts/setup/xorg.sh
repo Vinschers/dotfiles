@@ -1,6 +1,6 @@
 #!/bin/sh
 
-THIS_DIRECTORY="$(dirname "$0")"
+THIS_DIRECTORY="$1"
 sys_type="$(cat /sys/class/dmi/id/chassis_type)"
 
 SRC=""

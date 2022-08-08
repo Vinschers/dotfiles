@@ -54,5 +54,5 @@ then
 fi
 
 check "Set up git ssh configuration?" && "/bin/sh" "$THIS_DIRECTORY/git-ssh.sh"
-check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh"
+check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh $THIS_DIRECTORY"
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
