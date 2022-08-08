@@ -80,7 +80,7 @@ draw_cores () {
 			core="$(get_core_usage "${cpu_start[$i]}" "${cpu_end[$i]}")"
 			draw_core "$core" "$i"
 		done
-		printf "^f70^"
+        printf "^f%s^" "$(( cpucount*8 ))"
 	fi
 
 	IFS=$oldIFS
@@ -106,10 +106,6 @@ get_temps () {
 	done
 
 	IFS=$oldIFS
-}
-
-get_ram () {
-	free --mebi | sed -n '2{p;q}' | awk '{ printf "%2.2fGiB", ($3 / 1024) }'
 }
 
 update_opt () {

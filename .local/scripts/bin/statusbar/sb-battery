@@ -13,7 +13,7 @@ draw_battery () {
 
 icon=""
 
-if [ "$(ls /sys/class/power_supply)" = "" ];
+if [ "$(ls /sys/class/power_supply | grep BAT)" = "" ];
 then
     printf "%s%s" "$bg_icon" "$fg"
     printf " %s " "$icon"
