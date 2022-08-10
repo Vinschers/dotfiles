@@ -58,3 +58,17 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         os.execute("xrdb ~/.Xresources")
     end,
 })
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+    pattern = { "*.tex" },
+    callback = function ()
+        -- os.execute("isrunning inkscape-figures && killall inkscape-figures ; inkscape-figures watch")
+    end
+})
+
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+    pattern = { "*.tex" },
+    callback = function ()
+        -- os.execute("isrunning inkscape-figures && killall inkscape-figures")
+    end,
+})
