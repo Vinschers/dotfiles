@@ -24,8 +24,7 @@ def latex_document(latex):
         \usepackage[utf8]{inputenc}
         \usepackage[T1]{fontenc}
         \usepackage{textcomp}
-        \usepackage{amsmath, amssymb}
-        \usepackage{cmbright}
+        \usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb, lipsum, pgfplots, siunitx}
 
         \begin{document}
     """
@@ -36,8 +35,8 @@ def latex_document(latex):
 
 config = {
     "rofi_theme": "~/.config/rofi/ribbon.rasi",
-    "font": "Iosevka Term",
-    "font_size": 10,
+    "font": "monospace",
+    "font_size": 16,
     "open_editor": open_editor,
     "latex_document": latex_document,
 }

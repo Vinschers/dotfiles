@@ -59,16 +59,24 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     end,
 })
 
+STARTED_INKSCAPE_WATCH = false
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     pattern = { "*.tex" },
     callback = function ()
-        -- os.execute("isrunning inkscape-figures && killall inkscape-figures ; inkscape-figures watch")
+        local is_running = os.execute("isrunning inkscape-figures")
+
+        if is_running ~= 0 then
+            os.execute("inkscape-figures watch")
+            STARTED_INKSCAPE_WATCH = true
+        end
     end
 })
 
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
     pattern = { "*.tex" },
     callback = function ()
-        -- os.execute("isrunning inkscape-figures && killall inkscape-figures")
+        if STARTED_INKSCAPE_WATCH then
+            os.execute("killall inkscape-figures")
+        end
     end,
 })

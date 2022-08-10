@@ -23,6 +23,12 @@ def event_to_string(self, event):
     if event.state & X.ControlMask:
         mods.append('Control')
 
+    if event.state & X.Mod4Mask:
+        mods.append('Super')
+
+    if event.state & X.Mod1Mask:
+        mods.append('Alt')
+
     keycode = event.detail
     keysym = self.disp.keycode_to_keysym(keycode, 0)
     char = XK.keysym_to_string(keysym)
