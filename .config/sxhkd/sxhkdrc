@@ -2,7 +2,7 @@ ctrl + shift + alt + super + Return
     $TERMINAL
 
 super + shift + b
-    xdg-open http://localhost:5000
+    $BROWSER
 
 super + shift + p
     simple-scan
