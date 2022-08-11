@@ -449,19 +449,17 @@
         ]
     },
     "Table": {
-        "prefix": "tab",
+        "prefix": ["table", "tab"],
         "body": [
-            "\\begin{table}[H]",
-            "\t\\centering",
-            "\t\\begin{tabular}{${1:ccc}}",
-            "\t\t\\toprule",
-            "\t\ta & b & c \\\\\\ \\midrule",
-            "\t\t1 & 2 & 3 \\\\\\",
-            "\t\t\\bottomrule",
+            "\\begin{center}",
+            "\t\\begin{tabular}{ ${1:|c|c|c|} } % c c c c , ||c c c||, ...",
+            "\t\t\\hline",
+            "\t\t${2:cell1} & ${3:cell2} & ${4:cell3} \\\\\\",
+            "\t\t\\hline",
+            "\t\t${5:cell4} & ${6:cell5} & ${7:cell6} \\\\\\",
+            "\t\t\\hline",
             "\t\\end{tabular}",
-            "\t\\caption{${2:caption}\\label{tab:${3:sample}}}",
-            "\\end{table}",
-            "$0"
+            "\\end{center}"
         ]
     },
     "pmatrix": {
