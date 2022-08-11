@@ -14,7 +14,7 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier,
+		formatting.prettier.with({ extra_args = { "--tab-width", "4" } }),
 		formatting.black.with({ extra_args = { "--fast", "-l", "130" } }),
         formatting.isort,
 		formatting.stylua,
@@ -29,5 +29,6 @@ null_ls.setup({
         diagnostics.chktex,
 
         code_actions.shellcheck,
+        code_actions.eslint,
 	},
 })

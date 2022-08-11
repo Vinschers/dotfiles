@@ -46,6 +46,8 @@ install_packages () {
 	amixer sset Master unmute
 	pulseaudio --check
 	pulseaudio -D
+
+    sudo systemctl enable zotero-translation-server.service
 }
 
 check "Setup wacom?" 1 && setup_wacom

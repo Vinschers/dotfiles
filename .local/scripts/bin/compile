@@ -9,6 +9,9 @@ compileFile() {
     file="${file%.*}"
 
     case $ext in
+        "$1")
+            cmd="./$1"
+            ;;
         sh)
             cmd="./$1"
             ;;

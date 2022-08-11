@@ -1,0 +1,121 @@
+#!/bin/python
+
+import json
+import os
+import subprocess
+
+import bibtexparser
+import requests
+
+
+def get_identifier() -> str:
+    try:
+        return subprocess.check_output(["dmenu", "-p", "Identifier: "], stdin=subprocess.DEVNULL).decode("utf-8", "ignore")
+    except subprocess.CalledProcessError:
+        return ""
+
+
+def get_matches(identifier: str) -> list[dict]:
+    try:
+        response = requests.post("http://localhost:1969/search", data=identifier, headers={"Content-Type": "text/plain"}).text
+        matches = json.loads(response)
+
+        return matches
+    except (subprocess.CalledProcessError, json.JSONDecodeError):
+        return []
+
+
+def info_to_option(info: dict) -> str:
+    return info["title"]
+
+
+def select_result(matches: list[dict]) -> dict:
+    try:
+        options = {info_to_option(info): info for info in matches}
+
+        options_process = subprocess.Popen(["echo", "-e", "\n".join(options.keys())], stdout=subprocess.PIPE)
+        selection_process = subprocess.Popen(["dmenu", "-i", "-l", "10"], stdin=options_process.stdout, stdout=subprocess.PIPE)
+
+        selected = selection_process.communicate()[0].decode("utf-8", "ignore").replace("\n", "")
+
+        return options[selected]
+    except subprocess.CalledProcessError:
+        return {}
+
+
+def parse_bibtex_file(bib_file):
+    return bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bib_file)
+
+
+def parse_bibtex_str(bib_str):
+    return bibtexparser.bparser.BibTexParser(common_strings=True).parse(bib_str)
+
+
+def info_to_bib_entry(info: dict) -> dict:
+    entry_str = requests.post(
+        "http://localhost:1969/export?format=bibtex", data=json.dumps([info]), headers={"Content-Type": "application/json"}
+    ).text
+
+    entry = parse_bibtex_str(entry_str).entries[0]
+
+    return entry
+
+
+def try_download_pdf(pdf_path: str, doi: str) -> bool:
+    request_oab = requests.get(
+        f"https://api.openaccessbutton.org/find?id={doi}", headers={"Content-Type": "application/json; charset=utf-8"}
+    )
+    url = json.loads(request_oab.text).get("url", "")
+
+    if doi in url or url == "":
+        os.system(f"xdg-open '{url}'")
+        return False
+
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(pdf_path, "wb") as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+    return True
+
+
+def update_library(info: dict):
+    research = os.environ.get("CURRENT_RESEARCH", "")
+
+    if research == "":
+        return
+
+    bib_path = f"{research}/library.bib"
+
+    with open(bib_path, "r") as bib_file:
+        bib_database = parse_bibtex_file(bib_file)
+
+    new_entry = info_to_bib_entry(info)
+
+    is_new = True
+    for entry in bib_database.entries:
+        if entry["ID"] == new_entry["ID"]:
+            is_new = False
+
+    if is_new:
+        bib_database.entries.append(new_entry)
+        pdf_path = f"{research}/papers/{new_entry['ID']}.pdf"
+        if try_download_pdf(pdf_path, new_entry.get("doi", "")):
+            os.system(f"notify-send \"Downloaded pdf\" \"Saved paper to {pdf_path}\"")
+
+    with open(bib_path, "w") as bib_file:
+        bibtexparser.dump(bib_database, bib_file)
+
+
+def main():
+    identifier = get_identifier()
+    matches = get_matches(identifier)
+
+    info = select_result(matches)
+
+    if info:
+        update_library(info)
+
+
+if __name__ == "__main__":
+    main()

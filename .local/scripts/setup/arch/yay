@@ -3,14 +3,16 @@ google-java-format
 selectdefaultapplication-git
 stylua
 beautysh
+python-bibtexparser
 uwufetch
 xkb-switch
 python-inkscape-figures
 spotify
-i3lock-color
+zotero-translation-server-git
 ttf-ubraille
 nerd-fonts-complete-mono-glyphs
 android-platform
 android-sdk-build-tools
 android-sdk-cmdline-tools-latest
 android-sdk-platform-tools
+i3lock-color
