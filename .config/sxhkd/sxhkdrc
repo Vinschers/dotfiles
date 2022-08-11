@@ -1,3 +1,6 @@
+ctrl + shift + alt + super + Return
+    $TERMINAL
+
 super + shift + b
     xdg-open localhost:5000
 
