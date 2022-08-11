@@ -36,4 +36,4 @@ XF86AudioMute
     pamixer -m && update_dwmblocks 4
 
 XF86Audio{Lower,Raise}Volume
-    pamixer -{d,i} 1 && update_dwmblocks 4
+    pamixer -u{d,i} 1 && update_dwmblocks 4

@@ -8,12 +8,18 @@ bg_icon="$(get_bg_icon $STYLE)"
 bg_text="$(get_bg_text $STYLE)"
 
 volume=$(pamixer --get-volume)
+muted=$(pamixer --get-mute)
 
 icon="墳"
 
-[ "$volume" -le 25 ] && icon="奔"
-[ "$volume" -ge 80 ] && icon=""
-[ "$volume" = "0" ] && icon="婢"
+if [ "$muted" = "true" ]
+then
+    icon="婢"
+    volume="0"
+else
+    [ "$volume" -le 25 ] && icon="奔"
+    [ "$volume" -ge 80 ] && icon=""
+fi
 
 printf "%s%s" "$bg_icon" "$fg"
 printf " %s " "$icon"
