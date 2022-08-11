@@ -257,19 +257,10 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"tpope/vim-surround",
-		keys = { "c", "d", "y" },
-		-- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
-		setup = function()
-			vim.o.timeoutlen = 500
-		end,
-	})
-
-	use({
 		"lervag/vimtex",
 		config = function()
 			vim.g.vimtex_view_method = "zathura"
-            vim.g.vimtex_imaps_enabled = 0
+			vim.g.vimtex_imaps_enabled = 0
 		end,
 	})
 
@@ -318,6 +309,8 @@ return packer.startup(function(use)
 		"RishabhRD/nvim-cheat.sh",
 		requires = "RishabhRD/popfix",
 	})
+
+    use({"baskerville/vim-sxhkdrc"})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

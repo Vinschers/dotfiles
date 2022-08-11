@@ -1,0 +1,36 @@
+super + shift + b
+    xdg-open localhost:5000
+
+super + shift + p
+    simple-scan
+
+super + shift + w
+    webcam
+
+super + shift + d
+    get_paper
+
+super + shift + g
+    gdlauncher
+
+super + shift + r
+    killall -SIGUSR1 sxhkd
+
+
+ctrl + super + c
+    notify-send $(colorpicker --short --one-shot --preview)
+
+shift + Print
+    flameshot gui
+
+alt + Caps_Lock
+    update_dwmblocks 5
+
+ctrl + alt + Delete
+    lock
+
+XF86AudioMute
+    pamixer -m && update_dwmblocks 4
+
+XF86Audio{Lower,Raise}Volume
+    pamixer -{d,i} 1 && update_dwmblocks 4

@@ -17,8 +17,3 @@ fi
 picom -f &
 nitrogen --restore &
 xautolock -time $LOCK_TIME -locker lock -corners +00- &
-dwmblocks &
-
-[ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
-
-python "$SCRIPTS_DIR/external/inkscape-shortcut-manager/main.py" &

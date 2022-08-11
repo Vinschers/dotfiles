@@ -109,12 +109,18 @@ def update_library(info: dict):
 
 def main():
     identifier = get_identifier()
+    if not identifier:
+        return
+
     matches = get_matches(identifier)
+    if not matches:
+        return
 
     info = select_result(matches)
+    if not info:
+        return
 
-    if info:
-        update_library(info)
+    update_library(info)
 
 
 if __name__ == "__main__":
