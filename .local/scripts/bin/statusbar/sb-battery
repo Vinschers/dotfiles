@@ -8,7 +8,7 @@ bg_icon="$(get_bg_icon $STYLE)"
 bg_text="$(get_bg_text $STYLE)"
 
 draw_battery () {
-    printf " %s%% " "$1"
+    printf "%s%% " "$1"
 }
 
 icon=""
@@ -24,7 +24,7 @@ then
 	exit 0
 fi
 
-battery_info=""
+battery_info=" "
 
 for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
@@ -43,14 +43,12 @@ for battery in /sys/class/power_supply/BAT?*; do
     bg_text="$(get_bg_text $STYLE)"
 
     battery_info="$battery_info$(draw_battery "$capacity" "$2")"
-
-    battery_info="$battery_info "
 done
 
 printf "%s%s" "$bg_icon" "$fg"
 printf " %s " "$icon"
 printf "%s" "$bg_text"
-printf "%s" "${battery_info%?}"
+printf "%s " "${battery_info%?}"
 printf "%s" "$(get_color_reset)"
 
 case $BUTTON in
