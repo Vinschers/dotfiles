@@ -35,6 +35,26 @@ show_menu() {
     echo -n "Option: "
 }
 
+create_files_dirs () {
+    sudo mkdir -p /mnt/android/
+}
+
+setup_git () {
+    git config --global alias.reset-hard '!f() { git reset --hard; git clean -df ; }; f'
+
+    echo -n "Email: "
+    read email
+
+    ssh-keygen -t ed25519 -C "$email" -N "" -f "$HOME/.ssh/id_ed25519"
+
+    eval "$(ssh-agent -s)"
+
+    ssh-add ~/.ssh/id_ed25519
+
+    echo -e "Add the key in ~/.ssh/id_ed25519 to your Git account\nKey:\n\n"
+    cat ~/.ssh/id_ed25519.pub
+}
+
 
 show_menu
 read opt
@@ -53,6 +73,7 @@ then
     center ""
 fi
 
-check "Set up git ssh configuration?" && "/bin/sh" "$THIS_DIRECTORY/git-ssh.sh"
+check "Set up git?" && setup_git
 check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh $THIS_DIRECTORY"
+check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
