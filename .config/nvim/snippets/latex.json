@@ -1141,7 +1141,7 @@
         ],
         "body": [
             "\\documentclass[a4paper]{report}",
-            "\\input{preamble.tex}",
+            "\\input{../preamble.tex}",
             "",
             "\\title{$1}",
             "",
