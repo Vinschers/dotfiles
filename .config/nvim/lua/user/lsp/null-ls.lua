@@ -14,7 +14,7 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier.with({ extra_args = { "--tab-width", "4" } }),
+		formatting.prettier.with({ extra_args = { "--config", os.getenv("HOME") .. "/.config/.prettierrc.yaml" } }),
 		formatting.black.with({ extra_args = { "--fast", "-l", "130" } }),
         formatting.isort,
 		formatting.stylua,

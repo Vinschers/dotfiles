@@ -33,17 +33,17 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-local compile = Terminal:new({ cmd = "compile '" .. vim.fn.expand("%") .. "'", hidden = true })
-local run_code = Terminal:new({ cmd = "run_code '" .. vim.fn.expand("%") .. "'", hidden = true })
 
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
 function _COMPILE_CODE()
+    local compile = Terminal:new({ cmd = "compile '" .. vim.fn.expand("%") .. "'", hidden = true })
     compile:toggle()
 end
 
 function _RUN_CODE()
+    local run_code = Terminal:new({ cmd = "run_code '" .. vim.fn.expand("%") .. "'", hidden = true })
     run_code:toggle()
 end
