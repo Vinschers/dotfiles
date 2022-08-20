@@ -2,19 +2,19 @@
 
 
 open_nvim () {
-    change_title "$TERMINAL_NAME | Neovim"
+    change_title "$TERMINAL | Neovim"
     \nvim "$@"
-    change_title "$TERMINAL_NAME"
+    change_title "$TERMINAL"
 }
 open_htop () {
-    change_title "$TERMINAL_NAME | htop"
+    change_title "$TERMINAL | htop"
     \htop
-    change_title "$TERMINAL_NAME"
+    change_title "$TERMINAL"
 }
 open_gtop () {
-    change_title "$TERMINAL_NAME | gtop"
+    change_title "$TERMINAL | gtop"
     \gtop
-    change_title "$TERMINAL_NAME"
+    change_title "$TERMINAL"
 }
 
 export open_nvim
