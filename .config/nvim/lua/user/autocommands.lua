@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
             os.execute("killall inkscape-figures")
         end
 
-        local directory = vim.fn.expand("%"):match("(.*[\\/])")
+        local directory = vim.fn.expand("%:p"):match("(.*[\\/])")
         local cmd = "[ -f " .. directory .. ".latex-cache/*.pdf ] && cp " .. directory .. ".latex-cache/*.pdf " .. directory
         os.execute(cmd)
     end,
