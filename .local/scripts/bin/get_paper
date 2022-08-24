@@ -102,6 +102,8 @@ def update_library(info: dict):
         pdf_path = f"{research}/papers/{new_entry['ID']}.pdf"
         if try_download_pdf(pdf_path, new_entry.get("doi", "")):
             os.system(f"notify-send \"Downloaded pdf\" \"Saved paper to {pdf_path}\"")
+        else:
+            os.system("notify-send \"Couldn't download pdf\"")
 
     with open(bib_path, "w") as bib_file:
         bibtexparser.dump(bib_database, bib_file)
@@ -114,6 +116,7 @@ def main():
 
     matches = get_matches(identifier)
     if not matches:
+        os.system(f"notify-send \"No matches found for identifier {identifier}\"")
         return
 
     info = select_result(matches)
