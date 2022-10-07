@@ -10,7 +10,7 @@ export BROWSER="librewolf"
 
 export WALLPAPERS_DIR="$HOME/Media/wallpapers"
 export GCC_COLORS='error=01;31:warning=01;93:note=01;36:caret=01;32:locus=01:quote=01'
-export CURRENT_RESEARCH="$HOME/hdd/academic/unicamp/ic_2023"
+export CURRENT_RESEARCH="$HOME/hdd/academic/unicamp/ic_2022"
 
 export LOCK_TIME=15
 

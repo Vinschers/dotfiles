@@ -62,20 +62,24 @@ def info_to_bib_entry(info: dict) -> dict:
 
 
 def try_download_pdf(pdf_path: str, doi: str) -> bool:
-    request_oab = requests.get(
-        f"https://api.openaccessbutton.org/find?id={doi}", headers={"Content-Type": "application/json; charset=utf-8"}
-    )
-    url = json.loads(request_oab.text).get("url", "")
+    try:
+        request_oab = requests.get(
+            f"https://api.openaccessbutton.org/find?id={doi}", headers={"Content-Type": "application/json; charset=utf-8"}
+        )
+        url = json.loads(request_oab.text).get("url", "")
 
-    if doi in url or url == "":
-        os.system(f"xdg-open '{url}'")
+        if doi in url or url == "":
+            os.system(f"xdg-open '{url}'")
+            return False
+
+        with requests.get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(pdf_path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+    except (AttributeError) as ex:
+        print(ex)
         return False
-
-    with requests.get(url, stream=True) as r:
-        r.raise_for_status()
-        with open(pdf_path, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
     return True
 
 

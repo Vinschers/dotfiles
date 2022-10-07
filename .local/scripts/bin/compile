@@ -33,6 +33,9 @@ compileFile() {
         exs)
             cmd="elixir $1"
             ;;
+        s)
+            gcc -g -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
+            ;;
         *)
             return 1
             ;;
