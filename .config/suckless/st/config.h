@@ -8,6 +8,7 @@
 static char *font = "mono:size=15:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
+    "JetBrains Mono Medium:size=15:antialias=true:autohint=true",
     "Latin Modern Math:size=15:antialias=true:autohint=true",
     "Hack Nerd Font Mono:size=15:antialias=true:autohint=true",
     "fontawesome:style=Solid:size=15:antialias=true:autohint=true",
