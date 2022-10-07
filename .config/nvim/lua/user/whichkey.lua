@@ -139,6 +139,7 @@ local nmappings = {
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+        s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
 		S = { "<cmd>SymbolsOutline<cr>", "Document Symbols" },
 		t = {
 			name = "+Trouble",
