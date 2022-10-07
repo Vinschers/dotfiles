@@ -87,6 +87,7 @@ local nmappings = {
 	["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
 
     ["c"] = { "<cmd>Cheat<cr>", "Cheat" },
+    ["C"] = { "<cmd>set spell! spelllang=en_us,pt<cr>", "Toggle spell check" },
 
 	["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
 

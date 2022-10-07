@@ -84,7 +84,7 @@ local disable_formatting = { "tsserver", "sumneko_lua", "clangd", "dartls" }
 
 M.on_attach = function(client, bufnr)
 	if contains(disable_formatting, client.name) then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 	end
 
 	lsp_keymaps(bufnr)
