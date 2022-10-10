@@ -6,12 +6,14 @@ import subprocess
 
 import bibtexparser
 import requests
+import cloudscraper
 
 
 def get_identifier() -> str:
     try:
-        return subprocess.check_output(["dmenu", "-p", "Identifier: "], stdin=subprocess.DEVNULL).decode("utf-8", "ignore")
-    except subprocess.CalledProcessError:
+        # return subprocess.check_output(["dmenu", "-p", "Identifier: "], stdin=subprocess.DEVNULL).decode("utf-8", "ignore")
+        return input("Identifier: ")
+    except (subprocess.CalledProcessError, KeyboardInterrupt):
         return ""
 
 
@@ -61,16 +63,23 @@ def info_to_bib_entry(info: dict) -> dict:
     return entry
 
 
-def try_download_pdf(pdf_path: str, doi: str) -> bool:
+def try_download_pdf(pdf_path: str, entry: dict) -> int:
     try:
-        request_oab = requests.get(
-            f"https://api.openaccessbutton.org/find?id={doi}", headers={"Content-Type": "application/json; charset=utf-8"}
-        )
-        url = json.loads(request_oab.text).get("url", "")
+        if os.path.exists(pdf_path):
+            return 0
 
-        if doi in url or url == "":
-            os.system(f"xdg-open '{url}'")
-            return False
+        request_web = requests.post(
+            "http://localhost:1969/web", data=entry["url"], headers={"Content-Type": "text/plain"}
+        )
+
+        json_web = json.loads(request_web.text)
+
+        url = ""
+        for item in json_web:
+            if item.get("itemType", "") == "attachment" and item.get("mimeType", "") == "application/pdf":
+                url = item.get("url", "")
+
+        print(url)
 
         with requests.get(url, stream=True) as r:
             r.raise_for_status()
@@ -79,17 +88,30 @@ def try_download_pdf(pdf_path: str, doi: str) -> bool:
                     f.write(chunk)
     except (AttributeError) as ex:
         print(ex)
-        return False
-    return True
+        return -1
+    return 1
+
+
+def get_bib_path():
+    current_directory = os.getcwd()
+
+    while current_directory != "/":
+        for filename in os.listdir(current_directory):
+            if filename.endswith(".bib"):
+                return f"{current_directory}/{filename}"
+        current_directory = os.path.dirname(current_directory)
+
+    return None
 
 
 def update_library(info: dict):
-    research = os.environ.get("CURRENT_RESEARCH", "")
+    bib_path = get_bib_path()
 
-    if research == "":
-        return
+    if bib_path is None:
+        current_directory = os.getcwd()
 
-    bib_path = f"{research}/library.bib"
+        bib_path = f"{current_directory}/library.bib"
+        open("library.bib", "w").close()
 
     with open(bib_path, "r") as bib_file:
         bib_database = parse_bibtex_file(bib_file)
@@ -102,15 +124,24 @@ def update_library(info: dict):
             is_new = False
 
     if is_new:
+        papers_directory = os.environ.get("PAPERS_DIRECTORY", "")
+        pdf_path = f"{papers_directory}/{new_entry['ID']}.pdf"
+
+        download_status = try_download_pdf(pdf_path, info)
+
+        if download_status == 0:
+            os.system('notify-send "PDF already available"')
+        elif download_status == 1:
+            os.system(f'notify-send "Downloaded pdf" "Saved paper to {pdf_path}"')
+        elif download_status == -1:
+            os.system('notify-send "Couldn\'t download pdf"')
+
         bib_database.entries.append(new_entry)
-        pdf_path = f"{research}/papers/{new_entry['ID']}.pdf"
-        if try_download_pdf(pdf_path, new_entry.get("doi", "")):
-            os.system(f"notify-send \"Downloaded pdf\" \"Saved paper to {pdf_path}\"")
-        else:
-            os.system("notify-send \"Couldn't download pdf\"")
 
     with open(bib_path, "w") as bib_file:
-        bibtexparser.dump(bib_database, bib_file)
+        writer = bibtexparser.bwriter.BibTexWriter()
+        writer.indent = "\t"
+        bibtexparser.dump(bib_database, bib_file, writer)
 
 
 def main():
@@ -120,7 +151,7 @@ def main():
 
     matches = get_matches(identifier)
     if not matches:
-        os.system(f"notify-send \"No matches found for identifier {identifier}\"")
+        os.system(f'notify-send "No matches found for identifier {identifier}"')
         return
 
     info = select_result(matches)

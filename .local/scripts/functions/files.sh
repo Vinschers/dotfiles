@@ -41,6 +41,14 @@ compress_zip () {
 }
 
 
+mksh () {
+    touch "$1"
+    chmod +x "$1"
+    printf "#!/bin/sh\\n" > "$1"
+}
+
+
 export compress_tar
 export compress_zip
 export extract
+export mksh

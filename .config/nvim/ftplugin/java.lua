@@ -3,7 +3,7 @@ if not status_ok then
 	return
 end
 
-local workspace_path = os.getenv("HOME") .. "/.local/share/nvim/jdtls-workspace/"
+local workspace_path = vim.fn.stdpath("data") .. "/jdtls-workspace/"
 local JAVA_LS_EXECUTABLE = "jdtls"
 
 jdtls.start_or_attach({
@@ -18,14 +18,14 @@ jdtls.start_or_attach({
 		server_side_fuzzy_completion = true,
 	},
 	settings = {
-		["java.format.settings.url"] = vim.fn.expand("~/") .. ".config/lvim/.java-google-formatter.xml",
+		["java.format.settings.url"] = vim.fn.stdpath("config") .. "/.java-google-formatter.xml",
 		["java.format.settings.profile"] = "GoogleStyle",
 	},
 	init_options = {
 		bundles = {
 			vim.fn.glob(
-				os.getenv("HOME")
-					.. "/.local/share/nvim/lsp_servers/jdtls/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+				vim.fn.stdpath("data")
+					.. "/lsp_servers/jdtls/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
 			),
 		},
 	},

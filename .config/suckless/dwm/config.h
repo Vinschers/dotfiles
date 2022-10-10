@@ -109,6 +109,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "UTILITY", .isfloating = 1)
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
+    RULE(.class = "Chromium", .tags = 1 << 8, .monitor = 1)
 };
 
 /* Bar rules allow you to configure what is shown where on the bar, as well as

@@ -37,6 +37,11 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local path = function ()
+    --[[ return vim.api.nvim_buf_get_name(0) ]]
+    return vim.fn.expand("%")
+end
+
 lualine.setup({
 	options = {
 		globalstatus = true,
@@ -50,7 +55,7 @@ lualine.setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch" },
-		lualine_c = { diagnostics },
+		lualine_c = { diagnostics, path },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
 		lualine_z = { "progress" },

@@ -47,6 +47,7 @@ install_packages () {
 	pulseaudio --check
 	pulseaudio -D
 
+    sudo patch /usr/lib/node_modules/translation-server/modules/utilities/utilities_item.js "$SCRIPTS_DIR/programs/utilities_item.js.diff"
     sudo systemctl enable zotero-translation-server.service
 }
 

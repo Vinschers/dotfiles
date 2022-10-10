@@ -57,6 +57,7 @@ ripgrep
 rkhunter
 shellcheck
 simple-scan
+stylua
 syncthing
 sxhkd
 texlive-most
@@ -71,6 +72,7 @@ ueberzug
 unrar
 unzip
 usbutils
+uwufetch
 valgrind
 vim
 xautolock
