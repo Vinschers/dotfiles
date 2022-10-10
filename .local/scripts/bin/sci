@@ -121,7 +121,7 @@ open () {
 
 	if [ -f "$PDF_PATH" ]
 	then
-		xdg-open "$PDF_PATH"
+		sioyek "$PDF_PATH"
 	else
 		notify-send "PDF unavailable"
 	fi

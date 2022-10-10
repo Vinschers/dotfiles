@@ -19,6 +19,9 @@ super + shift + g
 super + shift + r
     killall -SIGUSR1 sxhkd
 
+super + shift + k
+    sci
+
 
 ctrl + super + c
     notify-send $(colorpicker --short --one-shot --preview)

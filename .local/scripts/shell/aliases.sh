@@ -77,4 +77,5 @@ alias \
     se='sudoedit' \
     cv="cd ~/.config/nvim/" \
     cs="cd ~/.config/suckless/" \
-    vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn"
+    vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn" \
+    bib='cd $BIBLIOGRAPHY_DIRECTORY && ls'
