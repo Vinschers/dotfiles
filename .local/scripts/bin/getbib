@@ -12,4 +12,12 @@ fi
 
 BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
 URL="$(echo "$BIB_STR" | jq -r '.[]?.url')"
-curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web" | curl -sd @- -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
+
+if [ "$URL" = "null" ]
+then
+    JSON="$BIB_STR"
+else
+    JSON="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web")"
+fi
+
+echo "$JSON" | curl -sd @- -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"

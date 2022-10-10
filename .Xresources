@@ -23,11 +23,11 @@
 dmenu.background:           #24283b
 dmenu.foreground:           #c0caf5
 
+dmenu.midbackground:        #24283b
+dmenu.midforeground:        #c0caf5
+
 dmenu.selbackground:        #414868
 dmenu.selforeground:        #7dcfff
-
-dmenu.midbackground:        #7dcfff
-dmenu.midforeground:        #1a1b26
 
 dmenu.selhlbackground:      #e0af68
 dmenu.selhlforeground:      #1a1b26

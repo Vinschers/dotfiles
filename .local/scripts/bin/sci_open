@@ -1,0 +1,101 @@
+#!/bin/sh
+
+
+select_open () {
+    BIB_FILE="$1"
+
+    python -c "
+import bibtexparser
+import subprocess
+
+def info_to_option(info: dict) -> str:
+    return f\"[{info['ID']}] {info['title'].replace('{', '').replace('}', '')}\"
+
+def select_result(matches: list[dict]) -> dict:
+    try:
+        options = {info_to_option(info): info for info in matches}
+
+        options_process = subprocess.Popen(['echo', '-e', '\n'.join(options.keys())], stdout=subprocess.PIPE)
+        selection_process = subprocess.Popen(['dmenu', '-i', '-l', '10'], stdin=options_process.stdout, stdout=subprocess.PIPE)
+
+        selected = selection_process.communicate()[0].decode('utf-8', 'ignore').replace('\n', '')
+
+        return options[selected]
+    except (subprocess.CalledProcessError, KeyError):
+        return {}
+
+
+with open('$BIB_FILE', 'r') as bibfile:
+    database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibfile)
+
+entry = select_result(database.entries)
+if entry:
+    print(entry['ID'], entry['ENTRYTYPE'])"
+}
+
+select_id () {
+    BIB_FILE="$1"
+    ID="$2"
+
+    python -c "
+import bibtexparser
+
+def select_result(matches: list[dict]) -> dict:
+    try:
+        for entry in matches:
+            for key, value in entry.items():
+                if '$ID' in value:
+                    return entry
+    except (subprocess.CalledProcessError, KeyError):
+        return {}
+
+
+with open('$BIB_FILE', 'r') as bibfile:
+    database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibfile)
+
+entry = select_result(database.entries)
+if entry:
+    print(entry['ID'], entry['ENTRYTYPE'])"
+}
+
+open () {
+    ID="$1"
+    BIB_FILE="$2"
+
+    if [ -z "$ID" ]
+    then
+        RESULT="$(select_open "$BIB_FILE")"
+    else
+        RESULT="$(select_id "$BIB_FILE" "$ID")"
+    fi
+
+    [ -z "$RESULT" ] && return 0
+
+    ID="$(echo "$RESULT" | awk '{print $1}')"
+    TYPE="$(echo "$RESULT" | awk '{print $2}')"
+
+    [ -z "$ID" ] && return 1
+
+	PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$TYPE/$ID.pdf"
+
+	if [ -f "$PDF_PATH" ]
+	then
+		sioyek "$PDF_PATH"
+	else
+		notify-send "PDF unavailable"
+	fi
+}
+
+
+ID="$1"
+
+[ -f "$2" ] && BIB_FILE="$2"
+GLOBAL_BIB="$BIBLIOGRAPHY_DIRECTORY/library.bib"
+
+if [ -f "$BIB_FILE" ]
+then
+    open "$ID" "$BIB_FILE"
+else
+    open "$ID" "$GLOBAL_BIB"
+fi
+

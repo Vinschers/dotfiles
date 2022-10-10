@@ -1,0 +1,116 @@
+#!/bin/sh
+
+
+download_doi () {
+    ID="$1"
+    BIB_STR="$2"
+    PDF_PATH="$3"
+
+    URL="$(echo "$BIB_STR" | grep "url = " | cut -d "{" -f2 | cut -d "}" -f1)"
+    [ -z "$URL" ] && URL="https://doi.org/$ID"
+
+    if curl -Isfo /dev/null "$URL"
+    then
+        URL="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web" | jq -r 'map(select(.mimeType == "application/pdf")) | .[]?.url' | head -n 1)"
+    else
+        URL=""
+    fi
+    [ -z "$URL" ] && notify-send "Coundn't find PDF online." && return 0
+
+    mkdir -p "$(dirname "$PDF_PATH")"
+
+    case "$URL" in
+        *.pdf)
+            curl -Ls "$URL" > "$PDF_PATH"
+            ;;
+        *)
+    	    DL_PATH="$(filedl "$URL")"
+
+    	    mv "$DL_PATH" "$PDF_PATH"
+            ;;
+    esac
+}
+
+download_isbn () {
+    ISBN="$1"
+    PDF_PATH="$2"
+
+    md5s="$(curl "https://libgen.li/json.php?object=e&isbn=$ISBN&fields=md5,title,year,edition" | jq -r '')"
+}
+
+download_pdf () {
+    ID="$1"
+    TYPE="$2"
+    BIB_STR="$3"
+
+    BIB_ID_TYPE="$(python -c "import bibtexparser; entry = bibtexparser.bparser.BibTexParser(common_strings=True).parse(\"\"\"$BIB_STR\"\"\").entries[0]; print(entry['ID'], entry['ENTRYTYPE'])")"
+    BIBID="$(echo "$BIB_ID_TYPE" | awk '{print $1}')"
+    BIBTYPE="$(echo "$BIB_ID_TYPE" | awk '{print $2}')"
+
+    PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$BIBTYPE/$BIBID.pdf"
+
+    [ -f "$PDF_PATH" ] && return 0
+
+    if [ "$TYPE" = "doi" ]
+    then
+        download_doi "$ID" "$BIB_STR" "$PDF_PATH"
+    elif [ "$TYPE" = "isbn" ]
+    then
+        download_isbn "$ID" "$PDF_PATH"
+    fi
+
+    notify-send "PDF downloaded."
+}
+
+add_global () {
+    ID="$1"
+    TYPE="$2"
+    GLOBAL_BIB="$BIBLIOGRAPHY_DIRECTORY/library.bib"
+
+    if [ -f "$GLOBAL_BIB" ] && grep -q "$ID" "$GLOBAL_BIB"
+    then
+        BIB_STR="$(awk -v RS='' "/$ID/" "$GLOBAL_BIB")"
+
+        download_pdf "$ID" "$BIB_STR"
+
+        echo "$BIB_STR 0"
+        return 0
+    fi
+
+    BIB_STR="$(getbib "$ID")"
+    [ -z "$BIB_STR" ] && exit 1
+
+    if ! [ -f "$GLOBAL_BIB" ]
+    then
+        mkdir -p "$(dirname "$GLOBAL_BIB")"
+        touch "$GLOBAL_BIB"
+    fi
+
+    echo "$BIB_STR" >> "$GLOBAL_BIB"
+
+    notify-send "Added to global library."
+
+    download_pdf "$ID" "$TYPE" "$BIB_STR"
+
+    echo "$BIB_STR 1"
+}
+
+
+if [ -z "$1" ]
+then
+    ID="$(dmenu -p "Identifier: " < /dev/null)"
+else
+    ID="$1"
+fi
+
+TYPE="$2"
+
+[ -f "$3" ] && BIB_FILE="$3"
+
+
+RET_GLOBAL="$(add_global "$ID" "$TYPE")"
+BIB_STR="$(echo "$RET_GLOBAL" | awk '{print $1}')"
+DIFF="$(echo "$RET_GLOBAL" | awk '{print $2}')"
+
+[ -n "$BIB_STR" ] && [ -f "$BIB_FILE" ] && echo "$BIB_STR" >> "$BIB_FILE" && notify-send "Added to local library."
+echo "$DIFF"

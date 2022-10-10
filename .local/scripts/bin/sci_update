@@ -1,0 +1,29 @@
+#!/bin/sh
+
+BIB_FILE="$1"
+[ -f "$BIB_FILE" ] || exit 1
+
+BASE_DIR="$(dirname "$BIB_FILE")"
+
+rm -rf "$BASE_DIR/bibliography"
+mkdir -p "$BASE_DIR/bibliography"
+
+python -c "
+import bibtexparser
+
+with open('$BIB_FILE', 'r') as bibfile:
+    database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibfile)
+
+    for entry in database.entries:
+        print(entry['ENTRYTYPE'], entry['ID'])" > temp_type_ids
+
+while read -r TYPE_ID
+do
+    TYPE="$(echo "$TYPE_ID" | awk '{print $1}')"
+    ID="$(echo "$TYPE_ID" | awk '{print $2}')"
+
+    mkdir -p "$BASE_DIR/bibliography/$TYPE"
+    ln -s "$BIBLIOGRAPHY_DIRECTORY/$TYPE/$ID.pdf" "$BASE_DIR/bibliography/$TYPE/$ID.pdf"
+done < temp_type_ids
+
+rm temp_type_ids
