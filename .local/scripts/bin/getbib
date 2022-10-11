@@ -11,7 +11,7 @@ else
 fi
 
 BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
-URL="$(echo "$BIB_STR" | jq -r '.[]?.url')"
+URL="$(echo "$BIB_STR" | jq -r '.[0]?.url')"
 
 if [ "$URL" = "null" ]
 then
