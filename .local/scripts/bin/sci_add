@@ -17,8 +17,6 @@ download_doi () {
     fi
     [ -z "$URL" ] && notify-send "Coundn't find PDF online." && return 0
 
-    mkdir -p "$(dirname "$PDF_PATH")"
-
     case "$URL" in
         *.pdf)
             curl -Ls "$URL" > "$PDF_PATH"
@@ -35,7 +33,38 @@ download_isbn () {
     ISBN="$1"
     PDF_PATH="$2"
 
-    md5s="$(curl "https://libgen.li/json.php?object=e&isbn=$ISBN&fields=md5,title,year,edition" | jq -r '')"
+    option="$(printf "yes\nno" | dmenu -i -l 2)"
+
+    [ "$option" != "yes" ] && return 1
+
+    md5="$(curl -s "https://libgen.li/json.php?object=e&isbn=$ISBN&fields=md5,title,year,edition,pages" | python -c "
+import json
+import subprocess
+json_str = input()
+data = json.loads(json_str)
+options = {}
+for _, book in data.items():
+    for _, file in book['files'].items():
+        md5 = file['md5']
+        break
+
+    option_name = f\"[{book['year']}] {book['title']} - {book['edition']} ({book['pages']} pages)\"
+
+    options[option_name] = md5
+
+options_process = subprocess.Popen(['echo', '-e', '\n'.join(options.keys())], stdout=subprocess.PIPE)
+selection_process = subprocess.Popen(['dmenu', '-i', '-l', '10'], stdin=options_process.stdout, stdout=subprocess.PIPE)
+selected = selection_process.communicate()[0].decode('utf-8', 'ignore').replace('\n', '')
+if selected:
+    print(options[selected])
+else:
+    print()")"
+
+    [ -z "$md5" ] && return 1
+
+    URL="https://libgen.rocks/$(curl -s "https://libgen.rocks/ads.php?md5=$md5" | grep "get.php" | grep -Po "<a\s+(?:[^>]*?\s+)?href=([\"'])(.*?)\1" | cut -d "\"" -f2 | cut -d "\"" -f1)"
+
+    curl -sL "$URL" > "$PDF_PATH"
 }
 
 download_pdf () {
@@ -43,23 +72,21 @@ download_pdf () {
     TYPE="$2"
     BIB_STR="$3"
 
-    BIB_ID_TYPE="$(python -c "import bibtexparser; entry = bibtexparser.bparser.BibTexParser(common_strings=True).parse(\"\"\"$BIB_STR\"\"\").entries[0]; print(entry['ID'], entry['ENTRYTYPE'])")"
-    BIBID="$(echo "$BIB_ID_TYPE" | awk '{print $1}')"
-    BIBTYPE="$(echo "$BIB_ID_TYPE" | awk '{print $2}')"
+    PDF_PATH="$(get_pdf_path "$BIB_STR")"
 
-    PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$BIBTYPE/$BIBID.pdf"
-
-    [ -f "$PDF_PATH" ] && return 0
+    [ -f "$PDF_PATH" ] && return 1
+    mkdir -p "$(dirname "$PDF_PATH")"
 
     if [ "$TYPE" = "doi" ]
     then
-        download_doi "$ID" "$BIB_STR" "$PDF_PATH"
+        download_doi "$ID" "$BIB_STR" "$PDF_PATH" && notify-send "PDF downloaded." && return 0
     elif [ "$TYPE" = "isbn" ]
     then
-        download_isbn "$ID" "$PDF_PATH"
+        download_isbn "$ID" "$PDF_PATH" && notify-send "PDF downloaded." && return 0
     fi
 
-    notify-send "PDF downloaded."
+    notify-send "Couldn't download PDF."
+    return 1
 }
 
 add_global () {
@@ -71,9 +98,14 @@ add_global () {
     then
         BIB_STR="$(awk -v RS='' "/$ID/" "$GLOBAL_BIB")"
 
-        download_pdf "$ID" "$BIB_STR"
+        if download_pdf "$ID" "$TYPE" "$BIB_STR"
+        then
+            echo "1"
+        else
+            echo "0"
+        fi
 
-        echo "$BIB_STR 0"
+        echo "$BIB_STR"
         return 0
     fi
 
@@ -92,25 +124,33 @@ add_global () {
 
     download_pdf "$ID" "$TYPE" "$BIB_STR"
 
-    echo "$BIB_STR 1"
+    echo "1"
+    echo "$BIB_STR"
 }
 
 
-if [ -z "$1" ]
+TYPE="$1"
+
+if [ -z "$2" ]
 then
     ID="$(dmenu -p "Identifier: " < /dev/null)"
 else
-    ID="$1"
+    ID="$2"
 fi
-
-TYPE="$2"
 
 [ -f "$3" ] && BIB_FILE="$3"
 
 
 RET_GLOBAL="$(add_global "$ID" "$TYPE")"
-BIB_STR="$(echo "$RET_GLOBAL" | awk '{print $1}')"
-DIFF="$(echo "$RET_GLOBAL" | awk '{print $2}')"
+DIFF="$(echo "$RET_GLOBAL" | head -n 1)"
+BIB_STR="$(echo "$RET_GLOBAL" | tail -n +2)"
 
-[ -n "$BIB_STR" ] && [ -f "$BIB_FILE" ] && echo "$BIB_STR" >> "$BIB_FILE" && notify-send "Added to local library."
+if [ -n "$BIB_STR" ] && [ -f "$BIB_FILE" ] && ! grep -q "$ID" "$BIB_FILE"
+then
+    echo "$BIB_STR" >> "$BIB_FILE"
+    notify-send "Added to local library."
+
+    DIFF="1"
+fi
+
 echo "$DIFF"

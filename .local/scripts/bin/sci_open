@@ -30,32 +30,17 @@ with open('$BIB_FILE', 'r') as bibfile:
 
 entry = select_result(database.entries)
 if entry:
-    print(entry['ID'], entry['ENTRYTYPE'])"
+    db = bibtexparser.bibdatabase.BibDatabase()
+    db.entries = [entry]
+    print(bibtexparser.dumps(db))
+)"
 }
 
 select_id () {
     BIB_FILE="$1"
     ID="$2"
 
-    python -c "
-import bibtexparser
-
-def select_result(matches: list[dict]) -> dict:
-    try:
-        for entry in matches:
-            for key, value in entry.items():
-                if '$ID' in value:
-                    return entry
-    except (subprocess.CalledProcessError, KeyError):
-        return {}
-
-
-with open('$BIB_FILE', 'r') as bibfile:
-    database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibfile)
-
-entry = select_result(database.entries)
-if entry:
-    print(entry['ID'], entry['ENTRYTYPE'])"
+    awk -v RS='' "/$ID/" "$BIB_FILE"
 }
 
 open () {
@@ -64,25 +49,20 @@ open () {
 
     if [ -z "$ID" ]
     then
-        RESULT="$(select_open "$BIB_FILE")"
+        BIB_STR="$(select_open "$BIB_FILE")"
     else
-        RESULT="$(select_id "$BIB_FILE" "$ID")"
+        BIB_STR="$(select_id "$BIB_FILE" "$ID")"
     fi
 
-    [ -z "$RESULT" ] && return 0
+    [ -z "$BIB_STR" ] && return 0
 
-    ID="$(echo "$RESULT" | awk '{print $1}')"
-    TYPE="$(echo "$RESULT" | awk '{print $2}')"
-
-    [ -z "$ID" ] && return 1
-
-	PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$TYPE/$ID.pdf"
+    PDF_PATH="$(get_pdf_path "$BIB_STR")"
 
 	if [ -f "$PDF_PATH" ]
 	then
 		sioyek "$PDF_PATH"
 	else
-		notify-send "PDF unavailable"
+		notify-send "PDF unavailable."
 	fi
 }
 

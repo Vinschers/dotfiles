@@ -1,14 +1,35 @@
 #!/bin/sh
 
 
-extract_identifier () {
-    ID="$(echo "$1" | grep -Po "(10\.[0-9a-zA-Z]+\/(?:(?\![\"&\'])\S)+)\b")"
-    [ -n "$ID" ] && echo "$ID doi" && return 0
-    
-    ID="$(echo "$1" | grep -Po "^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+\$")"
-    [ -n "$ID" ] && echo "$ID isbn" && return 0
+get_pdf_path () {
+    BIB_STR="$1"
 
-    return 1
+    BIB_ID_TYPE="$(python -c "import bibtexparser; entry = bibtexparser.bparser.BibTexParser(common_strings=True).parse(\"\"\"$BIB_STR\"\"\").entries[0]; print(entry['ID']); print(entry['ENTRYTYPE']); print(entry['title'])")"
+    BIBID="$(echo "$BIB_ID_TYPE" | sed '1q;d')"
+    BIBTYPE="$(echo "$BIB_ID_TYPE" | sed '2q;d')"
+    BIBTITLE="$(echo "$BIB_ID_TYPE" | sed '3q;d')"
+
+    case "$BIBTYPE" in
+        book)
+            PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$BIBTYPE/$BIBTITLE.pdf"
+            ;;
+        *)
+            PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$BIBTYPE/$BIBID.pdf"
+            ;;
+    esac
+
+    echo "$PDF_PATH"
+}
+export -f get_pdf_path
+
+extract_identifier () {
+    ID="$(echo "$@" | grep -Po "(10\.[0-9a-zA-Z]+\/(?:(?![\"&\'])\S)+)\b")"
+    [ -n "$ID" ] && echo "doi $ID" && return 0
+    
+    ID="$(echo "$@" | grep -Po "^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+\$")"
+    [ -n "$ID" ] && echo "isbn $(echo "$ID" | sed -e "s/-//g")" && return 0
+
+    echo "N $*"
 }
 
 [ -z "$1" ] && sci_open && exit 0
@@ -24,9 +45,9 @@ case "$1" in
     add)
         shift
 
-        ID_TYPE="$(extract_identifier "$1")"
+        TYPE_ID="$(extract_identifier "$1")"
 
-        DIFF="$(sci_add "$ID_TYPE" "$BIB_FILE")"
+        DIFF="$(sci_add "$TYPE_ID" "$BIB_FILE")"
         [ "$DIFF" = "1" ] && [ -f "$BIB_FILE" ] && sci_update "$BIB_FILE"
 
         ;;
@@ -34,7 +55,7 @@ case "$1" in
     open)
         shift
 
-        ID="$(extract_identifier "$1" | awk '{print $1}')"
+        ID="$(extract_identifier "$1" | cut -d' ' -f 2-)"
         sci_open "$ID" "$BIB_FILE"
         ;;
 
@@ -43,15 +64,15 @@ case "$1" in
         ;;
 
     *)
-        ID_TYPE="$(extract_identifier "$1")"
+        TYPE_ID="$(extract_identifier "$1")"
 
-        DIFF="$(sci_add "$ID_TYPE" "$BIB_FILE")"
+        DIFF="$(sci_add $TYPE_ID "$BIB_FILE")"
 
         if [ -f "$BIB_FILE" ] && [ "$DIFF" = "1" ]
         then
             sci_update "$BIB_FILE"
         else
-            sci_open "$(echo "$ID_TYPE" | awk '{print $1}')" "$BIB_FILE"
+            sci_open "$(echo "$TYPE_ID" | cut -d' ' -f 2-)" "$BIB_FILE"
         fi
         ;;
 esac
