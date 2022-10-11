@@ -37,6 +37,8 @@ extract_identifier () {
 BIB_FILE="$(find . -maxdepth 3 -name "*.bib" -print -quit)"
 [ -z "$BIB_FILE" ] && BIB_FILE="$(find_up . -name "*.bib" -print -quit)"
 
+[ "$(dirname "$(realpath "$BIB_FILE")")" = "$(realpath "$BIBLIOGRAPHY_DIRECTORY")" ] && BIB_FILE=""
+
 case "$1" in
     init)
         touch library.bib

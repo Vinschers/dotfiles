@@ -32,8 +32,7 @@ entry = select_result(database.entries)
 if entry:
     db = bibtexparser.bibdatabase.BibDatabase()
     db.entries = [entry]
-    print(bibtexparser.dumps(db))
-)"
+    print(bibtexparser.dumps(db))"
 }
 
 select_id () {
