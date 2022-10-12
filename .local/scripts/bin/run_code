@@ -2,11 +2,12 @@
 
 
 eval "$(compile "$1" | awk '{print "line"NR"=\""$0"\""}')"
+output="$(compile "$1")"
 
-BIN_FILE="$line1"
-EXEC_CMD="$line2"
+BIN_FILE="${output%*§}"
+EXEC_CMD="${output#*§}"
 
 printf "\$ %s\n\n" "$EXEC_CMD"
-time $EXEC_CMD ; printf "Press any key to exit..." && wait_key_press
+time eval "$EXEC_CMD" ; printf "Press any key to exit..." && wait_key_press
 
 [ -n "$BIN_FILE" ] && rm "$BIN_FILE"

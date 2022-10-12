@@ -309,7 +309,7 @@ return packer.startup(function(use)
 		requires = "RishabhRD/popfix",
 	})
 
-    use({"baskerville/vim-sxhkdrc"})
+    use({"mong8se/actually.nvim"})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
