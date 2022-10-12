@@ -55,6 +55,11 @@ setup_git () {
     cat ~/.ssh/id_ed25519.pub
 }
 
+install_programs () {
+    cd "$SCRIPTS_DIR/programs/makefile2graph" || return
+    sudo make
+}
+
 
 show_menu
 read opt
