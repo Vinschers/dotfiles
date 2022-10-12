@@ -15,7 +15,7 @@ download_doi () {
     else
         URL=""
     fi
-    [ -z "$URL" ] && notify-send "Coundn't find PDF online." && return 0
+    [ -z "$URL" ] && notify-send "Couldn't find PDF online." && return 0
 
     case "$URL" in
         *.pdf)
@@ -33,9 +33,9 @@ download_isbn () {
     ISBN="$1"
     PDF_PATH="$2"
 
-    option="$(printf "yes\nno" | dmenu -i -l 2)"
+    option="$(printf "Yes\nNo" | dmenu -i -l 2 -p "Download from Library Genesis?")"
 
-    [ "$option" != "yes" ] && return 1
+    [ "$option" != "Yes" ] && return 1
 
     md5="$(curl -s "https://libgen.li/json.php?object=e&isbn=$ISBN&fields=md5,title,year,edition,pages" | python -c "
 import json
@@ -130,13 +130,7 @@ add_global () {
 
 
 TYPE="$1"
-
-if [ -z "$2" ]
-then
-    ID="$(dmenu -p "Identifier: " < /dev/null)"
-else
-    ID="$2"
-fi
+ID="$2"
 
 [ -f "$3" ] && BIB_FILE="$3"
 

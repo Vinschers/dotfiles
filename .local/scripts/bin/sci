@@ -7,7 +7,7 @@ get_pdf_path () {
     BIB_ID_TYPE="$(python -c "import bibtexparser; entry = bibtexparser.bparser.BibTexParser(common_strings=True).parse(\"\"\"$BIB_STR\"\"\").entries[0]; print(entry['ID']); print(entry['ENTRYTYPE']); print(entry['title'])")"
     BIBID="$(echo "$BIB_ID_TYPE" | sed '1q;d')"
     BIBTYPE="$(echo "$BIB_ID_TYPE" | sed '2q;d')"
-    BIBTITLE="$(echo "$BIB_ID_TYPE" | sed '3q;d')"
+    BIBTITLE="$(echo "$BIB_ID_TYPE" | sed '3q;d' | sed -e "s/\\\\//g")"
 
     case "$BIBTYPE" in
         book)
@@ -34,7 +34,7 @@ extract_identifier () {
 
 [ -z "$1" ] && sci_open && exit 0
 
-BIB_FILE="$(find . -maxdepth 3 -name "*.bib" -print -quit)"
+BIB_FILE="$(find . -maxdepth 1 -name "*.bib" -print -quit)"
 [ -z "$BIB_FILE" ] && BIB_FILE="$(find_up . -name "*.bib" -print -quit)"
 
 [ -n "$BIB_FILE" ] && [ "$(dirname "$(realpath "$BIB_FILE")")" = "$(realpath "$BIBLIOGRAPHY_DIRECTORY")" ] && BIB_FILE=""
@@ -47,9 +47,16 @@ case "$1" in
     add)
         shift
 
-        TYPE_ID="$(extract_identifier "$1")"
+        if [ -z "$1" ]
+        then
+            ID="$(dmenu -p "Identifier: " < /dev/null)"
+        else
+            ID="$1"
+        fi
 
-        DIFF="$(sci_add "$TYPE_ID" "$BIB_FILE")"
+        TYPE_ID="$(extract_identifier "$ID")"
+
+        DIFF="$(sci_add $TYPE_ID "$BIB_FILE")"
         [ "$DIFF" = "1" ] && [ -f "$BIB_FILE" ] && sci_update "$BIB_FILE"
 
         ;;

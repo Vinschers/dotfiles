@@ -11,7 +11,14 @@ else
 fi
 
 BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
-URL="$(echo "$BIB_STR" | jq -r '.[0]?.url')"
+
+if [ "$BIB_STR" = "No items returned from any translator" ]
+then
+    URL="https://openlibrary.org/isbn/$identifier"
+else
+    URL="$(echo "$BIB_STR" | jq -r '.[0]?.url')"
+
+fi
 
 if [ "$URL" = "null" ]
 then
@@ -19,5 +26,4 @@ then
 else
     JSON="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web")"
 fi
-
 echo "$JSON" | curl -sd @- -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
