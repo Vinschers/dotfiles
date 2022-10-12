@@ -6,9 +6,7 @@ STYLE=9
 check_lives () {
 	while read -r id symbol
     do
-		url="https://www.youtube.com/channel/$id"
-
-        curl -s "$url" | grep -qE '{"text":" watching"}|{"text":" assistindo"}' && printf "%s" "$symbol"
+        curl -s "https://www.youtube.com/channel/$id" | grep -qE '{"text":" watching"}|{"text":" assistindo"}' && printf "%s" "$symbol"
 	done
 }
 
