@@ -37,8 +37,11 @@ bg_text="$(get_bg_text $STYLE)"
 icon=""
 text="$(input | check_lives)"
 
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "$icon"
-printf "%s" "$bg_text"
-printf " %s " "$text"
-printf "%s" "$(get_color_reset)"
+if [ -n "$text" ]
+then
+    printf "%s%s" "$bg_icon" "$fg"
+    printf " %s " "$icon"
+    printf "%s" "$bg_text"
+    printf " %s " "$text"
+    printf "%s" "$(get_color_reset)"
+fi
