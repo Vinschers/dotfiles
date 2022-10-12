@@ -72,7 +72,7 @@ download_pdf () {
     TYPE="$2"
     BIB_STR="$3"
 
-    PDF_PATH="$(get_pdf_path "$BIB_STR")"
+    PDF_PATH="$(sci_pdf_path "$BIB_STR")"
 
     [ -f "$PDF_PATH" ] && return 1
     mkdir -p "$(dirname "$PDF_PATH")"

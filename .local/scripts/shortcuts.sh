@@ -31,7 +31,7 @@ case "$key" in
         notify-send "$(colorpicker --short --one-shot --preview)"
         ;;
     j)
-        books="$(find "$BIBLIOGRAPHY_DIRECTORY/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
+        books="$(find -L "$BIBLIOGRAPHY_DIRECTORY/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
         selected_book="$(echo "$books" | dmenu -i -l 15)"
 
         PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/book/$selected_book.pdf"
