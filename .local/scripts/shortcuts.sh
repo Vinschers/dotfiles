@@ -12,23 +12,20 @@ case "$key" in
     Delete)
         lock
         ;;
-    F1)
-        pamixer -m && update_dwmblocks 4
-        ;;
-    F2)
-        pamixer -ud 1 && update_dwmblocks 4
-        ;;
-    F3)
-        pamixer -ui 1 && update_dwmblocks 4
-        ;;
     a)
         sci add
         ;;
     b)
         "$BROWSER"
         ;;
+    d)
+        pamixer -ud 1 && update_dwmblocks 4
+        ;;
     e)
         notify-send "$(colorpicker --short --one-shot --preview)"
+        ;;
+    i)
+        pamixer -ui 1 && update_dwmblocks 4
         ;;
     j)
         books="$(find -L "$BIBLIOGRAPHY_DIRECTORY/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
@@ -42,6 +39,9 @@ case "$key" in
         ;;
     k)
         sci
+        ;;
+    m)
+        pamixer -m && update_dwmblocks 4
         ;;
     p)
         simple-scan
