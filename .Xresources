@@ -108,3 +108,7 @@ sb.style7.bg_text:          #c0caf5
 sb.style8.fg:               #24283b
 sb.style8.bg_icon:          #89b0ae
 sb.style8.bg_text:          #bee3db
+
+sb.style9.fg:               #24283b
+sb.style9.bg_icon:          #27c7ff
+sb.style9.bg_text:          #5fddef
