@@ -6,7 +6,7 @@ STYLE=9
 check_lives () {
 	while read -r id symbol
     do
-        curl -s "https://www.youtube.com/channel/$id" | grep -qE '{"text":" watching"}|{"text":" assistindo"}' && printf "%s" "$symbol"
+        curl -s "https://www.youtube.com/channel/$id" | grep -qE '{"text":" watching"}|{"text":" assistindo"}' && printf "%s " "$symbol"
 	done
 }
 
@@ -42,6 +42,6 @@ then
     printf "%s%s" "$bg_icon" "$fg"
     printf " %s " "$icon"
     printf "%s" "$bg_text"
-    printf " %s " "$text"
+    printf " %s " "${text%?}"
     printf "%s" "$(get_color_reset)"
 fi
