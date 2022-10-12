@@ -146,6 +146,13 @@
                 "path": "./latex.json"
             },
             {
+                "language": [
+                    "bib",
+                    "bibtex"
+                ],
+                "path": "./bib.json"
+            },
+            {
                 "language": "plantuml",
                 "path": "./plantuml.json"
             },
