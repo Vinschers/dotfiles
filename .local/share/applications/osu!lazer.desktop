@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Terminal=false
-Name=osu!lazer
-Exec=dotnet run --project /mnt/git/osu/osu.Desktop
-Icon=/mnt/git/osu/osu.Desktop/lazer.ico
-Comment=The future of osu! and the beginning of an open era! Commonly known by the codename osu!lazer. Pew pew.
-StartupNotify=false
