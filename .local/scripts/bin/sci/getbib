@@ -10,20 +10,33 @@ else
 	identifier="$1"
 fi
 
-BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
+zotero () {
+    BIB_STR="$(curl -fsd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
+    if [ "$BIB_STR" = "No items returned from any translator" ] || [ "$BIB_STR" = "No identifiers found" ]
+    then
+        return 1
+    fi
 
-if [ "$BIB_STR" = "No items returned from any translator" ]
-then
-    URL="https://openlibrary.org/isbn/$identifier"
-else
     URL="$(echo "$BIB_STR" | jq -r '.[0]?.url')"
 
-fi
+    if [ "$URL" = "null" ]
+    then
+        JSON="$BIB_STR"
+    else
+        JSON="$(curl -fsd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web")"
+    fi
 
-if [ "$URL" = "null" ]
-then
-    JSON="$BIB_STR"
-else
-    JSON="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web")"
-fi
-echo "$JSON" | curl -sd @- -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
+    echo "$JSON" | curl -fsd @- -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
+}
+
+openlibrary () {
+    JSON="$(curl -sd "https://openlibrary.org/isbn/$identifier" -H "Content-Type: text/plain" "http://localhost:1969/web")"
+
+    curl -fsd "$JSON" -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
+}
+
+input () {
+    printf "\n%s" "$(vipe --suffix bib)"
+}
+
+zotero || openlibrary || input
