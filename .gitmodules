@@ -1,6 +1,3 @@
 [submodule ".local/scripts/programs/makefile2graph"]
 	path = .local/scripts/programs/makefile2graph
 	url = https://github.com/lindenb/makefile2graph
-[submodule ".config/suckless"]
-	path = .config/suckless
-	url = git@github.com:Vinschers/suckless.git
