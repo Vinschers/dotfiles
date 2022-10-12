@@ -26,7 +26,7 @@ def select_result(matches: list[dict]) -> dict:
 
 
 with open('$BIB_FILE', 'r') as bibfile:
-    database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibfile)
+    database = bibtexparser.bparser.BibTexParser(common_strings=True, ignore_nonstandard_types=False).parse_file(bibfile)
 
 entry = select_result(database.entries)
 if entry:

@@ -42,6 +42,9 @@ import json
 import subprocess
 json_str = input()
 data = json.loads(json_str)
+if not data:
+    print()
+    exit()
 options = {}
 for _, book in data.items():
     for _, file in book['files'].items():

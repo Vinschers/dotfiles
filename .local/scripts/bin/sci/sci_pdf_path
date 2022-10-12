@@ -2,7 +2,7 @@
 
 BIB_STR="$1"
 
-BIB_ID_TYPE="$(python -c "import bibtexparser; entry = bibtexparser.bparser.BibTexParser(common_strings=True).parse(\"\"\"$BIB_STR\"\"\").entries[0]; print(entry['ID']); print(entry['ENTRYTYPE']); print(entry['title'])")"
+BIB_ID_TYPE="$(python -c "import bibtexparser; entry = bibtexparser.bparser.BibTexParser(common_strings=True, ignore_nonstandard_types=False).parse(\"\"\"$BIB_STR\"\"\").entries[0]; print(entry['ID']); print(entry['ENTRYTYPE']); print(entry['title'])")"
 BIBID="$(echo "$BIB_ID_TYPE" | sed '1q;d')"
 BIBTYPE="$(echo "$BIB_ID_TYPE" | sed '2q;d')"
 BIBTITLE="$(echo "$BIB_ID_TYPE" | sed '3q;d' | sed -e "s/\\\\//g")"
