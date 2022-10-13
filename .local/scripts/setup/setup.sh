@@ -64,12 +64,8 @@ ignore_local_files () {
     cd "$SCRIPTS_DIR/shell" || return
     dotfiles update-index --assume-unchanged local_environment.sh
 
-    cd "~/.config" || return
-    dotfiles update-index --assume-unchanged cpustatus
-    dotfiles update-index --assume-unchanged datetime
-    dotfiles update-index --assume-unchanged diskspace
-    dotfiles update-index --assume-unchanged hardware
-    dotfiles update-index --assume-unchanged weather
+    cd "~/.cache" || return
+    dotfiles update-index --assume-unchanged cpustatus datetime diskspace hardware weather
 }
 
 
