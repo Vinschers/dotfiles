@@ -60,6 +60,18 @@ install_programs () {
     sudo make
 }
 
+ignore_local_files () {
+    cd "$SCRIPTS_DIR/shell" || return
+    dotfiles update-index --assume-unchanged local_environment.sh
+
+    cd "~/.config" || return
+    dotfiles update-index --assume-unchanged cpustatus
+    dotfiles update-index --assume-unchanged datetime
+    dotfiles update-index --assume-unchanged diskspace
+    dotfiles update-index --assume-unchanged hardware
+    dotfiles update-index --assume-unchanged weather
+}
+
 
 show_menu
 read opt
@@ -82,3 +94,5 @@ check "Set up git?" && setup_git
 check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh $THIS_DIRECTORY"
 check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
+check "Install programs in SCRIPTS_DIR?" && install_programs
+check "Ignore local files" && ignore_local_files
