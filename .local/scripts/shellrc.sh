@@ -10,3 +10,5 @@ source_directory() {
 
 source_directory "$SCRIPTS_DIR"/functions/
 source_directory "$SCRIPTS_DIR"/shell/
+
+. "$SCRIPTS_DIR/environment.sh"
