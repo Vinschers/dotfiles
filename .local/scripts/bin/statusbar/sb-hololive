@@ -12,6 +12,7 @@ check_lives () {
 
 input () {
 	echo "UCYz_5n-uDuChHtLo7My1HnQ 🧟"
+	echo "UCP0BspO_AMEe3aQqqpo89Dg 🌕"
 
 	echo "UCoSrY_IQQVpmIRZ9Xf-y93g 🔱"
     echo "UCyl1z3jo3XHR1riLFKG5UAg 🔎"
@@ -28,6 +29,9 @@ input () {
     echo "UCgmPnx-EEeOrZSg5Tiw7ZRQ 🎲"
 
     echo "UCKYyiJwNg2nV7hM86U5_wvw α"
+
+
+    echo "UCP4nMSTdwU1KqYWu3UH5DHQ 🧚"
 }
 
 fg="$(get_fg $STYLE)"
