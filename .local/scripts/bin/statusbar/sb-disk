@@ -33,7 +33,7 @@ switch_base () {
 	fi
 }
 
-n=2
+n="$(echo "$DRIVERS" | wc -w)"
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/diskspace"
 read opt base < "$logfile"
 
@@ -44,9 +44,7 @@ case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-case $opt in
-	0) format_output "$(get_used_avail "nvme")" "$base" ;;
-	1) format_output "$(get_used_avail "sdb")" "$base" ;;
-esac
+driver="$(echo "$DRIVERS" | cut -d " " -f "$opt")"
+format_output "$(get_used_avail "$driver")" "$base"
 
 echo "$opt $base" > "$logfile"
