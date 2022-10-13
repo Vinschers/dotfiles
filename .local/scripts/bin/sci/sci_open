@@ -39,7 +39,7 @@ select_id () {
     BIB_FILE="$1"
     ID="$2"
 
-    awk -v RS='' "/$ID/" "$BIB_FILE"
+    awk -v RS='' -v id="$ID" 'BEGIN{gsub(/\(|\)/,"\\\\&", id)} $0 ~ id' "$BIB_FILE"
 }
 
 open () {

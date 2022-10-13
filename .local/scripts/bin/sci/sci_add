@@ -99,7 +99,7 @@ add_global () {
 
     if [ -f "$GLOBAL_BIB" ] && grep -q "$ID" "$GLOBAL_BIB"
     then
-        BIB_STR="$(awk -v RS='' "/$ID/" "$GLOBAL_BIB")"
+        BIB_STR="$(awk -v RS='' -v id="$ID" 'BEGIN{gsub(/\(|\)/,"\\\\&", id)} $0 ~ id' "$GLOBAL_BIB")"
 
         if download_pdf "$ID" "$TYPE" "$BIB_STR"
         then
@@ -108,11 +108,11 @@ add_global () {
             echo "0"
         fi
 
-        echo "$BIB_STR"
+        printf "\n%s\n" "$BIB_STR"
         return 0
     fi
 
-    BIB_STR="$(getbib "$ID")"
+    BIB_STR="$(getbib "$ID" "$GLOBAL_BIB")"
     [ -z "$BIB_STR" ] && exit 1
 
     if ! [ -f "$GLOBAL_BIB" ]
@@ -121,7 +121,7 @@ add_global () {
         touch "$GLOBAL_BIB"
     fi
 
-    echo "$BIB_STR" >> "$GLOBAL_BIB"
+    echo "$BIB_STR" > "$GLOBAL_BIB"
 
     notify-send "Added to global library."
 

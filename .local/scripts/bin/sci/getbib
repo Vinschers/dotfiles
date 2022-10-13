@@ -1,17 +1,8 @@
 #!/bin/sh
-[ -z "$1" ] && echo "Give either a pdf file or a DOI as an argument." && exit
-
-if [ -f "$1" ]; then
-	# Try to get DOI from pdfinfo or pdftotext output.
-	identifier=$(pdfinfo "$1" | grep -io "doi:.*") ||
-	identifier=$(pdftotext "$1" 2>/dev/null - | grep -io "doi:\s*\S\+[[:alnum:]]" -m 1) ||
-	exit 1
-else
-	identifier="$1"
-fi
 
 zotero () {
-    BIB_STR="$(curl -fsd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
+    BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
+
     if [ "$BIB_STR" = "No items returned from any translator" ] || [ "$BIB_STR" = "No identifiers found" ]
     then
         return 1
@@ -26,17 +17,40 @@ zotero () {
         JSON="$(curl -fsd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web")"
     fi
 
-    echo "$JSON" | curl -fsd @- -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
+    if [ -n "$BIB_FILE" ]
+    then
+        JSON_BIB="$(curl -fs --data-binary "@$BIB_FILE" -H "Content-Type: text/plain" "http://localhost:1969/import")"
+        JSON="$(printf "%s\n%s" "$JSON_BIB" "$JSON" | jq -s "add")"
+    fi
+    curl -fsd "$JSON" -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
 }
 
 openlibrary () {
-    JSON="$(curl -sd "https://openlibrary.org/isbn/$identifier" -H "Content-Type: text/plain" "http://localhost:1969/web")"
+    JSON="$(curl -sd "https://openlibrary.org/isbn/$identifier" -H "Content-Type: text/plain" "http://localhost:1969/web" | jq ".[]? += {\"ISBN\": \"$identifier\"}")"
+
+    if [ -n "$BIB_FILE" ]
+    then
+        JSON_BIB="$(curl -fs --data-binary "@$BIB_FILE" -H "Content-Type: text/plain" "http://localhost:1969/import")"
+        JSON="$(printf "%s\n%s" "$JSON_BIB" "$JSON" | jq -s "add")"
+    fi
 
     curl -fsd "$JSON" -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
 }
 
 input () {
-    printf "\n%s" "$(vipe --suffix bib)"
+    BIB_STR="$(vipe --suffix bib)"
+
+    if [ -n "$BIB_FILE" ]
+    then
+        BIB_STR="$(cat "$BIB_FILE")\n$BIB_STR"
+    fi
+
+    printf "%s" "$BIB_STR"
 }
+
+[ -z "$1" ] && echo "No argument to getbib." && exit
+identifier="$1"
+
+[ -n "$2" ] && BIB_FILE="$2"
 
 zotero || openlibrary || input

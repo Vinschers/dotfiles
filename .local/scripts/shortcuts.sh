@@ -44,7 +44,8 @@ case "$key" in
         pamixer -m && update_dwmblocks 4
         ;;
     p)
-        simple-scan
+        project="$(ls -1 "$PROJECTS_DIRECTORY" | dmenu -i -l 10)"
+        [ -n "$project" ] && cd "$PROJECTS_DIRECTORY/$project" && "$TERMINAL"
         ;;
     s)
         spotify

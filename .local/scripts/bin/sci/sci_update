@@ -12,7 +12,7 @@ python -c "
 import bibtexparser
 
 with open('$BIB_FILE', 'r') as bibfile:
-    database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibfile)
+    database = bibtexparser.bparser.BibTexParser(common_strings=True, ignore_nonstandard_types=False).parse_file(bibfile)
 
     for entry in database.entries:
         print(entry['ENTRYTYPE'], entry['ID'])" > temp_type_ids
