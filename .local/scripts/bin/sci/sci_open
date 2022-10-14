@@ -69,7 +69,7 @@ open () {
 ID="$1"
 
 [ -f "$2" ] && BIB_FILE="$2"
-GLOBAL_BIB="$BIBLIOGRAPHY_DIRECTORY/library.bib"
+GLOBAL_BIB="$ACADEMIC_DIRECTORY/bibliography/library.bib"
 
 if [ -f "$BIB_FILE" ]
 then

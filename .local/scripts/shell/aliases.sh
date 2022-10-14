@@ -71,11 +71,11 @@ alias \
     i='sudo pacman -S' \
     up='yay -Syu' \
     s='scripts' \
-    u='cd ~/hdd/academic/unicamp/ && ls' \
     books='cd ~/hdd/books/ && ls' \
     b='books' \
     se='sudoedit' \
     cv="cd ~/.config/nvim/" \
     cs="cd ~/.config/suckless/" \
     vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn" \
-    bib='cd $BIBLIOGRAPHY_DIRECTORY && ls'
+    bib='cd $BIBLIOGRAPHY_DIRECTORY && ls' \
+    d='cd $CLASSES_DIRECTORY && ls'

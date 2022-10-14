@@ -9,10 +9,10 @@ BIBTITLE="$(echo "$BIB_ID_TYPE" | sed '3q;d' | sed -e "s/\\\\//g" | sed -e "s/:/
 
 case "$BIBTYPE" in
     book)
-        PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$BIBTYPE/$BIBTITLE.pdf"
+        PDF_PATH="$ACADEMIC_DIRECTORY/bibliography/$BIBTYPE/$BIBTITLE.pdf"
         ;;
     *)
-        PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/$BIBTYPE/$BIBID.pdf"
+        PDF_PATH="$ACADEMIC_DIRECTORY/bibliography/$BIBTYPE/$BIBID.pdf"
         ;;
 esac
 

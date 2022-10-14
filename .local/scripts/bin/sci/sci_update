@@ -23,7 +23,7 @@ do
     ID="$(echo "$TYPE_ID" | awk '{print $2}')"
 
     mkdir -p "$BASE_DIR/bibliography/$TYPE"
-    ln -s "$BIBLIOGRAPHY_DIRECTORY/$TYPE/$ID.pdf" "$BASE_DIR/bibliography/$TYPE/$ID.pdf"
+    ln -s "$ACADEMIC_DIRECTORY/bibliography/$TYPE/$ID.pdf" "$BASE_DIR/bibliography/$TYPE/$ID.pdf"
 done < temp_type_ids
 
 rm temp_type_ids

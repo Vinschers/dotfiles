@@ -28,10 +28,10 @@ case "$key" in
         pamixer -ui 1 && update_dwmblocks 4
         ;;
     j)
-        books="$(find -L "$BIBLIOGRAPHY_DIRECTORY/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
+        books="$(find -L "$ACADEMIC_DIRECTORY/bibliography/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
         selected_book="$(echo "$books" | dmenu -i -l 15)"
 
-        PDF_PATH="$BIBLIOGRAPHY_DIRECTORY/book/$selected_book.pdf"
+        PDF_PATH="$ACADEMIC_DIRECTORY/bibliography/book/$selected_book.pdf"
         if [ -n "$selected_book" ]
         then
             sioyek "$PDF_PATH" || zathura "$PDF_PATH"
@@ -44,8 +44,8 @@ case "$key" in
         pamixer -m && update_dwmblocks 4
         ;;
     p)
-        project="$(ls -1 "$PROJECTS_DIRECTORY" | dmenu -i -l 10)"
-        [ -n "$project" ] && cd "$PROJECTS_DIRECTORY/$project" && "$TERMINAL"
+        project="$(ls -1 "$ACADEMIC_DIRECTORY/projects" | dmenu -i -l 10)"
+        [ -n "$project" ] && cd "$ACADEMIC_DIRECTORY/projects/$project" && "$TERMINAL"
         ;;
     s)
         spotify

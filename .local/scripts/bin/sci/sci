@@ -16,7 +16,7 @@ extract_identifier () {
 BIB_FILE="$(find . -maxdepth 1 -name "*.bib" -print -quit)"
 [ -z "$BIB_FILE" ] && BIB_FILE="$(find_up . -name "*.bib" -print -quit)"
 
-[ -n "$BIB_FILE" ] && [ "$(dirname "$(realpath "$BIB_FILE")")" = "$(realpath "$BIBLIOGRAPHY_DIRECTORY")" ] && BIB_FILE=""
+[ -n "$BIB_FILE" ] && [ "$(dirname "$(realpath "$BIB_FILE")")" = "$(realpath "$ACADEMIC_DIRECTORY/bibliography")" ] && BIB_FILE=""
 
 case "$1" in
     init)

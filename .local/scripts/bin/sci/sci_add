@@ -95,7 +95,7 @@ download_pdf () {
 add_global () {
     ID="$1"
     TYPE="$2"
-    GLOBAL_BIB="$BIBLIOGRAPHY_DIRECTORY/library.bib"
+    GLOBAL_BIB="$ACADEMIC_DIRECTORY/bibliography/library.bib"
 
     if [ -f "$GLOBAL_BIB" ] && grep -q "$ID" "$GLOBAL_BIB"
     then
