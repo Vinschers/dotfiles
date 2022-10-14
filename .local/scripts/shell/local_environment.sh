@@ -2,10 +2,9 @@
 
 
 export WALLPAPERS_DIR=""
-export BIBLIOGRAPHY_DIRECTORY=""
-export PROJECTS_DIRECTORY=""
+export ACADEMIC_DIRECTORY=""
 
-export DRIVERS="" # Shown is sb-disk
+export DRIVERS="" # Shown in sb-disk
 
 export SB_CPU_BAR_PAD=""
 export SB_CPU_SIZE=""
