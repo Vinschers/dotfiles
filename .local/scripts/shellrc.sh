@@ -12,3 +12,5 @@ source_directory "$SCRIPTS_DIR"/functions/
 source_directory "$SCRIPTS_DIR"/shell/
 
 . "$SCRIPTS_DIR/environment.sh"
+
+eval "$(dircolors -b "$SCRIPTS_DIR/shell/.dir_colors")"

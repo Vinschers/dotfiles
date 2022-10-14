@@ -24,6 +24,9 @@ case "$key" in
     e)
         notify-send "$(colorpicker --short --one-shot --preview)"
         ;;
+    g)
+        sh -c "cd $ACADEMIC_DIRECTORY/unicamp/disciplinas; $TERMINAL"
+        ;;
     i)
         pamixer -ui 1 && update_dwmblocks 4
         ;;

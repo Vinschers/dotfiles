@@ -77,5 +77,5 @@ alias \
     cv="cd ~/.config/nvim/" \
     cs="cd ~/.config/suckless/" \
     vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn" \
-    bib='cd $BIBLIOGRAPHY_DIRECTORY && ls' \
-    d='cd $CLASSES_DIRECTORY && ls'
+    bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
+    d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls'
