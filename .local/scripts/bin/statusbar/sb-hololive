@@ -29,9 +29,6 @@ input () {
     echo "UCgmPnx-EEeOrZSg5Tiw7ZRQ 🎲"
 
     echo "UCKYyiJwNg2nV7hM86U5_wvw α"
-
-
-    echo "UCP4nMSTdwU1KqYWu3UH5DHQ 🧚"
 }
 
 fg="$(get_fg $STYLE)"

@@ -7,7 +7,25 @@ output="$(compile "$1")"
 BIN_FILE="${output%*§}"
 EXEC_CMD="${output#*§}"
 
-printf "\$ %s\n\n" "$EXEC_CMD"
-time eval "$EXEC_CMD" ; printf "Press any key to exit..." && wait_key_press
+if [ -n "$EXEC_CMD" ]
+then
+    printf "\$ %s\n\n" "$EXEC_CMD $BIN_FILE"
+else
+    printf "\$ %s\n\n" "$BIN_FILE"
+fi
 
-[ -n "$BIN_FILE" ] && rm "$BIN_FILE"
+exec_bin () {
+    chmod +x "$BIN_FILE" 2> /dev/null
+    [ -x "$BIN_FILE" ] && time eval "$EXEC_CMD $BIN_FILE" && return 0
+
+    mkdir -p "$HOME/.cache"
+    mv "$BIN_FILE" "$HOME/.cache"
+    cd "$HOME/.cache" || return 1
+    BIN_FILE="$HOME/.cache/$(basename "$BIN_FILE")"
+    chmod +x "$BIN_FILE"
+    time eval "$EXEC_CMD $BIN_FILE" 2> /dev/null && rm "$BIN_FILE"
+}
+
+exec_bin ; printf "Press any key to exit..." && wait_key_press
+
+[ -f "$BIN_FILE" ] && rm "$BIN_FILE"

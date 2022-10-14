@@ -10,31 +10,31 @@ compileFile() {
 
     case $ext in
         "$1")
-            cmd="./$1"
+            cmd=""
             ;;
         sh)
-            cmd="./$1"
+            cmd=""
             ;;
         c)
-            gcc -g -std=c99 -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
+            gcc -g -std=c99 -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd=""
             ;;
         cpp)
-            g++ -g -Wall -o "$dir/$file" -lm "$1" && bin_file="$dir/$file" ; cmd="$dir/$file"
+            g++ -g -Wall -o "$dir/$file" -lm "$1" && bin_file="$dir/$file" ; cmd=""
             ;;
         java)
-            javac "$1" && bin_file="$dir/$file.class" ; cmd="java $file"
+            javac "$1" && bin_file="$dir/$file.class" ; cmd="java"
             ;;
         py)
-            cmd="python $1"
+            cmd="python"
             ;;
         tex)
-            pdflatex "$1" > /dev/null && pdflatex "$1" > /dev/null && find "$dir" -maxdepth 1 -type f -name "$file.*" -not \( -name "$file.tex" -or -name "$file.pdf" \) -delete && bin_file="$dir/$file.pdf" ; cmd="xdg-open $dir/$file.pdf"
+            pdflatex "$1" > /dev/null && pdflatex "$1" > /dev/null && find "$dir" -maxdepth 1 -type f -name "$file.*" -not \( -name "$file.tex" -or -name "$file.pdf" \) -delete && bin_file="$dir/$file.pdf" ; cmd="xdg-open"
             ;;
         exs)
-            cmd="elixir $1"
+            cmd="elixir"
             ;;
         s)
-            gcc -g -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd="$dir/$file"
+            gcc -g -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd=""
             ;;
         *)
             return 1
