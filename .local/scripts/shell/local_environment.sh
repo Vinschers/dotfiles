@@ -5,7 +5,7 @@ export WALLPAPERS_DIR=""
 export BIBLIOGRAPHY_DIRECTORY=""
 export PROJECTS_DIRECTORY=""
 
-export DRIVERS=""
+export DRIVERS="" # Shown is sb-disk
 
 export SB_CPU_BAR_PAD=""
 export SB_CPU_SIZE=""
