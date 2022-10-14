@@ -35,8 +35,6 @@ install_packages () {
         sudo pacman -S --noconfirm --needed "$PACKAGE"
     done < "$THIS_DIRECTORY/pacman"
 
-    yay -S libxft-bgra
-
     while read -r PACKAGE
     do
         echo -e "\n\n\nInstalling $PACKAGE..."
