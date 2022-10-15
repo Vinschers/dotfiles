@@ -8,24 +8,22 @@ compileFile() {
     ext="${file##*.}"
     file="${file%.*}"
 
+    cmd=""
+    bin_file="$dir/$file"
+
     case $ext in
-        "$1")
-            cmd=""
-            ;;
-        sh)
-            cmd=""
-            ;;
         c)
-            gcc -g -std=c99 -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd=""
+            gcc -g -std=c99 -Wall "$1" -o "$dir/$file" -lm
             ;;
         cpp)
-            g++ -g -Wall -o "$dir/$file" -lm "$1" && bin_file="$dir/$file" ; cmd=""
+            g++ -g -Wall -o "$dir/$file" -lm "$1"
             ;;
         java)
             javac "$1" && bin_file="$dir/$file.class" ; cmd="java"
             ;;
         py)
-            cmd="python"
+            cmd="python $1"
+            bin_file=""
             ;;
         tex)
             pdflatex "$1" > /dev/null && pdflatex "$1" > /dev/null && find "$dir" -maxdepth 1 -type f -name "$file.*" -not \( -name "$file.tex" -or -name "$file.pdf" \) -delete && bin_file="$dir/$file.pdf" ; cmd="xdg-open"
@@ -34,7 +32,7 @@ compileFile() {
             cmd="elixir"
             ;;
         s)
-            gcc -g -Wall "$1" -o "$dir/$file" -lm && bin_file="$dir/$file" ; cmd=""
+            gcc -g -Wall "$1" -o "$dir/$file" -lm
             ;;
         *)
             return 1

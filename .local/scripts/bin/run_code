@@ -4,7 +4,7 @@
 eval "$(compile "$1" | awk '{print "line"NR"=\""$0"\""}')"
 output="$(compile "$1")"
 
-BIN_FILE="${output%*§}"
+BIN_FILE="${output%§*}"
 EXEC_CMD="${output#*§}"
 
 if [ -n "$EXEC_CMD" ]
@@ -16,7 +16,10 @@ fi
 
 exec_bin () {
     chmod +x "$BIN_FILE" 2> /dev/null
-    [ -x "$BIN_FILE" ] && time eval "$EXEC_CMD $BIN_FILE" && return 0
+    if [ -x "$BIN_FILE" ] || [ -n "$EXEC_CMD" ]
+    then
+        time eval "$EXEC_CMD $BIN_FILE" && return 0
+    fi
 
     mkdir -p "$HOME/.cache"
     mv "$BIN_FILE" "$HOME/.cache"
