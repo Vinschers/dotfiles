@@ -25,7 +25,8 @@ set_ratio_osu () {
 }
 
 set_area () {
-    pgrep -f "osu" > /dev/null && set_ratio_osu || set_ratio_default
+    # pgrep -f "osu" > /dev/null && set_ratio_osu || set_ratio_default
+    set_ratio_default
 
     xsetwacom --set "Wacom One by Wacom S Pen stylus" Area 0 0 $(( DEFAULT_X / RATIO_X )) $(( DEFAULT_Y / RATIO_Y ))
     xsetwacom --set "Wacom One by Wacom S Pen eraser" Area 0 0 $(( DEFAULT_X / RATIO_X )) $(( DEFAULT_Y / RATIO_Y ))

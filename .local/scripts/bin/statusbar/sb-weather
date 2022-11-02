@@ -30,8 +30,8 @@ case $opt in
     2) text="$(curl -sf "wttr.in?format=%m+%P")" ;;
 esac
 
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s" "$icon"
-printf "%s" "$bg_text"
-printf " %s " "$text"
-printf "%s" "$(get_color_reset)"
+# printf "%s%s" "$bg_icon" "$fg"
+# printf " %s" "$icon"
+# printf "%s" "$bg_text"
+# printf " %s " "$text"
+# printf "%s" "$(get_color_reset)"

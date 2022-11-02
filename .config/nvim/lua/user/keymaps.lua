@@ -54,7 +54,7 @@ keymap("n", "<F9>", ":lua if (vim.bo.filetype == 'java') then require('jdtls.dap
 keymap("n", "<F10>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_over() else require'dap'.continue() end<cr>", opts)
 keymap("n", "<F11>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_into() else require'dap'.continue() end<cr>", opts)
 
-keymap("n", "<C-f>", "<cmd>silent exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>'", opts)
+keymap("n", "<C-i>", "<cmd>silent exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>'", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)

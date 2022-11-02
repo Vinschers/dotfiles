@@ -59,7 +59,8 @@ case "$1" in
         if [ -f "$BIB_FILE" ] && [ "$DIFF" = "1" ]
         then
             sci_update "$BIB_FILE"
-        else
+        elif [ "$DIFF" = 0 ]
+        then
             sci_open "$(echo "$TYPE_ID" | cut -d' ' -f 2-)" "$BIB_FILE"
         fi
         ;;
