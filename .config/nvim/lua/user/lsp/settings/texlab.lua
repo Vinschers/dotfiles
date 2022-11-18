@@ -1,10 +1,10 @@
 return {
-    formatterLineLength = 0,
+	formatterLineLength = 0,
 	texlab = {
-        bibtexFormatter = "texlab"
+		bibtexFormatter = "texlab",
 	},
-    chtex = {
-        onEdit = true,
-        onOpenAndSave = false
-    }
+	chtex = {
+		onEdit = true,
+		onOpenAndSave = false,
+	},
 }

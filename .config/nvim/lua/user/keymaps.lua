@@ -28,7 +28,7 @@ keymap("n", "<C-a>", "ggVG", opts)
 keymap("n", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
 keymap("n", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
-keymap("n", "c", "\"_c", opts)
+keymap("n", "c", '"_c', opts)
 
 keymap("n", "<C-A-j>", "<Esc>:m .+1<CR>", opts)
 keymap("n", "<C-A-k>", "<Esc>:m .-2<CR>", opts)
@@ -50,11 +50,31 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Debugging
 keymap("n", "<F6>", ":lua require'dap'.continue()<cr>", opts)
-keymap("n", "<F9>", ":lua if (vim.bo.filetype == 'java') then require('jdtls.dap').setup_dap_main_class_configs() end require'dap'.toggle_breakpoint()<cr>", opts)
-keymap("n", "<F10>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_over() else require'dap'.continue() end<cr>", opts)
-keymap("n", "<F11>", ":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_into() else require'dap'.continue() end<cr>", opts)
+keymap(
+	"n",
+	"<F9>",
+	":lua if (vim.bo.filetype == 'java') then require('jdtls.dap').setup_dap_main_class_configs() end require'dap'.toggle_breakpoint()<cr>",
+	opts
+)
+keymap(
+	"n",
+	"<F10>",
+	":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_over() else require'dap'.continue() end<cr>",
+	opts
+)
+keymap(
+	"n",
+	"<F11>",
+	":lua local row, _ = unpack(vim.api.nvim_win_get_cursor(0)); if (row < vim.api.nvim_buf_line_count(0)) then require'dap'.step_into() else require'dap'.continue() end<cr>",
+	opts
+)
 
-keymap("n", "<C-i>", "<cmd>silent exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>'", opts)
+keymap(
+	"n",
+	"<C-i>",
+	"<cmd>silent exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>'",
+	opts
+)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -81,4 +101,9 @@ keymap("i", "<C-f>", "<cmd>Telescope find_files<cr>", opts)
 keymap("i", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
 keymap("i", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
-keymap("i", "<C-f>", "<Esc><cmd>silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>'", opts)
+keymap(
+	"i",
+	"<C-f>",
+	"<Esc><cmd>silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>'",
+	opts
+)

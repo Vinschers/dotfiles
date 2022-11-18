@@ -37,9 +37,9 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-local path = function ()
-    --[[ return vim.api.nvim_buf_get_name(0) ]]
-    return vim.fn.expand("%")
+local path = function()
+	--[[ return vim.api.nvim_buf_get_name(0) ]]
+	return vim.fn.expand("%")
 end
 
 lualine.setup({

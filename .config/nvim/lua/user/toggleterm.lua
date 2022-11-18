@@ -39,11 +39,11 @@ function _LAZYGIT_TOGGLE()
 end
 
 function _COMPILE_CODE()
-    local compile = Terminal:new({ cmd = "compile '" .. vim.fn.expand("%") .. "'", hidden = true })
-    compile:toggle()
+	local compile = Terminal:new({ cmd = "compile '" .. vim.fn.expand("%") .. "'", hidden = true })
+	compile:toggle()
 end
 
 function _RUN_CODE()
-    local run_code = Terminal:new({ cmd = "run_code '" .. vim.fn.expand("%") .. "'", hidden = true })
-    run_code:toggle()
+	local run_code = Terminal:new({ cmd = "run_code '" .. vim.fn.expand("%") .. "'", hidden = true })
+	run_code:toggle()
 end

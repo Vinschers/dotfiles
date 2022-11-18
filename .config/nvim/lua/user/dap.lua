@@ -8,8 +8,19 @@ if not dap_ui_status_ok then
 	return
 end
 
+local dap_install_status_ok, dap_install = pcall(require, "dap-install")
+if not dap_install_status_ok then
+	return
+end
+
+dap_install.setup({})
+
+dap_install.config("python", {})
+-- add other configs here
+
 dapui.setup({
-	icons = { expanded = "▾", collapsed = "▸" },
+	expand_lines = true,
+	icons = { expanded = "", collapsed = "", circular = "" },
 	mappings = {
 		-- Use a table to apply multiple mappings
 		expand = { "<CR>", "<2-LeftMouse>" },
@@ -17,36 +28,36 @@ dapui.setup({
 		remove = "d",
 		edit = "e",
 		repl = "r",
+		toggle = "t",
 	},
-	sidebar = {
-		-- You can change the order of elements in the sidebar
-		elements = {
-			-- Provide as ID strings or tables with "id" and "size" keys
-			{
-				id = "scopes",
-				size = 0.25, -- Can be float or integer > 1
+	layouts = {
+		{
+			elements = {
+				{ id = "scopes", size = 0.33 },
+				{ id = "breakpoints", size = 0.17 },
+				{ id = "stacks", size = 0.25 },
+				{ id = "watches", size = 0.25 },
 			},
-			{ id = "breakpoints", size = 0.25 },
-			{ id = "stacks", size = 0.25 },
-			{ id = "watches", size = 00.25 },
+			size = 0.33,
+			position = "right",
 		},
-		size = 40,
-		position = "left", -- Can be "left", "right", "top", "bottom"
-	},
-	tray = {
-		elements = { "repl" },
-		size = 10,
-		position = "bottom", -- Can be "left", "right", "top", "bottom"
+		{
+			elements = {
+				{ id = "repl", size = 0.45 },
+				{ id = "console", size = 0.55 },
+			},
+			size = 0.27,
+			position = "bottom",
+		},
 	},
 	floating = {
-		max_height = nil, -- These can be integers or a float between 0 and 1.
-		max_width = nil, -- Floats will be treated as percentage of your screen.
-		border = "single", -- Border style. Can be "single", "double" or "rounded"
+		max_height = 0.9,
+		max_width = 0.5, -- Floats will be treated as percentage of your screen.
+		border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
 		mappings = {
 			close = { "q", "<Esc>" },
 		},
 	},
-	windows = { indent = 1 },
 })
 
 vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
@@ -137,28 +148,6 @@ dap.configurations.c = dap.configurations.cpp
 dap.configurations.asm = dap.configurations.cpp
 -- dap.configurations.rust = dap.configurations.cpp
 
-dap.adapters.mix_task = {
-	type = "executable",
-	command = vim.fn.stdpath("data") .. "/lsp_servers/elixir/elixir-ls/debugger.sh",
-	args = {},
-}
-
-dap.configurations.elixir = {
-	{
-		type = "mix_task",
-		name = "mix test",
-		task = "test",
-		taskArgs = { "--trace" },
-		request = "launch",
-		startApps = true, -- for Phoenix projects
-		projectDir = "${workspaceFolder}",
-		requireFiles = {
-			"test/**/test_helper.exs",
-			"test/**/*_test.exs",
-		},
-	},
-}
-
 local function sep_os_replacer(str)
 	local result = str
 	local path_sep = package.config:sub(1, 1)
@@ -180,5 +169,21 @@ dap.configurations.dart = {
 		flutterSdkPath = sep_os_replacer(join_path(vim.fn.expand("~/"), "/flutter")),
 		program = sep_os_replacer("${workspaceFolder}/lib/main.dart"),
 		cwd = "${workspaceFolder}",
+	},
+}
+
+dap.adapters.bash = {
+	type = "executable",
+	command = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/bash-debug-adapter",
+	name = "bash",
+	args = {},
+}
+
+dap.configurations.sh = {
+	{
+		type = "bash",
+		request = "launch",
+		name = "Launch sh",
+		program = "${file}",
 	},
 }

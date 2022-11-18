@@ -62,17 +62,17 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<TAB>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expandable() then
-                luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif check_backspace() then
-                fallback()
-            else
-                fallback()
-            end
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expandable() then
+				luasnip.expand()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif check_backspace() then
+				fallback()
+			else
+				fallback()
+			end
 		end, {
 			"i",
 			"s",
@@ -88,18 +88,18 @@ cmp.setup({
 			"s",
 		}),
 		["<C-;>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(1) then
-                luasnip.jump(1)
-            end
-        end, {
+			if luasnip.jumpable(1) then
+				luasnip.jump(1)
+			end
+		end, {
 			"i",
 			"s",
 		}),
 		["<C-ç>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(1) then
-                luasnip.jump(1)
-            end
-        end, {
+			if luasnip.jumpable(1) then
+				luasnip.jump(1)
+			end
+		end, {
 			"i",
 			"s",
 		}),
