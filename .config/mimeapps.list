@@ -92,3 +92,4 @@ video/vnd.mpegurl=mpv.desktop
 video/x-matroska=mpv.desktop
 video/quicktime=mpv.desktop
 video/x-flv=mpv.desktop
+x-scheme-handler/postman=Postman.desktop
