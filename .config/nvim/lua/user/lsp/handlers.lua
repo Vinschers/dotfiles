@@ -72,7 +72,7 @@ local function contains(list, x)
 	return false
 end
 
-local disable_formatting = { "tsserver", "sumneko_lua", "clangd", "dartls" }
+local disable_formatting = { "tsserver", "sumneko_lua", "clangd", "dartls", "jdt.ls" }
 
 M.on_attach = function(client, bufnr)
 	if contains(disable_formatting, client.name) then

@@ -50,12 +50,7 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Debugging
 keymap("n", "<F6>", ":lua require'dap'.continue()<cr>", opts)
-keymap(
-	"n",
-	"<F9>",
-	":lua if (vim.bo.filetype == 'java') then require('jdtls.dap').setup_dap_main_class_configs() end require'dap'.toggle_breakpoint()<cr>",
-	opts
-)
+keymap("n", "<F9>", ":lua require'dap'.toggle_breakpoint()<cr>", opts)
 keymap(
 	"n",
 	"<F10>",

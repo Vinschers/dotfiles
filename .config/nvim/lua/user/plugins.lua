@@ -242,6 +242,39 @@ return packer.startup(function(use)
 		"RishabhRD/nvim-cheat.sh",
 		requires = "RishabhRD/popfix",
 	})
+    use({ "dart-lang/dart-vim-plugin" })
+	use({
+		"akinsho/flutter-tools.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			local flutter = require("flutter-tools")
+			flutter.setup({
+				ui = { border = "rounded" },
+				debugger = { enabled = true, run_via_dap = true },
+				outline = { auto_open = false },
+				decorations = {
+					statusline = { device = true, app_version = true },
+				},
+				widget_guides = { enabled = true, debug = true },
+				dev_log = { open_cmd = "tabedit" },
+				lsp = {
+					color = {
+						enabled = false,
+						background = true,
+						virtual_text = false,
+					},
+					settings = {
+						showTodos = false,
+						renameFilesWithClasses = "always",
+					},
+					on_attach = function(client, bufnr)
+						require("user.lsp.handlers").on_attach(client, bufnr)
+					end,
+				},
+			})
+		end,
+		ft = "dart",
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

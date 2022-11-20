@@ -86,8 +86,8 @@ local nmappings = {
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
 	["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
 
-    ["c"] = { "<cmd>Cheat<cr>", "Cheat" },
-    ["C"] = { "<cmd>set spell! spelllang=en_us,pt<cr>", "Toggle spell check" },
+	["c"] = { "<cmd>Cheat<cr>", "Cheat" },
+	["C"] = { "<cmd>set spell! spelllang=en_us,pt<cr>", "Toggle spell check" },
 
 	["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
 
@@ -124,14 +124,14 @@ local nmappings = {
 		g = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<cr>", "Show dialog" },
 		w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-        F = {
-            name = "Flutter tools",
-            d = { "<cmd>FlutterDevices<cr>", "Devices" },
-            r = { "<cmd>FlutterRun<cr>", "Run" },
-            R = { "<cmd>FlutterRestart<cr>", "Restart" },
-            q = { "<cmd>FlutterQuit<cr>", "Quit" },
-            l = { "<cmd>FlutterLspRestart<cr>", "Restart LSP server" },
-        },
+		F = {
+			name = "Flutter tools",
+			d = { "<cmd>FlutterDevices<cr>", "Devices" },
+			r = { "<cmd>FlutterRun<cr>", "Run" },
+			R = { "<cmd>FlutterRestart<cr>", "Restart" },
+			q = { "<cmd>FlutterQuit<cr>", "Quit" },
+			l = { "<cmd>FlutterLspRestart<cr>", "Restart LSP server" },
+		},
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
@@ -139,7 +139,7 @@ local nmappings = {
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
+		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
 		S = { "<cmd>SymbolsOutline<cr>", "Document Symbols" },
 		t = {
 			name = "+Trouble",
@@ -200,6 +200,16 @@ local nmappings = {
 		v = { "<cmd>VimtexView<CR>", "Open preview" },
 		w = { "<cmd>VimtexCountWords!<CR>", "Count number of words" },
 	},
+
+	J = {
+		name = "Java",
+		o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
+		v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
+		c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
+		t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
+		T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
+		u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
+	},
 }
 
 local vopts = {
@@ -213,6 +223,12 @@ local vopts = {
 
 local vmappings = {
 	["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+	J = {
+		name = "Java",
+		v = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable" },
+		c = { "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant" },
+		m = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
+	},
 }
 
 which_key.setup(setup)

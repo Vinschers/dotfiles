@@ -22,6 +22,7 @@ null_ls.setup({
 		formatting.dart_format,
 		formatting.beautysh,
 		formatting.latexindent,
+        formatting.google_java_format.with({ extra_args = { "-a" } }),
 
 		diagnostics.flake8,
 		diagnostics.shellcheck,

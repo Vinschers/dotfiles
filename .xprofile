@@ -13,7 +13,9 @@ then
 else
     echo "Unknown system"
 fi
-#xrandr --output DP-1 --left-of HDMI-0 &
+
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 picom -f &
 nitrogen --restore &
-xautolock -time $LOCK_TIME -locker lock -corners +00- &
+# xautolock -time $LOCK_TIME -locker lock -corners +00- &
