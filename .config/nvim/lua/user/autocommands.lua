@@ -73,27 +73,12 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         os.execute("xrdb ~/.Xresources")
     end,
 })
-
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     pattern = { "local_environment.sh" },
     callback = function ()
         os.execute('git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged "$SCRIPTS_DIR/shell/local_environment.sh"')
     end,
 })
-
-STARTED_INKSCAPE_WATCH = false
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    pattern = { "*.tex" },
-    callback = function ()
-        local is_running = os.execute("isrunning inkscape-figures")
-
-        if is_running ~= 0 then
-            os.execute("inkscape-figures watch")
-            STARTED_INKSCAPE_WATCH = true
-        end
-    end
-})
-
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
     pattern = { "*.tex" },
     callback = function ()

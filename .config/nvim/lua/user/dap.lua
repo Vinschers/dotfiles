@@ -174,16 +174,27 @@ dap.configurations.dart = {
 
 dap.adapters.bash = {
 	type = "executable",
-	command = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/bash-debug-adapter",
+	command = "bash-debug-adapter",
 	name = "bash",
 	args = {},
 }
 
+local BASHDB_DIR = require("mason-registry").get_package("bash-debug-adapter"):get_install_path()
+	.. "/extension/bashdb_dir"
 dap.configurations.sh = {
 	{
 		type = "bash",
 		request = "launch",
-		name = "Launch sh",
+		name = "Bash: Launch file",
 		program = "${file}",
+		cwd = "${fileDirname}",
+		pathBashdb = BASHDB_DIR .. "/bashdb",
+		pathBashdbLib = BASHDB_DIR,
+		pathBash = "bash",
+		pathCat = "cat",
+		pathMkfifo = "mkfifo",
+		pathPkill = "pkill",
+		env = {},
+		args = {},
 	},
 }

@@ -14,6 +14,8 @@ end
 
 
 WORKSPACE_PATH = vim.fn.stdpath("data") .. "/jdtls-workspace/"
+JDTLS_PATH = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
+JAVA_DEBUG_PATH = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server"
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -36,7 +38,7 @@ local config = {
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-javaagent:" .. vim.fn.stdpath("data") .. "/mason/packages/jdtls/lombok.jar",
+		"-javaagent:" .. JDTLS_PATH .. "/lombok.jar",
 		"-Xms1g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
@@ -46,14 +48,14 @@ local config = {
 
 		-- 💀
 		"-jar",
-		vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+		vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 		-- Must point to the                                                     Change this to
 		-- eclipse.jdt.ls installation                                           the actual version
 
 		-- 💀
 		"-configuration",
-		vim.fn.stdpath("data") .. "/mason/packages/jdtls/config_linux",
+		JDTLS_PATH .. "/config_linux",
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
 		-- Must point to the                      Change to one of `linux`, `win` or `mac`
 		-- eclipse.jdt.ls installation            Depending on your system.
@@ -149,8 +151,8 @@ local config = {
 	init_options = {
 		bundles = {
 			vim.fn.glob(
-				vim.fn.stdpath("data")
-					.. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+				JAVA_DEBUG_PATH
+					.. "/com.microsoft.java.debug.plugin-*.jar"
 			),
 		},
 	},

@@ -9,10 +9,8 @@ archlinux-keyring
 android-file-transfer
 bc
 btop
-cppcheck
 dunst
 ffmpeg
-flake8
 flameshot
 gdb
 gparted
@@ -50,15 +48,12 @@ pavucontrol
 pdf2svg
 picom
 pulseaudio
-python-black
 python-pip
 qbittorrent
 ranger
 ripgrep
 rkhunter
-shellcheck
 simple-scan
-stylua
 syncthing
 sxhkd
 texlive-most
@@ -82,7 +77,6 @@ xf86-input-wacom
 xf86-video-intel
 xf86-video-vesa
 xournalpp
-yamllint
 zathura
 zip
 zsh

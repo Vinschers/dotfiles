@@ -20,7 +20,7 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" } }),
 		formatting.dart_format,
-		formatting.beautysh,
+		formatting.shfmt,
 		formatting.latexindent,
         formatting.google_java_format.with({ extra_args = { "-a" } }),
 
@@ -30,6 +30,6 @@ null_ls.setup({
 		diagnostics.chktex,
 
 		code_actions.shellcheck,
-		code_actions.eslint,
+		code_actions.eslint_d,
 	},
 })

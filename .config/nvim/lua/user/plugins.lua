@@ -275,6 +275,8 @@ return packer.startup(function(use)
 		end,
 		ft = "dart",
 	})
+    use({ "jayp0521/mason-nvim-dap.nvim" })
+    use({ "jayp0521/mason-null-ls.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

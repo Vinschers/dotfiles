@@ -1,4 +1,4 @@
-local servers = {
+local lsp_servers = {
 	"sumneko_lua",
 	"cssls",
 	"html",
@@ -9,6 +9,31 @@ local servers = {
 	"yamlls",
 	"clangd",
 	"jdtls"
+}
+
+-- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
+local dap_servers = {
+    "javadbg",
+    "bash",
+    "python"
+}
+
+local fmt_lint_servers = {
+    "prettier",
+    "black",
+    "isort",
+    "stylua",
+    "clang_format",
+    -- "dart_format",
+    "shfmt",
+    -- "latexindent",
+    -- "google_java_format",
+
+    "flake8",
+    "shellcheck",
+    "yamllint",
+    -- "chktex",
+    "eslint_d",
 }
 
 local settings = {
@@ -26,9 +51,18 @@ local settings = {
 
 require("mason").setup(settings)
 require("mason-lspconfig").setup({
-	ensure_installed = servers,
+	ensure_installed = lsp_servers,
 	automatic_installation = true,
 })
+require("mason-nvim-dap").setup({
+    ensure_installed = dap_servers,
+    automatic_installation = true,
+})
+require("mason-null-ls").setup({
+    ensure_installed = fmt_lint_servers,
+    automatic_installation = true,
+})
+
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -37,7 +71,7 @@ end
 
 local opts = {}
 
-for _, server in pairs(servers) do
+for _, server in pairs(lsp_servers) do
 	opts = {
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
