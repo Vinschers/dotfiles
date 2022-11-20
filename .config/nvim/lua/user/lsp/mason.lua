@@ -8,7 +8,9 @@ local lsp_servers = {
 	"jsonls",
 	"yamlls",
 	"clangd",
-	"jdtls"
+	"jdtls",
+    "texlab",
+    "svls"
 }
 
 -- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua

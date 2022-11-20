@@ -6,7 +6,7 @@
 
 % Better fonts with accents
 \RequirePackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\RequirePackage[utf8]{inputenc}
 
 % Required for starred commands
 \RequirePackage{suffix}

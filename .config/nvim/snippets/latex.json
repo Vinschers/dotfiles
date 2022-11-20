@@ -1152,5 +1152,34 @@
             "\t\\input{$2}",
             "\\end{document}"
         ]
+    },
+    "Homework": {
+        "prefix": [
+            "hw",
+            "homework"
+        ],
+        "body": [
+            "\\documentclass{homework}",
+            "",
+            "\\usepackage[margin=0.75in]{geometry}",
+            "\\usepackage[portuguese]{babel}",
+            "",
+            "\\setlength{\\headheight}{15pt}",
+            "",
+            "\\pagestyle{fancy}",
+            "\\fancyhead[L]{\\thetitle}",
+            "\\fancyhead[C]{\\theauthor}",
+            "\\fancyhead[R]{\\leftmark} % \\rightmark for subsections",
+            "",
+            "\\title{$1}",
+            "\\author{$2}",
+            "\\date{\\today}",
+            "",
+            "\\begin{document}",
+            "\t\\maketitle",
+            "\t",
+            "\t$3",
+            "\\end{document}"
+        ]
     }
 }

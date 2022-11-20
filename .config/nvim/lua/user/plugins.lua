@@ -104,13 +104,13 @@ return packer.startup(function(use)
 	use({ "folke/trouble.nvim", cmd = "TroubleToggle" })
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 	use("folke/which-key.nvim")
-	use({
-		"lervag/vimtex",
-		config = function()
-			vim.g.vimtex_view_method = "sioyek"
-			vim.g.vimtex_imaps_enabled = 0
-		end,
-	})
+	-- use({
+	-- 	"lervag/vimtex",
+	-- 	config = function()
+	-- 		vim.g.vimtex_view_method = "sioyek"
+	-- 		vim.g.vimtex_imaps_enabled = 0
+	-- 	end,
+	-- })
 	use({
 		"kevinhwang91/nvim-bqf",
 		event = { "BufRead", "BufNew" },

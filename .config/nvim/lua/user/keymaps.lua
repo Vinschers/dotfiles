@@ -79,7 +79,7 @@ keymap("v", "<C-A-k>", ":m .-2<CR>==", opts)
 -- Save
 keymap("n", "<C-s>", ":w<cr>", opts)
 
-keymap("n", "<F4>", ":lua _COMPILE_CODE()<cr>", opts)
+keymap("n", "<F4>", ":! compile " .. vim.fn.expand("%") .. ">/dev/null<cr><cr>", opts)
 keymap("n", "<F5>", ":lua _RUN_CODE()<cr>", opts)
 
 -- Visual --

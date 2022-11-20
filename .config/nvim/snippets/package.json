@@ -1,17 +1,9 @@
 {
-    "name": "friendly-snippets",
-    "engines": {
-        "vscode": "^1.11.0"
-    },
+    "name": "snippets",
     "contributes": {
         "snippets": [
             {
                 "language": [
-                    "plaintext",
-                    "markdown",
-                    "tex",
-                    "html",
-                    "global",
                     "all"
                 ],
                 "path": "./global.json"
@@ -325,20 +317,6 @@
             {
                 "language": "kotlin",
                 "path": "./kotlin.json"
-            },
-            {
-                "language": [
-                    "plaintex",
-                    "tex"
-                ],
-                "path": "./latex/latex-snippets.json"
-            },
-            {
-                "language": [
-                    "plaintex",
-                    "tex"
-                ],
-                "path": "./latex/vscode-latex-snippets.json"
             },
             {
                 "language": "twig",
