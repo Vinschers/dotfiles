@@ -104,13 +104,17 @@ return packer.startup(function(use)
 	use({ "folke/trouble.nvim", cmd = "TroubleToggle" })
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 	use("folke/which-key.nvim")
-	-- use({
-	-- 	"lervag/vimtex",
-	-- 	config = function()
-	-- 		vim.g.vimtex_view_method = "sioyek"
-	-- 		vim.g.vimtex_imaps_enabled = 0
-	-- 	end,
-	-- })
+	use({
+		"lervag/vimtex",
+		config = function()
+			vim.g.vimtex_matchparen_enabled = 0
+            vim.g.vimtex_view_method = "sioyek"
+            vim.opt.conceallevel = 1
+            vim.g.tex_conceal = "abdmgs"
+            vim.g.vimtex_indent_enabled = 0
+            vim.cmd("imap <F12> <plug>(vimtex-delim-close)")
+		end,
+	})
 	use({
 		"kevinhwang91/nvim-bqf",
 		event = { "BufRead", "BufNew" },
@@ -242,7 +246,7 @@ return packer.startup(function(use)
 		"RishabhRD/nvim-cheat.sh",
 		requires = "RishabhRD/popfix",
 	})
-    use({ "dart-lang/dart-vim-plugin" })
+	use({ "dart-lang/dart-vim-plugin" })
 	use({
 		"akinsho/flutter-tools.nvim",
 		requires = "nvim-lua/plenary.nvim",
@@ -275,8 +279,8 @@ return packer.startup(function(use)
 		end,
 		ft = "dart",
 	})
-    use({ "jayp0521/mason-nvim-dap.nvim" })
-    use({ "jayp0521/mason-null-ls.nvim" })
+	use({ "jayp0521/mason-nvim-dap.nvim" })
+	use({ "jayp0521/mason-null-ls.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
