@@ -19,18 +19,14 @@ compileFile() {
             g++ -g -Wall -o "$dir/$file" -lm "$1"
             ;;
         java)
-            javac "$1" && bin_file="$dir/$file.class" ; cmd="java $dir/$file.class"
+            javac "$1" && bin_file="$dir/$file.class" ; cmd="java"
             ;;
         py)
-            cmd="python $1"
+            cmd="python \"$1\""
             bin_file=""
             ;;
         tex)
             latexmk -pdf -shell-escape -bibtex "$1" > /dev/null && cp "$dir/.latex-cache/$file.pdf" "$dir" && bin_file="$dir/$file.pdf" ; cmd="xdg-open $dir/$file.pdf"
-            ;;
-        exs)
-            cmd="elixir $1"
-            bin_file=""
             ;;
         s)
             gcc -g -Wall "$1" -o "$dir/$file" -lm
