@@ -49,6 +49,8 @@ install_packages () {
     sudo systemctl enable zotero-translation-server.service
 
     pip install undetected-chromedriver
+
+    npm i tree-sitter-cli
 }
 
 check "Setup wacom?" 1 && setup_wacom

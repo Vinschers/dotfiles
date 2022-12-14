@@ -10,6 +10,7 @@ android-file-transfer
 bc
 btop
 dunst
+fd
 ffmpeg
 flameshot
 gdb
@@ -48,11 +49,13 @@ pavucontrol
 pdf2svg
 picom
 pulseaudio
+python-pynvim
 python-pip
 qbittorrent
 ranger
 ripgrep
 rkhunter
+rustup
 simple-scan
 syncthing
 sxhkd
