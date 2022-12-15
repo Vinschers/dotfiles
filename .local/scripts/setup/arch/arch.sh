@@ -4,13 +4,13 @@
 check () {
     if [ "$2" = "1" ]
     then
-        echo -n "$1 [Y/n] " >&2
-        read ans
+        printf "%s [Y/n] " "$1" >&2
+        read -r ans
 
         [ "$ans" = "" ] || [ "$ans" = "Y" ] || [ "$ans" = "y" ]
     else
-        echo -n "$1 [y/N] " >&2
-        read ans
+        printf "%s [y/N] " "$1" >&2
+        read -r ans
 
         ! [ "$ans" = "" ] || [ "$ans" = "N" ] || [ "$ans" = "n" ]
     fi
@@ -31,13 +31,13 @@ install_packages () {
 
     while read -r PACKAGE
     do
-        echo -e "\n\n\nInstalling $PACKAGE..."
+        printf "\n\n\nInstalling %s..." "$PACKAGE"
         sudo pacman -S --noconfirm --needed "$PACKAGE"
     done < "$THIS_DIRECTORY/pacman"
 
     while read -r PACKAGE
     do
-        echo -e "\n\n\nInstalling $PACKAGE..."
+        printf "\n\n\nInstalling %s..." "$PACKAGE"
         yay --noconfirm -S "$PACKAGE"
     done < "$THIS_DIRECTORY/yay"
 

@@ -4,46 +4,28 @@
 check () {
     if [ "$2" = "1" ]
     then
-        echo -n "$1 [Y/n] " >&2
-        read ans
+        printf "%s [Y/n] " "$1" >&2
+        read -r ans
 
         [ "$ans" = "" ] || [ "$ans" = "Y" ] || [ "$ans" = "y" ]
     else
-        echo -n "$1 [y/N] " >&2
-        read ans
+        printf "%s [y/N] " "$1" >&2
+        read -r ans
 
         ! [ "$ans" = "" ] || [ "$ans" = "N" ] || [ "$ans" = "n" ]
     fi
 }
 
-center() {
-    termwidth="60"
-    padding="$(printf '%0.1s' ={1..500})"
-    txt=""
-    ! [ "$1" = "" ] && txt=" $1 " && termwidth=$(( termwidth-2 ))
-    printf '%*.*s%s%*.*s\n' 0 "$(((termwidth-${#1})/2))" "$padding" "$txt" 0 "$(((termwidth-1-${#1})/2))" "$padding"
-}
-
-show_menu() {
-    center "Select current distro"
-    echo ""
-    echo -e "1.\tArch"
-
-    echo ""
-    center ""
-    echo ""
-    echo -n "Option: "
-}
-
 create_files_dirs () {
     sudo mkdir -p /mnt/android/
+    mkdir "$HOME/Downloads"
 }
 
 setup_git () {
     git config --global alias.reset-hard '!f() { git reset --hard; git clean -df ; }; f'
 
-    echo -n "Email: "
-    read email
+    printf "Email: "
+    read -r email
 
     ssh-keygen -t ed25519 -C "$email" -N "" -f "$HOME/.ssh/id_ed25519"
 
@@ -51,7 +33,7 @@ setup_git () {
 
     ssh-add ~/.ssh/id_ed25519
 
-    echo -e "Add the key in ~/.ssh/id_ed25519 to your Git account\nKey:\n\n"
+    printf "Add the key in ~/.ssh/id_ed25519 to your Git account\nKey:\n\n"
     cat ~/.ssh/id_ed25519.pub
 }
 
@@ -64,27 +46,20 @@ ignore_local_files () {
     cd "$SCRIPTS_DIR/shell" || return
     dotfiles update-index --assume-unchanged local_environment.sh
 
-    cd "~/.cache" || return
+    cd "$HOME/.cache" || return
     dotfiles update-index --assume-unchanged cpustatus datetime diskspace hardware weather
 }
 
 
-show_menu
-read opt
-
 THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
 
-case "$opt" in
-    "1") SCRIPT="arch/arch.sh" ;;
+OS="$(lsp_release -is)"
+case "$OS" in
+    "Arch") SCRIPT="arch/arch.sh" ;;
 esac
 
-if ! [ -z "$SCRIPT" ]
-then
-    center "Running $SCRIPT script"
-    "/bin/sh" "$THIS_DIRECTORY/$SCRIPT"
-    center ""
-fi
+[ -n "$SCRIPT" ] && "/bin/sh" "$THIS_DIRECTORY/$SCRIPT"
 
 check "Set up git?" && setup_git
 check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh $THIS_DIRECTORY"
