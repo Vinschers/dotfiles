@@ -63,6 +63,7 @@ alias \
     ct="compact_tar" \
     cz="compact_zip" \
     lf="lf-ueberzug" \
+    startx='startx $HOME/.config/x11/xinitrc' \
 
 # Utils
 alias \
@@ -71,11 +72,11 @@ alias \
     i='sudo pacman -S' \
     up='yay -Syu' \
     s='scripts' \
-    books='cd ~/hdd/books/ && ls' \
+    books='cd $HOME/hdd/books/ && ls' \
     b='books' \
     se='sudoedit' \
-    cv="cd ~/.config/nvim/" \
-    cs="cd ~/.config/suckless/" \
+    cv='cd $HOME/.config/nvim/' \
+    cs='cd $HOME/.config/suckless/' \
     vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn" \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
     d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls'
