@@ -54,7 +54,7 @@ ignore_local_files () {
 THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
 
-OS="$(lsp_release -is)"
+OS="$(lsb_release -is)"
 case "$OS" in
     "Arch") SCRIPT="arch/arch.sh" ;;
 esac
