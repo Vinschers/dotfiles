@@ -74,6 +74,13 @@ end
 
 local disable_formatting = { "tsserver", "sumneko_lua", "clangd", "dartls", "jdt.ls" }
 
+local lsp_signature_config = {
+    bind = true,
+    handler_opts = {
+        border = "rounded"
+    }
+}
+
 M.on_attach = function(client, bufnr)
 	if contains(disable_formatting, client.name) then
 		client.server_capabilities.documentFormattingProvider = false
@@ -85,6 +92,12 @@ M.on_attach = function(client, bufnr)
 		return
 	end
 	illuminate.on_attach(client)
+
+	local status_ok, lsp_signature = pcall(require, "lsp_signature")
+	if not status_ok then
+		return
+	end
+    lsp_signature.on_attach(lsp_signature_config, bufnr)
 end
 
 return M

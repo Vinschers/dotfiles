@@ -9,15 +9,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "gitcommit" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "markdown" },
+	pattern = { "gitcommit", "markdown" },
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
@@ -66,28 +58,39 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	end,
 })
 
-
+vim.cmd([[
+    autocmd BufRead * autocmd FileType <buffer> ++once
+      \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
+]])
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    pattern = { ".Xresources" },
-    callback = function ()
-        os.execute("xrdb ~/.Xresources")
-    end,
+	pattern = { ".Xresources" },
+	callback = function()
+		os.execute("xrdb ~/.Xresources")
+	end,
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    pattern = { "local_environment.sh" },
-    callback = function ()
-        os.execute('git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged "$SCRIPTS_DIR/shell/local_environment.sh"')
-    end,
+	pattern = { "local_environment.sh" },
+	callback = function()
+		os.execute(
+			'git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged "$SCRIPTS_DIR/shell/local_environment.sh"'
+		)
+	end,
 })
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
-    pattern = { "*.tex" },
-    callback = function ()
-        if STARTED_INKSCAPE_WATCH then
-            os.execute("killall inkscape-figures")
-        end
+	pattern = { "*.tex" },
+	callback = function()
+		if STARTED_INKSCAPE_WATCH then
+			os.execute("killall inkscape-figures")
+		end
 
-        local directory = vim.fn.expand("%:p"):match("(.*[\\/])")
-        local cmd = "[ -f \"" .. directory .. "\".latex-cache/*.pdf ] && cp \"" .. directory .. "\".latex-cache/*.pdf \"" .. directory .. "\""
-        os.execute(cmd)
-    end,
+		local directory = vim.fn.expand("%:p"):match("(.*[\\/])")
+		local cmd = '[ -f "'
+			.. directory
+			.. '".latex-cache/*.pdf ] && cp "'
+			.. directory
+			.. '".latex-cache/*.pdf "'
+			.. directory
+			.. '"'
+		os.execute(cmd)
+	end,
 })

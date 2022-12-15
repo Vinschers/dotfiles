@@ -294,9 +294,7 @@
         "prefix": "eq",
         "body": [
             "\\begin{equation}",
-            "\t\\begin{split}",
-            "\t\t$0",
-            "\t\\end{split}",
+            "\t$0",
             "\\end{equation}"
         ]
     },
@@ -304,9 +302,7 @@
         "prefix": "eq*",
         "body": [
             "\\begin{equation*}",
-            "\t\\begin{split}",
-            "\t\t$0",
-            "\t\\end{split}",
+            "\t$0",
             "\\end{equation*}"
         ]
     },

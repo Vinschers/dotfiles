@@ -7,4 +7,5 @@ if is_running ~= 0 then
     STARTED_INKSCAPE_WATCH = true
 end
 
-vim.cmd("NoMatchParen")
+vim.opt.conceallevel = 1
+vim.cmd("imap <F12> <plug>(vimtex-delim-close)")

@@ -8,34 +8,33 @@ local lsp_servers = {
 	"jsonls",
 	"yamlls",
 	"clangd",
-	"jdtls",
-    "texlab",
-    "svls"
+	-- "jdtls",
+	"texlab",
 }
 
 -- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
 local dap_servers = {
-    "javadbg",
-    "bash",
-    "python"
+	-- "javadbg",
+	"bash",
+	"python",
 }
 
 local fmt_lint_servers = {
-    "prettier",
-    "black",
-    "isort",
-    "stylua",
-    "clang_format",
-    -- "dart_format",
-    "shfmt",
-    -- "latexindent",
-    -- "google_java_format",
+	"prettier",
+	"black",
+	"isort",
+	"stylua",
+	"clang_format",
+	-- "dart_format",
+	"shfmt",
+	-- "latexindent",
+	-- "google_java_format",
 
-    "flake8",
-    "shellcheck",
-    "yamllint",
-    -- "chktex",
-    "eslint_d",
+	"flake8",
+	"shellcheck",
+	"yamllint",
+	-- "chktex",
+	"eslint_d",
 }
 
 local settings = {
@@ -57,14 +56,13 @@ require("mason-lspconfig").setup({
 	automatic_installation = true,
 })
 require("mason-nvim-dap").setup({
-    ensure_installed = dap_servers,
-    automatic_installation = true,
+	ensure_installed = dap_servers,
+	automatic_installation = true,
 })
 require("mason-null-ls").setup({
-    ensure_installed = fmt_lint_servers,
-    automatic_installation = true,
+	ensure_installed = fmt_lint_servers,
+	automatic_installation = true,
 })
-
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
