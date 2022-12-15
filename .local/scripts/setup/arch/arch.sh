@@ -50,6 +50,7 @@ install_packages () {
 
     pip install undetected-chromedriver
 
+    sudo pacman -Rns gnu-free-fonts
     sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
 }
 
@@ -58,6 +59,8 @@ setup_pacman () {
     sudo sed -i 's/^#Color/Color/g' /etc/pacman.conf
     sudo sed -i 's/VerbosePkgLists/VerbosePkgLists\nILoveCandy/g' /etc/pacman.conf
     sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+
+    sudo pacman -Sy
 }
 
 setup_nvidia () {
