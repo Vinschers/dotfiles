@@ -50,7 +50,24 @@ ignore_local_files () {
     dotfiles update-index --assume-unchanged cpustatus datetime diskspace hardware weather
 }
 
+copy_xorg () {
+    sys_type="$(cat /sys/class/dmi/id/chassis_type)"
 
+    SRC=""
+
+    if [ "$sys_type" -eq 3 ] # Desktop
+    then
+        SRC="$THIS_DIRECTORY/xorg_config/desktop"
+    elif [ "$sys_type" -eq 10 ] # Notebook
+    then
+        SRC="$THIS_DIRECTORY/xorg_config/notebook"
+    fi
+
+    sudo cp -r "$SRC/xorg.conf.d" /etc/X11/
+}
+
+
+. "$HOME/.profile"
 THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
 
@@ -62,7 +79,7 @@ esac
 [ -n "$SCRIPT" ] && "/bin/sh" "$THIS_DIRECTORY/$SCRIPT"
 
 check "Set up git?" && setup_git
-check "Copy xorg.conf.d?" 1 && "/bin/sh" "$THIS_DIRECTORY/xorg.sh $THIS_DIRECTORY"
+check "Copy xorg.conf.d?" 1 && copy_xorg
 check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" && install_programs
