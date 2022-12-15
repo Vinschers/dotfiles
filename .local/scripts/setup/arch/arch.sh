@@ -50,7 +50,7 @@ install_packages () {
 
     pip install undetected-chromedriver
 
-    sudo pacman --noconfirm -Runcs "$(pacman -Qdtq)"
+    sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
 }
 
 setup_pacman () {
