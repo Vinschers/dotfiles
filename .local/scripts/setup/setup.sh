@@ -44,10 +44,10 @@ install_programs () {
 
 ignore_local_files () {
     cd "$SCRIPTS_DIR/shell" || return
-    dotfiles update-index --assume-unchanged local_environment.sh
+    git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged local_environment.sh
 
     cd "$HOME/.cache" || return
-    dotfiles update-index --assume-unchanged cpustatus datetime diskspace hardware weather
+    git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged cpustatus datetime diskspace hardware weather
 }
 
 copy_xorg () {
@@ -55,12 +55,11 @@ copy_xorg () {
 
     SRC=""
 
-    if [ "$sys_type" -eq 3 ] # Desktop
-    then
-        SRC="$THIS_DIRECTORY/xorg_config/desktop"
-    elif [ "$sys_type" -eq 10 ] # Notebook
+    if [ "$sys_type" -eq 10 ] # Notebook
     then
         SRC="$THIS_DIRECTORY/xorg_config/notebook"
+    else # Desktop
+        SRC="$THIS_DIRECTORY/xorg_config/desktop"
     fi
 
     sudo cp -r "$SRC/xorg.conf.d" /etc/X11/
