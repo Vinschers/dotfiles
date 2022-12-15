@@ -16,6 +16,7 @@ alias \
     htop="open_htop" \
     gtop="open_gtop" \
     nvim="open_nvim" \
+    bash='bash --rcfile $BASHDIR/bashrc.sh' \
     mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" # This alias is important. It enables the `pauseallmpv` command.
 
 # Shortenings

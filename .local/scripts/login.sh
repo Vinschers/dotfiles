@@ -5,7 +5,7 @@ export BASHDIR="$HOME/.config/bash"
 
 if [ "${SHELL#*bash}" != "$SHELL" ]
 then
-	. "$HOME/.bashrc"
+    . "$BASHDIR/bashrc.sh"
 fi
 
-python "$SCRIPTS_DIR/localhost/server.py" &
+# python "$SCRIPTS_DIR/localhost/server.py" &
