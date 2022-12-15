@@ -6,13 +6,6 @@ python-inkscape-figures
 spotify
 zotero-translation-server-git
 ttf-ubraille
-ttf-amiri
-nerd-fonts-complete-mono-glyphs
-android-platform
-android-sdk-build-tools
-android-sdk-cmdline-tools-latest
-android-sdk-platform-tools
-flutter
 texlive-latexindent-meta
 sioyek
 i3lock-color
@@ -20,4 +13,3 @@ c++utilities
 qtutilities
 qtforkawesome
 syncthingtray
-nodejs-neovim

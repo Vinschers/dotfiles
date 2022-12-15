@@ -92,3 +92,5 @@ check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" && install_programs
 check "Ignore local files" 1 && ignore_local_files
+
+check "Reboot system?" 1 && reboot
