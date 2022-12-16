@@ -40,6 +40,19 @@ setup_git () {
 install_programs () {
     cd "$SCRIPTS_DIR/programs/makefile2graph" || return
     sudo make
+
+    cd "$SCRIPTS_DIR/programs/grub2-themes" || return
+    sudo ./install.sh -t stylish -s 1080p
+
+    cd "$HOME/.config/suckless" || return
+    cd dmenu || exit
+    make clean install && make clean
+    cd ../st || exit
+    make clean install && make clean
+    cd ../dwm || exit
+    make clean install && make clean
+    cd ../dwmblocks-async || exit
+    make clean install && make clean
 }
 
 ignore_local_files () {
