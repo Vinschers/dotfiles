@@ -43,8 +43,8 @@ dwm.normfloatcolor:         #1a1b26
 
 dwm.selfgcolor:             #ffffff
 dwm.selbgcolor:             #414868
-dwm.selbordercolor:         #7dcfff
-dwm.selfloatcolor:          #7dcfff
+dwm.selbordercolor:         #414868
+dwm.selfloatcolor:          #414868
 
 dwm.titlenormfgcolor:       #c0caf5
 dwm.titlenormbgcolor:       #24283b
