@@ -80,4 +80,5 @@ alias \
     cs='cd $HOME/.config/suckless/' \
     vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn" \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
-    d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls'
+    d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls' \
+    sv="sudoedit"

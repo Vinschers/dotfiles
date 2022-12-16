@@ -69,6 +69,12 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = { "*/.config/lightdm/*" },
+	callback = function()
+		os.execute("sudo cp -r ~/.config/lightdm/* /etc/lightdm/")
+	end,
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "local_environment.sh" },
 	callback = function()
 		os.execute(
