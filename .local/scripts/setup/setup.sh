@@ -80,7 +80,7 @@ copy_xorg () {
     sudo mkdir -p /usr/share/xsessions
     sudo cp "$THIS_DIRECTORY/xorg_config/dwm.desktop" /usr/share/xsessions
 
-    sudo "$HOME/.config/lightdm/update.sh"
+    "$HOME/.config/lightdm/update.sh"
 }
 
 add_full_name () {
