@@ -83,6 +83,13 @@ copy_xorg () {
     sudo "$HOME/.config/lightdm/update.sh"
 }
 
+add_full_name () {
+    printf "Full name: "
+    read -r fn
+
+    usermod -c "$fn" "$(whoami)"
+}
+
 
 . "$HOME/.profile"
 THIS_DIRECTORY="$(dirname "$0")"
@@ -101,5 +108,6 @@ check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" && install_programs
 check "Ignore local files" 1 && ignore_local_files
+check "Add user full name?" 1 && add_full_name
 
 check "Reboot system?" 1 && reboot

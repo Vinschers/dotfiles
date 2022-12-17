@@ -11,3 +11,4 @@ fi
 # python "$SCRIPTS_DIR/localhost/server.py" &
 . "$SCRIPTS_DIR/environment.sh"
 . "$SCRIPTS_DIR/local_environment.sh"
+[ -f "$SCRIPTS_DIR/secrets/secrets.sh" ] && . "$SCRIPTS_DIR/secrets/secrets.sh"

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+. sb-style
+STYLE=8
+
+fg="$(get_fg $STYLE)"
+bg_icon="$(get_bg_icon $STYLE)"
+bg_text="$(get_bg_text $STYLE)"
+
+music="$(curl -sX "GET" "https://api.spotify.com/v1/me/player/currently-playing" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $SPOTIFY_TOKEN" | jq --raw-output -j '.item.name, " | ", ([.item.artists[].name] | join(", "))')"
+
+printf "%s%s" "$bg_icon" "$fg"
+printf " %s " "ﱘ"
+printf "%s" "$bg_text"
+printf " %s " "$music"
+printf "%s" "$(get_color_reset)"
+
+case $BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
