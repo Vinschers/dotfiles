@@ -32,10 +32,10 @@ for battery in /sys/class/power_supply/BAT?*; do
 
     if [ "$battery_status" = "Charging" ]
     then
-        STYLE=3
+        STYLE=2
         icon=""
     else
-        STYLE=2
+        STYLE=3
     fi
 
     fg="$(get_fg $STYLE)"
