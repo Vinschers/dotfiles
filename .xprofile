@@ -16,6 +16,7 @@ fi
 
 picom -f &
 nitrogen --restore &
+dunst &
 
 #[ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
 
