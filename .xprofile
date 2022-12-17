@@ -1,0 +1,23 @@
+#!/bin/sh
+
+sys_type="$(cat /sys/class/dmi/id/chassis_type)"
+
+if [ "$sys_type" -eq 3 ] # Desktop
+then
+    echo "Desktop"
+elif [ "$sys_type" -eq 10 ] # Notebook
+then
+    echo "Notebook"
+
+    nm-applet &
+else
+    echo "Unknown system"
+fi
+
+picom -f &
+nitrogen --restore &
+
+#[ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
+
+# xautolock -time $LOCK_TIME -locker lock -corners +00- &
+#python "$SCRIPTS_DIR/external/inkscape-shortcut-manager/main.py" &
