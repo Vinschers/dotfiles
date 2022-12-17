@@ -10,4 +10,4 @@ fi
 
 # python "$SCRIPTS_DIR/localhost/server.py" &
 . "$SCRIPTS_DIR/environment.sh"
-. "$SCRIPTS_DIR/shell/local_environment.sh.sh"
+. "$SCRIPTS_DIR/local_environment.sh"

@@ -76,6 +76,11 @@ copy_xorg () {
     fi
 
     sudo cp -r "$SRC/xorg.conf.d" /etc/X11/
+
+    sudo mkdir -p /usr/share/xsessions
+    sudo cp "$THIS_DIRECTORY/xorg_config/dwm.desktop" /usr/share/xsessions
+
+    sudo "$HOME/.config/lightdm/update.sh"
 }
 
 

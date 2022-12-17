@@ -1,6 +1,7 @@
 xorg
 xorg-xinit
 xorg-server-devel
+accountsservice
 alsa-firmware
 alsa-utils
 archlinux-keyring
@@ -19,6 +20,9 @@ imv
 jdk-openjdk
 keepassxc
 lazygit
+lightdm
+lightdm-webkit2-greeter
+lightdm-webkit-theme-litarvan
 linux-headers
 lldb
 lolcat
@@ -61,7 +65,6 @@ texlive-most
 texlive-lang
 thunar
 tldr
-ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
 ttf-liberation

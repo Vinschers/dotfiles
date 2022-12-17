@@ -52,6 +52,10 @@ install_packages () {
 
     sudo pacman -Rns gnu-free-fonts
     sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
+
+    sudo systemctl enable lightdm
+
+    sudo sed -i "/Icon=/c\Icon=/var/lib/AccountsService/icons/$(whoami).png" "/var/lib/AccountsService/users/$(whoami)"
 }
 
 setup_pacman () {
