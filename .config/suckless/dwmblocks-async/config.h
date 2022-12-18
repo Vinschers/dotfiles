@@ -8,8 +8,8 @@ const Block blocks[] = {
 	// BLOCK("sb-price",       60,     7),
 	BLOCK("sb-weather",     60,     7),
 	BLOCK("sb-hololive",    60,     6),
-	BLOCK("sb-keyboard",    0,      5),
-	BLOCK("sb-music",       1,      4),
+	BLOCK("sb-music",       2,      5),
+	BLOCK("sb-keyboard",    0,      4),
 	BLOCK("sb-hardware",    2,      3),
 	BLOCK("sb-battery",     30,     2),
 	BLOCK("sb-datetime",    1,      1)

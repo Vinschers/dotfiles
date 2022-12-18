@@ -7,12 +7,45 @@ fg="$(get_fg $STYLE)"
 bg_icon="$(get_bg_icon $STYLE)"
 bg_text="$(get_bg_text $STYLE)"
 
-music="$(curl -sX "GET" "https://api.spotify.com/v1/me/player/currently-playing" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $SPOTIFY_TOKEN" | jq --raw-output -j '.item.name, " | ", ([.item.artists[].name] | join(", "))')"
+player="$(spot-cli -q)"
+
+[ -z "$player" ] && exit
+
+state="$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:"org.mpris.MediaPlayer2.Player" string:'PlaybackStatus' | grep -Ev "^method" | grep -Eo '("(.*)")|(\b[0-9][a-zA-Z0-9.]*\b)' | cut -f2 -d'"')"
+
+case "$state" in
+    Stopped)
+        exit
+        ;;
+    Playing)
+        icon="ﱘ"
+        ;;
+    Paused)
+        icon=""
+        ;;
+esac
+
+info="$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:"org.mpris.MediaPlayer2.Player" string:'Metadata' | grep -Ev "^method" | grep -Eo '("(.*)")|(\b[0-9][a-zA-Z0-9.]*\b)' | sed -E '2~2 a|' | tr -d '\n' | sed -E 's/\|/\n/g;s/(xesam:)|(mpris:)//' | sed -E 's/^"//;s/"$//;s/"+/|/;s/ +/ /g' | grep -Ew 'title|albumArtist' | sort | cut -f2 -d'|' | sed '/^[[:space:]]*$/d;s/^[[:space:]]*//' | tr '\n' '|' | awk -F'|' '{print $1"§"$2}')"
+song="${info%§*}"
+artist="${info#*§}"
+
+MAX_LENGTH=18
+
+if [ ${#song} -gt $MAX_LENGTH ]
+then
+    song="$(printf '%s' "$song" | cut -c -$((MAX_LENGTH-3)))..."
+fi
+
+if [ ${#artist} -gt $MAX_LENGTH ]
+then
+    artist="$(printf '%s' "$artist" | cut -c -$((MAX_LENGTH-3)))..."
+fi
+
 
 printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "ﱘ"
+printf " %s " "$icon"
 printf "%s" "$bg_text"
-printf " %s " "$music"
+printf " %s " "$song | $artist"
 printf "%s" "$(get_color_reset)"
 
 case $BUTTON in

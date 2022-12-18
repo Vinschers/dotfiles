@@ -98,8 +98,8 @@ sb.style5.bg_icon:          #ff6e18
 sb.style5.bg_text:          #ffae7e
 
 sb.style6.fg:               #24283b
-sb.style6.bg_icon:          #36cab3
-sb.style6.bg_text:          #73daca
+sb.style6.bg_icon:          #1db954
+sb.style6.bg_text:          #41e17a
 
 sb.style7.fg:               #24283b
 sb.style7.bg_icon:          #7e92eb

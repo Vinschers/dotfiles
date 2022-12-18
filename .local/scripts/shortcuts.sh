@@ -9,32 +9,17 @@ case "$key" in
     Print)
         flameshot gui
         ;;
-    Delete)
-        lock
-        ;;
     a)
         sci add
         ;;
     b)
         "$BROWSER"
         ;;
-    d)
-        pamixer -ud 1
-        volume=$(pamixer --get-volume)
-        msgTag="volume"
-        dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-high-symbolic.svg" -h string:x-dunst-stack-tag:$msgTag -h int:value:"$volume" "Volume: ${volume}%"
-        ;;
     e)
         notify-send "$(colorpicker --short --one-shot --preview)"
         ;;
-    g)
+    d)
         sh -c "cd $ACADEMIC_DIRECTORY/unicamp/disciplinas; $TERMINAL"
-        ;;
-    i)
-        pamixer -ui 1
-        volume=$(pamixer --get-volume)
-        msgTag="volume"
-        dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-high-symbolic.svg" -h string:x-dunst-stack-tag:$msgTag -h int:value:"$volume" "Volume: ${volume}%"
         ;;
     j)
         books="$(find -L "$ACADEMIC_DIRECTORY/bibliography/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
@@ -49,15 +34,12 @@ case "$key" in
     k)
         sci
         ;;
-    m)
-        pamixer -m && update_dwmblocks 4
-        ;;
     p)
         project="$(ls -1 "$ACADEMIC_DIRECTORY/projects" | dmenu -i -l 10)"
         [ -n "$project" ] && cd "$ACADEMIC_DIRECTORY/projects/$project" && "$TERMINAL"
         ;;
     s)
-        spotify
+        spot-cli --prompt
         ;;
     w)
         webcam
@@ -67,6 +49,6 @@ case "$key" in
         ;;
 
     *)
-        notify-send "Unknown shortcut $key."
+        notify-send -u low "Unknown shortcut $key."
         ;;
 esac

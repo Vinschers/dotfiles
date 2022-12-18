@@ -1,0 +1,145 @@
+#!/bin/sh
+
+# Franceso Minnocci 2020
+# NOTE: This has been tested with ncspot, the official spotify client and tauon, but it could be used
+#				with any player which supports MPRIS via dbus. Just add its name to the `players` array.
+#				You should set active=false below for players which do not support spotify URL/URIs.
+
+# Determine currently active spotify player (first one found from the array is use for pause/play/toggle)
+# When trying to open URL/URIs, we prompt to open a player if there are none
+
+players="$(dbus-send --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep mpris | cut -d. -f 4- | cut -d'"' -f -1 | tac | paste -sd:)":spotify:ncspot:tauon
+findplayer() {
+	IFS=:
+	for p in $players; do
+		if pgrep -i "${p%.*}" >/dev/null 2>&1; then
+			player="$p"
+		fi
+	done
+	if ! echo "$player" | grep -q spot ; then
+		active="false"
+	fi
+	if [ "$1" = "output" ]; then
+		echo "$player"
+	fi
+}
+
+terms=st:alacritty:$TERMINAL
+findterm() {
+	IFS=:
+	for t in $terms; do
+		if [ -z "$t" ]; then
+			continue
+		fi
+		check="$(command -v "$t")"
+		if [ -n "$check" ]; then
+			localt="$t"
+			return 0
+		fi
+	done
+}
+
+prompt() { #__ cool interactive stuff __#
+	findplayer
+	if ! $active; then
+		promptplayer="$(printf "spotify\nncspot" | dmenu -i -l 2 -p "Would you like to open:")"
+		if [ -n "$promptplayer" ]; then
+			if [ "$promptplayer" = "spotify" ]; then
+				setsid -f spotify
+			elif [ "$promptplayer" = "ncspot" ]; then
+				if findterm; then
+					setsid -f $localt -c ncspot -e ncspot	||	# st (and many others)
+					setsid -f $localt -e ncspot	# Fallback to not setting the terminal's class
+				fi
+			fi
+			sleep 3
+		fi
+	fi
+}
+
+usage() {
+	printf "Usage: %s [options] <URL|URI> <TIME> \n\n\t-h, --help\tDisplay usage instructions\n\t-n, --next\tNext song\n\t-p, --prev\tPrevious song\n\t-q, --query\tReturn current player\n\t-t, --toggle\tPlay/Pause\n\t-s, --stop\tStop\n\t    --pause\tPause song\n\t    --play\tPlay song\n\t-u, --url\tOpen URL\n\t    --uri\tOpen URI (spotify:* format)\n\t    --seek\tSeek/Rewind (seconds)\n\t    --set\tJump to (seconds)\n" "$(basename "$0")"
+}
+
+send() {
+	findplayer
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."$1" >/dev/null 2>&1
+}
+
+seek() { #__ We need to convert to microseconds __#
+	findplayer
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:"$1"000000 >/dev/null 2>&1
+}
+
+setPos() { #__ Here we also need to specify objpath __#
+	findplayer
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.SetPosition objpath:'/3' int64:"$1"000000 >/dev/null 2>&1
+															# /3 is mpris:trackid from Metadata
+}
+
+url() { #__ Some parsing logic for URLs __#
+	prompt
+	if [ -z "$*" ]; then
+		error notify "Please insert an URL"
+	fi
+	string="$(echo "$*" | rev | cut -d/ -f1-2 | rev)"
+	typ="${string%/*}"
+	key="${string#*/}"
+	findplayer
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.OpenUri string:spotify:$typ:$key >/dev/null 2>&1
+}
+
+uri() { #__ This is slightly more complex because spotify would like to include additional context after the item key, which ncspot does not support... __#
+	prompt
+	# typ="$(echo "$*" | cut -d":" -f2)"
+	# key="$(echo "$*" | cut -d":" -f3 | head --bytes=22)"
+	typ="$(echo "$*" | cut -d"/" -f3)"
+	key="$(echo "$*" | cut -d"/" -f4 | head --bytes=22)"
+	findplayer
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.OpenUri string:"spotify:$typ:$key" >/dev/null 2>&1
+}
+
+error() {
+	if [ "$1" = "notify" ]; then
+		shift
+		notify-send "$@"
+	else
+		printf "$@\n\n" 1>&2
+	fi
+	usage
+}
+
+if [ -z "$1" ] ; then
+	error "No arguments given, exiting..."
+else
+	case $1 in
+	-h|--help)
+		usage ;;
+	-n|--next)
+		send Next ;;
+	-p|--prev)
+		send Previous ;;
+	-q|--query)
+		findplayer output ;;
+	-s|--stop)
+		send Stop ;;
+	-t|--toggle)
+		send PlayPause ;;
+	--play)
+		send Play ;;
+	--pause)
+		send Pause ;;
+	--seek)
+		seek "$2" ;;
+	--set)
+		setPos "$2" ;;
+	--uri)
+		uri "$2" ;;
+	-u|--url)
+		url "$2" ;;
+    --prompt)
+        prompt ;;
+	*)
+		error "Invalid option: $1" ;;
+	esac
+fi

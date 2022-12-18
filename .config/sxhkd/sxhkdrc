@@ -1,2 +1,23 @@
-super + shift + {a-z,Print,Return,Delete,F1,F2,F3}
-    shortcuts.sh {a-z,Print,Return,Delete,F1,F2,F3}
+super + shift + {a-z,Return,Print}
+    shortcuts.sh {a-z,Return,Print}
+
+XF86AudioMute
+    pamixer --toggle-mute && muted=$(pamixer --get-mute) && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-$(if [ "$muted" = "true" ]; then echo "muted"; else echo "high"; fi)-symbolic.svg" -h string:x-dunst-stack-tag:"volume" -h int:value:"0$(! $muted && echo "$volume")" "Volume: ${volume}%"
+
+XF86AudioLowerVolume
+    pamixer -ud 1 && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-low-symbolic.svg" -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "Volume: ${volume}%"
+
+XF86AudioRaiseVolume
+    pamixer -ui 1 && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-high-symbolic.svg" -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "Volume: ${volume}%"
+
+XF86AudioPrev
+    spot-cli --prev && sleep 1 && update_dwmblocks 5
+
+XF86AudioPlay
+    spot-cli --toggle && update_dwmblocks 5
+
+XF86AudioNext
+    spot-cli --next && sleep 1 && update_dwmblocks 5
+
+ctrl + alt + Delete
+    slock
