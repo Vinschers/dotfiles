@@ -10,13 +10,13 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
     pamixer -ui 1 && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-high-symbolic.svg" -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "Volume: ${volume}%"
 
-XF86AudioPrev
+{XF86AudioPrev, super + shift + Left}
     spot-cli --prev && sleep 1 && update_dwmblocks 5
 
-XF86AudioPlay
+{XF86AudioPlay, super + shift + {Up,Down}}
     spot-cli --toggle && update_dwmblocks 5
 
-XF86AudioNext
+{XF86AudioNext, super + shift + Right}
     spot-cli --next && sleep 1 && update_dwmblocks 5
 
 ctrl + alt + Delete
