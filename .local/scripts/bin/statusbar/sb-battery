@@ -30,7 +30,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
 	battery_status="$(cat "$battery/status" 2>&1)"
 
-    if [ "$battery_status" = "Charging" ]
+    if [ "$battery_status" = "Charging" ] || [ "$capacity" -eq 79 ]
     then
         STYLE=2
         icon=""

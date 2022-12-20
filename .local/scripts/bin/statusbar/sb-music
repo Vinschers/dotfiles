@@ -6,7 +6,13 @@ get_spotify() {
 	player="$(spot-cli -q)"
 
 	[ -z "$player" ] && return 1
-    [ "$player" = "netflix" ] && return 1
+
+    if [ "$player" != "spotify" ] && [ "$player" != "ncspot" ]
+    then
+        return 1
+    fi
+
+    notify-send "$player"
 
 	state="$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:"org.mpris.MediaPlayer2.Player" string:'PlaybackStatus' | grep -Ev "^method" | grep -Eo '("(.*)")|(\b[0-9][a-zA-Z0-9.]*\b)' | cut -f2 -d'"')"
 
