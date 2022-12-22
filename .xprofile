@@ -20,5 +20,6 @@ dunst &
 
 [ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
 
+[ -f "$HOME/.config/lockscreen.*" ] && betterlockscreen -u "$HOME/.config/lockscreen.*" &
 # xautolock -time $LOCK_TIME -locker lock -corners +00- &
 #python "$SCRIPTS_DIR/external/inkscape-shortcut-manager/main.py" &

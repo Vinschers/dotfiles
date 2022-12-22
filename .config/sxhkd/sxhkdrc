@@ -20,4 +20,4 @@ XF86AudioRaiseVolume
     spot-cli --next && sleep 1 && update_dwmblocks 5
 
 ctrl + alt + Delete
-    slock
+    lock
