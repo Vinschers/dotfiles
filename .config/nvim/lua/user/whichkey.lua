@@ -91,6 +91,8 @@ local nmappings = {
 
 	["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
 
+	["n"] = { "<cmd>NoNeckPain<cr>", "No Neck Pain" },
+
 	p = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },

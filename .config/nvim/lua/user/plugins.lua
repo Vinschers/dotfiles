@@ -114,6 +114,7 @@ return packer.startup(function(use)
 	use({ "karb94/neoscroll.nvim" })
 	use({ "folke/todo-comments.nvim" })
 	use({ "lervag/vimtex" })
+	use({ "shortcuts/no-neck-pain.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
