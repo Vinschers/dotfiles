@@ -1,7 +1,7 @@
 #!/bin/sh
 
 zotero () {
-    BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search")"
+    BIB_STR="$(curl -sd "$identifier" -H "Content-Type: text/plain" "http://localhost:1969/search" | sed -e 's,\\[trn],,g')"
 
     if [ "$BIB_STR" = "No items returned from any translator" ] || [ "$BIB_STR" = "No identifiers found" ]
     then
@@ -10,18 +10,21 @@ zotero () {
 
     URL="$(echo "$BIB_STR" | jq -r '.[0]?.url')"
 
-    if [ "$URL" = "null" ]
+    if [ -z "$URL" ] || [ "$URL" = "null" ]
     then
         JSON="$BIB_STR"
     else
         JSON="$(curl -fsd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web")"
+        PDF_URL="$(echo "$JSON" | jq -r 'map(select(.mimeType == "application/pdf")) | .[]?.url' | head -n 1)"
     fi
 
-    if [ -n "$BIB_FILE" ]
+    if [ -f "$BIB_FILE" ]
     then
         JSON_BIB="$(curl -fs --data-binary "@$BIB_FILE" -H "Content-Type: text/plain" "http://localhost:1969/import")"
         JSON="$(printf "%s\n%s" "$JSON_BIB" "$JSON" | jq -s "add")"
     fi
+
+    echo "$PDF_URL"
     curl -fsd "$JSON" -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
 }
 
@@ -34,6 +37,7 @@ openlibrary () {
         JSON="$(printf "%s\n%s" "$JSON_BIB" "$JSON" | jq -s "add")"
     fi
 
+    echo ""
     curl -fsd "$JSON" -H "Content-Type: application/json" "http://localhost:1969/export?format=biblatex"
 }
 
@@ -45,6 +49,7 @@ input () {
         BIB_STR="$(cat "$BIB_FILE")\n$BIB_STR"
     fi
 
+    echo ""
     printf "%s" "$BIB_STR"
 }
 

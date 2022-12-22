@@ -1,43 +1,44 @@
 #!/bin/sh
 
+download_doi() {
+	ID="$1"
+	PDF_PATH="$2"
+	PDF_URL="$3"
 
-download_doi () {
-    ID="$1"
-    BIB_STR="$2"
-    PDF_PATH="$3"
+	if [ -z "$PDF_PATH" ]; then
+		URL="https://doi.org/$ID"
+		PDF_PATH="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web" | jq -r 'map(select(.mimeType == "application/pdf")) | .[]?.url' | head -n 1)"
+	fi
 
-    URL="$(echo "$BIB_STR" | grep "url = " | cut -d "{" -f2 | cut -d "}" -f1)"
-    [ -z "$URL" ] && URL="https://doi.org/$ID"
+	curl -Isfo /dev/null "$PDF_URL" || PDF_URL=""
 
-    if curl -Isfo /dev/null "$URL"
-    then
-        URL="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web" | jq -r 'map(select(.mimeType == "application/pdf")) | .[]?.url' | head -n 1)"
-    else
-        URL=""
-    fi
-    [ -z "$URL" ] && notify-send "Couldn't find PDF online." && return 0
+	[ -z "$PDF_URL" ] && notify-send -u low "Couldn't find PDF online." && return 1
 
-    case "$URL" in
-        *.pdf)
-            curl -Ls "$URL" > "$PDF_PATH"
-            ;;
-        *)
-    	    DL_PATH="$(filedl "$URL")"
+	case "$PDF_URL" in
+	*.pdf)
+		curl -Ls "$PDF_URL" >"$PDF_PATH"
+		;;
+	*)
+		DL_PATH="$(filedl "$PDF_URL")"
 
-    	    mv "$DL_PATH" "$PDF_PATH"
-            ;;
-    esac
+		mv "$DL_PATH" "$PDF_PATH"
+		;;
+	esac
 }
 
-download_isbn () {
-    ISBN="$1"
-    PDF_PATH="$2"
+download_isbn() {
+	ISBN="$1"
+	PDF_PATH="$2"
 
-    option="$(printf "Yes\nNo" | dmenu -i -l 2 -p "Download from Library Genesis?")"
+	option="$(printf "Yes\nNo" | dmenu -i -l 2 -p "Download from Library Genesis?")"
 
-    [ "$option" != "Yes" ] && return 1
+	if [ "$option" != "Yes" ]; then
+	    option="$(printf "Yes\nNo" | dmenu -i -l 2 -p "Create empty file?")"
+        [ "$option" = "Yes" ] && touch "$PDF_PATH"
+        return 1
+    fi
 
-    md5="$(curl -s "https://libgen.li/json.php?object=e&isbn=$ISBN&fields=md5,title,year,edition,pages" | python -c "
+	md5="$(curl -s "https://libgen.li/json.php?object=e&isbn=$ISBN&fields=md5,title,year,edition,pages" | python -c "
 import json
 import subprocess
 json_str = input()
@@ -63,91 +64,95 @@ if selected:
 else:
     print()")"
 
-    [ -z "$md5" ] && return 1
+	[ -z "$md5" ] && return 1
 
-    URL="https://libgen.rocks/$(curl -s "https://libgen.rocks/ads.php?md5=$md5" | grep "get.php" | grep -Po "<a\s+(?:[^>]*?\s+)?href=([\"'])(.*?)\1" | cut -d "\"" -f2 | cut -d "\"" -f1)"
+	URL="https://libgen.rocks/$(curl -s "https://libgen.rocks/ads.php?md5=$md5" | grep "get.php" | grep -Po "<a\s+(?:[^>]*?\s+)?href=([\"'])(.*?)\1" | cut -d "\"" -f2 | cut -d "\"" -f1)"
 
-    curl -sL "$URL" > "$PDF_PATH"
+	curl -sL "$URL" >"$PDF_PATH"
 }
 
-download_pdf () {
-    ID="$1"
-    TYPE="$2"
-    BIB_STR="$3"
+download_pdf() {
+	ID="$1"
+	TYPE="$2"
+	PDF_PATH="$3"
+	PDF_URL="$4"
 
-    PDF_PATH="$(sci_pdf_path "$BIB_STR")"
+	[ -f "$PDF_PATH" ] && return 1
+	mkdir -p "$(dirname "$PDF_PATH")"
 
-    [ -f "$PDF_PATH" ] && return 1
-    mkdir -p "$(dirname "$PDF_PATH")"
+	OK=false
 
-    if [ "$TYPE" = "doi" ]
-    then
-        download_doi "$ID" "$BIB_STR" "$PDF_PATH" && notify-send "PDF downloaded." && return 0
-    elif [ "$TYPE" = "isbn" ]
-    then
-        download_isbn "$ID" "$PDF_PATH" && notify-send "PDF downloaded." && return 0
-    fi
+	case "$TYPE" in
+	"doi")
+		download_doi "$ID" "$PDF_PATH" "$PDF_URL" && OK=true
+		;;
+	"isbn")
+		download_isbn "$ID" "$PDF_PATH" && OK=true
+		;;
+	*)
+		notify-send -u low "Unknown type '$TYPE'"
+		OK=false
+		;;
+	esac
 
-    notify-send "Couldn't download PDF."
-    return 1
+	if $OK; then
+		notify-send -u low "PDF downloaded."
+		return 0
+	else
+		notify-send -u low "Couldn't download PDF."
+		return 1
+	fi
 }
 
-add_global () {
-    ID="$1"
-    TYPE="$2"
-    GLOBAL_BIB="$ACADEMIC_DIRECTORY/bibliography/library.bib"
+add_global() {
+	ID="$1"
+	TYPE="$2"
+	GLOBAL_BIB="$ACADEMIC_DIRECTORY/bibliography/library.bib"
 
-    if [ -f "$GLOBAL_BIB" ] && grep -q "$ID" "$GLOBAL_BIB"
-    then
-        BIB_STR="$(awk -v RS='' -v id="$ID" 'BEGIN{gsub(/\(|\)/,"\\\\&", id)} $0 ~ id' "$GLOBAL_BIB")"
+	if ! [ -f "$GLOBAL_BIB" ] && [ -n "$GLOBAL_BIB" ]; then
+		mkdir -p "$(dirname "$GLOBAL_BIB")"
+		touch "$GLOBAL_BIB"
+	fi
 
-        if download_pdf "$ID" "$TYPE" "$BIB_STR"
-        then
-            echo "1"
-        else
-            echo "0"
-        fi
+	if [ -f "$GLOBAL_BIB" ] && ! grep -q "$ID" "$GLOBAL_BIB"; then
+		URL_BIB="$(getbib "$ID" "$GLOBAL_BIB")"
 
-        printf "\n%s\n" "$BIB_STR"
-        return 0
-    fi
+		PDF_URL="$(echo "$URL_BIB" | head -n 1)"
+		BIB_STR="$(echo "$URL_BIB" | tail -n +2)"
 
-    BIB_STR="$(getbib "$ID" "$GLOBAL_BIB")"
-    [ -z "$BIB_STR" ] && exit 1
+		[ -z "$BIB_STR" ] && exit 1
 
-    if ! [ -f "$GLOBAL_BIB" ]
-    then
-        mkdir -p "$(dirname "$GLOBAL_BIB")"
-        touch "$GLOBAL_BIB"
-    fi
+		echo "$BIB_STR" >"$GLOBAL_BIB"
+		notify-send -u low "Added to global library."
+	fi
 
-    echo "$BIB_STR" > "$GLOBAL_BIB"
+	# Extract new bib string from whole file
+	BIB_STR="$(awk -v RS='' -v id="$ID" 'BEGIN{gsub(/\(|\)/,"\\\\&", id)} $0 ~ id' "$GLOBAL_BIB")"
+	PDF_PATH="$(sci_pdf_path "$BIB_STR")"
 
-    notify-send "Added to global library."
+	if [ -f "$GLOBAL_BIB" ] && [ -z "$PDF_URL" ]; then
+		URL="$(echo "$BIB_STR" | grep "url = " | cut -d "{" -f2 | cut -d "}" -f1)"
+		[ -z "$URL" ] && URL="https://doi.org/$ID"
 
-    download_pdf "$ID" "$TYPE" "$BIB_STR"
+		curl -Isfo /dev/null "$URL" && PDF_URL="$(curl -sd "$URL" -H "Content-Type: text/plain" "http://localhost:1969/web" | jq -r 'map(select(.mimeType == "application/pdf")) | .[]?.url' | head -n 1)"
+	fi
 
-    echo "1"
-    echo "$BIB_STR"
+	! [ -f "$PDF_PATH" ] && download_pdf "$ID" "$TYPE" "$PDF_PATH" "$PDF_URL"
 }
-
 
 TYPE="$1"
 ID="$2"
 
 [ -f "$3" ] && BIB_FILE="$3"
 
+add_global "$ID" "$TYPE"
+diff="$?"
 
-RET_GLOBAL="$(add_global "$ID" "$TYPE")"
-DIFF="$(echo "$RET_GLOBAL" | head -n 1)"
-BIB_STR="$(echo "$RET_GLOBAL" | tail -n +2)"
+if [ -f "$BIB_FILE" ] && ! grep -q "$ID" "$BIB_FILE"; then
+	echo "$BIB_STR" >>"$BIB_FILE"
+	notify-send -u low "Added to local library."
 
-if [ -n "$BIB_STR" ] && [ -f "$BIB_FILE" ] && ! grep -q "$ID" "$BIB_FILE"
-then
-    echo "$BIB_STR" >> "$BIB_FILE"
-    notify-send "Added to local library."
-
-    DIFF="1"
+    return 0
 fi
 
-echo "$DIFF"
+return "$diff"

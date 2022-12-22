@@ -16,4 +16,4 @@ printf "%s" "$bg_text"
 printf " %s " "$text"
 printf "%s" "$(get_color_reset)"
 
-notify-send " Keyboard" "Changed keyboard layout to $text"
+notify-send -u low " Keyboard" "Changed keyboard layout to $text"

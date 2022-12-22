@@ -48,7 +48,7 @@ fg="$(get_fg $STYLE)"
 bg_icon="$(get_bg_icon $STYLE)"
 bg_text="$(get_bg_text $STYLE)"
 
-MAX_LENGTH=18
+MAX_LENGTH=180
 
 if [ ${#song} -gt $MAX_LENGTH ]; then
 	song="$(printf '%s' "$song" | cut -c -$((MAX_LENGTH - 3)))..."
