@@ -10,6 +10,7 @@ local lsp_servers = {
 	"clangd",
 	-- "jdtls",
 	"texlab",
+    "marksman",
 }
 
 -- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
