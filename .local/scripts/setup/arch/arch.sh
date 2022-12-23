@@ -73,4 +73,4 @@ setup_nvidia () {
 check "Setup wacom?" 1 && setup_wacom
 check "Install packages?" 1 && install_packages
 check "Setup pacman.conf?" 1 && setup_pacman
-check "Setup NVIDIA?" 1 && setup_nvidia
+check "Setup NVIDIA?" 0 && setup_nvidia
