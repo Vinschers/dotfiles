@@ -1,12 +1,10 @@
 xorg
-xorg-xinit
 xorg-server-devel
 accountsservice
 alsa-firmware
 alsa-utils
 archlinux-keyring
 android-file-transfer
-bc
 btop
 dash
 dunst
@@ -25,7 +23,6 @@ lightdm-webkit2-greeter
 lightdm-webkit-theme-litarvan
 linux-headers
 lldb
-lolcat
 lsb-release
 magic-wormhole
 moreutils
@@ -39,10 +36,6 @@ networkmanager
 nitrogen
 noto-fonts-emoji
 ntfs-3g
-nvidia
-nvidia-settings
-nvidia-utils
-opencl-nvidia
 openssh
 os-prober
 otf-latinmodern-math
@@ -54,7 +47,6 @@ picom
 pulseaudio
 python-pip
 qbittorrent
-ranger
 ripgrep
 rkhunter
 simple-scan
@@ -76,11 +68,11 @@ uwufetch
 valgrind
 vim
 xclip
-xf86-input-wacom
 xf86-video-intel
 xf86-video-vesa
 xournalpp
 zathura
+zathura-pdf-mupdf
 zip
 zsh
 zsh-completions

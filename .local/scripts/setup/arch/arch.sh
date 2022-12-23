@@ -19,6 +19,8 @@ check () {
 THIS_DIRECTORY="$(dirname "$0")"
 
 setup_wacom () {
+    sudo pacman --noconfirm -S xf86-input-wacom
+
     sudo mkdir /usr/share/wacom
     sudo ln -s "$SCRIPTS_DIR/devices/wacom.sh" /usr/share/wacom/wacom.sh
 
@@ -65,6 +67,7 @@ setup_pacman () {
 }
 
 setup_nvidia () {
+    sudo pacman --noconfirm -S nvidia nvidia-settings nvidia-utils opencl-nvidia
     echo "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia-drm-nomodeset.conf
     sudo mkinitcpio -P
 }
