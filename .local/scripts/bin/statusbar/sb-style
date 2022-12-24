@@ -16,6 +16,11 @@ get_bg_text () {
     echo "^b$color^"
 }
 
+get_fg_icon () {
+    color="$(xrdb -get "sb.style$1.bg_icon")"
+    echo "^c$color^"
+}
+
 get_color_reset () {
     echo "^d^"
 }

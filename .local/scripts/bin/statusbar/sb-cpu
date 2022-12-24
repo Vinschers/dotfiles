@@ -1,5 +1,8 @@
 #!/bin/bash
 
+. sb-style
+STYLE=3
+
 get_core_usage () {
 
 	#load arrays
@@ -48,7 +51,7 @@ draw_core () {
     fill=$(echo | awk -v cpu="$core" -v h=$HEIGHT '{ printf "%.0f", h*(cpu/100) }')
 
     printf "^r%s,%s,4,%s^" "$x" "$(( SB_CPU_MARGIN + SB_CPU_BAR_PAD ))" "$(( SB_CPU_SIZE - 2 * (SB_CPU_BAR_PAD + SB_CPU_MARGIN) ))"
-    printf "^v^%s" "^c#7b3bef^"
+    printf "^v^%s" "$(get_fg_icon $STYLE)"
     printf "^r%s,%s,4,%s^" "$x" "$(( SB_CPU_SIZE - (SB_CPU_BAR_PAD + SB_CPU_MARGIN + fill) ))" "$fill"
     printf "^t^"
 }

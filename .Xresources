@@ -1,114 +1,130 @@
-*background: #24283b
-*foreground: #c0caf5
+#define BLACK #24283b
+#define BRIGHT_BLACK #414868
 
-*color0: #1d202f
-*color1: #f7768e
-*color2: #9ece6a
-*color3: #ff9e64
-*color4: #7aa2f7
-*color5: #c0caf5
-*color6: #73daca
-*color7: #a9b1d6
+#define RED #f7768e
+#define BRIGHT_RED #ff0000
 
-*color8: #5e6997
-*color9: #f7768e
-*color10: #9ece6a
-*color11: #e0af68
-*color12: #2ac3de
-*color13: #bb9af7
-*color14: #7dcfff
-*color15: #ffffff
+#define GREEN #9ece6a
+#define BRIGHT_GREEN #78b13a
 
+#define YELLOW #fdd497
+#define BRIGHT_YELLOW #fcb54c
 
-dmenu.background:           #24283b
-dmenu.foreground:           #c0caf5
+#define BLUE #97d8ff
+#define BRIGHT_BLUE #31b3ff
 
-dmenu.midbackground:        #24283b
-dmenu.midforeground:        #c0caf5
+#define MAGENTA #ffae7e
+#define BRIGHT_MAGENTA #ff6e18
 
-dmenu.selbackground:        #414868
-dmenu.selforeground:        #7dcfff
+#define CYAN #73daca
+#define BRIGHT_CYAN #7dcfff
 
-dmenu.selhlbackground:      #e0af68
-dmenu.selhlforeground:      #1a1b26
+#define WHITE #c0caf5
+#define BRIGHT_WHITE #eeeeee
 
-dmenu.hlbackground:         #ff9e64
-dmenu.hlforeground:         #1a1b26
+*background: BLACK
+*foreground: WHITE
 
+*color0: BLACK
+*color1: RED
+*color2: GREEN
+*color3: YELLOW
+*color4: BLUE
+*color5: MAGENTA
+*color6: CYAN
+*color7: WHITE
 
-dwm.normfgcolor:            #c0caf5
-dwm.normbgcolor:            #24283b
-dwm.normbordercolor:        #1a1b26
-dwm.normfloatcolor:         #1a1b26
-
-dwm.selfgcolor:             #ffffff
-dwm.selbgcolor:             #414868
-dwm.selbordercolor:         #414868
-dwm.selfloatcolor:          #414868
-
-dwm.titlenormfgcolor:       #c0caf5
-dwm.titlenormbgcolor:       #24283b
-dwm.titlenormbordercolor:   #1a1b26
-dwm.titlenormfloatcolor:    #1a1b26
-
-dwm.titleselfgcolor:        #c0caf5
-dwm.titleselbgcolor:        #24283b
-dwm.titleselbordercolor:    #1a1b26
-dwm.titleselfloatcolor:     #1a1b26
-
-dwm.tagsnormfgcolor:        #c0caf5
-dwm.tagsnormbgcolor:        #1a1b26
-dwm.tagsnormbordercolor:    #1a1b26
-dwm.tagsnormfloatcolor:     #1a1b26
-
-dwm.tagsselfgcolor:         #eeeeee
-dwm.tagsselbgcolor:         #414868
-dwm.tagsselbordercolor:     #1a1b26
-dwm.tagsselfloatcolor:      #1a1b26
-
-dwm.hidnormfgcolor:         #5e6997
-dwm.hidnormbgcolor:         #1a1b26
-dwm.hidselfgcolor:          #1a1b26
-dwm.hidselbgcolor:          #1a1b26
-
-dwm.urgfgcolor:             #f7768e
-dwm.urgbgcolor:             #fcb54c
-dwm.urgbordercolor:         #6bb2c0
-dwm.urgfloatcolor:          #1a1b26
+*color8: BRIGHT_BLACK
+*color9: BRIGHT_RED
+*color10: BRIGHT_GREEN
+*color11: BRIGHT_YELLOW
+*color12: BRIGHT_BLUE
+*color13: BRIGHT_MAGENTA
+*color14: BRIGHT_CYAN
+*color15: BRIGHT_WHITE
 
 
-sb.style1.fg:               #24283b
-sb.style1.bg_icon:          #31b3ff
-sb.style1.bg_text:          #97d8ff
+dmenu.background:           BLACK
+dmenu.foreground:           WHITE
 
-sb.style2.fg:               #24283b
-sb.style2.bg_icon:          #78b13a
-sb.style2.bg_text:          #9ece6a
+dmenu.midbackground:        BLACK
+dmenu.midforeground:        WHITE
 
-sb.style3.fg:               #24283b
-sb.style3.bg_icon:          #fcb54c
-sb.style3.bg_text:          #fdd497
+dmenu.selbackground:        BRIGHT_BLACK
+dmenu.selforeground:        BLUE
 
-sb.style4.fg:               #24283b
-sb.style4.bg_icon:          #ab82f5
-sb.style4.bg_text:          #cbb2f9
+dmenu.selhlbackground:      YELLOW
+dmenu.selhlforeground:      BLACK
 
-sb.style5.fg:               #24283b
-sb.style5.bg_icon:          #ff6e18
-sb.style5.bg_text:          #ffae7e
+dmenu.hlbackground:         BRIGHT_BLUE
+dmenu.hlforeground:         BLACK
 
-sb.style6.fg:               #24283b
-sb.style6.bg_icon:          #1db954
-sb.style6.bg_text:          #41e17a
 
-sb.style7.fg:               #24283b
-sb.style7.bg_icon:          #7e92eb
-sb.style7.bg_text:          #c0caf5
+dwm.normfgcolor:            WHITE
+dwm.normbgcolor:            BLACK
+dwm.normbordercolor:        BLACK
+dwm.normfloatcolor:         BLACK
 
-sb.style8.fg:               #24283b
-sb.style8.bg_icon:          #89b0ae
-sb.style8.bg_text:          #bee3db
+dwm.selfgcolor:             BRIGHT_WHITE
+dwm.selbgcolor:             BRIGHT_BLACK
+dwm.selbordercolor:         BRIGHT_BLACK
+dwm.selfloatcolor:          BRIGHT_BLACK
 
-sb.style9.fg:               #24283b
-sb.style9.bg_icon:          #27a9ff
-sb.style9.bg_text:          #0085eb
+dwm.titlenormfgcolor:       WHITE
+dwm.titlenormbgcolor:       BLACK
+dwm.titlenormbordercolor:   BLACK
+dwm.titlenormfloatcolor:    BLACK
+
+dwm.titleselfgcolor:        WHITE
+dwm.titleselbgcolor:        BLACK
+dwm.titleselbordercolor:    BLACK
+dwm.titleselfloatcolor:     BLACK
+
+dwm.tagsnormfgcolor:        WHITE
+dwm.tagsnormbgcolor:        BLACK
+dwm.tagsnormbordercolor:    BLACK
+dwm.tagsnormfloatcolor:     BLACK
+
+dwm.tagsselfgcolor:         BRIGHT_WHITE
+dwm.tagsselbgcolor:         BRIGHT_BLACK
+dwm.tagsselbordercolor:     BLACK
+dwm.tagsselfloatcolor:      BLACK
+
+dwm.hidnormfgcolor:         BRIGHT_BLACK
+dwm.hidnormbgcolor:         BLACK
+dwm.hidselfgcolor:          BLACK
+dwm.hidselbgcolor:          BLACK
+
+dwm.urgfgcolor:             BLACK
+dwm.urgbgcolor:             BRIGHT_RED
+dwm.urgbordercolor:         YELLOW
+dwm.urgfloatcolor:          BLACK
+
+
+sb.style1.fg:               BLACK
+sb.style1.bg_icon:          BRIGHT_RED
+sb.style1.bg_text:          RED
+
+sb.style2.fg:               BLACK
+sb.style2.bg_icon:          BRIGHT_GREEN
+sb.style2.bg_text:          GREEN
+
+sb.style3.fg:               BLACK
+sb.style3.bg_icon:          BRIGHT_YELLOW
+sb.style3.bg_text:          YELLOW
+
+sb.style4.fg:               BLACK
+sb.style4.bg_icon:          BRIGHT_BLUE
+sb.style4.bg_text:          BLUE
+
+sb.style5.fg:               BLACK
+sb.style5.bg_icon:          BRIGHT_MAGENTA
+sb.style5.bg_text:          MAGENTA
+
+sb.style6.fg:               BLACK
+sb.style6.bg_icon:          BRIGHT_CYAN
+sb.style6.bg_text:          CYAN
+
+sb.style7.fg:               BLACK
+sb.style7.bg_icon:          BRIGHT_WHITE
+sb.style7.bg_text:          WHITE

@@ -1,6 +1,8 @@
 #!/bin/sh
 
 . sb-style
+STYLE=5
+
 get_spotify() {
 
 	player="$(spot-cli -q)"
