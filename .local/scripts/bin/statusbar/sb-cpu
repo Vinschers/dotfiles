@@ -1,91 +1,88 @@
 #!/bin/bash
 
 . sb-style
-STYLE=3
 
-get_core_usage () {
+get_core_usage() {
 
 	#load arrays
-	IFS=' ' read -r -a firstarr <<< "$1"
-	IFS=' ' read -r -a secondarr <<< "$2"
+	IFS=' ' read -r -a firstarr <<<"$1"
+	IFS=' ' read -r -a secondarr <<<"$2"
 
 	#clear name fields in array so that calculations don't get messy
-	firstarr[0]=0 ;
-	secondarr[0]=0 ;
+	firstarr[0]=0
+	secondarr[0]=0
 
-	#clear values 
+	#clear values
 	totalcpu0=0
 	totalcpu=0
 
 	#calculate the begining interrupt counts
-	for value in ${firstarr[@]}; 
-    	do 
-        	let totalcpu0+=$value; 
+	for value in ${firstarr[@]}; do
+		let totalcpu0+=$value
 	done
-	firstidle=$((${firstarr[4]}+${firstarr[5]})); 
+	firstidle=$((${firstarr[4]} + ${firstarr[5]}))
 
 	#calculate the ending interrupt counts
-	for value in ${secondarr[@]}; 
-    	do
-        	let totalcpu+=$value; 
-    	done; 
-	secondidle=$((${secondarr[4]}+${secondarr[5]})); 
+	for value in ${secondarr[@]}; do
+		let totalcpu+=$value
+	done
+	secondidle=$((${secondarr[4]} + ${secondarr[5]}))
 
 	#calculate the relative change counts
-	deltacpu=$(( totalcpu - totalcpu0 ))
-	deltaidle=$(( secondidle - firstidle ))
+	deltacpu=$((totalcpu - totalcpu0))
+	deltaidle=$((secondidle - firstidle))
 
 	#calculate the utilization percentage. must be done external to bash as it's a
 	#floating calculation
-	cpu_load=$( echo | awk -v cpu=$deltacpu -v idle=$deltaidle ' { print ( ( ( cpu - idle ) / cpu ) * 100 ) } ' )
+	cpu_load=$(echo | awk -v cpu=$deltacpu -v idle=$deltaidle ' { print ( ( ( cpu - idle ) / cpu ) * 100 ) } ')
 
 	echo -n "$cpu_load"
-} 
+}
 
-draw_core () {
+draw_core() {
 	core=$1
 	num="$2"
 
-	x=$(( 8*num ))
-    HEIGHT=$(( SB_CPU_SIZE - 2 * (SB_CPU_BAR_PAD + SB_CPU_MARGIN) ))
-    fill=$(echo | awk -v cpu="$core" -v h=$HEIGHT '{ printf "%.0f", h*(cpu/100) }')
+	x=$((8 * num))
+	HEIGHT=$((SB_CPU_SIZE - 2 * (SB_CPU_BAR_PAD + SB_CPU_MARGIN)))
+	fill=$(echo | awk -v cpu="$core" -v h=$HEIGHT '{ printf "%.0f", h*(cpu/100) }')
 
-    printf "^r%s,%s,4,%s^" "$x" "$(( SB_CPU_MARGIN + SB_CPU_BAR_PAD ))" "$(( SB_CPU_SIZE - 2 * (SB_CPU_BAR_PAD + SB_CPU_MARGIN) ))"
-    printf "^v^%s" "$(get_fg_icon $STYLE)"
-    printf "^r%s,%s,4,%s^" "$x" "$(( SB_CPU_SIZE - (SB_CPU_BAR_PAD + SB_CPU_MARGIN + fill) ))" "$fill"
+	printf "^v^"
+	printf "^r%s,%s,4,%s^" "$x" "$((SB_CPU_MARGIN + SB_CPU_BAR_PAD))" "$((SB_CPU_SIZE - 2 * (SB_CPU_BAR_PAD + SB_CPU_MARGIN)))"
+    printf "%s" "$(get_fg 8)"
+	printf "^r%s,%s,4,%s^" "$x" "$((SB_CPU_SIZE - (SB_CPU_BAR_PAD + SB_CPU_MARGIN + fill)))" "$fill"
     printf "^t^"
 }
 
-draw_cores () {
+draw_cores() {
 	oldIFS=$IFS
 
-	IFS=$'\n' cpu_start=( $( grep cpu /proc/stat ) )
+	IFS=$'\n' cpu_start=($(grep cpu /proc/stat))
 	sleep $delay
 
-	read opt < "$logfile"
-	read hardwareopt < "$logfilehardware"
+	read opt <"$logfile"
+	read hardwareopt <"$logfilehardware"
 
-	if [ "$opt" -ne 0 ];
-	then
+	if [ "$opt" -ne 0 ]; then
 		printf "%s" "$(get_temps)"
 	else
-		IFS=$'\n' cpu_end=( $( grep cpu /proc/stat ) )
+		IFS=$'\n' cpu_end=($(grep cpu /proc/stat))
 
 		cpucount=${#cpu_start[@]}
 
-        printf "^w^^r0,%s,%s,%s^^w^" "$(( SB_CPU_BAR_PAD ))" "$(( cpucount*8 ))" "$(( SB_CPU_SIZE - 2*SB_CPU_BAR_PAD ))"
+		printf "^w^^r0,%s,%s,%s^^w^" "$((SB_CPU_BAR_PAD))" "$((cpucount * 8))" "$((SB_CPU_SIZE - 2 * SB_CPU_BAR_PAD))"
 
-		for (( i=1; i<$cpucount; i++ )) do
+		for ((i = 1; i < $cpucount; i++)); do
 			core="$(get_core_usage "${cpu_start[$i]}" "${cpu_end[$i]}")"
 			draw_core "$core" "$i"
 		done
-        printf "^f%s^" "$(( cpucount*8 ))"
+		printf "^f%s^" "$((cpucount * 8))"
 	fi
 
 	IFS=$oldIFS
 }
 
-get_temp () {
+get_temp() {
 	temp="$1"
 	term=""
 	[ "$temp" -gt 25 ] && term=""
@@ -95,23 +92,23 @@ get_temp () {
 	printf "  %s %s°" "$term" "$temp"
 }
 
-get_temps () {
+get_temps() {
 	oldIFS=$IFS
-	IFS=$'\n' temps=( $(sensors | awk '/Core / {print substr($3, 2, length($3)-5)}') )
+	IFS=$'\n' temps=($(sensors | awk '/Core / {print substr($3, 2, length($3)-5)}'))
 	tempcount=${#temps[@]}
 
-	for (( i=0; i<$tempcount; i++ )) do
+	for ((i = 0; i < $tempcount; i++)); do
 		get_temp "${temps[$i]}"
 	done
 
 	IFS=$oldIFS
 }
 
-update_opt () {
+update_opt() {
 	param=$1
-	opt=$(( (opt + param) % n ))
+	opt=$(((opt + param) % n))
 	opt=${opt#-}
-	echo "$opt" > "$logfile"
+	echo "$opt" >"$logfile"
 }
 
 delay=1
@@ -119,19 +116,19 @@ n=2
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/cpustatus"
 logfilehardware="${XDG_CACHE_HOME:-$HOME/.cache}/hardware"
 
-read opt < "$logfile" || opt=0
-BUTTON=$(( BUTTON + 0 ))
+read opt <"$logfile" || opt=0
+BUTTON=$((BUTTON + 0))
 
 case $BUTTON in
-	3) update_opt 1 ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+3) update_opt 1 ;;
+6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 cpustatus=""
 
 case $opt in
-	0) cpustatus="$(draw_cores)" ;;
-	1) cpustatus="$(get_temps)" ;;
+0) cpustatus="$(draw_cores)" ;;
+1) cpustatus="$(get_temps)" ;;
 esac
 
 printf "%s" "$cpustatus"

@@ -1,26 +1,34 @@
 #!/bin/sh
 
-
-get_fg () {
-    color="$(xrdb -get "sb.style$1.fg")"
+get_fg() {
+    if echo "$1" | grep -Eq '^[0-9]+$'; then
+	    color="$(xrdb -get "color$1")"
+    else
+	    color="$(xrdb -get "$1")"
+    fi
     echo "^c$color^"
 }
 
-get_bg_icon () {
-    color="$(xrdb -get "sb.style$1.bg_icon")"
+get_bg() {
+    if echo "$1" | grep -Eq '^[0-9]+$'; then
+	    color="$(xrdb -get "color$1")"
+    else
+	    color="$(xrdb -get "$1")"
+    fi
     echo "^b$color^"
 }
 
-get_bg_text () {
-    color="$(xrdb -get "sb.style$1.bg_text")"
-    echo "^b$color^"
+reset_color() {
+	echo "^d^"
 }
 
-get_fg_icon () {
-    color="$(xrdb -get "sb.style$1.bg_icon")"
-    echo "^c$color^"
-}
+display_info() {
+	style="$1"
+	icon="$2"
+	text="$3"
 
-get_color_reset () {
-    echo "^d^"
+    open=""
+    close=""
+
+    echo "$(get_fg "$style")$open$(get_bg "$style") $(get_fg "background")$icon $text $(reset_color)$(get_fg "$style")$close$(reset_color)"
 }

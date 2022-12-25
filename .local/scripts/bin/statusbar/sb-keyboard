@@ -1,19 +1,11 @@
 #!/bin/sh
 
 . sb-style
-STYLE=4
-
-fg="$(get_fg $STYLE)"
-bg_icon="$(get_bg_icon $STYLE)"
-bg_text="$(get_bg_text $STYLE)"
+STYLE=3
 
 icon=""
 text="$(xkb-switch)"
 
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "$icon"
-printf "%s" "$bg_text"
-printf " %s " "$text"
-printf "%s" "$(get_color_reset)"
+display_info "$STYLE" "$icon" "$text"
 
 notify-send -u low " Keyboard" "Changed keyboard layout to $text"

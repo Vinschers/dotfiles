@@ -1,29 +1,10 @@
-#define BLACK #24283b
-#define BRIGHT_BLACK #414868
+! NEVER REMOVE
+! #include ".config/themes/catppuccin-mocha.Xresources"
+#include ".config/themes/tokyonight-moon.Xresources"
 
-#define RED #f7768e
-#define BRIGHT_RED #ff0000
 
-#define GREEN #9ece6a
-#define BRIGHT_GREEN #78b13a
-
-#define YELLOW #fdd497
-#define BRIGHT_YELLOW #fcb54c
-
-#define BLUE #97d8ff
-#define BRIGHT_BLUE #31b3ff
-
-#define MAGENTA #ffae7e
-#define BRIGHT_MAGENTA #ff6e18
-
-#define CYAN #73daca
-#define BRIGHT_CYAN #7dcfff
-
-#define WHITE #c0caf5
-#define BRIGHT_WHITE #eeeeee
-
-*background: BLACK
-*foreground: WHITE
+*background: BACKGROUND
+*foreground: FOREGROUND
 
 *color0: BLACK
 *color1: RED
@@ -44,34 +25,37 @@
 *color15: BRIGHT_WHITE
 
 
-dmenu.background:           BLACK
-dmenu.foreground:           WHITE
+dmenu.background:           BACKGROUND
+dmenu.foreground:           FOREGROUND
 
-dmenu.midbackground:        BLACK
-dmenu.midforeground:        WHITE
+dmenu.midbackground:        BACKGROUND
+dmenu.midforeground:        FOREGROUND
 
-dmenu.selbackground:        BRIGHT_BLACK
-dmenu.selforeground:        BLUE
+dmenu.outbackground:        BACKGROUND
+dmenu.outforeground:        FOREGROUND
 
-dmenu.selhlbackground:      YELLOW
-dmenu.selhlforeground:      BLACK
+dmenu.selbackground:        BLUE
+dmenu.selforeground:        BACKGROUND
 
-dmenu.hlbackground:         BRIGHT_BLUE
-dmenu.hlforeground:         BLACK
+dmenu.selhlbackground:      BRIGHT_BLACK
+dmenu.selhlforeground:      FOREGROUND
+
+dmenu.hlbackground:         BRIGHT_BLACK
+dmenu.hlforeground:         FOREGROUND
 
 
-dwm.normfgcolor:            WHITE
-dwm.normbgcolor:            BLACK
+dwm.normfgcolor:            FOREGROUND
+dwm.normbgcolor:            BACKGROUND
 dwm.normbordercolor:        BLACK
 dwm.normfloatcolor:         BLACK
 
-dwm.selfgcolor:             BRIGHT_WHITE
+dwm.selfgcolor:             FOREGROUND
 dwm.selbgcolor:             BRIGHT_BLACK
 dwm.selbordercolor:         BRIGHT_BLACK
 dwm.selfloatcolor:          BRIGHT_BLACK
 
 dwm.titlenormfgcolor:       WHITE
-dwm.titlenormbgcolor:       BLACK
+dwm.titlenormbgcolor:       BACKGROUND
 dwm.titlenormbordercolor:   BLACK
 dwm.titlenormfloatcolor:    BLACK
 
@@ -80,12 +64,12 @@ dwm.titleselbgcolor:        BLACK
 dwm.titleselbordercolor:    BLACK
 dwm.titleselfloatcolor:     BLACK
 
-dwm.tagsnormfgcolor:        WHITE
-dwm.tagsnormbgcolor:        BLACK
+dwm.tagsnormfgcolor:        FOREGROUND
+dwm.tagsnormbgcolor:        BACKGROUND
 dwm.tagsnormbordercolor:    BLACK
 dwm.tagsnormfloatcolor:     BLACK
 
-dwm.tagsselfgcolor:         BRIGHT_WHITE
+dwm.tagsselfgcolor:         FOREGROUND
 dwm.tagsselbgcolor:         BRIGHT_BLACK
 dwm.tagsselbordercolor:     BLACK
 dwm.tagsselfloatcolor:      BLACK
@@ -96,35 +80,6 @@ dwm.hidselfgcolor:          BLACK
 dwm.hidselbgcolor:          BLACK
 
 dwm.urgfgcolor:             BLACK
-dwm.urgbgcolor:             BRIGHT_RED
-dwm.urgbordercolor:         YELLOW
+dwm.urgbgcolor:             YELLOW
+dwm.urgbordercolor:         BLACK
 dwm.urgfloatcolor:          BLACK
-
-
-sb.style1.fg:               BLACK
-sb.style1.bg_icon:          BRIGHT_RED
-sb.style1.bg_text:          RED
-
-sb.style2.fg:               BLACK
-sb.style2.bg_icon:          BRIGHT_GREEN
-sb.style2.bg_text:          GREEN
-
-sb.style3.fg:               BLACK
-sb.style3.bg_icon:          BRIGHT_YELLOW
-sb.style3.bg_text:          YELLOW
-
-sb.style4.fg:               BLACK
-sb.style4.bg_icon:          BRIGHT_BLUE
-sb.style4.bg_text:          BLUE
-
-sb.style5.fg:               BLACK
-sb.style5.bg_icon:          BRIGHT_MAGENTA
-sb.style5.bg_text:          MAGENTA
-
-sb.style6.fg:               BLACK
-sb.style6.bg_icon:          BRIGHT_CYAN
-sb.style6.bg_text:          CYAN
-
-sb.style7.fg:               BLACK
-sb.style7.bg_icon:          BRIGHT_WHITE
-sb.style7.bg_text:          WHITE

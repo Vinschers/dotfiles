@@ -63,17 +63,17 @@ vim.cmd([[
       \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
 ]])
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { ".Xresources" },
+	pattern = { "*.Xresources" },
 	callback = function()
-		os.execute("xrdb ~/.Xresources")
+		os.execute("xrdb ~/.Xresources 2> /dev/null")
 	end,
 })
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
--- 	pattern = { "*/.config/lightdm/*" },
--- 	callback = function()
--- 		os.execute("sudo cp -r ~/.config/lightdm /etc")
--- 	end,
--- })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*.Xresources" },
+	callback = function()
+        vim.cmd(":set ft=xdefaults")
+	end,
+})
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "local_environment.sh" },
 	callback = function()

@@ -1,0 +1,35 @@
+#define BACKGROUND #24283b
+#define FOREGROUND #c0caf5
+
+! black
+#define BLACK #1d202f
+#define BRIGHT_BLACK #414868
+
+! red
+#define RED #f7768e
+#define BRIGHT_RED #f7768e
+
+! green
+#define GREEN #9ece6a
+#define BRIGHT_GREEN #9ece6a
+
+! yellow
+#define YELLOW #e0af68
+#define BRIGHT_YELLOW #e0af68
+
+! blue
+#define BLUE #7aa2f7
+#define BRIGHT_BLUE #7aa2f7
+
+! magenta
+#define MAGENTA #bb9af7
+#define BRIGHT_MAGENTA #bb9af7
+
+! cyan
+#define CYAN #7dcfff
+#define BRIGHT_CYAN #7dcfff
+
+! white
+#define WHITE #a9b1d6
+#define BRIGHT_WHITE #c0caf5
+

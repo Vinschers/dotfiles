@@ -858,7 +858,6 @@ main(int argc, char *argv[])
 		    parentwin);
 
 	drw = drw_create(dpy, screen, root, wa.width, wa.height);
-	readxresources();
 
 	for (i = 1; i < argc; i++)
 		/* these options take no arguments */
@@ -915,6 +914,7 @@ main(int argc, char *argv[])
 	if (!drw_fontset_create(drw, (const char**)fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 
+	readxresources();
 	lrpad = drw->fonts->h;
 
 	sp = sidepad;

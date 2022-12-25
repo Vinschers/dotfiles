@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . sb-style
-STYLE=5
+STYLE=1
 
 get_spotify() {
 
@@ -35,8 +35,8 @@ get_mpd() {
 	return 1
 }
 
-output="$(get_spotify)" && [ -n "$output" ] && STYLE=6
-[ -z "$output" ] && output="$(get_mpd)" && [ -n "$output" ] && STYLE=7
+output="$(get_spotify)"
+[ -z "$output" ] && output="$(get_mpd)"
 
 [ -z "$output" ] && exit
 
@@ -46,11 +46,7 @@ info="${output#*§}"
 song="${info%§*}"
 artist="${info#*§}"
 
-fg="$(get_fg $STYLE)"
-bg_icon="$(get_bg_icon $STYLE)"
-bg_text="$(get_bg_text $STYLE)"
-
-MAX_LENGTH=180
+MAX_LENGTH=30
 
 if [ ${#song} -gt $MAX_LENGTH ]; then
 	song="$(printf '%s' "$song" | cut -c -$((MAX_LENGTH - 3)))..."
@@ -60,11 +56,7 @@ if [ ${#artist} -gt $MAX_LENGTH ]; then
 	artist="$(printf '%s' "$artist" | cut -c -$((MAX_LENGTH - 3)))..."
 fi
 
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "$icon"
-printf "%s" "$bg_text"
-printf " %s " "$song | $artist"
-printf "%s" "$(get_color_reset)"
+display_info "$STYLE" "$icon" "$song | $artist"
 
 case $BUTTON in
 6) "$TERMINAL" -e "$EDITOR" "$0" ;;

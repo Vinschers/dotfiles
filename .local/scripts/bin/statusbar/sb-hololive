@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . sb-style
-STYLE=6
+STYLE=4
 
 check_lives () {
 	while read -r id symbol
@@ -22,27 +22,14 @@ input () {
 
     echo "UC8rcEBzJSleTkf_-agPM20g 💎"
 
-    echo "UCsUj0dszADCGbF3gNrQEuSQ 🪐"
+    # echo "UCsUj0dszADCGbF3gNrQEuSQ 🪐" :'(
     echo "UCO_aKKYxn4tvrqPjcTzZ6EQ 🌿"
     echo "UC3n5uGu18FoCy23ggWWp8tA 🪶 "
     echo "UCmbs8T6MWqUHP1tIQvSgKrg ⏳"
     echo "UCgmPnx-EEeOrZSg5Tiw7ZRQ 🎲"
-
-    echo "UCKYyiJwNg2nV7hM86U5_wvw α"
 }
-
-fg="$(get_fg $STYLE)"
-bg_icon="$(get_bg_icon $STYLE)"
-bg_text="$(get_bg_text $STYLE)"
 
 icon=""
 text="$(input | check_lives)"
 
-if [ -n "$text" ]
-then
-    printf "%s%s" "$bg_icon" "$fg"
-    printf " %s " "$icon"
-    printf "%s" "$bg_text"
-    printf " %s " "${text%?}"
-    printf "%s" "$(get_color_reset)"
-fi
+[ -n "$text" ] && display_info "$STYLE" "$icon" "${text%?}"

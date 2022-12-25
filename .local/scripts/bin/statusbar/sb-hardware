@@ -1,11 +1,7 @@
 #!/bin/sh
 
 . sb-style
-STYLE=3
-
-fg="$(get_fg $STYLE)"
-bg_icon="$(get_bg_icon $STYLE)"
-bg_text="$(get_bg_text $STYLE)"
+STYLE=5
 
 n=3
 logfile="${XDG_CACHE_HOME:-$HOME/.cache}/hardware"
@@ -28,9 +24,4 @@ case $opt in
     2) icon="" && text="$(sb-disk)" ;;
 esac
 
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "$icon"
-printf "%s" "$bg_text"
-printf " %s " "$text"
-printf "%s" "$(get_color_reset)"
-
+display_info "$STYLE" "$icon" "$text"

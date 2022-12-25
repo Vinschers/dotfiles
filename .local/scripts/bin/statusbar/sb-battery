@@ -3,24 +3,15 @@
 . sb-style
 STYLE=2
 
-fg="$(get_fg $STYLE)"
-bg_icon="$(get_bg_icon $STYLE)"
-bg_text="$(get_bg_text $STYLE)"
-
 draw_battery () {
-    printf "%s%% " "$1"
+    printf "%s%%" "$1"
 }
 
 icon=""
 
 if [ "$(ls /sys/class/power_supply | grep BAT)" = "" ];
 then
-    printf "%s%s" "$bg_icon" "$fg"
-    printf " %s " "$icon"
-    printf "%s " "$bg_text"
-
-    draw_battery 100
-    printf "%s" "$(get_color_reset)"
+    display_info "$STYLE" "$icon" "$(draw_battery 100)"
 	exit 0
 fi
 
@@ -32,24 +23,15 @@ for battery in /sys/class/power_supply/BAT?*; do
 
     if [ "$battery_status" = "Charging" ] || [ "$capacity" -eq 79 ]
     then
-        STYLE=2
         icon=""
     else
         STYLE=3
     fi
 
-    fg="$(get_fg $STYLE)"
-    bg_icon="$(get_bg_icon $STYLE)"
-    bg_text="$(get_bg_text $STYLE)"
-
     battery_info="$battery_info$(draw_battery "$capacity" "$2")"
 done
 
-printf "%s%s" "$bg_icon" "$fg"
-printf " %s " "$icon"
-printf "%s" "$bg_text"
-printf "%s " "${battery_info%?}"
-printf "%s" "$(get_color_reset)"
+display_info "$STYLE" "$icon" "$battery_info"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

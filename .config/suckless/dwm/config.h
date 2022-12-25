@@ -4,7 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx      = 0;        /* border pixel of windows */
-static const unsigned int snap          = 12;       /* snap pixel */
+static const unsigned int snap          = 1;       /* snap pixel */
 static const int scalepreview           = 4;        /* Tag preview scaling */
 static const unsigned int gappih        = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv        = 10;       /* vert inner gap between windows */
@@ -43,9 +43,9 @@ static const int quit_empty_window_count = 0;   /* only allow dwm to quit if no 
 static const char *fonts[] = {
     "Source Code Pro:size=12:style=bold",
     "JoyPixels:size=12",
-    "Noto Color Emoji:size=12",
     "fontawesome:size=12",
     "fontawesomebrands:size=12",
+    "Noto Color Emoji:size=12",
     "JetBrainsMono Nerd Font:size=12",
     "Latin Modern Math:size=15",
     "Hack Nerd Font Mono:size=12",
