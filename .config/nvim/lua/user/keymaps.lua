@@ -29,6 +29,7 @@ keymap("n", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
 keymap("n", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
 keymap("n", "c", '"_c', opts)
+keymap("v", "c", '"_c', opts)
 
 keymap("n", "<C-A-j>", "<Esc>:m .+1<CR>", opts)
 keymap("n", "<C-A-k>", "<Esc>:m .-2<CR>", opts)
@@ -38,8 +39,8 @@ keymap("n", "<F1>", "", opts)
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)

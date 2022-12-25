@@ -86,13 +86,18 @@ local nmappings = {
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
 	["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
 
-	["c"] = { "<cmd>Cheat<cr>", "Cheat" },
-	["C"] = { "<cmd>set spell! spelllang=en_us,pt<cr>", "Toggle spell check" },
+	["c"] = { "<cmd>set spell! spelllang=en_us,pt<cr>", "Toggle spell check" },
 
 	["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
 
 	["n"] = { "<cmd>NoNeckPain<cr>", "No Neck Pain" },
 	["m"] = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
+
+    C = {
+        name = "Color picker",
+        c = { "<cmd>CccPick<cr>", "Pick color" },
+        C = { "<cmd>CccConvert<cr>", "Convert color" },
+    },
 
 	p = {
 		name = "Packer",
@@ -123,8 +128,8 @@ local nmappings = {
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-        D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+		D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
 		u = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
 		g = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<cr>", "Show dialog" },
 		w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
@@ -137,7 +142,7 @@ local nmappings = {
 			q = { "<cmd>FlutterQuit<cr>", "Quit" },
 			l = { "<cmd>FlutterLspRestart<cr>", "Restart LSP server" },
 		},
-        h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
 		i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
@@ -150,7 +155,7 @@ local nmappings = {
 		S = { "<cmd>SymbolsOutline<cr>", "Document Symbols" },
 		t = {
 			name = "+Trouble",
-            r = { "<cmd>Trouble lsp_references<cr>", "References" },
+			r = { "<cmd>Trouble lsp_references<cr>", "References" },
 			f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
 			d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
 			q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
@@ -173,7 +178,7 @@ local nmappings = {
 	T = {
 		name = "Terminal",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+		n = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },

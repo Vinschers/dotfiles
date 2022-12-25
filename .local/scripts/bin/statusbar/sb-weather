@@ -26,4 +26,4 @@ case $opt in
     2) text="$(curl -sf "wttr.in?format=%m+%P")" ;;
 esac
 
-display_info "$STYLE" "$icon" "$text"
+[ ${#text} -lt 20 ] && display_info "$STYLE" "$icon" "$text"
