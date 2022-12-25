@@ -9,3 +9,4 @@ git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME config --local status.showU
 
 # Showcase
 ![](/.local/scripts/pictures/picture1.png)
+![](/.local/scripts/pictures/picture2.png)
