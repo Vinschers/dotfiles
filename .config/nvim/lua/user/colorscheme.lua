@@ -1,6 +1,15 @@
-local colorscheme = "tokyonight-moon"
-
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
+local cmp_status_ok, tokyonight = pcall(require, "tokyonight")
+if not cmp_status_ok then
 	return
 end
+
+tokyonight.setup({
+    style = "moon",
+    transparent = true,
+    styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+    }
+})
+
+vim.cmd[[colorscheme tokyonight]]

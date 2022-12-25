@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	pattern = { "*.Xresources" },
 	callback = function()
-        vim.cmd(":set ft=xdefaults")
+		vim.cmd(":set ft=xdefaults")
 	end,
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -100,3 +100,18 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 		os.execute(cmd)
 	end,
 })
+-- vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+-- 	pattern = { "*" },
+-- 	callback = function()
+-- 		vim.cmd([[
+--         hi Normal guibg=none ctermbg=none
+--         hi LineNr guibg=none ctermbg=none
+--         hi Folded guibg=none ctermbg=none
+--         hi NonText guibg=none ctermbg=none
+--         hi SpecialKey guibg=none ctermbg=none
+--         hi VertSplit guibg=none ctermbg=none
+--         hi SignColumn guibg=none ctermbg=none
+--         hi EndOfBuffer guibg=none ctermbg=none
+--         ]])
+-- 	end,
+-- })
