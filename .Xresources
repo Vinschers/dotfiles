@@ -1,6 +1,11 @@
 ! NEVER REMOVE
-! #include ".config/themes/catppuccin-mocha.Xresources"
 #include ".config/themes/tokyonight-moon.Xresources"
+
+! Applications that do not use Xresources:
+! dunst
+! btop
+! cava
+! nvim
 
 
 *background: BACKGROUND

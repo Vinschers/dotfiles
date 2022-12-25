@@ -33,7 +33,7 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-local ncdu = Terminal:new({ cmd = "ncdu --color dark", hidden = true })
+local ncdu = Terminal:new({ cmd = "ncdu --color off", hidden = true })
 
 function _NCDU_TOGGLE()
     ncdu:toggle()
