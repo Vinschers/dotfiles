@@ -1,0 +1,90 @@
+! NEVER REMOVE
+#include ".config/themes/tokyonight-moon.Xresources"
+
+! Applications that do not use Xresources:
+! dunst
+! btop
+! cava
+! nvim
+
+
+*background: BACKGROUND
+*foreground: FOREGROUND
+
+*color0: BLACK
+*color1: RED
+*color2: GREEN
+*color3: YELLOW
+*color4: BLUE
+*color5: MAGENTA
+*color6: CYAN
+*color7: WHITE
+
+*color8: BRIGHT_BLACK
+*color9: BRIGHT_RED
+*color10: BRIGHT_GREEN
+*color11: BRIGHT_YELLOW
+*color12: BRIGHT_BLUE
+*color13: BRIGHT_MAGENTA
+*color14: BRIGHT_CYAN
+*color15: BRIGHT_WHITE
+
+
+dmenu.background:           BACKGROUND
+dmenu.foreground:           FOREGROUND
+
+dmenu.midbackground:        BACKGROUND
+dmenu.midforeground:        FOREGROUND
+
+dmenu.outbackground:        BACKGROUND
+dmenu.outforeground:        FOREGROUND
+
+dmenu.selbackground:        BLUE
+dmenu.selforeground:        BACKGROUND
+
+dmenu.selhlbackground:      BRIGHT_BLACK
+dmenu.selhlforeground:      FOREGROUND
+
+dmenu.hlbackground:         BRIGHT_BLACK
+dmenu.hlforeground:         FOREGROUND
+
+
+dwm.normfgcolor:            FOREGROUND
+dwm.normbgcolor:            BACKGROUND
+dwm.normbordercolor:        BLACK
+dwm.normfloatcolor:         BLACK
+
+dwm.selfgcolor:             FOREGROUND
+dwm.selbgcolor:             BRIGHT_BLACK
+dwm.selbordercolor:         BRIGHT_BLACK
+dwm.selfloatcolor:          BRIGHT_BLACK
+
+dwm.titlenormfgcolor:       WHITE
+dwm.titlenormbgcolor:       BACKGROUND
+dwm.titlenormbordercolor:   BLACK
+dwm.titlenormfloatcolor:    BLACK
+
+dwm.titleselfgcolor:        WHITE
+dwm.titleselbgcolor:        BLACK
+dwm.titleselbordercolor:    BLACK
+dwm.titleselfloatcolor:     BLACK
+
+dwm.tagsnormfgcolor:        FOREGROUND
+dwm.tagsnormbgcolor:        BACKGROUND
+dwm.tagsnormbordercolor:    BLACK
+dwm.tagsnormfloatcolor:     BLACK
+
+dwm.tagsselfgcolor:         FOREGROUND
+dwm.tagsselbgcolor:         BRIGHT_BLACK
+dwm.tagsselbordercolor:     BLACK
+dwm.tagsselfloatcolor:      BLACK
+
+dwm.hidnormfgcolor:         BRIGHT_BLACK
+dwm.hidnormbgcolor:         BLACK
+dwm.hidselfgcolor:          BLACK
+dwm.hidselbgcolor:          BLACK
+
+dwm.urgfgcolor:             BLACK
+dwm.urgbgcolor:             YELLOW
+dwm.urgbordercolor:         BLACK
+dwm.urgfloatcolor:          BLACK
