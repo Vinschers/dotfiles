@@ -64,8 +64,7 @@ alias \
     get-keys="xev" \
     ct="compact_tar" \
     cz="compact_zip" \
-    lf="lf-ueberzug" \
-    startx='startx $HOME/.config/x11/xinitrc' \
+    lf="lf-ueberzug"
 
 # Utils
 alias \
@@ -82,4 +81,5 @@ alias \
     vpn="sudo openvpn \$SCRIPTS_DIR/secrets/unicamp.ovpn" \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
     d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls' \
-    sv="sudoedit"
+    sv="sudoedit" \
+    mntdroid="aft-mtp-mount"

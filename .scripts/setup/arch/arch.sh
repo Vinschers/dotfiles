@@ -70,6 +70,9 @@ setup_nvidia() {
 
 install_extra() {
     yay --noconfirm -S spotify spicetify-cli discord betterdiscord-installer ncspot #librewolf-bin
+
+    sudo chmod a+wr /opt/spotify
+    sudo chmod a+wr /opt/spotify/Apps -R
 }
 
 check "Setup wacom?" 1 && setup_wacom

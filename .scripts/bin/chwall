@@ -1,0 +1,12 @@
+#!/bin/sh
+
+wall="$1"
+[ -f "$wall" ] || exit 1
+
+ext="${wall##*.}"
+
+rm "$HOME"/.config/wallpaper.*
+cp "$wall" "$HOME/.config/wallpaper.$ext"
+chmod -x "$HOME/.config/wallpaper.$ext"
+
+feh --bg-fill "$HOME/.config/wallpaper.$ext"

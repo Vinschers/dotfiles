@@ -1,0 +1,12 @@
+#!/bin/sh
+
+lock="$1"
+[ -f "$lock" ] || exit 1
+
+ext="${lock##*.}"
+
+rm "$HOME"/.config/lockscreen.*
+cp "$lock" "$HOME/.config/lockscreen.$ext"
+chmod -x "$HOME/.config/lockscreen.$ext"
+
+betterlockscreen -u "$HOME/.config/lockscreen.$ext"
