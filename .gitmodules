@@ -1,6 +1,6 @@
-[submodule ".local/scripts/programs/makefile2graph"]
-	path = .scripts/programs/makefile2graph
-	url = https://github.com/lindenb/makefile2graph
-[submodule ".local/scripts/programs/grub2-themes"]
+[submodule ".scripts/programs/grub2-themes"]
 	path = .scripts/programs/grub2-themes
 	url = https://github.com/vinceliuice/grub2-themes
+[submodule ".scripts/programs/makefile2graph"]
+	path = .scripts/programs/makefile2graph
+	url = https://github.com/lindenb/makefile2graph
