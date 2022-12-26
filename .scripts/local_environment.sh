@@ -1,9 +1,8 @@
 #!/bin/sh
 
-export WALLPAPERS_DIR="$HOME/Media/wallpapers"
-export ACADEMIC_DIRECTORY="$HOME/hdd/academic"
+export ACADEMIC_DIRECTORY=""
 
-export DRIVERS="nvme sdb" # Shown in sb-disk
+export DRIVERS="" # Shown in sb-disk
 
 export SB_CPU_BAR_PAD="3"
 export SB_CPU_SIZE="26"
