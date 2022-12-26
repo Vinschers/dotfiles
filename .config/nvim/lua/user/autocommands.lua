@@ -77,8 +77,9 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "local_environment.sh" },
 	callback = function()
+        local filepath = vim.fn.expand("%:p")
 		os.execute(
-			'git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged "$SCRIPTS_DIR/local_environment.sh"'
+			'git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged "' .. filepath .. '"'
 		)
 	end,
 })
@@ -100,18 +101,3 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 		os.execute(cmd)
 	end,
 })
--- vim.api.nvim_create_autocmd({ "ColorScheme" }, {
--- 	pattern = { "*" },
--- 	callback = function()
--- 		vim.cmd([[
---         hi Normal guibg=none ctermbg=none
---         hi LineNr guibg=none ctermbg=none
---         hi Folded guibg=none ctermbg=none
---         hi NonText guibg=none ctermbg=none
---         hi SpecialKey guibg=none ctermbg=none
---         hi VertSplit guibg=none ctermbg=none
---         hi SignColumn guibg=none ctermbg=none
---         hi EndOfBuffer guibg=none ctermbg=none
---         ]])
--- 	end,
--- })

@@ -1,1 +1,1 @@
-.profile
+/home/scherer/.profile
