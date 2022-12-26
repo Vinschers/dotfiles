@@ -22,4 +22,4 @@ xautolock -time 10 -locker lock -corners +00- &
 #python "$SCRIPTS_DIR/external/inkscape-shortcut-manager/main.py" &
 
 wallpaper="$(ls "$HOME/.config" | grep wallpaper | head -n 1)"
-[ -f "$HOME/.config/$wallpaper" ] && feh --bg-fill "$HOME/.config/$wallpaper"
+chwall "$HOME/.config/$wallpaper"

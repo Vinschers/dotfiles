@@ -5,8 +5,27 @@ wall="$1"
 
 ext="${wall##*.}"
 
-rm "$HOME"/.config/wallpaper.*
-cp "$wall" "$HOME/.config/wallpaper.$ext"
-chmod -x "$HOME/.config/wallpaper.$ext"
+if [ "$(dirname "$wall")" != "$HOME/.config" ]; then
+	rm "$HOME"/.config/wallpaper.*
+	cp "$wall" "$HOME/.config/wallpaper.$ext"
+	chmod -x "$HOME/.config/wallpaper.$ext"
+fi
 
-feh --bg-fill "$HOME/.config/wallpaper.$ext"
+while [ -n "$(pidof xwinwrap)" ]; do
+	killall xwinwrap 2>/dev/null
+done
+
+set_xwinwrap() {
+	xrandr | grep -sw 'connected' | grep -oP '[\d]+x[\d]+\+[\d]+\+[\d]+' | while read -r res; do
+		xwinwrap -g "$res" -un -fdt -ni -b -nf -ov -- mpv -wid %WID --really-quiet --hwdec=auto-safe --vo=gpu --no-audio --no-border --no-config --no-window-dragging --no-input-default-bindings --no-osd-bar --no-sub --loop "$HOME/.config/wallpaper.$ext" &
+	done
+}
+
+case "$ext" in
+*gif | *mp4 | *mkv)
+    set_xwinwrap 2>/dev/null
+	;;
+*)
+	feh --no-fehbg --bg-fill "$HOME/.config/wallpaper.$ext"
+	;;
+esac

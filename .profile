@@ -15,7 +15,9 @@ fi
 [ -f "$SCRIPTS_DIR/secrets/secrets.sh" ] && . "$SCRIPTS_DIR/secrets/secrets.sh"
 
 create_symlink() {
-	[ -f "$2" ] || ln -s "$1" "$2"
+	if ! [ -f "$2" ] && ! [ -d "$2" ]; then
+		ln -s "$1" "$2"
+	fi
 }
 
 create_file() {
