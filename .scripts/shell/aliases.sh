@@ -16,8 +16,7 @@ alias \
     htop="open_htop" \
     gtop="open_gtop" \
     nvim="open_nvim" \
-    bash='bash --rcfile $BASHDIR/bashrc.sh' \
-    mpv='$SCRIPTS_DIR/bin/mpv'
+    bash='bash --rcfile $BASHDIR/bashrc.sh'
 
 # Shortenings
 alias \

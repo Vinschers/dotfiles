@@ -32,4 +32,4 @@ video/quicktime=mpv.desktop
 image/bmp=imv.desktop
 image/jpeg=imv.desktop
 image/png=imv.desktop
-image/gif=mpv.desktop
+image/gif=imv.desktop

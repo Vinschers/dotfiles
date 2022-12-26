@@ -48,6 +48,9 @@ install_packages() {
 
 	sudo systemctl enable zotero-translation-server.service
 	sudo systemctl enable lightdm
+
+    sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
+
 }
 
 setup_pacman() {
