@@ -15,7 +15,7 @@ case "$sys_type" in
         ;;
 esac
 
-nitrogen --restore &
+feh --bg-fill "$HOME"/.config/wallpaper.* &
 dunst &
 
 [ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"

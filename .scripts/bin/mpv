@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "$@" in
+*.gif)
+    mpv --loop-file --really-quiet $@
+    ;;
+*)
+    mpv $@
+    ;;
+esac

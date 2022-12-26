@@ -8,6 +8,7 @@ android-file-transfer
 btop
 dash
 dunst
+feh
 ffmpeg
 flameshot
 gparted
@@ -33,7 +34,6 @@ ncdu
 neofetch
 neovim
 networkmanager
-nitrogen
 noto-fonts-emoji
 ntfs-3g
 openssh

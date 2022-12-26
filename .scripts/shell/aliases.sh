@@ -17,7 +17,7 @@ alias \
     gtop="open_gtop" \
     nvim="open_nvim" \
     bash='bash --rcfile $BASHDIR/bashrc.sh' \
-    mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" # This alias is important. It enables the `pauseallmpv` command.
+    mpv='$SCRIPTS_DIR/bin/mpv'
 
 # Shortenings
 alias \
