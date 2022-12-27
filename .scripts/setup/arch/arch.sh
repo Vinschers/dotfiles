@@ -69,7 +69,12 @@ setup_nvidia() {
 }
 
 install_extra() {
-    yay --noconfirm -S spotify spicetify-cli discord betterdiscord-installer ncspot #librewolf-bin
+    sudo pacman --noconfirm --needed -S discord
+    yay --noconfirm -S spotify
+    yay --noconfirm -S spicetify-cli
+    yay --noconfirm -S betterdiscord-installer
+    yay --noconfirm -S ncspot
+    # yay --noconfirm -S librewolf-bin
 
     sudo chmod a+wr /opt/spotify
     sudo chmod a+wr /opt/spotify/Apps -R
