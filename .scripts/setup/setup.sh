@@ -84,9 +84,6 @@ copy_xorg() {
         ;;
 	esac
 
-	sudo mkdir -p /usr/share/xsessions
-	sudo cp "$THIS_DIRECTORY/xorg_config/dwm.desktop" /usr/share/xsessions
-
 	"$HOME/.config/lightdm/update.sh"
 }
 
