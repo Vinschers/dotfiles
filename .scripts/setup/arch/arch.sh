@@ -46,7 +46,7 @@ install_packages() {
 	pulseaudio --check
 	pulseaudio -D
 
-	pip install undetected-chromedriver
+	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
 	sudo pacman --noconfirm -Rns gnu-free-fonts
 
 	sudo systemctl enable zotero-translation-server.service
@@ -66,7 +66,10 @@ setup_pacman() {
 }
 
 setup_nvidia() {
-	sudo pacman --noconfirm -S nvidia nvidia-settings nvidia-utils opencl-nvidia
+	sudo pacman --noconfirm -S nvidia || errors="$errors nvidia"
+	sudo pacman --noconfirm -S nvidia-settings || errors="$errors nvidia-settings"
+	sudo pacman --noconfirm -S nvidia-utils || errors="$errors nvidia-utils"
+	sudo pacman --noconfirm -S opencl-nvidia || errors="$errors opencl-nvidia"
 	echo "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia-drm-nomodeset.conf
 	sudo mkinitcpio -P
 }
@@ -77,17 +80,19 @@ install_extra() {
     yay --noconfirm -S spicetify-cli || errors="$errors spicetify-cli"
     yay --noconfirm -S betterdiscord-installer || errors="$errors betterdiscord-installer"
     yay --noconfirm -S ncspot || errors="$errors ncspot"
-    # yay --noconfirm -S librewolf-bin
+    yay --noconfirm -S librewolf-bin || errors="$errors librewolf-bin"
 
-    sudo chmod a+wr /opt/spotify
-    sudo chmod a+wr /opt/spotify/Apps -R
+    if [ "${errors#*spotify}" = "$errors" ]; then
+        sudo chmod a+wr /opt/spotify
+        sudo chmod a+wr /opt/spotify/Apps -R
+    fi
 }
 
 check "Setup wacom?" 1 && setup_wacom
 check "Install packages?" 1 && install_packages
 check "Setup pacman.conf?" 1 && setup_pacman
 check "Setup NVIDIA?" 0 && setup_nvidia
-check "Install extra packages?" 0 && install_extra
-check "Remove unnecessary dependencies?" 1 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
+check "Install extra packages?" 1 && install_extra
+check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
 
 [ -n "$errors" ] && echo "$errors" > "$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."
