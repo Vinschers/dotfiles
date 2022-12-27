@@ -3,7 +3,9 @@
 . sb-style
 STYLE=1
 
-info="$(playerctl -a metadata --format '{{status}}{{playerName}} {{title}}' | sed 's/[\||-].*//g')"
+info="$(playerctl -a metadata --format '{{status}}{{playerName}} {{title}}')"
+info="$(echo "$info" | sed 's/[| ][\||-].*//g')"
+
 info="$(echo "$info" | sed 's/Paused[a-zA-Z]*//g')"
 
 info="$(echo "$info" | sed 's/[a-zA-Z]*spotify//g')"
