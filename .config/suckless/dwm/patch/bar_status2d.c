@@ -45,7 +45,8 @@ drawstatusbar(BarArg *a, char* stext)
 
 			text[i] = '\0';
 			w = TEXTWM(text) - lrpad;
-			drw_text(drw, x, y + vertpadbar/2, w, bh - vertpadbar, 0, text, 0, True);
+            /* CHANGED: Add padding to statusbar */
+            drw_text(drw, x, y + vertpadbar/2, w, bh - vertpadbar, 0, text, 0, True);
 
 			x += w;
 
@@ -60,7 +61,7 @@ drawstatusbar(BarArg *a, char* stext)
 					}
 					memcpy(buf, (char*)text+i+1, 7);
 					buf[7] = '\0';
-					drw_clr_create(drw, &drw->scheme[ColFg], buf);
+					drw_clr_create(drw, &drw->scheme[ColFg], buf, baralpha); /* CHANGED: Using baralpha variable to set status2d alpha */
 					i += 7;
 				} else if (text[i] == 'b') {
 					char buf[8];
@@ -71,7 +72,7 @@ drawstatusbar(BarArg *a, char* stext)
 					}
 					memcpy(buf, (char*)text+i+1, 7);
 					buf[7] = '\0';
-					drw_clr_create(drw, &drw->scheme[ColBg], buf);
+					drw_clr_create(drw, &drw->scheme[ColBg], buf, baralpha); /* CHANGED: Using baralpha variable to set status2d alpha */
 					i += 7;
 				} else if (text[i] == 'd') {
 					drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
@@ -117,7 +118,8 @@ drawstatusbar(BarArg *a, char* stext)
 	}
 	if (!isCode && len > 0) {
 		w = TEXTWM(text) - lrpad;
-		drw_text(drw, x, y + vertpadbar/2, w, bh - vertpadbar, 0, text, 0, True);
+        /* CHANGED: Add padding to statusbar */
+        drw_text(drw, x, y + vertpadbar/2, w, bh - vertpadbar, 0, text, 0, True);
 		x += w;
 	}
 	free(p);

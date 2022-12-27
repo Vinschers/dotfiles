@@ -299,14 +299,6 @@
  */
 #define BAR_CLIENTINDICATOR_PATCH N/A
 
-/* This patch enables color emoji in dwm by removing a workaround for a BadLength error
- * in the Xft library when color glyphs are used.
- * To enable this you will need an updated Xft library that can handle color glyphs otherwise
- * dwm will crash on encountering such characters. Note that you will also need a font that
- * provides color emojis for this to work.
- */
-#define BAR_COLOR_EMOJI_PATCH 1
-
 /* Updates the position of dmenu to match that of the bar. I.e. if topbar is 0 then dmenu
  * will appear at the bottom and if 1 then dmenu will appear at the top.
  * https://dwm.suckless.org/patches/dmenumatchtop
@@ -358,6 +350,12 @@
  * https://docs.google.com/viewer?a=v&pid=forums&srcid=MDAwODA2MTg0MDQyMjE0OTgzMzMBMDQ3ODQzODkyMTU3NTAyMTMxNTYBX2RUMVNtOUtDQUFKATAuMQEBdjI&authuser=0
  */
 #define BAR_IGNORE_XFT_ERRORS_WHEN_DRAWING_TEXT_PATCH 1
+
+/* This patch adds back in the workaround for a BadLength error in the Xft library when color
+ * glyphs are used. This is for systems that do not have an updated version of the Xft library
+ * (or generally prefer monochrome fonts).
+ */
+#define BAR_NO_COLOR_EMOJI_PATCH 0
 
 /* This patch adds vertical and horizontal space between the statusbar and the edge of the screen.
  * https://dwm.suckless.org/patches/barpadding/
@@ -440,6 +438,11 @@
  * Other patches
  */
 
+/* Adds a window task switcher toggled using alt-tab.
+ * https://dwm.suckless.org/patches/alt-tab/
+ */
+#define ALT_TAB_PATCH 0
+
 /* All floating windows are centered, like the center patch, but without a rule.
  * The center patch takes precedence over this patch.
  * This patch interferes with the center transient windows patches.
@@ -489,6 +492,18 @@
  * https://dwm.suckless.org/patches/autoresize/
  */
 #define AUTORESIZE_PATCH 0
+
+/* This patch adds proper support for Right-To-Left languages. (such as Farsi, Arabic or Hebrew).
+ *
+ * You need to uncomment the corresponding lines in config.mk to use the -lfribidi library
+ * when including this patch.
+ *
+ * This patch depends on the following additional library:
+ *    - fribidi
+ *
+ * https://dwm.suckless.org/patches/bidi/
+ */
+#define BIDI_PATCH 0
 
 /* This patch adds an iscentered rule to automatically center clients on the current monitor.
  * This patch takes precedence over centeredwindowname, alwayscenter and fancybar patches.
@@ -769,6 +784,32 @@
  * https://dwm.suckless.org/patches/movestack/
  */
 #define MOVESTACK_PATCH 0
+
+/* This patch allows you to change the names of tags during runtime.
+ *
+ * This is a bespoke version implemented specifically in relation to tagicons, which is integrated
+ * into dwm-flexipatch. By default it uses dmenu to retrieve the new name, but this can be
+ * customised via config along with the maximum text length and the format string.
+ *
+ * Special behaviour:
+ *    - if more than one tag is selected then the name change applies to all selected tags
+ *    - if tagicons is configured to have unique tags per monitor then the change only applies
+ *      for the current monitor
+ *    - the name change applies to the tag set that is active for the current tag:
+ *       * if used in combination with BAR_ALTTAGSDECORATION_PATCH and there are clients on the
+ *         given tag then the name change only applies to the ALT_TAGS_DECORATION tag set
+ *       * if used in combination with the BAR_ALTERNATIVE_TAGS_PATCH and alternative tags are
+ *         shown then the name change only applies to the ALTERNATIVE_TAGS tag set
+ *       * if used in combination with both then BAR_ALTTAGSDECORATION_PATCH takes precedence
+ *       * otherwise the name change applies to the DEFAULT_TAGS tag set
+ *
+ * https://dwm.suckless.org/patches/nametag/
+ */
+#define NAMETAG_PATCH 0
+
+/* Variant of the above which prepends the tag number to the given string.
+ * The toggle does nothing on its own and need to be enabled in combination with the above. */
+#define NAMETAG_PREPEND_PATCH 0
 
 /* Adds support for the _NET_CLIENT_LIST_STACKING atom, needed by certain applications like the
  * Zoom video conferencing application.

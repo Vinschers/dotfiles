@@ -38,7 +38,6 @@ static int tagindicatortype              = INDICATOR_NONE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_NONE;
 static void (*bartabmonfns[])(Monitor *) = { monocle /* , customlayoutfn */ };
-static const int quit_empty_window_count = 0;   /* only allow dwm to quit if no (<= count) windows are open */
 
 static const char *fonts[] = {
     "Source Code Pro:size=12:style=bold",
@@ -53,8 +52,21 @@ static const char *fonts[] = {
 };
 static const char dmenufont[]       = "Source Code Pro:size=12";
 
-// static const unsigned int baralpha = 0xd0;
-// static const unsigned int borderalpha = OPAQUE;
+static const unsigned int baralpha = 0xdd;
+static const unsigned int borderalpha = OPAQUE;
+static const unsigned int alphas[][3] = {
+	/*                       fg      bg        border     */
+	[SchemeNorm]         = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]          = { OPAQUE, baralpha, borderalpha },
+	[SchemeTitleNorm]    = { OPAQUE, baralpha, borderalpha },
+	[SchemeTitleSel]     = { OPAQUE, baralpha, borderalpha },
+	[SchemeTagsNorm]     = { OPAQUE, baralpha, borderalpha },
+	[SchemeTagsSel]      = { OPAQUE, baralpha, borderalpha },
+	[SchemeHidNorm]      = { OPAQUE, baralpha, borderalpha },
+	[SchemeHidSel]       = { OPAQUE, baralpha, borderalpha },
+	[SchemeUrg]          = { OPAQUE, baralpha, borderalpha },
+};
+
 
 #include "themes/custom.h"
 
@@ -176,14 +188,6 @@ static const Layout layouts[] = {
 	{ NULL,       NULL,             {0} },
 };
 
-static const unsigned int defaultlayouts[] = {
-    0,  /* 0 clients */
-    2,  /* 1 client */
-    0,  /* 2 clients */
-    18,  /* 3 clients */
-    24, /* >= 4 clients */
-};
-
 /* key definitions */
 #define MODKEY Mod4Mask
 #define ALTKEY Mod1Mask
@@ -217,7 +221,7 @@ static const char *termcmd[]  = { "st", NULL };
 /* This defines the name of the executable that handles the bar (used for signalling purposes) */
 #define STATUSBAR "dwmblocks"
 
-static Key keys[] = {
+static const Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ ALTKEY,                       CAPSKEY,       spawn,                  SHCMD("update_dwmblocks 4") },
 
@@ -276,6 +280,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f,          fullscreen,             {0} },
 	{ MODKEY,                       XK_0,          view,                   {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,          tag,                    {.ui = ~0 } },
+	{ MODKEY,                       XK_comma,      focusmon,               {.i = -1 } },
+	{ MODKEY,                       XK_period,     focusmon,               {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_comma,      tagmon,                 {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period,     tagmon,                 {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_comma,      cyclelayout,            {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period,     cyclelayout,            {.i = +1 } },
 	{ ALTKEY,                       XK_j,  				focusmon,          {.i = -1 } },
@@ -296,7 +304,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask           button          function        argument */
 	{ ClkLtSymbol,          0,                   Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,                   Button3,        setlayout,      {.v = &layouts[2]} },
