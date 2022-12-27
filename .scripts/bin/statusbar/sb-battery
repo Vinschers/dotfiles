@@ -15,7 +15,7 @@ then
 	exit 0
 fi
 
-battery_info=" "
+battery_info=""
 
 for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
@@ -28,10 +28,10 @@ for battery in /sys/class/power_supply/BAT?*; do
         STYLE=3
     fi
 
-    battery_info="$battery_info$(draw_battery "$capacity" "$2")"
+    battery_info="$battery_info$(draw_battery "$capacity" "$2") "
 done
 
-display_info "$STYLE" "$icon" "$battery_info"
+display_info "$STYLE" "$icon" "${battery_info%?}"
 
 case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;

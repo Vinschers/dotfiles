@@ -10,7 +10,7 @@ check() {
 		printf "%s [y/N] " "$1" >&2
 		read -r ans
 
-		! [ "$ans" = "" ] || [ "$ans" = "N" ] || [ "$ans" = "n" ]
+		! [ "$ans" = "" ] && ! [ "$ans" = "N" ] && ! [ "$ans" = "n" ]
 	fi
 }
 

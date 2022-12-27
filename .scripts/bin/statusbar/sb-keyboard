@@ -6,6 +6,6 @@ STYLE=3
 icon=""
 text="$(xkb-switch)"
 
-display_info "$STYLE" "$icon" "$text"
+localectl status | grep Layout | grep "," && display_info "$STYLE" "$icon" "$text"
 
 notify-send -u low " Keyboard" "Changed keyboard layout to $text"

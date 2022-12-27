@@ -5,7 +5,7 @@ wall="$1"
 
 ext="${wall##*.}"
 
-if [ "$(dirname "$wall")" != "$HOME/.config" ]; then
+if [ "$(cd "$(dirname "$wall")" && pwd)" != "$HOME/.config" ]; then
 	rm "$HOME"/.config/wallpaper.*
 	cp "$wall" "$HOME/.config/wallpaper.$ext"
 	chmod -x "$HOME/.config/wallpaper.$ext"

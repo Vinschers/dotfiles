@@ -10,7 +10,7 @@ check() {
 		printf "%s [y/N] " "$1" >&2
 		read -r ans
 
-		! [ "$ans" = "" ] || [ "$ans" = "N" ] || [ "$ans" = "n" ]
+		! [ "$ans" = "" ] && ! [ "$ans" = "N" ] && ! [ "$ans" = "n" ]
 	fi
 }
 
@@ -36,6 +36,8 @@ setup_git() {
 }
 
 install_programs() {
+    git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME submodule update --init --recursive
+
 	cd "$SCRIPTS_DIR/programs/makefile2graph" || return
 	sudo make
 
@@ -56,7 +58,7 @@ install_programs() {
 }
 
 ignore_local_files() {
-	cd "$SCRIPTS_DIR/shell" || return
+	cd "$SCRIPTS_DIR" || return
 	git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged local_environment.sh
 
 	cd "$HOME/.cache" || return
