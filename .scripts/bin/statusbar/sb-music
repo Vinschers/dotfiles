@@ -3,70 +3,16 @@
 . sb-style
 STYLE=1
 
-get_spotify() {
+info="$(playerctl -a metadata --format '{{status}}{{playerName}} {{title}}' | sed 's/[\||-].*//g')"
+info="$(echo "$info" | sed 's/Paused[a-zA-Z]*//g')"
 
-	player="$(spot-cli -q)"
+info="$(echo "$info" | sed 's/[a-zA-Z]*spotify//g')"
+info="$(echo "$info" | sed 's/[a-zA-Z]*ncspot//g')"
+info="$(echo "$info" | sed 's/[a-zA-Z]*firefox//g')"
 
-	[ -z "$player" ] && return 1
+info="$(echo "$info" | tr '\n' ' ')"
 
-    if [ "$player" != "spotify" ] && [ "$player" != "ncspot" ]
-    then
-        return 1
-    fi
-
-	state="$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:"org.mpris.MediaPlayer2.Player" string:'PlaybackStatus' | grep -Ev "^method" | grep -Eo '("(.*)")|(\b[0-9][a-zA-Z0-9.]*\b)' | cut -f2 -d'"')"
-
-	case "$state" in
-	Stopped)
-		return 1
-		;;
-	Playing)
-		icon=""
-		;;
-	Paused)
-		icon=""
-		;;
-	esac
-
-    printf "%s§%s" "$icon" "$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$player" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:"org.mpris.MediaPlayer2.Player" string:'Metadata' | grep -Ev "^method" | grep -Eo '("(.*)")|(\b[0-9][a-zA-Z0-9.]*\b)' | sed -E '2~2 a|' | tr -d '\n' | sed -E 's/\|/\n/g;s/(xesam:)|(mpris:)//' | sed -E 's/^"//;s/"$//;s/"+/|/;s/ +/ /g' | grep -Ew 'title|albumArtist' | sort | cut -f2 -d'|' | sed '/^[[:space:]]*$/d;s/^[[:space:]]*//' | tr '\n' '|' | awk -F'|' '{print $1"§"$2}')"
-}
-
-get_mpd() {
-	return 1
-}
-
-output="$(get_spotify)"
-[ -z "$output" ] && output="$(get_mpd)"
-
-[ -z "$output" ] && exit
-
-icon="${output%%§*}"
-info="${output#*§}"
-
-song="${info%§*}"
-artist="${info#*§}"
-
-MAX_LENGTH=30
-
-if [ ${#song} -gt $MAX_LENGTH ]; then
-	song="$(printf '%s' "$song" | cut -c -$((MAX_LENGTH - 3)))..."
-fi
-
-if [ ${#artist} -gt $MAX_LENGTH ]; then
-	artist="$(printf '%s' "$artist" | cut -c -$((MAX_LENGTH - 3)))..."
-fi
-
-text=""
-
-if [ -n "$song" ] && [ -n "$artist" ]; then
-    text="$song | $artist"
-elif [ -n "$song" ] && [ -z "$artist" ]; then
-    text="$song"
-elif [ -z "$song" ] && [ -n "$artist" ]; then
-    text="$artist"
-fi
-
-display_info "$STYLE" "$icon" "$text"
+display_info "$STYLE" "$icon" "${info%?}"
 
 case $BUTTON in
 6) "$TERMINAL" -e "$EDITOR" "$0" ;;
