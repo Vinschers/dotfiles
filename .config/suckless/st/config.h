@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mono:size=15:antialias=true:autohint=true";
+static char *font = "mono:size=13:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
     "Latin Modern Math:size=15:antialias=true:autohint=true",
