@@ -5,13 +5,17 @@ alsa-firmware
 alsa-utils
 archlinux-keyring
 android-file-transfer
+atool
+bat
 bc
 btop
 dash
 dunst
 feh
 ffmpeg
+ffmpegthumbnailer
 flameshot
+gnome-epub-thumbnailer
 gparted
 grub-customizer
 htop
@@ -26,7 +30,9 @@ lightdm-webkit-theme-litarvan
 linux-headers
 lldb
 lsb-release
+lynx
 magic-wormhole
+mediainfo
 moreutils
 mousepad
 mpv
@@ -37,6 +43,7 @@ neovim
 networkmanager
 noto-fonts-emoji
 ntfs-3g
+odt2txt
 openssh
 os-prober
 otf-latinmodern-math
@@ -62,6 +69,7 @@ ttf-jetbrains-mono
 ttf-joypixels
 ttf-liberation
 ttf-sazanami
+ueberzug
 unrar
 unzip
 usbutils

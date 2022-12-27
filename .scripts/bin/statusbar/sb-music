@@ -56,7 +56,17 @@ if [ ${#artist} -gt $MAX_LENGTH ]; then
 	artist="$(printf '%s' "$artist" | cut -c -$((MAX_LENGTH - 3)))..."
 fi
 
-display_info "$STYLE" "$icon" "$song | $artist"
+text=""
+
+if [ -n "$song" ] && [ -n "$artist" ]; then
+    text="$song | $artist"
+elif [ -n "$song" ] && [ -z "$artist" ]; then
+    text="$song"
+elif [ -z "$song" ] && [ -n "$artist" ]; then
+    text="$artist"
+fi
+
+display_info "$STYLE" "$icon" "$text"
 
 case $BUTTON in
 6) "$TERMINAL" -e "$EDITOR" "$0" ;;

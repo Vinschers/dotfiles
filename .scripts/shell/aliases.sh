@@ -64,7 +64,7 @@ alias \
     get-keys="xev" \
     ct="compact_tar" \
     cz="compact_zip" \
-    lf="lf-ueberzug"
+    lf="lfcd"
 
 # Utils
 alias \
