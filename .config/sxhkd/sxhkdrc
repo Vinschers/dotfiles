@@ -14,7 +14,7 @@ XF86AudioRaiseVolume
     playerctl previous && sleep 1 && update_dwmblocks 5
 
 {XF86AudioPlay, super + shift + Up, super + shift + Down}
-    playerctl play-pause && update_dwmblocks 5
+    playerctl -a play-pause && update_dwmblocks 5
 
 {XF86AudioNext, super + shift + Right}
     playerctl next && sleep 1 && update_dwmblocks 5
