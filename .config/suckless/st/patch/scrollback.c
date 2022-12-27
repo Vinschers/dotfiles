@@ -16,6 +16,7 @@ kscrolldown(const Arg* a)
 	}
 
 	scroll_images(-1*n);
+
 }
 
 void
@@ -38,4 +39,5 @@ kscrollup(const Arg* a)
 	}
 
 	scroll_images(n);
+
 }

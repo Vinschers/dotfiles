@@ -22,7 +22,7 @@
  * https://github.com/juliusHuelsmann/st-focus/
  * https://st.suckless.org/patches/alpha_focus_highlight/
  */
-#define ALPHA_FOCUS_HIGHLIGHT_PATCH 0
+#define ALPHA_FOCUS_HIGHLIGHT_PATCH 1
 
 /* Adds gradient transparency to st, depends on the alpha patch.
  * https://st.suckless.org/patches/gradient/
@@ -180,6 +180,13 @@
  */
 #define FONT2_PATCH 1
 
+/* This patch adds the ability to toggle st into fullscreen mode.
+ * Two key bindings are defined: F11 which is typical with other applications and Alt+Enter
+ * which matches the default xterm behavior.
+ * https://st.suckless.org/patches/fullscreen/
+ */
+#define FULLSCREEN_PATCH 0
+
 /* Hide the X cursor whenever a key is pressed and show it back when the mouse is moved in
  * the terminal window.
  * https://st.suckless.org/patches/hidecursor/
@@ -197,7 +204,7 @@
  * colorscheme or visa-versa.
  * https://st.suckless.org/patches/invert/
  */
-#define INVERT_PATCH 1
+#define INVERT_PATCH 0
 
 /* Pressing the default binding Ctrl+Shift-i will popup dmenu, asking you to enter a unicode
  * codepoint that will be converted to a glyph and then pushed to st.
@@ -236,6 +243,14 @@
  * https://st.suckless.org/patches/newterm/
  */
 #define NEWTERM_PATCH 1
+
+/* This patch will set the _MOTIF_WM_HINTS property for the st window which, if the window manager
+ * respects it, will show the st window without window decorations.
+ *
+ * In dwm, if the decoration hints patch is applied, then the st window will start out without a
+ * border. In GNOME and KDE the window should start without a window title.
+ */
+#define NO_WINDOW_DECORATIONS_PATCH 0
 
 /* Open contents of the clipboard in a user-defined browser.
  * https://st.suckless.org/patches/open_copied_url/
@@ -276,7 +291,7 @@
  * This variant depends on SCROLLBACK_PATCH being enabled.
  * https://st.suckless.org/patches/scrollback/
  */
-#define SCROLLBACK_MOUSE_ALTSCREEN_PATCH 0
+#define SCROLLBACK_MOUSE_ALTSCREEN_PATCH 1
 
 /* This is the single drawable buffer patch as outlined in the FAQ to get images
  * in w3m to display. While this patch does not break the alpha patch it images
@@ -364,6 +379,20 @@
  * https://st.suckless.org/patches/universcroll/
  */
 #define UNIVERSCROLL_PATCH 0
+
+/* Use XftFontMatch in place of FcFontMatch.
+ *
+ * XftFontMatch calls XftDefaultSubstitute which configures various match properties according
+ * to the user's configured Xft defaults (xrdb) as well as according to the current display and
+ * screen. Most importantly, the screen DPI is computed [1]. Without this, st uses a "default"
+ * DPI of 75 [2].
+ *
+ * [1]: https://cgit.freedesktop.org/xorg/lib/libXft/tree/src/xftdpy.c?id=libXft-2.3.2#n535
+ * [2]: https://cgit.freedesktop.org/fontconfig/tree/src/fcdefault.c?id=2.11.1#n255
+ *
+ * https://git.suckless.org/st/commit/528241aa3835e2f1f052abeeaf891737712955a0.html
+ */
+#define USE_XFTFONTMATCH_PATCH 0
 
 /* Vertically center lines in the space available if you have set a larger chscale in config.h
  * https://st.suckless.org/patches/vertcenter/

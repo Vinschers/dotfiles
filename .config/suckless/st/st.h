@@ -64,6 +64,13 @@ enum drawing_mode {
 	DRAW_FG   = 1 << 1,
 };
 
+/* Used to control which screen(s) keybindings and mouse shortcuts apply to. */
+enum screen {
+	S_PRI = -1, /* primary screen */
+	S_ALL = 0,  /* both primary and alt screen */
+	S_ALT = 1   /* alternate screen */
+};
+
 enum selection_mode {
 	SEL_IDLE = 0,
 	SEL_EMPTY = 1,
@@ -193,6 +200,7 @@ typedef struct {
 	KeySym keysym;
 	void (*func)(const Arg *);
 	const Arg arg;
+	int screen;
 } Shortcut;
 
 typedef struct {
@@ -200,7 +208,8 @@ typedef struct {
 	uint button;
 	void (*func)(const Arg *);
 	const Arg arg;
-	uint  release;
+	uint release;
+	int screen;
 } MouseShortcut;
 
 typedef struct {
@@ -248,6 +257,7 @@ void sendbreak(const Arg *);
 void toggleprinter(const Arg *);
 
 int tattrset(int);
+int tisaltscr(void);
 void tnew(int, int);
 void tresize(int, int);
 void tsetdirtattr(int);
@@ -291,6 +301,7 @@ extern unsigned int defaultcs;
 extern int extpipeactive;
 
 extern float alpha;
+extern float alphaUnfocused;
 
 extern DC dc;
 extern XWindow xw;

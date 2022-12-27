@@ -107,36 +107,37 @@ unsigned int tabspaces = 8;
 
 /* bg opacity */
 float alpha = 0.95;
+float alphaUnfocused = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-    /* 8 normal colors */
-    [0] = "#000000", /* black   */
-    [1] = "#ff6767", /* red     */
-    [2] = "#38de21", /* green   */
-    [3] = "#ffe50a", /* yellow  */
-    [4] = "#1460d2", /* blue    */
-    [5] = "#ff4d8e", /* magenta */
-    [6] = "#00bbbb", /* cyan    */
-    [7] = "#bbbbbb", /* white   */
+	/* 8 normal colors */
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
 
-    /* 8 bright colors */
-    [8] = "#6f6f6f",  /* black   */
-    [9] = "#f7575d",  /* red     */
-    [10] = "#3bd01d", /* green   */
-    [11] = "#edc809", /* yellow  */
-    [12] = "#5555ff", /* blue    */
-    [13] = "#ff88ff", /* magenta */
-    [14] = "#6ae3fa", /* cyan    */
-    [15] = "#ffffff", /* white   */
+	/* 8 bright colors */
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#add8e6", /* 256 -> cursor */
 	"#555555", /* 257 -> rev cursor*/
-	"#132738", /* 258 -> bg */
-	"#ffffff", /* 259 -> fg */
+	"#000000", /* 258 -> bg */
+	"#e5e5e5", /* 259 -> fg */
 };
 
 
@@ -145,6 +146,7 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultbg = 258;
+unsigned int bg = 258, bgUnfocused = 258;
 unsigned int defaultfg = 259;
 unsigned int defaultcs = 256;
 unsigned int defaultrcs = 257;
@@ -178,6 +180,7 @@ static unsigned int mousebg = 0;
  * doesn't match the ones requested.
  */
 static unsigned int defaultattr = 11;
+
 /*
  * Xresources preferences to load at startup
  */
@@ -213,6 +216,7 @@ ResourcePref resources[] = {
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
 		{ "alpha",        FLOAT,   &alpha },
+		{ "alphaUnfocused",FLOAT,  &alphaUnfocused },
 };
 
 
@@ -228,14 +232,15 @@ static uint forcemousemod = ShiftMask;
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
-	/* mask                 button   function        argument       release */
+	/* mask                 button   function        argument       release  screen */
 	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0},      1 },
-	{ ShiftMask,            Button4, kscrollup,      {.i = 3} },
-	{ ShiftMask,            Button5, kscrolldown,    {.i = 3} },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+	{ ShiftMask,            Button4, kscrollup,      {.i = 3},      0, S_PRI},
+	{ ShiftMask,            Button5, kscrolldown,    {.i = 3},      0, S_PRI},
+	{ XK_NO_MOD,            Button4, kscrollup,      {.i = 3},      0, S_PRI },
+	{ XK_NO_MOD,            Button5, kscrolldown,    {.i = 3},      0, S_PRI },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"}, 0, S_ALT },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"}, 0, S_ALT },
 };
-
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
@@ -245,8 +250,12 @@ static char *openurlcmd[] = { "/bin/sh", "-c",
 	"xurls | dmenu -l 10 -w $WINDOWID | xargs -r open",
 	"externalpipe", NULL };
 
+static char *setbgcolorcmd[] = { "/bin/sh", "-c",
+	"printf '\033]11;#008000\007'",
+	"externalpipein", NULL };
+
 static Shortcut shortcuts[] = {
-	/* mask                 keysym          function         argument */
+	/* mask                 keysym          function         argument   screen */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,       {.i =  0} },
 	{ ControlMask,          XK_Print,       toggleprinter,   {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,     {.i =  0} },
@@ -256,6 +265,10 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Home,        zoomreset,       {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,        {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,       {.i =  0} },
+	{ TERMMOD,              XK_O,           changealpha,     {.f = +0.05} },
+	{ TERMMOD,              XK_P,           changealpha,     {.f = -0.05} },
+	//{ TERMMOD,              XK_,           changealphaunfocused, {.f = +0.05} },
+	//{ TERMMOD,              XK_,           changealphaunfocused, {.f = -0.05} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,       {.i = -3} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,     {.i = -3} },
 	{ TERMMOD,              XK_Y,           clippaste,       {.i =  0} },
@@ -263,8 +276,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,         {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,         {.i =  0} },
 	{ TERMMOD,              XK_U,           externalpipe,    { .v = openurlcmd } },
+	{ TERMMOD,              XK_M,           externalpipein,  { .v = setbgcolorcmd } },
 	{ TERMMOD,              XK_I,           iso14755,        {.i =  0} },
-	{ TERMMOD,              XK_X,           invert,          { 0 } },
 };
 
 /*
