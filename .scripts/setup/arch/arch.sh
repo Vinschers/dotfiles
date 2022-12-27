@@ -1,5 +1,8 @@
 #!/bin/sh
 
+
+errors=""
+
 check() {
 	if [ "$2" = "1" ]; then
 		printf "%s [Y/n] " "$1" >&2
@@ -31,12 +34,12 @@ install_packages() {
 
 	while read -r PACKAGE; do
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
-		sudo pacman -S --noconfirm --needed "$PACKAGE"
+		sudo pacman -S --noconfirm --needed "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/pacman"
 
 	while read -r PACKAGE; do
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
-		yay --noconfirm -S "$PACKAGE"
+		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay"
 
 	amixer sset Master unmute
@@ -69,11 +72,11 @@ setup_nvidia() {
 }
 
 install_extra() {
-    sudo pacman --noconfirm --needed -S discord
-    yay --noconfirm -S spotify
-    yay --noconfirm -S spicetify-cli
-    yay --noconfirm -S betterdiscord-installer
-    yay --noconfirm -S ncspot
+    sudo pacman --noconfirm --needed -S discord || errors="$errors discord"
+    yay --noconfirm -S spotify || errors="$errors spotify"
+    yay --noconfirm -S spicetify-cli || errors="$errors spicetify-cli"
+    yay --noconfirm -S betterdiscord-installer || errors="$errors betterdiscord-installer"
+    yay --noconfirm -S ncspot || errors="$errors ncspot"
     # yay --noconfirm -S librewolf-bin
 
     sudo chmod a+wr /opt/spotify
@@ -86,3 +89,5 @@ check "Setup pacman.conf?" 1 && setup_pacman
 check "Setup NVIDIA?" 0 && setup_nvidia
 check "Install extra packages?" 0 && install_extra
 check "Remove unnecessary dependencies?" 1 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
+
+[ -n "$errors" ] && echo "$errors" > "$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."
