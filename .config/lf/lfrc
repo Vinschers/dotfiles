@@ -20,6 +20,17 @@ set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
 
+# Set  the interval in seconds for periodic checks of directory updates. This
+# works by periodically calling the 'load' command. Note that directories are
+# already updated automatically in many cases. This option can be useful when
+# there is an external process changing the displayed directory and  you  are
+# not  doing  anything  in lf. Periodic checks are disabled when the value of
+# this option is set to zero.
+set period 1
+
+# Automatically quit server when there are no clients left connected.
+set autoquit on
+
 # use enter for shell commands
 map <enter> shell
 

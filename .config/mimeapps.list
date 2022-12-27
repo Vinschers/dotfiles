@@ -11,6 +11,7 @@ application/x-xopp=com.github.xournalpp.xournalpp.desktop
 application/x-matroska=mpv.desktop
 application/vnd.rn-realmedia=mpv.desktop
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop
+application/pdf=sioyek.desktop
 text/plain=nvim.desktop
 text/x-tex=nvim.desktop
 text/tab-separated-values=nvim.desktop
