@@ -43,7 +43,8 @@ alias \
     da='dotfiles add' \
     ddiff="dotfiles diff" \
     dC='dotfiles commit -m' \
-    dp='dotfiles push' \
+    dP='dotfiles push' \
+    dp='dotfiles pull' \
     gs='git status' \
     ga='git add' \
     gc='git clone' \

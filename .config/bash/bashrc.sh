@@ -5,7 +5,6 @@
 
 source "$BASHDIR"/ps1.sh
 source "$BASHDIR"/shopt.sh
-source "$BASHDIR"/functions.sh
 
 # Autocomplete using sudo
 complete -cf sudo
