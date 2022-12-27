@@ -61,9 +61,9 @@ endif
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	mkdir -p /usr/share/xsession
-	cp -n dwm.desktop /usr/share/xsession
-	chmod 644 /usr/share/xsession/dwm.desktop
+	sudo mkdir -p /usr/share/xsession
+	sudo cp -n dwm.desktop /usr/share/xsession
+	sudo chmod 644 /usr/share/xsession/dwm.desktop
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
