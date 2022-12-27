@@ -4,17 +4,19 @@
 STYLE=1
 
 info="$(playerctl -a metadata --format '{{status}}{{playerName}} {{title}}')"
-info="$(echo "$info" | sed 's/[| ][\||-].*//g')"
+info="$(echo "$info" | sed 's/[\||-].*//g')"
 
 info="$(echo "$info" | sed 's/Paused[a-zA-Z]*//g')"
 
 info="$(echo "$info" | sed 's/[a-zA-Z]*spotify//g')"
 info="$(echo "$info" | sed 's/[a-zA-Z]*ncspot//g')"
 info="$(echo "$info" | sed 's/[a-zA-Z]*firefox//g')"
+info="$(echo "$info" | sed 's/[a-zA-Z]*chromium//g')"
 
-info="$(echo "$info" | tr '\n' ' ')"
+info="$(echo "$info" | tr '\n' '-' | sed 's/-/ /g')"
+info="$(echo "$info" | sed 's/^[ \t]*//;s/[ \t]*$//')"
 
-display_info "$STYLE" "$icon" "${info%?}"
+display_info "$STYLE" "$icon" "$info"
 
 case $BUTTON in
 6) "$TERMINAL" -e "$EDITOR" "$0" ;;
