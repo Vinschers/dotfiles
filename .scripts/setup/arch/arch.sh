@@ -54,7 +54,7 @@ install_packages() {
 }
 
 setup_pacman() {
-	sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
+	sudo sed -i 's/^.*\bParallelDownloads\b.*$/ParallelDownloads = 6/g' /etc/pacman.conf
 	sudo sed -i 's/^#Color/Color/g' /etc/pacman.conf
 	sudo sed -i 's/VerbosePkgLists/VerbosePkgLists\nILoveCandy/g' /etc/pacman.conf
 	sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
