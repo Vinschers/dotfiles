@@ -31,5 +31,5 @@ display_info() {
     close=""
 
     [ -n "$icon" ] && echo "$(get_fg "$style")$open$(get_bg "$style") $(get_fg "background")$icon $text $(reset_color)$(get_fg "$style")$close$(reset_color)"
-    [ -z "$icon" ] && echo "$(get_fg "$style")$open$(get_bg "$style") $(get_fg "background")$text $(reset_color)$(get_fg "$style")$close$(reset_color)"
+    [ -z "$icon" ] && [ -n "$text" ] && echo "$(get_fg "$style")$open$(get_bg "$style") $(get_fg "background")$text $(reset_color)$(get_fg "$style")$close$(reset_color)"
 }
