@@ -9,4 +9,6 @@ TEXT="$(xrdb -get foreground)ee"
 WRONG="$(xrdb -get color1)bb"
 VERIFYING="$(xrdb -get color8)bb"
 
+grep -r "RUNNING" /proc/asound > /dev/null && exit 0
+
 i3lock --screen=1 --clock --ignore-empty-password --indicator --time-str="%H:%M:%S" --date-str="%d/%m/%Y" -c $BACKGROUND --insidever-color=$CLEAR --ringver-color=$VERIFYING --insidewrong-color=$CLEAR --ringwrong-color=$WRONG --inside-color=$BLANK --ring-color=$DEFAULT --line-color=$BLANK --separator-color=$DEFAULT --verif-color=$TEXT --wrong-color=$TEXT --time-color=$TEXT --date-color=$TEXT --layout-color=$TEXT --keyhl-color=$KEY_STROKE --bshl-color=$WRONG

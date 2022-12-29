@@ -143,11 +143,25 @@ static char *colors[][ColCount] = {
  * until it an icon matches. Similarly if there are two tag icons then it would alternate between
  * them. This works seamlessly with alternative tags and alttagsdecoration patches.
  */
-static char *tagicons[][NUMTAGS] =
-{
-	[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
-	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
-	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
+static char *tagicons[][NUMTAGS] = {
+	[IconsDefault]        		= { "" },
+	[IconsVacant]        		= { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+	[IconsOccupied]		       	= { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" },
+};
+
+static char occupiedicons[][3][50] = {
+	{ "vim",		    "",    "#019833" },
+	{ "neovim",		    "",    "#019833" },
+    { "htop",           "",    "#BA9FD7" },
+    { "gtop",           "",    "#BA9FD7" },
+	{ "pdf", 		    "",    "#DC1D00" },
+	{ "zathura", 		"",    "#DC1D00" },
+	{ "okular", 		"",    "#DC1D00" },
+	{ "sxiv", 		    "",    "" },
+	{ "ncspot", 		"",    "#1DB954" },
+	{ "spotify", 		"",    "#1DB954" },
+	{ "zotero",		    "📚",   "" },
+	{ "webcam",		    "犯",   "" },
 };
 
 
