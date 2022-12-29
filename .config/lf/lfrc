@@ -113,3 +113,13 @@ cmd zip ${{
 set previewer "~/.config/lf/previewer"
 set cleaner "~/.config/lf/cleaner"
 set icons
+
+map gh cd ~
+map gc cd ~/.config
+map gs cd ~/.config/suckless
+map gn cd ~/.config/nvim
+map gD cd ~/Downloads
+map gs cd ~/.scripts
+map gd cd ~/academic/disciplinas
+
+map x extract
