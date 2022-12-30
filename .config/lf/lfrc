@@ -116,7 +116,7 @@ set icons
 
 map gh cd ~
 map gc cd ~/.config
-map gs cd ~/.config/suckless
+map gS cd ~/.config/suckless
 map gn cd ~/.config/nvim
 map gD cd ~/Downloads
 map gs cd ~/.scripts
