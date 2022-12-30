@@ -13,23 +13,3 @@ fi
 . "$SCRIPTS_DIR/environment.sh"
 . "$SCRIPTS_DIR/local_environment.sh"
 [ -f "$SCRIPTS_DIR/secrets/secrets.sh" ] && . "$SCRIPTS_DIR/secrets/secrets.sh"
-
-create_symlink() {
-	if ! [ -f "$2" ] && ! [ -d "$2" ]; then
-		ln -s "$1" "$2"
-	fi
-}
-
-create_file() {
-	[ -f "$1" ] || echo "$2" >"$1"
-}
-
-create_symlink "$HOME/.config/Xresources" "$HOME/.Xresources"
-create_symlink "$HOME/.profile" "$HOME/.zprofile"
-create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
-
-create_file "$HOME/.cache/cpustatus" "0"
-create_file "$HOME/.cache/datetime" "0"
-create_file "$HOME/.cache/diskspace" "0 1000"
-create_file "$HOME/.cache/hardware" "0"
-create_file "$HOME/.cache/weather" "0"

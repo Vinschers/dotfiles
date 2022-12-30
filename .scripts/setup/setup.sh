@@ -14,7 +14,27 @@ check() {
 	fi
 }
 
+create_symlink() {
+	if ! [ -f "$2" ] && ! [ -d "$2" ]; then
+		ln -s "$1" "$2"
+	fi
+}
+
+create_file() {
+	[ -f "$1" ] || echo "$2" >"$1"
+}
+
 create_files_dirs() {
+    create_symlink "$HOME/.config/Xresources" "$HOME/.Xresources"
+    create_symlink "$HOME/.profile" "$HOME/.zprofile"
+    create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
+
+    create_file "$HOME/.cache/cpustatus" "0"
+    create_file "$HOME/.cache/datetime" "0"
+    create_file "$HOME/.cache/diskspace" "0 1000"
+    create_file "$HOME/.cache/hardware" "0"
+    create_file "$HOME/.cache/weather" "0"
+
 	sudo mkdir -p /mnt/android/
 	mkdir "$HOME/Downloads"
 }
@@ -36,7 +56,7 @@ setup_git() {
 }
 
 install_programs() {
-    git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME submodule update --init --recursive
+	git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME submodule update --init --recursive
 
 	cd "$SCRIPTS_DIR/programs/makefile2graph" || return
 	sudo make
@@ -54,7 +74,7 @@ install_programs() {
 	cd ../dwmblocks-async || exit
 	make clean install && make clean
 
-    curl -s "https://raw.githubusercontent.com/Vinschers/sci/main/install.sh" | /bin/sh
+	curl -s "https://raw.githubusercontent.com/Vinschers/sci/main/install.sh" | /bin/sh
 }
 
 ignore_local_files() {
@@ -66,38 +86,38 @@ ignore_local_files() {
 }
 
 copy_xorg() {
-    sudo mkdir -p /etc/X11/xorg.conf.d
+	sudo mkdir -p /etc/X11/xorg.conf.d
 
 	sys_type="$(cat /sys/class/dmi/id/chassis_type)"
 
 	case "$sys_type" in
 	3)
 		# Desktop
-        sudo cp "$THIS_DIRECTORY/xorg_config/desktop/00-keyboard.conf" /etc/X11/xorg.conf.d
-        sudo cp "$THIS_DIRECTORY/xorg_config/10-nvidia-drm-outputclass.conf" /etc/X11/xorg.conf.d
-        sudo cp "$THIS_DIRECTORY/xorg_config/20-nvidia.conf" /etc/X11/xorg.conf.d
+		sudo cp "$THIS_DIRECTORY/xorg_config/desktop/00-keyboard.conf" /etc/X11/xorg.conf.d
+		sudo cp "$THIS_DIRECTORY/xorg_config/10-nvidia-drm-outputclass.conf" /etc/X11/xorg.conf.d
+		sudo cp "$THIS_DIRECTORY/xorg_config/20-nvidia.conf" /etc/X11/xorg.conf.d
 		;;
 	10)
 		# Notebook
-        sudo cp "$THIS_DIRECTORY/xorg_config/notebook/00-keyboard.conf" /etc/X11/xorg.conf.d
+		sudo cp "$THIS_DIRECTORY/xorg_config/notebook/00-keyboard.conf" /etc/X11/xorg.conf.d
 		;;
-    *)
-        echo "Unknown system"
-        ;;
+	*)
+		echo "Unknown system"
+		;;
 	esac
 
 	"$HOME/.config/lightdm/update.sh"
 }
 
 set_lock_login_screens() {
-    chlock "$HOME"/.config/lockscreen.*
-    chlogin "$HOME"/.config/loginscreen.*
+	chlock "$HOME"/.config/lockscreen.*
+	chlogin "$HOME"/.config/loginscreen.*
 }
 
 add_full_name() {
 	printf "Full name: "
 	read -r fn
-    username="$(whoami)"
+	username="$(whoami)"
 
 	sudo usermod -c "$fn" "$username"
 }
