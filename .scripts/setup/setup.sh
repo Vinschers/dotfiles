@@ -36,7 +36,7 @@ create_files_dirs() {
     create_file "$HOME/.cache/weather" "0"
 
 	sudo mkdir -p /mnt/android/
-	mkdir "$HOME/Downloads"
+	mkdir -p "$HOME/Downloads"
 }
 
 setup_git() {
@@ -80,9 +80,6 @@ install_programs() {
 ignore_local_files() {
 	cd "$SCRIPTS_DIR" || return
 	git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged local_environment.sh
-
-	cd "$HOME/.cache" || return
-	git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged cpustatus datetime diskspace hardware weather
 }
 
 copy_xorg() {
