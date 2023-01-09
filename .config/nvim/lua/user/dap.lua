@@ -198,3 +198,25 @@ dap.configurations.sh = {
 		args = {},
 	},
 }
+
+local NODE2_DIR = require("mason-registry").get_package("node-debug2-adapter"):get_install_path()
+	.. "/out/src/nodeDebug.js"
+
+dap.adapters.node2 = {
+    type = "executable",
+    command = "node",
+    args = {NODE2_DIR},
+}
+
+dap.configurations.javascript = {
+	{
+		name = "Javascript: Launch file",
+		type = "node2",
+		request = "launch",
+		program = "${file}",
+		cwd = vim.fn.getcwd(),
+		sourceMaps = true,
+		protocol = "inspector",
+		console = "integratedTerminal",
+	},
+}

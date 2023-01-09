@@ -11,6 +11,7 @@ local lsp_servers = {
 	-- "jdtls",
 	"texlab",
     "marksman",
+    "emmet_ls",
 }
 
 -- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
@@ -18,6 +19,7 @@ local dap_servers = {
 	-- "javadbg",
 	"bash",
 	"python",
+    "node2",
 }
 
 local fmt_lint_servers = {
