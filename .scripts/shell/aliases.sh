@@ -83,4 +83,5 @@ alias \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
     d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls' \
     sv="sudoedit" \
-    mntdroid="aft-mtp-mount"
+    mntdroid="aft-mtp-mount" \
+    train="sl -acdeGF"
