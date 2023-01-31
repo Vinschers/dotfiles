@@ -16,7 +16,6 @@ case "$sys_type" in
 esac
 
 dunst &
-xautolock -time 10 -locker lock -corners +00- &
 
 [ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
 

@@ -3,7 +3,7 @@
 . sb-style
 STYLE=1
 
-MAX_LENGTH=50
+MAX_LENGTH=500
 
 cut_length() {
     while read -r music
@@ -13,7 +13,7 @@ cut_length() {
 }
 
 info="$(playerctl -a metadata --format '{{status}}{{playerName}} {{title}}')"
-info="$(echo "$info" | sed 's/[\||-].*//g')"
+# info="$(echo "$info" | sed 's/[\||-].*//g')"
 
 info="$(echo "$info" | sed 's/Paused[a-zA-Z]*//g')"
 

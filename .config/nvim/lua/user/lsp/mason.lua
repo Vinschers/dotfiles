@@ -63,7 +63,7 @@ require("mason-nvim-dap").setup({
 	automatic_installation = true,
 })
 require("mason-null-ls").setup({
-	ensure_installed = fmt_lint_servers,
+	ensure_installed = {},
 	automatic_installation = true,
 })
 
