@@ -83,6 +83,18 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		)
 	end,
 })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*.tex" },
+	callback = function()
+        vim.cmd("NoMatchParen")
+	end,
+})
+vim.api.nvim_create_autocmd({ "BufLeave" }, {
+	pattern = { "*.tex" },
+	callback = function()
+        vim.cmd("DoMatchParen")
+	end,
+})
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
 	pattern = { "*.tex" },
 	callback = function()
