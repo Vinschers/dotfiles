@@ -17,19 +17,20 @@ fi
 
 battery_info=""
 
+total_capacity=0
+
 for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
 	battery_status="$(cat "$battery/status" 2>&1)"
 
-    if [ "$battery_status" = "Charging" ] || [ "$capacity" -eq 79 ]
-    then
-        icon=""
-    else
-        STYLE=3
-    fi
+    [ "$battery_status" = "Charging" ] && icon=""
+
+    total_capacity="$(( total_capacity + capacity ))"
 
     battery_info="$battery_info$(draw_battery "$capacity" "$2") "
 done
+
+[ "$total_capacity" -le 80 ] && STYLE=3
 
 display_info "$STYLE" "$icon" "${battery_info%?}"
 
