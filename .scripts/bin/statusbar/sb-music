@@ -3,7 +3,7 @@
 . sb-style
 STYLE=1
 
-MAX_LENGTH=500
+MAX_LENGTH=70
 
 cut_length() {
     while read -r music

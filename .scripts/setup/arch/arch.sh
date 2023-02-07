@@ -81,11 +81,6 @@ install_extra() {
     yay --noconfirm -S betterdiscord-installer || errors="$errors betterdiscord-installer"
     yay --noconfirm -S ncspot || errors="$errors ncspot"
     yay --noconfirm -S librewolf-bin || errors="$errors librewolf-bin"
-
-    if [ "${errors#*spotify}" = "$errors" ]; then
-        sudo chmod a+wr /opt/spotify
-        sudo chmod a+wr /opt/spotify/Apps -R
-    fi
 }
 
 check "Setup wacom?" 1 && setup_wacom

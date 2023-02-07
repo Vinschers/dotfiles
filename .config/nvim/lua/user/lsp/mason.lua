@@ -12,6 +12,8 @@ local lsp_servers = {
 	"texlab",
     "marksman",
     "emmet_ls",
+    "ansiblels",
+    "dockerls"
 }
 
 -- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua

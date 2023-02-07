@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "Local IPv4: $(ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p')"
+echo "Local IPv6: "
+
+echo ""
+
+echo "Global IPv4: $(curl -s https://api.ipify.org)"
+echo "Global IPv6: $(curl -s https://api6.ipify.org)"
