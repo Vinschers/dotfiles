@@ -12,8 +12,4 @@ source_directory "$SCRIPTS_DIR"/shell/
 
 eval "$(dircolors -b "$SCRIPTS_DIR/shell/.dir_colors")"
 
-if [ -d /opt/spotify ]; then
-	sudo chmod a+wr /opt/spotify
-	sudo chmod a+wr /opt/spotify/Apps -R
-
-fi
+[ -f "$HOME/.cache/post_setup" ] || "$SCRIPTS_DIR/setup/post_setup.sh"
