@@ -14,6 +14,7 @@ dunst
 feh
 ffmpeg
 ffmpegthumbnailer
+firejail
 flameshot
 gnome-epub-thumbnailer
 gparted
@@ -70,6 +71,7 @@ ttf-jetbrains-mono
 ttf-joypixels
 ttf-liberation
 ttf-sazanami
+ufw
 ueberzug
 unrar
 unzip

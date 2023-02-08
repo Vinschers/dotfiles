@@ -74,6 +74,10 @@ setup_nvidia() {
 	sudo mkinitcpio -P
 }
 
+setup_firejail() {
+    sudo firecfg
+}
+
 install_extra() {
     sudo pacman --noconfirm --needed -S discord || errors="$errors discord"
     yay --noconfirm -S spotify || errors="$errors spotify"
@@ -93,6 +97,7 @@ check "Install packages?" 1 && install_packages
 check "Setup pacman.conf?" 1 && setup_pacman
 check "Setup NVIDIA?" 0 && setup_nvidia
 check "Install extra packages?" 1 && install_extra
+check "Setup firejail?" 1 && setup_firejail
 check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
 
 [ -n "$errors" ] && echo "$errors" > "$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."

@@ -119,6 +119,10 @@ add_full_name() {
 	sudo usermod -c "$fn" "$username"
 }
 
+setup_ufw() {
+    sudo ufw default deny
+}
+
 . "$HOME/.profile"
 THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
@@ -138,5 +142,6 @@ check "Install programs in SCRIPTS_DIR?" 1 && install_programs
 check "Ignore local files" 1 && ignore_local_files
 check "Set lock & login screens?" 1 && set_lock_login_screens
 check "Add user full name?" 1 && add_full_name
+check "Set up ufw?" && setup_ufw
 
 check "Reboot system?" 1 && reboot
