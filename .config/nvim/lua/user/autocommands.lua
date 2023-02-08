@@ -103,13 +103,15 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 		end
 
 		local directory = vim.fn.expand("%:p"):match("(.*[\\/])")
-		local cmd = '[ -f "'
+		local cmd = '[ "$(ls -1 "'
 			.. directory
-			.. '".latex-cache/*.pdf ] && cp "'
+			.. '".latex-cache/*.pdf 2>/dev/null | wc -l)" -gt 0 ] && cp "'
 			.. directory
 			.. '".latex-cache/*.pdf "'
 			.. directory
-			.. '"'
+			.. '"; rm "'
+            .. directory
+            .. '"*.log'
 		os.execute(cmd)
 	end,
 })
