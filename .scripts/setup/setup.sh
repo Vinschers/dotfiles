@@ -106,6 +106,11 @@ copy_xorg() {
 	"$HOME/.config/lightdm/update.sh"
 }
 
+setup_wayland() {
+    sudo ln -s "$SCRIPTS_DIR/bin/hyprland" /usr/bin/hyprland
+    sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
+}
+
 set_lock_login_screens() {
 	chlock "$HOME"/.config/lockscreen.*
 	chlogin "$HOME"/.config/loginscreen.*
@@ -136,6 +141,7 @@ esac
 
 check "Set up git?" && setup_git
 check "Copy xorg.conf.d?" 1 && copy_xorg
+check "Setup Wayland?" 1 && setup_wayland
 check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" 1 && install_programs

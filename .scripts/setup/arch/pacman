@@ -58,9 +58,11 @@ playerctl
 pulseaudio
 python-pip
 qbittorrent
+qt5ct
 ripgrep
 rkhunter
 simple-scan
+shellcheck
 syncthing
 sxhkd
 texlive-most
@@ -70,6 +72,7 @@ ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
 ttf-liberation
+ttf-liberation-mono-nerd
 ttf-sazanami
 ufw
 ueberzug
