@@ -30,12 +30,6 @@ setup_wacom() {
 	systemctl enable --user "$HOME/.config/systemd/user/wacom.service"
 }
 
-setup_swhkd() {
-    sudo mkdir -p /usr/share/swhkd
-    sudo ln -s "$SCRIPTS_DIR/wayland/hotkeys.sh" /usr/share/swhkd/hotkeys.sh
-	systemctl enable --user "$HOME/.config/systemd/user/hotkeys.service"
-}
-
 install_packages() {
 
 	while read -r PACKAGE; do
@@ -59,6 +53,14 @@ install_packages() {
     sudo systemctl enable sddm.service
 
     sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
+
+    if [ "$1" = "0" ]; then
+        sudo pacman -S --noconfirm --needed xorg xorg-server-devel feh flameshot picom xclip xf86-video-intel xf86-video-vesa
+        yay --noconfirm -S i3lock-color colorpicker xkb-switch
+    elif [ "$1" = "1" ]; then
+        sudo pacman -S --noconfirm --needed foot wl-clipboard
+        yay --noconfirm -S hyprland
+    fi
 
 }
 
@@ -85,6 +87,8 @@ setup_nvidia() {
     sudo sed -i "s|^$default_modules|$modified_modules|g" /etc/mkinitcpio.conf
 
 	sudo mkinitcpio -P
+
+    [ "$1" = "1" ] && yay --noconfirm -S nvidia-vaapi-driver-git
 }
 
 setup_firejail() {
@@ -100,11 +104,12 @@ install_extra() {
     yay --noconfirm -S librewolf-bin || errors="$errors librewolf-bin"
 }
 
-check "Setup wacom?" 1 && setup_wacom
-check "Setup swhkd?" 1 && setup_swhkd
-check "Install packages?" 1 && install_packages
+graphical_display="$1"
+
+[ "$graphical_display" = "0" ] && check "Setup wacom?" 1 && setup_wacom
+check "Install packages?" 1 && install_packages "$graphical_display"
 check "Setup pacman.conf?" 1 && setup_pacman
-check "Setup NVIDIA?" 0 && setup_nvidia
+check "Setup NVIDIA?" 0 && setup_nvidia "$graphical_display"
 check "Install extra packages?" 1 && install_extra
 check "Setup firejail?" 1 && setup_firejail
 check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)

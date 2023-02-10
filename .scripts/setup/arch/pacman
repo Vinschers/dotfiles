@@ -1,6 +1,3 @@
-xorg
-xorg-server-devel
-accountsservice
 alsa-firmware
 alsa-utils
 archlinux-keyring
@@ -11,12 +8,9 @@ bc
 btop
 dash
 dunst
-feh
 ffmpeg
 ffmpegthumbnailer
 firejail
-flameshot
-foot
 gnome-epub-thumbnailer
 gparted
 grub-customizer
@@ -51,8 +45,8 @@ pamixer
 parted
 pavucontrol
 pdf2svg
-picom
 playerctl
+prettier
 pulseaudio
 python-pip
 qbittorrent
@@ -80,10 +74,6 @@ usbutils
 uwufetch
 valgrind
 vim
-wl-clipboard
-xclip
-xf86-video-intel
-xf86-video-vesa
 xournalpp
 zathura
 zathura-pdf-mupdf

@@ -25,17 +25,23 @@ create_file() {
 }
 
 create_files_dirs() {
-    create_symlink "$HOME/.config/Xresources" "$HOME/.Xresources"
-    create_symlink "$HOME/.profile" "$HOME/.zprofile"
-    create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
+	create_symlink "$HOME/.profile" "$HOME/.zprofile"
+	create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
 
-    create_file "$HOME/.cache/cpustatus" "0"
-    create_file "$HOME/.cache/datetime" "0"
-    create_file "$HOME/.cache/diskspace" "0 1000"
-    create_file "$HOME/.cache/hardware" "0"
-    create_file "$HOME/.cache/weather" "0"
+	if [ "$1" = "0" ]; then
+		create_symlink "$HOME/.config/Xresources" "$HOME/.Xresources"
+
+		create_file "$HOME/.cache/cpustatus" "0"
+		create_file "$HOME/.cache/datetime" "0"
+		create_file "$HOME/.cache/diskspace" "0 1000"
+		create_file "$HOME/.cache/hardware" "0"
+		create_file "$HOME/.cache/weather" "0"
+	fi
 
 	sudo mkdir -p /mnt/android/
+	sudo mkdir -p /mnt/hdd/
+	sudo mkdir -p /mnt/usb/
+
 	mkdir -p "$HOME/Downloads"
 }
 
@@ -64,15 +70,17 @@ install_programs() {
 	cd "$SCRIPTS_DIR/programs/grub2-themes" || return
 	sudo ./install.sh -t stylish -s 1080p
 
-	cd "$HOME/.config/suckless" || return
-	cd dmenu || exit
-	make clean install && make clean
-	cd ../st || exit
-	make clean install && make clean
-	cd ../dwm || exit
-	make clean install && make clean
-	cd ../dwmblocks-async || exit
-	make clean install && make clean
+	if [ "$1" = "1" ]; then
+		cd "$HOME/.config/suckless" || return
+		cd dmenu || exit
+		make clean install && make clean
+		cd ../st || exit
+		make clean install && make clean
+		cd ../dwm || exit
+		make clean install && make clean
+		cd ../dwmblocks-async || exit
+		make clean install && make clean
+	fi
 
 	curl -s "https://raw.githubusercontent.com/Vinschers/sci/main/install.sh" | /bin/sh
 }
@@ -102,13 +110,11 @@ copy_xorg() {
 		echo "Unknown system"
 		;;
 	esac
-
-	"$HOME/.config/lightdm/update.sh"
 }
 
 setup_wayland() {
-    sudo ln -s "$SCRIPTS_DIR/bin/hyprland" /usr/bin/hyprland
-    sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
+	sudo ln -s "$SCRIPTS_DIR/bin/hyprland" /usr/bin/hyprland
+	sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
 }
 
 add_full_name() {
@@ -120,26 +126,29 @@ add_full_name() {
 }
 
 setup_ufw() {
-    sudo ufw default deny
+	sudo ufw default deny
 }
 
 . "$HOME/.profile"
 THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
 
+printf "Graphical display (0 = Xorg / 1 = Wayland): "
+read -r graphical_display
+
 OS="$(lsb_release -is)"
 case "$OS" in
 "Arch") SCRIPT="arch/arch.sh" ;;
 esac
 
-[ -n "$SCRIPT" ] && "/bin/sh" "$THIS_DIRECTORY/$SCRIPT"
+[ -n "$SCRIPT" ] && "/bin/sh" "$THIS_DIRECTORY/$SCRIPT" "$graphical_display"
 
 check "Set up git?" && setup_git
-check "Copy xorg.conf.d?" 1 && copy_xorg
-check "Setup Wayland?" 1 && setup_wayland
-check "Create common files and directories?" 1 && create_files_dirs
+[ "$graphical_display" = "0" ] && check "Copy xorg.conf.d?" 1 && copy_xorg
+[ "$graphical_display" = "1" ] && check "Setup Wayland?" 1 && setup_wayland
+check "Create common files and directories?" 1 && create_files_dirs "$graphical_display"
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
-check "Install programs in SCRIPTS_DIR?" 1 && install_programs
+check "Install programs in SCRIPTS_DIR?" 1 && install_programs "$graphical_display"
 check "Ignore local files" 1 && ignore_local_files
 check "Add user full name?" 1 && add_full_name
 check "Set up ufw?" && setup_ufw

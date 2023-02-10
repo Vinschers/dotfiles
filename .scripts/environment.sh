@@ -17,11 +17,12 @@ PATH="$PATH:$HOME/.local/bin:$SCRIPTS_DIR:$SCRIPTS_DIR/bin:$SCRIPTS_DIR/bin/stat
 
 load_xorg() {
     export TERMINAL="st"
+    export LAUNCHER="rofi"
 }
 
 load_wayland() {
     export TERMINAL="foot"
-    export WLR_NO_HARDWARE_CURSORS=1
+    export LAUNCHER="wofi"
 }
 
 [ "$XDG_SESSION_TYPE" = "x11" ] && load_xorg
