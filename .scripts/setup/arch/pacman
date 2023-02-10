@@ -16,6 +16,7 @@ ffmpeg
 ffmpegthumbnailer
 firejail
 flameshot
+foot
 gnome-epub-thumbnailer
 gparted
 grub-customizer
@@ -26,9 +27,6 @@ imv
 jdk-openjdk
 keepassxc
 lazygit
-lightdm
-lightdm-webkit2-greeter
-lightdm-webkit-theme-litarvan
 linux-headers
 lldb
 lsb-release
@@ -63,8 +61,8 @@ ripgrep
 rkhunter
 simple-scan
 shellcheck
+shfmt
 syncthing
-sxhkd
 texlive-most
 texlive-lang
 tldr
@@ -82,6 +80,7 @@ usbutils
 uwufetch
 valgrind
 vim
+wl-clipboard
 xclip
 xf86-video-intel
 xf86-video-vesa

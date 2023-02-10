@@ -3,7 +3,6 @@
 export BASHDIR="$HOME/.config/bash"
 export ZDOTDIR="$HOME/.config/zsh"
 
-export TERMINAL="st"
 export EDITOR="nvim"
 export BROWSER="librewolf"
 
@@ -14,3 +13,16 @@ export LOCK_TIME=15
 export TEXMFHOME="$HOME/.config/texmf:"
 
 PATH="$PATH:$HOME/.local/bin:$SCRIPTS_DIR:$SCRIPTS_DIR/bin:$SCRIPTS_DIR/bin/statusbar:/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools"
+
+
+load_xorg() {
+    export TERMINAL="st"
+}
+
+load_wayland() {
+    export TERMINAL="foot"
+    export WLR_NO_HARDWARE_CURSORS=1
+}
+
+[ "$XDG_SESSION_TYPE" = "x11" ] && load_xorg
+[ "$XDG_SESSION_TYPE" = "wayland" ] && load_wayland

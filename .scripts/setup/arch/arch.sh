@@ -30,6 +30,12 @@ setup_wacom() {
 	systemctl enable --user "$HOME/.config/systemd/user/wacom.service"
 }
 
+setup_swhkd() {
+    sudo mkdir -p /usr/share/swhkd
+    sudo ln -s "$SCRIPTS_DIR/wayland/hotkeys.sh" /usr/share/swhkd/hotkeys.sh
+	systemctl enable --user "$HOME/.config/systemd/user/hotkeys.service"
+}
+
 install_packages() {
 
 	while read -r PACKAGE; do
@@ -50,7 +56,7 @@ install_packages() {
 	sudo pacman --noconfirm -Rns gnu-free-fonts
 
 	sudo systemctl enable zotero-translation-server.service
-	sudo systemctl enable lightdm
+    sudo systemctl enable sddm.service
 
     sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
 
@@ -95,6 +101,7 @@ install_extra() {
 }
 
 check "Setup wacom?" 1 && setup_wacom
+check "Setup swhkd?" 1 && setup_swhkd
 check "Install packages?" 1 && install_packages
 check "Setup pacman.conf?" 1 && setup_pacman
 check "Setup NVIDIA?" 0 && setup_nvidia

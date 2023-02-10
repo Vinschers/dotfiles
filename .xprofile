@@ -19,5 +19,3 @@ esac
 
 
 [ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
-
-sxhkd &

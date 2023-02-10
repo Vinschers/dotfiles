@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ "$XDG_SESSION_TYPE" = "x11" ] && flameshot gui
+[ "$XDG_SESSION_TYPE" = "wayland" ] && grim -g "$(slurp)" - | wl-copy

@@ -13,7 +13,7 @@ static const unsigned int gappov        = 12;       /* vert outer gap between wi
 static const int smartgaps_fact         = 1;   /* gap factor when there is only one client; 0 = no gaps, 3 = 3x outer gaps */
 static const char autostartblocksh[]    = "autostart_blocking.sh";
 static const char autostartsh[]         = "autostart.sh";
-static const char dwmdir[]              = "xorg/dwm";
+static const char dwmdir[]              = "dwm";
 static const char localshare[]          = ".scripts";
 static const int showbar                = 0;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
@@ -204,6 +204,8 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define SHICMD(cmd) { .v = (const char*[]){ "/bin/sh", "-e", cmd, NULL } }
 
+#define SHORTCUT(key,cmd) { MODKEY|ShiftMask, key, spawn, SHCMD(cmd) }
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {
@@ -224,6 +226,17 @@ static const char *termcmd[]  = { "st", NULL };
 static const Key keys[] = {
     /* modifier                     key            function                argument */
     { ALTKEY,                       CAPSKEY,       spawn,                  SHCMD("update_dwmblocks 4") },
+    { MODKEY|ShiftMask,             XK_F5,         xrdb,                   {.v = NULL } },
+    SHORTCUT(XK_a, "sci add"),
+    SHORTCUT(XK_b, "$BROWSER"),
+    SHORTCUT(XK_e, "pick_color"),
+    SHORTCUT(XK_d, "cd $ACADEMIC_DIRECTORY/unicamp/disciplinas; $TERMINAL"),
+    SHORTCUT(XK_j, "open_book"),
+    SHORTCUT(XK_k, "sci"),
+    SHORTCUT(XK_p, "open_project"),
+    SHORTCUT(XK_s, "open_spotify"),
+    SHORTCUT(XK_w, "webcam"),
+    SHORTCUT(XK_Print, "flameshot gui"),
 
     { MODKEY,                       XK_p,          spawn,                  {.v = dmenucmd } },
     { MODKEY|ShiftMask,             XK_Return,     spawn,                  {.v = termcmd } },
@@ -261,7 +274,6 @@ static const Key keys[] = {
     { MODKEY|ControlMask,           XK_z,          showhideclient,         {0} },
     { MODKEY|ShiftMask,             XK_c,          killclient,             {0} },
     { MODKEY|ShiftMask,             XK_q,          quit,                   {0} },
-    { MODKEY|ShiftMask,             XK_F5,         xrdb,                   {.v = NULL } },
     { MODKEY,                       XK_t,          setlayout,              {.v = &layouts[0]} },
     { MODKEY,                       XK_f,          setlayout,              {.v = &layouts[1]} },
     { MODKEY,                       XK_m,          setlayout,              {.v = &layouts[2]} },

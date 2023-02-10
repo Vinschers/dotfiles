@@ -1,0 +1,4 @@
+#!/bin/sh
+
+project="$(ls -1 "$ACADEMIC_DIRECTORY/projects" | dmenu -i -l 10)"
+[ -n "$project" ] && cd "$ACADEMIC_DIRECTORY/projects/$project" && "$TERMINAL"

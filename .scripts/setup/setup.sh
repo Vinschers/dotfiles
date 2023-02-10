@@ -111,11 +111,6 @@ setup_wayland() {
     sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
 }
 
-set_lock_login_screens() {
-	chlock "$HOME"/.config/lockscreen.*
-	chlogin "$HOME"/.config/loginscreen.*
-}
-
 add_full_name() {
 	printf "Full name: "
 	read -r fn
@@ -146,7 +141,6 @@ check "Create common files and directories?" 1 && create_files_dirs
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" 1 && install_programs
 check "Ignore local files" 1 && ignore_local_files
-check "Set lock & login screens?" 1 && set_lock_login_screens
 check "Add user full name?" 1 && add_full_name
 check "Set up ufw?" && setup_ufw
 
