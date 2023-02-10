@@ -12,7 +12,7 @@ export LOCK_TIME=15
 
 export TEXMFHOME="$HOME/.config/texmf:"
 
-PATH="$PATH:$HOME/.local/bin:$SCRIPTS_DIR:$SCRIPTS_DIR/bin:$SCRIPTS_DIR/bin/statusbar:/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools"
+PATH="$PATH:$HOME/.local/bin:$SCRIPTS_DIR:$SCRIPTS_DIR/bin:$SCRIPTS_DIR/bin/statusbar:$SCRIPTS_DIR/bin/hyprland:/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools"
 
 
 load_xorg() {

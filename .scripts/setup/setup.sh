@@ -113,7 +113,7 @@ copy_xorg() {
 }
 
 setup_wayland() {
-	sudo ln -s "$SCRIPTS_DIR/bin/hyprland" /usr/bin/hyprland
+	sudo ln -s "$SCRIPTS_DIR/bin/hyprland/hyprland" /usr/bin/hyprland
 	sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
 }
 
