@@ -1,51 +1,22 @@
-@import catpuccin.css;
-
-#window {
+window {
     margin: 0px;
-
+    border: 2px solid #414868;
     border-radius: 7px;
-    background-color: @bg;
+    background-color: #24283b;
     font-family: "JetBrains Mono Regular Nerd Font Complete";
     font-size: 16px;
-    background: @bg-hover;
-    background: linear-gradient(
-        90deg,
-        rgba(30, 30, 46, 1),
-        rgba(26, 24, 38, 1),
-        rgba(22, 19, 32, 1)
-    );
 }
 
 #input {
-    margin: 15px;
-    border: 2px solid @flamingo;
+    margin: 5px;
+    border: 2px solid #24283b;
     border-radius: 10px;
-    color: @lavender;
-    background: rgb(30, 30, 46);
-    background: linear-gradient(
-        90deg,
-        rgba(30, 30, 46, 1) 43%,
-        rgba(26, 24, 38, 1) 82%,
-        rgba(22, 19, 32, 1) 91%
-    );
-}
-
-#input:focus {
-    background: rgb(48, 45, 65);
-    background: linear-gradient(
-        90deg,
-        rgba(48, 45, 65, 1) 19%,
-        rgba(30, 30, 46, 1) 77%,
-        rgba(26, 24, 38, 1) 100%
-    );
-}
-
-#input:focus image {
-    color: @flamingo;
+    color: #c0caf5;
+    background-color: #24283b;
 }
 
 #input image {
-    color: @lavender;
+    color: #c0caf5;
 }
 
 #inner-box {
@@ -60,8 +31,7 @@
 #outer-box {
     margin: 5px;
     border: none;
-    background-color: inherit;
-    border-radius: 7px;
+    background-color: #24283b;
 }
 
 #scroll {
@@ -72,22 +42,17 @@
 #text {
     margin: 5px;
     border: none;
-    color: @fg;
+    color: #c0caf5;
 }
 
 #entry:selected {
+    background-color: #414868;
+    font-weight: normal;
     border-radius: 10px;
-    background: rgb(201, 203, 255);
-    background: linear-gradient(
-        90deg,
-        rgba(201, 203, 255, 1) 28%,
-        rgba(245, 224, 220, 1) 85%,
-        rgba(242, 205, 205, 1) 100%
-    );
+    outline: 0;
 }
 
 #text:selected {
-    background-color: inherit;
-    color: @dark-fg;
+    background-color: #414868;
     font-weight: normal;
 }

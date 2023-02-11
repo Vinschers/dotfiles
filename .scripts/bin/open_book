@@ -1,7 +1,7 @@
 #!/bin/sh
 
 books="$(find -L "$ACADEMIC_DIRECTORY/bibliography/book" -type f -printf "%f\n" | cut -d'.' -f -1)"
-selected_book="$(echo "$books" | dmenu -i -l 15)"
+selected_book="$(echo "$books" | "$LAUNCHER" --show dmenu)"
 
 PDF_PATH="$ACADEMIC_DIRECTORY/bibliography/book/$selected_book.pdf"
 if [ -n "$selected_book" ]; then
