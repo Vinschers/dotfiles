@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 errors=""
 
 check() {
@@ -50,24 +49,33 @@ install_packages() {
 	sudo pacman --noconfirm -Rns gnu-free-fonts
 
 	sudo systemctl enable zotero-translation-server.service
-    sudo systemctl enable sddm.service
+	sudo systemctl enable sddm.service
 
-    sudo ln -s "$HOME/.config/sddm/sddm.conf" /etc/sddm.conf
-    sudo ln -s "$HOME/.config/sddm/icon.png" "/usr/share/sddm/faces/$USER.face.icon"
-    sudo ln -s "$HOME/.config/loginscreen.png" "/usr/share/sddm/themes/corners/background.png"
-    sudo sed -i 's|Background="backgrounds/glacier.png"|Background="background.png"|g' /usr/share/sddm/themes/corners/theme.conf
-    sudo sed -i 's|Login!!|Login|g' /usr/share/sddm/themes/corners/theme.conf
+	sudo ln -s "$HOME/.config/sddm/sddm.conf" /etc/sddm.conf
+	sudo ln -s "$HOME/.config/sddm/icon.png" "/usr/share/sddm/faces/$USER.face.icon"
+	sudo ln -s "$HOME/.config/loginscreen.png" "/usr/share/sddm/themes/corners/background.png"
+	sudo sed -i 's|Background="backgrounds/glacier.png"|Background="background.png"|g' /usr/share/sddm/themes/corners/theme.conf
+	sudo sed -i 's|Login!!|Login|g' /usr/share/sddm/themes/corners/theme.conf
 
-    sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
+	sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
 
-    if [ "$1" = "0" ]; then
-        sudo pacman -S --noconfirm --needed xorg xorg-server-devel feh flameshot picom xclip xf86-video-intel xf86-video-vesa
-        yay --noconfirm -S i3lock-color colorpicker xkb-switch
-    elif [ "$1" = "1" ]; then
-        sudo pacman -S --noconfirm --needed wl-clipboard socat foot wofi qt5ct qt6
-        yay --noconfirm -S hyprland waybar-hyprland-git wl-color-picker hyprpaper-git wlogout xdg-desktop-portal-hyprland-git
-        yay --noconfirm -S eww-wayland ttf-material-design-icons otf-jost blueberry bluez gawk gojq iwgtk jaq light network-manager-applet
-    fi
+	if [ "$1" = "0" ]; then
+        packages="xorg"
+	elif [ "$1" = "1" ]; then
+        packages="wayland"
+    else
+        exit 0
+	fi
+
+	while read -r PACKAGE; do
+		printf "\n\n\nInstalling %s..." "$PACKAGE"
+		sudo pacman -S --noconfirm --needed "$PACKAGE" || errors="$errors $PACKAGE"
+	done <"$THIS_DIRECTORY/pacman_$packages"
+
+	while read -r PACKAGE; do
+		printf "\n\n\nInstalling %s..." "$PACKAGE"
+		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
+	done <"$THIS_DIRECTORY/yay_$packages"
 
 }
 
@@ -87,38 +95,38 @@ setup_nvidia() {
 	sudo pacman --noconfirm -S opencl-nvidia || errors="$errors opencl-nvidia"
 	echo "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia-drm-nomodeset.conf
 
-    default_modules="$(grep "^MODULES=" /etc/mkinitcpio.conf)"
+	default_modules="$(grep "^MODULES=" /etc/mkinitcpio.conf)"
 	modified_modules="${default_modules%?} nvidia nvidia_modeset nvidia_uvm nvidia_drm)"
 	modified_modules="$(echo "$modified_modules" | sed 's/( /(/g')"
 
-    sudo sed -i "s|^$default_modules|$modified_modules|g" /etc/mkinitcpio.conf
+	sudo sed -i "s|^$default_modules|$modified_modules|g" /etc/mkinitcpio.conf
 
 	sudo mkinitcpio -P
 
-    [ "$1" = "1" ] && yay --noconfirm -S nvidia-vaapi-driver-git
+	[ "$1" = "1" ] && yay --noconfirm -S nvidia-vaapi-driver-git
 }
 
 setup_firejail() {
-    sudo firecfg
+	sudo firecfg
 }
 
 install_extra() {
-    sudo pacman --noconfirm --needed -S discord || errors="$errors discord"
-    yay --noconfirm -S spotify || errors="$errors spotify"
-    yay --noconfirm -S spicetify-cli || errors="$errors spicetify-cli"
-    yay --noconfirm -S betterdiscord-installer || errors="$errors betterdiscord-installer"
-    yay --noconfirm -S ncspot || errors="$errors ncspot"
-    yay --noconfirm -S librewolf-bin || errors="$errors librewolf-bin"
+	sudo pacman --noconfirm --needed -S discord || errors="$errors discord"
+	yay --noconfirm -S spotify || errors="$errors spotify"
+	yay --noconfirm -S spicetify-cli || errors="$errors spicetify-cli"
+	yay --noconfirm -S betterdiscord-installer || errors="$errors betterdiscord-installer"
+	yay --noconfirm -S ncspot || errors="$errors ncspot"
+	yay --noconfirm -S librewolf-bin || errors="$errors librewolf-bin"
 }
 
 graphical_display="$1"
 
+check "Setup pacman.conf?" 1 && setup_pacman
 [ "$graphical_display" = "0" ] && check "Setup wacom?" 1 && setup_wacom
 check "Install packages?" 1 && install_packages "$graphical_display"
-check "Setup pacman.conf?" 1 && setup_pacman
 check "Setup NVIDIA?" 0 && setup_nvidia "$graphical_display"
 check "Install extra packages?" 1 && install_extra
 check "Setup firejail?" 1 && setup_firejail
 check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
 
-[ -n "$errors" ] && echo "$errors" > "$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."
+[ -n "$errors" ] && echo "$errors" >"$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."
