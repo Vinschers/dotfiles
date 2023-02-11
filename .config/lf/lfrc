@@ -111,7 +111,6 @@ cmd zip ${{
 
 
 set previewer "~/.config/lf/previewer"
-set cleaner "~/.config/lf/cleaner"
 set icons
 
 map gh cd ~

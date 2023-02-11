@@ -52,6 +52,12 @@ install_packages() {
 	sudo systemctl enable zotero-translation-server.service
     sudo systemctl enable sddm.service
 
+    sudo ln -s "$HOME/.config/sddm/sddm.conf" /etc/sddm.conf
+    sudo ln -s "$HOME/.config/sddm/icon.png" "/usr/share/sddm/faces/$USER.face.icon"
+    sudo ln -s "$HOME/.config/loginscreen.png" "/usr/share/sddm/themes/corners/background.png"
+    sudo sed -i 's|Background="backgrounds/glacier.png"|Background="background.png"|g' /usr/share/sddm/themes/corners/theme.conf
+    sudo sed -i 's|Login!!|Login|g' /usr/share/sddm/themes/corners/theme.conf
+
     sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
 
     if [ "$1" = "0" ]; then
