@@ -70,7 +70,7 @@ install_programs() {
 	cd "$SCRIPTS_DIR/programs/grub2-themes" || return
 	sudo ./install.sh -t stylish -s 1080p
 
-	if [ "$1" = "1" ]; then
+	if [ "$1" = "0" ]; then
 		cd "$HOME/.config/suckless" || return
 		cd dmenu || exit
 		make clean install && make clean
@@ -151,6 +151,6 @@ check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" 1 && install_programs "$graphical_display"
 check "Ignore local files" 1 && ignore_local_files
 check "Add user full name?" 1 && add_full_name
-check "Set up ufw?" && setup_ufw
+check "Set up ufw?" 1 && setup_ufw
 
 check "Reboot system?" 1 && reboot
