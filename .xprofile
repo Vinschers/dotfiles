@@ -1,7 +1,5 @@
 #!/bin/sh
 
-"$SCRIPTS_DIR/display_profile.sh"
-
 sys_type="$(cat /sys/class/dmi/id/chassis_type)"
 
 case "$sys_type" in
@@ -17,5 +15,10 @@ case "$sys_type" in
         ;;
 esac
 
+dunst &
+wallpaper="$(ls "$HOME/.config" | grep wallpaper | head -n 1)"
+chwall "$HOME/.config/$wallpaper"
 
 [ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
+
+#python "$SCRIPTS_DIR/external/inkscape-shortcut-manager/main.py" &
