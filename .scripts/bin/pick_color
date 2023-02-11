@@ -1,6 +1,4 @@
 #!/bin/sh
 
-[ "$XDG_SESSION_TYPE" = "x11" ] && color="$(colorpicker --short --one-shot --preview)" && echo "$color" | xclip
-[ "$XDG_SESSION_TYPE" = "wayland" ] && color="$(hyprpicker)" && echo "$color" | wl-copy
-
-notify-send "$color"
+[ "$XDG_SESSION_TYPE" = "x11" ] && color="$(colorpicker --short --one-shot --preview)" && echo "$color" | xclip && notify-send "$color"
+[ "$XDG_SESSION_TYPE" = "wayland" ] && wl-color-picker clipboard

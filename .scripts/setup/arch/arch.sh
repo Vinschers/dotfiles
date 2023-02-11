@@ -65,7 +65,7 @@ install_packages() {
         yay --noconfirm -S i3lock-color colorpicker xkb-switch
     elif [ "$1" = "1" ]; then
         sudo pacman -S --noconfirm --needed wl-clipboard socat foot wofi
-        yay --noconfirm -S hyprland waybar-hyprland-git
+        yay --noconfirm -S hyprland waybar-hyprland-git wl-color-picker
     fi
 
 }
