@@ -64,8 +64,9 @@ install_packages() {
         sudo pacman -S --noconfirm --needed xorg xorg-server-devel feh flameshot picom xclip xf86-video-intel xf86-video-vesa
         yay --noconfirm -S i3lock-color colorpicker xkb-switch
     elif [ "$1" = "1" ]; then
-        sudo pacman -S --noconfirm --needed wl-clipboard socat foot wofi
-        yay --noconfirm -S hyprland waybar-hyprland-git wl-color-picker hyprpaper-git wlogout
+        sudo pacman -S --noconfirm --needed wl-clipboard socat foot wofi qt5ct qt6
+        yay --noconfirm -S hyprland waybar-hyprland-git wl-color-picker hyprpaper-git wlogout xdg-desktop-portal-hyprland-git
+        yay --noconfirm -S eww-wayland ttf-material-design-icons otf-jost blueberry bluez gawk gojq iwgtk jaq light network-manager-applet
     fi
 
 }
