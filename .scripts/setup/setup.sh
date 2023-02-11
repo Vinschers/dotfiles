@@ -67,8 +67,8 @@ install_programs() {
 	cd "$SCRIPTS_DIR/programs/makefile2graph" || return
 	sudo make
 
-	cd "$SCRIPTS_DIR/programs/grub2-themes" || return
-	sudo ./install.sh -t stylish -s 1080p
+	# cd "$SCRIPTS_DIR/programs/grub2-themes" || return
+	# sudo ./install.sh -t stylish -s 1080p
 
 	if [ "$1" = "0" ]; then
 		cd "$HOME/.config/suckless" || return
@@ -117,14 +117,6 @@ setup_wayland() {
 	sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
 }
 
-add_full_name() {
-	printf "Full name: "
-	read -r fn
-	username="$(whoami)"
-
-	sudo usermod -c "$fn" "$username"
-}
-
 setup_ufw() {
 	sudo ufw default deny
 }
@@ -150,7 +142,5 @@ check "Create common files and directories?" 1 && create_files_dirs "$graphical_
 check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" 1 && install_programs "$graphical_display"
 check "Ignore local files" 1 && ignore_local_files
-check "Add user full name?" 1 && add_full_name
 check "Set up ufw?" 1 && setup_ufw
-
-check "Reboot system?" 1 && reboot
+check "Setup zsh?" 1 && /bin/zsh
