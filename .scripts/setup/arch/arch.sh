@@ -76,12 +76,6 @@ install_packages() {
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
 		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay_$packages"
-
-    if [ "$1" = "1" ]; then
-        rustup default stable
-        yay --noconfirm -S jaq
-    fi
-
 }
 
 setup_pacman() {
