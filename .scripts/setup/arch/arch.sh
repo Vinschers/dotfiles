@@ -78,8 +78,8 @@ install_packages() {
 	done <"$THIS_DIRECTORY/yay_$packages"
 
     if [ "$1" = "1" ]; then
-        printf "\n\n\n\n\n\nCHOOSE OPTION RUST BELOW!\n\n\n"
-        yay -S eww-wayland
+        printf "\n\n\n\n\n\nCHOOSE OPTION RUSTUP BELOW!\n\n\n"
+        yay -S jaq
     fi
 }
 
