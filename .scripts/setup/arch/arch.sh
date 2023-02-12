@@ -76,6 +76,11 @@ install_packages() {
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
 		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay_$packages"
+
+    if [ "$1" = "1" ]; then
+        printf "\n\n\n\n\n\nCHOOSE OPTION RUST BELOW!\n\n\n"
+        yay -S eww-wayland
+    fi
 }
 
 setup_pacman() {
