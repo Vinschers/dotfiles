@@ -50,6 +50,8 @@ install_packages() {
 	sudo systemctl enable zotero-translation-server.service
 	sudo systemctl enable sddm.service
 
+    rustup default stable
+
 	sudo ln -s "$HOME/.config/sddm/sddm.conf" /etc/sddm.conf
 	sudo cp "$HOME/.config/sddm/icon.png" "/usr/share/sddm/faces/$USER.face.icon"
 	sudo cp "$HOME/.config/loginscreen.png" "/usr/share/sddm/themes/corners/background.png"
@@ -76,11 +78,6 @@ install_packages() {
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
 		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay_$packages"
-
-    if [ "$1" = "1" ]; then
-        yay -S eww-wayland
-        yay -S jaq
-    fi
 }
 
 setup_pacman() {

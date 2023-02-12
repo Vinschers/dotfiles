@@ -53,6 +53,7 @@ python-pip
 qbittorrent
 ripgrep
 rkhunter
+rustup
 simple-scan
 shellcheck
 shfmt
