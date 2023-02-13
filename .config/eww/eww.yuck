@@ -15,18 +15,21 @@
 
 (defwidget left0 []
   (box
+    :class "bar-item"
     :space-evenly false
     :halign "start"
     (workspaces0)))
 
 (defwidget left1 []
   (box
+    :class "bar-item"
     :space-evenly false
     :halign "start"
     (workspaces1)))
 
 (defwidget right []
   (box
+    :class "bar-item"
     :space-evenly false
     :halign "end"
     (bright)
@@ -38,6 +41,7 @@
 
 (defwidget center []
   (box
+    :class "bar-item"
     :space-evenly false
     :halign "center"
     (music-module)))

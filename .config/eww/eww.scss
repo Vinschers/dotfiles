@@ -25,13 +25,18 @@
 @import "css/volume";
 
 .bar {
-    background-color: $bg;
     color: $fg;
-    border-radius: 12px;
 
     label {
         font-size: 1.5rem;
     }
+}
+
+.bar-item {
+    background-color: $bg;
+    border-radius: 12px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 tooltip {
