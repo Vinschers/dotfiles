@@ -15,4 +15,5 @@
 (deflisten music "scripts/music")
 (deflisten net "scripts/net")
 (deflisten volume "scripts/volume")
-(deflisten workspace "scripts/workspaces")
+(deflisten workspace0 "scripts/workspaces 0")
+(deflisten workspace1 "scripts/workspaces 1")

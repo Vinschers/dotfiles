@@ -196,9 +196,31 @@
   :stacking "fg" 
   :monitor 0
   :geometry (geometry
-    :x "0"
-    :y "0"
-    :width "0%"
-    :height "0%"
-    :anchor "right top")
+             :x "0"
+             :y "0"
+             :width "0%"
+             :height "0%"
+             :anchor "right top")
+  (system-menu))
+
+(defwindow system-menu_dual1
+  :stacking "fg" 
+  :monitor 0
+  :geometry (geometry
+             :x "0"
+             :y "0"
+             :width "0%"
+             :height "0%"
+             :anchor "right top")
+  (system-menu))
+
+(defwindow system-menu_dual2
+  :stacking "fg" 
+  :monitor 1
+  :geometry (geometry
+             :x "0"
+             :y "0"
+             :width "0%"
+             :height "0%"
+             :anchor "right top")
   (system-menu))

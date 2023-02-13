@@ -9,7 +9,7 @@
       :thickness 3
       (button
         :tooltip "using ${round(EWW_CPU.avg,0)}% cpu"
-        :onclick "${EWW_CMD} open --toggle system-menu"
+        :onclick "scripts/toggle_window system-menu"
         (label :class "icon-text" :text "")))
 
     (circular-progress
@@ -18,7 +18,7 @@
       :thickness 3
       (button
         :tooltip "using ${round(memory.percent,0)}% ram"
-        :onclick "${EWW_CMD} open --toggle system-menu"
+        :onclick "scripts/toggle_window system-menu"
         (label :class "icon-text" :text "")))
 
     (circular-progress
@@ -28,5 +28,5 @@
       :thickness 3
       (button
         :tooltip "battery on ${EWW_BATTERY["BAT0"].capacity}%"
-        :onclick "${EWW_CMD} open --toggle system-menu"
+        :onclick "scripts/toggle_window system-menu"
         (label :class "icon-text" :text "")))))

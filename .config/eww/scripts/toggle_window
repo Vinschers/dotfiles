@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NUM_MONITORS="$(hyprctl monitors | grep -c "Monitor")"
+current_mon="$(cat "/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/active_monitor")"
+
+window="$1"
+[ "$NUM_MONITORS" -gt 1 ] && window="$1_dual$(( current_mon + 1 ))"
+
+eww open --toggle "$window"

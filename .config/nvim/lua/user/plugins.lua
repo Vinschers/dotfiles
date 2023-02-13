@@ -120,7 +120,9 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
-    	use({ "uga-rosa/ccc.nvim" })
+	use({ "uga-rosa/ccc.nvim" })
+    use({ "elkowar/yuck.vim" })
+    use({ "gpanders/nvim-parinfer" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

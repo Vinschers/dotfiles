@@ -47,9 +47,33 @@
   :focusable false
   :monitor 0
   :geometry (geometry
-    :x "0%"
-    :y "0%"
-    :width "0%"
-    :height "0%"
-    :anchor "top center")
+             :x "0%"
+             :y "0%"
+             :width "0%"
+             :height "0%"
+             :anchor "top center")
+  (music))
+
+(defwindow music_dual1
+  :stacking "fg"
+  :focusable false
+  :monitor 0
+  :geometry (geometry
+             :x "0%"
+             :y "0%"
+             :width "0%"
+             :height "0%"
+             :anchor "top center")
+  (music))
+
+(defwindow music_dual2
+  :stacking "fg"
+  :focusable false
+  :monitor 1
+  :geometry (geometry
+             :x "0%"
+             :y "0%"
+             :width "0%"
+             :height "0%"
+             :anchor "top center")
   (music))

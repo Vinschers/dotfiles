@@ -3,6 +3,7 @@ alsa-utils
 archlinux-keyring
 android-file-transfer
 atool
+bash-language-server
 bat
 bc
 btop
@@ -27,6 +28,7 @@ lldb
 lsb-release
 lynx
 magic-wormhole
+man-db
 mediainfo
 moreutils
 mousepad
@@ -57,6 +59,7 @@ rustup
 simple-scan
 shellcheck
 shfmt
+stylua
 syncthing
 texlive-most
 texlive-lang
@@ -76,8 +79,6 @@ uwufetch
 valgrind
 vim
 xournalpp
-zathura
-zathura-pdf-mupdf
 zip
 zsh
 zsh-completions

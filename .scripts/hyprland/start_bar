@@ -1,0 +1,7 @@
+#!/bin/sh
+
+eww daemon
+NUM_MONITORS="$(hyprctl monitors | grep -c "Monitor")"
+
+[ "$NUM_MONITORS" -gt 1 ] && eww open-many bar_dual1 bar_dual2
+[ "$NUM_MONITORS" -eq 1 ] && eww open bar

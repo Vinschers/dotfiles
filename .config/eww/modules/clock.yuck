@@ -20,5 +20,5 @@
         :reveal date_rev
         (button
           :class "date"
-          :onclick "${EWW_CMD} open --toggle calendar"
+          :onclick "scripts/toggle_window calendar"
           {time.date})))))
