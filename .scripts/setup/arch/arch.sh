@@ -89,7 +89,7 @@ setup_pacman() {
 	sudo sed -i 's/VerbosePkgLists/VerbosePkgLists\nILoveCandy/g' /etc/pacman.conf
 	sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
-	sudo pacman -Sy
+	sudo pacman -Syu
 }
 
 setup_nvidia() {
