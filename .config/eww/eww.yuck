@@ -41,6 +41,7 @@
 
 (defwidget center []
   (box
+    :visible {music.title != "" ? true : false}
     :class "bar-item"
     :space-evenly false
     :halign "center"

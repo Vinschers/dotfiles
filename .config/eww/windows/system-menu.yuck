@@ -184,7 +184,11 @@
         (label
           :class "battery-wattage"
           :text {battery.wattage}))
-      (label)
+      (box
+        :class "disk-info"
+        :space-evenly false
+        :halign "start"
+        {disk.icon})
       (box
         :space-evenly false
         :halign "end"
