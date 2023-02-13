@@ -11,3 +11,5 @@ light
 network-manager-applet
 polkit-kde-agent
 rustup
+pipewire-pulse
+wireplumber

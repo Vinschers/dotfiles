@@ -1,11 +1,27 @@
 (defwidget volume-module []
-  (box
-    :class "module icon"
-    (eventbox
-      :onscroll "echo {} | sed -e 's/up/-/g' -e 's/down/+/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
-      :onclick "pavucontrol &"
-      :onrightclick "scripts/volume mute SINK"
-      (label
+  (eventbox
+    :class "icon"
+    :onhover "${EWW_CMD} update vol_reveal=true"
+    :onhoverlost "${EWW_CMD} update vol_reveal=false"
+    (box
+      :class "module"
+      :space-evenly false
+      (button
+        :onscroll "echo {} | sed -e 's/up/-/g' -e 's/down/+/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
+        :onclick "pavucontrol &"
+        :onrightclick "scripts/volume mute SINK"
         :class "vol-icon"
         :tooltip "volume ${volume.percent}%"
-        :text {volume.icon}))))
+        {volume.icon})
+      (revealer
+       :transition "slideright"
+       :reveal vol_reveal
+       :duration "350ms"
+       (box
+         :space-evenly false
+         (scale
+           :class "volume-icon-bar"
+           :value {volume.percent}
+           :tooltip "${volume.percent}%"
+           :onchange "scripts/volume setvol SINK {}"))))))
+        

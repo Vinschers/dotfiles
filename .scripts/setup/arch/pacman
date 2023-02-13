@@ -1,5 +1,4 @@
-alsa-firmware
-alsa-utils
+pamixer
 archlinux-keyring
 android-file-transfer
 atool

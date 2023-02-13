@@ -1,5 +1,8 @@
 #!/bin/sh
 
+
+rm -rf "$HOME/.cache/eww_covers"
+
 eww daemon
 NUM_MONITORS="$(hyprctl monitors | grep -c "Monitor")"
 

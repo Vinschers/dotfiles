@@ -37,7 +37,7 @@
             :text "│")
           (button
             :class "wifi-arrow-btn"
-            :onclick "eww close system-menu && nm-connection-editor &"
+            :onclick "scripts/toggle_window system-menu && nm-connection-editor &"
             ""))
         (label
           :text {net.essid}
@@ -60,7 +60,7 @@
             :text "│")
           (button
             :class "bluetooth-arrow-btn"
-            :onclick "eww close system-menu && blueberry"
+            :onclick "scripts/toggle_window system-menu && blueberry"
             ""))
         (label
           :text {bluetooth.text}
@@ -123,7 +123,8 @@
           :class "sys-cpu"
           :thickness 3
           (label
-            :text ""
+            :text ""
+            :style "font-size: 2rem;"
             :class "sys-icon-cpu icon"))
         (box
           :orientation "v"
@@ -151,7 +152,8 @@
           :class "sys-mem"
           :thickness 3
           (label
-            :text ""
+            :text ""
+            :style "font-family: fontawesome;"
             :class "sys-icon-mem icon"))
         (box
           :orientation "v"

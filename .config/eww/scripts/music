@@ -49,16 +49,16 @@ get_position_time() {
 }
 
 get_cover() {
-	mkdir -p "$XDG_CACHE_HOME/eww_covers"
-	cd "$XDG_CACHE_HOME/eww_covers" || exit
+	mkdir -p "$HOME/.cache/eww_covers"
+	cd "$HOME/.cache/eww_covers" || exit
 
-	IMGPATH="$XDG_CACHE_HOME/eww_covers/cover_art.png"
+	IMGPATH="$HOME/.cache/eww_covers/cover_art.png"
 
 	COVER_URL="$1"
 
 	if [[ "$COVER_URL" = https* ]]; then
-		if [ ! -e "$XDG_CACHE_HOME/eww_covers/$(basename "$COVER_URL")" ]; then
-			wget -N "$COVER_URL" -o /dev/null
+		if [ ! -e "$HOME/.cache/eww_covers/$(basename "$COVER_URL")" ]; then
+            curl -so "$HOME/.cache/eww_covers/$(basename "$COVER_URL")" "$COVER_URL"
 		fi
 
 		rm "$IMGPATH"

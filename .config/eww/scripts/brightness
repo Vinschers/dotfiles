@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 icons=("" "" "")
-date="$XDG_CACHE_HOME/eww/osd_brightness.date"
+date="$HOME/.cache/eww/osd_brightness.date"
 
 osd() {
   if [ ! -f "$date" ]; then
-    mkdir -p "$XDG_CACHE_HOME/eww"
+    mkdir -p "$HOME/.cache/eww"
   fi
   date +%s > "$date"
 }
@@ -14,7 +14,7 @@ osd_handler() {
   lock=0
   rundate=0
   if [ ! -f "$date" ]; then
-    mkdir -p "$XDG_CACHE_HOME/eww"
+    mkdir -p "$HOME/.cache/eww"
     echo 0 > "$date"
   fi
 

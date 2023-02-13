@@ -4,21 +4,23 @@
   (eventbox
     :onhover "${EWW_CMD} update date_rev=true"
     :onhoverlost "${EWW_CMD} update date_rev=false"
-    (overlay
+    (box
       :class "module"
-      (box
-        :space-evenly false
-        (label
-          :text {time.hour}
-          :class "hour")
-        (label
-          :text ":")
-        (label
-          :text {time.minute}
-          :class "minute"))
+      :space-evenly false
+      (label
+        :text {time.hour}
+        :class "hour")
+      (label
+        :text ":")
+      (label
+        :text {time.minute}
+        :class "minute")
       (revealer
+        :transition "slideright"
         :reveal date_rev
+        :duration "350ms"
         (button
           :class "date"
           :onclick "scripts/toggle_window calendar"
           {time.date})))))
+ 
