@@ -1,14 +1,14 @@
 #!/bin/sh
 
-current_workspace="$(hyprctl activewindow | grep -oP '(?<=workspace: )[0-9]+')"
+current_mon="$(cat "/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/active_monitor")"
 num_monitors="$(hyprctl monitors | grep -c "Monitor")"
 
-[ "$1" = "0" ] && workspace="$(( current_workspace - 10 ))"
-[ "$1" = "1" ] && workspace="$(( (current_workspace + 10) % (10 * (num_monitors + 1)) ))"
+[ "$1" = "0" ] && monitor_id="$((current_mon - 1))"
+[ "$1" = "1" ] && monitor_id="$(((current_mon + 1) % num_monitors))"
 
-[ -z "$workspace" ] && exit 0
+[ "$monitor_id" -lt 0 ] && monitor_id="$((num_monitors - 1))"
 
-[ "$1" = "0" ] && [ "$workspace" -lt 10 ] && workspace="$(( workspace + 10 * num_monitors ))"
-[ "$1" = "1" ] && [ "$workspace" -lt 10 ] && workspace="$(( workspace + 10 ))"
+notify-send "$current_mon --> $monitor_id"
 
-hyprctl dispatch movetoworkspace "$workspace"
+focusedws="$(hyprctl -j monitors | jaq -r ".[] | select(.id == $monitor_id) | .activeWorkspace.id")"
+hyprctl dispatch movetoworkspace "$focusedws"
