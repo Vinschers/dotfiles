@@ -1,8 +1,11 @@
+alsa
+alsa-firmware
 xorg
 xorg-server-devel
 feh
 flameshot
 picom
+pulseaudio
 ueberzug
 xclip
 xf86-video-intel

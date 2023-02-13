@@ -1,4 +1,3 @@
-pamixer
 archlinux-keyring
 android-file-transfer
 atool
@@ -49,7 +48,6 @@ pavucontrol
 pdf2svg
 playerctl
 prettier
-pulseaudio
 python-pip
 qbittorrent
 ripgrep

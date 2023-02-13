@@ -41,10 +41,6 @@ install_packages() {
 		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay"
 
-	amixer sset Master unmute
-	pulseaudio --check
-	pulseaudio -D
-
 	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
 
 	sudo systemctl enable zotero-translation-server.service
@@ -78,6 +74,11 @@ install_packages() {
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
 		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay_$packages"
+
+    if [ "$1" = "1" ]; then
+        systemctl --user daemon-reload
+        systemctl --user enable opentabletdriver --now
+    fi
 }
 
 setup_pacman() {
