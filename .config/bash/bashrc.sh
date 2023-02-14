@@ -11,3 +11,5 @@ complete -cf sudo
 # [ -r /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
 source "$SCRIPTS_DIR"/shellrc.sh
+
+export HISTFILE="$XDG_CONFIG_HOME/.bash_history"

@@ -16,7 +16,8 @@ alias \
     htop="open_htop" \
     gtop="open_gtop" \
     nvim="open_nvim" \
-    bash='bash --rcfile $BASHDIR/bashrc.sh'
+    bash='bash --rcfile $BASHDIR/bashrc.sh' \
+    yarn='yarn --use-yarnrc "$HOME/.config/yarn/config"'
 
 # Shortenings
 alias \

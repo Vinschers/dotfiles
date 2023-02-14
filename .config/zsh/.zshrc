@@ -22,3 +22,5 @@ function osc7 {
     print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
 }
 add-zsh-hook -Uz chpwd osc7
+
+export HISTFILE="$XDG_CONFIG_HOME/.zsh_history"
