@@ -9,6 +9,9 @@ action="$2"
 [ "$NUM_MONITORS" -gt 1 ] && window="$1_dual$(( current_mon + 1 ))"
 
 if [ -z "$action" ]; then
+    closer="$1-closer_dual$(( current_mon + 1 ))"
+
+    eww open --toggle "$closer"
     eww open --toggle "$window"
 else
     eww "$action" "$window"

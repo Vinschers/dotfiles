@@ -35,7 +35,7 @@ osd_handler() {
 		sleep 0.5
 	done
 
-	eww close osd_brightness
+    "$(dirname "$0")"/toggle_window osd_brightness close
 }
 
 if [ "$1" = "osd" ]; then

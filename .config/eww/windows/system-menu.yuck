@@ -230,3 +230,17 @@
              :height "0%"
              :anchor "right top")
   (system-menu))
+
+(defwindow system-menu-closer_dual1
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "fg"
+  :focusable false
+  (closer :window "system-menu"))
+
+(defwindow system-menu-closer_dual2
+  :monitor 1
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "fg"
+  :focusable false
+  (closer :window "system-menu"))
