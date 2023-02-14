@@ -1,0 +1,30 @@
+#!/bin/sh
+
+check_lives () {
+	while read -r id symbol
+    do
+        curl -s "https://www.youtube.com/$id" | grep -q "hqdefault_live.jpg" && printf "%s " "$symbol"
+	done
+}
+
+input () {
+	echo "@KureijiOllie 🧟"
+	echo "@MoonaHoshinova 🌕"
+
+	echo "@GawrGura 🔱"
+    echo "@WatsonAmelia 🔎"
+    echo "@MoriCalliope 💀"
+    echo "@TakanashiKiara 🐔"
+    echo "@NinomaeInanis 🐙"
+
+    echo "@IRyS 💎"
+
+    # echo "UCsUj0dszADCGbF3gNrQEuSQ 🪐" :'(
+    echo "@CeresFauna 🌿"
+    echo "@NanashiMumei 🪶 "
+    echo "@OuroKronii ⏳"
+    echo "@HakosBaelz 🎲"
+}
+
+text="$(input | check_lives | awk '{$1=$1};1')"
+echo "$text"

@@ -4,9 +4,11 @@
 (defvar net_rev false)
 (defvar time_rev false)
 (defvar vol_reveal false)
+(defvar hololive_reveal false)
 
 (defpoll time :interval "5s" `date +'{"date": "%d/%m", "hour": "%H", "minute": "%M", "day": "%A"}'`)
 (defpoll disk :interval "1m" "scripts/disk")
+(defpoll hololive :interval "2m" "scripts/hololive")
 
 (deflisten airplane "scripts/airplane")
 (deflisten battery "scripts/battery")
