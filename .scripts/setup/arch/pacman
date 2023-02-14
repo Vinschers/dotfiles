@@ -65,12 +65,17 @@ syncthing
 texlive-most
 texlive-lang
 tldr
+ttf-arphic-ukai
+ttf-arphic-uming
+ttf-baekmuk
 ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
 ttf-hack-nerd
+ttf-hannom
 ttf-liberation
 ttf-liberation-mono-nerd
+ttf-mplus-nerd
 ttf-sazanami
 ufw
 unrar
@@ -80,6 +85,8 @@ uwufetch
 valgrind
 vim
 xournalpp
+wqy-microhei
+wqy-zenhei
 zip
 zsh
 zsh-completions
