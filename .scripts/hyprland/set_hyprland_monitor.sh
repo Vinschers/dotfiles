@@ -1,6 +1,8 @@
 #!/bin/sh
 
 current_mon="$(cat "/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/active_monitor")"
+[ -z "$current_mon" ] && exit 0
+
 num_monitors="$(hyprctl monitors | grep -c "Monitor")"
 
 [ "$1" = "0" ] && monitor_id="$((current_mon - 1))"

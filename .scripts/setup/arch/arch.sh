@@ -55,6 +55,7 @@ install_packages() {
 	sudo cp "$HOME/.config/loginscreen.png" "/usr/share/sddm/themes/corners/background.png"
 	sudo sed -i 's|Background="backgrounds/glacier.png"|Background="background.png"|g' /usr/share/sddm/themes/corners/theme.conf
 	sudo sed -i 's|Login!!|Login|g' /usr/share/sddm/themes/corners/theme.conf
+	sudo sed -i 's|hh:mm AP|HH:mm|g' /usr/share/sddm/themes/corners/theme.conf
 
 	sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
 
@@ -111,6 +112,7 @@ setup_nvidia() {
 }
 
 setup_firejail() {
+    sudo sed -i "s|chafa|#chafa|g" /etc/firejail/firecfg.config
 	sudo firecfg
 }
 
