@@ -3,7 +3,7 @@
 check_lives () {
 	while read -r id symbol
     do
-        curl -s "https://www.youtube.com/@$id" | grep -q "hqdefault_live.jpg" && printf "%s " "$symbol"
+        curl -s "https://www.youtube.com/@$id" | grep -q "hqdefault_live.jpg" && printf "{\"id\": \"%s\", \"icon\": \"%s\"}," "$id" "$symbol"
 	done
 }
 
@@ -26,5 +26,9 @@ input () {
     echo "HakosBaelz 🎲"
 }
 
-text="$(input | check_lives | awk '{$1=$1};1')"
-echo "$text"
+text="$(input | check_lives)"
+if [ -n "$text" ]; then
+    echo "[${text%?}]"
+else
+    echo "[]"
+fi
