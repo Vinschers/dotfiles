@@ -1,6 +1,8 @@
+archlinux-keyring
 alsa-firmware
 alsa-utils
-archlinux-keyring
+pipewire-pulse
+wireplumber
 android-file-transfer
 atool
 bash-language-server
