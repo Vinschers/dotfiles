@@ -11,6 +11,7 @@ fpath=("$ZDOTDIR/completions" $fpath)
 
 source "$SCRIPTS_DIR"/shellrc.sh
 
+# Change directory with lf
 function osc7 {
     local LC_ALL=C
     export LC_ALL
