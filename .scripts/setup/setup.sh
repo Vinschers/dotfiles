@@ -47,18 +47,6 @@ create_files_dirs() {
 
 setup_git() {
 	git config --global alias.reset-hard '!f() { git reset --hard; git clean -df ; }; f'
-
-	printf "Email: "
-	read -r email
-
-	ssh-keygen -t ed25519 -C "$email" -N "" -f "$HOME/.ssh/id_ed25519"
-
-	eval "$(ssh-agent -s)"
-
-	ssh-add ~/.ssh/id_ed25519
-
-	printf "Add the key in ~/.ssh/id_ed25519 to your Git account\nKey:\n\n"
-	cat ~/.ssh/id_ed25519.pub
 }
 
 install_programs() {
@@ -113,7 +101,7 @@ copy_xorg() {
 }
 
 setup_wayland() {
-	sudo ln -s "$SCRIPTS_DIR/bin/hyprland/hyprland" /usr/bin/hyprland
+	[ -f /usr/bin/hyprland ] || sudo ln -s "$SCRIPTS_DIR/bin/hyprland/hyprland" /usr/bin/hyprland
 	sudo sed -i 's|Exec=Hyprland|Exec=hyprland|g' /usr/share/wayland-sessions/hyprland.desktop
 }
 

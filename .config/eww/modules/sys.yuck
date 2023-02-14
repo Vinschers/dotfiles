@@ -22,11 +22,11 @@
         (label :class "icon-text" :text "")))
 
     (circular-progress
-      :value "${EWW_BATTERY["BAT0"].capacity}"
+      :value {100 * disk.used / disk.total}
       :class "batbar"
       :style "color: ${battery.color};"
       :thickness 3
       (button
-        :tooltip "battery on ${EWW_BATTERY["BAT0"].capacity}%"
+        :tooltip "${disk.used} GB / ${disk.total} GB"
         :onclick "scripts/toggle_window system-menu"
         (label :class "icon-text" :text "")))))

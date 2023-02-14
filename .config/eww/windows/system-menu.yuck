@@ -188,7 +188,7 @@
         :class "disk-info"
         :space-evenly false
         :halign "start"
-        {disk.icon})
+        {disk.used})
       (box
         :space-evenly false
         :halign "end"

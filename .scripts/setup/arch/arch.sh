@@ -36,11 +36,11 @@ install_packages() {
 		sudo pacman -S --noconfirm --needed "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/pacman"
 
-    amixer sset Master unmute
+    amixer sset Master unmute || errors="$errors [amixer sset Master unmute]"
 
 	while read -r PACKAGE; do
 		printf "\n\n\nInstalling %s..." "$PACKAGE"
-		yay --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
+		yay --sudoloop --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay"
 
 	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
