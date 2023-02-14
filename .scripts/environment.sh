@@ -1,6 +1,8 @@
 #!/bin/sh
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 export EDITOR="nvim"
 export BROWSER="librewolf"
@@ -30,9 +32,9 @@ export BASHDIR="$HOME/.config/bash"
 export ZDOTDIR="$HOME/.config/zsh"
 
 export TEXMFHOME="$XDG_CONFIG_HOME/texmf:"
-export NUGET_PACKAGES="$XDG_CONFIG_HOME/nuget"
-export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm"
-export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
-export DOTNET_CLI_HOME="$XDG_CONFIG_HOME/dotnet"
+#export NUGET_PACKAGES="$XDG_CONFIG_HOME/nuget"
+#export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+#export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+#export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm"
+#export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
+#export DOTNET_CLI_HOME="$XDG_CONFIG_HOME/dotnet"

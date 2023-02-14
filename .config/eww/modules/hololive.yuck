@@ -2,6 +2,7 @@
   (eventbox
     :onhover "${EWW_CMD} update hololive_reveal=true"
     :onhoverlost "${EWW_CMD} update hololive_reveal=false"
+    :visible {arraylength(hololive) > 0}
     (box
       :class "module"
       :space-evenly false
@@ -15,6 +16,7 @@
         (for channel in hololive
           (button
             :onclick "xdg-open \"https://youtube.com/@${channel.id}/live\""
+            :tooltip "${channel.name}"
             :class "hololive-btn"
             {channel.icon}))))))
 

@@ -10,6 +10,7 @@ bat
 bc
 btop
 chafa
+clamav
 dash
 dunst
 ffmpeg
@@ -72,7 +73,6 @@ ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
 ttf-hack-nerd
-ttf-hannom
 ttf-liberation
 ttf-liberation-mono-nerd
 ttf-mplus-nerd

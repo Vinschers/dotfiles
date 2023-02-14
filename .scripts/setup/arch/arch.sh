@@ -45,8 +45,11 @@ install_packages() {
 
 	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
 
+    sudo freshclam
+
 	sudo systemctl enable zotero-translation-server.service
 	sudo systemctl enable sddm.service
+    sudo systemctl enable clamav-daemon.service
 
     rustup default stable
 

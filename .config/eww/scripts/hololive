@@ -3,7 +3,8 @@
 check_lives () {
 	while read -r id symbol
     do
-        curl -s "https://www.youtube.com/@$id" | grep -q "hqdefault_live.jpg" && printf "{\"id\": \"%s\", \"icon\": \"%s\"}," "$id" "$symbol"
+        name="$(echo "$id" | sed 's/\([^[:blank:]]\)\([[:upper:]]\)/\1 \2/g')"
+        curl -s "https://www.youtube.com/@$id" | grep -q "hqdefault_live.jpg" && printf "{\"id\": \"%s\", \"icon\": \"%s\", \"name\": \"%s\"}," "$id" "$symbol" "$name"
 	done
 }
 
