@@ -13,7 +13,7 @@ icon_focused=""
 # generate the json for eww
 generate() {
 	seq 1 10 | while read -r ws; do
-		ws="$((monitor_id + 1))$(printf "%s" "$ws" | tail -c 1)"
+		[ -f "/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/active_monitor" ] && ws="$((monitor_id + 1))$(printf "%s" "$ws" | tail -c 1)"
 
         if [ "$ws" = "$(get_focusedws)" ]; then
 			color="$color_focused"

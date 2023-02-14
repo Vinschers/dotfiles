@@ -5,6 +5,7 @@ window {
     background-color: #24283b;
     font-family: "JetBrains Mono Regular Nerd Font Complete";
     font-size: 16px;
+    opacity: 0.9;
 }
 
 #input {
@@ -43,6 +44,10 @@ window {
     margin: 5px;
     border: none;
     color: #c0caf5;
+}
+
+#entry {
+    opacity: 1;
 }
 
 #entry:selected {
