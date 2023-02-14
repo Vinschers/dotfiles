@@ -50,6 +50,9 @@ alias \
     gc='git clone' \
     gd='git diff' \
     gr='git restore' \
+    gC='git commit -m' \
+    gP='git push' \
+    gp='git pull' \
 
 # Actual aliases
 alias \
