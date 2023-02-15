@@ -95,6 +95,8 @@ copy_xorg() {
 		echo "Unknown system"
 		;;
 	esac
+
+    create_symlink "$HOME/.config/X11/xprofile" "$HOME/.xprofile"
 }
 
 setup_wayland() {
