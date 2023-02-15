@@ -11,6 +11,7 @@ action="$2"
 if [ -z "$action" ]; then
     closer="$1-closer_dual$(( current_mon + 1 ))"
 
+    eww close "$closer"
     eww open --toggle "$closer"
     eww open --toggle "$window"
 else

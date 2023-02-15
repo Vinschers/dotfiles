@@ -26,7 +26,6 @@ create_file() {
 
 create_files_dirs() {
 	create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
-    create_symlink "$HOME/.profile" "$HOME/.zprofile"
 
 	if [ "$1" = "0" ]; then
 		create_file "$HOME/.cache/cpustatus" "0"
@@ -107,6 +106,11 @@ setup_ufw() {
 	sudo ufw default deny
 }
 
+setup_zsh() {
+    echo "source \"\$HOME/.profile\"" | sudo tee -a /etc/zsh/zshenv
+    /bin/zsh
+}
+
 . "$HOME/.profile"
 THIS_DIRECTORY="$(dirname "$0")"
 SCRIPT=""
@@ -129,4 +133,4 @@ check "Change shell to zsh?" 1 && chsh -s /bin/zsh "$USER"
 check "Install programs in SCRIPTS_DIR?" 1 && install_programs "$graphical_display"
 check "Ignore local files" 1 && ignore_local_files
 check "Set up ufw?" 1 && setup_ufw
-check "Setup zsh?" 1 && /bin/zsh
+check "Setup zsh?" 1 && setup_zsh
