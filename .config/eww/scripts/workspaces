@@ -1,7 +1,7 @@
 #!/bin/sh
 
 monitor_id="$1"
-monitor="$(hyprctl -j monitors | jaq -r ".[] | select(.id == $monitor_id) | .name")"
+num_monitors="$(hyprctl monitors | grep -c "Monitor")"
 
 color_empty="#313244"
 color_normal="#666666"
@@ -12,13 +12,16 @@ icon_focused=""
 
 # generate the json for eww
 generate() {
-	seq 1 10 | while read -r ws; do
-        [ "$(hyprctl monitors | grep -c "Monitor")" -gt 1 ] && ws="$((monitor_id + 1))$(printf "%s" "$ws" | tail -c 1)"
+    fws="$(get_focusedws)"
+    clients="$(hyprctl clients)"
 
-        if [ "$ws" = "$(get_focusedws)" ]; then
+	seq 1 10 | while read -r ws; do
+        [ "$num_monitors" -gt 1 ] && ws="$((monitor_id + 1))$(printf "%s" "$ws" | tail -c 1)"
+
+        if [ "$ws" = "$fws" ]; then
 			color="$color_focused"
 			icon="$icon_focused"
-		elif hyprctl clients | grep -q "workspace: $ws"; then
+		elif echo "$clients" | grep -q "workspace: $ws"; then
 			color="$color_normal"
 			icon="$icon_normal"
 		else
