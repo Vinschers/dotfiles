@@ -38,7 +38,7 @@ alias \
 # Git
 alias \
 	g="git" \
-    dotfiles='git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME' \
+    dotfiles='git --git-dir=$XDG_CONFIG_HOME/dotfiles/.dotfiles-git/ --work-tree=$HOME' \
     xfce4='git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME' \
     ds='dotfiles status' \
     da='dotfiles add' \

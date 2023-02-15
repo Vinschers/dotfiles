@@ -26,6 +26,7 @@ create_file() {
 
 create_files_dirs() {
 	create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
+    create_symlink "$HOME/.profile" "$HOME/.zprofile"
 
 	if [ "$1" = "0" ]; then
 		create_file "$HOME/.cache/cpustatus" "0"

@@ -136,6 +136,6 @@ check "Install packages?" 1 && install_packages "$graphical_display"
 check "Setup NVIDIA?" 0 && setup_nvidia "$graphical_display"
 check "Install extra packages?" 1 && install_extra
 check "Setup firejail?" 1 && setup_firejail
-check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq)
+check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq) && [ -d "$HOME/.dotnet" ] && rm -rf "$HOME/.dotnet"
 
 [ -n "$errors" ] && echo "$errors" >"$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."
