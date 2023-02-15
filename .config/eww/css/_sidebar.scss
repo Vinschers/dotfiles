@@ -150,3 +150,41 @@
         background-color: #b695de;
     }
 }
+
+
+.weatherfullbox {
+    margin: 0.5rem 1rem;
+    padding: 0.5rem;
+}
+
+.weather-icon {
+    @include rounding;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0.7rem;
+    background-color: $surface0;
+    font-size: 5rem;
+    font-family: "Material Design Icon Desktop";
+}
+
+.weatherbox {
+    @include rounding;
+    background-color: $surface0;
+    padding: 0.9rem;
+}
+
+.weatherdesc {
+    font-size: 1.75rem;
+}
+
+.weathertemp {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $fg;
+}
+
+.weathercity {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: $fg;
+}

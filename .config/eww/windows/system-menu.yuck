@@ -1,3 +1,55 @@
+;; Weather widget ;;
+(defwidget weather[] 
+  (box
+    :orientation "h"
+    :class "weatherfullbox"
+    :space-evenly false
+
+    (box
+      :orientation "v"
+      :class "weatherbox"
+      :space-evenly false
+      :hexpand true
+
+      (box
+        :orientation "h"
+        :class "weathertop"
+        :space-evenly false
+
+        (box
+          :class "weatherdesc"
+          :style "color: ${weather.color};"
+          :halign "start"
+          :hexpand true
+          {weather.desc})
+        (box
+          :class "weathertemp"
+          :halign "end"
+
+          "${weather.temp}°C"))
+      
+      (box
+        :orientation "h"
+        :class "weatherbot"
+        :space-evenly false
+
+        (box
+          :class "weathercity"
+          :halign "start"
+          :hexpand true
+          {weather.city})
+        (box
+          :class "weathercity"
+          :halign "end"
+
+          "Feels like ${weather.feel}°C")))
+      
+    (box
+      :class "weather-icon"
+      :style "color: ${weather.color};"
+      :halign "center"
+      {weather.icon})))
+
 (defwidget system-menu []
   (box
     :class "system-menu-box"
@@ -83,88 +135,123 @@
           :xalign 0.5
           :limit-width 16)))
 
-    (box
-      :class "sliders"
-      :orientation "v"
-      (box
-        :class "volume-slider-box"
-        :space-evenly false
-        (button
-          :class "volume-icon icon"
-          :onclick "scripts/volume mute SINK"
-          {volume.icon})
-        (scale
-          :class "volume-bar"
-          :value {volume.percent}
-          :tooltip "volume on ${volume.percent}%"
-          :onchange "scripts/volume setvol SINK {}"))
-      (box
-        :class "brightness-slider-box"
-        :space-evenly false
-        (button
-          :class "brightness-slider-icon icon"
-          {brightness.icon})
-        (scale
-          :class "brightness-slider" 
-          :value {brightness.percent} 
-          :marks true 
-          :onchange "light -S {}")))
-
+    (weather)
     (box
       :class "system-info-box"
+      :orientation "v"
 
-      ; cpu
       (box
-        :class "sys-box"
-        :space-evenly false
-        :halign "start"
-        (circular-progress
-          :value "${EWW_CPU.avg}"
-          :class "sys-cpu"
-          :thickness 3
-          (label
-            :text ""
-            :style "font-size: 2rem;"
-            :class "sys-icon-cpu icon"))
-        (box
-          :orientation "v"
-          :vexpand false
-          (label
-            :text "cpu"
-            :halign "start"
-            :class "sys-text-cpu")
-          (label
-            :text "${round(EWW_CPU.avg,2)}%"
-            :halign "start"
-            :class "sys-text-sub")
-          (label
-            :text "${EWW_CPU.cores[0].freq} MHz"
-            :halign "start"
-            :class "sys-text-sub")))
+        :orientation "h"
 
-      ; memory
-      (box
-        :class "sys-box"
-        :space-evenly false
-        :halign "end"
-        (circular-progress
-          :value {memory.percent}
-          :class "sys-mem"
-          :thickness 3
-          (label
-            :text ""
-            :style "font-family: fontawesome;"
-            :class "sys-icon-mem icon"))
+        ; cpu
         (box
-          :orientation "v"
-          (label
-            :text "memory"
-            :halign "start"
-            :class "sys-text-mem")
-          (label
-            :text "${memory.used} | ${memory.total}"
-            :halign "start"
-            :class "sys-text-sub"))))
+          :class "sys-box"
+          :space-evenly false
+          :halign "start"
+          (circular-progress
+            :value "${EWW_CPU.avg}"
+            :class "sys-cpu"
+            :thickness 3
+            (label
+              :text ""
+              :style "font-size: 2rem;"
+              :class "sys-icon-cpu icon"))
+          (box
+            :orientation "v"
+            :vexpand false
+            (label
+              :text "cpu"
+              :halign "start"
+              :class "sys-text-cpu")
+            (label
+              :text "${round(EWW_CPU.avg,2)}%"
+              :halign "start"
+              :class "sys-text-sub")
+            (label
+              :text "${EWW_CPU.cores[0].freq} MHz"
+              :halign "start"
+              :class "sys-text-sub")))
+
+        ; memory
+        (box
+          :class "sys-box"
+          :space-evenly false
+          :halign "end"
+          (circular-progress
+            :value {memory.percent}
+            :class "sys-mem"
+            :thickness 3
+            (label
+              :text ""
+              :style "font-family: fontawesome;"
+              :class "sys-icon-mem icon"))
+          (box
+            :orientation "v"
+            (label
+              :text "memory"
+              :halign "start"
+              :class "sys-text-mem")
+            (label
+              :text "${memory.used} | ${memory.total}"
+              :halign "start"
+              :class "sys-text-sub"))))
+
+      (box
+        :orientation "h"
+
+        ; cpu
+        (box
+          :class "sys-box"
+          :space-evenly false
+          :halign "start"
+          (circular-progress
+            :value "${EWW_CPU.avg}"
+            :class "sys-cpu"
+            :thickness 3
+            (label
+              :text ""
+              :style "font-size: 2rem;"
+              :class "sys-icon-cpu icon"))
+          (box
+            :orientation "v"
+            :vexpand false
+            (label
+              :text "cpu"
+              :halign "start"
+              :class "sys-text-cpu")
+            (label
+              :text "${round(EWW_CPU.avg,2)}%"
+              :halign "start"
+              :class "sys-text-sub")
+            (label
+              :text "${EWW_CPU.cores[0].freq} MHz"
+              :halign "start"
+              :class "sys-text-sub")))
+
+        ; memory
+        (box
+          :class "sys-box"
+          :space-evenly false
+          :halign "end"
+          (circular-progress
+            :value {100 * disk.used / disk.total}
+            :class "sys-mem"
+            :thickness 3
+            (label
+              :text ""
+              :style "font-family: fontawesome;"
+              :class "sys-icon-mem icon"))
+          (box
+            :orientation "v"
+            (label
+              :text "disk"
+              :halign "start"
+              :class "sys-text-mem")
+            (label
+              :text "${memory.used} | ${memory.total}"
+              :halign "start"
+              :class "sys-text-sub")))))
+
 
     (centerbox
       :class "bottom-row"
