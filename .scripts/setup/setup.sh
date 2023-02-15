@@ -25,7 +25,6 @@ create_file() {
 }
 
 create_files_dirs() {
-	create_symlink "$HOME/.profile" "$HOME/.zprofile"
 	create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
 
 	if [ "$1" = "0" ]; then

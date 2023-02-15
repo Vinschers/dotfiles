@@ -1,5 +1,5 @@
 ! NEVER REMOVE
-#include ".config/themes/tokyonight-moon.Xresources"
+#include "tokyonight-moon.Xresources"
 
 ! Applications that do not use Xresources:
 ! dunst

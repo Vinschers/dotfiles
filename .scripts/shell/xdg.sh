@@ -13,6 +13,7 @@ mkdir -p "$XDG_CONFIG_HOME/putty"
 mkdir -p "$XDG_CONFIG_HOME/pg"
 mkdir -p "$XDG_CONFIG_HOME/simplescreenrecorder"
 mkdir -p "$XDG_CONFIG_HOME/wakatime"
+mkdir -p "$XDG_CONFIG_HOME/yarn"
 
 mkdir -p "$XDG_DATA_HOME/gnupg"
 mkdir -p "$XDG_DATA_HOME/wineprefixes"
@@ -20,6 +21,7 @@ mkdir -p "$XDG_DATA_HOME/wineprefixes"
 mkdir -p "$XDG_CACHE_HOME/zsh"
 
 [ -f "$XDG_CONFIG_HOME/git/config" ] || touch "$XDG_CONFIG_HOME/git/config"
+[ -f "$XDG_CONFIG_HOME/yarn/config" ] || touch "$XDG_CONFIG_HOME/yarn/config"
 
 sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
 
