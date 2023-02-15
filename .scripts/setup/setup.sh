@@ -29,8 +29,6 @@ create_files_dirs() {
 	create_symlink "$HOME/.config/librewolf" "$HOME/.librewolf"
 
 	if [ "$1" = "0" ]; then
-		create_symlink "$HOME/.config/Xresources" "$HOME/.Xresources"
-
 		create_file "$HOME/.cache/cpustatus" "0"
 		create_file "$HOME/.cache/datetime" "0"
 		create_file "$HOME/.cache/diskspace" "0 1000"

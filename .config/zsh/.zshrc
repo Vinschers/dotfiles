@@ -23,4 +23,6 @@ function osc7 {
 }
 add-zsh-hook -Uz chpwd osc7
 
-export HISTFILE="$XDG_CONFIG_HOME/.zsh_history"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"

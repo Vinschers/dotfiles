@@ -21,4 +21,6 @@ chwall "$HOME/.config/$wallpaper"
 
 [ -n "$(xsetwacom list devices)" ] && "$SCRIPTS_DIR/devices/wacom.sh"
 
+xrdb -load ~/.config/X11/xresources
+
 #python "$SCRIPTS_DIR/external/inkscape-shortcut-manager/main.py" &

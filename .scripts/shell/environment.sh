@@ -3,6 +3,12 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_DATA_HOME"
+mkdir -p "$XDG_STATE_HOME"
+mkdir -p "$XDG_CACHE_HOME"
 
 export EDITOR="nvim"
 export BROWSER="librewolf"
@@ -26,15 +32,3 @@ load_wayland() {
 
 [ "$XDG_SESSION_TYPE" = "x11" ] && load_xorg
 [ "$XDG_SESSION_TYPE" = "wayland" ] && load_wayland
-
-
-export BASHDIR="$HOME/.config/bash"
-export ZDOTDIR="$HOME/.config/zsh"
-
-export TEXMFHOME="$XDG_CONFIG_HOME/texmf:"
-#export NUGET_PACKAGES="$XDG_CONFIG_HOME/nuget"
-#export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
-#export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-#export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm"
-#export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
-#export DOTNET_CLI_HOME="$XDG_CONFIG_HOME/dotnet"

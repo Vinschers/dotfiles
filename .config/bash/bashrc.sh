@@ -10,6 +10,5 @@ source "$BASHDIR"/shopt.sh
 complete -cf sudo
 # [ -r /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
-source "$SCRIPTS_DIR"/shellrc.sh
-
 export HISTFILE="$XDG_CONFIG_HOME/.bash_history"
+export BASH_COMPLETION_USER_FILE="$XDG_CONFIG_HOME/bash-completion/bash_completion"
