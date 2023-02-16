@@ -1,15 +1,13 @@
 ;; Weather widget ;;
-(defwidget weather[] 
+(defwidget weather-forecast[] 
   (box
     :orientation "h"
     :class "weatherfullbox"
     :space-evenly false
 
-    (box
-      :class "weather-icon"
-      :style "color: ${weather.color};"
-      :halign "center"
-      {weather.icon})
+    (label
+      :style "font-size: 5rem;"
+      :text {weather.icon})
 
     (box
       :orientation "v"
@@ -65,7 +63,7 @@
         :class "sys-icon-${type} icon"))
     (box
       :orientation "v"
-      :vexpand false
+
       (label
         :text {name}
         :halign "start"
@@ -79,14 +77,144 @@
         :halign "start"
         :class "sys-text-sub"))))
 
+(defwidget wifi []
+  (box
+    :class "wifi-box"
+    :space-evenly false
+    :orientation "v"
+
+    (box
+      :class "element icon ${net.class}"
+      :space-evenly false
+
+      (button
+       :class "wifi-button"
+       :onclick "scripts/net toggle"
+       {net.icon})
+
+      (label
+       :class "separator"
+       :text "│")
+
+      (button
+       :class "wifi-arrow-btn"
+       :onclick "scripts/toggle_window system-menu && nm-connection-editor &"
+       ""))
+
+    (label
+     :text {net.essid != "" ? net.essid : "Wi-fi off"}
+     :xalign 0.5
+     :limit-width 15)))
+                  
+
+(defwidget sys-bluetooth []
+  (box
+   :class "bluetooth-box"
+   :space-evenly false
+   :orientation "v"
+
+   (box
+    :class "element icon ${bluetooth.class}"
+    :space-evenly false
+
+    (button
+          :class "bluetooth-button"
+          :onclick "scripts/bluetooth toggle"
+          {bluetooth.icon})
+
+    (label
+     :class "separator"
+     :text "│")
+
+    (button
+     :class "bluetooth-arrow-btn"
+     :onclick "scripts/toggle_window system-menu && blueberry"
+     ""))
+   (label
+     :text {bluetooth.text}
+     :xalign 0.5
+     :tooltip "${bluetooth.text} ${bluetooth.battery}"
+     :limit-width 15)))
+
+(defwidget airplane []
+  (box
+   :class "airplane-box"
+   :space-evenly false
+   :orientation "v"
+
+   (box
+    :class "element"
+
+    (button
+     :class "airplane-button"
+     :onclick "scripts/airplane toggle"
+     airplane))
+
+   (label
+    :text "Airplane Mode"
+    :xalign 0.5
+    :limit-width 16)))
+
+(defwidget system-info []
+  (box
+    :class "system-info-box"
+    :orientation "h"
+    :space-evenly false
+    :hexpand true
+
+    (box
+      :orientation "v"
+      :halign "start"
+
+      (sys-info
+        :type "cpu"
+        :progress "${EWW_CPU.avg}"
+        :icon ""
+        :name "cpu"
+        :label1 "${round(EWW_CPU.avg,2)}%"
+        :label2 "${EWW_CPU.cores[0].freq} MHz")
+
+      (sys-info
+        :type "temp"
+        :progress {temperature - 20}
+        :icon ""
+        :name "temperature"
+        :label1 ""
+        :label2 "${temperature} °C"))
+    (box
+      :orientation "v"
+      :halign "end"
+      :hexpand true
+      :style "margin-left: 2rem;"
+
+      (sys-info
+        :type "mem"
+        :progress {memory.percent}
+        :icon ""
+        :name "memory"
+        :label1 ""
+        :label2 "${memory.used} | ${memory.total}")
+
+      (sys-info
+        :type "disk"
+        :progress {100 * disk.used / disk.total}
+        :icon ""
+        :name "disk"
+        :label1 {disk.device}
+        :label2 "${disk.used} GB | ${disk.total} GB"))))
+
 (defwidget system-menu []
   (box
     :class "system-menu-box"
     :space-evenly false
     :orientation "v"
+
     (box
       :class "top-row"
       :space-evenly false
+      :orientation "h"
+      :hexpand true
+
       (label
         :class "time"
         :text "${time.hour}:${time.minute}")
@@ -98,118 +226,41 @@
           :text {time.date})
         (label
           :class "day"
-          :text {time.day})))
-
-    (box
-      :class "system-row"
-      :orientation "h"
-
+          :text {time.day}))
       (box
-        :class "wifi-box"
-        :space-evenly false
-        :orientation "v"
-        (box
-          :class "element icon ${net.class}"
-          :space-evenly true
-          (button
-            :class "wifi-button"
-            :onclick "scripts/net toggle"
-            {net.icon})
-          (label
-            :class "separator"
-            :text "│")
-          (button
-            :class "wifi-arrow-btn"
-            :onclick "scripts/toggle_window system-menu && nm-connection-editor &"
-            ""))
-        (label
-          :text {net.essid != "" ? net.essid : "Wifi off"}
-          :xalign 0.5
-          :limit-width 15))
-
-      (box
-        :class "bluetooth-box"
-        :space-evenly false
-        :orientation "v"
-        (box
-          :class "element icon ${bluetooth.class}"
-          :space-evenly true
-          (button
-            :class "bluetooth-button"
-            :onclick "scripts/bluetooth toggle"
-            {bluetooth.icon})
-          (label
-            :class "separator"
-            :text "│")
-          (button
-            :class "bluetooth-arrow-btn"
-            :onclick "scripts/toggle_window system-menu && blueberry"
-            ""))
-        (label
-          :text {bluetooth.text}
-          :xalign 0.5
-          :tooltip "${bluetooth.text} ${bluetooth.battery}"
-          :limit-width 15))
-
-      (box
-        :class "airplane-box"
-        :space-evenly false
-        :orientation "v"
-        (box
-          :class "element"
-          (button
-            :class "airplane-button"
-            :onclick "scripts/airplane toggle"
-            airplane))
-        (label
-          :text "Airplane Mode"
-          :xalign 0.5
-          :limit-width 16)))
-
-    (weather)
-    (box
-      :class "system-info-box"
-      :orientation "h"
-
-      (box
-        :orientation "v"
-        :halign "start"
-
-        (sys-info
-          :type "cpu"
-          :progress "${EWW_CPU.avg}"
-          :icon ""
-          :name "cpu"
-          :label1 "${round(EWW_CPU.avg,2)}%"
-          :label2 "${EWW_CPU.cores[0].freq} MHz")
-
-        (sys-info
-          :type "temp"
-          :progress {temperature}
-          :icon ""
-          :name "temperature"
-          :label1 ""
-          :label2 "${temperature} °C"))
-
-      (box
-        :orientation "v"
+        :class "face-icon"
         :halign "end"
+        :style "background-image: url(\"/usr/share/sddm/faces/${user}.face.icon\");"
+        :hexpand true))
 
-        (sys-info
-          :type "mem"
-          :progress {memory.percent}
-          :icon ""
-          :name "memory"
-          :label1 ""
-          :label2 "${memory.used} | ${memory.total}")
+    (box
+      :orientation "v"
+      :style "margin: 0.5rem 1rem;"
+      :space-evenly false
 
-        (sys-info
-          :type "disk"
-          :progress {100 * disk.used / disk.total}
-          :icon ""
-          :name "disk"
-          :label1 {disk.device}
-          :label2 "${disk.used} GB | ${disk.total} GB")))
+      (box
+        :class "system-row"
+        :orientation "h"
+        :space-evenly false
+        :hexpand true
+
+        (box
+          :halign "start"
+          :hexpand true
+          (wifi))
+
+        (box
+          :halign "center"
+          (sys-bluetooth))
+
+        (box
+          :hexpand true
+          :halign "end"
+          (airplane)))
+
+      (weather-forecast))
+        
+    (system-info)
        
     (centerbox
       :class "bottom-row"

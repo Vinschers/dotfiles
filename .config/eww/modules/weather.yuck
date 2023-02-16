@@ -1,0 +1,18 @@
+(defwidget weather []
+  (eventbox
+    :class "icon"
+    :onhover "${EWW_CMD} update weather_reveal=true"
+    :onhoverlost "${EWW_CMD} update weather_reveal=false"
+    (box
+      :class "module"
+      :space-evenly false
+      (button
+        :style "margin: 0px -0.4rem 0px 0px;"
+        {weather.icon})
+      (revealer
+       :transition "slideright"
+       :reveal weather_reveal
+       :duration "350ms"
+       (box
+         :style "font-size: 0.75rem; padding-left: 0.5rem;"
+         {weather.temp})))))

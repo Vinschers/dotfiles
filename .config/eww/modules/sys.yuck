@@ -22,7 +22,7 @@
         (label :class "icon-text" :text "")))
 
     (circular-progress
-      :value {temperature}
+      :value {temperature - 20}
       :class "tempbar"
       :thickness 3
       (button

@@ -2,7 +2,7 @@
   (eventbox
     :onhover "${EWW_CMD} update hololive_reveal=true"
     :onhoverlost "${EWW_CMD} update hololive_reveal=false"
-    :visible {arraylength(hololive) > 0}
+    :visible {hololive != "" && arraylength(hololive) > 0}
     (box
       :class "module"
       :space-evenly false

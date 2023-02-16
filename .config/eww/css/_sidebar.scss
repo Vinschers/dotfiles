@@ -32,8 +32,6 @@
 }
 
 .system-row {
-    margin: 0.5rem 0.7rem;
-
     .airplane-box button {
         padding: 1rem 3rem;
     }
@@ -47,7 +45,7 @@
 .element {
     @include rounding;
     background-color: $surface0;
-    margin: 0.3rem;
+    margin-right: 0.3rem;
 
     button {
         @include rounding;
@@ -151,25 +149,14 @@
     }
 }
 
-
 .weatherfullbox {
-    margin: 0.5rem 1rem;
-    padding: 0.5rem;
-}
-
-.weather-icon {
     @include rounding;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-right: 0.7rem;
     background-color: $surface0;
-    font-size: 5rem;
-    font-family: "Material Design Icon Desktop";
+    margin-top: 1rem;
+    padding-left: 0.5rem;
 }
 
 .weatherbox {
-    @include rounding;
-    background-color: $surface0;
     padding: 0.9rem;
 }
 
@@ -187,4 +174,13 @@
     font-size: 0.9rem;
     margin-top: 1rem;
     color: $fg;
+}
+
+.face-icon {
+    border-radius: 50%;
+    border: 2px solid $surface0;
+    background-size: cover;
+    background-position: center;
+    min-width: 3rem;
+    min-height: 3rem;
 }

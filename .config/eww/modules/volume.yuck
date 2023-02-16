@@ -24,4 +24,3 @@
            :value {volume.percent}
            :tooltip "${volume.percent}%"
            :onchange "scripts/volume setvol SINK {}"))))))
-        
