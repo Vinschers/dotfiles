@@ -1,15 +1,22 @@
 #!/bin/sh
 
-get_used_avail () {
-    # device="$(echo "$1" | awk 'BEGIN{FS="/"}{print $NF}')"
-    device="$1"
-	df -B 1GB --output=used,avail,source | sed 1d | grep "$1" | awk -v device="$device" '{print "{\"device\": \""device"\", \"used\": "$1", \"total\": "$2"}"}'
+get_used_avail() {
+	df -B 1GB --output=used,avail,source | sed 1d | grep "$1" | awk -v device="$1" '{print "{\"device\": \""device"\", \"used\": "$1", \"total\": "$2"}"}'
 }
 
 [ -z "$DRIVERS" ] && DRIVERS="/dev/mapper/main-root /dev/sdb7"
 
 n="$(echo "$DRIVERS" | wc -w)"
-option="$(cat "${XDG_CACHE_HOME:-$HOME/.cache}/diskspace")"
-driver="$(echo "$DRIVERS" | cut -d " " -f "$option")"
 
-get_used_avail "$driver"
+option="$(cat "${XDG_CACHE_HOME:-$HOME/.cache}/diskspace")"
+[ -z "$option" ] && option="0"
+
+[ "$1" = "1" ] && option=$(((option + 1) % n))
+
+echo "$option" >"${XDG_CACHE_HOME:-$HOME/.cache}/diskspace"
+
+driver="$(echo "$DRIVERS" | cut -d " " -f "$((option + 1))")"
+
+disk="$(get_used_avail "$driver")"
+eww update disk="$disk"
+echo "$disk"

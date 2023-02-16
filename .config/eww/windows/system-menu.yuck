@@ -53,34 +53,36 @@
           :chance_rain {forecast.chanceofrain}
           :precip {forecast.precipMM})))))
 
-(defwidget sys-info [type progress icon name label1 label2]
- (box
-   :class "sys-box"
-   :space-evenly false
-   :halign "start"
-   (circular-progress
-     :value {progress}
-     :class "sys-${type}"
-     :thickness 3
-     (label
-       :text {icon}
-       :style "font-size: 2rem; font-family: fontawesome;"
-       :class "sys-icon-${type} icon"))
-   (box
-     :orientation "v"
+(defwidget sys-info [type progress icon name label1 label2 ?onclick]
+  (button
+    :onclick {onclick}
+    (box
+      :class "sys-box"
+      :space-evenly false
+      :halign "start"
+      (circular-progress
+        :value {progress}
+        :class "sys-${type}"
+        :thickness 3
+        (label
+          :text {icon}
+          :style "font-size: 2rem; font-family: fontawesome;"
+          :class "sys-icon-${type} icon"))
+      (box
+        :orientation "v"
 
-     (label
-       :text {name}
-       :halign "start"
-       :class "sys-text-${type}")
-     (label
-       :text {label1}
-       :halign "start"
-       :class "sys-text-sub")
-     (label
-       :text {label2}
-       :halign "start"
-       :class "sys-text-sub"))))
+        (label
+          :text {name}
+          :halign "start"
+          :class "sys-text-${type}")
+        (label
+          :text {label1}
+          :halign "start"
+          :class "sys-text-sub")
+        (label
+          :text {label2}
+          :halign "start"
+          :class "sys-text-sub")))))
 
 (defwidget wifi []
   (box
@@ -206,7 +208,8 @@
         :icon ""
         :name "disk"
         :label1 {disk.device}
-        :label2 "${disk.used} GB | ${disk.total} GB"))))
+        :label2 "${disk.used} GB | ${disk.total} GB"
+        :onclick "scripts/disk 1"))))
 
 (defwidget system-menu []
   (box
