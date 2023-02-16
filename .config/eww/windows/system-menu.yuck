@@ -6,6 +6,12 @@
     :space-evenly false
 
     (box
+      :class "weather-icon"
+      :style "color: ${weather.color};"
+      :halign "center"
+      {weather.icon})
+
+    (box
       :orientation "v"
       :class "weatherbox"
       :space-evenly false
@@ -42,13 +48,36 @@
           :class "weathercity"
           :halign "end"
 
-          "Feels like ${weather.feel}°C")))
-      
+          "Feels like ${weather.feel}°C")))))
+
+(defwidget sys-info [type progress icon name label1 label2]
+  (box
+    :class "sys-box"
+    :space-evenly false
+    :halign "start"
+    (circular-progress
+      :value {progress}
+      :class "sys-${type}"
+      :thickness 3
+      (label
+        :text {icon}
+        :style "font-size: 2rem; font-family: fontawesome;"
+        :class "sys-icon-${type} icon"))
     (box
-      :class "weather-icon"
-      :style "color: ${weather.color};"
-      :halign "center"
-      {weather.icon})))
+      :orientation "v"
+      :vexpand false
+      (label
+        :text {name}
+        :halign "start"
+        :class "sys-text-${type}")
+      (label
+        :text {label1}
+        :halign "start"
+        :class "sys-text-sub")
+      (label
+        :text {label2}
+        :halign "start"
+        :class "sys-text-sub"))))
 
 (defwidget system-menu []
   (box
@@ -71,15 +100,17 @@
           :class "day"
           :text {time.day})))
 
-    (centerbox
+    (box
       :class "system-row"
+      :orientation "h"
+
       (box
         :class "wifi-box"
         :space-evenly false
         :orientation "v"
         (box
           :class "element icon ${net.class}"
-          :space-evenly false
+          :space-evenly true
           (button
             :class "wifi-button"
             :onclick "scripts/net toggle"
@@ -92,7 +123,7 @@
             :onclick "scripts/toggle_window system-menu && nm-connection-editor &"
             ""))
         (label
-          :text {net.essid}
+          :text {net.essid != "" ? net.essid : "Wifi off"}
           :xalign 0.5
           :limit-width 15))
 
@@ -102,7 +133,7 @@
         :orientation "v"
         (box
           :class "element icon ${bluetooth.class}"
-          :space-evenly false
+          :space-evenly true
           (button
             :class "bluetooth-button"
             :onclick "scripts/bluetooth toggle"
@@ -138,121 +169,48 @@
     (weather)
     (box
       :class "system-info-box"
-      :orientation "v"
+      :orientation "h"
 
       (box
-        :orientation "h"
+        :orientation "v"
+        :halign "start"
 
-        ; cpu
-        (box
-          :class "sys-box"
-          :space-evenly false
-          :halign "start"
-          (circular-progress
-            :value "${EWW_CPU.avg}"
-            :class "sys-cpu"
-            :thickness 3
-            (label
-              :text ""
-              :style "font-size: 2rem;"
-              :class "sys-icon-cpu icon"))
-          (box
-            :orientation "v"
-            :vexpand false
-            (label
-              :text "cpu"
-              :halign "start"
-              :class "sys-text-cpu")
-            (label
-              :text "${round(EWW_CPU.avg,2)}%"
-              :halign "start"
-              :class "sys-text-sub")
-            (label
-              :text "${EWW_CPU.cores[0].freq} MHz"
-              :halign "start"
-              :class "sys-text-sub")))
+        (sys-info
+          :type "cpu"
+          :progress "${EWW_CPU.avg}"
+          :icon ""
+          :name "cpu"
+          :label1 "${round(EWW_CPU.avg,2)}%"
+          :label2 "${EWW_CPU.cores[0].freq} MHz")
 
-        ; memory
-        (box
-          :class "sys-box"
-          :space-evenly false
-          :halign "end"
-          (circular-progress
-            :value {memory.percent}
-            :class "sys-mem"
-            :thickness 3
-            (label
-              :text ""
-              :style "font-family: fontawesome;"
-              :class "sys-icon-mem icon"))
-          (box
-            :orientation "v"
-            (label
-              :text "memory"
-              :halign "start"
-              :class "sys-text-mem")
-            (label
-              :text "${memory.used} | ${memory.total}"
-              :halign "start"
-              :class "sys-text-sub"))))
+        (sys-info
+          :type "temp"
+          :progress {temperature}
+          :icon ""
+          :name "temperature"
+          :label1 ""
+          :label2 "${temperature} °C"))
 
       (box
-        :orientation "h"
+        :orientation "v"
+        :halign "end"
 
-        ; cpu
-        (box
-          :class "sys-box"
-          :space-evenly false
-          :halign "start"
-          (circular-progress
-            :value "${EWW_CPU.avg}"
-            :class "sys-cpu"
-            :thickness 3
-            (label
-              :text ""
-              :style "font-size: 2rem;"
-              :class "sys-icon-cpu icon"))
-          (box
-            :orientation "v"
-            :vexpand false
-            (label
-              :text "cpu"
-              :halign "start"
-              :class "sys-text-cpu")
-            (label
-              :text "${round(EWW_CPU.avg,2)}%"
-              :halign "start"
-              :class "sys-text-sub")
-            (label
-              :text "${EWW_CPU.cores[0].freq} MHz"
-              :halign "start"
-              :class "sys-text-sub")))
+        (sys-info
+          :type "mem"
+          :progress {memory.percent}
+          :icon ""
+          :name "memory"
+          :label1 ""
+          :label2 "${memory.used} | ${memory.total}")
 
-        ; memory
-        (box
-          :class "sys-box"
-          :space-evenly false
-          :halign "end"
-          (circular-progress
-            :value {100 * disk.used / disk.total}
-            :class "sys-mem"
-            :thickness 3
-            (label
-              :text ""
-              :style "font-family: fontawesome;"
-              :class "sys-icon-mem icon"))
-          (box
-            :orientation "v"
-            (label
-              :text "disk"
-              :halign "start"
-              :class "sys-text-mem")
-            (label
-              :text "${memory.used} | ${memory.total}"
-              :halign "start"
-              :class "sys-text-sub")))))
-
-
+        (sys-info
+          :type "disk"
+          :progress {100 * disk.used / disk.total}
+          :icon ""
+          :name "disk"
+          :label1 {disk.device}
+          :label2 "${disk.used} GB | ${disk.total} GB")))
+       
     (centerbox
       :class "bottom-row"
       (box

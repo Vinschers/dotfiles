@@ -22,11 +22,21 @@
         (label :class "icon-text" :text "")))
 
     (circular-progress
+      :value {temperature}
+      :class "tempbar"
+      :thickness 3
+      (button
+        :tooltip "${temperature} °C"
+        :onclick "scripts/toggle_window system-menu"
+        (label :class "icon-text" :text "")))
+
+
+    (circular-progress
       :value {100 * disk.used / disk.total}
-      :class "batbar"
+      :class "diskbar"
       :style "color: ${battery.color};"
       :thickness 3
       (button
-        :tooltip "${disk.used} GB / ${disk.total} GB"
+        :tooltip "${round(100 * disk.used / disk.total,1)}% ${disk.device}"
         :onclick "scripts/toggle_window system-menu"
         (label :class "icon-text" :text "")))))

@@ -10,6 +10,7 @@
 (defpoll disk :interval "1m" "scripts/disk")
 (defpoll hololive :interval "2m" "scripts/hololive")
 (defpoll weather :interval "20m" "scripts/weather")
+(defpoll temperature :interval "3s" "scripts/temperature")
 
 (deflisten airplane "scripts/airplane")
 (deflisten battery "scripts/battery")
