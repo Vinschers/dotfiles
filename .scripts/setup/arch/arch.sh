@@ -116,6 +116,7 @@ setup_nvidia() {
 
 setup_firejail() {
     sudo sed -i "s|chafa|#chafa|g" /etc/firejail/firecfg.config
+    sudo sed -i "s|^man|#man|g" /etc/firejail/firecfg.config
 	sudo firecfg
 }
 

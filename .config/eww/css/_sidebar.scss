@@ -150,30 +150,46 @@
 }
 
 .weatherfullbox {
+    margin-top: 1rem;
+}
+
+.weather-entry {
     @include rounding;
+    margin-right: 0.5rem;
+    padding: 0.75rem;
     background-color: $surface0;
-    margin-top: 1rem;
-    padding-left: 0.5rem;
 }
 
-.weatherbox {
-    padding: 0.9rem;
-}
-
-.weatherdesc {
-    font-size: 1.75rem;
-}
-
-.weathertemp {
+.weather-temp {
     font-size: 1.5rem;
-    font-weight: bold;
-    color: $fg;
 }
 
-.weathercity {
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    color: $fg;
+.weather-icon {
+    font-size: 3rem;
+}
+
+.weather-date {
+}
+
+.weather-rain {
+    color: $blue;
+}
+
+.center-scroll {
+    scrollbar {
+        background-color: transparent;
+        min-height: 5px;
+
+        //&.fine-tune {}
+
+        trough {
+            min-height: 15px;
+            margin-bottom: 3px;
+            background-color: transparent;
+
+            //slider { }
+        }
+    }
 }
 
 .face-icon {

@@ -1,81 +1,86 @@
 ;; Weather widget ;;
-(defwidget weather-forecast[] 
+(defwidget weather-entry [date time icon temp chance_rain precip]
   (box
-    :orientation "h"
-    :class "weatherfullbox"
+    :class "weather-entry"
+    :orientation "v"
     :space-evenly false
 
     (label
-      :style "font-size: 5rem;"
-      :text {weather.icon})
+      :class "weather-temp"
+      :text "${temp} °C")
 
+    (label
+      :class "weather-icon"
+      :text {icon})
+
+    (label
+      :class "weather-date"
+      :text {date})
+    
     (box
-      :orientation "v"
-      :class "weatherbox"
+      :halign "center"
+      :orientation "h"
       :space-evenly false
+
+      (label
+        :class "weather-time"
+        :style "font-weight: bold;"
+        :text {time})
+      (label
+        :class "weather-time"
+        :text ":00"))
+
+    (label
+      :class "weather-rain"
+      :text " ${chance_rain}% | ${precip}mm")))
+
+(defwidget weather-forecast[] 
+  (scroll
+    :hscroll true
+    :vscroll false
+    (box
+      :orientation "h"
+      :class "weatherfullbox"
       :hexpand true
+      :space-evenly false
 
-      (box
-        :orientation "h"
-        :class "weathertop"
-        :space-evenly false
-
-        (box
-          :class "weatherdesc"
-          :style "color: ${weather.color};"
-          :halign "start"
-          :hexpand true
-          {weather.desc})
-        (box
-          :class "weathertemp"
-          :halign "end"
-
-          "${weather.temp}°C"))
-      
-      (box
-        :orientation "h"
-        :class "weatherbot"
-        :space-evenly false
-
-        (box
-          :class "weathercity"
-          :halign "start"
-          :hexpand true
-          {weather.city})
-        (box
-          :class "weathercity"
-          :halign "end"
-
-          "Feels like ${weather.feel}°C")))))
+      (for forecast in weather_forecast
+        (weather-entry
+          :date {forecast.date}
+          :time {forecast.time / 100}
+          :icon {weather_icons[forecast.time < 1800 && forecast.time > 300 ? "day" : "night"][weather_icons.codes[forecast.weatherCode]]}
+          :temp {forecast.temp}
+          :chance_rain {forecast.chanceofrain}
+          :precip {forecast.precipMM})))))
 
 (defwidget sys-info [type progress icon name label1 label2]
-  (box
-    :class "sys-box"
-    :space-evenly false
-    :halign "start"
-    (circular-progress
-      :value {progress}
-      :class "sys-${type}"
-      :thickness 3
-      (label
-        :text {icon}
-        :style "font-size: 2rem; font-family: fontawesome;"
-        :class "sys-icon-${type} icon"))
-    (box
-      :orientation "v"
+ (box
+   :class "sys-box"
+   :space-evenly false
+   :halign "start"
+   (circular-progress
+     :value {progress}
+     :class "sys-${type}"
+     :thickness 3
+     (label
+       :text {icon}
+       :style "font-size: 2rem; font-family: fontawesome;"
+       :class "sys-icon-${type} icon"))
+   (box
+     :orientation "v"
 
-      (label
-        :text {name}
-        :halign "start"
-        :class "sys-text-${type}")
-      (label
-        :text {label1}
-        :halign "start"
-        :class "sys-text-sub")
-      (label
-        :text {label2}
-        :halign "start"
-        :class "sys-text-sub"))))
+     (label
+       :text {name}
+       :halign "start"
+       :class "sys-text-${type}")
+     (label
+       :text {label1}
+       :halign "start"
+       :class "sys-text-sub")
+     (label
+       :text {label2}
+       :halign "start"
+       :class "sys-text-sub"))))
 
 (defwidget wifi []
   (box
@@ -246,7 +251,7 @@
 
         (box
           :halign "start"
-          :hexpand true
+          ; :hexpand true
           (wifi))
 
         (box
@@ -254,7 +259,7 @@
           (sys-bluetooth))
 
         (box
-          :hexpand true
+          ; :hexpand true
           :halign "end"
           (airplane)))
 
@@ -327,12 +332,12 @@
   :monitor 0
   :geometry (geometry :width "100%" :height "100%")
   :stacking "fg"
-  :focusable false
+  :focusable true
   (closer :window "system-menu"))
 
 (defwindow system-menu-closer_dual2
   :monitor 1
   :geometry (geometry :width "100%" :height "100%")
   :stacking "fg"
-  :focusable false
+  :focusable true
   (closer :window "system-menu"))
