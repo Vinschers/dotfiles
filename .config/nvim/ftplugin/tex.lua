@@ -8,4 +8,3 @@ if is_running ~= 0 then
 end
 
 vim.opt.conceallevel = 1
-vim.cmd("imap <F12> <plug>(vimtex-delim-close)")

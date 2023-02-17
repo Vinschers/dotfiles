@@ -32,13 +32,13 @@ local fmt_lint_servers = {
 	"clang_format",
 	-- "dart_format",
 	"shfmt",
-	-- "latexindent",
-	-- "google_java_format",
+	"latexindent",
+	"google_java_format",
 
 	"flake8",
 	"shellcheck",
 	"yamllint",
-	-- "chktex",
+	"chktex",
 	"eslint_d",
 }
 
@@ -65,7 +65,7 @@ require("mason-nvim-dap").setup({
 	automatic_installation = true,
 })
 require("mason-null-ls").setup({
-	ensure_installed = {},
+	ensure_installed = fmt_lint_servers,
 	automatic_installation = true,
 })
 

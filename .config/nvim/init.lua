@@ -23,4 +23,3 @@ require("user.dap")
 
 require("user.whichkey")
 require("user.neoscroll")
-require("user.vimtex")

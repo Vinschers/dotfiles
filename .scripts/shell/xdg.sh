@@ -25,7 +25,7 @@ mkdir -p "$XDG_CACHE_HOME/zsh"
 
 sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
 
-echo "hsts-file \= $XDG_CACHE_HOME/wget-hsts" >> "$XDG_CONFIG_HOME/wgetrc"
+echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
 
 export TEXMFHOME="$XDG_CONFIG_HOME/texmf:"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"

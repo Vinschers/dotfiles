@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
+-- Automatically close tab/vim when nvim-tree is the last window in the tab
 vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
@@ -72,27 +73,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	pattern = { "*.Xresources" },
 	callback = function()
 		vim.cmd(":set ft=xdefaults")
-	end,
-})
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "local_environment.sh" },
-	callback = function()
-        local filepath = vim.fn.expand("%:p")
-		os.execute(
-			'git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged "' .. filepath .. '"'
-		)
-	end,
-})
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = { "*.tex" },
-	callback = function()
-        vim.cmd("NoMatchParen")
-	end,
-})
-vim.api.nvim_create_autocmd({ "BufLeave" }, {
-	pattern = { "*.tex" },
-	callback = function()
-        vim.cmd("DoMatchParen")
 	end,
 })
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
