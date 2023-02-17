@@ -6,7 +6,7 @@ alias \
 	mv="mv -iv" \
 	rm="rm -v" \
 	ffmpeg="ffmpeg -hide_banner" \
-	ls="ls -hN --color=auto --group-directories-first" \
+	ls="exa --icons --time-style long-iso" \
 	grep="grep --color=auto" \
 	fgrep='fgrep --color=auto' \
 	egrep='egrep --color=auto' \
