@@ -7,7 +7,6 @@
       :class "module"
       :space-evenly false
       (button
-        :style "margin: 0px -1.5rem 0px 0px; padding: 0;"
         "${weather.icon}")
       (revealer
        :transition "slideright"
