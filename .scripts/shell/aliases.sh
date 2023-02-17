@@ -21,7 +21,7 @@ alias \
 
 # Shortenings
 alias \
-    la="exa -1" \
+    la="ls -1a" \
 	yt="youtube-dl --add-metadata -f best -i" \
 	yta="yt -x -f bestaudio/best --audio-format mp3" \
     cvenv="create_venv" \
