@@ -88,4 +88,6 @@ alias \
     d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls' \
     sv="sudoedit" \
     mntdroid="aft-mtp-mount" \
-    train="sl -acdeGF"
+    train="sl -acdeGF" \
+    sctl="sudo systemctl" \
+    audio="systemctl --user restart pipewire.service pipewire-pulse.service"

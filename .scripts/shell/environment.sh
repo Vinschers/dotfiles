@@ -34,3 +34,5 @@ load_wayland() {
 [ "$XDG_SESSION_TYPE" = "wayland" ] && load_wayland
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+. "$SCRIPTS_DIR/local_environment.sh"

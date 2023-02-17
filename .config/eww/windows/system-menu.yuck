@@ -251,21 +251,10 @@
         :orientation "h"
         :space-evenly false
         :hexpand true
-
-        (box
-          :halign "start"
-          ; :hexpand true
-          (wifi))
-
-        (box
-          :halign "center"
-          (sys-bluetooth))
-
-        (box
-          ; :hexpand true
-          :halign "end"
-          (airplane)))
-
+        (wifi)
+        (sys-bluetooth)
+        (airplane))
+        
       (weather-forecast))
         
     (system-info)

@@ -7,8 +7,8 @@
       :class "module"
       :space-evenly false
       (button
-        :style "margin: 0px -0.4rem 0px 0px;"
-        {weather.icon})
+        :style "margin: 0px -1.5rem 0px 0px; padding: 0;"
+        "${weather.icon}")
       (revealer
        :transition "slideright"
        :reveal weather_reveal

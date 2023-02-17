@@ -1,6 +1,6 @@
 #!/bin/sh
 
-icon="$(curl -sf "wttr.in?format=%c" | sed "s/  / /g")"
+icon="$(curl -sf "wttr.in?format=%c|" | sed -e "s/  / /g" -e "s/|//g")"
 temp="$(curl -sf "wttr.in?format=%t")"
 
 echo "{\"temp\": \"$temp\", \"icon\": \"$icon\"}"
