@@ -4,12 +4,7 @@ if not cmp_status_ok then
 end
 
 tokyonight.setup({
-    style = "moon",
-    transparent = true,
-    styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-    }
+    style = "night",
 })
 
 vim.cmd[[colorscheme tokyonight]]

@@ -32,14 +32,15 @@ local fmt_lint_servers = {
 	"clang_format",
 	-- "dart_format",
 	"shfmt",
-	"latexindent",
 	"google_java_format",
+    "bibclean",
 
 	"flake8",
 	"shellcheck",
 	"yamllint",
 	"chktex",
 	"eslint_d",
+    "proselint",
 }
 
 local settings = {

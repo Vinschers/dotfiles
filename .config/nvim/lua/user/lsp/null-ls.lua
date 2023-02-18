@@ -23,6 +23,7 @@ null_ls.setup({
 		formatting.shfmt,
 		formatting.latexindent,
 		formatting.google_java_format.with({ extra_args = { "-a" } }),
+        formatting.bibclean,
 
 		diagnostics.flake8,
 		diagnostics.shellcheck,
@@ -31,5 +32,6 @@ null_ls.setup({
 
 		code_actions.shellcheck,
 		code_actions.eslint_d,
+        code_actions.proselint,
 	},
 })
