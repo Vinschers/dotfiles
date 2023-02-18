@@ -9,7 +9,7 @@ local lsp_servers = {
 	"yamlls",
 	"clangd",
 	-- "jdtls",
-	"texlab",
+	-- "texlab",
     "marksman",
     "emmet_ls",
     "ansiblels",

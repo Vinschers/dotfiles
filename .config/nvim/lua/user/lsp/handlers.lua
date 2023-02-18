@@ -93,7 +93,8 @@ M.on_attach = function(client, bufnr)
 	end
 	illuminate.on_attach(client)
 
-	local status_ok, lsp_signature = pcall(require, "lsp_signature")
+    local lsp_signature
+	status_ok, lsp_signature = pcall(require, "lsp_signature")
 	if not status_ok then
 		return
 	end
