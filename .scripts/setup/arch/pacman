@@ -54,7 +54,6 @@ parted
 pavucontrol
 pdf2svg
 playerctl
-prettier
 python-pip
 python-pynvim
 qbittorrent
@@ -62,9 +61,6 @@ ripgrep
 rkhunter
 rustup
 simple-scan
-shellcheck
-shfmt
-stylua
 syncthing
 texlive-most
 texlive-lang

@@ -12,3 +12,5 @@ num_monitors="$(hyprctl monitors | grep -c "Monitor")"
 
 focusedws="$(hyprctl -j monitors | jaq -r ".[] | select(.id == $monitor_id) | .activeWorkspace.id")"
 hyprctl dispatch movetoworkspace "$focusedws"
+
+eww update update="ok"

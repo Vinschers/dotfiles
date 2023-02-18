@@ -4,7 +4,6 @@ python-inkscape-figures
 zotero-translation-server-git
 ttf-ubraille
 ttf-amiri
-texlive-latexindent-meta
 sioyek
 dashbinsh
 pipes.sh
@@ -12,6 +11,5 @@ cava
 sddm-git
 sddm-theme-corners-git
 lf-sixel-git
-nodejs-emmet-ls
 xdg-ninja
 ttf-juliamono

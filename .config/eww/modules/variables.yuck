@@ -7,6 +7,7 @@
 (defvar hololive_reveal false)
 (defvar weather_reveal false)
 (defvar weather_icons '')
+(defvar update '')
 
 (defpoll time :interval "5s" `date +'{"date": "%d/%m", "hour": "%H", "minute": "%M", "day": "%A"}'`)
 (defpoll disk :interval "1m" "scripts/disk")
