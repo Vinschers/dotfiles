@@ -103,6 +103,7 @@ return packer.startup(function(use)
 
 	use({ "folke/which-key.nvim" })
 	use({ "karb94/neoscroll.nvim" })
+	use({ "lervag/vimtex" })
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({ "jayp0521/mason-null-ls.nvim" })
 	use({ "nvim-telescope/telescope-ui-select.nvim" })

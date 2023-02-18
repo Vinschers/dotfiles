@@ -16,7 +16,7 @@ configs.setup({
 
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "css", "help" }, -- list of language that will be disabled
+		disable = { "css", "help", "latex" }, -- list of language that will be disabled
 	},
 	autopairs = {
 		enable = true,
