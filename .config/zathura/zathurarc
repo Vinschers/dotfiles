@@ -1,0 +1,8 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+set adjust-open width
+set synctex true
+set highlight-transparency 0.1
+set recolor-keephue true
+
+include tokyo-night

@@ -200,6 +200,7 @@ local nmappings = {
 	t = {
 		name = "Vimtex",
 		c = { "<cmd>VimtexCompile<CR>", "Compile" },
+		f = { "<cmd>VimtexView<CR>", "Forward search" },
 		C = {
 			"<cmd>VimtexClean!<CR> <cmd>VimtexClearCache vim.fn.expand('%')<CR> <cmd>!rm *_vimtex_selected*<CR>",
 			"Clean auxiliary and cache files",
@@ -209,7 +210,6 @@ local nmappings = {
 		i = { "<cmd>VimtexTocOpen<CR>", "Open index" },
 		m = { "<cmd>VimtexToggleMain<CR>", "Change main project file" },
 		s = { "<cmd>VimtexStop<CR>", "Stop compilation" },
-		v = { "<cmd>VimtexView<CR>", "Open preview" },
 		w = { "<cmd>VimtexCountWords!<CR>", "Count number of words" },
 	},
 
