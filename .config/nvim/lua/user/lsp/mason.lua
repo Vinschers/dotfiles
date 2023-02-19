@@ -33,7 +33,6 @@ local fmt_lint_servers = {
 	-- "dart_format",
 	"shfmt",
 	"google_java_format",
-    "bibclean",
 
 	"flake8",
 	"shellcheck",
