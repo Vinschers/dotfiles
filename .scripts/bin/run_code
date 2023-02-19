@@ -1,34 +1,14 @@
 #!/bin/sh
 
-
-eval "$(compile "$1" | awk '{print "line"NR"=\""$0"\""}')"
 output="$(compile "$1")"
 
 BIN_FILE="${output%§*}"
 EXEC_CMD="${output#*§}"
 
-if [ -n "$EXEC_CMD" ]
-then
-    printf "\$ %s\n\n" "$EXEC_CMD $BIN_FILE"
-else
-    printf "\$ %s\n\n" "$BIN_FILE"
-fi
+[ -z "$EXEC_CMD" ] && exit 1
 
-exec_bin () {
-    chmod +x "$BIN_FILE" 2> /dev/null
-    if [ -x "$BIN_FILE" ] || [ -n "$EXEC_CMD" ]
-    then
-        time eval "$EXEC_CMD $BIN_FILE" && return 0
-    fi
+printf "\$ %s\n\n" "$EXEC_CMD"
 
-    mkdir -p "$HOME/.cache"
-    mv "$BIN_FILE" "$HOME/.cache"
-    cd "$HOME/.cache" || return 1
-    BIN_FILE="$HOME/.cache/$(basename "$BIN_FILE")"
-    chmod +x "$BIN_FILE"
-    time eval "$EXEC_CMD $BIN_FILE" 2> /dev/null && rm "$BIN_FILE"
-}
+time $EXEC_CMD ; printf "\nPress any key to exit..." && wait_key_press
 
-exec_bin ; printf "Press any key to exit..." && wait_key_press
-
-[ -f "$BIN_FILE" ] && rm "$BIN_FILE"
+[ -n "$BIN_FILE" ] && rm -rf $BIN_FILE
