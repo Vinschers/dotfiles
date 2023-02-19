@@ -9,6 +9,7 @@
 (include "./modules/workspaces.yuck")
 (include "./modules/hololive.yuck")
 (include "./modules/weather.yuck")
+(include "./modules/microphone.yuck")
 
 (include "./windows/calendar.yuck")
 (include "./windows/music.yuck")
@@ -38,6 +39,7 @@
     (hololive)
     (bright)
     (volume-module)
+    (microphone-module)
     (bluetooth)
     (net)
     (sys)

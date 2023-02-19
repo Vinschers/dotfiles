@@ -6,6 +6,7 @@
 (defvar vol_reveal false)
 (defvar hololive_reveal false)
 (defvar weather_reveal false)
+(defvar mic_reveal false)
 (defvar weather_icons '')
 (defvar update '')
 
@@ -16,6 +17,7 @@
 (defpoll weather_forecast :interval "20m" "scripts/forecast")
 (defpoll temperature :interval "3s" "scripts/temperature")
 (defpoll user :interval "10m" "echo \$USER")
+(defpoll mic :interval "1s" "scripts/microphone")
 
 (deflisten airplane "scripts/airplane")
 (deflisten battery "scripts/battery")

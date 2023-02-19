@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# arg change: up / down
+# arg set: 0-100
+# output: get
+
+[ "$1" = "set" ] && wpctl set-volume @DEFAULT_AUDIO_SOURCE@ "$2%"
+[ "$1" = "change" ] && wpctl set-volume @DEFAULT_AUDIO_SOURCE@ "1%$(echo "$2" | sed -e "s/up/+/g" -e "s/down/-/g")"
+
+wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print int($2*100)}'
