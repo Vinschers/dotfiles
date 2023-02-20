@@ -25,7 +25,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 keymap("n", "<C-a>", "ggVG", opts)
-keymap("n", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
+keymap("n", "<C-t>", ":ene<CR>", opts)
 keymap("n", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
 keymap("n", "c", '"_c', opts)
@@ -93,8 +93,7 @@ keymap("x", "<C-A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Insert --
 keymap("i", "<C-a>", "<ESC>ggVG", opts)
-keymap("i", "<C-f>", "<cmd>Telescope find_files<cr>", opts)
-keymap("i", "<C-t>", ":ene <BAR> startinsert <CR>", opts)
+keymap("i", "<C-t>", ":ene<CR>", opts)
 keymap("i", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
 keymap(

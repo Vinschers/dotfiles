@@ -13,10 +13,11 @@
         :transition "slideright"
         :reveal hololive_reveal
         :duration "350ms"
-        (for channel in hololive
-          (button
-            :onclick "xdg-open \"https://youtube.com/@${channel.id}/live\""
-            :tooltip "${channel.name}"
-            :class "hololive-btn"
-            {channel.icon}))))))
+        (box
+          (for channel in hololive
+            (button
+              :onclick "xdg-open \"https://youtube.com/@${channel.id}/live\""
+              :tooltip "${channel.name}"
+              :class "hololive-btn"
+              {channel.icon})))))))
 
