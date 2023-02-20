@@ -42,7 +42,8 @@ compileFile() {
             cmd="$dir/$file"
             ;;
         *)
-            return 1
+            bin_file=""
+            cmd="$dir/$file"
             ;;
     esac
 

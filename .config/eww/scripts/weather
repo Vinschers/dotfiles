@@ -3,4 +3,11 @@
 icon="$(curl -sf "wttr.in?format=%c" | sed "s/ //g")"
 temp="$(curl -sf "wttr.in?format=%t")"
 
+case "$icon" in
+    "Unknown"*)
+        temp=""
+        icon=""
+        ;;
+esac
+
 echo "{\"temp\": \"$temp\", \"icon\": \"$icon\"}"
