@@ -10,3 +10,6 @@ gawk
 light
 network-manager-applet
 polkit-kde-agent
+xdg-desktop-portal-wlr
+slurp
+grim
