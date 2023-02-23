@@ -132,10 +132,10 @@ if check "Setup NVIDIA?" 0; then
     setup_nvidia "$graphical_display"
 
     if [ "$graphical_display" = "1" ]; then
-        yay --noconfirm -S hyprland
+        yay --noconfirm -S hyprland-nvidia-git
     fi
 elif [ "$graphical_display" = "1" ]; then
-    yay --noconfirm -S hyprland-nvidia-git
+    yay --noconfirm -S hyprland
 fi
 check "Setup firejail?" 1 && setup_firejail
 check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq) && [ -d "$HOME/.dotnet" ] && rm -rf "$HOME/.dotnet"
