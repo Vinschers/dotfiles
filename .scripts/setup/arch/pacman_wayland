@@ -12,3 +12,4 @@ network-manager-applet
 polkit-kde-agent
 slurp
 grim
+xdg-desktop-portal-wlr
