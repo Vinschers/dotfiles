@@ -26,8 +26,8 @@ xorg_lock() {
 }
 
 wayland_lock() {
-    echo oi
+    waylock -init-color 0x222436 -input-color 0x828bb8 -fail-color 0xf7768e
 }
 
 [ "$XDG_SESSION_TYPE" = "x11" ] && xorg_lock
-[ "$XDG_SESSION_TYPE" = "wayland_lock" ] && wayland_lock
+[ "$XDG_SESSION_TYPE" = "wayland" ] && wayland_lock
