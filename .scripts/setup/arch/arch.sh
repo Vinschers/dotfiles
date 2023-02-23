@@ -63,6 +63,8 @@ install_packages() {
 
     bat cache --build
 
+    sudo usermod -aG vboxusers "$USER"
+
 	if [ "$1" = "0" ]; then
 	    sudo pacman --noconfirm -Rns gnu-free-fonts
         packages="xorg"
