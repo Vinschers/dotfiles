@@ -140,6 +140,7 @@ elif [ "$graphical_display" = "1" ]; then
     yay --noconfirm -S hyprland
 fi
 check "Setup firejail?" 1 && setup_firejail
+check "Setup SSD trim?" 1 && sudo systemctl enable fstrim.timer fstrim.service
 check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq) && [ -d "$HOME/.dotnet" ] && rm -rf "$HOME/.dotnet"
 
 [ -n "$errors" ] && echo "$errors" >"$HOME/pkg_errors" && echo "Failed packages saved to ~/pkg_errors."
