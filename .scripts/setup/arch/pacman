@@ -12,6 +12,7 @@ btop
 chafa
 clamav
 dash
+discord
 dunst
 exa
 ffmpeg
@@ -45,6 +46,7 @@ neovim
 networkmanager
 noto-fonts-emoji
 ntfs-3g
+obs-studio
 odt2txt
 openssh
 os-prober
@@ -81,6 +83,7 @@ unrar
 unzip
 usbutils
 uwufetch
+v4l2loopback-dkms
 valgrind
 vim
 xournalpp

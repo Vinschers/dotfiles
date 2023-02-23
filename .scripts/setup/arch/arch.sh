@@ -61,6 +61,8 @@ install_packages() {
 
 	sudo sed -i '/"memory"/c\  <policy domain="resource" name="memory" value="2GiB"/>' /etc/ImageMagick-7/policy.xml
 
+    bat cache --build
+
 	if [ "$1" = "0" ]; then
 	    sudo pacman --noconfirm -Rns gnu-free-fonts
         packages="xorg"
@@ -121,22 +123,20 @@ setup_firejail() {
 	sudo firecfg
 }
 
-install_extra() {
-	sudo pacman --noconfirm --needed -S discord || errors="$errors discord"
-	yay --noconfirm -S spotify || errors="$errors spotify"
-	yay --noconfirm -S spicetify-cli || errors="$errors spicetify-cli"
-	yay --noconfirm -S betterdiscord-installer || errors="$errors betterdiscord-installer"
-	yay --noconfirm -S ncspot || errors="$errors ncspot"
-	yay --noconfirm -S librewolf-bin || errors="$errors librewolf-bin"
-}
-
 graphical_display="$1"
 
 check "Setup pacman.conf?" 1 && setup_pacman
 [ "$graphical_display" = "0" ] && check "Setup wacom?" 1 && setup_wacom
 check "Install packages?" 1 && install_packages "$graphical_display"
-check "Setup NVIDIA?" 0 && setup_nvidia "$graphical_display"
-check "Install extra packages?" 1 && install_extra
+if check "Setup NVIDIA?" 0; then
+    setup_nvidia "$graphical_display"
+
+    if [ "$graphical_display" = "1" ]; then
+        yay --noconfirm -S hyprland
+    fi
+elif [ "$graphical_display" = "1" ]; then
+    yay --noconfirm -S hyprland-nvidia-git
+fi
 check "Setup firejail?" 1 && setup_firejail
 check "Remove unnecessary dependencies?" 0 && sudo pacman --noconfirm -Runcs $(pacman -Qdtq) && [ -d "$HOME/.dotnet" ] && rm -rf "$HOME/.dotnet"
 

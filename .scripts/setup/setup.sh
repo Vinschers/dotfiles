@@ -72,7 +72,7 @@ install_programs() {
 
 ignore_local_files() {
 	cd "$SCRIPTS_DIR" || return
-	git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged local_environment.sh
+	git --git-dir=$HOME/.config/dotfiles/.dotfiles-git/ --work-tree=$HOME update-index --assume-unchanged local_environment.sh
 }
 
 copy_xorg() {
@@ -109,6 +109,7 @@ setup_ufw() {
 }
 
 setup_zsh() {
+    mkdir -p "$XDG_STATE_HOME/zsh"
     echo "source \"\$HOME/.profile\"" | sudo tee -a /etc/zsh/zshenv
     /bin/zsh
 }
