@@ -18,6 +18,6 @@
         :duration "350ms"
         (box
           :class "icon"
-          (button :class "song-button" :onclick "playerctl previous" "")
-          (button :class "song-button" :onclick "playerctl play-pause" {music.status})
-          (button :class "song-button" :onclick "playerctl next" ""))))))
+          (button :class "song-button" :onclick "playerctl -p spotify previous" "")
+          (button :class "song-button" :onclick "playerctl -p spotify play-pause" {music.status})
+          (button :class "song-button" :onclick "playerctl -p spotify next" ""))))))
