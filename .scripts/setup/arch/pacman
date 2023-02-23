@@ -85,6 +85,8 @@ uwufetch
 v4l2loopback-dkms
 valgrind
 vim
+virtualbox-host-modules-arch
+virtualbox
 xournalpp
 wqy-microhei
 wqy-zenhei
