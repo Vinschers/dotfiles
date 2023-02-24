@@ -29,6 +29,7 @@ imv
 jdk-openjdk
 keepassxc
 lazygit
+libsixel
 linux-headers
 lldb
 lsb-release

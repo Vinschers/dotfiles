@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 output="$(compile "$1")"
 
