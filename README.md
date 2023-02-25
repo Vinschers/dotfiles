@@ -7,10 +7,10 @@ git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME checkout
 git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
 ## Enable screen share by using a virtual camera
-Just install OBS and xdg-desktop-portal-wlr.
+Just install OBS.
 
 ```sh
-sudo pacman -S obs-studio xdg-desktop-portal-wlr
+sudo pacman -S obs-studio
 ```
 
 ## Change GitHub to use SSH instead of HTTPS
@@ -19,6 +19,9 @@ First, configure ssh access following [this](https://docs.github.com/en/authenti
 ```sh
 dotfiles remote set-url origin git@github.com:Vinschers/dotfiles.git
 ```
+
+## Setup wi-fi
+First, start the iwd service with `sudo systemctl enable iwd`. If the internet does not work immediately, try configuring DHCP. To do so, install the `dhcpcd` and run `sudo systemctl enable dhcpcd.service`.
 
 ## Fix spotify permissions to use spicetify
 Just run the following
