@@ -18,7 +18,7 @@ print_color() {
 }
 
 print_header() {
-    printf "\033[%sG" $((image_width + margin))
+	printf "\033[%sG" $((image_width + margin))
 
 	printf "%s\n" "$1"
 }
@@ -27,7 +27,7 @@ print_info() {
 	icon="$1"
 	info="$2"
 
-    printf "\033[%sG" $((image_width + margin))
+	printf "\033[%sG" $((image_width + margin))
 
 	printf "  "
 	print_color "$blue" "$icon"
@@ -40,9 +40,10 @@ print_logo() {
 	width=28
 	height=28
 
+	echo ""
 	chafa "$XDG_CONFIG_HOME/fetch/logo.png" -s "${width}x${height}"
 
-	image_height=11
+	image_height=12
 	image_width=30
 }
 
@@ -101,7 +102,16 @@ get_cpu() {
 }
 
 get_gpu() {
-    lspci | grep VGA | head -n 1 | cut -d "[" -f2 | cut -d "]" -f1
+	info="$(lspci | grep VGA | head -n 1)"
+
+	case "$info" in
+	*NVIDIA*)
+		echo "NVIDIA $(echo "$info" | cut -d "[" -f2 | cut -d "]" -f1)"
+		;;
+	*Intel*)
+		echo "${info#*: }" | cut -d ":" -f2 | cut -d "(" -f1
+		;;
+	esac
 }
 
 get_colors() {
@@ -120,7 +130,7 @@ get_colors() {
 display_info() {
 	print_header "┌──────────── Hardware Information ────────────┐"
 	print_info "" "$(get_cpu)"
-    print_info "󱄄" "$(get_gpu)"
+	print_info "󱄄" "$(get_gpu)"
 	print_info "" "$(get_memory)"
 	print_info "" "$(get_disk)"
 	print_header "├──────────── Software Information ────────────┤"
@@ -135,6 +145,8 @@ display_info() {
 }
 
 main() {
+    tput rmam # Disable line wrapping
+
 	print_logo
 
 	i=0
@@ -144,6 +156,8 @@ main() {
 	done
 
 	display_info
+
+    tput smam # Enable line wrapping
 }
 
 main
