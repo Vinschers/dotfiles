@@ -13,6 +13,14 @@
              :height "0px")
   (calendar-win))
 
+(defwindow calendar-closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "fg"
+  :focusable false
+  (closer :window "calendar"))
+
+
 (defwindow calendar_dual1
   :monitor 0
   :geometry (geometry
