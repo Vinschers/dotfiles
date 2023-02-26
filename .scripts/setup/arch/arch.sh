@@ -66,6 +66,7 @@ install_packages() {
     bat cache --build
 
     sudo usermod -aG vboxusers "$USER"
+    sudo usermod -aG video "$USER"
 
 	if [ "$1" = "0" ]; then
 	    sudo pacman --noconfirm -Rns gnu-free-fonts

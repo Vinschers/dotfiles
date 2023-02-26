@@ -1,16 +1,17 @@
 #!/bin/sh
 
-NUM_MONITORS="$(hyprctl monitors | grep -c "Monitor")"
-current_mon="$(hyprctl -j monitors | jaq '.[]? | select(.focused == true) | .id')"
 
 window="$1"
 action="$2"
+closer="$1-closer"
 
-[ "$NUM_MONITORS" -gt 1 ] && window="$1_dual$(( current_mon + 1 ))"
+if [ "$(hyprctl monitors | grep -c "Monitor")" -gt 1 ]; then
+    current_mon="$(hyprctl -j monitors | jaq '.[]? | select(.focused == true) | .id')"
+    window="${window}_dual$(( current_mon + 1 ))"
+    closer="${closer}_dual$(( current_mon + 1 ))"
+fi
 
 if [ -z "$action" ]; then
-    closer="$1-closer_dual$(( current_mon + 1 ))"
-
     eww open --toggle "$closer"
     eww open --toggle "$window"
 else

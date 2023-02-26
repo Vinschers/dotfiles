@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-icons=("" "" "" "" "" "" "" "")
-num_icons=$(bc <<< "100 / ${#icons[@]}")
-
+icons=("" "" "" "" "")
+num_icons=$(bc <<<"100 / ${#icons[@]}")
 
 geticon() {
-  level=$(awk -v n="$CAPACITY" -v c="$num_icons" 'BEGIN{print int(n/c-1)}')
+	level=$(awk -v n="$CAPACITY" -v c="$num_icons" 'BEGIN{print int(n/c-1)}')
 	if [[ "$level" -lt 0 ]]; then
 		level=0
 	fi
@@ -38,7 +37,7 @@ color() {
 
 wattage() {
 	microwatts=1000000
-	echo "$(bc -l <<< "scale=1; $RATE / $microwatts") W"
+	echo "$(bc -l <<<"scale=1; $RATE / $microwatts") W"
 }
 
 gettime() {
@@ -51,7 +50,7 @@ gettime() {
 		else
 			EX="($FULL - $NOW) / $RATE"
 		fi
-		date -u -d@"$(bc -l <<< "$EX * 3600")" +%H:%M
+		date -u -d@"$(bc -l <<<"$EX * 3600")" +%H:%M
 	fi
 }
 
