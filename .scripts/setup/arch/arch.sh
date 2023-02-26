@@ -41,6 +41,8 @@ install_packages() {
 		yay --sudoloop --noconfirm -S "$PACKAGE" || errors="$errors $PACKAGE"
 	done <"$THIS_DIRECTORY/yay"
 
+    [ "$(cat /sys/class/dmi/id/chassis_type)" = "10" ] && yay --sudoloop -S networkmanager-iwd
+
 	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
 	npm i -g neovim
 

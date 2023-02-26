@@ -128,7 +128,7 @@ esac
 
 [ -n "$SCRIPT" ] && "/bin/sh" "$THIS_DIRECTORY/$SCRIPT" "$graphical_display"
 
-check "Set up git?" && setup_git
+check "Set up git?" 1 && setup_git
 [ "$graphical_display" = "0" ] && check "Copy xorg.conf.d?" 1 && copy_xorg
 [ "$graphical_display" = "1" ] && check "Setup Wayland?" 1 && setup_wayland
 check "Create common files and directories?" 1 && create_files_dirs "$graphical_display"
