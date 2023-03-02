@@ -27,6 +27,7 @@ imagemagick
 imlib2
 imv
 jdk-openjdk
+jupyter-notebook
 keepassxc
 lazygit
 libsixel

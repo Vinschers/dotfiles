@@ -110,6 +110,7 @@ export _Z_DATA="$XDG_DATA_HOME/z"
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 export PYTHONUSERBASE="$XDG_DATA_HOME/python"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export JUPYTERLAB_DIR="$XDG_DATA_HOME/jupyter/lab"
 
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export CALCHISTFILE="$XDG_CACHE_HOME/calc_history"

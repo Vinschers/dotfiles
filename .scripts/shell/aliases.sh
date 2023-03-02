@@ -90,4 +90,5 @@ alias \
     mntdroid="aft-mtp-mount" \
     train="sl -acdeGF" \
     sctl="sudo systemctl" \
-    audio="systemctl --user restart pipewire.service pipewire-pulse.service"
+    audio="systemctl --user restart pipewire.service pipewire-pulse.service" \
+    jn="jupyter notebook"

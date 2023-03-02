@@ -1,0 +1,3 @@
+ignore noexec ${HOME}
+ignore apparmor
+whitelist ${HOME}/.local/share/jupyter/runtime
