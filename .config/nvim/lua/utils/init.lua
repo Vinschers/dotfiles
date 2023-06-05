@@ -11,7 +11,7 @@ M.lsp_servers = {
 	"yamlls",
 	"clangd",
 	"jdtls",
-	"texlab",
+	-- "texlab",
 	"emmet_ls",
 	"ansiblels",
 	"dockerls",
@@ -33,6 +33,7 @@ M.fmt_lint_servers = {
 	"clang_format",
 	"shfmt",
 	"google_java_format",
+    "latexindent",
 
 	"flake8",
 	"shellcheck",

@@ -1,7 +1,6 @@
 local M = {
 	"jose-elias-alvarez/null-ls.nvim",
 	event = "BufReadPre",
-	commit = "60b4a7167c79c7d04d1ff48b55f2235bf58158a7",
 	dependencies = {
 		{
 			"nvim-lua/plenary.nvim",
@@ -29,7 +28,6 @@ function M.config()
 			formatting.isort,
 			formatting.stylua,
 			formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" } }),
-			formatting.dart_format,
 			formatting.shfmt,
 			formatting.latexindent,
 			formatting.google_java_format.with({ extra_args = { "-a" } }),

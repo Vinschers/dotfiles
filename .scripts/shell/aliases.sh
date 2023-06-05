@@ -46,6 +46,7 @@ alias \
     dC='dotfiles commit -m' \
     dP='dotfiles push' \
     dp='dotfiles pull' \
+    dr='dotfiles restore' \
     gs='git status' \
     ga='git add' \
     gc='git clone' \

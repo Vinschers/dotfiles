@@ -188,15 +188,15 @@ function M.config()
 
 		d = {
 			name = "DAP debugger",
-			b = { "Toggle breakpoint", "<cmd>lua require'dap'.toggle_breakpoint()<cr>" },
-			c = { "Continue", "<cmd>lua require'dap'.continue()<cr>" },
-			i = { "Step into", "<cmd>lua require'dap'.step_into()<cr>" },
-			o = { "Step over", "<cmd>lua require'dap'.step_over()<cr>" },
-			O = { "Step out", "<cmd>lua require'dap'.step_out()<cr>" },
-			r = { "Toggle repl", "<cmd>lua require'dap'.repl.toggle()<cr>" },
-			l = { "Run last", "<cmd>lua require'dap'.run_last()<cr>" },
-			u = { "Toggle dapui", "<cmd>lua require'dapui'.toggle()<cr>" },
-			t = { "Terminate", "<cmd>lua require'dap'.terminate()<cr>" },
+			b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" },
+			c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+			i = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
+			o = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
+			O = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
+			r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle repl" },
+			l = { "<cmd>lua require'dap'.run_last()<cr>", "Run last" },
+			u = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle dapui" },
+			t = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
 		},
 
 		t = {

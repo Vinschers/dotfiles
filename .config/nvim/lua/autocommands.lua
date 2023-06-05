@@ -75,23 +75,3 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		vim.cmd(":set ft=xdefaults")
 	end,
 })
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-	pattern = { "*.tex" },
-	callback = function()
-		if STARTED_INKSCAPE_WATCH then
-			os.execute("killall inkscape-figures")
-		end
-
-		local directory = vim.fn.expand("%:p"):match("(.*[\\/])")
-		local cmd = '[ "$(ls -1 "'
-			.. directory
-			.. '".latex-cache/*.pdf 2>/dev/null | wc -l)" -gt 0 ] && cp "'
-			.. directory
-			.. '".latex-cache/*.pdf "'
-			.. directory
-			.. '"; rm "'
-            .. directory
-            .. '"*.log'
-		os.execute(cmd)
-	end,
-})

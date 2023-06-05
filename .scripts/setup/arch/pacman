@@ -31,6 +31,7 @@ jupyter-notebook
 keepassxc
 lazygit
 libsixel
+libxcrypt-compat
 linux-headers
 lldb
 lsb-release
@@ -73,7 +74,7 @@ ttf-arphic-ukai
 ttf-arphic-uming
 ttf-baekmuk
 ttf-font-awesome
-ttf-jetbrains-mono
+ttf-jetbrains-mono-nerd
 ttf-joypixels
 ttf-hack-nerd
 ttf-liberation
