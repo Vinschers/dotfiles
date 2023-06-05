@@ -1,6 +1,11 @@
 
 [Default Applications]
-application/xhtml+xml=librewolf.desktop
+video/webm=mpv.desktop
+video/x-matroska=mpv.desktop
+video/x-msvideo=mpv.desktop
+video/mpeg=mpv.desktop
+video/mp4=mpv.desktop
+video/quicktime=mpv.desktop
 application/x-keepass2=org.keepassxc.KeePassXC.desktop
 application/sql=nvim.desktop
 application/x-shellscript=nvim.desktop
@@ -8,8 +13,6 @@ application/x-java-archive=java-java-openjdk.desktop
 application/x-xojpp=com.github.xournalpp.xournalpp.desktop
 application/x-xopt=com.github.xournalpp.xournalpp.desktop
 application/x-xopp=com.github.xournalpp.xournalpp.desktop
-application/x-matroska=mpv.desktop
-application/vnd.rn-realmedia=mpv.desktop
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop
 application/pdf=sioyek.desktop
 text/plain=nvim.desktop
@@ -24,12 +27,6 @@ text/x-makefile=nvim.desktop
 text/x-c++hdr=nvim.desktop
 text/markdown=nvim.desktop
 text/x-csrc=nvim.desktop
-video/webm=mpv.desktop
-video/x-matroska=mpv.desktop
-video/x-msvideo=mpv.desktop
-video/mpeg=mpv.desktop
-video/mp4=mpv.desktop
-video/quicktime=mpv.desktop
 image/bmp=imv.desktop
 image/jpeg=imv.desktop
 image/png=imv.desktop

@@ -29,7 +29,7 @@ compileFile() {
             ;;
         py)
             bin_file=""
-            cmd="python \"$1\""
+            cmd="python $1"
             ;;
         tex)
             latexmk -pdf -shell-escape -bibtex "$1" > /dev/null && cp "$dir/.latex-cache/$file.pdf" "$dir"

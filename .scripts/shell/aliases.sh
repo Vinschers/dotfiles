@@ -51,7 +51,7 @@ alias \
     gc='git clone' \
     gd='git diff' \
     gr='git restore' \
-    gC='git commit -m' \
+    gC='gitmoji -c' \
     gP='git push' \
     gp='git pull' \
 

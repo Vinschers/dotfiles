@@ -471,6 +471,14 @@ return {
 	s({ trig = ">>", snippetType = "autosnippet" }, {
 		t("\\implies "),
 	}),
+	-- IMPLIED BY, i.e. \impliedby
+	s({ trig = "<<", snippetType = "autosnippet" }, {
+		t("\\impliedby "),
+	}),
+	-- IF AND ONLY IF, i.e. \iff
+	s({ trig = "<<>>", snippetType = "autosnippet" }, {
+		t("\\iff "),
+	}),
 	-- DOT PRODUCT, i.e. \cdot
 	s({ trig = ",.", snippetType = "autosnippet" }, {
 		t("\\cdot "),

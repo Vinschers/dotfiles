@@ -71,11 +71,10 @@ return {
 		{ trig = "inn", snippetType = "autosnippet" },
 		fmta(
 			[[
-      \input{<><>}
+      \input{~/.config/texmf/templates/<>}
       ]],
 			{
-				i(1, "~/dotfiles/config/latex/templates/"),
-				i(2),
+				i(1),
 			}
 		),
 		{ condition = line_begin }

@@ -12,6 +12,6 @@ eval "$(dircolors -b "$SCRIPTS_DIR/shell/.dir_colors")"
 
 source_directory "$SCRIPTS_DIR"/shell/
 
-case $- in
-    *i*) fetch ;;
-esac
+# case $- in
+#     *i*) fetch ;;
+# esac

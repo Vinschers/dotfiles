@@ -1,0 +1,4 @@
+ignore disable-mnt
+
+whitelist ${HOME}/hdd
+whitelist /mnt/hdd
