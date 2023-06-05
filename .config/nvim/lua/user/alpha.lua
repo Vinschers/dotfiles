@@ -45,7 +45,7 @@ function M.config()
 		dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 	}
 
-	dashboard.section.header.opts.hl = "Include"
+	dashboard.section.header.opts.hl = "Label"
 	dashboard.section.buttons.opts.hl = "Keyword"
 
 	dashboard.opts.opts.noautocmd = true
