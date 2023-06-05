@@ -4,8 +4,6 @@ local M = {
 }
 
 function M.config()
-	vim.opt.conceallevel = 1
-
 	require("luasnip").config.set_config({
 		-- Enable autotriggered snippets
 		enable_autosnippets = true,
