@@ -36,3 +36,5 @@ require("lazy").setup("user", {
 		},
 	},
 })
+
+vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
