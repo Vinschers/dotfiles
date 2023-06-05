@@ -49,7 +49,7 @@ function M.config()
 		require("illuminate").on_attach(client)
 	end
 
-    local utils = require("utils")
+	local utils = require("utils")
 	for _, server in pairs(require("utils").lsp_servers) do
 		Opts = {
 			on_attach = on_attach,

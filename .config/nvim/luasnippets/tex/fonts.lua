@@ -1,4 +1,4 @@
-local helpers = require("user.luasnip-helper-funcs")
+local helpers = require("utils.luasnip-helper-funcs")
 local get_visual = helpers.get_visual
 
 -- A logical OR of `line_begin` and the regTrig '[^%a]trig'

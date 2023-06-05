@@ -10,9 +10,8 @@ M.lsp_servers = {
 	"jsonls",
 	"yamlls",
 	"clangd",
-	-- "jdtls",
+	"jdtls",
 	"texlab",
-	-- "marksman",
 	"emmet_ls",
 	"ansiblels",
 	"dockerls",
@@ -32,7 +31,6 @@ M.fmt_lint_servers = {
 	"isort",
 	"stylua",
 	"clang_format",
-	-- "dart_format",
 	"shfmt",
 	"google_java_format",
 
