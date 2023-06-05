@@ -41,6 +41,8 @@ function M.config()
 			code_actions.shellcheck,
 			code_actions.eslint_d,
 			code_actions.proselint,
+
+            require("typescript.extensions.null-ls.code-actions"),
 		},
 	})
 end

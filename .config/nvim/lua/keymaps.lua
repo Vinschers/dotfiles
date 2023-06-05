@@ -37,6 +37,8 @@ keymap("n", "<C-A-k>", "<Esc>:m .-2<CR>", opts)
 
 keymap("n", "<F1>", "", opts)
 
+keymap('',  '<Esc>', "<ESC><cmd>noh<CR><cmd>lua require('notify').dismiss()<CR>", {silent = true})
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
