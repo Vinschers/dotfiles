@@ -1,6 +1,9 @@
-local status_ok, neoscroll = pcall(require, "neoscroll")
-if not status_ok or type(neoscroll) == "boolean" then
-	return
-end
+local M = {
+    "karb94/neoscroll.nvim",
+    event = "VeryLazy",
+    config = function()
+        require("neoscroll").setup()
+    end,
+}
 
-neoscroll.setup()
+return M

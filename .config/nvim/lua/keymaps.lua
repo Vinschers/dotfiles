@@ -8,7 +8,8 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
 keymap("n", "Ç", ":", opts)
-keymap("i", "<C-l>", "\\", opts)
+-- keymap("i", "<C-l>", "\\", opts)
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -39,12 +40,15 @@ keymap("n", "<F1>", "", opts)
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Clear highlights
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
@@ -73,9 +77,7 @@ keymap(
 )
 
 -- Better paste
-keymap("v", "p", '"_dP', opts)
-keymap("v", "<C-A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<C-A-k>", ":m .-2<CR>==", opts)
+keymap("v", "p", 'P', opts)
 
 -- Save
 keymap("n", "<C-s>", ":w<cr>", opts)
@@ -84,6 +86,10 @@ keymap("n", "<F4>", ":! compile " .. vim.fn.expand("%") .. ">/dev/null<cr><cr>",
 keymap("n", "<F5>", ":lua _RUN_CODE()<cr>", opts)
 
 -- Visual --
+
+keymap("v", "<C-A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<C-A-k>", ":m .-2<CR>==", opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
