@@ -7,6 +7,9 @@ local M = {
 			"hrsh7th/cmp-nvim-lsp",
 			commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
 		},
+        {
+            "ray-x/lsp_signature.nvim"
+        },
 	},
 }
 
@@ -37,6 +40,12 @@ function M.config()
 		return false
 	end
 
+    local lsp_signature_config = {
+        bind = true,
+        handler_opts = {
+            border = "rounded"
+        }
+    }
 	local disable_formatting = { "tsserver", "lua_ls", "clangd", "jdt.ls" }
 
 	local lspconfig = require("lspconfig")
@@ -47,6 +56,8 @@ function M.config()
 
 		lsp_keymaps(bufnr)
 		require("illuminate").on_attach(client)
+
+        require("lsp_signature").on_attach(lsp_signature_config, bufnr)
 	end
 
 	local utils = require("utils")
