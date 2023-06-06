@@ -32,6 +32,7 @@ function M.config()
 			formatting.latexindent,
 			formatting.google_java_format.with({ extra_args = { "-a" } }),
 			formatting.bibclean,
+            formatting.asmfmt,
 
 			diagnostics.flake8.with({ extra_args = { "--max-line-length", "120" } }),
 			diagnostics.shellcheck,

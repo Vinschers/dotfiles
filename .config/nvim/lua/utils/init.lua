@@ -34,6 +34,7 @@ M.fmt_lint_servers = {
 	"shfmt",
 	"google_java_format",
     "latexindent",
+    "asmfmt",
 
 	"flake8",
 	"shellcheck",
