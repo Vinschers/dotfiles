@@ -19,7 +19,7 @@ M.lsp_servers = {
 
 -- https://github.com/jayp0521/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
 M.dap_servers = {
-	-- "javadbg",
+	"javadbg",
 	"bash",
 	"python",
 	"node2",

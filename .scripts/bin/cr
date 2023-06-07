@@ -18,15 +18,6 @@ cpp() {
 	run_cmd "$cwd/$fileName"
 	rm "$cwd/$fileName"
 }
-java() {
-	cwd="$1"
-	fileName="$2"
-	fileExtension="$3"
-
-	javac "$cwd/$fileName.$fileExtension"
-	run_cmd "java $cwd/$fileName"
-	rm "$cwd/$fileName.class"
-}
 py() {
 	cwd="$1"
 	fileName="$2"
