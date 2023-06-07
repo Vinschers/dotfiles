@@ -93,3 +93,8 @@ alias \
     sctl="sudo systemctl" \
     audio="systemctl --user restart pipewire.service pipewire-pulse.service" \
     jn="jupyter notebook"
+
+# Development
+alias \
+    gcc='gcc -g -std=c99 -Wall -lm' \
+    g++='gcc -g -std=c99 -Wall -lm'

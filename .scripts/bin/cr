@@ -1,0 +1,120 @@
+#!/bin/sh
+
+c() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	gcc -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension"
+	run_cmd "$cwd/$fileName"
+	rm "$cwd/$fileName"
+}
+cpp() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	g++ -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension"
+	run_cmd "$cwd/$fileName"
+	rm "$cwd/$fileName"
+}
+java() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	javac "$cwd/$fileName.$fileExtension"
+	run_cmd "java $cwd/$fileName"
+	rm "$cwd/$fileName.class"
+}
+py() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	run_cmd "python \"$cwd/$fileName.$fileExtension\""
+}
+tex() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	latexmk -pdf -shell-escape -bibtex "$cwd/$fileName.$fileExtension" >/dev/null && cp "$cwd/.latex-cache/$fileName.pdf" "$cwd"
+	rm -rf "$cwd/.latex-cache"
+}
+s() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	gcc -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension"
+	run_cmd "$cwd/$fileName"
+	rm "$cwd/$fileName"
+}
+
+search_file() {
+	searched="$1"
+	path="."
+
+	while [ "$path" != / ] && ! [ -e "$path/$searched" ]; do
+		path="$(readlink -f "$path"/..)"
+	done
+
+	[ -e "$path/$searched" ] && echo "$path/$searched"
+}
+
+error() {
+	echo "Error"
+	exit 1
+}
+
+run_cmd() {
+	cmd="$1"
+
+	printf "\$ %s\n\n" "$cmd"
+	eval "$cmd"
+
+	printf "\nPress any key to exit..." && wait_key_press
+}
+
+run_file() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	$fileExtension "$cwd" "$fileName" "$fileExtension"
+}
+
+run_make() {
+	makefile="$1"
+	cwd="$(dirname "$makefile")"
+
+	cmd="$(make -Bnd -f "$makefile" | grep update | tail -1 | grep -oP "\'\K[a-zA-Z0-9_\-\.]+")"
+
+	make
+	run_cmd "$cwd/$cmd"
+
+	make clean -f "$makefile"
+}
+
+main() {
+	file="$1"
+
+	makefile="$(search_file "Makefile")"
+	if [ -e "$makefile" ]; then
+		run_make "$makefile"
+		return 0
+	fi
+
+	[ -e "$file" ] || error
+	cwd="$(dirname "$(realpath "$file")")"
+	fileName="$(basename -- "$file")"
+	echo "$file" | grep -qo '\.' && fileExtension="${fileName##*.}"
+	fileName="${fileName%.*}"
+
+	run_file "$cwd" "$fileName" "$fileExtension"
+}
+
+file="$1"
+
+main "$file"
