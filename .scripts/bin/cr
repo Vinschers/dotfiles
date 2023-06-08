@@ -1,6 +1,6 @@
 #!/bin/sh
 
-c() {
+ext_c() {
 	cwd="$1"
 	fileName="$2"
 	fileExtension="$3"
@@ -9,7 +9,7 @@ c() {
 	run_cmd "$cwd/$fileName"
 	rm "$cwd/$fileName"
 }
-cpp() {
+ext_cpp() {
 	cwd="$1"
 	fileName="$2"
 	fileExtension="$3"
@@ -18,14 +18,14 @@ cpp() {
 	run_cmd "$cwd/$fileName"
 	rm "$cwd/$fileName"
 }
-py() {
+ext_py() {
 	cwd="$1"
 	fileName="$2"
 	fileExtension="$3"
 
 	run_cmd "python \"$cwd/$fileName.$fileExtension\""
 }
-tex() {
+ext_tex() {
 	cwd="$1"
 	fileName="$2"
 	fileExtension="$3"
@@ -33,7 +33,7 @@ tex() {
 	latexmk -pdf -shell-escape -bibtex "$cwd/$fileName.$fileExtension" >/dev/null && cp "$cwd/.latex-cache/$fileName.pdf" "$cwd"
 	rm -rf "$cwd/.latex-cache"
 }
-s() {
+ext_s() {
 	cwd="$1"
 	fileName="$2"
 	fileExtension="$3"
@@ -73,7 +73,9 @@ run_file() {
 	fileName="$2"
 	fileExtension="$3"
 
-	$fileExtension "$cwd" "$fileName" "$fileExtension"
+    test -z "$(test "$(which "ext_$fileExtension" 2>/dev/null)" && echo true)" && echo "Can't run $fileExtension code." >&2 && return 1
+
+	"ext_$fileExtension" "$cwd" "$fileName" "$fileExtension"
 }
 
 run_make() {
@@ -107,5 +109,4 @@ main() {
 }
 
 file="$1"
-
 main "$file"

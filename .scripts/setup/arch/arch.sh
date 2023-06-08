@@ -103,11 +103,13 @@ setup_pacman() {
 }
 
 setup_nvidia() {
-	sudo pacman --noconfirm -S nvidia-dkms || errors="$errors nvidia"
+	sudo pacman --noconfirm -S nvidia-dkms || errors="$errors nvidia-dkms"
 	sudo pacman --noconfirm -S nvidia-settings || errors="$errors nvidia-settings"
 	sudo pacman --noconfirm -S nvidia-utils || errors="$errors nvidia-utils"
 	sudo pacman --noconfirm -S opencl-nvidia || errors="$errors opencl-nvidia"
-	echo "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia-drm-nomodeset.conf
+	echo "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
+
+    sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ nvidia_drm.modeset=1"/g' /etc/default/grub
 
 	default_modules="$(grep "^MODULES=" /etc/mkinitcpio.conf)"
 	modified_modules="${default_modules%?} nvidia nvidia_modeset nvidia_uvm nvidia_drm)"

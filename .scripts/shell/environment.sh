@@ -17,7 +17,7 @@ export GCC_COLORS='error=01;31:warning=01;93:note=01;36:caret=01;32:locus=01:quo
 
 export LOCK_TIME=15
 
-PATH="$PATH:$HOME/.local/bin:$SCRIPTS_DIR:$SCRIPTS_DIR/bin:$SCRIPTS_DIR/bin/statusbar:$SCRIPTS_DIR/hyprland:/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools"
+PATH="$HOME/.local/bin:$SCRIPTS_DIR:$SCRIPTS_DIR/bin:$SCRIPTS_DIR/bin/statusbar:/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools:$PATH"
 
 
 load_xorg() {
