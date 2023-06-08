@@ -1,17 +1,20 @@
 {
     "layer": "top",
     "include": [
-        "~/.config/waybar/modules.json",
+        "$HOME/.config/waybar/modules.json",
     ],
 
     "modules-left": [
-        "wlr/workspaces",
-        "hyprland/window"
+        "wlr/workspaces"
     ],
 
-    "modules-center": [],
+    "modules-center": [
+        "group/music"
+    ],
 
     "modules-right": [
+        "custom/pacman",
+        "group/hardware",
         "hyprland/language",
         "clock",
         "tray",

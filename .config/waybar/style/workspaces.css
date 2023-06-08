@@ -1,0 +1,22 @@
+#workspaces {
+    background-color: @bg;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#workspaces button{
+    color: @fg;
+    font-size: 14px;
+    padding: 4px;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    border: none;
+    background: transparent;
+}
+
+#workspaces button.persistent {
+    color: @dark-fg;
+}
+

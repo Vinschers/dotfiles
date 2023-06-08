@@ -1,0 +1,6 @@
+#music {
+    background-color: @bg;
+    color: @fg;
+    padding-right: 12px;
+    border-radius: 50px;
+}

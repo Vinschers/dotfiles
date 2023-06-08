@@ -1,0 +1,20 @@
+#hardware {
+    background: @bg;
+    color: @fg;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+#hardware #cpu, #hardware #memory, #hardware #gpu, #hardware #disk {
+    background: @dark-fg;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+#hardware #image {
+    background: @dark-blue;
+    padding-left: 2px;
+    padding-right: 2px;
+}

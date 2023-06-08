@@ -1,0 +1,62 @@
+{
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": ["group/cpu", "group/memory", "group/disk", "group/gpu"]
+    },
+    "group/cpu": {
+        "orientation": "horizontal",
+        "modules": ["image#cpu", "cpu"]
+    },
+    "image#cpu": {
+        "exec": "echo $HOME/.config/waybar/images/cpu.png",
+        "size": 24,
+        "interval": 3600
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "{}%",
+        "max-length": 10
+    },
+    "group/memory": {
+        "orientation": "horizontal",
+        "modules": ["image#memory", "memory"]
+    },
+    "image#memory": {
+        "exec": "echo $HOME/.config/waybar/images/ram.png",
+        "size": 24,
+        "interval": 3600
+    },
+    "memory": {
+        "interval": 1,
+        "format": "{}%",
+        "max-length": 10
+    },
+    "group/disk": {
+        "orientation": "horizontal",
+        "modules": ["image#disk", "disk"]
+    },
+    "image#disk": {
+        "exec": "echo $HOME/.config/waybar/images/disk.png",
+        "size": 24,
+        "interval": 3600
+    },
+    "disk": {
+        "interval": 30,
+        "format": "{percentage_used}%",
+        "path": "/"
+    },
+    "group/gpu": {
+        "orientation": "horizontal",
+        "modules": ["image#gpu", "custom/gpu"]
+    },
+    "image#gpu": {
+        "exec": "echo $HOME/.config/waybar/images/gpu.png",
+        "size": 24,
+        "interval": 3600
+    },
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "interval": 1,
+        "format": " {}% "
+    }
+}

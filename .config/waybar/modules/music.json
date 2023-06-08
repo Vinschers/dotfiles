@@ -1,0 +1,25 @@
+{
+    "group/music": {
+        "orientation": "horizontal",
+        "modules": ["image#album-art", "custom/spotify"]
+    },
+    "image#album-art": {
+        "exec": "$HOME/.config/waybar/scripts/album_art.sh",
+        "size": 40,
+        "interval": 3
+    },
+    "custom/spotify": {
+        "format": "{icon} {}",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "smooth-scrolling-threshold": 10,
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
+        "exec-if": "pgrep spotify"
+    },
+    "custom/cava": {
+        "exec": "$HOME/.config/waybar/scripts/cava.sh",
+        "exec-if": "pgrep spotify",
+        "restart-interval": 10
+    }
+}

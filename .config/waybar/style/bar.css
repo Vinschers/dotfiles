@@ -1,0 +1,23 @@
+* {
+    border: none;
+    border-radius: 12px;
+    font-family: "monospace";
+}
+
+window#waybar {
+    background: transparent;
+}
+
+.modules-left {
+    margin-left: 12px;
+    margin-top: 12px;
+}
+
+.modules-center {
+    margin-top: 12px;
+}
+
+.modules-right {
+    margin-right: 12px;
+    margin-top: 12px;
+}

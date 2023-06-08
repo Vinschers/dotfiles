@@ -1,0 +1,23 @@
+{
+    "custom/pacman": {
+        "format": "{icon}{}",
+        "return-type": "json",
+        "format-icons": {
+            "pending-updates": " ",
+            "updated": ""
+        },
+        "exec-if": "which waybar-updates",
+        "exec": "waybar-updates"
+    },
+    "tray": {
+        "icon-size": 13,
+        "tooltip": false,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 1,
+        "tooltip": true,
+        "format": "{:%H:%M:%S}",
+        "tooltip-format": "{:%Y-%m-%d}"
+    }
+}
