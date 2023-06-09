@@ -41,6 +41,8 @@
         "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": ["", "", ""],
-        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh"
+        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh",
+        "on-scroll-up": "pamixer -ui 1",
+        "on-scroll-down": "pamixer -ud 1"
     }
 }
