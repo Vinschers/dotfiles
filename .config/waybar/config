@@ -1,10 +1,12 @@
 {
     "layer": "top",
     "include": [
+        "$HOME/.config/waybar/startup.json",
         "$HOME/.config/waybar/modules.json",
     ],
 
     "modules-left": [
+        "group/startup",
         "group/music"
     ],
 

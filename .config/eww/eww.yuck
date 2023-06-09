@@ -1,104 +1,16 @@
-(include "./modules/bluetooth.yuck")
-(include "./modules/bright.yuck")
-(include "./modules/clock.yuck")
-(include "./modules/music.yuck")
-(include "./modules/net.yuck")
-(include "./modules/sys.yuck")
 (include "./modules/variables.yuck")
-(include "./modules/volume.yuck")
-(include "./modules/workspaces.yuck")
 (include "./modules/hololive.yuck")
-(include "./modules/weather.yuck")
-(include "./modules/microphone.yuck")
-
-(include "./windows/calendar.yuck")
 (include "./windows/music.yuck")
-(include "./windows/osd.yuck")
-(include "./windows/system-menu.yuck")
-
-(defwidget left0 []
-  (box
-    :class "bar-item"
-    :space-evenly false
-    :halign "start"
-    (workspaces0)))
-
-(defwidget left1 []
-  (box
-    :class "bar-item"
-    :space-evenly false
-    :halign "start"
-    (workspaces1)))
-
-(defwidget right []
-  (box
-    :class "bar-item"
-    :space-evenly false
-    :halign "end"
-    (weather)
-    (hololive)
-    (bright)
-    (volume-module)
-    (microphone-module)
-    (bluetooth)
-    (net)
-    (sys)
-    (clock_module)))
-
-(defwidget center []
-  (box
-    :visible {music.title != "" ? true : false}
-    :class "bar-item"
-    :space-evenly false
-    :halign "center"
-    (music-module)))
-
-(defwidget bar0 []
-  (centerbox
-    :class "bar"
-    (left0)
-    (center)
-    (right)))
-
-(defwidget bar1 []
-  (centerbox
-    :class "bar"
-    (left1)
-    (center)
-    (right)))
 
 (defwidget closer [window]
-  (eventbox :onclick "scripts/toggle_window ${window} close && scripts/toggle_window ${window}-closer close"))
+  (eventbox :onclick "eww close ${window} && eww close closer_${window}"))
 
-(defwindow bar
+(defwindow dummy
     :monitor 0
-    :geometry (geometry :x "0%"
-               :y "1%"
-               :width "98%"
-               :height "32px"
-               :anchor "top center")
-    :stacking "fg"
-    :exclusive true
-  (bar0))
-
-(defwindow bar_dual1
-    :monitor 0
-    :geometry (geometry :x "0%"
-               :y "1%"
-               :width "98%"
-               :height "32px"
-               :anchor "top center")
-    :stacking "fg"
-    :exclusive true
-  (bar0))
-
-(defwindow bar_dual2
-    :monitor 1
-    :geometry (geometry :x "0%"
-               :y "1%"
-               :width "98%"
-               :height "32px"
-               :anchor "top center")
-    :stacking "fg"
-    :exclusive true
-  (bar1))
+    :geometry (geometry
+        :x "0%"
+        :y "0%"
+        :width "0%"
+        :height "0%"
+    )
+{music})

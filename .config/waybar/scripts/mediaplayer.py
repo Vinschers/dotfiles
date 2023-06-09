@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import argparse
+import datetime
 import json
 import logging
 import signal
+import subprocess
 import sys
 
 import gi
@@ -16,9 +18,63 @@ logger = logging.getLogger(__name__)
 def write_output(text, player):
     logger.info("Writing output")
 
-    output = {"text": text, "class": "custom-" + player.props.player_name, "alt": player.props.player_name, "cover": player.props.metadata["mpris:artUrl"]}
+    output = {
+        "text": text,
+        "class": "custom-" + player.props.player_name,
+        "alt": player.props.player_name,
+        "cover": player.props.metadata["mpris:artUrl"],
+    }
 
     sys.stdout.write(json.dumps(output) + "\n")
+    sys.stdout.flush()
+
+
+def get_time(milliseconds):
+    dt = datetime.datetime.fromtimestamp(milliseconds / 1000000)
+    return dt.strftime("%M:%S")
+
+
+def update_eww(player):
+    props = player.props
+    meta = props.metadata
+
+    color1, color2 = "", ""
+
+    if meta["mpris:artUrl"] != "":
+        raw_colors = (
+            subprocess.run(
+                ["convert", meta["mpris:artUrl"], "-colors", "2", "-format", '"%c"', "histogram:info:"],
+                capture_output=True,
+                text=True,
+            )
+            .stdout.strip("\n")
+            .split("\n")
+        )
+        colors = []
+
+        for raw_color in raw_colors:
+            for color_part in raw_color.split():
+                if color_part.startswith("#"):
+                    colors.append(color_part)
+
+        color1, color2 = colors
+
+    info = {
+        "artist": player.get_artist(),
+        "title": player.get_title(),
+        "status": props.status,
+        "position": props.position / meta["mpris:length"] * 100,
+        "position_time": get_time(props.position),
+        "length": get_time(meta["mpris:length"]),
+        "cover": meta["mpris:artUrl"],
+        "color1": color1,
+        "color2": color2
+    }
+    cmd = f"eww update music='{json.dumps(info)}'"
+
+    # subprocess.run(cmd)
+
+    sys.stdout.write(cmd + "\n")
     sys.stdout.flush()
 
 
@@ -44,7 +100,8 @@ def on_metadata(player, metadata, manager):
 
     if player.props.status != "Playing" and track_info:
         track_info = " " + track_info
-    write_output(track_info, player)
+
+    update_eww(player)
 
 
 def on_player_appeared(manager, player, selected_player=None):
@@ -56,8 +113,6 @@ def on_player_appeared(manager, player, selected_player=None):
 
 def on_player_vanished(manager, player):
     logger.info("Player has vanished")
-    sys.stdout.write("\n")
-    sys.stdout.flush()
 
 
 def init_player(manager, name):
@@ -71,8 +126,6 @@ def init_player(manager, name):
 
 def signal_handler(sig, frame):
     logger.debug("Received signal to stop, exiting")
-    sys.stdout.write("\n")
-    sys.stdout.flush()
     # loop.quit()
     sys.exit(0)
 

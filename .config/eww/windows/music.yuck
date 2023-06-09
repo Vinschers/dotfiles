@@ -42,7 +42,7 @@
             :onchange "playerctl position \"$(echo \"{} * $(playerctl metadata mpris:length) / 1000000 / 100\" | bc)\""
             :value {music.position}))))))
 
-(defwindow music
+(defwindow music_1
   :stacking "fg"
   :focusable false
   :monitor 0
@@ -51,30 +51,10 @@
              :y "0%"
              :width "0%"
              :height "0%"
-             :anchor "top center")
+             :anchor "top left")
   (music))
 
-(defwindow music-closer
-  :monitor 0
-  :geometry (geometry :width "100%" :height "100%")
-  :stacking "fg"
-  :focusable false
-  (closer :window "music"))
-
-
-(defwindow music_dual1
-  :stacking "fg"
-  :focusable false
-  :monitor 0
-  :geometry (geometry
-             :x "0%"
-             :y "0%"
-             :width "0%"
-             :height "0%"
-             :anchor "top center")
-  (music))
-
-(defwindow music_dual2
+(defwindow music_2
   :stacking "fg"
   :focusable false
   :monitor 1
@@ -83,19 +63,19 @@
              :y "0%"
              :width "0%"
              :height "0%"
-             :anchor "top center")
+             :anchor "top left")
   (music))
 
-(defwindow music-closer_dual1
+(defwindow closer_music_1
   :monitor 0
   :geometry (geometry :width "100%" :height "100%")
   :stacking "fg"
   :focusable false
-  (closer :window "music"))
+  (closer :window "music_1"))
 
-(defwindow music-closer_dual2
+(defwindow closer_music_2
   :monitor 1
   :geometry (geometry :width "100%" :height "100%")
   :stacking "fg"
   :focusable false
-  (closer :window "music"))
+  (closer :window "music_2"))

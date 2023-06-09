@@ -42,6 +42,13 @@ ext_s() {
 	run_cmd "$cwd/$fileName"
 	rm "$cwd/$fileName"
 }
+ext_sh() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	run_cmd "$cwd/$fileName.$fileExtension"
+}
 
 search_file() {
 	searched="$1"
@@ -73,9 +80,11 @@ run_file() {
 	fileName="$2"
 	fileExtension="$3"
 
-    test -z "$(test "$(which "ext_$fileExtension" 2>/dev/null)" && echo true)" && echo "Can't run $fileExtension code." >&2 && return 1
-
-	"ext_$fileExtension" "$cwd" "$fileName" "$fileExtension"
+    if type "ext_$fileExtension" 2>/dev/null | grep -q 'function'; then
+	    "ext_$fileExtension" "$cwd" "$fileName" "$fileExtension"
+    else
+        echo "Can't run $fileExtension code."
+    fi
 }
 
 run_make() {

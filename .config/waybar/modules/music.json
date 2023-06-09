@@ -6,7 +6,8 @@
     "image#player": {
         "exec": "echo \"$HOME/.config/waybar/images/$(r=\"$(playerctl metadata -p playerctld 2>/dev/null)\"; if [ -n \"$r\" ] && echo \"$r\" | grep -q 'spotify'; then echo 'spotify'; elif [ -n \"$r\" ]; then echo 'ytm'; fi)\".png",
         "size": 24,
-        "interval": 3
+        "interval": 3,
+        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh"
     },
     "custom/spotify": {
         "format": "{icon} {}",
@@ -30,11 +31,16 @@
         "noise_reduction": 0.77,
         "sleep_timer": 1,
         "input_delay": 2,
-        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "actions": {
+            "on-click-right": "mode"
+        },
+        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh"
     },
     "wireplumber": {
         "format": "{icon} {volume}%",
         "format-muted": "",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""],
+        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh"
     }
 }

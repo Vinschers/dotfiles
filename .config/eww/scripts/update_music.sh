@@ -21,7 +21,7 @@ get_length_sec() {
 get_length_time() {
 	len=$1
 	if [ -n "$len" ]; then
-		len=$(bc <<< "$len / 1000000")
+		len=$(bc <<< "$len / 1000000 + 1")
 		date -d@"$len" +%M:%S
 	else
 		echo ""
@@ -32,7 +32,7 @@ get_position() {
 	pos=$1
 	len=$2
 	if [ -n "$pos" ]; then
-		bc -l <<< "$pos / $len * 100 - 1"
+		bc -l <<< "$pos / $len * 100"
 	else
 		echo 0
 	fi
@@ -49,18 +49,29 @@ get_position_time() {
 }
 
 get_cover() {
-    url="$1"
-    path="$HOME/.cache/music_covers"
-    filename="$(basename "$url")"
+	mkdir -p "$HOME/.cache/eww_covers"
+	cd "$HOME/.cache/eww_covers" || exit
 
-    mkdir -p "$path"
+	IMGPATH="$HOME/.cache/eww_covers/cover_art.png"
 
-    if ! [ -e "$path/$filename" ]; then
-	    /bin/rm -f "$path"/*
-	    curl -so "$path/$filename.png" "$url"
-    fi
+	COVER_URL="$1"
 
-    echo "$path/$filename.png"
+	if [[ "$COVER_URL" = https* ]]; then
+		if [ ! -e "$HOME/.cache/eww_covers/$(basename "$COVER_URL")" ]; then
+            curl -so "$HOME/.cache/eww_covers/$(basename "$COVER_URL")" "$COVER_URL"
+		fi
+
+		rm "$IMGPATH"
+		ln -s "$(basename "$COVER_URL")" "$IMGPATH"
+
+		IMG="${IMGPATH}"
+	elif [ "$COVER_URL" = "" ]; then
+		IMG=""
+	else
+		IMG="$COVER_URL"
+	fi
+
+	echo "$IMG"
 }
 
 sanitize() {
@@ -83,11 +94,9 @@ playerctl -p spotify -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}
 			color1="#1e1e2e"
 			color2="#28283d"
 		fi
-
-        position="0"
 	fi
 
-	jaq --null-input -r -c \
+	json="$(jq --null-input -r -c \
 		--arg artist "$(sanitize "$artist")" \
 		--arg title "$(sanitize "$title")" \
 		--arg status "$(get_status "$status")" \
@@ -97,7 +106,9 @@ playerctl -p spotify -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}
 		--arg cover "$COVER" \
 		--arg color1 "$color1" \
 		--arg color2 "$color2" \
-		'{"artist": $artist, "title": $title, "status": $status, "position": $pos, "position_time": $pos_time, "length": $length, "cover": $cover, "color1": $color1, "color2": $color2}'
+        '{"artist": $artist, "title": $title, "status": $status, "position": $pos, "position_time": $pos_time, "length": $length, "cover": $cover, "color1": $color1, "color2": $color2}')"
+
+    eww update music="$json"
 
 	prevCover=$cover
 done

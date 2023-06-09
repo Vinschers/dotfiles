@@ -1,0 +1,6 @@
+[submodule ".scripts/programs/cava"]
+	path = .scripts/programs/cava
+	url = https://github.com/LukashonakV/cava
+[submodule ".scripts/programs/spotifywm"]
+	path = .scripts/programs/spotifywm
+	url = https://github.com/dasJ/spotifywm

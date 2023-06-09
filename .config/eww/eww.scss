@@ -1,5 +1,9 @@
 @import "css/colors";
 
+.dummy {
+    font-size: 0px;
+}
+
 @mixin rounding {
     border-radius: 16px;
 }
@@ -17,11 +21,7 @@
     transition: 200ms ease;
 }
 
-@import "css/calendar";
 @import "css/music";
-@import "css/osd";
-@import "css/sidebar";
-@import "css/system";
 @import "css/volume";
 @import "css/hololive";
 

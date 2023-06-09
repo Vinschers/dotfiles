@@ -1,7 +1,6 @@
 #!/bin/sh
 
-
-window="$1"
+window="music"
 closer="closer_$window"
 
 current_mon="$(hyprctl -j monitors | jq '.[]? | select(.focused == true) | .id')"
