@@ -1,4 +1,0 @@
-#!/bin/sh
-
-project="$(ls -1 "$ACADEMIC_DIRECTORY/projects" | "$LAUNCHER" --show dmenu)"
-[ -n "$project" ] && cd "$ACADEMIC_DIRECTORY/projects/$project" && "$TERMINAL"

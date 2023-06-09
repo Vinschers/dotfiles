@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[ -z "$1" ] && pamixer --toggle-mute && muted=$(pamixer --get-mute) && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-$(if [ "$muted" = "true" ]; then echo "muted"; else echo "high"; fi)-symbolic.svg" -h string:x-dunst-stack-tag:"volume" -h int:value:"0$(! $muted && echo "$volume")" "Volume: ${volume}%"
-
-[ -n "$1" ] && [ "$1" = "-" ] && pamixer -ud 1 && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-low-symbolic.svg" -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "Volume: ${volume}%"
-
-[ -n "$1" ] && [ "$1" = "+" ] && pamixer -ui 1 && volume=$(pamixer --get-volume) && dunstify -u low -i "/usr/share/icons/Adwaita/scalable/status/audio-volume-high-symbolic.svg" -h string:x-dunst-stack-tag:volume -h int:value:"$volume" "Volume: ${volume}%"
