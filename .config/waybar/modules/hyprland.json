@@ -4,10 +4,6 @@
         "separate-outputs": true,
         "max-length": 50
     },
-    "hyprland/language": {
-        "format-en": "  English",
-        "format-pt": "  Português"
-    },
     "wlr/workspaces": {
         "on-click": "activate",
         "sort-by-number": true,
@@ -16,6 +12,6 @@
             "urgent": "",
             "active": "",
             "default": ""
-        },
+        }
     }
 }

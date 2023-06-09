@@ -13,4 +13,4 @@
         :width "0%"
         :height "0%"
     )
-{music})
+{music.status})

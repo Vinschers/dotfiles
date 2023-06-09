@@ -17,7 +17,7 @@
     "modules-right": [
         "custom/pacman",
         "group/hardware",
-        "hyprland/language",
+        "group/keyboard",
         "clock",
         "tray",
     ],
