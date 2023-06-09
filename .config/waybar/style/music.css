@@ -1,6 +1,16 @@
 #music {
     background-color: @bg;
-    color: @fg;
+    color: @light-blue;
+    padding-left: 12px;
     padding-right: 12px;
-    border-radius: 50px;
+}
+
+#music #cava {
+    color: @fg;
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+#music #image {
+    margin-left: 12px;
 }

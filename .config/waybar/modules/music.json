@@ -1,11 +1,11 @@
 {
     "group/music": {
         "orientation": "horizontal",
-        "modules": ["image#album-art", "custom/spotify"]
+        "modules": ["image#player", "cava", "wireplumber"]
     },
-    "image#album-art": {
-        "exec": "$HOME/.config/waybar/scripts/album_art.sh",
-        "size": 40,
+    "image#player": {
+        "exec": "echo \"$HOME/.config/waybar/images/$(r=\"$(playerctl metadata -p playerctld 2>/dev/null)\"; if [ -n \"$r\" ] && echo \"$r\" | grep -q 'spotify'; then echo 'spotify'; elif [ -n \"$r\" ]; then echo 'ytm'; fi)\".png",
+        "size": 24,
         "interval": 3
     },
     "custom/spotify": {
@@ -17,9 +17,24 @@
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
         "exec-if": "pgrep spotify"
     },
-    "custom/cava": {
-        "exec": "$HOME/.config/waybar/scripts/cava.sh",
-        "exec-if": "pgrep spotify",
-        "restart-interval": 10
+    "cava": {
+        "framerate": 60,
+        "bars": 16,
+        "method": "pipewire",
+        "source": "auto",
+        "stereo": false,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "sleep_timer": 1,
+        "input_delay": 2,
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": ["", "", ""]
     }
 }

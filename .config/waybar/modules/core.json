@@ -4,20 +4,19 @@
         "return-type": "json",
         "format-icons": {
             "pending-updates": " ",
-            "updated": ""
+            "updated": ""
         },
         "exec-if": "which waybar-updates",
         "exec": "waybar-updates"
     },
     "tray": {
-        "icon-size": 13,
-        "tooltip": false,
-        "spacing": 10
+        "icon-size": 24,
+        "tooltip": true,
+        "spacing": 12
     },
     "clock": {
         "interval": 1,
-        "tooltip": true,
-        "format": "{:%H:%M:%S}",
-        "tooltip-format": "{:%Y-%m-%d}"
+        "format": "<b>  {:%H:%M:%S}</b>",
+        "tooltip-format": "{:%d/%m/%Y}"
     }
 }

@@ -5,11 +5,11 @@
     ],
 
     "modules-left": [
-        "wlr/workspaces"
+        "group/music"
     ],
 
     "modules-center": [
-        "group/music"
+        "wlr/workspaces"
     ],
 
     "modules-right": [
