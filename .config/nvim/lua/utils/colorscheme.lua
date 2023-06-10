@@ -1,0 +1,1 @@
+/home/scherer/.config/themes/current/nvim.lua

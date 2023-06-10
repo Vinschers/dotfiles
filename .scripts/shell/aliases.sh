@@ -70,7 +70,8 @@ alias \
     ct="compact_tar" \
     cz="compact_zip" \
     lf="lfcd" \
-    v="env -u WAYLAND_DISPLAY neovide --multigrid"
+    nv="env -u WAYLAND_DISPLAY neovide --multigrid" \
+    v="nvim"
 
 # Utils
 alias \

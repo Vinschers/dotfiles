@@ -5,7 +5,7 @@ local M = {
 	priority = 1000, -- make sure to load this before all the other start plugins
 }
 
-M.name = "tokyonight-night"
+M.name = require("utils.colorscheme").name
 function M.config()
 	local status_ok, _ = pcall(vim.cmd.colorscheme, M.name)
 	if not status_ok then
