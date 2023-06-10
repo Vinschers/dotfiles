@@ -1,0 +1,11 @@
+{
+    "group/themes": {
+        "orientation": "horizontal",
+        "modules": ["custom/change-wallpaper"]
+    },
+    "custom/change-wallpaper": {
+        "format": "󰸉 ",
+        "on-click": "$HOME/.config/themes/update_wallpaper.sh n",
+        "on-click-right": "$HOME/.config/themes/update_wallpaper.sh p"
+    }
+}

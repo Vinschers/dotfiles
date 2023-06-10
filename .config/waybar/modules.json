@@ -1,5 +1,6 @@
 {
     "include": [
+        "$HOME/.config/waybar/modules/themes.json",
         "$HOME/.config/waybar/modules/keyboard.json",
         "$HOME/.config/waybar/modules/core.json",
         "$HOME/.config/waybar/modules/hardware.json",
