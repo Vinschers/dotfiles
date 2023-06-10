@@ -15,4 +15,4 @@ fi
 
 echo "$next_wallpaper" >"$themes_dir/wallpaper"
 
-swww img "$themes_dir/wallpapers/$next_wallpaper" --transition-bezier .43,1.19,1,.4 --transition-type grow --transition-duration 1 --transition-fps 60 --transition-pos bottom-right
+swww img "$themes_dir/wallpapers/$next_wallpaper" --transition-bezier .43,1.19,1,.4 --transition-type grow --transition-duration 1 --transition-fps 60 --transition-pos 0.917,0.968
