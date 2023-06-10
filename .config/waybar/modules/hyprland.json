@@ -7,11 +7,6 @@
     "wlr/workspaces": {
         "on-click": "activate",
         "sort-by-number": true,
-        "format": "{icon}",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        }
+        "format": "{name}"
     }
 }
