@@ -35,7 +35,7 @@ function M.config()
 			" " .. " Find project",
 			":lua require('telescope').extensions.projects.projects()<CR>"
 		),
-		dashboard.button("r", "󰄉 " .. " Recent files", ":Telescope oldfiles <CR>"),
+		dashboard.button("r", "󰄉 " .. " Recent files", ":Telescope oldfiles<CR>"),
 		dashboard.button("e", " " .. " New file", ":ene<CR>"),
 		dashboard.button(
 			"c",

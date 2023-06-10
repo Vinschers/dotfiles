@@ -66,11 +66,11 @@ alias \
     c='compile' \
     ex='extract' \
     o='xdg-open' \
-    v="nvim" \
     get-keys="xev" \
     ct="compact_tar" \
     cz="compact_zip" \
-    lf="lfcd"
+    lf="lfcd" \
+    v="env -u WAYLAND_DISPLAY neovide --multigrid"
 
 # Utils
 alias \
