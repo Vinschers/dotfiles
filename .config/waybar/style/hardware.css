@@ -12,18 +12,18 @@
 }
 
 #hardware #custom-cpu {
-    color: @dark-blue;
-    padding-left: 20px;
+    color: @color4;
 }
 
 #hardware #memory {
-    color: @purple;
+    color: @color5;
 }
 
 #hardware #disk {
-    color: @green;
+    color: @color2;
 }
 
 #hardware #custom-gpu {
-    color: @yellow;
+    padding-right: 6px;
+    color: @color6;
 }

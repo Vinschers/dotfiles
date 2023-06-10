@@ -3,7 +3,7 @@
 }
 
 #workspaces button {
-    color: @dark-fg;
+    color: @color8;
 }
 #workspaces button:last-child {
 }
@@ -11,7 +11,7 @@
     box-shadow: inherit;
     text-shadow: inherit;
     border: none;
-    background: @light-bg;
+    background: @color7;
 }
 
 #workspaces button.active {
