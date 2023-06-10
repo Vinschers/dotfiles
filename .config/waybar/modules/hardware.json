@@ -19,7 +19,7 @@
         "path": "/"
     },
     "custom/gpu": {
-        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "exec": "which nvidia-smi >/dev/null 2>/dev/null && nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
         "interval": 1,
         "format": "󱄄 {}% "
     }
