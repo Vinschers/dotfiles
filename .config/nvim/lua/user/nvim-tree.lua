@@ -59,6 +59,9 @@ function M.config()
 				},
 			},
 		},
+		git = {
+			ignore = false,
+		},
 	})
 end
 
