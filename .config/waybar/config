@@ -17,6 +17,7 @@
     "modules-right": [
         "custom/pacman",
         "group/hardware",
+        "group/batteries",
         "group/themes",
         "clock",
         "tray",
