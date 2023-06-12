@@ -12,4 +12,6 @@ eval "$(dircolors -b "$SCRIPTS_DIR/shell/.dir_colors")"
 
 source_directory "$SCRIPTS_DIR"/shell/
 
-env | grep -q '^NVIM=' || neofetch
+if ! env | grep -q '^NVIM='; then
+    neofetch
+fi
