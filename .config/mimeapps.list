@@ -38,3 +38,4 @@ application/xhtml_xml=librewolf.desktop
 image/webp=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
 x-scheme-handler/ftp=librewolf.desktop
+x-scheme-handler/postman=Postman.desktop
