@@ -9,8 +9,8 @@
 }
 
 @mixin window {
-    border: 1px solid $border;
-    box-shadow: 0 2px 3px $shadow;
+    border: 1px solid $bg;
+    box-shadow: 0 2px 3px $bg;
     margin: 5px 5px 10px;
     @include rounding;
 }
@@ -21,78 +21,63 @@
     transition: 200ms ease;
 }
 
-@import "css/music";
-@import "css/volume";
-@import "css/hololive";
-
-.bar {
-    color: $fg;
-
-    label {
-        font-size: 1.5rem;
-    }
+.music-window {
+    @include window;
 }
 
-.bar-item {
-    background-color: $bg;
-    border-radius: 12px;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
-
-tooltip {
-    background: $bg;
-    border: 1px solid $border;
+.music-cover-art {
+    background-position: center;
+    background-size: cover;
     border-radius: 8px;
-
-    label {
-        font-size: 1rem;
-    }
+    margin: 1em;
+    min-width: 170px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-.icon,
-.icon label {
-    font-family: Material Symbols Outlined;
+.music-box {
+    margin: 1rem 1rem 1rem 0;
 }
 
-.module {
-    margin: 0 5px;
-}
-
-.hour {
+.music-title {
+    font-size: 1.1rem;
     font-weight: bold;
-    padding-left: 5px;
 }
 
-.minute {
-    padding-right: 0.7rem;
+.music-artist {
+    padding-top: 1rem;
+    color: $color15;
+    padding-bottom: 1rem;
 }
 
-.date {
-    background: $bg;
-    color: $flamingo;
-    border-radius: 12px;
+.music-button label {
+    color: $color15;
+    font-size: 2rem;
+}
 
-    label {
-        font-size: 1.2rem;
+.music-time {
+    color: $color15;
+    margin: 0 1rem;
+}
+
+.music-bar scale {
+    highlight {
+        background-image: linear-gradient(to right, $color7, $color15);
+        border-radius: 24px;
     }
-}
 
-.bright-icon {
-    color: $yellow;
-}
-.module-bt {
-    font-size: 1.2rem;
+    trough {
+        border-radius: 24px;
+        margin-top: 0;
+        min-height: 10px;
+        min-width: 170px;
+    }
 }
 
 scale trough {
-    background-color: $bg1;
+    background-color: $color0;
     border-radius: 24px;
     margin: 0 1rem;
     min-height: 10px;
     min-width: 70px;
-}
-
-.workspaces {
-    margin-left: 10px;
 }

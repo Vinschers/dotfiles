@@ -1,3 +1,0 @@
-(defvar hololive_reveal false)
-(deflisten music "scripts/music")
-(defpoll hololive :interval "2m" "scripts/hololive")

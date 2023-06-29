@@ -1,5 +1,3 @@
-(include "./modules/variables.yuck")
-(include "./modules/hololive.yuck")
 (include "./windows/music.yuck")
 
 (defwidget closer [window]

@@ -1,22 +1,16 @@
 {
     "group/music": {
         "orientation": "horizontal",
-        "modules": ["image#player", "cava", "wireplumber"]
+        "modules": ["custom/media", "wireplumber"]
     },
-    "image#player": {
-        "exec": "echo \"$HOME/.config/waybar/images/$(r=\"$(playerctl metadata -p playerctld 2>/dev/null)\"; if [ -n \"$r\" ] && echo \"$r\" | grep -q 'spotify'; then echo 'spotify'; elif [ -n \"$r\" ]; then echo 'ytm'; fi)\".png",
-        "size": 24,
-        "interval": 3,
-        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh"
-    },
-    "custom/spotify": {
-        "format": "{icon} {}",
+    "custom/media": {
+        "format": "{}",
         "escape": true,
         "return-type": "json",
         "max-length": 40,
-        "smooth-scrolling-threshold": 10,
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
-        "exec-if": "pgrep spotify"
+        "exec": "$HOME/.config/waybar/scripts/music-waybar.sh 2> /dev/null",
+        "on-click": "$HOME/.config/waybar/scripts/toggle_music_widget.sh",
+        "on-click-right": "playerctl play-pause"
     },
     "cava": {
         "framerate": 60,

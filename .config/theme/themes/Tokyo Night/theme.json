@@ -1,0 +1,22 @@
+{
+    "background": "#1a1b26",
+    "foreground": "#c0caf5",
+    "color0": "#15161e",
+    "color1": "#f7768e",
+    "color2": "#9ece6a",
+    "color3": "#e0af68",
+    "color4": "#7aa2f7",
+    "color5": "#bb9af7",
+    "color6": "#7dcfff",
+    "color7": "#a9b1d6",
+    "color8": "#414868",
+    "color9": "#ff757f",
+    "color10": "#c3e88d",
+    "color11": "#ffc777",
+    "color12": "#82aaff",
+    "color13": "#c099ff",
+    "color14": "#86e1fc",
+    "color15": "#c8d3f5",
+    "nvim_plugin": "folke/tokyonight.nvim",
+    "nvim_theme": "tokyonight-night"
+}

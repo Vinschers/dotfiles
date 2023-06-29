@@ -1,6 +1,6 @@
 #music {
     background-color: @bg;
-    color: @color14;
+    color: @color3;
     padding-left: 12px;
     padding-right: 12px;
 }
@@ -11,6 +11,14 @@
     margin-left: 12px;
 }
 
-#music #image {
+#music #custom-media {
+    color: @color7;
+}
+
+#music #custom-media.c30 {
+    color: red;
+}
+
+#music #wireplumber {
     margin-left: 12px;
 }

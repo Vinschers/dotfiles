@@ -1,13 +1,8 @@
 {
-    "custom/pacman": {
-        "format": "{icon}{}",
-        "return-type": "json",
-        "format-icons": {
-            "pending-updates": " ",
-            "updated": ""
-        },
-        "exec-if": "which waybar-updates",
-        "exec": "waybar-updates"
+    "custom/updates": {
+        "format": "{}",
+        "exec": "$HOME/.config/waybar/scripts/package-updates.sh",
+        "interval": 60
     },
     "tray": {
         "icon-size": 24,

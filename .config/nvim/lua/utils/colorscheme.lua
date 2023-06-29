@@ -1,1 +1,1 @@
-/home/scherer/.config/themes/current/nvim.lua
+/home/scherer/.config/theme/files/nvim.lua

@@ -15,7 +15,7 @@ alias \
     dmenu='dmenu -x 12 -y 12 -z 1896' \
     htop="open_htop" \
     gtop="open_gtop" \
-    nvim="open_nvim" \
+    nvim="nvim --listen /tmp/nvimsocket" \
     bash='bash --rcfile $BASHDIR/bashrc.sh' \
     yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
@@ -71,7 +71,7 @@ alias \
     cz="compact_zip" \
     lf="lfcd" \
     nv="env -u WAYLAND_DISPLAY neovide --multigrid" \
-    v="nvim"
+    v="nvim --listen /tmp/nvimsocket"
 
 # Utils
 alias \

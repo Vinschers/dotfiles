@@ -1,7 +1,7 @@
 {
     "group/hardware": {
         "orientation": "horizontal",
-        "modules": ["custom/cpu", "memory", "disk", "custom/gpu"]
+        "modules": ["custom/cpu", "memory", "custom/gpu", "disk"]
     },
     "custom/cpu": {
         "interval": 1,
@@ -21,6 +21,6 @@
     "custom/gpu": {
         "exec": "which nvidia-smi >/dev/null 2>/dev/null && nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
         "interval": 1,
-        "format": "󱄄 {}% "
+        "format": "󱄄 {}%"
     }
 }

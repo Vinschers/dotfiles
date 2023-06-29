@@ -1,3 +1,5 @@
+(deflisten music "scripts/music-eww.sh")
+
 (defwidget music []
   (box
     :class "music-window"
@@ -8,6 +10,7 @@
       :style "background-image: url(\"${music.cover}\");")
     (box
       :orientation "v"
+      :space-evenly false
       :class "music-box"
       (label
         :class "music-title"
@@ -42,10 +45,9 @@
             :onchange "playerctl position \"$(echo \"{} * $(playerctl metadata mpris:length) / 1000000 / 100\" | bc)\""
             :value {music.position}))))))
 
-(defwindow music_1
+(defwindow music
   :stacking "fg"
   :focusable false
-  :monitor 0
   :geometry (geometry
              :x "0%"
              :y "0%"
@@ -54,28 +56,8 @@
              :anchor "top left")
   (music))
 
-(defwindow music_2
-  :stacking "fg"
-  :focusable false
-  :monitor 1
-  :geometry (geometry
-             :x "0%"
-             :y "0%"
-             :width "0%"
-             :height "0%"
-             :anchor "top left")
-  (music))
-
-(defwindow closer_music_1
-  :monitor 0
+(defwindow closer_music
   :geometry (geometry :width "100%" :height "100%")
   :stacking "fg"
   :focusable false
-  (closer :window "music_1"))
-
-(defwindow closer_music_2
-  :monitor 1
-  :geometry (geometry :width "100%" :height "100%")
-  :stacking "fg"
-  :focusable false
-  (closer :window "music_2"))
+  (closer :window "music"))

@@ -1,13 +1,14 @@
 local M = {
-	"folke/tokyonight.nvim",
-	commit = "e52c41314e83232840d6970e6b072f9fba242eb9",
+    "folke/tokyonight.nvim",
 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
 	priority = 1000, -- make sure to load this before all the other start plugins
+    dependencies = {
+        "catppuccin/nvim"
+    }
 }
 
-M.name = require("utils.colorscheme").name
 function M.config()
-	local status_ok, _ = pcall(vim.cmd.colorscheme, M.name)
+	local status_ok, _ = pcall(vim.cmd.colorscheme, require("utils.colorscheme").theme)
 	if not status_ok then
 		return
 	end
