@@ -14,7 +14,7 @@ static const int smartgaps_fact         = 1;   /* gap factor when there is only 
 static const char autostartblocksh[]    = "autostart_blocking.sh";
 static const char autostartsh[]         = "autostart.sh";
 static const char dwmdir[]              = "dwm";
-static const char localshare[]          = ".scripts";
+static const char localshare[]          = ".config/X11/suckless/dwm";
 static const int showbar                = 0;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
 
