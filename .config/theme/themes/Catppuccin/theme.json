@@ -30,5 +30,6 @@
     "color_cava_8": "#898ffa",
     "btop_theme": "elementarish",
     "bat_theme": "Catppuccin-mocha",
+    "zathura_theme": "catppuccin-mocha",
     "nvim_theme": "catppuccin"
 }

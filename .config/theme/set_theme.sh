@@ -63,6 +63,7 @@ load_files() {
 	replace_file "$HOME/.config/alacritty/theme.template.yml" "$HOME/.config/alacritty/theme.yml"
 	replace_file "$HOME/.config/cava/config.template" "$HOME/.config/cava/config"
 	replace_file "$HOME/.config/bat/config.template" "$HOME/.config/bat/config"
+	replace_file "$HOME/.config/zathura/zathurarc.template" "$HOME/.config/zathura/zathurarc"
 
 	chmod +x "$HOME/.config/shell/change_theme.sh"
 }

@@ -30,5 +30,6 @@
     "color_cava_8": "#536c9e",
     "btop_theme": "tokyo-storm",
     "bat_theme": "Enki-Tokyo-Night",
+    "zathura_theme": "tokyo-night",
     "nvim_theme": "tokyonight-night"
 }

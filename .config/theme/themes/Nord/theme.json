@@ -30,5 +30,6 @@
     "color_cava_8": "#88a8d0",
     "btop_theme": "nord",
     "bat_theme": "Nord",
+    "zathura_theme": "nord",
     "nvim_theme": "nord"
 }
