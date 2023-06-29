@@ -14,7 +14,7 @@ get_info() {
 
 	position_time="$(date -d@"$((position / 1000000))" +%M:%S)"
 
-    if [ -n "$length" ]; then
+    if [ "$length" -gt 0 ]; then
 	    position="$((100 * position / length))"
     else
         position="50"
