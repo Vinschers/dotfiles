@@ -65,6 +65,7 @@ load_files() {
 	replace_file "$HOME/.config/bat/config.template" "$HOME/.config/bat/config"
 	replace_file "$HOME/.config/zathura/zathurarc.template" "$HOME/.config/zathura/zathurarc"
 	replace_file "$HOME/.config/wofi/style.template.css" "$HOME/.config/wofi/style.css"
+	replace_file "$HOME/.config/wlogout/style.template.css" "$HOME/.config/wlogout/style.css"
 
 	chmod +x "$HOME/.config/shell/change_theme.sh"
 }
