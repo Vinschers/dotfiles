@@ -31,6 +31,12 @@ create_config_symlinks() {
 
 	rm -f "$HOME/.config/eww/css/_colors.scss"
 	ln -s "$HOME/.config/theme/files/eww.scss" "$HOME/.config/eww/css/_colors.scss"
+
+	rm -f "$HOME/.config/cava/config"
+	ln -s "$HOME/.config/theme/files/cava.config" "$HOME/.config/cava/config"
+
+	rm -f "$HOME/.config/btop/themes/btop.theme"
+	ln -s "/usr/share/btop/themes/$btop_theme.theme" "$HOME/.config/btop/themes/btop.theme"
 }
 
 read_variable() {
@@ -66,6 +72,17 @@ read_variables() {
 	gtk_icon="$(read_variable "gtk_icon")"
 	gtk_cursor="$(read_variable "gtk_cursor")"
 
+    color_cava_1="$(read_variable "color_cava_1" | sed 's|#||g')"
+    color_cava_2="$(read_variable "color_cava_2" | sed 's|#||g')"
+    color_cava_3="$(read_variable "color_cava_3" | sed 's|#||g')"
+    color_cava_4="$(read_variable "color_cava_4" | sed 's|#||g')"
+    color_cava_5="$(read_variable "color_cava_5" | sed 's|#||g')"
+    color_cava_6="$(read_variable "color_cava_6" | sed 's|#||g')"
+    color_cava_7="$(read_variable "color_cava_7" | sed 's|#||g')"
+    color_cava_8="$(read_variable "color_cava_8" | sed 's|#||g')"
+
+    btop_theme="$(read_variable "btop_theme")"
+
 	nvim_theme="$(read_variable "nvim_theme")"
 }
 
@@ -90,7 +107,14 @@ replace_file() {
 		-e "s|\${color13}|$color13|g" \
 		-e "s|\${color14}|$color14|g" \
 		-e "s|\${color15}|$color15|g" \
-		-e "s|\${gtk}|$gtk_theme|g" \
+		-e "s|\${color_cava_1}|$color_cava_1|g" \
+		-e "s|\${color_cava_2}|$color_cava_2|g" \
+		-e "s|\${color_cava_3}|$color_cava_3|g" \
+		-e "s|\${color_cava_4}|$color_cava_4|g" \
+		-e "s|\${color_cava_5}|$color_cava_5|g" \
+		-e "s|\${color_cava_6}|$color_cava_6|g" \
+		-e "s|\${color_cava_7}|$color_cava_7|g" \
+		-e "s|\${color_cava_8}|$color_cava_8|g" \
 		-e "s|\${nvim_theme}|$nvim_theme|g" "$file" >"$HOME/.config/theme/files/$1"
 }
 
@@ -109,6 +133,8 @@ reload_all() {
     gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
     gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
     gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
+
+    pkill -USR1 cava
 }
 
 main() {
@@ -122,6 +148,7 @@ main() {
 	replace_file "waybar.css"
 	replace_file "eww.scss"
 	replace_file "alacritty.yml"
+	replace_file "cava.config"
 
 	chmod +x "$HOME/.config/theme/files/shell.sh"
 

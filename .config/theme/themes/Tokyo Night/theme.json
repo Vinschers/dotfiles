@@ -20,5 +20,14 @@
     "gtk_theme": "Tokyonight-Dark-B",
     "gtk_icon": "TokyoNight-SE",
     "gtk_cursor": "Adwaita",
+    "color_cava_1": "#b4f9f8",
+    "color_cava_2": "#89ddff",
+    "color_cava_3": "#2ac3de",
+    "color_cava_4": "#0db9d7",
+    "color_cava_5": "#7dcfff",
+    "color_cava_6": "#7aa2f7",
+    "color_cava_7": "#3d59a1",
+    "color_cava_8": "#536c9e",
+    "btop_theme": "tokyo-storm",
     "nvim_theme": "tokyonight-night"
 }

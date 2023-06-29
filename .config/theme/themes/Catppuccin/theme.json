@@ -20,5 +20,14 @@
     "gtk_theme": "Catppuccin-Mocha-B",
     "gtk_icon": "Catppuccin-Mocha",
     "gtk_cursor": "Adwaita",
+    "color_cava_1": "#89d0fa",
+    "color_cava_2": "#89c7fa",
+    "color_cava_3": "#89bdfa",
+    "color_cava_4": "#89b4fa",
+    "color_cava_5": "#89abfa",
+    "color_cava_6": "#89a1fa",
+    "color_cava_7": "#8998fa",
+    "color_cava_8": "#898ffa",
+    "btop_theme": "elementarish",
     "nvim_theme": "catppuccin"
 }
