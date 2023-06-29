@@ -31,7 +31,7 @@ get_json() {
 
 get_info() {
 	playerctl -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
-		if [ "$cover" != "$prevCover" ]; then
+		if [ -n "$cover" ] && [ "$cover" != "$prevCover" ]; then
 			cover_img=$(get_cover "$cover")
 
 			if [ -n "$cover_img" ]; then
@@ -53,6 +53,7 @@ get_info() {
 
 		json="$(get_json)"
 		echo "$json" >"$HOME/.cache/music/info.json"
+        echo "$json"
 
 		prevCover=$cover
 	done
