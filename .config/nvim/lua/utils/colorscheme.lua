@@ -1,1 +1,5 @@
-/home/scherer/.config/theme/files/nvim.lua
+local M = {
+    theme = "tokyonight-night"
+}
+
+return M

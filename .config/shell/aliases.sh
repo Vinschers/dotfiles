@@ -13,8 +13,6 @@ alias \
 	diff="diff --color=auto" \
     yay='yay --sudoloop' \
     dmenu='dmenu -x 12 -y 12 -z 1896' \
-    htop="open_htop" \
-    gtop="open_gtop" \
     bash='bash --rcfile $BASHDIR/bashrc.sh' \
     yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 

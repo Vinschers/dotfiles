@@ -45,4 +45,3 @@ java-debug/
 vscode-java-test/
 lazy-lock.json
 neovide*
-./lua/utils/colorscheme.lua

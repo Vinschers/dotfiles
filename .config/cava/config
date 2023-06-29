@@ -1,0 +1,18 @@
+[general]
+framerate = 60
+
+[color]
+gradient = 1
+gradient_count = 8
+gradient_color_1 = '#b4f9f8'
+gradient_color_2 = '#89ddff'
+gradient_color_3 = '#2ac3de'
+gradient_color_4 = '#0db9d7'
+gradient_color_5 = '#7dcfff'
+gradient_color_6 = '#7aa2f7'
+gradient_color_7 = '#3d59a1'
+gradient_color_8 = '#536c9e'
+
+[smoothing]
+noise_reduction = 0.77
+
