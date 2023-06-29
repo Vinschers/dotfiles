@@ -17,6 +17,5 @@
     "color13": "#ea76cb",
     "color14": "#179299",
     "color15": "#bcc0cc",
-    "nvim_plugin": "catppuccin/nvim",
     "nvim_theme": "catppuccin"
 }

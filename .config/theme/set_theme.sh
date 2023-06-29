@@ -6,7 +6,11 @@ get_theme() {
 	if [ -z "$theme" ]; then
 		theme="$(/bin/ls "$HOME/.config/theme/themes/" | head -1)"
 	elif [ -n "$1" ]; then
-		if [ "$1" = "n" ]; then
+		if [ "$1" = "select" ]; then
+			selected_theme="$(ls -1 "$HOME/.config/theme/themes" | wofi --show dmenu)"
+            [ "$selected_theme" = "$theme" ] && exit 0
+			[ -n "$selected_theme" ] && theme="$selected_theme"
+		elif [ "$1" = "n" ]; then
 			theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | grep -A1 "$theme" | grep -v "$theme")"
 			[ -z "$theme" ] && theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | head -1)"
 		elif [ "$1" = "p" ]; then
@@ -89,10 +93,13 @@ reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 	sleep 0.5
 
-    nvr -sc "colorscheme $nvim_theme"
+	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
+        nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
+	done
+
 	killall -s USR1 zsh 2>/dev/null
 
-    pkill -USR2 waybar
+	pkill -USR2 waybar
 }
 
 main() {
