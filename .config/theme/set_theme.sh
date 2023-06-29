@@ -34,7 +34,7 @@ read_variable() {
 	variable="$1"
 	json_file="$HOME/.config/theme/themes/$theme/theme.json"
 
-	jq -r ".$variable" "$json_file"
+	jaq -r ".$variable" "$json_file"
 }
 
 read_variables() {
@@ -51,7 +51,7 @@ replace_file() {
 	template="$1"
 	file="$2"
 
-	perl -pe "s(\\$\\{(.*)\\})(\`jq -r '.\$1' '$HOME/.config/theme/themes/$theme/theme.json' | sed 's|#||g' | tr -d '\n'\`)ge" <"$template" >"$file"
+	perl -pe "s(\\$\\{(.*)\\})(\`jaq -r '.\$1' '$HOME/.config/theme/themes/$theme/theme.json' | sed 's|#||g' | tr -d '\n'\`)ge" <"$template" >"$file"
 }
 
 load_files() {
@@ -64,6 +64,7 @@ load_files() {
 	replace_file "$HOME/.config/cava/config.template" "$HOME/.config/cava/config"
 	replace_file "$HOME/.config/bat/config.template" "$HOME/.config/bat/config"
 	replace_file "$HOME/.config/zathura/zathurarc.template" "$HOME/.config/zathura/zathurarc"
+	replace_file "$HOME/.config/wofi/style.template.css" "$HOME/.config/wofi/style.css"
 
 	chmod +x "$HOME/.config/shell/change_theme.sh"
 }
