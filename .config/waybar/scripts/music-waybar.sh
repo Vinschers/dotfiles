@@ -14,9 +14,9 @@ get_info() {
 		text="$artist - $title"
 
 		if [ "$status" = "Playing" ]; then
-			text="󰐊 $text"
-		else
 			text=" $text"
+		else
+			text="󰐊 $text"
 		fi
 	fi
 
