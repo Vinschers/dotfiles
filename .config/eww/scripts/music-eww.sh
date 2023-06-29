@@ -5,7 +5,7 @@ get_info() {
 
     if ! [ -f "$info_file" ]; then
         echo "{}"
-        return;
+        return
     fi
 
 	status="$(jq -r '.status' "$info_file")"
