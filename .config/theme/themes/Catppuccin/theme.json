@@ -17,5 +17,8 @@
     "color13": "#ea76cb",
     "color14": "#179299",
     "color15": "#bcc0cc",
+    "gtk_theme": "Catppuccin-Mocha-B",
+    "gtk_icon": "Catppuccin-Mocha",
+    "gtk_cursor": "Adwaita",
     "nvim_theme": "catppuccin"
 }

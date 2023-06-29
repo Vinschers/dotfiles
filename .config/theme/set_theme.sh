@@ -62,6 +62,10 @@ read_variables() {
 	color14="$(read_variable "color14" | sed 's|#||g')"
 	color15="$(read_variable "color15" | sed 's|#||g')"
 
+	gtk_theme="$(read_variable "gtk_theme")"
+	gtk_icon="$(read_variable "gtk_icon")"
+	gtk_cursor="$(read_variable "gtk_cursor")"
+
 	nvim_theme="$(read_variable "nvim_theme")"
 }
 
@@ -86,6 +90,7 @@ replace_file() {
 		-e "s|\${color13}|$color13|g" \
 		-e "s|\${color14}|$color14|g" \
 		-e "s|\${color15}|$color15|g" \
+		-e "s|\${gtk}|$gtk_theme|g" \
 		-e "s|\${nvim_theme}|$nvim_theme|g" "$file" >"$HOME/.config/theme/files/$1"
 }
 
@@ -100,6 +105,10 @@ reload_all() {
 	killall -s USR1 zsh 2>/dev/null
 
 	pkill -USR2 waybar
+
+    gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
+    gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
+    gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
 }
 
 main() {

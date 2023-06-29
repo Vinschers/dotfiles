@@ -17,5 +17,8 @@
     "color13": "#c099ff",
     "color14": "#86e1fc",
     "color15": "#c8d3f5",
+    "gtk_theme": "Tokyonight-Dark-B",
+    "gtk_icon": "TokyoNight-SE",
+    "gtk_cursor": "Adwaita",
     "nvim_theme": "tokyonight-night"
 }

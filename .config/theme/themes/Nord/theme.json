@@ -17,5 +17,8 @@
     "color13": "#b48ead",
     "color14": "#8fbcbb",
     "color15": "#eceff4",
+    "gtk_theme": "Nordic-darker",
+    "gtk_icon": "Zafiro-Nord-Black",
+    "gtk_cursor": "Adwaita",
     "nvim_theme": "nord"
 }

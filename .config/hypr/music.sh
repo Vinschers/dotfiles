@@ -29,31 +29,37 @@ get_json() {
 		'{"player": $player, "artist": $artist, "title": $title, "status": $status, "position": $position, "length": $length, "cover": $cover, "color1": $color1, "color2": $color2}'
 }
 
-rm -f "$HOME/.cache/music/info.json" 2>/dev/null
+get_info() {
+	playerctl -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
+		if [ "$cover" != "$prevCover" ]; then
+			cover_img=$(get_cover "$cover")
 
-playerctl -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
-	if [ "$cover" != "$prevCover" ]; then
-		cover_img=$(get_cover "$cover")
+			if [ -n "$cover_img" ]; then
+				cols=$(convert "$cover_img" -colors 2 -format "%c" histogram:info: | awk '{print $3}')
+				color1=$(echo "$cols" | head -1 | awk '{print substr($0,1,7)}')
+				color2=$(echo "$cols" | tail -1 | awk '{print substr($0,1,7)}')
+			else
+				color1="#1e1e2e"
+				color2="#28283d"
+			fi
 
-		if [ -n "$cover_img" ]; then
-			cols=$(convert "$cover_img" -colors 2 -format "%c" histogram:info: | awk '{print $3}')
-			color1=$(echo "$cols" | head -1 | awk '{print substr($0,1,7)}')
-			color2=$(echo "$cols" | tail -1 | awk '{print substr($0,1,7)}')
-		else
-			color1="#1e1e2e"
-			color2="#28283d"
+			position="0"
 		fi
 
-		position="0"
-	fi
+		[ -z "$length" ] && length=$((2 * position))
 
-	[ -z "$length" ] && length=$((2 * position))
+		player="$(playerctl -l | head -1)"
+		player="${player%%.*}"
 
-	player="$(playerctl -l | head -1)"
-	player="${player%%.*}"
+		json="$(get_json)"
+		echo "$json" >"$HOME/.cache/music/info.json"
 
-	json="$(get_json)"
-	echo "$json" >"$HOME/.cache/music/info.json"
+		prevCover=$cover
+	done
+}
 
-	prevCover=$cover
+rm -f "$HOME/.cache/music/info.json" 2>/dev/null
+
+while true; do
+    get_info
 done

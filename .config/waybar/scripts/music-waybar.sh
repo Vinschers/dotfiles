@@ -18,6 +18,9 @@ get_info() {
 		else
 			text="󰐊 $text"
 		fi
+    else
+        echo "{}"
+        return
 	fi
 
 	tooltip="$(date -d@"$((1 + position / 1000000))" +%M:%S) / $(date -d@"$((length / 1000000))" +%M:%S)"
