@@ -29,5 +29,6 @@
     "color_cava_7": "#88aed0",
     "color_cava_8": "#88a8d0",
     "btop_theme": "nord",
+    "bat_theme": "Nord",
     "nvim_theme": "nord"
 }

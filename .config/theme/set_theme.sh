@@ -62,13 +62,13 @@ load_files() {
 	replace_file "$HOME/.config/eww/css/_colors.template.scss" "$HOME/.config/eww/css/_colors.scss"
 	replace_file "$HOME/.config/alacritty/theme.template.yml" "$HOME/.config/alacritty/theme.yml"
 	replace_file "$HOME/.config/cava/config.template" "$HOME/.config/cava/config"
+	replace_file "$HOME/.config/bat/config.template" "$HOME/.config/bat/config"
 
 	chmod +x "$HOME/.config/shell/change_theme.sh"
 }
 
 reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
-	sleep 0.5
 
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
 		nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
@@ -79,6 +79,8 @@ reload_all() {
 	pkill -USR2 waybar 2>/dev/null
 
 	killall -s USR1 cava 2>/dev/null
+
+    bat cache --build >/dev/null
 
 	gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
 	gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"

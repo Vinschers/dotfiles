@@ -29,5 +29,6 @@
     "color_cava_7": "#3d59a1",
     "color_cava_8": "#536c9e",
     "btop_theme": "tokyo-storm",
+    "bat_theme": "Enki-Tokyo-Night",
     "nvim_theme": "tokyonight-night"
 }
