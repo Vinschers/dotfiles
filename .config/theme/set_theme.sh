@@ -130,11 +130,11 @@ reload_all() {
 
 	pkill -USR2 waybar
 
+    pkill -USR1 cava
+
     gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
     gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
     gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
-
-    pkill -USR1 cava
 }
 
 main() {
