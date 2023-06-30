@@ -1,0 +1,7 @@
+ignore noexec ${HOME}
+ignore apparmor
+ignore disable-mnt
+
+whitelist ${HOME}/.local/share/jupyter/runtime
+whitelist ${HOME}/hdd
+whitelist /mnt/hdd

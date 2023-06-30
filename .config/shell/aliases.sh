@@ -90,8 +90,7 @@ alias \
     train="sl -acdeGF" \
     sctl="sudo systemctl" \
     audio="systemctl --user restart pipewire.service" \
-    jn="jupyter notebook" \
-    spotify='LD_PRELOAD="$SCRIPTS_DIR/programs/spotifywm/spotifywm.so" spotify'
+    jn="jupyter notebook"
 
 # Development
 alias \
