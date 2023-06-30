@@ -1,11 +1,16 @@
 #!/bin/sh
 
-create_symlink() {
-	ln -fs "$1" "$2"
-}
-
 create_config_symlinks() {
-	create_symlink "/usr/share/btop/themes/$btop_theme.theme" "$HOME/.config/btop/themes/btop.theme"
+	ln -fs "/usr/share/btop/themes/$btop_theme.theme" "$HOME/.config/btop/themes/btop.theme"
+	for file in "$HOME/.config/spicetify/Themes/$spicetify_theme"/*; do
+		ln -fs "$file" "$HOME/.config/spicetify/Themes/default"
+	done
+
+	for file in "$HOME/.config/spicetify/Themes/default"/*; do
+		[ -e "$HOME/.config/spicetify/Themes/$spicetify_theme/$(basename "$file")" ] || rm -rf "$file"
+	done
+
+	spicetify config color_scheme "$spicetify_color_scheme"
 }
 
 read_variable() {
@@ -26,7 +31,6 @@ read_variables() {
 
 	spicetify_theme="$(read_variable "spicetify_theme")"
 	spicetify_color_scheme="$(read_variable "spicetify_color_scheme")"
-	spicetify_extension="$(read_variable "spicetify_extension")"
 }
 
 replace_file() {
@@ -51,6 +55,21 @@ load_files() {
 	replace_file "$HOME/.config/dunst/dunstrc.template" "$HOME/.config/dunst/dunstrc"
 
 	chmod +x "$HOME/.config/shell/change_theme.sh"
+
+	sed -i "$HOME/.local/share/nwg-look/gsettings" \
+		-e "s/gtk-theme=.*/gtk-theme=$gtk_theme/g" \
+		-e "s/icon-theme=.*/icon-theme=$gtk_icon/g" \
+		-e "s/cursor-theme=.*/cursor-theme=$gtk_cursor/g"
+
+	sed -i "$HOME/.config/gtk-2.0/gtkrc" \
+		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/g" \
+		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icon\"/g" \
+		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/g"
+
+	sed -i "$HOME/.config/gtk-3.0/settings.ini" \
+		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/g" \
+		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icon\"/g" \
+		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/g"
 }
 
 reload_all() {
@@ -58,29 +77,21 @@ reload_all() {
 
 	killall -s USR1 zsh 2>/dev/null
 	killall -s USR1 cava 2>/dev/null
-	killall dunst
+	pkill dunst && hyprctl dispatch exec dunst >/dev/null
 
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
 		nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
 	done
 
-	spicetify config current_theme "$spicetify_theme" color_scheme "$spicetify_color_scheme" -q
-
-	spotify_ws="$(hyprctl -j workspaces | jaq -r '.[] | select(.lastwindowtitle=="Spotify") | .id')"
-	spicetify apply -q
-	if [ -n "$spotify_ws" ]; then
-		sleep 2
-		hyprctl dispatch exec "[workspace $spotify_ws silent] spotify" >/dev/null
-		sleep 2
-		playerctl -p spotify play
-	fi
-
-	gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
-	gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
-	gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
+	nwg-look -a >/dev/null 2>/dev/null
 
 	pkill -USR2 waybar 2>/dev/null
-    pgrep waybar || hyprctl dispatch exec waybar >/dev/null
+	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
+
+	if pgrep spotify >/dev/null; then
+		spicetify watch -s &
+		sleep 1 && pkill spicetify
+	fi
 }
 
 main() {
