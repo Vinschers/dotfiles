@@ -45,5 +45,5 @@ sudo chmod a+wr /opt/spotify/Apps -R
 ```
 
 # Showcase
-![](/.scripts/pictures/picture1.png)
-![](/.scripts/pictures/picture2.png)
+![](/.local/share/assets/picture1.png)
+![](/.local/share/assets/picture2.png)
