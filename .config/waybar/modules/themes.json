@@ -10,7 +10,7 @@
     },
     "image#change-theme": {
         "exec": "echo \"$HOME/.config/waybar/images/theme.png\"",
-        "on-click": "$HOME/.config/theme/set_theme.sh n",
-        "on-click-right": "$HOME/.config/theme/set_theme.sh p"
+        "on-click": "$HOME/.config/theme/switch_theme.sh n",
+        "on-click-right": "$HOME/.config/theme/switch_theme.sh p"
     }
 }

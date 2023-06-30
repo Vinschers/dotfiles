@@ -1,27 +1,5 @@
 #!/bin/sh
 
-get_theme() {
-	theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
-
-	if [ -z "$theme" ]; then
-		theme="$(/bin/ls "$HOME/.config/theme/themes/" | head -1)"
-	elif [ -n "$1" ]; then
-		if [ "$1" = "select" ]; then
-			selected_theme="$(ls -1 "$HOME/.config/theme/themes" | wofi --show dmenu)"
-			[ "$selected_theme" = "$theme" ] && exit 0
-			[ -n "$selected_theme" ] && theme="$selected_theme"
-		elif [ "$1" = "n" ]; then
-			theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | grep -A1 "$theme" | grep -v "$theme")"
-			[ -z "$theme" ] && theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | head -1)"
-		elif [ "$1" = "p" ]; then
-			theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | grep -B1 "$theme" | grep -v "$theme")"
-			[ -z "$theme" ] && theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | tail -1)"
-		fi
-	fi
-
-	echo "$theme" >"$HOME/.config/theme/current"
-}
-
 create_symlink() {
 	ln -fs "$1" "$2"
 }
@@ -66,6 +44,7 @@ load_files() {
 	replace_file "$HOME/.config/zathura/zathurarc.template" "$HOME/.config/zathura/zathurarc"
 	replace_file "$HOME/.config/wofi/style.template.css" "$HOME/.config/wofi/style.css"
 	replace_file "$HOME/.config/wlogout/style.template.css" "$HOME/.config/wlogout/style.css"
+	replace_file "$HOME/.config/dunst/dunstrc.template" "$HOME/.config/dunst/dunstrc"
 
 	chmod +x "$HOME/.config/shell/change_theme.sh"
 }
@@ -73,25 +52,22 @@ load_files() {
 reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 
-	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
-		nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
-	done
-
-	killall -s USR1 zsh 2>/dev/null
-
-	pkill -USR2 waybar 2>/dev/null
-
-	killall -s USR1 cava 2>/dev/null
-
-    bat cache --build >/dev/null
-
 	gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
 	gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
 	gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
+
+	killall -s USR1 zsh 2>/dev/null
+	pkill -USR2 waybar 2>/dev/null
+	killall -s USR1 cava 2>/dev/null
+	killall dunst
+
+	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
+		nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
+	done
 }
 
 main() {
-	get_theme "$1"
+	theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
 
 	read_variables
 
@@ -102,4 +78,4 @@ main() {
 	reload_all
 }
 
-main "$@"
+main
