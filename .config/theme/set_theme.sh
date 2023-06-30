@@ -10,7 +10,7 @@ create_config_symlinks() {
 		[ -e "$HOME/.config/spicetify/Themes/$spicetify_theme/$(basename "$file")" ] || rm -rf "$file"
 	done
 
-	spicetify config color_scheme "$spicetify_color_scheme"
+	spicetify config color_scheme "$spicetify_color_scheme" -q
 }
 
 read_variable() {
@@ -85,13 +85,13 @@ reload_all() {
 
 	nwg-look -a >/dev/null 2>/dev/null
 
-	pkill -USR2 waybar 2>/dev/null
-	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
-
 	if pgrep spotify >/dev/null; then
-		spicetify watch -s &
+		spicetify -s watch &
 		sleep 1 && pkill spicetify
 	fi
+
+	pkill -USR2 waybar 2>/dev/null
+	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
 }
 
 main() {
