@@ -8,7 +8,7 @@ handle() {
         name="$(( created_ws % 10 ))"
         [ "$name" = "0" ] && name="10"
 
-        hyprctl dispatch renameworkspace "$created_ws" "$name"
+        hyprctl dispatch renameworkspace "$created_ws" "$name​"
     fi
 }
 

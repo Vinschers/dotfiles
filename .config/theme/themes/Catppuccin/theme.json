@@ -31,5 +31,7 @@
     "btop_theme": "elementarish",
     "bat_theme": "Catppuccin-mocha",
     "zathura_theme": "catppuccin-mocha",
+    "spicetify_theme": "catppuccin-mocha",
+    "spicetify_color_scheme": "lavender",
     "nvim_theme": "catppuccin"
 }

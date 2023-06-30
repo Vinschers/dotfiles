@@ -31,5 +31,7 @@
     "btop_theme": "tokyo-storm",
     "bat_theme": "Enki-Tokyo-Night",
     "zathura_theme": "tokyo-night",
+    "spicetify_theme": "Tokyo-Night",
+    "spicetify_color_scheme": "Night",
     "nvim_theme": "tokyonight-night"
 }

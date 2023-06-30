@@ -31,5 +31,7 @@
     "btop_theme": "nord",
     "bat_theme": "Nord",
     "zathura_theme": "nord",
+    "spicetify_theme": "Nord",
+    "spicetify_color_scheme": "Spotify",
     "nvim_theme": "nord"
 }

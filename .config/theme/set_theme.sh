@@ -23,6 +23,10 @@ read_variables() {
 	btop_theme="$(read_variable "btop_theme")"
 
 	nvim_theme="$(read_variable "nvim_theme")"
+
+	spicetify_theme="$(read_variable "spicetify_theme")"
+	spicetify_color_scheme="$(read_variable "spicetify_color_scheme")"
+	spicetify_extension="$(read_variable "spicetify_extension")"
 }
 
 replace_file() {
@@ -52,18 +56,31 @@ load_files() {
 reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 
-	gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
-	gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
-	gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
-
 	killall -s USR1 zsh 2>/dev/null
-	pkill -USR2 waybar 2>/dev/null
 	killall -s USR1 cava 2>/dev/null
 	killall dunst
 
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
 		nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
 	done
+
+	spicetify config current_theme "$spicetify_theme" color_scheme "$spicetify_color_scheme" -q
+
+	spotify_ws="$(hyprctl -j workspaces | jaq -r '.[] | select(.lastwindowtitle=="Spotify") | .id')"
+	spicetify apply -q
+	if [ -n "$spotify_ws" ]; then
+		sleep 2
+		hyprctl dispatch exec "[workspace $spotify_ws silent] spotify" >/dev/null
+		sleep 2
+		playerctl -p spotify play
+	fi
+
+	gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
+	gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
+	gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
+
+	pkill -USR2 waybar 2>/dev/null
+    pgrep waybar || hyprctl dispatch exec waybar >/dev/null
 }
 
 main() {
