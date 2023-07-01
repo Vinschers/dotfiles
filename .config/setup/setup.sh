@@ -26,3 +26,5 @@ check() {
 "$setup_dir/scripts/git.sh"
 
 check "Setup SSD trim?" 1 && sudo systemctl enable fstrim.timer fstrim.service
+
+/bin/zsh

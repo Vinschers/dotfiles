@@ -16,7 +16,7 @@ install_packages() {
 	[ -f "$pkgs_file" ] || exit 0
 
 	while read -r pkg; do
-        yay --sudoloop --noconfirm --needed -S "$pkg" >/dev/null || errors="$errors $pkg"
+		yay --sudoloop --noconfirm --needed -S "$pkg" >/dev/null 2>/dev/null || errors="$errors $pkg"
 	done <"$pkgs_file"
 }
 
@@ -58,8 +58,8 @@ setup_spicetify() {
 	sudo chgrp -R spicetify /opt/spotify/Apps
 	sudo chmod 775 /opt/spotify
 	sudo chmod 775 -R /opt/spotify/Apps
-    spicetify backup
-    mkdir -p "$HOME/.config/spicetify/Themes/default"
+	spicetify backup
+	mkdir -p "$HOME/.config/spicetify/Themes/default"
 }
 
 start_systemd_services() {
@@ -71,15 +71,15 @@ start_systemd_services() {
 }
 
 setup_packges() {
-    setup_sddm
-    setup_security
-    setup_imagemagick
-    setup_vbox
-    setup_rust
-    setup_bat
-    setup_spicetify
+	setup_sddm
+	setup_security
+	setup_imagemagick
+	setup_vbox
+	setup_rust
+	setup_bat
+	setup_spicetify
 
-    start_systemd_services
+	start_systemd_services
 }
 
 install_packages "$setup_dir/packages/dependencies"
@@ -91,7 +91,7 @@ install_packages "$setup_dir/packages/gui"
 [ "$(cat /sys/class/dmi/id/chassis_type)" = "10" ] && install_packages "$setup_dir/packages/notebook"
 
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -qi nvidia; then
-    install_packages "$setup_dir/packages/nvidia"
+	install_packages "$setup_dir/packages/nvidia"
 	yay --sudoloop --noconfirm -S "hyprland-nvidia" || errors="$errors hyprland-nvidia"
 else
 	yay --sudoloop --noconfirm -S "hyprland" || errors="$errors hyprland"
