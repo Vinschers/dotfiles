@@ -1,6 +1,5 @@
 #!/bin/sh
 
-setup_dir="$1"
 errors=""
 
 sudo sed -i 's/^.*\bParallelDownloads\b.*$/ParallelDownloads = 6/g' /etc/pacman.conf
@@ -10,13 +9,18 @@ sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
 sudo pacman -Syu
 
+install_pkg() {
+    echo "Installing $1"
+    yay --sudoloop --noconfirm --needed -S "$1" >/dev/null 2>/dev/null || errors="$errors $pkg"
+}
+
 install_packages() {
 	pkgs_file="$1"
 
 	[ -f "$pkgs_file" ] || exit 0
 
 	while read -r pkg; do
-		yay --sudoloop --noconfirm --needed -S "$pkg" >/dev/null 2>/dev/null || errors="$errors $pkg"
+        install_pkg "$pkg"
 	done <"$pkgs_file"
 }
 
@@ -71,6 +75,8 @@ start_systemd_services() {
 }
 
 setup_packges() {
+    echo "Setting packages up"
+
 	setup_sddm
 	setup_security
 	setup_imagemagick
@@ -82,21 +88,22 @@ setup_packges() {
 	start_systemd_services
 }
 
-install_packages "$setup_dir/packages/dependencies"
-install_packages "$setup_dir/packages/general"
-install_packages "$setup_dir/packages/fonts"
-install_packages "$setup_dir/packages/development"
-install_packages "$setup_dir/packages/wayland"
-install_packages "$setup_dir/packages/gui"
-[ "$(cat /sys/class/dmi/id/chassis_type)" = "10" ] && install_packages "$setup_dir/packages/notebook"
+install_packages "$HOME/.config/setup/packages/dependencies"
+install_packages "$HOME/.config/setup/packages/general"
+install_packages "$HOME/.config/setup/packages/fonts"
+install_packages "$HOME/.config/setup/packages/development"
+install_packages "$HOME/.config/setup/packages/wayland"
+install_packages "$HOME/.config/setup/packages/gui"
+[ "$(cat /sys/class/dmi/id/chassis_type)" = "10" ] && install_packages "$HOME/.config/setup/packages/notebook"
 
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -qi nvidia; then
-	install_packages "$setup_dir/packages/nvidia"
-	yay --sudoloop --noconfirm -S "hyprland-nvidia" || errors="$errors hyprland-nvidia"
+	install_packages "$HOME/.config/setup/packages/nvidia"
+    install_pkg "hyprland-nvidia"
 else
-	yay --sudoloop --noconfirm -S "hyprland" || errors="$errors hyprland"
+    install_pkg "hyprland"
 fi
 
 setup_packges
 
+[ -n "$errors" ] && echo "$errors" >"$HOME/errors"
 [ -d "$HOME/.dotnet" ] && rm -rf "$HOME/.dotnet"
