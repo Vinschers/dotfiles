@@ -1,3 +1,4 @@
 #!/bin/sh
 
+sudo mkdir -p /mnt/android
 aft-mtp-mount /mnt/android || echo "Android device not found or not available for file transfer"

@@ -1,0 +1,10 @@
+neovim
+python-pip
+python-pynvim
+valgrind
+jdk-openjdk
+lazygit
+lldb
+bash-language-server
+jupyter-notebook
+bibclean

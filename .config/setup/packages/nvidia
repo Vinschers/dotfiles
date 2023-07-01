@@ -1,0 +1,6 @@
+nvidia-dkms
+libva
+libva-nvidia-driver
+nvidia-settings
+nvidia-utils
+opencl-nvidia
