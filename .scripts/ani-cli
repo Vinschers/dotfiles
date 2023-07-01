@@ -1,0 +1,61 @@
+#!/bin/sh
+
+get_titles_magnets() {
+	page=1
+	new_seeders=""
+
+	while true; do
+		url="https://nyaa.si/?f=2&c=1_0&q=$1&p=$page"
+		html_source="$(curl -s "$url")"
+
+		row_xpath="//html/body/div/div[contains(@class, 'table-responsive')]/table/tbody/tr"
+
+		current_options="$(echo "$html_source" | xmllint --html -xpath "$row_xpath/td[2]/a/text()" - 2>/dev/null | grep -Pv "^[0-9]+$" | sed '/^[[:space:]]*$/d')"
+		[ -z "$current_options" ] && break
+
+		new_options="$new_options\n$current_options"
+		new_magnets="$new_magnets\n$(echo "$html_source" | xmllint --html -xpath "$row_xpath/td[3]/a[2]/@href" - 2>/dev/null | cut -d'"' -f 2)"
+		new_seeders="$new_seeders\n$(echo "$html_source" | xmllint --html -xpath "$row_xpath/td[6]/text()" - 2>/dev/null)"
+
+		page=$((page + 1))
+	done
+
+	new_options="$(echo "$new_options" | sed '/^[[:space:]]*$/d')"
+	new_magnets="$(echo "$new_magnets" | sed '/^[[:space:]]*$/d')"
+	new_seeders="$(echo "$new_seeders" | sed '/^[[:space:]]*$/d')"
+
+	i=1
+
+	for seeds in $new_seeders; do
+		if [ "$seeds" -gt 5 ]; then
+			options="$options\n$(echo "$new_options" | sed "${i}q;d")"
+			magnets="$magnets\n$(echo "$new_magnets" | sed "${i}q;d")"
+			seeders="$seeders\n$(echo "$new_seeders" | sed "${i}q;d")"
+		fi
+
+		i=$((i + 1))
+	done
+
+	options="$(echo "$options" | tail -n +2)"
+	magnets="$(echo "$magnets" | tail -n +2)"
+	seeders="$(echo "$seeders" | tail -n +2)"
+}
+
+mkdir -p "$HOME/.cache/peerflix"
+
+search="$(wofi -d | xargs)"
+[ -z "$search" ] && exit 0
+
+search="$(echo "$search" | sed 's| |%20|g')"
+
+get_titles_magnets "$search"
+[ -z "$options" ] && notify-send "Nothing found" && exit 0
+
+selected="$(echo "$options" | wofi -d)"
+[ -z "$selected" ] && exit 0
+
+line_number="$(echo "$options" | grep -Fn "$selected" | cut -d : -f 1)"
+magnet="$(echo "$magnets" | sed "${line_number}q;d")"
+
+peerflix "$magnet" -akrf "$HOME/.cache/peerflix"
+rm -rf "$HOME/.cache/peerflix"/*

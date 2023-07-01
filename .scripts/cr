@@ -83,7 +83,11 @@ run_file() {
     if type "ext_$fileExtension" 2>/dev/null | grep -q 'function'; then
 	    "ext_$fileExtension" "$cwd" "$fileName" "$fileExtension"
     else
-        echo "Can't run $fileExtension code."
+        if [ -z "$fileExtension" ]; then
+            run_cmd "$cwd/$fileName"
+        else
+            echo "Can't run $fileExtension code."
+        fi
     fi
 }
 
@@ -117,5 +121,4 @@ main() {
 	run_file "$cwd" "$fileName" "$fileExtension"
 }
 
-file="$1"
-main "$file"
+main "$1"
