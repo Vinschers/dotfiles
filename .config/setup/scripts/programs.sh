@@ -12,5 +12,5 @@ if [ -d /etc/firejail ]; then
 	sudo sed -i "s|^man|#man|g" /etc/firejail/firecfg.config
 	sudo sed -i "s|^zathura|#zathura|g" /etc/firejail/firecfg.config
 
-	sudo firecfg
+	sudo firecfg >/dev/null
 fi
