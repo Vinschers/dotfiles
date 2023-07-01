@@ -10,8 +10,8 @@ sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 sudo pacman -Syu
 
 install_pkg() {
-    echo "Installing $1"
-    yay --sudoloop --noconfirm --needed -S "$1" >/dev/null 2>/dev/null || errors="$errors $pkg"
+	echo "Installing $1"
+	yay --sudoloop --noconfirm --needed -S "$1" >/dev/null 2>/dev/null || errors="$errors $pkg"
 }
 
 install_packages() {
@@ -20,7 +20,7 @@ install_packages() {
 	[ -f "$pkgs_file" ] || exit 0
 
 	while read -r pkg; do
-        install_pkg "$pkg"
+		install_pkg "$pkg"
 	done <"$pkgs_file"
 }
 
@@ -56,6 +56,8 @@ setup_bat() {
 }
 
 setup_spicetify() {
+	getent group spicetify >/dev/null && return
+
 	sudo groupadd spicetify
 	sudo usermod -a -G spicetify "$USER"
 	sudo chgrp spicetify /opt/spotify
@@ -75,7 +77,7 @@ start_systemd_services() {
 }
 
 setup_packges() {
-    echo "Setting packages up"
+	echo "Setting packages up"
 
 	setup_sddm
 	setup_security
@@ -98,10 +100,12 @@ install_packages "$HOME/.config/setup/packages/gui"
 
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -qi nvidia; then
 	install_packages "$HOME/.config/setup/packages/nvidia"
-    install_pkg "hyprland-nvidia"
+	install_pkg "hyprland-nvidia"
 else
-    install_pkg "hyprland"
+	install_pkg "hyprland"
 fi
+
+install_extra_packages
 
 setup_packges
 

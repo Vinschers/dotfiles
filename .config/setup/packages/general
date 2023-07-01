@@ -32,5 +32,6 @@ ufw
 clamav
 firejail
 rkhunter
+spicetify-cli
 texlive-most
 texlive-lang
