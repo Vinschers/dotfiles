@@ -16,7 +16,6 @@ if ! command -v yay >/dev/null; then
 	rm -rf yay/
 fi
 
-. "$HOME/.profile"
 setup_dir="$(dirname "$0")"
 
 check() {
@@ -33,10 +32,10 @@ check() {
 	fi
 }
 
-"$setup_dir/scripts/filesystem.sh"
 "$setup_dir/scripts/packages.sh" "$setup_dir"
 "$setup_dir/scripts/network.sh"
 "$setup_dir/scripts/programs.sh" "$setup_dir"
+"$setup_dir/scripts/filesystem.sh"
 "$setup_dir/scripts/nvidia.sh"
 "$setup_dir/scripts/zsh.sh"
 "$setup_dir/scripts/git.sh"
