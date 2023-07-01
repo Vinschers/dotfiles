@@ -32,9 +32,9 @@ check() {
 	fi
 }
 
-"$setup_dir/scripts/packages.sh" "$setup_dir"
+"$setup_dir/scripts/packages.sh"
 "$setup_dir/scripts/network.sh"
-"$setup_dir/scripts/programs.sh" "$setup_dir"
+"$setup_dir/scripts/programs.sh"
 "$setup_dir/scripts/filesystem.sh"
 "$setup_dir/scripts/nvidia.sh"
 "$setup_dir/scripts/zsh.sh"

@@ -1,9 +1,7 @@
 #!/bin/sh
 
-setup_dir="$1"
-
-if [ -d "$setup_dir/programs/makefile2graph" ] && ! command -v makefile2graph >/dev/null; then
-	cd "$setup_dir/programs/makefile2graph" || exit 0
+if [ -d "$HOME/.config/setup/programs/makefile2graph" ] && ! command -v makefile2graph >/dev/null; then
+	cd "$HOME/.config/setup/programs/makefile2graph" || exit 0
 	sudo make
 fi
 
