@@ -76,22 +76,14 @@ start_systemd_services() {
 	systemctl --user enable opentabletdriver --now
 }
 
-setup_packges() {
-	echo "Setting packages up"
-
-	setup_sddm
-	setup_security
-	setup_imagemagick
-	setup_vbox
-	setup_rust
-	setup_bat
-	setup_spicetify
-
-	start_systemd_services
-}
-
 install_packages "$HOME/.config/setup/packages/dependencies"
+setup_rust
+setup_imagemagick
+
 install_packages "$HOME/.config/setup/packages/general"
+setup_sddm
+setup_security
+
 install_packages "$HOME/.config/setup/packages/fonts"
 install_packages "$HOME/.config/setup/packages/development"
 install_packages "$HOME/.config/setup/packages/wayland"
@@ -107,7 +99,11 @@ fi
 
 install_extra_packages
 
-setup_packges
+setup_vbox
+setup_bat
+setup_spicetify
 
 [ -n "$errors" ] && echo "$errors" >"$HOME/errors"
 [ -d "$HOME/.dotnet" ] && rm -rf "$HOME/.dotnet"
+
+start_systemd_services

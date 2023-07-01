@@ -6,8 +6,8 @@ man-db
 os-prober
 alsa-firmware
 alsa-utils
-pipewire-pulse
 wireplumber
+pipewire-pulse
 moreutils
 mtpfs
 ntfs-3g
@@ -25,6 +25,8 @@ glow
 atool
 bat
 bc
+rustup
+zotero-translation-server-git
 imagemagick
 imlib2
 libsixel
@@ -38,5 +40,4 @@ opentabletdriver
 python-bibtexparser
 python-inkscape-figures
 sddm-theme-corners-git
-zotero-translation-server-git
 bluez
