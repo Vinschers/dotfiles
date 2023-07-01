@@ -1,7 +1,0 @@
-#!/bin/sh
-
-chosen=$(sed '/^\s*#/ d' "$1" | column -ts ';' | dmenu -i -s -l 30 -fn Monospace-14 | sed "s/ .*//")
-
-[ -z "$chosen" ] && return 1
-printf "%s" "$chosen" | xclip -selection clipboard
-notify-send "'$chosen' copied to clipboard."
