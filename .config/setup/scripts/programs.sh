@@ -2,7 +2,7 @@
 
 setup_dir="$1"
 
-if [ -d "$setup_dir/programs/makefile2graph" ] && command -v makefile2graph >/dev/null; then
+if [ -d "$setup_dir/programs/makefile2graph" ] && ! command -v makefile2graph >/dev/null; then
 	cd "$setup_dir/programs/makefile2graph" || exit 0
 	sudo make
 fi
