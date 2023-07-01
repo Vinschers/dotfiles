@@ -13,6 +13,7 @@ mtpfs
 ntfs-3g
 polkit-kde-agent
 socat
+rustup
 jaq
 ripgrep
 unrar
@@ -25,7 +26,6 @@ glow
 atool
 bat
 bc
-rustup
 zotero-translation-server-git
 imagemagick
 imlib2
