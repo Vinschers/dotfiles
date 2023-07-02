@@ -35,7 +35,8 @@ setup_sddm() {
 }
 
 setup_security() {
-	sudo freshclam
+    echo "dummy freshclam"
+	# sudo freshclam
 }
 
 setup_imagemagick() {
