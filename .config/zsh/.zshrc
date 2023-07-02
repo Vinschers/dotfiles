@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source "$HOME/.config/shell/shellrc.sh"
+
 source "$ZDOTDIR/functions.sh"
 
 zsh_add_file "opts.sh"
@@ -26,5 +28,3 @@ compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 
 eval "$(starship init zsh)"
-
-source "$HOME/.profile"
