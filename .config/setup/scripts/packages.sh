@@ -7,7 +7,7 @@ sudo sed -i 's/^#Color/Color/g' /etc/pacman.conf
 grep -q ILoveCandy /etc/pacman.conf && sudo sed -i 's/VerbosePkgLists/VerbosePkgLists\nILoveCandy/g' /etc/pacman.conf
 sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
-sudo pacman -Syu
+sudo pacman --noconfirm -Syu
 
 install_pkg() {
 	echo "Installing $1"
@@ -59,11 +59,14 @@ setup_spicetify() {
 	getent group spicetify >/dev/null && return
 
 	sudo groupadd spicetify
-	sudo usermod -a -G spicetify "$USER"
+
+	sudo usermod -aG spicetify "$USER"
+
 	sudo chgrp spicetify /opt/spotify
 	sudo chgrp -R spicetify /opt/spotify/Apps
 	sudo chmod 775 /opt/spotify
 	sudo chmod 775 -R /opt/spotify/Apps
+
 	mkdir -p "$HOME/.config/spicetify/Themes/default"
 }
 
