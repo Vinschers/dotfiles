@@ -26,7 +26,7 @@ install_packages() {
 
 install_extra_packages() {
 	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
-	npm i -g neovim
+	sudo npm i -g neovim
 }
 
 setup_sddm() {
@@ -64,7 +64,6 @@ setup_spicetify() {
 	sudo chgrp -R spicetify /opt/spotify/Apps
 	sudo chmod 775 /opt/spotify
 	sudo chmod 775 -R /opt/spotify/Apps
-	spicetify backup
 	mkdir -p "$HOME/.config/spicetify/Themes/default"
 }
 
