@@ -1,3 +1,0 @@
-#!/bin/sh
-
-dmenuselector "$SCRIPTS_DIR/symbols/math"

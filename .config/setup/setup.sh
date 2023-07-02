@@ -23,6 +23,7 @@ fi
 "$HOME/.config/setup/scripts/nvidia.sh"
 "$HOME/.config/setup/scripts/zsh.sh"
 "$HOME/.config/setup/scripts/git.sh"
+"$HOME/.config/setup/scripts/hyprland.sh"
 
 printf "Setup SSD trim? [Y/n] "
 read -r ssd
