@@ -25,7 +25,6 @@ install_packages() {
 }
 
 install_extra_packages() {
-	pip install undetected-chromedriver || errors="$errors undetected-chromedriver"
 	sudo npm i -g neovim
 }
 

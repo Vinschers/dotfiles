@@ -17,6 +17,7 @@ ffmpeg
 ffmpegthumbnailer
 lf-sixel-git
 playerctl
+jaq
 syncthing
 tldr
 uwufetch
@@ -32,5 +33,6 @@ clamav
 firejail
 rkhunter
 spicetify-cli
+zotero-translation-server-git
 texlive-most
 texlive-lang

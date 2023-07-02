@@ -10,10 +10,6 @@ local M = {
 			lazy = true,
 		},
 		{
-			"jayp0521/mason-null-ls.nvim",
-			lazy = true,
-		},
-		{
 			"jayp0521/mason-nvim-dap.nvim",
 			lazy = true,
 		},
@@ -39,15 +35,9 @@ function M.config()
 
 	require("mason-lspconfig").setup({
 		ensure_installed = utils.lsp_servers,
-		automatic_installation = true,
 	})
 	require("mason-nvim-dap").setup({
 		ensure_installed = utils.dap_servers,
-		automatic_installation = true,
-	})
-	require("mason-null-ls").setup({
-		ensure_installed = utils.fmt_lint_servers,
-		automatic_installation = true,
 	})
 end
 

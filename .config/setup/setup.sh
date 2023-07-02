@@ -24,7 +24,7 @@ fi
 "$HOME/.config/setup/scripts/zsh.sh"
 "$HOME/.config/setup/scripts/git.sh"
 
-printf "Setup SSD trim?"
+printf "Setup SSD trim? [Y/n] "
 read -r ssd
 
 if [ "$ssd" = "" ] || [ "$ssd" = "Y" ] || [ "$ssd" = "y" ]; then

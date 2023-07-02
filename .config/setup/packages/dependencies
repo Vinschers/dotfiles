@@ -14,7 +14,6 @@ ntfs-3g
 polkit-kde-agent
 socat
 rustup
-jaq
 starship
 ripgrep
 unrar
@@ -27,7 +26,6 @@ glow
 atool
 bat
 bc
-zotero-translation-server-git
 imagemagick
 imlib2
 libsixel
@@ -42,3 +40,4 @@ python-bibtexparser
 python-inkscape-figures
 sddm-theme-corners-git
 bluez
+python-undetected-chromedriver
