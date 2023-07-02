@@ -15,6 +15,7 @@ polkit-kde-agent
 socat
 rustup
 jaq
+starship
 ripgrep
 unrar
 unzip
