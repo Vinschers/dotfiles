@@ -30,15 +30,10 @@ local settings = {
 }
 
 function M.config()
-	local utils = require("utils")
 	require("mason").setup(settings)
 
-	require("mason-lspconfig").setup({
-		ensure_installed = utils.lsp_servers,
-	})
-	require("mason-nvim-dap").setup({
-		ensure_installed = utils.dap_servers,
-	})
+	require("mason-lspconfig").setup()
+	require("mason-nvim-dap").setup()
 end
 
 return M

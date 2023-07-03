@@ -30,6 +30,7 @@
         name:
           - nodejs-emmet-ls
           - dockerfile-language-server
+          - jdtls
         state: present
 
 - name: Install formatters and linters
@@ -77,6 +78,7 @@
       kewlfft.aur.aur:
         name:
           - bashdb
+          - java-debug
           - vscode-langservers-extracted
           # - vscode-node-debug2
         state: present
