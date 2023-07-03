@@ -10,21 +10,11 @@ if ! [ -d "$HOME/.config/dotfiles/.dotfiles-git" ]; then
 	git --git-dir="$HOME/.config/dotfiles/.dotfiles-git" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.config/shell/environment/local.sh"
 fi
 
-. "$HOME/.config/shell/environment/xdg.sh"
+curl -sSL https://raw.githubusercontent.com/Vinschers/dotfiles/master/.config/shell/environment/xdg.sh >"$HOME/.cache/xdg.sh" && . "$HOME/.cache/xdg.sh" && rm -f "$HOME/.cache/xdg.sh"
 
-sudo pacman --noconfirm --needed -S ansible-core ansible
-ansible-galaxy collection install -r "$HOME/.config/setup/requirements.yml"
-
-export NVIDIA=0
-lspci -k | grep -A 2 -E "(VGA|3D)" | grep -qi nvidia && NVIDIA=1
+# sudo pacman --noconfirm --needed -S ansible-core ansible
+# ansible-galaxy collection install -r "$HOME/.config/setup/requirements.yml"
 
 ansible-playbook --ask-become-pass "$HOME/.config/setup/bootstrap.yml"
 
-yay --noconfirm --cleanafter --needed -S vscode-langservers-extracted
-
-printf "Setup SSD trim? [Y/n] "
-read -r ssd
-
-if [ "$ssd" = "" ] || [ "$ssd" = "Y" ] || [ "$ssd" = "y" ]; then
-	sudo systemctl enable fstrim.timer fstrim.service
-fi
+# yay --noconfirm --cleanafter --needed -S vscode-langservers-extracted

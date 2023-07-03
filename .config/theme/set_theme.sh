@@ -11,6 +11,8 @@ create_config_symlinks() {
 	done
 
 	spicetify config color_scheme "$spicetify_color_scheme" -q
+
+    [ -d "$HOME/.config/spicetify/Backup" ] || spicetify backup -q
 }
 
 read_variable() {

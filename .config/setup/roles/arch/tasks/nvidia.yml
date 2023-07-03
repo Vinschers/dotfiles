@@ -1,5 +1,10 @@
 ---
+- name: Check for NVIDIA GPU
+  shell: lspci -k | grep -A 2 -E "(VGA|3D)" | { grep -i nvidia || true; }
+  register: nvidia
+
 - name: Install NVIDIA packages from pacman
+  when: nvidia.stdout != ""
   become: true
   community.general.pacman:
     name:
@@ -12,6 +17,7 @@
     state: present
 
 - name: Install NVIDIA packages from AUR
+  when: nvidia.stdout != ""
   become: true
   become_user: aur_builder
   kewlfft.aur.aur:
@@ -20,6 +26,7 @@
     state: present
 
 - name: Check if nvidia is configured in the boot command
+  when: nvidia.stdout != ""
   lineinfile:
     backup: true
     path: /etc/default/grub
@@ -40,9 +47,10 @@
         line: '\1 nvidia_drm.modeset=1"'
     - name: Run grub-mkconfig
       shell: grub-mkconfig -o /boot/grub/grub.cfg
-  when: grub_cmdline_check.found == 0
+  when: nvidia.stdout != "" and grub_cmdline_check.found == 0
 
 - name: Check if nvidia is configured in then kernel parameters
+  when: nvidia.stdout != ""
   lineinfile:
     backup: true
     path: /etc/mkinitcpio.conf
@@ -63,9 +71,10 @@
         line: '\1 nvidia nvidia_modeset nvidia_uvm nvidia_drm)'
     - name: Run mkinitcpio
       shell: mkinitcpio -P
-  when: mkinitcpio_cmdline_check.found == 0
+  when: nvidia.stdout != "" and mkinitcpio_cmdline_check.found == 0
 
 - name: Create /etc/modprobe.d/nvidia.conf
+  when: nvidia.stdout != ""
   become: true
   lineinfile:
     path: /etc/modprobe.d/nvidia.conf

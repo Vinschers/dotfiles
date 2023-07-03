@@ -1,11 +1,14 @@
 ---
 - import_tasks: pacman.yml
-
 - import_tasks: yay.yml
+
+- import_tasks: git.yml
+- import_tasks: dotfiles.yml
 
 - import_tasks: base.yml
 - import_tasks: audio.yml
 - import_tasks: zsh.yml
+- import_tasks: ssd.yml
 - import_tasks: sddm.yml
 - import_tasks: opentabletdriver.yml
 
@@ -18,7 +21,6 @@
 - import_tasks: fonts.yml
 
 - import_tasks: nvidia.yml
-  when: lookup('env', 'NVIDIA') == "1"
 
 - import_tasks: eww.yml
 - import_tasks: hyprland.yml

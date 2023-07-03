@@ -1,6 +1,11 @@
 ---
 - name: Bootstrap personal environment
   hosts: localhost
+  vars_prompt:
+    - name: ssd_trim
+      prompt: Setup SSD trim? [Y/n]
+      private: false
+
   tasks:
     - name: Setup Arch Linux
       import_role:

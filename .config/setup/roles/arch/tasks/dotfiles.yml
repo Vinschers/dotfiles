@@ -1,0 +1,9 @@
+---
+- name: Clone dotfiles repository
+  git:
+    accept_hostkey: true
+    repo: git@github.com:Vinschers/dotfiles.git
+    dest: "{{ ansible_env.HOME }}"
+    separate_git_dir: "{{ ansible_env.HOME }}/.config/.dotfiles-git"
+    bare: true
+    force: true
