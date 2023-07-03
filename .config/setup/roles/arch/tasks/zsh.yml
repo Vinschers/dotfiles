@@ -13,6 +13,9 @@
     path: "{{ ansible_env.HOME }}/.local/state/zsh"
     state: directory
 
+- name: Install zsh plugins
+  shell: /bin/zsh
+
 - name: Change shell to zsh
   become: true
   user:
