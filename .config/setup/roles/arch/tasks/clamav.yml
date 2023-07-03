@@ -10,6 +10,7 @@
       shell: freshclam
 
 - name: Enable clamav systemd service
+  become: true
   systemd:
     name: clamav-daemon
     enabled: true

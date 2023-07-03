@@ -38,11 +38,6 @@
     state: present
   register: install_spicetify
 
-- name: Setup spicetify
-  ignore_errors: true
-  shell: spicetify backup -q
-  when: install_spicetify.changed
-
 - name: Create Spicetify Themes directory
   file:
     path: "{{ ansible_env.HOME }}/.config/spicetify/Themes/default"

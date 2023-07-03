@@ -77,6 +77,7 @@
       kewlfft.aur.aur:
         name:
           - bashdb
+          # - vscode-node-debug2
         state: present
 
 - name: Install neovim

@@ -18,3 +18,56 @@
     name:
       - libva-nvidia-driver
     state: present
+
+- name: Check if nvidia is configured in the boot command
+  lineinfile:
+    backup: true
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=".*nvidia_drm.modeset=1'
+    state: absent
+  check_mode: true
+  register: grub_cmdline_check
+  changed_when: false
+
+- name: Insert nvidia_drm.modeset=1 if missing
+  become: true
+  block:
+    - name: Update /etc/default/grub
+      lineinfile:
+        backrefs: true
+        path: /etc/default/grub
+        regexp: "^(GRUB_CMDLINE_LINUX_DEFAULT=\".*)\"$"
+        line: '\1 nvidia_drm.modeset=1"'
+    - name: Run grub-mkconfig
+      shell: grub-mkconfig -o /boot/grub/grub.cfg
+  when: grub_cmdline_check.found == 0
+
+- name: Check if nvidia is configured in then kernel parameters
+  lineinfile:
+    backup: true
+    path: /etc/mkinitcpio.conf
+    regexp: '^MODULES=\(.*nvidia nvidia_modeset nvidia_uvm nvidia_drm'
+    state: absent
+  check_mode: true
+  register: mkinitcpio_cmdline_check
+  changed_when: false
+
+- name: Insert nvidia_drm.modeset=1 if missing
+  become: true
+  block:
+    - name: Update mkinitcpio
+      lineinfile:
+        backrefs: true
+        path: /etc/mkinitcpio.conf
+        regexp: '^(MODULES=\(.*)\)$'
+        line: '\1 nvidia nvidia_modeset nvidia_uvm nvidia_drm)'
+    - name: Run mkinitcpio
+      shell: mkinitcpio -P
+  when: mkinitcpio_cmdline_check.found == 0
+
+- name: Create /etc/modprobe.d/nvidia.conf
+  become: true
+  lineinfile:
+    path: /etc/modprobe.d/nvidia.conf
+    line: 'options nvidia-drm modeset=1'
+    create: true
