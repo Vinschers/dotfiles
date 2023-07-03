@@ -27,7 +27,6 @@
       - playerctl
       - tldr
       - uwufetch
-      - cava
       - magic-wormhole
       - ncspot
       - ncdu
@@ -43,6 +42,7 @@
   become_user: aur_builder
   kewlfft.aur.aur:
     name:
+      - cava
       - python-pip
       - python-bibtexparser
       - python-inkscape-figures

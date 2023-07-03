@@ -22,6 +22,7 @@
     state: present
 
 - name: Setup Imagemagick
+  become: true
   lineinfile:
     path: /etc/ImageMagick-7/policy.xml
     regexp: 'name="memory"'

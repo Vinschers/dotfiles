@@ -28,7 +28,6 @@
       become_user: aur_builder
       kewlfft.aur.aur:
         name:
-          - vscode-langservers-extracted
           - nodejs-emmet-ls
           - dockerfile-language-server
         state: present
@@ -77,7 +76,6 @@
       become_user: aur_builder
       kewlfft.aur.aur:
         name:
-          - vscode-node-debug2
           - bashdb
         state: present
 

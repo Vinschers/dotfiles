@@ -61,3 +61,14 @@
     - "{{ ansible_env.HOME }}/.local/share/icons/TokyoNight-SE.tar.bz2"
     - "{{ ansible_env.HOME }}/.local/share/icons/Catppuccin-Mocha.zip"
     - "{{ ansible_env.HOME }}/.local/share/icons/Zafiro-Nord-Black.tar.xz"
+
+- name: Install hyprload
+  become: true
+  block:
+    - name: Install hyprload dependencies
+      community.general.pacman:
+        name:
+          - cpio
+        state: present
+    - name: Install hyprload
+      shell: curl -sSL https://raw.githubusercontent.com/Duckonaut/hyprload/main/install.sh | bash

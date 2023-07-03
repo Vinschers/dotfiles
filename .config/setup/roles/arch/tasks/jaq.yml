@@ -5,15 +5,14 @@
     name:
       - rustup
     state: present
-  register: install_rust
-
-- name: Setup Rust
-  shell: rustup default stable
-  when: install_rust.changed
 
 - name: Install jaq
   become: true
   become_user: aur_builder
-  kewlfft.aur.aur:
-    name: jaq
-    state: present
+  block:
+    - name: Run rustup
+      shell: rustup default stable
+    - name: Install jaq from AUR
+      kewlfft.aur.aur:
+        name: jaq
+        state: present
