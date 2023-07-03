@@ -16,3 +16,5 @@
   shell: |
     git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" config --local status.showUntrackedFiles no
     git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" restore --staged "{{ ansible_env.HOME }}"
+    git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" update-index --assume-unchanged "{{ ansible_env.HOME }}/.config/shell/environment/local.sh"
+    git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" update-index --assume-unchanged "${{ ansible_env.HOME }}/.config/octave/octaverc"

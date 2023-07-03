@@ -32,7 +32,7 @@ mkdir -p "$XDG_CACHE_HOME/zsh"
 [ -f "$XDG_CONFIG_HOME/git/config" ] || touch "$XDG_CONFIG_HOME/git/config"
 [ -f "$XDG_CONFIG_HOME/yarn/config" ] || touch "$XDG_CONFIG_HOME/yarn/config"
 
-sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
+[ -f "$XDG_CONFIG_HOME/octave/octaverc" ] && sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
 
 echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
 
