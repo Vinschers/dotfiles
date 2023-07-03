@@ -23,9 +23,9 @@ get_info() {
 	length="$(date -d@"$((length / 1000000))" +%M:%S)"
 
 	if [ "$status" = "Playing" ]; then
-		status=""
+		status="󰏦"
 	else
-		status=""
+		status="󰐍"
 	fi
 
 	jq -c -r \
@@ -38,5 +38,5 @@ get_info() {
 
 while true; do
     get_info
-    sleep 0.5
+    sleep 0.1
 done
