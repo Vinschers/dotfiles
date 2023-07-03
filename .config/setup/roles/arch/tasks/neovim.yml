@@ -6,6 +6,7 @@
       - ripgrep
       - python-pynvim
       - lazygit
+      - jdk17-openjdk
     state: present
 
 - name: Install language servers
@@ -82,6 +83,14 @@
           - vscode-node-debug2
         state: present
 
+- name: Get current java version
+  shell: archlinux-java get
+  register: java_version
+
+- name: Change java version to 17
+  become: true
+  shell: archlinux-java set java-17-openjdk
+
 - name: Install java-debug
   block:
     - name: Clone java-debug repository
@@ -103,6 +112,10 @@
     - name: Install java-test
       shell: "cd {{ ansible_env.HOME }}/.local/share/java-test && npm install && npm run build-plugin"
       when: java_test.changed
+
+- name: Return java version
+  become: true
+  shell: "archlinux-java set {{ java_version.stdout }}"
 
 - name: Install neovim
   become: true
