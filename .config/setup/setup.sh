@@ -1,5 +1,6 @@
 #!/bin/sh
 
+mkdir -p "$HOME/.cache"
 curl -sSL https://raw.githubusercontent.com/Vinschers/dotfiles/master/.config/shell/environment/xdg.sh >"$HOME/.cache/xdg.sh" && . "$HOME/.cache/xdg.sh" && rm -f "$HOME/.cache/xdg.sh"
 
 sudo pacman --noconfirm --needed -S ansible-core ansible
