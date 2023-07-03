@@ -14,6 +14,5 @@
 
 - name: Install dotfiles
   shell: |
-    git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} rm "$HOME/{}"
-    git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" checkout
     git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" config --local status.showUntrackedFiles no
+    git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" restore --staged "{{ ansible_env.HOME }}"
