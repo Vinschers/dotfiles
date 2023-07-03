@@ -3,7 +3,6 @@
 - import_tasks: yay.yml
 
 - import_tasks: git.yml
-- import_tasks: dotfiles.yml
 
 - import_tasks: base.yml
 - import_tasks: audio.yml

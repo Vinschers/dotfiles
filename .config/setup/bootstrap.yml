@@ -10,6 +10,9 @@
       private: false
 
   tasks:
+    - name: Clone dotfiles repository
+      import_role:
+        name: dotfiles
     - name: Setup Arch Linux
       import_role:
         name: arch
