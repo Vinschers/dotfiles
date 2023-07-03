@@ -2,8 +2,6 @@
 - import_tasks: pacman.yml
 - import_tasks: yay.yml
 
-- import_tasks: git.yml
-
 - import_tasks: base.yml
 - import_tasks: audio.yml
 - import_tasks: zsh.yml
@@ -11,10 +9,12 @@
 - import_tasks: sddm.yml
 - import_tasks: opentabletdriver.yml
 
+- import_tasks: git.yml
+
 - import_tasks: lf.yml
-- import_tasks: neovim.yml
 - import_tasks: jaq.yml
 
+- import_tasks: neovim.yml
 - import_tasks: latex.yml
 
 - import_tasks: fonts.yml

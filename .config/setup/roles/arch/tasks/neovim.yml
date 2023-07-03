@@ -78,10 +78,31 @@
       kewlfft.aur.aur:
         name:
           - bashdb
-          - java-debug
           - vscode-langservers-extracted
-          # - vscode-node-debug2
+          - vscode-node-debug2
         state: present
+
+- name: Install java-debug
+  block:
+    - name: Clone java-debug repository
+      git:
+        repo: https://github.com/microsoft/java-debug.git
+        dest: "{{ ansible_env.HOME }}/.local/share/java-debug"
+      register: java_debug
+    - name: Install java-debug
+      shell: "cd {{ ansible_env.HOME }}/.local/share/java-debug && ./mvnw clean install"
+      when: java_debug.changed
+
+- name: Install vscode-java-test
+  block:
+    - name: Clone vscode-java-test repository
+      git:
+        repo: https://github.com/microsoft/vscode-java-test.git
+        dest: "{{ ansible_env.HOME }}/.local/share/java-test"
+      register: java_test
+    - name: Install java-test
+      shell: "cd {{ ansible_env.HOME }}/.local/share/java-test && npm install && npm run build-plugin"
+      when: java_test.changed
 
 - name: Install neovim
   become: true

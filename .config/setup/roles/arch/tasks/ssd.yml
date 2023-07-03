@@ -7,4 +7,4 @@
   loop:
     - fstrim.timer
     - fstrim.service
-  when: ssd_trim == "" or ssd_trim == "Y" or ssd_trim == "y"
+  when: ssd_trim == "y" or ssd_trim == "Y"
