@@ -16,6 +16,7 @@
       - virtualbox
       - xournalpp
       - obs-studio
+      - libreoffice-still
     state: present
 
 - name: Install GUI programs from AUR
