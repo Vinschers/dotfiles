@@ -5,6 +5,9 @@
     - name: ssd_trim
       prompt: Setup SSD trim? [Y/n]
       private: false
+    - name: github_email
+      prompt: Github email
+      private: false
 
   tasks:
     - name: Setup Arch Linux

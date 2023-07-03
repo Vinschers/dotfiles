@@ -1,0 +1,19 @@
+---
+- name: Set push.autoSetupRemote
+  community.general.git_config:
+    name: push.autoSetupRemote
+    value: 'true'
+    scope: global
+
+- name: Set alias.reset-hard
+  community.general.git_config:
+    name: alias.reset-hard
+    value: '!f() { git reset --hard; git clean -df ; }; f'
+    scope: global
+
+- name: Setup git SSH
+  shell: |
+    ssh-keygen -t ed25519 -C "{{ github_email }}" -f "{{ ansible_env.HOME }}/.ssh/id_ed25519" -N ""
+    eval "$(ssh-agent -s)"
+    ssh-add "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+  when: github_email != ""
