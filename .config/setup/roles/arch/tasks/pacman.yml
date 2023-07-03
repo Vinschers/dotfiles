@@ -1,0 +1,26 @@
+---
+- name: Update pacman.conf
+  become: true
+  block:
+    - name: Set parallel downloads
+      lineinfile:
+        path: /etc/pacman.conf
+        regexp: '#ParallelDownloads'
+        line: 'ParallelDownloads = 6'
+    - name: Set color
+      lineinfile:
+        path: /etc/pacman.conf
+        regexp: '#Color'
+        line: 'Color'
+    - name: Set ILoveCandy
+      lineinfile:
+        path: /etc/pacman.conf
+        line: 'ILoveCandy'
+        insertafter: 'Color'
+        state: present
+
+- name: Full system upgrade
+  become: true
+  community.general.pacman:
+    update_cache: true
+    upgrade: true

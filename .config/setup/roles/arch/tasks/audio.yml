@@ -1,0 +1,12 @@
+---
+- name: Install audio packages
+  become: true
+  community.general.pacman:
+    name:
+      - alsa-firmware
+      - alsa-utils
+      - wireplumber
+      - pipewire-pulse
+      - pamixer
+      - pavucontrol
+    state: present

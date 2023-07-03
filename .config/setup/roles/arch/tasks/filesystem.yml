@@ -1,0 +1,37 @@
+---
+- name: Create mount directories
+  block:
+    - name: /mnt/android
+      file:
+        path: /mnt/android
+        state: directory
+    - name: /mnt/hdd
+      file:
+        path: /mnt/hdd
+        state: directory
+    - name: /mnt/usb
+      file:
+        path: /mnt/usb
+        state: directory
+
+- name: Create Downloads directory
+  file:
+    path: "{{ ansible_env.HOME }}/Downloads"
+    state: directory
+
+- name: Delete files and directories
+  block:
+    - name: Delete bash dotfiles
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ ansible_env.HOME }}/.bashrc"
+        - "{{ ansible_env.HOME }}/.bashrc.old"
+        - "{{ ansible_env.HOME }}/.bash_history"
+        - "{{ ansible_env.HOME }}/.bash_profile"
+        - "{{ ansible_env.HOME }}/.bash_logout"
+    - name: Delete .dotnet
+      file:
+        path: "{{ ansible_env.HOME }}/.dotnet"
+        state: absent

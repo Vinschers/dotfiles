@@ -1,0 +1,49 @@
+---
+- name: Install GUI programs from pacman
+  become: true
+  community.general.pacman:
+    name:
+      - keepassxc
+      - mpv
+      - imv
+      - qbittorrent
+      - discord
+      - blueberry
+      - network-manager-applet
+      - gparted
+      - mousepad
+      - simple-scan
+      - virtualbox
+      - xournalpp
+      - obs-studio
+    state: present
+
+- name: Install GUI programs from AUR
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - librewolf-bin
+      - iwgtk
+      - sioyek
+      - spotify
+      - nwg-look
+      - peerflix
+      - streamlink-twitch-gui-bin
+      - selectdefaultapplication-git
+    state: present
+
+- name: Symlink .librewolf
+  file:
+    src: "{{ ansible_env.HOME }}/.config/librewolf"
+    dest: "{{ ansible_env.HOME }}/.librewolf"
+    state: link
+
+- name: Add user to virtualbox groups
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups:
+      - vboxusers
+      - video
+    append: true

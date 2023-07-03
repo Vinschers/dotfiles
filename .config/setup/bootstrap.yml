@@ -1,0 +1,7 @@
+---
+- name: Bootstrap personal environment
+  hosts: localhost
+  tasks:
+    - name: Setup Arch Linux
+      import_role:
+        name: arch

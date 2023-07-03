@@ -1,0 +1,32 @@
+---
+- name: Install fonts from pacman
+  become: true
+  community.general.pacman:
+    name:
+      - ttf-joypixels
+      - noto-fonts-emoji
+      - ttf-arphic-ukai
+      - ttf-arphic-uming
+      - ttf-baekmuk
+      - ttf-font-awesome
+      - ttf-jetbrains-mono-nerd
+      - ttf-hack-nerd
+      - ttf-liberation
+      - ttf-liberation-mono-nerd
+      - ttf-mplus-nerd
+      - ttf-sazanami
+      - wqy-microhei
+      - wqy-zenhei
+      - otf-latinmodern-math
+    state: present
+
+- name: Install fonts from AUR
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - otf-jost
+      - ttf-ubraille
+      - ttf-amiri
+      - ttf-juliamono
+    state: present

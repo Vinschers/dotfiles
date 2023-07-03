@@ -1,0 +1,45 @@
+---
+- name: Install sddm
+  become: true
+  community.general.pacman:
+    name: sddm
+    state: present
+
+- name: Download sddm theme
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: sddm-theme-corners-git
+    state: present
+
+- name: Change config in sddm-corners
+  become: true
+  block:
+    - name: Change text to 'Login'
+      lineinfile:
+        path: /usr/share/sddm/themes/corners/theme.conf
+        regexp: '^LoginButtonText='
+        line: 'LoginButtonText="Login"'
+    - name: Change time format
+      lineinfile:
+        path: /usr/share/sddm/themes/corners/theme.conf
+        regexp: '^TimeFormat='
+        line: 'TimeFormat="HH:mm"'
+
+- name: Copy local config to sddm config
+  become: true
+  copy:
+    src: "{{ ansible_env.HOME }}/.config/sddm/sddm.conf"
+    dest: /etc/sddm.conf
+
+- name: Copy user icon to sddm icons
+  become: true
+  copy:
+    src: "{{ ansible_env.HOME }}/.config/sddm/icon.png"
+    dest: "/usr/share/sddm/faces/{{ ansible_env.USER }}.face.icon"
+
+- name: Enable sddm service
+  become: true
+  systemd:
+    name: sddm
+    enabled: true

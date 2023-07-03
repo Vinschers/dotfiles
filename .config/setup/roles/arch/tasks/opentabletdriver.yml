@@ -1,0 +1,13 @@
+---
+- name: Install Open Tablet Driver
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: opentabletdriver
+    state: present
+
+- name: Enable Open Tablet Driver systemctl service
+  systemd:
+    name: opentabletdriver
+    enabled: true
+    scope: user

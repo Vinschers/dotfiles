@@ -36,6 +36,8 @@ sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
 
 echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
 
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
 export TEXMFHOME="$XDG_CONFIG_HOME/texmf:"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -120,6 +122,7 @@ export PYTHONUSERBASE="$XDG_DATA_HOME/python"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export JUPYTERLAB_DIR="$XDG_DATA_HOME/jupyter/lab"
 
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export CALCHISTFILE="$XDG_CACHE_HOME/calc_history"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"

@@ -1,0 +1,11 @@
+---
+- name: Install dash
+  become: true
+  community.general.pacman:
+    name: dash
+    state: present
+
+- name: Make dash /bin/sh
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: dashbinsh

@@ -1,0 +1,8 @@
+---
+- name: Install LaTeX
+  become: true
+  community.general.pacman:
+    name:
+      - texlive
+      - texlive-lang
+    state: present

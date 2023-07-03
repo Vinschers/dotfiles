@@ -1,0 +1,94 @@
+---
+- name: Install neovim dependencies
+  become: true
+  community.general.pacman:
+    name:
+      - ripgrep
+      - python-pynvim
+      - lazygit
+    state: present
+
+- name: Install language servers
+  become: true
+  block:
+    - name: LSP from pacman
+      community.general.pacman:
+        name:
+          - bash-language-server
+          - lua-language-server
+          - typescript-language-server
+          - pyright
+          - yaml-language-server
+          - clang
+          - ansible-language-server
+          - texlab
+        state: present
+    - name: LSP from AUR
+      become: true
+      become_user: aur_builder
+      kewlfft.aur.aur:
+        name:
+          - vscode-langservers-extracted
+          - nodejs-emmet-ls
+          - dockerfile-language-server
+        state: present
+
+- name: Install formatters and linters
+  become: true
+  block:
+    - name: Formatters and linters from pacman
+      community.general.pacman:
+        name:
+          - prettier
+          - python-black
+          - python-isort
+          - stylua
+          - shfmt
+          - texlive-binextra
+          - flake8
+          - shellcheck
+          - yamllint
+          - eslint_d
+        state: present
+    - name: Formatters and linters from AUR
+      become: true
+      become_user: aur_builder
+      kewlfft.aur.aur:
+        name:
+          - clang-format-all-git
+          - google-java-format
+          - asmfmt
+          - proselint
+          - bibclean
+        state: present
+
+- name: Install debug adapters
+  become: true
+  ignore_errors: true
+  block:
+    - name: Debug adapters from pacman
+      community.general.pacman:
+        name:
+          - lldb
+          - python-debugpy
+        state: present
+    - name: Debug adapters from AUR
+      become: true
+      become_user: aur_builder
+      kewlfft.aur.aur:
+        name:
+          - vscode-node-debug2
+          - bashdb
+        state: present
+
+- name: Install neovim
+  become: true
+  community.general.pacman:
+    name: neovim
+    state: present
+
+- name: Install "neovim" node.js package globally.
+  become: true
+  npm:
+    name: neovim
+    global: true

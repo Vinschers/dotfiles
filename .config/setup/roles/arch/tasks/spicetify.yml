@@ -1,0 +1,49 @@
+---
+- name: Create spicetify group
+  become: true
+  group:
+    name: spicetify
+    state: present
+
+- name: Add user to spicetify group
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups:
+      - spicetify
+    append: true
+
+- name: Change Spotify directories group
+  become: true
+  block:
+    - name: Change /opt/spotify group
+      file:
+        path: /opt/spotify
+        state: directory
+        group: spicetify
+        mode: '0775'
+    - name: Change /opt/spotify/Apps group
+      file:
+        path: /opt/spotify/Apps
+        recurse: true
+        state: directory
+        group: spicetify
+        mode: '0775'
+
+- name: Install Spicetify
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: spicetify-cli
+    state: present
+  register: install_spicetify
+
+- name: Setup spicetify
+  ignore_errors: true
+  shell: spicetify backup -q
+  when: install_spicetify.changed
+
+- name: Create Spicetify Themes directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/spicetify/Themes/default"
+    state: directory

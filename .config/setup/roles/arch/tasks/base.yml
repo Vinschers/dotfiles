@@ -1,0 +1,60 @@
+---
+- name: Install pacman packages
+  become: true
+  community.general.pacman:
+    name:
+      - archlinux-keyring
+      - linux-headers
+      - networkmanager
+      - lsb-release
+      - man-db
+      - os-prober
+      - moreutils
+      - mtpfs
+      - ntfs-3g
+      - v4l2loopback-dkms
+      - virtualbox-host-modules-arch
+      - openssh
+      - usbutils
+      - vim
+      - htop
+      - parted
+      - neofetch
+      - btop
+      - exa
+      - zip
+      - ffmpeg
+      - playerctl
+      - tldr
+      - uwufetch
+      - cava
+      - magic-wormhole
+      - ncspot
+      - ncdu
+      - android-file-transfer
+      - valgrind
+      - jdk-openjdk
+      - jupyter-notebook
+      - rkhunter
+      - bluez
+    state: present
+- name: Install AUR packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - python-pip
+      - python-bibtexparser
+      - python-inkscape-figures
+      - python-undetected-chromedriver
+    state: present
+
+- name: Create .config/btop/themes directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/btop/themes"
+    state: directory
+
+- name: Install makefile2graph
+  become: true
+  make:
+    chdir: "{{ ansible_env.HOME }}/.config/setup/programs/makefile2graph"

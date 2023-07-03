@@ -1,0 +1,20 @@
+---
+- name: Install NVIDIA packages from pacman
+  become: true
+  community.general.pacman:
+    name:
+      - nvidia-dkms
+      - libva
+      - libva-utils
+      - nvidia-settings
+      - nvidia-utils
+      - opencl-nvidia
+    state: present
+
+- name: Install NVIDIA packages from AUR
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - libva-nvidia-driver
+    state: present

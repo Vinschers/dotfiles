@@ -1,0 +1,15 @@
+---
+- name: Install clamav
+  become: true
+  block:
+    - name: Download clamav
+      community.general.pacman:
+        name: clamav
+        state: present
+    - name: Run freshclam
+      shell: freshclam
+
+- name: Enable clamav systemd service
+  systemd:
+    name: clamav-daemon
+    enabled: true

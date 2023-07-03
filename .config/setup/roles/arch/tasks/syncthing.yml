@@ -1,0 +1,12 @@
+---
+- name: Install syncthing
+  become: true
+  community.general.pacman:
+    name: syncthing
+    state: present
+
+- name: Enable syncthing service
+  systemd:
+    name: syncthing
+    enabled: true
+    scope: user
