@@ -14,19 +14,20 @@
       stat:
         path: "{{ ansible_env.HOME }}/.config/.dotfiles-git/HEAD"
       register: dotfiles_head
-    - name: Clone dotfiles repository
-      git:
-        accept_hostkey: true
-        repo: https://github.com/Vinschers/dotfiles.git
-        dest: "{{ ansible_env.HOME }}/.config/.dotfiles-git"
-        bare: true
+    - name: Setup dotfiles repository
       when: not dotfiles_head.stat.exists
-    - name: Install dotfiles
-      shell: |
-        git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" config --local status.showUntrackedFiles no
-        git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" restore --staged "{{ ansible_env.HOME }}"
-        git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" update-index --assume-unchanged "{{ ansible_env.HOME }}/.config/shell/environment/local.sh"
-        git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" update-index --assume-unchanged "{{ ansible_env.HOME }}/.config/octave/octaverc"
+      block:
+        - name: Clone repository
+          shell: |
+            git clone --bare https://github.com/Vinschers/dotfiles.git "{{ ansible_env.HOME }}/.config/.dotfiles-git"
+        - name: Install dotfiles
+          shell: |
+            git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} rm $HOME/{}
+            git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" checkout
+
+            git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" config --local status.showUntrackedFiles no
+            git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" update-index --assume-unchanged "{{ ansible_env.HOME }}/.config/shell/environment/local.sh"
+            git --git-dir="{{ ansible_env.HOME }}/.config/.dotfiles-git/" --work-tree="{{ ansible_env.HOME }}" update-index --assume-unchanged "{{ ansible_env.HOME }}/.config/octave/octaverc"
 
     - name: Setup Arch Linux
       import_role:
