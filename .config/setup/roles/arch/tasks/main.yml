@@ -27,11 +27,12 @@
 - import_tasks: spicetify.yml
 - import_tasks: sddm.yml
 
+- import_tasks: yay.yml
+
 - import_tasks: ufw.yml
 - import_tasks: clamav.yml
 - import_tasks: firejail.yml
 
 - import_tasks: filesystem.yml
 
-- import_tasks: yay.yml
 - import_tasks: clean.yml
