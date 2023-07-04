@@ -1,6 +1,7 @@
 ---
 - import_tasks: pacman.yml
 - import_tasks: aur.yml
+- import_tasks: yay.yml
 
 - import_tasks: base.yml
 - import_tasks: audio.yml
@@ -9,25 +10,23 @@
 # - import_tasks: nvidia.yml
 # - import_tasks: opentabletdriver.yml
 
-- import_tasks: neovim.yml
+# - import_tasks: neovim.yml
 
-- import_tasks: dash.yml
+# - import_tasks: dash.yml
 # - import_tasks: git.yml
 # - import_tasks: lf.yml
 # - import_tasks: jaq.yml
-- import_tasks: zotero.yml
+# - import_tasks: zotero.yml
 # - import_tasks: latex.yml
 
-# - import_tasks: fonts.yml
-# - import_tasks: eww.yml
-# - import_tasks: hyprland.yml
+- import_tasks: fonts.yml
+- import_tasks: eww.yml
+- import_tasks: hyprland.yml
 # - import_tasks: gui.yml
 
 # - import_tasks: syncthing.yml
 # - import_tasks: spicetify.yml
 # - import_tasks: sddm.yml
-
-- import_tasks: yay.yml
 
 # - import_tasks: ufw.yml
 # - import_tasks: clamav.yml

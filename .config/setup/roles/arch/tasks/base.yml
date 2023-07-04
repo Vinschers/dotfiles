@@ -47,6 +47,7 @@
       - python-bibtexparser
       - python-inkscape-figures
       - python-undetected-chromedriver
+      - peerflix
     state: present
 
 - name: Create .config/btop/themes directory

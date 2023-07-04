@@ -26,6 +26,7 @@
       - wlogout
       - swww
       - wl-color-picker
+      - nwg-look
     state: present
 
 - name: Install Hyprland with NVIDIA patch
@@ -34,7 +35,7 @@
   kewlfft.aur.aur:
     name: hyprland-nvidia
     state: present
-  when: lookup('env', 'NVIDIA') == "1"
+  when: nvidia.stdout != ""
 
 - name: Install Hyprland
   become: true
@@ -42,7 +43,7 @@
   kewlfft.aur.aur:
     name: hyprland
     state: present
-  when: lookup('env', 'NVIDIA') == "0" or lookup('env', 'NVIDIA') == ""
+  when: nvidia.stdout == ""
 
 - name: Extract themes
   unarchive:

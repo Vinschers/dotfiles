@@ -28,8 +28,6 @@
       - iwgtk
       - sioyek
       - spotify
-      - nwg-look
-      - peerflix
       - streamlink-twitch-gui-bin
       - selectdefaultapplication-git
     state: present

@@ -5,6 +5,7 @@
   become_user: aur_builder
   kewlfft.aur.aur:
     name: zotero-translation-server-git
+    use: makepkg
     state: present
 
 - name: Enable Zotero Translation Server service

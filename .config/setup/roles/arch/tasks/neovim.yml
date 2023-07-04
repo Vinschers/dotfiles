@@ -81,6 +81,7 @@
           - bashdb
           - vscode-langservers-extracted
           - vscode-node-debug2
+        use: makepkg
         state: present
 
 - name: Get current java version
