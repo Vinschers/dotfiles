@@ -14,7 +14,7 @@
     state: directory
 
 - name: Install zsh plugins
-  shell: /bin/zsh
+  shell: "ZDOTDIR='{{ ansible_env.HOME }}/.config/zsh' /bin/zsh"
 
 - name: Change shell to zsh
   become: true
