@@ -63,9 +63,15 @@
 - name: Insert nvidia_drm.modeset=1 if missing
   become: true
   block:
-    - name: Update mkinitcpio
+    - name: Get new MODULES
       shell: |
         grep "^MODULES=(" /etc/mkinitcpio.conf | sed -e "s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/g" -e "s/( /(/g"
+      register: modules
+    - name: Update mkinitcpio.conf
+      lineinfile:
+        path: /etc/mkinitcpio.conf
+        regexp: "^MODULES=("
+        line: "{{ modules.stdout }}"
     - name: Run mkinitcpio
       shell: mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
   when: nvidia.stdout != "" and mkinitcpio_cmdline_check.found == 0
