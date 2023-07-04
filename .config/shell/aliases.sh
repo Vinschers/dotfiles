@@ -73,7 +73,7 @@ alias \
 # Utils
 alias \
     alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"' \
-    i='yay -S' \
+    i='yay --needed --cleanafter --answerclean None --answerdiff None --editmenu -S' \
     up='yay -Syu' \
     s='cd $HOME/.scripts && ls' \
     books='cd $HOME/hdd/books/ && ls' \
