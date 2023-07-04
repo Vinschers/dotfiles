@@ -9,13 +9,13 @@
 - name: Run rustup in current user
   shell: rustup default stable
 
-- name: Install jaq
-  become: true
-  become_user: aur_builder
-  block:
-    - name: Run rustup
-      shell: rustup default stable
-    - name: Install jaq from AUR
-      kewlfft.aur.aur:
-        name: jaq
-        state: present
+# - name: Install jaq
+#   become: true
+#   become_user: aur_builder
+#   block:
+#     - name: Run rustup
+#       shell: rustup default stable
+#     - name: Install jaq from AUR
+#       kewlfft.aur.aur:
+#         name: jaq
+#         state: present

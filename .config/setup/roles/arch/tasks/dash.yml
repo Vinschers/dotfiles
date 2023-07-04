@@ -6,6 +6,7 @@
     state: present
 
 - name: Make dash /bin/sh
+  become: true
   become_user: aur_builder
   kewlfft.aur.aur:
     name: dashbinsh
