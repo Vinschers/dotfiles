@@ -83,6 +83,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 
+export M2_HOME="$XDG_DATA_HOME"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
