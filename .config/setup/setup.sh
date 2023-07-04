@@ -17,3 +17,5 @@ sudo pacman --noconfirm --needed -S ansible-core ansible
 
 ansible-galaxy collection install -r "$HOME/.config/setup/requirements.yml"
 ansible-playbook --ask-become-pass "$HOME/.config/setup/bootstrap.yml"
+
+/bin/zsh

@@ -73,3 +73,17 @@
         state: present
     - name: Install hyprload
       shell: curl -sSL https://raw.githubusercontent.com/Duckonaut/hyprload/main/install.sh | bash
+
+- name: Add user to seat group
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups:
+      - seat
+    append: true
+
+- name: Enable seatd service
+  become: true
+  systemd:
+    name: seatd
+    enabled: true
