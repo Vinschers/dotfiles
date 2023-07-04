@@ -6,6 +6,9 @@
       - rustup
     state: present
 
+- name: Run rustup in current user
+  shell: rustup default stable
+
 - name: Install jaq
   become: true
   become_user: aur_builder
