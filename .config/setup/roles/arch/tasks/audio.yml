@@ -10,3 +10,15 @@
       - pamixer
       - pavucontrol
     state: present
+
+- name: Enable pipewire systemctl service
+  systemd:
+    name: pipewire
+    enabled: true
+    scope: user
+
+- name: Enable wireplumber systemctl service
+  systemd:
+    name: wireplumber
+    enabled: true
+    scope: user
