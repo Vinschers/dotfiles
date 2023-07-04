@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "lock",
+    "action" : "$HOME/.scripts/lock",
     "text" : "Lock",
     "keybind" : "l"
 }
