@@ -64,11 +64,8 @@
   become: true
   block:
     - name: Update mkinitcpio
-      lineinfile:
-        backrefs: true
-        path: /etc/mkinitcpio.conf
-        regexp: '^(MODULES=\(.* )\)$'
-        line: '\1nvidia nvidia_modeset nvidia_uvm nvidia_drm)'
+      shell: |
+        grep "^MODULES=(" /etc/mkinitcpio.conf | sed -e "s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/g" -e "s/( /(/g"
     - name: Run mkinitcpio
       shell: mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
   when: nvidia.stdout != "" and mkinitcpio_cmdline_check.found == 0
