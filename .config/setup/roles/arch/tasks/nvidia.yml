@@ -1,8 +1,4 @@
 ---
-- name: Check for NVIDIA GPU
-  shell: lspci -k | grep -A 2 -E "(VGA|3D)" | { grep -i nvidia || true; }
-  register: nvidia
-
 - name: Install NVIDIA packages from pacman
   when: nvidia.stdout != ""
   become: true
