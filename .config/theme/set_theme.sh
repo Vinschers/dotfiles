@@ -19,7 +19,7 @@ read_variable() {
 	variable="$1"
 	json_file="$HOME/.config/theme/themes/$theme/theme.json"
 
-	jaq -r ".$variable" "$json_file"
+	jq -r ".$variable" "$json_file"
 }
 
 read_variables() {
@@ -39,7 +39,7 @@ replace_file() {
 	template="$1"
 	file="$2"
 
-	perl -pe "s(\\$\\{(.*)\\})(\`jaq -r '.\$1' '$HOME/.config/theme/themes/$theme/theme.json' | sed 's|#||g' | tr -d '\n'\`)ge" <"$template" >"$file"
+	perl -pe "s(\\$\\{(.*)\\})(\`jq -r '.\$1' '$HOME/.config/theme/themes/$theme/theme.json' | sed 's|#||g' | tr -d '\n'\`)ge" <"$template" >"$file"
 }
 
 load_files() {
