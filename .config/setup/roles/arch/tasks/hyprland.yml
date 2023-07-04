@@ -17,6 +17,8 @@
       - grim
       - wl-clipboard
       - waylock
+      - cpio
+      - jq
     state: present
 
 - name: Install Hyprland dependencies from AUR
