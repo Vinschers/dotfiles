@@ -78,9 +78,8 @@
       become_user: aur_builder
       kewlfft.aur.aur:
         name:
-          # - bashdb
+          - bashdb
           - vscode-langservers-extracted
-          - java-debug
           - vscode-node-debug2
         state: present
 
@@ -92,16 +91,16 @@
   become: true
   shell: archlinux-java set java-17-openjdk
 
-# - name: Install java-debug
-#   block:
-#     - name: Clone java-debug repository
-#       git:
-#         repo: https://github.com/microsoft/java-debug.git
-#         dest: "{{ ansible_env.HOME }}/.local/share/java-debug"
-#       register: java_debug
-#     - name: Install java-debug
-#       shell: "cd {{ ansible_env.HOME }}/.local/share/java-debug && ./mvnw clean install"
-#       when: java_debug.changed
+- name: Install java-debug
+  block:
+    - name: Clone java-debug repository
+      git:
+        repo: https://github.com/microsoft/java-debug.git
+        dest: "{{ ansible_env.HOME }}/.local/share/java-debug"
+      register: java_debug
+    - name: Install java-debug
+      shell: "cd {{ ansible_env.HOME }}/.local/share/java-debug && ./mvnw clean install"
+      when: java_debug.changed
 
 - name: Install vscode-java-test
   block:
