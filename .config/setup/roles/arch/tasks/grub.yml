@@ -1,0 +1,12 @@
+---
+- name: Fix GRUB resolution
+  become: true
+  lineinfile:
+    path: /etc/default/grub
+    regexp: "^GRUB_GFXMODE="
+    line: GRUB_GFXMODE=1920x1080x32,1024x768x32,auto
+  register: grub_resolution
+
+- name: Reload GRUB
+  shell: grub-mkconfig -o /boot/grub/grub.cfg
+  when: grub_resolution.changed
