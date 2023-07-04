@@ -11,6 +11,7 @@ mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_CACHE_HOME"
 
 export BASHDIR="$HOME/.config/bash"
+export ZDOTDIR="$HOME/.config/zsh"
 
 export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
