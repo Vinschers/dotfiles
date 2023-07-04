@@ -70,7 +70,7 @@
     - name: Update mkinitcpio.conf
       lineinfile:
         path: /etc/mkinitcpio.conf
-        regexp: "^MODULES=("
+        regexp: '^MODULES=\('
         line: "{{ modules.stdout }}"
     - name: Run mkinitcpio
       shell: mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
