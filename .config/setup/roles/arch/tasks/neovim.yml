@@ -80,7 +80,7 @@
         name:
           - bashdb
           - vscode-langservers-extracted
-          - vscode-node-debug2
+          # - vscode-node-debug2
         use: makepkg
         state: present
 
