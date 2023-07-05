@@ -25,7 +25,7 @@
 
 - import_tasks: fonts.yml
 - import_tasks: eww.yml
-- import_tasks: sddm.yml
+# - import_tasks: sddm.yml
 - import_tasks: hyprland.yml
 - import_tasks: gui.yml
 - import_tasks: nvidia.yml
