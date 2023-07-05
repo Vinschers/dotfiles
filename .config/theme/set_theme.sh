@@ -52,30 +52,58 @@ change_files() {
     update_gtk
 }
 
-reload_all() {
-	"$HOME/.config/theme/update_wallpaper.sh"
-
-	killall -s USR1 zsh 2>/dev/null
-	killall -s USR1 cava 2>/dev/null
-	pkill dunst && hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
-
+reload_nvim() {
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
         nvim --server "$nvim_socket" --remote-send ":lua package.loaded['utils.colorscheme'] = nil; vim.cmd.colorscheme(require('utils.colorscheme').theme)<cr>"
 	done
+}
 
+reload_waybar() {
+	pkill -USR2 waybar 2>/dev/null
+	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
+}
+
+reload_spotify() {
 	spicetify config color_scheme "default" -q
 	[ -d "$HOME/.config/spicetify/Backup" ] || spicetify backup -q
 	if pgrep spotify >/dev/null; then
 		spicetify -s watch &
 		sleep 1 && pkill spicetify
 	fi
+}
 
-	nwg-look -a >/dev/null 2>/dev/null
+reload_dunst() {
+	# pkill dunst && hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
+    echo a
+}
 
-	pkill -USR2 waybar 2>/dev/null
-	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
+reload_zsh() {
+	killall -s USR1 zsh 2>/dev/null
+}
 
+reload_cava() {
+	killall -s USR1 cava 2>/dev/null
+}
+
+reload_gtk() {
+    nwg-look -a >/dev/null 2>/dev/null
+}
+
+reload_bat() {
     bat cache --build >/dev/null
+}
+
+reload_all() {
+	"$HOME/.config/theme/update_wallpaper.sh"
+
+    reload_zsh &
+    reload_waybar &
+    reload_dunst &
+    reload_nvim &
+    reload_cava &
+    reload_gtk &
+    reload_spotify &
+    reload_bat &
 }
 
 main() {
