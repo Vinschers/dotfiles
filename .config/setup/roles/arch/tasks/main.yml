@@ -1,8 +1,4 @@
 ---
-- name: Check for NVIDIA GPU
-  shell: lspci -k | grep -A 2 -E "(VGA|3D)" | { grep -i nvidia || true; }
-  register: nvidia
-
 - import_tasks: grub.yml
 - import_tasks: pacman.yml
 - import_tasks: aur.yml
@@ -25,10 +21,9 @@
 
 - import_tasks: fonts.yml
 - import_tasks: eww.yml
-# - import_tasks: sddm.yml
+- import_tasks: sddm.yml
 - import_tasks: hyprland.yml
 - import_tasks: gui.yml
-- import_tasks: nvidia.yml
 
 - import_tasks: syncthing.yml
 - import_tasks: spicetify.yml

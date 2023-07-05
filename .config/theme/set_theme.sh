@@ -54,7 +54,7 @@ change_files() {
 
 reload_nvim() {
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
-        nvim --server "$nvim_socket" --remote-send ":lua package.loaded['utils.colorscheme'] = nil; vim.cmd.colorscheme(require('utils.colorscheme').theme)<cr>"
+        nvim --server "$nvim_socket" --remote-send ":lua package.loaded['utils.colorscheme'] = nil; vim.cmd.colorscheme(require('utils.colorscheme').theme)"
 	done
 }
 
@@ -73,8 +73,7 @@ reload_spotify() {
 }
 
 reload_dunst() {
-	# pkill dunst && hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
-    echo a
+	pkill dunst && hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
 }
 
 reload_zsh() {
@@ -96,14 +95,14 @@ reload_bat() {
 reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 
-    reload_zsh &
-    reload_waybar &
+    reload_zsh
+    reload_waybar
     reload_dunst &
-    reload_nvim &
-    reload_cava &
-    reload_gtk &
-    reload_spotify &
-    reload_bat &
+    reload_nvim
+    reload_cava
+    reload_gtk
+    reload_spotify
+    reload_bat
 }
 
 main() {
