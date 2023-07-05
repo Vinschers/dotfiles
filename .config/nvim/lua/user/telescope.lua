@@ -24,6 +24,7 @@ M.opts = {
 		file_ignore_patterns = {
 			".git/",
 			"node_modules",
+            "gtk/",
 
 			"%.jpg",
 			"%.jpeg",
@@ -31,6 +32,7 @@ M.opts = {
 			"%.svg",
 			"%.otf",
 			"%.ttf",
+			"%.gif",
 			"%.mp4",
 			"%.mp3",
 			"%.mkv",
