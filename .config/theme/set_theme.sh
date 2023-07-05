@@ -1,77 +1,54 @@
 #!/bin/sh
 
-create_config_symlinks() {
-	ln -fs "/usr/share/btop/themes/$btop_theme.theme" "$HOME/.config/btop/themes/btop.theme"
-	for file in "$HOME/.config/spicetify/Themes/$spicetify_theme"/*; do
-		ln -fs "$file" "$HOME/.config/spicetify/Themes/default"
-	done
+create_symlink() {
+	src="$HOME/.config/theme/themes/$theme/configs/$1"
+	dest="$HOME/.config/$2"
 
-	for file in "$HOME/.config/spicetify/Themes/default"/*; do
-		[ -e "$HOME/.config/spicetify/Themes/$spicetify_theme/$(basename "$file")" ] || rm -rf "$file"
-	done
+	[ -e "$src" ] || return
 
-	spicetify config color_scheme "$spicetify_color_scheme" -q
-
-    [ -d "$HOME/.config/spicetify/Backup" ] || spicetify backup -q
+    mkdir -p "$(dirname "$dest")"
+	ln -fns "$src" "$dest"
 }
 
-read_variable() {
-	variable="$1"
-	json_file="$HOME/.config/theme/themes/$theme/theme.json"
-
-	jq -r ".$variable" "$json_file"
+change_files() {
+	create_symlink "cava" "cava/config"
+	create_symlink "change_theme.sh" "shell/change_theme.sh"
+	create_symlink "dunst" "dunst/theme"
+	create_symlink "eww.scss" "eww/css/_colors.scss"
+	create_symlink "foot.conf" "foot/theme.conf"
+	create_symlink "nvim.lua" "nvim/lua/utils/colorscheme.lua"
+	create_symlink "waybar.css" "waybar/style/theme.css"
+	create_symlink "wlogout.css" "wlogout/style.css"
+	create_symlink "wofi.css" "wofi/style.css"
+	create_symlink "zathura" "zathura/theme"
+	create_symlink "bat.tmTheme" "bat/themes/theme.tmTheme"
+	create_symlink "btop.theme" "btop/themes/btop.theme"
+	create_symlink "spicetify" "spicetify/Themes/default"
 }
 
-read_variables() {
-	gtk_theme="$(read_variable "gtk_theme")"
-	gtk_icon="$(read_variable "gtk_icon")"
-	gtk_cursor="$(read_variable "gtk_cursor")"
+update_gtk() {
+    rm -rf "$HOME/.local/share/themes"/*
+    ln -s "$HOME/.config/theme/themes/$theme/configs/gtk/theme" "$HOME/.local/share/themes/$theme"
 
-	btop_theme="$(read_variable "btop_theme")"
-
-	nvim_theme="$(read_variable "nvim_theme")"
-
-	spicetify_theme="$(read_variable "spicetify_theme")"
-	spicetify_color_scheme="$(read_variable "spicetify_color_scheme")"
-}
-
-replace_file() {
-	template="$1"
-	file="$2"
-
-	perl -pe "s(\\$\\{(.*)\\})(\`jq -r '.\$1' '$HOME/.config/theme/themes/$theme/theme.json' | sed 's|#||g' | tr -d '\n'\`)ge" <"$template" >"$file"
-}
-
-load_files() {
-	replace_file "$HOME/.config/shell/change_theme.template.sh" "$HOME/.config/shell/change_theme.sh"
-	replace_file "$HOME/.config/foot/theme.template.conf" "$HOME/.config/foot/theme.conf"
-	replace_file "$HOME/.config/nvim/lua/utils/colorscheme.template.lua" "$HOME/.config/nvim/lua/utils/colorscheme.lua"
-	replace_file "$HOME/.config/waybar/style/theme.template.css" "$HOME/.config/waybar/style/theme.css"
-	replace_file "$HOME/.config/eww/css/_colors.template.scss" "$HOME/.config/eww/css/_colors.scss"
-	replace_file "$HOME/.config/alacritty/theme.template.yml" "$HOME/.config/alacritty/theme.yml"
-	replace_file "$HOME/.config/cava/config.template" "$HOME/.config/cava/config"
-	replace_file "$HOME/.config/bat/config.template" "$HOME/.config/bat/config"
-	replace_file "$HOME/.config/zathura/zathurarc.template" "$HOME/.config/zathura/zathurarc"
-	replace_file "$HOME/.config/wofi/style.template.css" "$HOME/.config/wofi/style.css"
-	replace_file "$HOME/.config/wlogout/style.template.css" "$HOME/.config/wlogout/style.css"
-	replace_file "$HOME/.config/dunst/dunstrc.template" "$HOME/.config/dunst/dunstrc"
-
-	chmod +x "$HOME/.config/shell/change_theme.sh"
+    rm -rf "$HOME/.local/share/icons"/*
+    ln -s "$HOME/.config/theme/themes/$theme/configs/gtk/icons" "$HOME/.local/share/icons/$theme"
 
 	sed -i "$HOME/.local/share/nwg-look/gsettings" \
-		-e "s/gtk-theme=.*/gtk-theme=$gtk_theme/g" \
-		-e "s/icon-theme=.*/icon-theme=$gtk_icon/g" \
-		-e "s/cursor-theme=.*/cursor-theme=$gtk_cursor/g"
+		-e "s/gtk-theme=.*/gtk-theme=$theme/g" \
+		-e "s/icon-theme=.*/icon-theme=$theme/g" \
+		-e "s/cursor-theme=.*/cursor-theme=$theme/g"
 
 	sed -i "$HOME/.config/gtk-2.0/gtkrc" \
-		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/g" \
-		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icon\"/g" \
-		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/g"
+		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$theme\"/g" \
+		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$theme\"/g" \
+		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$theme\"/g"
 
 	sed -i "$HOME/.config/gtk-3.0/settings.ini" \
-		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$gtk_theme\"/g" \
-		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$gtk_icon\"/g" \
-		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$gtk_cursor\"/g"
+		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$theme\"/g" \
+		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$theme\"/g" \
+		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$theme\"/g"
+
+	nwg-look -a >/dev/null 2>/dev/null
 }
 
 reload_all() {
@@ -79,14 +56,14 @@ reload_all() {
 
 	killall -s USR1 zsh 2>/dev/null
 	killall -s USR1 cava 2>/dev/null
-	pkill dunst && hyprctl dispatch exec dunst >/dev/null
+	pkill dunst && hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
 
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
-		nvim --server "$nvim_socket" --remote-send ":colorscheme $nvim_theme<cr>"
+        nvim --server "$nvim_socket" --remote-send ":lua vim.cmd.colorscheme(require('utils.colorscheme').theme)<cr>"
 	done
 
-	nwg-look -a >/dev/null 2>/dev/null
-
+	spicetify config color_scheme "default" -q
+	[ -d "$HOME/.config/spicetify/Backup" ] || spicetify backup -q
 	if pgrep spotify >/dev/null; then
 		spicetify -s watch &
 		sleep 1 && pkill spicetify
@@ -94,18 +71,18 @@ reload_all() {
 
 	pkill -USR2 waybar 2>/dev/null
 	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
+
+    bat cache --build >/dev/null
 }
 
 main() {
 	theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
 
-	read_variables
-
-	load_files
-
-	create_config_symlinks
-
+	change_files
 	reload_all
+    update_gtk
+
+    notify-send "$theme"
 }
 
 main
