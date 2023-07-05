@@ -3,7 +3,7 @@
 # Have less display colours
 export LESS_TERMCAP_mb="$(tput bold; tput setaf 2)"
 export LESS_TERMCAP_md="$(tput bold; tput setaf 6)"
-export LESS_TERMCAP_so="$(tput bold; tput setaf 3; tput setab 4)"
+export LESS_TERMCAP_so="$(tput bold; tput setaf 6; tput setab 0)"
 export LESS_TERMCAP_us="$(tput bold; tput setaf 7)"
 export LESS_TERMCAP_me="$(tput sgr0)"
 export LESS_TERMCAP_se="$(tput rmso; tput sgr0)"
