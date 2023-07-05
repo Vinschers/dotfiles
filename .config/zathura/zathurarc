@@ -6,4 +6,4 @@ set highlight-transparency 0.1
 set recolor true
 set recolor-keephue true
 
-include tokyo-night
+include theme
