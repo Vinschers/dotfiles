@@ -29,13 +29,13 @@
 - name: Copy local config to sddm config
   become: true
   copy:
-    src: "{{ ansible_env.HOME }}/.config/sddm/sddm.conf"
+    src: sddm.conf
     dest: /etc/sddm.conf
 
 - name: Copy user icon to sddm icons
   become: true
   copy:
-    src: "{{ ansible_env.HOME }}/.config/sddm/icon.png"
+    src: icon.png
     dest: "/usr/share/sddm/faces/{{ ansible_env.USER }}.face.icon"
 
 - name: Enable sddm service
