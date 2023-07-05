@@ -54,13 +54,12 @@ change_files() {
 
 reload_nvim() {
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
-        nvim --server "$nvim_socket" --remote-send ":lua package.loaded['utils.colorscheme'] = nil; vim.cmd.colorscheme(require('utils.colorscheme').theme)"
+        nvim --server "$nvim_socket" --remote-send ":lua package.loaded['utils.colorscheme'] = nil; vim.cmd.colorscheme(require('utils.colorscheme').theme)<cr>"
 	done
 }
 
 reload_waybar() {
 	pkill -USR2 waybar 2>/dev/null
-	pgrep waybar >/dev/null || hyprctl dispatch exec waybar >/dev/null
 }
 
 reload_spotify() {
@@ -96,11 +95,11 @@ reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 
     reload_zsh
-    reload_waybar
-    reload_dunst &
-    reload_nvim
-    reload_cava
     reload_gtk
+    reload_nvim
+    reload_dunst
+    reload_cava
+    reload_waybar
     reload_spotify
     reload_bat
 }
