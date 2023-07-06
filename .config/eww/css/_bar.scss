@@ -12,7 +12,7 @@
 
     .bar-part {
         background: $bar_bg;
-        color: $bar_fg;
+        color: $bar_fg2;
 
         border-radius: 1rem;
 
@@ -32,15 +32,15 @@
         }
 
         .status0 {
-            color: $ws_0;
+            color: $bar_fg0;
         }
 
         .status1 {
-            color: $ws_1;
+            color: $bar_fg1;
         }
 
         .status2 {
-            color: $ws_2;
+            color: $bar_fg2;
             text-shadow: none;
         }
     }
@@ -75,7 +75,7 @@
 
         .song-button {
             @include rounding;
-            color: $bar_fg;
+            color: $bar_fg2;
             margin-left: 0.5rem;
             margin-right: 0.5rem;
             font-size: 18pt;
