@@ -1,0 +1,71 @@
+(include "./widgets/workspaces.yuck")
+(include "./widgets/time.yuck")
+
+(defwidget bar_left []
+  (box
+    :class "bar-part"
+    :halign "start"
+
+    "teste"
+  )
+)
+
+(defwidget bar_center [monitor]
+  (box
+    :class "bar-part"
+    :halign "center"
+
+    (workspaces :monitor "${monitor}")
+  )
+)
+
+(defwidget bar_right []
+  (box
+    :class "bar-part"
+    :halign "end"
+
+    (time)
+  )
+)
+
+(defwidget bar [monitor]
+  (box
+    :class "bar"
+    :orientation "horizontal"
+    :spacing 60
+
+    (bar_left)
+    (bar_center :monitor "${monitor}")
+    (bar_right)
+  )
+)
+
+(defwindow bar_window0
+  :monitor 0
+  :stacking "fg"
+  :focusable false
+  :exclusive true
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "3%"
+    :anchor "top center")
+
+  (bar :monitor 0)
+)
+
+(defwindow bar_window1
+  :monitor 1
+  :stacking "fg"
+  :focusable false
+  :exclusive true
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "3%"
+    :anchor "top center")
+
+  (bar :monitor 1)
+)

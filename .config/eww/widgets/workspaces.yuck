@@ -1,0 +1,14 @@
+(deflisten workspaces "scripts/workspaces.py")
+
+(defwidget workspaces [monitor]
+  (box
+    :class "workspaces"
+    (for ws in "${workspaces['${monitor}']}"
+      (button
+        :class "workspace status${ws}"
+
+        "${ws == 0 ? '' : ws == 1 ? '' : ''}"
+      )
+    )
+  )
+)

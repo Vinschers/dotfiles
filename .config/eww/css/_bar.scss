@@ -1,0 +1,66 @@
+.bar {
+    font-family: "Jost *", Roboto, sans-serif;
+    background: transparent;
+
+    font-size: 1rem;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.bar-part {
+    background: $bar_bg;
+    color: $bar_fg;
+
+    border-radius: 1rem;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    box-shadow: 0 2px 3px $shadow;
+}
+
+.workspaces {
+    font-family: monospace;
+
+    .workspace {
+        padding: 0;
+        margin: 0.5rem;
+
+        text-shadow: 0 0 8 $shadow;
+    }
+
+    .status0 {
+        color: $ws_0;
+    }
+
+    .status1 {
+        color: $ws_1;
+    }
+
+    .status2 {
+        color: $ws_2;
+        text-shadow: none;
+    }
+}
+
+.datetime {
+    font-size: 1.4rem;
+
+    .hour {
+        font-weight: bold;
+    }
+
+    .date {
+        color: $date;
+        border-radius: 12px;
+
+        label {
+            padding-left: 0.8rem;
+            font-size: 1.4rem;
+        }
+    }
+}

@@ -41,7 +41,6 @@ change_files() {
 	create_symlink "eww.scss" "eww/css/_colors.scss"
 	create_symlink "foot.conf" "foot/theme.conf"
 	create_symlink "nvim.lua" "nvim/lua/utils/colorscheme.lua"
-	create_symlink "waybar.css" "waybar/style/theme.css"
 	create_symlink "wlogout.css" "wlogout/style.css"
 	create_symlink "wofi.css" "wofi/style.css"
 	create_symlink "zathura" "zathura/theme"
@@ -56,10 +55,6 @@ reload_nvim() {
 	ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
         nvim --server "$nvim_socket" --remote-send ":lua package.loaded['utils.colorscheme'] = nil; vim.cmd.colorscheme(require('utils.colorscheme').theme)<cr>"
 	done
-}
-
-reload_waybar() {
-	pkill -USR2 waybar 2>/dev/null
 }
 
 reload_spotify() {
@@ -99,7 +94,6 @@ reload_all() {
     reload_nvim
     reload_dunst
     reload_cava
-    reload_waybar
     reload_spotify
     reload_bat
 }

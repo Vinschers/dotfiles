@@ -1,9 +1,0 @@
-{
-    "group/startup": {
-        "modules": ["custom/start-eww"]
-    },
-    "custom/start-eww": {
-        "exec": "eww kill; eww daemon >/dev/null 2>/dev/null; eww open dummy",
-        "interval": "once"
-    }
-}

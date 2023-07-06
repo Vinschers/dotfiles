@@ -35,8 +35,8 @@ get_info() {
 		--arg status "$status" \
 		'. += {"position": $position, "position_time": $position_time, "length": $length, "status": $status}' "$info_file"
 }
-
-while true; do
-    get_info
-    sleep 0.1
-done
+#
+# while true; do
+#     get_info
+#     sleep 0.1
+# done

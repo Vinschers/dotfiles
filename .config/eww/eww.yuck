@@ -1,14 +1,5 @@
+(include "./windows/bar.yuck")
 (include "./windows/music.yuck")
 
 (defwidget closer [window]
   (eventbox :onclick "eww close ${window} && eww close closer_${window}"))
-
-(defwindow dummy
-    :monitor 0
-    :geometry (geometry
-        :x "0%"
-        :y "0%"
-        :width "0%"
-        :height "0%"
-    )
-{music.status})

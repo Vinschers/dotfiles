@@ -23,7 +23,7 @@ function M.config()
 	null_ls.setup({
 		debug = false,
 		sources = {
-			formatting.prettier,
+			formatting.prettier.with({ extra_args = { "--config", os.getenv("HOME") .. "/.config/.prettierrc.yaml" } }),
 			formatting.black.with({ extra_args = { "--fast", "-l", "130" } }),
 			formatting.isort,
 			formatting.stylua,

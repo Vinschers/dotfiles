@@ -32,9 +32,17 @@
       - nwg-look
     state: present
 
-- name: Install Hyprland
+- name: Install Hyprland with NVIDIA patch
   become: true
   become_user: aur_builder
   kewlfft.aur.aur:
+    name: hyprland-nvidia
+    state: present
+  when: nvidia.stdout != ""
+
+- name: Install Hyprland
+  become: true
+  community.general.pacman:
     name: hyprland
     state: present
+  when: nvidia.stdout == ""

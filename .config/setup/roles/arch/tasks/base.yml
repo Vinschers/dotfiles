@@ -36,6 +36,10 @@
       - jupyter-notebook
       - rkhunter
       - bluez
+      - pacman-contrib
+      - libva
+      - libva-utils
+      - nvtop
     state: present
 - name: Install AUR packages
   become: true
