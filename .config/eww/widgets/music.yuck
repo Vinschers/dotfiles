@@ -8,7 +8,7 @@
     (box
       :space-evenly false
       (box
-        :class "song-cover-art"
+        :class "${music.title != "" ? "song-cover-art" : ""}"
         :style "background-image: url(\"${music.cover}\");")
       (button
         :onclick "scripts/toggle_window.sh music"
