@@ -1,0 +1,17 @@
+(defwidget theme []
+  (box
+    :class "theme-wallpaper"
+    (button
+      :class "theme"
+      :style "background-image: url(\"assets/theme.png\");"
+      :onclick "$HOME/.config/theme/switch_theme.sh n"
+      :onrightclick "$HOME/.config/theme/switch_theme.sh p"
+    )
+    (button
+      :class "wallpaper"
+      :style "background-image: url(\"assets/wallpaper.png\");"
+      :onclick "$HOME/.config/theme/update_wallpaper.sh n"
+      :onrightclick "$HOME/.config/theme/update_wallpaper.sh p"
+    )
+  )
+)

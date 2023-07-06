@@ -81,4 +81,28 @@
             font-size: 18pt;
         }
     }
+
+    .theme-wallpaper {
+        padding-right: 1.5rem;
+
+        .wallpaper {
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
+            margin-left: 0.55rem;
+            margin-right: 0.55rem;
+        }
+        .theme {
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            min-width: 1.75rem;
+        }
+    }
 }

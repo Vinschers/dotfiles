@@ -1,5 +1,6 @@
 (include "./widgets/music.yuck")
 (include "./widgets/workspaces.yuck")
+(include "./widgets/theme.yuck")
 (include "./widgets/time.yuck")
 
 (defwidget bar_left []
@@ -24,7 +25,9 @@
   (box
     :class "bar-part"
     :halign "end"
+    :space-evenly false
 
+    (theme)
     (time)
   )
 )
