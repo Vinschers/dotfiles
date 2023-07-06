@@ -1,17 +1,14 @@
 @import "css/colors";
 
-@import "css/bar";
-@import "css/music";
-
 @mixin rounding {
-    border-radius: 16px;
+    border-radius: 20rem;
 }
 
 @mixin window {
     border: 1px solid $bar_bg;
     box-shadow: 0 2px 3px $bar_bg;
     margin: 5px 5px 10px;
-    @include rounding;
+    border-radius: 16px;
 }
 
 * {
@@ -26,3 +23,6 @@ scale trough {
     min-height: 10px;
     min-width: 70px;
 }
+
+@import "css/bar";
+@import "css/music";

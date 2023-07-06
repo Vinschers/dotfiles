@@ -16,6 +16,10 @@ def get_workspace_id(workspace_name):
     return ws_id
 
 
+def get_workspace_name(mon_id, ws_id):
+    return 10 * mon_id + ws_id
+
+
 def run_cmd(cmd):
     return subprocess.run(cmd.split(), stdout=subprocess.PIPE).stdout
 
@@ -24,7 +28,13 @@ def get_json(active_ws_name):
     workspaces = json.loads(run_cmd("hyprctl workspaces -j"))
     monitors = json.loads(run_cmd("hyprctl monitors -j"))
 
-    status = [[0] * 10 for _ in range(0, len(monitors))]
+    status = []
+    for mon_id in range(0, len(monitors)):
+        status.append([])
+
+        for ws_id in range(1, 11):
+            status[-1].append({"status": 0, "id": get_workspace_name(mon_id, ws_id)})
+
     monitor_name_id = {monitor["name"]: monitor["id"] for monitor in monitors}
 
     for ws in workspaces:
@@ -34,13 +44,13 @@ def get_json(active_ws_name):
         active_ws = monitors[mon_id]["activeWorkspace"]["id"]
 
         if ws["name"] == active_ws_name or int(ws["name"]) == active_ws:
-            status[mon_id][ws_id - 1] = 2
+            status[mon_id][ws_id - 1]["status"] = 2
             continue
 
         if ws["windows"] == 0:
             continue
 
-        status[mon_id][ws_id - 1] = 1
+        status[mon_id][ws_id - 1]["status"] = 1
 
     return json.dumps(status)
 

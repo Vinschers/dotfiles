@@ -1,5 +1,6 @@
 .music-window {
     @include window;
+    color: $bar_fg;
 }
 
 .music-cover-art {
@@ -23,24 +24,21 @@
 
 .music-artist {
     padding-top: 1rem;
-    color: $bar_bg;
     padding-bottom: 1rem;
 }
 
 .music-button label {
     margin: 0.8rem;
-    color: $bar_bg;
     font-size: 2rem;
 }
 
 .music-time {
-    color: $bar_bg;
     margin: 0 1rem;
 }
 
 .music-bar scale {
     highlight {
-        background-image: linear-gradient(to right, $bar_bg, $bar_bg);
+        background-image: linear-gradient(to right, $wmusic1, $wmusic2);
         border-radius: 24px;
     }
 

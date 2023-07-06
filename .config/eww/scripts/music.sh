@@ -15,6 +15,13 @@ get_cover() {
 	echo "$path/$filename.png"
 }
 
+truncate_string() {
+    str="$1"
+    length="$2"
+
+    echo "$str" | awk -v len="$length" '{ if (length($0) > len) print substr($0, 1, len-3) "..."; else print; }'
+}
+
 get_json() {
 	jq -c -r -n \
 		--arg player "$player" \
@@ -22,11 +29,12 @@ get_json() {
 		--arg title "$title" \
 		--arg status "$status" \
 		--arg position "$position" \
+		--arg position_time "$position_time" \
 		--arg length "$length" \
 		--arg cover "$cover_img" \
 		--arg color1 "$color1" \
 		--arg color2 "$color2" \
-		'{"player": $player, "artist": $artist, "title": $title, "status": $status, "position": $position, "length": $length, "cover": $cover, "color1": $color1, "color2": $color2}'
+		'{"player": $player, "artist": $artist, "title": $title, "status": $status, "position": $position, "position_time": $position_time, "length": $length, "cover": $cover, "color1": $color1, "color2": $color2}'
 }
 
 get_info() {
@@ -46,21 +54,34 @@ get_info() {
 			position="0"
 		fi
 
+        title="$(truncate_string "$title" 30)"
+        artist="$(truncate_string "$artist" 30)"
+
 		[ -z "$length" ] && length=$((2 * position))
+
+		position_time="$(date -d@"$((position / 1000000))" +%M:%S)"
+
+		if [ "$length" -gt 0 ]; then
+			position="$((100 * position / length))"
+		else
+			position="0"
+		fi
+
+		length="$(date -d@"$((length / 1000000))" +%M:%S)"
+
+		if [ "$status" = "Playing" ]; then
+			status="󰏦"
+		else
+			status="󰐍"
+		fi
 
 		player="$(playerctl -l | head -1)"
 		player="${player%%.*}"
 
-		json="$(get_json)"
-		echo "$json" >"$HOME/.cache/music/info.json"
-        echo "$json"
+		get_json
 
 		prevCover=$cover
 	done
 }
 
-rm -f "$HOME/.cache/music/info.json" 2>/dev/null
-
-while true; do
-    get_info
-done
+get_info

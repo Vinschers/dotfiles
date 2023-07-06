@@ -74,6 +74,10 @@ reload_zsh() {
 	killall -s USR1 zsh 2>/dev/null
 }
 
+reload_eww() {
+    eww reload >/dev/null
+}
+
 reload_cava() {
 	killall -s USR1 cava 2>/dev/null
 }
@@ -90,6 +94,7 @@ reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 
     reload_zsh
+    reload_eww
     reload_gtk
     reload_nvim
     reload_dunst

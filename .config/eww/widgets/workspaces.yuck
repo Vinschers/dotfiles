@@ -5,9 +5,10 @@
     :class "workspaces"
     (for ws in "${workspaces['${monitor}']}"
       (button
-        :class "workspace status${ws}"
+        :class "workspace status${ws.status}"
+        :onclick "hyprctl dispatch workspace ${ws.id}"
 
-        "${ws == 0 ? '' : ws == 1 ? '' : ''}"
+        "${ws.status == 0 ? '' : ws.status == 1 ? '' : ''}"
       )
     )
   )

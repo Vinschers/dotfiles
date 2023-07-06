@@ -1,3 +1,4 @@
+(include "./widgets/music.yuck")
 (include "./widgets/workspaces.yuck")
 (include "./widgets/time.yuck")
 
@@ -6,7 +7,7 @@
     :class "bar-part"
     :halign "start"
 
-    "teste"
+    (music_widget)
   )
 )
 
