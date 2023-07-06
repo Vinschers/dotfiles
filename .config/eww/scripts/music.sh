@@ -32,25 +32,13 @@ get_json() {
 		--arg position_time "$position_time" \
 		--arg length "$length" \
 		--arg cover "$cover_img" \
-		--arg color1 "$color1" \
-		--arg color2 "$color2" \
-		'{"player": $player, "artist": $artist, "title": $title, "status": $status, "position": $position, "position_time": $position_time, "length": $length, "cover": $cover, "color1": $color1, "color2": $color2}'
+		'{"player": $player, "artist": $artist, "title": $title, "status": $status, "position": $position, "position_time": $position_time, "length": $length, "cover": $cover}'
 }
 
 get_info() {
-	playerctl -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
+	playerctl -p spotify -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
 		if [ -n "$cover" ] && [ "$cover" != "$prevCover" ]; then
 			cover_img=$(get_cover "$cover")
-
-			if [ -n "$cover_img" ]; then
-				cols=$(convert "$cover_img" -colors 2 -format "%c" histogram:info: | awk '{print $3}')
-				color1=$(echo "$cols" | head -1 | awk '{print substr($0,1,7)}')
-				color2=$(echo "$cols" | tail -1 | awk '{print substr($0,1,7)}')
-			else
-				color1="#1e1e2e"
-				color2="#28283d"
-			fi
-
 			position="0"
 		fi
 

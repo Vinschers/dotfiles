@@ -3,21 +3,23 @@
 (include "./widgets/theme.yuck")
 (include "./widgets/time.yuck")
 
-(defwidget bar_left []
+(defwidget bar_left [monitor]
   (box
     :class "bar-part"
     :halign "start"
 
-    (music_widget)
+    (workspaces :monitor "${monitor}")
   )
 )
 
-(defwidget bar_center [monitor]
+(defwidget bar_center []
   (box
     :class "bar-part"
     :halign "center"
+    :space-evenly false
 
-    (workspaces :monitor "${monitor}")
+    (theme)
+    (music_widget)
   )
 )
 
@@ -25,9 +27,7 @@
   (box
     :class "bar-part"
     :halign "end"
-    :space-evenly false
 
-    (theme)
     (time)
   )
 )
@@ -38,8 +38,8 @@
     :orientation "horizontal"
     :spacing 60
 
-    (bar_left)
-    (bar_center :monitor "${monitor}")
+    (bar_left :monitor "${monitor}")
+    (bar_center)
     (bar_right)
   )
 )

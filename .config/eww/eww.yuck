@@ -3,4 +3,4 @@
 (include "./windows/calendar.yuck")
 
 (defwidget closer [window]
-  (eventbox :onclick "eww close ${window} && eww close closer_${window}"))
+  (eventbox :onclick "eww close closer_${window} && eww close ${window}"))
