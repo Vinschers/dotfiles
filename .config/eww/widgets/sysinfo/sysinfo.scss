@@ -1,0 +1,29 @@
+.sysinfo {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    margin-right: 1rem;
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    border-radius: 0.5rem;
+
+    background-color: $bar_sys_bg;
+    font-family: fontawesome;
+
+    .cpu {
+        color: $bcpu;
+    }
+
+    .memory {
+        color: $bmem;
+    }
+
+    .disk {
+        color: $bdisk;
+    }
+
+    .gpu {
+        color: $bgpu;
+    }
+}

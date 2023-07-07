@@ -2,7 +2,7 @@
 
 (defwidget music_widget []
   (box
-    :class "${music != "" ? "music" : ""}"
+    :class "${music != "" ? "song" : ""}"
     :space-evenly false
 
     (label

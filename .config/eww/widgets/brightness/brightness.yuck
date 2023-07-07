@@ -1,0 +1,23 @@
+(deflisten bright "scripts/bright.sh")
+
+(defwidget brightness []
+  (box
+    :class "brightness-box"
+    :space-evenly false
+
+    (button
+      :class "brightness-icon"
+      "${bright.icon}"
+    )
+
+    (scale
+      :class "brightness-slider"
+      :hexpand true
+      :min 0
+      :max 101
+      :value "${bright.value}"
+      :tooltip "${bright.value}%"
+      :onchange "scripts/bright.sh set {}"
+    )
+  )
+)

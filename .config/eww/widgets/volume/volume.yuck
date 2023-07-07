@@ -1,0 +1,24 @@
+(deflisten volume "scripts/audio.sh")
+
+(defwidget volume []
+  (box
+    :class "volume-box"
+    :space-evenly false
+
+    (button
+      :class "volume-icon"
+      :onclick "scripts/audio.sh toggle"
+      "${volume.icon}"
+    )
+
+    (scale
+      :class "volume-slider"
+      :hexpand true
+      :min 0
+      :max 101
+      :value "${volume.value}"
+      :tooltip "${volume.value}%"
+      :onchange "scripts/audio.sh set {}"
+    )
+  )
+)

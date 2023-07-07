@@ -3,7 +3,7 @@
     :onclick "scripts/toggle_window.sh system"
 
     (box
-      :class "system"
+      :class "sysinfo"
       :spacing 6
 
       (label

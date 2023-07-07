@@ -1,9 +1,8 @@
-(defpoll time :interval "1s" "date +'{\"date\": \"%d/%m\", \"hour\": \"%H\", \"minute\": \"%M\", \"month\": \"%b\", \"year\": \"%y\", \"weekday\": \"%A\", \"day\": \"%d\", \"second\": \"%S\"}'")
 (defvar date_rev false)
 
 (defwidget time []
   (eventbox
-    :class "datetime"
+    :class "time"
     :onhover "${EWW_CMD} update date_rev=true"
     :onhoverlost "${EWW_CMD} update date_rev=false"
     (box

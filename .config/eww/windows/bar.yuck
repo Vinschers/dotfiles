@@ -1,8 +1,8 @@
-(include "./widgets/music.yuck")
-(include "./widgets/workspaces.yuck")
-(include "./widgets/theme.yuck")
-(include "./widgets/system.yuck")
-(include "./widgets/time.yuck")
+(include "widgets/song/song.yuck")
+(include "widgets/workspaces/workspaces.yuck")
+(include "widgets/theme/theme.yuck")
+(include "widgets/sysinfo/sysinfo.yuck")
+(include "widgets/time/time.yuck")
 
 (defwidget bar_left [monitor]
   (box

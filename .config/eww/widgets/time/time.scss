@@ -1,0 +1,17 @@
+.time {
+    font-size: 1.4rem;
+
+    .hour {
+        font-weight: bold;
+    }
+
+    .date {
+        color: $date;
+        border-radius: 12px;
+
+        label {
+            padding-left: 0.8rem;
+            font-size: 1.4rem;
+        }
+    }
+}

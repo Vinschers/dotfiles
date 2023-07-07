@@ -1,0 +1,22 @@
+.workspaces {
+    font-family: monospace;
+
+    .workspace {
+        padding: 0.5rem;
+
+        text-shadow: 0 0 8 $shadow;
+    }
+
+    .status0 {
+        color: $ws0;
+    }
+
+    .status1 {
+        color: $ws1;
+    }
+
+    .status2 {
+        color: $ws2;
+        text-shadow: none;
+    }
+}

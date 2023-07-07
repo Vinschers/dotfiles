@@ -21,97 +21,10 @@
 
         box-shadow: 0 2px 3px $shadow;
     }
-
-    .workspaces {
-        font-family: monospace;
-
-        .workspace {
-            padding: 0.5rem;
-
-            text-shadow: 0 0 8 $shadow;
-        }
-
-        .status0 {
-            color: $ws0;
-        }
-
-        .status1 {
-            color: $ws1;
-        }
-
-        .status2 {
-            color: $ws2;
-            text-shadow: none;
-        }
-    }
-
-    .theme-wallpaper {
-        .theme {
-            margin-right: 0.5rem;
-        }
-        .wallpaper {
-            margin-left: 0.5rem;
-        }
-    }
-
-    .music {
-        padding-left: 1.5rem;
-
-        .spotify-logo {
-            color: #1db954;
-            font-size: 14pt;
-        }
-
-        .song-title {
-            margin-left: 0.5rem;
-        }
-    }
-
-    .system {
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
-        margin-right: 1rem;
-
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-
-        border-radius: 0.5rem;
-
-        background-color: $bar_sys_bg;
-        font-family: fontawesome;
-
-        .cpu {
-            color: $bcpu;
-        }
-
-        .memory {
-            color: $bmem;
-        }
-
-        .disk {
-            color: $bdisk;
-        }
-
-        .gpu {
-            color: $bgpu;
-        }
-    }
-
-    .datetime {
-        font-size: 1.4rem;
-
-        .hour {
-            font-weight: bold;
-        }
-
-        .date {
-            color: $date;
-            border-radius: 12px;
-
-            label {
-                padding-left: 0.8rem;
-                font-size: 1.4rem;
-            }
-        }
-    }
 }
+
+@import "../widgets/workspaces/workspaces";
+@import "../widgets/song/song";
+@import "../widgets/sysinfo/sysinfo";
+@import "../widgets/theme/theme";
+@import "../widgets/time/time";

@@ -1,0 +1,2 @@
+(deflisten music "scripts/music.sh")
+(defpoll time :interval "1s" "date +'{\"date\": \"%d/%m\", \"hour\": \"%H\", \"minute\": \"%M\", \"month\": \"%b\", \"year\": \"%y\", \"weekday\": \"%A\", \"day\": \"%d\", \"second\": \"%S\"}'")

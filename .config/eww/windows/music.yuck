@@ -1,5 +1,3 @@
-(deflisten music "scripts/music.sh")
-
 (defwidget music []
   (box
     :class "music-window"
