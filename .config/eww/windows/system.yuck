@@ -1,0 +1,176 @@
+(defpoll user :interval "10h" "echo \$USER")
+
+(deflisten airplane "scripts/airplane.sh")
+(deflisten bluetooth "scripts/bluetooth.sh")
+(deflisten wifi "scripts/wifi.sh")
+(deflisten volume "scripts/audio.sh")
+
+(defwidget datetime-user []
+  (box
+    :class "datetime-user"
+    :space-evenly false
+
+    (box
+      :halign "start"
+      :valign "center"
+      :spacing 10
+
+      (label
+        :class "time"
+        :text "${time.hour}:${time.minute}"
+      )
+
+      (box
+        :class "date"
+        :orientation "vertical"
+        :valign "center"
+        :space-evenly false
+
+        (label
+          :text "${time.day} ${time.month} ${time.year}"
+          :halign "start"
+        )
+
+        (label
+          :text "${time.weekday}"
+          :halign "start"
+        )
+      )
+    )
+
+    (box
+      :orientation "horizontal"
+      :space-evenly false
+      :halign "end"
+      :valign "center"
+      :hexpand true
+
+      (box
+        :class "user-picture"
+        :style "background-image: url('/usr/share/sddm/faces/${user}.face.icon');")
+    )
+  )
+)
+
+(defwidget system-box [name ?class icon icon-onclick ?btn-onclick label ?tooltip]
+  (box
+    :class "${name}-box system-box"
+    :orientation "vertical"
+    :space-evenly false
+
+    (box
+      :class "system-element ${class}"
+      :space-evenly false
+
+      (button
+        :class "system-icon ${name}-button"
+        :onclick "${icon-onclick}"
+        {icon}
+      )
+
+      (label
+        :class "${btn-onclick != "" ? "separator" : ""}"
+        :text "${btn-onclick != "" ? "│" : ""}"
+      )
+
+      (button
+        :class "${btn-onclick != "" ? "system-btn" : ""}"
+        :onclick "eww close system; ${btn-onclick != "" ? "hyprctl dispatch exec ${btn-onclick}" : ""}"
+        "${btn-onclick != "" ? "" : ""}"
+      )
+    )
+
+    (label
+      :class "system-label"
+      :text {label}
+      :xalign "center"
+      :tooltip "${tooltip}"
+      :limit-width 15
+    )
+  )
+)
+
+(defwidget network []
+  (box
+    :class "network"
+    :spacing 24
+    :space-evenly false
+
+    (system-box
+      :name "wifi"
+      :class "${wifi.class}"
+      :icon "${wifi.icon}"
+      :icon-onclick "scripts/wifi.sh toggle"
+      :btn-onclick "nm-connection-editor"
+      :label "${wifi.text}"
+    )
+    (system-box
+      :name "bluetooth"
+      :class "${bluetooth.class}"
+      :icon "${bluetooth.icon}"
+      :icon-onclick "scripts/bluetooth.sh toggle"
+      :btn-onclick "blueberry"
+      :label "${bluetooth.text}"
+      :tooltip "${bluetooth.text} ${bluetooth.battery}"
+    )
+    (system-box
+      :name "airplane"
+      :icon "${airplane.icon}"
+      :icon-onclick "scripts/airplane.sh toggle"
+      :label "${airplane.text}"
+    )
+  )
+)
+
+(defwidget sliders []
+  (box
+    :class "sliders"
+    :orientation "vertical"
+    :space-evenly false
+
+    (box
+      :class "volume-box"
+      :space-evenly false
+
+      (button
+        :class "volume-icon"
+        :onclick "scripts/audio.sh toggle"
+        "${volume.icon}"
+      )
+
+      (scale
+        :class "volume-slider"
+        :hexpand true
+        :min 0
+        :max 101
+        :value "${volume.value}"
+        :tooltip "${volume.value}%"
+        :onchange "scripts/audio.sh set {}"
+      )
+    )
+  )
+)
+
+(defwidget system []
+  (box
+    :class "system-window"
+    :orientation "vertical"
+
+    (datetime-user)
+    (network)
+    (sliders)
+  )
+)
+
+(defwindow system
+  :stacking "fg" 
+  :geometry (geometry
+             :x "100"
+             :y "0"
+             :anchor "right top")
+  (system))
+
+(defwindow closer_system
+  :geometry (geometry :width "100%" :height "105%" :y "-5%")
+  :stacking "fg"
+  (closer :window "system"))

@@ -12,7 +12,7 @@
 
     .bar-part {
         background: $bar_bg;
-        color: $bar_fg2;
+        color: $bar_fg;
 
         border-radius: 1rem;
 
@@ -32,34 +32,16 @@
         }
 
         .status0 {
-            color: $bar_fg0;
+            color: $ws0;
         }
 
         .status1 {
-            color: $bar_fg1;
+            color: $ws1;
         }
 
         .status2 {
-            color: $bar_fg2;
+            color: $ws2;
             text-shadow: none;
-        }
-    }
-
-    .datetime {
-        font-size: 1.4rem;
-
-        .hour {
-            font-weight: bold;
-        }
-
-        .date {
-            color: $date;
-            border-radius: 12px;
-
-            label {
-                padding-left: 0.8rem;
-                font-size: 1.4rem;
-            }
         }
     }
 
@@ -82,6 +64,54 @@
 
         .song-title {
             margin-left: 0.5rem;
+        }
+    }
+
+    .system {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+        margin-right: 1rem;
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        border-radius: 0.5rem;
+
+        background-color: $bar_sys_bg;
+        font-family: fontawesome;
+
+        .cpu {
+            color: $bcpu;
+        }
+
+        .memory {
+            color: $bmem;
+        }
+
+        .disk {
+            color: $bdisk;
+        }
+
+        .gpu {
+            color: $bgpu;
+        }
+    }
+
+    .datetime {
+        font-size: 1.4rem;
+
+        .hour {
+            font-weight: bold;
+        }
+
+        .date {
+            color: $date;
+            border-radius: 12px;
+
+            label {
+                padding-left: 0.8rem;
+                font-size: 1.4rem;
+            }
         }
     }
 }

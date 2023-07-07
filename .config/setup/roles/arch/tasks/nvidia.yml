@@ -5,8 +5,6 @@
   community.general.pacman:
     name:
       - nvidia-dkms
-      - libva
-      - libva-utils
       - nvidia-settings
       - nvidia-utils
       - opencl-nvidia

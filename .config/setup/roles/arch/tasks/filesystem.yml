@@ -33,10 +33,6 @@
         - "{{ ansible_env.HOME }}/.bash_profile"
         - "{{ ansible_env.HOME }}/.bashrc"
         - "{{ ansible_env.HOME }}/.bashrc.old"
-    - name: Delete .ansible
-      file:
-        path: "{{ ansible_env.HOME }}/.ansible"
-        state: absent
     - name: Delete .dotnet
       file:
         path: "{{ ansible_env.HOME }}/.dotnet"

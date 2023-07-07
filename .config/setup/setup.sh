@@ -19,3 +19,5 @@ ansible-galaxy collection install -r "$HOME/.config/setup/requirements.yml"
 ansible-playbook --ask-become-pass "$HOME/.config/setup/bootstrap.yml"
 
 [ "$(find "$ZDOTDIR"/plugins/* -maxdepth 0 -type d | wc -l)" -eq 1 ] && /bin/zsh
+
+rm -rf "$HOME/.ansible"

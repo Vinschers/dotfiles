@@ -1,6 +1,7 @@
 (include "./windows/bar.yuck")
 (include "./windows/music.yuck")
 (include "./windows/calendar.yuck")
+(include "./windows/system.yuck")
 
 (defwidget closer [window]
   (eventbox :onclick "eww close closer_${window} && eww close ${window}"))

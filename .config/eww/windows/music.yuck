@@ -47,7 +47,6 @@
 
 (defwindow music
   :stacking "fg"
-  :focusable false
   :geometry (geometry
              :x "0%"
              :y "0%"
@@ -59,5 +58,4 @@
 (defwindow closer_music
   :geometry (geometry :width "100%" :height "105%" :y "-5%")
   :stacking "fg"
-  :focusable false
   (closer :window "music"))

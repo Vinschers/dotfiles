@@ -1,6 +1,7 @@
 (include "./widgets/music.yuck")
 (include "./widgets/workspaces.yuck")
 (include "./widgets/theme.yuck")
+(include "./widgets/system.yuck")
 (include "./widgets/time.yuck")
 
 (defwidget bar_left [monitor]
@@ -27,7 +28,9 @@
   (box
     :class "bar-part"
     :halign "end"
+    :space-evenly false
 
+    (system_widget)
     (time)
   )
 )
@@ -47,7 +50,6 @@
 (defwindow bar_window0
   :monitor 0
   :stacking "fg"
-  :focusable false
   :exclusive true
   :geometry (geometry
     :x "0%"
@@ -62,7 +64,6 @@
 (defwindow bar_window1
   :monitor 1
   :stacking "fg"
-  :focusable false
   :exclusive true
   :geometry (geometry
     :x "0%"

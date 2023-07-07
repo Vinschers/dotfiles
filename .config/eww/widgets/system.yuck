@@ -1,0 +1,30 @@
+(defwidget system_widget []
+  (button
+    :onclick "scripts/toggle_window.sh system"
+
+    (box
+      :class "system"
+      :spacing 6
+
+      (label
+        :class "cpu"
+        :text ""
+      )
+
+      (label
+        :class "memory"
+        :text ""
+      )
+
+      (label
+        :class "disk"
+        :text ""
+      )
+
+      (label
+        :class "gpu"
+        :text ""
+      )
+    )
+  )
+)

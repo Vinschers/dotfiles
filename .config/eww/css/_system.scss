@@ -1,0 +1,112 @@
+.system-window {
+    background-color: $sys_bg;
+    color: $sys_fg;
+    border-radius: 1rem;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    font-weight: 100;
+    font-family: Product Sans;
+
+    .datetime-user {
+        .time {
+            font-size: 4rem;
+        }
+
+        .date {
+            font-size: 1.2rem;
+        }
+
+        .user-picture {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 50px;
+            min-width: 40px;
+            min-height: 40px;
+        }
+    }
+
+    .network {
+        .system-box {
+            .system-element {
+                border-radius: 1rem;
+                background: $sysbox_bg;
+
+                .system-icon {
+                    padding-left: 1.2rem;
+                    padding-right: 1.2rem;
+                    padding-top: 0.2rem;
+                    padding-bottom: 0.2rem;
+
+                    border-radius: 1rem;
+
+                    font-size: 18pt;
+                }
+
+                .system-btn {
+                    padding-left: 1.2rem;
+                    padding-right: 1.2rem;
+                    border-radius: 1rem;
+                }
+
+                .system-icon:hover {
+                    background: $sysbox_hover;
+                }
+
+                .system-btn:hover {
+                    background: $sysbox_hover;
+                }
+            }
+
+            &.wifi-box {
+                .system-element {
+                    .system-icon {
+                        padding-right: 1.8rem;
+                    }
+                }
+            }
+
+            &.airplane-box {
+                .system-element {
+                    .system-icon {
+                        padding-right: 2.8rem;
+                        padding-left: 2.8rem;
+                    }
+                }
+            }
+        }
+
+        .system-label {
+            margin-top: 0.5rem;
+        }
+    }
+
+    .sliders {
+        margin-top: 1rem;
+
+        .volume-box {
+            .volume-icon {
+                font-size: 16pt;
+                color: $sys_fg;
+            }
+
+            .volume-slider {
+                trough {
+                    background-color: $sysslider_bg;
+                    border-radius: 24px;
+                    margin-left: 2rem;
+                    min-height: 10px;
+                    min-width: 8rem;
+                }
+                highlight {
+                    @include rounding;
+                    background-image: linear-gradient(to right, $sysslider1, $sysslider2);
+                }
+            }
+        }
+    }
+}
