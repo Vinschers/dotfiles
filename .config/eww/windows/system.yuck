@@ -2,6 +2,7 @@
 (include "widgets/network/network.yuck")
 (include "widgets/volume/volume.yuck")
 (include "widgets/brightness/brightness.yuck")
+(include "widgets/media/media.yuck")
 
 (defwidget sliders []
   (box
