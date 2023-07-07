@@ -4,6 +4,7 @@
 (deflisten bluetooth "scripts/bluetooth.sh")
 (deflisten wifi "scripts/wifi.sh")
 (deflisten volume "scripts/audio.sh")
+(deflisten bright "scripts/bright.sh")
 
 (defwidget datetime-user []
   (box
@@ -146,6 +147,26 @@
         :value "${volume.value}"
         :tooltip "${volume.value}%"
         :onchange "scripts/audio.sh set {}"
+      )
+    )
+
+    (box
+      :class "brightness-box"
+      :space-evenly false
+
+      (button
+        :class "brightness-icon"
+        "${bright.icon}"
+      )
+
+      (scale
+        :class "brightness-slider"
+        :hexpand true
+        :min 0
+        :max 101
+        :value "${bright.value}"
+        :tooltip "${bright.value}%"
+        :onchange "scripts/bright.sh set {}"
       )
     )
   )

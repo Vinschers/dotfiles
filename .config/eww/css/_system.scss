@@ -24,9 +24,9 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            border-radius: 50px;
-            min-width: 40px;
-            min-height: 40px;
+            border-radius: 4rem;
+            min-width: 3.5rem;
+            min-height: 3.5rem;
         }
     }
 
@@ -91,7 +91,7 @@
         .volume-box {
             .volume-icon {
                 font-size: 16pt;
-                color: $sys_fg;
+                color: $sys_volume;
             }
 
             .volume-slider {
@@ -104,7 +104,28 @@
                 }
                 highlight {
                     @include rounding;
-                    background-image: linear-gradient(to right, $sysslider1, $sysslider2);
+                    background-image: linear-gradient(to right, $sysvolslider1, $sysvolslider2);
+                }
+            }
+        }
+
+        .brightness-box {
+            .brightness-icon {
+                font-size: 16pt;
+                color: $sys_bright;
+            }
+
+            .brightness-slider {
+                trough {
+                    background-color: $sysslider_bg;
+                    border-radius: 24px;
+                    margin-left: 2rem;
+                    min-height: 10px;
+                    min-width: 8rem;
+                }
+                highlight {
+                    @include rounding;
+                    background-image: linear-gradient(to right, $sysbrightslider1, $sysbrightslider2);
                 }
             }
         }
