@@ -1,7 +1,6 @@
 (include "variables.yuck")
 
 (include "windows/bar.yuck")
-(include "windows/music.yuck")
 (include "windows/calendar.yuck")
 (include "windows/system.yuck")
 

@@ -1,0 +1,54 @@
+.graph-overlay {
+    .graph-box {
+        background: $graph_bg;
+
+        .graph-wrapper {
+            min-width: calc(20rem + 9px);
+            min-height: calc(10rem + 9px);
+            border: 1px solid $graph_contrast;
+
+            background: repeating-linear-gradient(
+                    to top,
+                    $graph_stripe,
+                    $graph_stripe 1px,
+                    transparent 1px,
+                    transparent calc(1rem + 1px)
+                ),
+                repeating-linear-gradient(
+                    to right,
+                    $graph_stripe,
+                    $graph_stripe 1px,
+                    transparent 1px,
+                    transparent calc(2rem + 1px)
+                );
+
+            .cpu-graph {
+                color: $graph_cpu;
+                background-color: rgba($graph_cpu, 0.1);
+            }
+
+            .mem-graph {
+                color: $graph_mem;
+                background-color: rgba($graph_mem, 0.1);
+            }
+
+            .temp-graph {
+                color: $graph_temp;
+                background-color: rgba($graph_temp, 0.1);
+            }
+
+            .gpu-graph {
+                color: $graph_gpu;
+                background-color: rgba($graph_gpu, 0.1);
+            }
+        }
+    }
+
+    .graph-name {
+        background: $graph_contrast;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        opacity: 0.6;
+    }
+}

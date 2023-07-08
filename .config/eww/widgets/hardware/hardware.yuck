@@ -1,0 +1,70 @@
+(defwidget hardware-graph [name value label]
+  (overlay
+    :class "graph-overlay"
+
+    (box
+      :class "graph-box"
+
+      (box
+        :class "graph-wrapper ${name}-wrapper"
+
+        (graph
+          :value "${value}"
+          :class "graph ${name}-graph"
+          :line-style "round"
+          :thickness 3
+          :time-range "5m"
+          :dynamic false
+          :min 0
+          :max 100
+        )
+      )
+    )
+
+    (label
+      :class "graph-name"
+      :halign "start"
+      :valign "start"
+      :text "${label}"
+    )
+  )
+)
+
+(defwidget hardware []
+  (box
+    :orientation "vertical"
+    :spacing 12
+
+    (box
+      :spacing 12
+
+      (hardware-graph
+        :name "cpu"
+        :value "${cpu}"
+        :label "CPU: ${round(cpu, 0)}%"
+      )
+
+      (hardware-graph
+        :name "mem"
+        :value "${memory}"
+        :label "RAM: ${round(memory, 0)}%"
+      )
+    )
+
+    (box
+      :spacing 12
+
+      (hardware-graph
+        :name "temp"
+        :value "${temperature / 1000}"
+        :label "Temperature: ${round(temperature / 1000, 0)}°C"
+      )
+
+      (hardware-graph
+        :name "gpu"
+        :value "${gpu}"
+        :label "GPU: ${round(gpu, 0)}%"
+      )
+    )
+  )
+)

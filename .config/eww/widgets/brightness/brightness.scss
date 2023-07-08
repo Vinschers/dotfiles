@@ -1,12 +1,12 @@
 .brightness-box {
     .brightness-icon {
         font-size: 16pt;
-        color: $sys_bright;
+        color: $bright_icon;
     }
 
     .brightness-slider {
         trough {
-            background-color: $sysslider_bg;
+            background-color: $slider_bg;
             border-radius: 24px;
             margin-left: 2rem;
             min-height: 10px;
@@ -16,8 +16,8 @@
             @include rounding;
             background-image: linear-gradient(
                 to right,
-                $sysbrightslider1,
-                $sysbrightslider2
+                $brightslider1,
+                $brightslider2
             );
         }
     }

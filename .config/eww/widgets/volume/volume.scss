@@ -1,12 +1,12 @@
 .volume-box {
     .volume-icon {
         font-size: 16pt;
-        color: $sys_volume;
+        color: $volume_icon;
     }
 
     .volume-slider {
         trough {
-            background-color: $sysslider_bg;
+            background-color: $slider_bg;
             border-radius: 24px;
             margin-left: 2rem;
             min-height: 10px;
@@ -16,8 +16,8 @@
             @include rounding;
             background-image: linear-gradient(
                 to right,
-                $sysvolslider1,
-                $sysvolslider2
+                $volslider1,
+                $volslider2
             );
         }
     }

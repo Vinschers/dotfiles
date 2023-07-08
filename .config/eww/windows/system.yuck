@@ -3,6 +3,7 @@
 (include "widgets/volume/volume.yuck")
 (include "widgets/brightness/brightness.yuck")
 (include "widgets/media/media.yuck")
+(include "widgets/hardware/hardware.yuck")
 
 (defwidget system []
   (box
@@ -11,11 +12,12 @@
     :space-evenly false
     :spacing 12
 
-    (datetime-user)
-    (network)
-    (volume)
-    (brightness)
-    (media)
+    ; (datetime-user)
+    ; (network)
+    ; (volume)
+    ; (brightness)
+    ; (media)
+    (hardware)
   )
 )
 

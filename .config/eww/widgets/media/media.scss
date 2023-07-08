@@ -23,7 +23,7 @@
         .media-control {
             .media-scale {
                 trough {
-                    background-color: $sysslider_bg;
+                    background-color: $slider_bg;
                     border-radius: 1rem;
                     min-height: 0.5rem;
                     min-width: 8rem;
@@ -32,8 +32,8 @@
                     @include rounding;
                     background-image: linear-gradient(
                         to right,
-                        $sysmediaslider1,
-                        $sysmediaslider2
+                        $mediaslider1,
+                        $mediaslider2
                     );
                 }
             }
@@ -65,77 +65,5 @@
                 }
             }
         }
-    }
-
-    .media-slider {
-        background: red;
-
-        trough {
-            background-color: $sysslider_bg;
-            border-radius: 24px;
-            margin-left: 2rem;
-            min-height: 10px;
-            min-width: 8rem;
-        }
-        highlight {
-            @include rounding;
-            background-image: linear-gradient(
-                to right,
-                $sysvolslider1,
-                $sysvolslider2
-            );
-        }
-    }
-}
-
-.music-window {
-    @include window;
-    color: $bar_fg;
-}
-
-.music-cover-art {
-    background-position: center;
-    background-size: cover;
-    border-radius: 8px;
-    margin: 1em;
-    min-width: 170px;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.music-box {
-    margin: 1rem 1rem 1rem 0;
-}
-
-.music-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.music-artist {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-.music-button label {
-    margin: 0.8rem;
-    font-size: 2rem;
-}
-
-.music-time {
-    margin: 0 1rem;
-}
-
-.music-bar scale {
-    highlight {
-        background-image: linear-gradient(to right, $wmusic1, $wmusic2);
-        border-radius: 24px;
-    }
-
-    trough {
-        border-radius: 24px;
-        margin-top: 0;
-        min-height: 10px;
-        min-width: 170px;
     }
 }

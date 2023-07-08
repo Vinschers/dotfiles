@@ -3,10 +3,7 @@
     color: $sys_fg;
     border-radius: 1rem;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 1rem;
 
     font-weight: 100;
     font-family: Product Sans;
@@ -21,3 +18,4 @@
 @import "../widgets/volume/volume";
 @import "../widgets/brightness/brightness";
 @import "../widgets/media/media";
+@import "../widgets/hardware/hardware";

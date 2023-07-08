@@ -1,2 +1,7 @@
 (deflisten music "scripts/music.sh")
 (defpoll time :interval "1s" "date +'{\"date\": \"%d/%m\", \"hour\": \"%H\", \"minute\": \"%M\", \"month\": \"%b\", \"year\": \"%y\", \"weekday\": \"%A\", \"day\": \"%d\", \"second\": \"%S\"}'")
+
+(defpoll cpu :interval "1s" "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'")
+(defpoll temperature :interval "1s" "scripts/temperature.sh")
+(defpoll memory :interval "1s" "awk '/MemFree/{free=$2} /MemTotal/{total=$2} END{print (free*100)/total}' /proc/meminfo")
+(defpoll gpu :interval "1s" "scripts/gpu.sh")
