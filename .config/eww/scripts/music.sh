@@ -72,4 +72,7 @@ get_info() {
 	done
 }
 
-get_info
+while true; do
+    get_info
+    sleep 3
+done

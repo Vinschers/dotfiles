@@ -1,6 +1,8 @@
 (include "widgets/song/song.yuck")
 (include "widgets/workspaces/workspaces.yuck")
+(include "widgets/window/window.yuck")
 (include "widgets/theme/theme.yuck")
+(include "widgets/sysconfig/sysconfig.yuck")
 (include "widgets/sysinfo/sysinfo.yuck")
 (include "widgets/time/time.yuck")
 
@@ -13,14 +15,13 @@
   )
 )
 
-(defwidget bar_center []
+(defwidget bar_center [monitor]
   (box
     :class "bar-part"
     :halign "center"
     :space-evenly false
 
-    (theme)
-    (music_widget)
+    (window :monitor "${monitor}")
   )
 )
 
@@ -29,8 +30,12 @@
     :class "bar-part"
     :halign "end"
     :space-evenly false
+    :spacing 12
 
-    (system_widget)
+    (theme)
+    (music_widget)
+    (sysinfo)
+    (sysconfig)
     (time)
   )
 )
@@ -42,7 +47,7 @@
     :spacing 60
 
     (bar_left :monitor "${monitor}")
-    (bar_center)
+    (bar_center :monitor "${monitor}")
     (bar_right)
   )
 )

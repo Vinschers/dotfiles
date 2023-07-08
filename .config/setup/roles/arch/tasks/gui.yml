@@ -17,6 +17,10 @@
       - xournalpp
       - obs-studio
       - libreoffice-still
+      - d-feet
+      - gimp
+      - zathura
+      - zathura-pdf-mupdf
     state: present
 
 - name: Install GUI programs from AUR

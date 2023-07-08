@@ -1,6 +1,6 @@
 (include "widgets/hardware/hardware.yuck")
 
-(defwidget system_widget []
+(defwidget sysinfo []
   (button
     :onclick "scripts/toggle_window.sh system"
 

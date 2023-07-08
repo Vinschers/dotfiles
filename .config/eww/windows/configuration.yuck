@@ -1,0 +1,33 @@
+(include "widgets/datetime-user/datetime-user.yuck")
+(include "widgets/network/network.yuck")
+(include "widgets/volume/volume.yuck")
+(include "widgets/brightness/brightness.yuck")
+(include "widgets/media/media.yuck")
+
+(defwidget configuration []
+  (box
+    :class "system-window"
+    :orientation "vertical"
+    :space-evenly false
+    :spacing 12
+
+    (datetime-user)
+    (network)
+    (volume)
+    (brightness)
+    (media)
+  )
+)
+
+(defwindow configuration
+  :stacking "fg" 
+  :geometry (geometry
+             :x "100"
+             :y "0"
+             :anchor "right top")
+  (configuration))
+
+(defwindow closer_configuration
+  :geometry (geometry :width "100%" :height "105%" :y "-5%")
+  :stacking "fg"
+  (closer :window "configuration"))

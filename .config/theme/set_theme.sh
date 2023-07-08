@@ -35,17 +35,17 @@ update_gtk() {
 }
 
 change_files() {
-	create_symlink "cava" "cava/config"
-	create_symlink "change_theme.sh" "shell/change_theme.sh"
-	create_symlink "dunst" "dunst/theme"
-	create_symlink "eww.scss" "eww/css/_colors.scss"
-	create_symlink "foot.conf" "foot/theme.conf"
-	create_symlink "nvim.lua" "nvim/lua/utils/colorscheme.lua"
-	create_symlink "wlogout.css" "wlogout/style.css"
-	create_symlink "wofi.css" "wofi/style.css"
-	create_symlink "zathura" "zathura/theme"
-	create_symlink "bat.tmTheme" "bat/themes/theme.tmTheme"
-	create_symlink "btop.theme" "btop/themes/btop.theme"
+	# create_symlink "cava" "cava/config"
+	# create_symlink "change_theme.sh" "shell/change_theme.sh"
+	# create_symlink "dunst" "dunst/theme"
+	# create_symlink "eww.scss" "eww/css/_colors.scss"
+	# create_symlink "foot.conf" "foot/theme.conf"
+	# create_symlink "nvim.lua" "nvim/lua/utils/colorscheme.lua"
+	# create_symlink "wlogout.css" "wlogout/style.css"
+	# create_symlink "wofi.css" "wofi/style.css"
+	# create_symlink "zathura" "zathura/theme"
+	# create_symlink "bat.tmTheme" "bat/themes/theme.tmTheme"
+	# create_symlink "btop.theme" "btop/themes/btop.theme"
 	create_symlink "spicetify" "spicetify/Themes/default"
 
     update_gtk
@@ -93,21 +93,21 @@ reload_bat() {
 reload_all() {
 	"$HOME/.config/theme/update_wallpaper.sh"
 
-    reload_zsh
-    reload_eww
-    reload_gtk
-    reload_nvim
-    reload_dunst
-    reload_cava
-    reload_spotify
-    reload_bat
+    # reload_zsh
+    # reload_eww
+    # reload_gtk
+    # reload_nvim
+    # reload_dunst
+    # reload_cava
+    # reload_spotify
+    # reload_bat
 }
 
 main() {
 	theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
 
 	change_files
-	reload_all
+	# reload_all
 
     notify-send "$theme"
 }

@@ -1,0 +1,7 @@
+(defwidget sysconfig []
+  (button
+    :onclick "scripts/toggle_window.sh configuration"
+    
+    "teste"
+  )
+)

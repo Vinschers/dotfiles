@@ -57,7 +57,7 @@
       (hardware-graph
         :name "temp"
         :value "${temperature / 1000}"
-        :label "Temperature: ${round(temperature / 1000, 0)}°C"
+        :label "Temperature: ${round(temperature / 1000, 0)} °C"
       )
 
       (hardware-graph

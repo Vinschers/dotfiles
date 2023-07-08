@@ -40,6 +40,9 @@
       - libva
       - libva-utils
       - nvtop
+      - tree
+      - yt-dlp
+      - light
     state: present
 - name: Install AUR packages
   become: true
