@@ -3,5 +3,6 @@
 
 (defpoll cpu :interval "1s" "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'")
 (defpoll temperature :interval "1s" "scripts/temperature.sh")
-(defpoll memory :interval "1s" "awk '/MemFree/{free=$2} /MemTotal/{total=$2} END{print (free*100)/total}' /proc/meminfo")
+(defpoll memory :interval "1s" "free -m | rg Mem | awk '{print ($3/$2)*100}'")
 (defpoll gpu :interval "1s" "scripts/gpu.sh")
+(defpoll disk :interval "1m" "scripts/disk.sh")

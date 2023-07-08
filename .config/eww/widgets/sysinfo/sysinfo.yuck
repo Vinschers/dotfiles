@@ -1,29 +1,39 @@
+(include "widgets/hardware/hardware.yuck")
+
 (defwidget system_widget []
   (button
     :onclick "scripts/toggle_window.sh system"
 
     (box
       :class "sysinfo"
+      :space-evenly false
       :spacing 6
 
-      (label
-        :class "cpu"
-        :text ""
+      (circular-progress
+        :width 20
+        :start-at 75
+        :value "${cpu}"
+        :class "circular-progress cpu"
+        :thickness 3
+        :tooltip "${round(cpu, 0)}%"
       )
 
-      (label
-        :class "memory"
-        :text ""
+      (circular-progress
+        :width 20
+        :start-at 75
+        :value "${memory}"
+        :class "circular-progress memory"
+        :thickness 3
+        :tooltip "${round(memory, 0)}%"
       )
 
-      (label
-        :class "disk"
-        :text ""
-      )
-
-      (label
-        :class "gpu"
-        :text ""
+      (circular-progress
+        :width 20
+        :start-at 75
+        :value "${gpu}"
+        :class "circular-progress gpu"
+        :thickness 3
+        :tooltip "${round(gpu, 0)}%"
       )
     )
   )

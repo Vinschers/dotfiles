@@ -9,21 +9,28 @@
     border-radius: 0.5rem;
 
     background-color: $bar_sys_bg;
-    font-family: fontawesome;
+
+    .circular-progress {
+        background: $bar_bg;
+    }
 
     .cpu {
-        color: $bcpu;
+        color: $cpu;
+    }
+    
+    .temperature {
+        color: $temp
     }
 
     .memory {
-        color: $bmem;
+        color: $mem;
     }
 
     .disk {
-        color: $bdisk;
+        color: $disk;
     }
 
     .gpu {
-        color: $bgpu;
+        color: $gpu;
     }
 }

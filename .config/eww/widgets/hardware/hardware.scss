@@ -23,23 +23,23 @@
                 );
 
             .cpu-graph {
-                color: $graph_cpu;
-                background-color: rgba($graph_cpu, 0.1);
+                color: $cpu;
+                background-color: rgba($cpu, 0.1);
             }
 
             .mem-graph {
-                color: $graph_mem;
-                background-color: rgba($graph_mem, 0.1);
+                color: $mem;
+                background-color: rgba($mem, 0.1);
             }
 
             .temp-graph {
-                color: $graph_temp;
-                background-color: rgba($graph_temp, 0.1);
+                color: $temp;
+                background-color: rgba($temp, 0.1);
             }
 
             .gpu-graph {
-                color: $graph_gpu;
-                background-color: rgba($graph_gpu, 0.1);
+                color: $gpu;
+                background-color: rgba($gpu, 0.1);
             }
         }
     }
