@@ -30,6 +30,7 @@
       - swww
       - wl-color-picker
       - nwg-look
+      - spotifywm-git
     state: present
 
 - name: Install Hyprland with NVIDIA patch

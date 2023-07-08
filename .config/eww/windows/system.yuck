@@ -4,26 +4,18 @@
 (include "widgets/brightness/brightness.yuck")
 (include "widgets/media/media.yuck")
 
-(defwidget sliders []
-  (box
-    :class "sliders"
-    :orientation "vertical"
-    :space-evenly false
-
-    (volume)
-    (brightness)
-  )
-)
-
 (defwidget system []
   (box
     :class "system-window"
     :orientation "vertical"
+    :space-evenly false
     :spacing 12
 
     (datetime-user)
     (network)
-    (sliders)
+    (volume)
+    (brightness)
+    (media)
   )
 )
 

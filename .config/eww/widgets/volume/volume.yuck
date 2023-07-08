@@ -15,7 +15,7 @@
       :class "volume-slider"
       :hexpand true
       :min 0
-      :max 101
+      :max 100
       :value "${volume.value}"
       :tooltip "${volume.value}%"
       :onchange "scripts/audio.sh set {}"

@@ -14,7 +14,7 @@
       :class "brightness-slider"
       :hexpand true
       :min 0
-      :max 101
+      :max 100
       :value "${bright.value}"
       :tooltip "${bright.value}%"
       :onchange "scripts/bright.sh set {}"
