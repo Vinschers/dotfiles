@@ -1,7 +1,43 @@
 (defwidget sysconfig []
   (button
+    :class "sysconfig"
     :onclick "scripts/toggle_window.sh configuration"
     
-    "teste"
+    (box
+      :class "config-icons"
+      :space-evenly false
+      :spacing 16
+
+      (label
+        :class "weather-icon"
+        :text "${weather.icon}"
+      )
+
+      (label
+        :class "bright-icon"
+        :text "${bright.icon}"
+      )
+
+      (label
+        :visible "${music != "" ? (music.title != "" ? true : false) : false}"
+        :class "music-icon"
+        :text ""
+      )
+
+      (label
+        :class "volume-icon"
+        :text "${volume.icon}"
+      )
+
+      (label
+        :class "bluetooth-icon"
+        :text "${bluetooth.icon}"
+      )
+
+      (label
+        :class "wifi-icon"
+        :text "${wifi.icon}"
+      )
+    )
   )
 )

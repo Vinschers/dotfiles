@@ -1,4 +1,3 @@
-(include "widgets/song/song.yuck")
 (include "widgets/workspaces/workspaces.yuck")
 (include "widgets/window/window.yuck")
 (include "widgets/theme/theme.yuck")
@@ -33,7 +32,6 @@
     :spacing 12
 
     (theme)
-    (music_widget)
     (sysinfo)
     (sysconfig)
     (time)
@@ -47,7 +45,7 @@
     :spacing 60
 
     (bar_left :monitor "${monitor}")
-    (bar_center :monitor "${monitor}")
+    ; (bar_center :monitor "${monitor}")
     (bar_right)
   )
 )

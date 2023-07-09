@@ -1,0 +1,52 @@
+(defwidget weather []
+  (box
+    :class "weather"
+    :space-evenly false
+
+    (box
+      :class "weather-info"
+      :hexpand true
+      :space-evenly false
+
+      (box
+        :orientation "v"
+
+        (label
+          :class "weather-location"
+          :halign "start"
+          :text {weather.location}
+        )
+
+        (label 
+          :class "weather-feels"
+          :text "feels like ${weather.feels} °C"
+          :halign "start"
+        )
+      )
+
+      (box
+        :orientation "v"
+        :hexpand true
+        :halign "end"
+
+        (label
+          :class "weather-temp"
+          :halign "end"
+          :text "${weather.temp} °C"
+        )
+
+        (label
+          :halign "end"
+          :class "weather-desc"
+          :text {weather.desc}
+        )
+      )
+    )
+
+    (label 
+      :class "weather-icon"
+      :text {weather.icon} 
+      :halign "center"
+    )
+  )
+)

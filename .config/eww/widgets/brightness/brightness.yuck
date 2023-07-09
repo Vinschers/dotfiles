@@ -1,5 +1,3 @@
-(deflisten bright "scripts/bright.sh")
-
 (defwidget brightness []
   (box
     :class "brightness-box"

@@ -14,7 +14,7 @@
         :start-at 75
         :value "${cpu}"
         :class "circular-progress cpu"
-        :thickness 3
+        :thickness 2.5
         :tooltip "${round(cpu, 0)}%"
       )
 
@@ -23,7 +23,7 @@
         :start-at 75
         :value "${memory}"
         :class "circular-progress memory"
-        :thickness 3
+        :thickness 2.5
         :tooltip "${round(memory, 0)}%"
       )
 
@@ -32,7 +32,7 @@
         :start-at 75
         :value "${gpu}"
         :class "circular-progress gpu"
-        :thickness 3
+        :thickness 2.5
         :tooltip "${round(gpu, 0)}%"
       )
     )

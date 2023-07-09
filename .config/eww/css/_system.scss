@@ -4,18 +4,6 @@
     border-radius: 1rem;
 
     padding: 1rem;
-
-    font-weight: 100;
-    font-family: Product Sans;
-
-    .sliders {
-        margin-top: 1rem;
-    }
 }
 
-@import "../widgets/datetime-user/datetime-user";
-@import "../widgets/network/network";
-@import "../widgets/volume/volume";
-@import "../widgets/brightness/brightness";
-@import "../widgets/media/media";
 @import "../widgets/hardware/hardware";

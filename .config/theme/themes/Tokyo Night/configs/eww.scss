@@ -12,8 +12,18 @@ $temp:              #f7768e;
 $gpu:               #7dcfff;
 $disk:              #9ece6a;
 
-$sysinfo_bg:        #565f89;
+$wifi:              #7aa2f7;
+$bluetooth:         #c0caf5;
+$volume:            #73daca;
+$brightness:        #e0af68;
+$weather:           #c0caf5;
+$weather_bg:        #24283b;
+$weather_fg2:       #565f89;
+
+$sysinfo_bg:        #414868;
 $sysinfocp_bg:      #24283b;
+
+$sysconfig_bg:      #414868;
 
 $date:              #cfc9c2;
 
@@ -28,14 +38,15 @@ $cal_inter:         #565f89;
 
 $sys_bg:            #24283b;
 $sys_fg:            #c0caf5;
-$sysbox_bg:         #565f89;
-$sysbox_hover:      #9aa5ce;
 
-$slider_bg:         #1a1b26;
-$volume_icon:       #73daca;
+$config_bg:         #1a1b26;
+$config_fg:         #c0caf5;
+$configbox_bg:      #24283b;
+$configbox_hover:   #414868;
+
+$slider_bg:         #24283b;
 $volslider1:        #73daca;
 $volslider2:        #b4f9f8;
-$bright_icon:       #e0af68;
 $brightslider1:     #e0af68;
 $brightslider2:     #ffc777;
 $mediaslider1:      #9aa5ce;

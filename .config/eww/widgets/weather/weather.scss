@@ -1,0 +1,32 @@
+.weather {
+    .weather-info {
+        background-color: $weather_bg;
+        margin-right: 0.5rem;
+        border-radius: 1rem;
+        padding: 1rem;
+
+        .weather-location {
+            font-size: 14pt;
+        }
+        .weather-feels {
+            font-size: 12pt;
+            color: $weather_fg2;
+        }
+
+        .weather-temp {
+            font-size: 14pt;
+        }
+        .weather-desc {
+            font-size: 12pt;
+            color: $weather_fg2;
+        }
+    }
+
+    .weather-icon {
+        background-color: $weather_bg;
+        margin-left: 0.5rem;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        font-size: 20pt;
+    }
+}

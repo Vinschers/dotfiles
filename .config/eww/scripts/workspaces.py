@@ -24,7 +24,7 @@ def run_cmd(cmd):
     return subprocess.run(cmd.split(), stdout=subprocess.PIPE).stdout
 
 
-def get_json(active_ws_name):
+def get_json():
     workspaces = json.loads(run_cmd("hyprctl workspaces -j"))
     monitors = json.loads(run_cmd("hyprctl monitors -j"))
 
@@ -43,7 +43,7 @@ def get_json(active_ws_name):
 
         active_ws = monitors[mon_id]["activeWorkspace"]["id"]
 
-        if ws["name"] == active_ws_name or int(ws["name"]) == active_ws:
+        if int(ws["name"]) == active_ws:
             status[mon_id][ws_id - 1]["status"] = 2
             continue
 
@@ -62,7 +62,7 @@ def main():
     if not os.path.exists(path):
         return
 
-    print(get_json("1"), flush=True)
+    print(get_json(), flush=True)
 
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client:
         client.connect(path)
@@ -77,16 +77,12 @@ def main():
 
             # start_time = time.time()
 
-            event, args = line.split(">>")
+            event, _ = line.split(">>")
 
-            if event == "focusedmon":
-                active = args.split(",")[1]
-            elif event == "workspace":
-                active = args
-            else:
+            if event != "focusedmon" and event != "workspace":
                 continue
 
-            print(get_json(active), flush=True)
+            print(get_json(), flush=True)
 
             # diff_time = int((time.time() - start_time) * 1000)
             # run_cmd(f"notify-send {diff_time} ms")

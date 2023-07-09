@@ -1,6 +1,14 @@
 (deflisten music "scripts/music.sh")
 (defpoll time :interval "1s" "date +'{\"date\": \"%d/%m\", \"hour\": \"%H\", \"minute\": \"%M\", \"month\": \"%b\", \"year\": \"%y\", \"weekday\": \"%A\", \"day\": \"%d\", \"second\": \"%S\"}'")
 
+(deflisten volume "scripts/audio.sh")
+(deflisten airplane "scripts/airplane.sh")
+(deflisten bluetooth "scripts/bluetooth.sh")
+(deflisten wifi "scripts/wifi.sh")
+(deflisten bright "scripts/bright.sh")
+
+(defpoll weather :interval "10m" "scripts/weather.sh")
+
 (defpoll cpu :interval "1s" "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'")
 (defpoll temperature :interval "1s" "scripts/temperature.sh")
 (defpoll memory :interval "1s" "free -m | rg Mem | awk '{print ($3/$2)*100}'")

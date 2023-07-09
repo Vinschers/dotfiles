@@ -1,5 +1,3 @@
-(deflisten volume "scripts/audio.sh")
-
 (defwidget volume []
   (box
     :class "volume-box"

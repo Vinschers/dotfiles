@@ -1,0 +1,39 @@
+.sysconfig {
+    margin: 0.4rem 0;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    border-radius: 0.2rem;
+
+    font-size: 14pt;
+
+    background: $sysconfig_bg;
+
+    .weather-icon {
+        font-size: 12pt;
+        margin-right: -0.5rem;
+        color: $weather;
+    }
+
+    .music-icon {
+        font-size: 12pt;
+        color: #1db954;
+        margin-right: -0.5rem;
+    }
+
+    .bright-icon {
+        color: $brightness;
+        padding-right: 0.2rem;
+    }
+
+    .volume-icon {
+        color: $volume;
+    }
+
+    .bluetooth-icon {
+        color: $bluetooth;
+    }
+
+    .wifi-icon {
+        color: $wifi;
+    }
+}

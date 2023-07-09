@@ -6,9 +6,8 @@
     :space-evenly false
 
     (box
-      :halign "start"
-      :valign "center"
       :spacing 10
+      :space-evenly false
 
       (label
         :class "time"
@@ -34,15 +33,8 @@
     )
 
     (box
-      :orientation "horizontal"
-      :space-evenly false
-      :halign "end"
-      :valign "center"
-      :hexpand true
-
-      (box
-        :class "user-picture"
-        :style "background-image: url('/usr/share/sddm/faces/${user}.face.icon');")
+      :class "user-picture"
+      :style "background-image: url('/usr/share/sddm/faces/${user}.face.icon');"
     )
   )
 )

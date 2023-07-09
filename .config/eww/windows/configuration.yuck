@@ -2,11 +2,12 @@
 (include "widgets/network/network.yuck")
 (include "widgets/volume/volume.yuck")
 (include "widgets/brightness/brightness.yuck")
+(include "widgets/weather/weather.yuck")
 (include "widgets/media/media.yuck")
 
 (defwidget configuration []
   (box
-    :class "system-window"
+    :class "configuration-window"
     :orientation "vertical"
     :space-evenly false
     :spacing 12
@@ -15,6 +16,7 @@
     (network)
     (volume)
     (brightness)
+    (weather)
     (media)
   )
 )

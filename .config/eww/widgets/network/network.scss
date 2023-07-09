@@ -2,7 +2,7 @@
     .system-box {
         .system-element {
             border-radius: 1rem;
-            background: $sysbox_bg;
+            background: $configbox_bg;
 
             .system-icon {
                 padding-left: 1.2rem;
@@ -22,11 +22,11 @@
             }
 
             .system-icon:hover {
-                background: $sysbox_hover;
+                background: $configbox_hover;
             }
 
             .system-btn:hover {
-                background: $sysbox_hover;
+                background: $configbox_hover;
             }
         }
 

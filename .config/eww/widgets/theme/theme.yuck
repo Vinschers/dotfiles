@@ -1,6 +1,7 @@
 (defwidget theme []
   (box
     :class "theme-wallpaper"
+    :spacing 10
 
     (button
       :class "theme"
@@ -9,7 +10,7 @@
 
       (image
         :path "assets/theme.png"
-        :image-width 20
+        :image-width 18
       )
     )
     (button
@@ -19,7 +20,7 @@
 
       (image
         :path "assets/wallpaper.png"
-        :image-width 20
+        :image-width 18
       )
     )
   )

@@ -1,7 +1,3 @@
-(deflisten airplane "scripts/airplane.sh")
-(deflisten bluetooth "scripts/bluetooth.sh")
-(deflisten wifi "scripts/wifi.sh")
-
 (defwidget system-box [name ?class icon icon-onclick ?btn-onclick label ?tooltip]
   (box
     :class "${name}-box system-box"
