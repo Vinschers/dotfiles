@@ -1,3 +1,7 @@
+@mixin battery-color($value) {
+    background-color: mix(darkgreen, darkred, $value);
+}
+
 .sysinfo {
     margin: 0.4rem 0;
 
@@ -8,27 +12,54 @@
 
     background-color: $sysinfo_bg;
 
-    .circular-progress {
-        background: $sysinfocp_bg;
+    .hw-indicators {
+        .circular-progress {
+            background: $sysinfocp_bg;
+        }
+
+        .cpu {
+            color: $cpu;
+        }
+
+        .temperature {
+            color: $temp;
+        }
+
+        .memory {
+            color: $mem;
+        }
+
+        .disk {
+            color: $disk;
+        }
+
+        .gpu {
+            color: $gpu;
+        }
+    }
+}
+
+.battery {
+    .battery-scale {
+        trough {
+            background-color: transparent;
+            min-width: 8px;
+            margin: 4px 0px;
+        }
+        highlight {
+            background: $battery;
+        }
     }
 
-    .cpu {
-        color: $cpu;
-    }
-    
-    .temperature {
-        color: $temp
+    .battery-warn {
+        highlight {
+            background: $battery_warn;
+        }
     }
 
-    .memory {
-        color: $mem;
-    }
-
-    .disk {
-        color: $disk;
-    }
-
-    .gpu {
-        color: $gpu;
+    .battery-critical {
+        highlight {
+            background: $battery_critical;
+        }
     }
 }

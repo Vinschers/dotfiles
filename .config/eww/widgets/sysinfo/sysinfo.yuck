@@ -1,5 +1,33 @@
 (include "widgets/hardware/hardware.yuck")
 
+(defwidget battery [capacity charging class]
+  (overlay
+    :class "battery"
+    :space-evenly false
+
+    (image
+      :path "assets/battery.png"
+      :image-width 20
+    )
+
+    (scale
+      :class "battery-scale ${class != "" ? "battery-${class}" : ""}"
+      :min 0
+      :max 100
+      :orientation "vertical"
+      :flipped true
+      :value "${capacity}"
+      :active false
+    )
+
+    (label
+      :visible "${charging}"
+      :class "battery-charging"
+      :text "󱐋"
+    )
+  )
+)
+
 (defwidget sysinfo []
   (button
     :onclick "scripts/toggle_window.sh system"
@@ -7,33 +35,46 @@
     (box
       :class "sysinfo"
       :space-evenly false
-      :spacing 6
+      :spacing 10
 
-      (circular-progress
-        :width 20
-        :start-at 75
-        :value "${cpu}"
-        :class "circular-progress cpu"
-        :thickness 2.5
-        :tooltip "${round(cpu, 0)}%"
+      (box
+        :class "hw-indicators"
+        :spacing 6
+
+        (circular-progress
+          :width 20
+          :start-at 75
+          :value "${cpu}"
+          :class "circular-progress cpu"
+          :thickness 2.5
+          :tooltip "${round(cpu, 0)}%"
+        )
+
+        (circular-progress
+          :width 20
+          :start-at 75
+          :value "${memory}"
+          :class "circular-progress memory"
+          :thickness 2.5
+          :tooltip "${round(memory, 0)}%"
+        )
+
+        (circular-progress
+          :width 20
+          :start-at 75
+          :value "${gpu}"
+          :class "circular-progress gpu"
+          :thickness 2.5
+          :tooltip "${round(gpu, 0)}%"
+        )
       )
 
-      (circular-progress
-        :width 20
-        :start-at 75
-        :value "${memory}"
-        :class "circular-progress memory"
-        :thickness 2.5
-        :tooltip "${round(memory, 0)}%"
-      )
-
-      (circular-progress
-        :width 20
-        :start-at 75
-        :value "${gpu}"
-        :class "circular-progress gpu"
-        :thickness 2.5
-        :tooltip "${round(gpu, 0)}%"
+      (for battery in batteries
+        (battery
+          :capacity "${battery.capacity}"
+          :charging "${battery.status == "Charging"}"
+          :class "${battery.class}"
+        )
       )
     )
   )

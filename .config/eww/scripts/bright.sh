@@ -3,7 +3,7 @@
 get_icon() {
 	brightness="$1"
 
-    echo ""
+    echo "󰃟"
 }
 
 get_json() {
