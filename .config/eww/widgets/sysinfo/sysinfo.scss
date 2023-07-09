@@ -1,7 +1,3 @@
-@mixin battery-color($value) {
-    background-color: mix(darkgreen, darkred, $value);
-}
-
 .sysinfo {
     margin: 0.4rem 0;
 
@@ -25,8 +21,8 @@
             color: $temp;
         }
 
-        .memory {
-            color: $mem;
+        .ram {
+            color: $ram;
         }
 
         .disk {

@@ -3,8 +3,8 @@
         background: $graph_bg;
 
         .graph-wrapper {
-            min-width: calc(20rem + 9px);
-            min-height: calc(10rem + 9px);
+            min-width: calc(30rem + 9px);
+            min-height: calc(15rem + 9px);
             border: 1px solid $graph_contrast;
 
             background: repeating-linear-gradient(
@@ -12,14 +12,14 @@
                     $graph_stripe,
                     $graph_stripe 1px,
                     transparent 1px,
-                    transparent calc(1rem + 1px)
+                    transparent calc(1.5rem + 1px)
                 ),
                 repeating-linear-gradient(
                     to right,
                     $graph_stripe,
                     $graph_stripe 1px,
                     transparent 1px,
-                    transparent calc(2rem + 1px)
+                    transparent calc(3rem + 1px)
                 );
 
             .cpu-graph {
@@ -27,9 +27,9 @@
                 background-color: rgba($cpu, 0.1);
             }
 
-            .mem-graph {
-                color: $mem;
-                background-color: rgba($mem, 0.1);
+            .ram-graph {
+                color: $ram;
+                background-color: rgba($ram, 0.1);
             }
 
             .temp-graph {
@@ -51,4 +51,22 @@
         border-radius: 0.5rem;
         opacity: 0.6;
     }
+
+    .graph-time {
+        margin: 0.5rem;
+        opacity: 0.4;
+        font-size: 14pt;
+        font-weight: bold;
+    }
+}
+
+.hw-graph-button {
+    padding: 0.5rem;
+    border: 2px solid $graph_contrast;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.hw-graph-button-active {
+    background: $graph_contrast;
 }

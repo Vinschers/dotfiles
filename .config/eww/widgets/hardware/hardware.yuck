@@ -1,43 +1,87 @@
-(defwidget hardware-graph [name value label]
-  (overlay
-    :class "graph-overlay"
+(defvar hw_graph "cpu")
 
-    (box
-      :class "graph-box"
+(defwidget hardware-graph [name value label]
+  (revealer
+    :reveal {name == hw_graph}
+
+    (overlay
+      :class "graph-overlay"
 
       (box
-        :class "graph-wrapper ${name}-wrapper"
+        :class "graph-box"
 
-        (graph
-          :value "${value}"
-          :class "graph ${name}-graph"
-          :line-style "round"
-          :thickness 3
-          :time-range "5m"
-          :dynamic false
-          :min 0
-          :max 100
+        (box
+          :class "graph-wrapper ${name}-wrapper"
+
+          (graph
+            :value "${value}"
+            :class "graph ${name}-graph"
+            :line-style "round"
+            :thickness 3
+            :time-range "5m"
+            :dynamic false
+            :min 0
+            :max 100
+          )
         )
       )
-    )
 
-    (label
-      :class "graph-name"
-      :halign "start"
-      :valign "start"
-      :text "${label}"
+      (label
+        :class "graph-name"
+        :halign "start"
+        :valign "start"
+        :text "${label}"
+      )
+
+      (label
+        :class "graph-time"
+        :halign "start"
+        :valign "end"
+        :text "5 minutes"
+      )
     )
   )
 )
 
-(defwidget hardware []
+(defwidget hardware-graphs []
   (box
     :orientation "vertical"
-    :spacing 12
+    :space-evenly false
 
     (box
-      :spacing 12
+      :space-evenly false
+      :spacing 6
 
+      (button
+        :class "hw-graph-button ${hw_graph == 'cpu' ? 'hw-graph-button-active' : ''}"
+        :onclick "${EWW_CMD} update hw_graph='cpu'"
+
+        "CPU"
+      )
+
+      (button
+        :class "hw-graph-button ${hw_graph == 'temp' ? 'hw-graph-button-active' : ''}"
+        :onclick "${EWW_CMD} update hw_graph='temp'"
+
+        "Temperature"
+      )
+
+      (button
+        :class "hw-graph-button ${hw_graph == 'ram' ? 'hw-graph-button-active' : ''}"
+        :onclick "${EWW_CMD} update hw_graph='ram'"
+
+        "RAM"
+      )
+
+      (button
+        :class "hw-graph-button ${hw_graph == 'gpu' ? 'hw-graph-button-active' : ''}"
+        :onclick "${EWW_CMD} update hw_graph='gpu'"
+
+        "GPU"
+      )
+    )
+
+    (overlay
       (hardware-graph
         :name "cpu"
         :value "${cpu}"
@@ -45,14 +89,10 @@
       )
 
       (hardware-graph
-        :name "mem"
+        :name "ram"
         :value "${memory}"
         :label "RAM: ${round(memory, 0)}%"
       )
-    )
-
-    (box
-      :spacing 12
 
       (hardware-graph
         :name "temp"
@@ -66,5 +106,13 @@
         :label "GPU: ${round(gpu, 0)}%"
       )
     )
+  )
+)
+
+(defwidget hardware []
+  (box
+    :orientation "vertical"
+
+    (hardware-graphs)
   )
 )
