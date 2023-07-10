@@ -1,6 +1,7 @@
 (include "widgets/workspaces/workspaces.yuck")
 (include "widgets/window/window.yuck")
 (include "widgets/theme/theme.yuck")
+(include "widgets/keyboard/keyboard.yuck")
 (include "widgets/sysconfig/sysconfig.yuck")
 (include "widgets/sysinfo/sysinfo.yuck")
 (include "widgets/time/time.yuck")
@@ -32,6 +33,7 @@
     :spacing 12
 
     (theme)
+    (keyboard)
     (sysinfo)
     (sysconfig)
     (time)

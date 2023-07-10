@@ -1,0 +1,18 @@
+(deflisten keyboard "scripts/keyboard.sh")
+
+(defwidget keyboard []
+  (box
+    :class "keyboard"
+    :space-evenly false
+
+    (label
+      :class "keyboard-icon"
+      :text "󰌌"
+    )
+
+    (label
+      :class "keyboard-layout"
+      :text "${keyboard}"
+    )
+  )
+)

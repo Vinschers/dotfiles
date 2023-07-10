@@ -2,7 +2,7 @@
     margin: 0.4rem 0;
 
     padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-right: 0.8rem;
 
     border-radius: 0.2rem;
 
@@ -33,29 +33,19 @@
             color: $gpu;
         }
     }
-}
 
-.battery {
-    .battery-scale {
-        trough {
-            background-color: transparent;
-            min-width: 8px;
-            margin: 4px 0px;
-        }
-        highlight {
-            background: $battery;
-        }
+    .battery {
+        font-size: 16pt;
+    }
+    .battery-ok {
+        color: $battery;
     }
 
     .battery-warn {
-        highlight {
-            background: $battery_warn;
-        }
+        color: $battery_warn;
     }
 
     .battery-critical {
-        highlight {
-            background: $battery_critical;
-        }
+        color: $battery_critical;
     }
 }
