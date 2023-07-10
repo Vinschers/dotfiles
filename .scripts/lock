@@ -1,33 +1,3 @@
 #!/bin/sh
 
-xorg_lock() {
-
-	BACKGROUND="$(xrdb -get background)88"
-	KEY_STROKE="$(xrdb -get foreground)bb"
-	BLANK="#00000000"
-	CLEAR="$(xrdb -get foreground)22"
-	DEFAULT="$(xrdb -get color0)cc"
-	TEXT="$(xrdb -get foreground)ee"
-	WRONG="$(xrdb -get color1)bb"
-	VERIFYING="$(xrdb -get color8)bb"
-
-	SLEEP=600
-
-	revert() {
-		xset dpms 0 0 0
-	}
-
-	trap revert HUP INT TERM
-	xset +dpms dpms $SLEEP $SLEEP $SLEEP
-
-	i3lock -n --screen=1 --clock --ignore-empty-password --indicator --time-str="%H:%M:%S" --date-str="%d/%m/%Y" -c $BACKGROUND --insidever-color=$CLEAR --ringver-color=$VERIFYING --insidewrong-color=$CLEAR --ringwrong-color=$WRONG --inside-color=$BLANK --ring-color=$DEFAULT --line-color=$BLANK --separator-color=$DEFAULT --verif-color=$TEXT --wrong-color=$TEXT --time-color=$TEXT --date-color=$TEXT --layout-color=$TEXT --keyhl-color=$KEY_STROKE --bshl-color=$WRONG
-
-	revert
-}
-
-wayland_lock() {
-    waylock -init-color 0x222436 -input-color 0x828bb8 -fail-color 0xf7768e
-}
-
-[ "$XDG_SESSION_TYPE" = "x11" ] && xorg_lock
-[ "$XDG_SESSION_TYPE" = "wayland" ] && wayland_lock
+waylock -init-color 0x222436 -input-color 0x828bb8 -fail-color 0xf7768e
