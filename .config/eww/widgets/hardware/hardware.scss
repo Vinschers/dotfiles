@@ -62,7 +62,9 @@
 
 .hw-graph-button {
     padding: 0.5rem;
-    border: 2px solid $graph_contrast;
+    border-top: 2px solid $graph_contrast;
+    border-left: 2px solid $graph_contrast;
+    border-right: 2px solid $graph_contrast;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 }
