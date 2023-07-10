@@ -101,6 +101,20 @@ function M.config()
 				i = cmp.mapping.abort(),
 				c = cmp.mapping.close(),
 			}),
+            ["<C-l>"] = cmp.mapping(function(fallback)
+                if luasnip.expand_or_jumpable() then
+                    luasnip.jump(1)
+                else
+                    fallback()
+                end
+            end),
+            ["<C-h>"] = cmp.mapping(function(fallback)
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end),
 			-- Accept currently selected item. If none selected, `select` first item.
 			-- Set `select` to `false` to only confirm explicitly selected items.
 			["<CR>"] = cmp.mapping.confirm({ select = false }),

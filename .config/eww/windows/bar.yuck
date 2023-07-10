@@ -1,5 +1,6 @@
 (include "widgets/workspaces/workspaces.yuck")
 (include "widgets/window/window.yuck")
+(include "widgets/updates/updates.yuck")
 (include "widgets/theme/theme.yuck")
 (include "widgets/keyboard/keyboard.yuck")
 (include "widgets/sysconfig/sysconfig.yuck")
@@ -32,6 +33,7 @@
     :space-evenly false
     :spacing 12
 
+    (updates)
     (theme)
     (keyboard)
     (sysinfo)
