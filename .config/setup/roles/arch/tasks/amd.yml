@@ -7,6 +7,7 @@
       - vulkan-radeon
       - lib32-vulkan-radeon
       - mesa
+      - mesa-utils
       - libva-mesa-driver
       - lib32-libva-mesa-driver
       - radeontop

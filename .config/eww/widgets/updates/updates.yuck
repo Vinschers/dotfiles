@@ -4,6 +4,7 @@
   (box
     :class "updates"
     :visible {updates.pacman > 0 || updates.aur > 0}
+    :spacing 6
 
     (label
       :class "pacman"
@@ -14,7 +15,7 @@
     (label
       :class "aur"
       :visible {updates.aur > 0}
-      :text "  ${updates.aur}"
+      :text "  ${updates.aur}"
     )
   )
 )

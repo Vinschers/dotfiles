@@ -7,7 +7,7 @@
       - qt5ct
       - qt5-wayland
       - qt6
-      - xdg-desktop-portal-wlr
+      - xdg-desktop-portal-hyprland-git
       - dunst
       - polkit-kde-agent
       - foot
@@ -20,6 +20,12 @@
       - jq
     state: present
 
+- name: Remove xdg-desktop-portal-gnome
+  become: true
+  community.general.pacman:
+    name: xdg-desktop-portal-gnome
+    state: absent
+
 - name: Install Hyprland dependencies from AUR
   become: true
   become_user: aur_builder
@@ -30,6 +36,7 @@
       - wl-color-picker
       - nwg-look
       - spotifywm-git
+      - wlrobs-hg
     state: present
 
 - name: Install Hyprland with NVIDIA patch

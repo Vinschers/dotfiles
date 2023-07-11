@@ -84,8 +84,8 @@
     (overlay
       (hardware-graph
         :name "cpu"
-        :value "${cpu}"
-        :label "CPU: ${round(cpu, 0)}%"
+        :value "${EWW_CPU.avg}"
+        :label "CPU: ${round(EWW_CPU.avg, 0)}%"
       )
 
       (hardware-graph
