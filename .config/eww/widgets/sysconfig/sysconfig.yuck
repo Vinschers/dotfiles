@@ -9,6 +9,7 @@
       :spacing 16
 
       (label
+        :visible {weather != ""}
         :class "weather-icon"
         :text "${weather.icon}"
       )

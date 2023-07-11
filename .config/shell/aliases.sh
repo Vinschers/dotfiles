@@ -5,7 +5,6 @@ alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -v" \
-	ffmpeg="ffmpeg -hide_banner" \
 	ls="exa --icons --time-style long-iso" \
 	grep="grep --color=auto" \
 	fgrep='fgrep --color=auto' \
@@ -19,8 +18,6 @@ alias \
 # Shortenings
 alias \
     la="ls -1a" \
-	yt="youtube-dl --add-metadata -f best -i" \
-	yta="yt -x -f bestaudio/best --audio-format mp3" \
     cvenv="create_venv" \
     avenv="activate_venv" \
     p="pacman" \
@@ -95,3 +92,10 @@ alias \
 alias \
     gcc='gcc -g -std=c99 -Wall -lm' \
     g++='gcc -g -std=c99 -Wall -lm'
+
+
+if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -qi 'nvidia\|amd'; then
+    alias ffmpeg='ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -hide_banner'
+else
+    alias ffmpeg='ffmpeg -hide_banner'
+fi

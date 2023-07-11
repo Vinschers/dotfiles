@@ -1,5 +1,6 @@
 (defwidget weather []
   (box
+    :visible {weather != ""}
     :class "weather"
     :space-evenly false
 
