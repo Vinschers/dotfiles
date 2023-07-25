@@ -36,12 +36,12 @@ doi_to_bib() {
     url="$(get_url "$1")"
 
     json="$(curl -sd "$url" -H "Content-Type: text/plain" "http://localhost:1969/web")"
-    pdf_url="$(echo "$json" | jq -r 'map(select(.mimeType == "application/pdf")) | .[0].url')"
+    # pdf_url="$(echo "$json" | jq -r 'map(select(.mimeType == "application/pdf")) | .[0].url')"
 
-    bib="$(curl -sd "$json" -H "Content-Type: application/json" "http://localhost:1969/export?format=bibtex")"
+    # bib="$(curl -sd "$json" -H "Content-Type: application/json" "http://localhost:1969/export?format=bibtex")"
 
-    echo "$bib"
-    echo "$pdf_url"
+    echo "$json"
+    # echo "$pdf_url"
 }
 
 [ -z "$1" ] && echo "No argument given to getbib." && exit

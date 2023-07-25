@@ -5,4 +5,5 @@
     name:
       - texlive
       - texlive-lang
+      - bibtool
     state: present

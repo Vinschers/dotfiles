@@ -1,6 +1,6 @@
 local M = {
 	"jose-elias-alvarez/null-ls.nvim",
-	event = "BufReadPre",
+    lazy =  false,
 	dependencies = {
 		{
 			"nvim-lua/plenary.nvim",
@@ -12,6 +12,7 @@ local M = {
 
 function M.config()
 	local null_ls = require("null-ls")
+
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 	local formatting = null_ls.builtins.formatting
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics

@@ -46,6 +46,8 @@
           - stylua
           - shfmt
           - texlive-binextra
+          - perl-yaml-tiny
+          - perl-file-homedir
           - flake8
           - shellcheck
           - yamllint
