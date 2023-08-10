@@ -94,7 +94,7 @@ alias \
     g++='gcc -g -std=c99 -Wall -lm'
 
 
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -qi 'nvidia\|amd'; then
+if lspci -k 2>/dev/null | grep -A 2 -E "(VGA|3D)" | grep -qi 'nvidia\|amd'; then
     alias ffmpeg='ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -hide_banner'
 else
     alias ffmpeg='ffmpeg -hide_banner'

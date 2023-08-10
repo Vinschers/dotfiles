@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if lspci -k | grep -A 3 -E "(VGA|3D)" | grep -qi amd; then
+if lspci -k 2>/dev/null | grep -A 3 -E "(VGA|3D)" | grep -qi amd; then
     export LIBVA_DRIVER_NAME="radeonsi"
-elif lspci -k | grep -A 3 -E "(VGA|3D)" | grep -qi nvidia; then
+elif lspci -k 2>/dev/null | grep -A 3 -E "(VGA|3D)" | grep -qi nvidia; then
     export LIBVA_DRIVER_NAME="nvidia"
     export GBM_BACKEND="nvidia-drm"
     export __GLX_VENDOR_LIBRARY_NAME="nvidia"
