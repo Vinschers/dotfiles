@@ -69,6 +69,7 @@
     chdir: "{{ ansible_env.HOME }}/.config/setup/programs/makefile2graph"
 
 - name: Add v4l2loopback module
+  become: true
   lineinfile:
     path: /etc/modules-load.d/v4l2loopback.conf
     line: "v4l2loopback"

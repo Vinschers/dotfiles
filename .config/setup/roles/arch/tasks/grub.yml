@@ -7,7 +7,12 @@
     line: GRUB_GFXMODE=1920x1080x32,1024x768x32,auto
   register: grub_resolution
 
+- name: Run os-prober
+  become: true
+  shell: os-prober
+  register: os_prober
+
 - name: Reload GRUB
   become: true
   shell: grub-mkconfig -o /boot/grub/grub.cfg
-  when: grub_resolution.changed
+  when: grub_resolution.changed or os_prober.stdout
