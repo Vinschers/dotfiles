@@ -27,4 +27,8 @@ export HISTFILE="$XDG_STATE_HOME/zsh/history"
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 
+function chpwd() {
+    cd_venv
+}
+
 eval "$(starship init zsh)"
