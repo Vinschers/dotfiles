@@ -15,7 +15,7 @@ if [ "$1" = "set" ]; then
 
 	[ -z "$brightness" ] && exit 0
 
-    light "$brightness" 2>/dev/null
+    light -S "$brightness" 2>/dev/null
 	icon="$(get_icon "$brightness")"
 
 	eww update bright="$(get_json)"

@@ -5,7 +5,6 @@
     name:
       - archlinux-keyring
       - linux-headers
-      - networkmanager
       - lsb-release
       - man-db
       - os-prober
@@ -37,6 +36,7 @@
       - jupyter-notebook
       - rkhunter
       - bluez
+      - bluez-utils
       - pacman-contrib
       - libva
       - libva-utils
@@ -50,6 +50,7 @@
   become_user: aur_builder
   kewlfft.aur.aur:
     name:
+      - networkmanager-iwd
       - cava
       - python-pip
       - python-bibtexparser
@@ -57,6 +58,14 @@
       - python-undetected-chromedriver
       - peerflix
     state: present
+
+- name: Remove network conflicts
+  become: true
+  community.general.pacman:
+    name:
+      - networkmanager
+      - libnm
+    state: absent
 
 - name: Create .config/btop/themes directory
   file:
@@ -74,3 +83,9 @@
     path: /etc/modules-load.d/v4l2loopback.conf
     line: "v4l2loopback"
     create: true
+
+- name: Enable bluetooth systemd service
+  become: true
+  systemd:
+    name: bluetooth
+    enabled: true

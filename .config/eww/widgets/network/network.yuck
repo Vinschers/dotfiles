@@ -47,7 +47,7 @@
       :class "${wifi.class}"
       :icon "${wifi.icon}"
       :icon-onclick "scripts/wifi.sh toggle"
-      :btn-onclick "nm-connection-editor"
+      :btn-onclick "iwgtk"
       :label "${wifi.text}"
     )
     (system-box

@@ -31,13 +31,13 @@ else
 			else
 				level=$(awk -v n="$signal" 'BEGIN{print int((n-1)/20)}')
 
-				if [ "$level" -lt 20 ]; then
+				if [ "$level" -lt 1 ]; then
 					icon="󰤯"
-				elif [ "$level" -lt 40 ]; then
+				elif [ "$level" -lt 2 ]; then
 					icon="󰤟"
-				elif [ "$level" -lt 60 ]; then
+				elif [ "$level" -lt 3 ]; then
 					icon="󰤢"
-				elif [ "$level" -lt 80 ]; then
+				elif [ "$level" -lt 4 ]; then
 					icon="󰤥"
 				else
 					icon="󰤨"

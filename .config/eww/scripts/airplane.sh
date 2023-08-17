@@ -14,9 +14,7 @@ if [ "$1" = "toggle" ]; then
 	toggle
 else
 	while true; do
-		status="$(rfkill list | sed -n 2p | awk '{print $3}')"
-
-		if [ "$status" = "no" ]; then
+		if rfkill list | grep -q 'Soft blocked: no'; then
 			icon="󰀞"
             text="Off"
 		else
