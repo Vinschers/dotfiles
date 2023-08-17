@@ -11,23 +11,29 @@ create_symlink() {
 }
 
 copy_gtk_files() {
+    mkdir -p "$HOME/.local/share/themes"
     [ -d "$HOME/.local/share/themes/$theme" ] || cp -r "$HOME/.config/theme/themes/$theme/configs/gtk/theme" "$HOME/.local/share/themes/$theme"
+
+    mkdir -p "$HOME/.local/share/icons"
     [ -d "$HOME/.local/share/icons/$theme" ] || cp -r "$HOME/.config/theme/themes/$theme/configs/gtk/icons" "$HOME/.local/share/icons/$theme"
 }
 
 update_gtk() {
     copy_gtk_files
 
+    mkdir -p "$HOME/.local/share/nwg-look"
 	sed -i "$HOME/.local/share/nwg-look/gsettings" \
 		-e "s/gtk-theme=.*/gtk-theme=$theme/g" \
 		-e "s/icon-theme=.*/icon-theme=$theme/g" \
 		-e "s/cursor-theme=.*/cursor-theme=$theme/g"
 
+    mkdir -p "$HOME/.config/gtk-2.0"
 	sed -i "$HOME/.config/gtk-2.0/gtkrc" \
 		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$theme\"/g" \
 		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$theme\"/g" \
 		-e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$theme\"/g"
 
+    mkdir -p "$HOME/.config/gtk-3.0"
 	sed -i "$HOME/.config/gtk-3.0/settings.ini" \
 		-e "s/gtk-theme-name=.*/gtk-theme-name=\"$theme\"/g" \
 		-e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$theme\"/g" \
@@ -48,7 +54,7 @@ change_files() {
 	create_symlink "btop.theme" "btop/themes/btop.theme"
 	create_symlink "spicetify" "spicetify/Themes/default"
 
-    update_gtk
+    update_gtk 2>/dev/null
 }
 
 reload_nvim() {
@@ -67,7 +73,7 @@ reload_spotify() {
 }
 
 reload_dunst() {
-	pkill dunst && hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
+	hyprctl dispatch exec "cat $HOME/.config/dunst/dunstrc $HOME/.config/dunst/theme | dunst -conf -" >/dev/null
 }
 
 reload_zsh() {
@@ -91,25 +97,28 @@ reload_bat() {
 }
 
 reload_all() {
-	"$HOME/.config/theme/update_wallpaper.sh"
+    startup=$1
 
-    reload_zsh
-    reload_eww
-    reload_gtk
-    reload_nvim
+    "$HOME/.config/theme/update_wallpaper.sh"
+
+    [ "$startup" -eq 0 ] && reload_zsh
+    [ "$startup" -eq 0 ] && reload_eww
+    [ "$startup" -eq 0 ] && reload_nvim
+    [ "$startup" -eq 0 ] && reload_cava
     reload_dunst
-    reload_cava
-    reload_spotify
+    reload_gtk
     reload_bat
+    reload_spotify
 }
 
 main() {
+    startup=$1
 	theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
 
-	change_files
-	reload_all
+    [ "$startup" -eq 0 ] && notify-send "$theme"
 
-    notify-send "$theme"
+	change_files
+	reload_all "$startup"
 }
 
-main
+main $@

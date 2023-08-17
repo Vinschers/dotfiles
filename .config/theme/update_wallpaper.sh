@@ -30,6 +30,8 @@ else
     bezier="0.33,0,1,0.4"
 fi
 
+! swww query 2>/dev/null >/dev/null && swww init
+
 echo "$next_wallpaper" >"$HOME/.config/theme/themes/$theme/wallpaper"
 
-swww img "$HOME/.config/theme/themes/$theme/wallpapers/$next_wallpaper" --transition-bezier "$bezier" --transition-type "$effect" --transition-duration 1 --transition-fps 60 --transition-pos 0.917,0.968
+swww img "$HOME/.config/theme/themes/$theme/wallpapers/$next_wallpaper" # --transition-bezier "$bezier" --transition-type "$effect" --transition-duration 1 --transition-fps 60 --transition-pos 0.917,0.968
