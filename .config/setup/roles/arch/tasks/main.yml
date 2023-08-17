@@ -19,6 +19,7 @@
 - import_tasks: opentabletdriver.yml
 
 - import_tasks: neovim.yml
+- import_tasks: development.yml
 
 - import_tasks: dash.yml
 - import_tasks: jaq.yml
