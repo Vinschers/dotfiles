@@ -18,8 +18,6 @@ alias \
 # Shortenings
 alias \
     la="ls -1a" \
-    cvenv="create_venv" \
-    avenv="activate_venv" \
     p="pacman" \
     sp="sudo pacman" \
     m="make" \
