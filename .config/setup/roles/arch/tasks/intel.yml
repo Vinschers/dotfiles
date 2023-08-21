@@ -1,0 +1,11 @@
+---
+- name: Setup Intel GPU
+  when: amd.stdout == "" and nvidia.stdout == "" and intel.stdout != ""
+  become: true
+  block:
+    - name: Install Intel GPU packages from pacman
+      community.general.pacman:
+        name: intel-gpu-tools
+        state: present
+    - name: Setup cap_perfmon
+      shell: setcap cap_perfmon=+ep /usr/bin/intel_gpu_top

@@ -1,4 +1,8 @@
 ---
+- name: Check for Intel CPU
+  shell: cat /proc/cpuinfo | { grep -i intel || true; }
+  register: intel
+
 - name: Check for NVIDIA GPU
   shell: lspci -k | grep -A 2 -E "(VGA|3D)" | { grep -i nvidia || true; }
   register: nvidia
@@ -33,8 +37,9 @@
 - import_tasks: sddm.yml
 - import_tasks: hyprland.yml
 - import_tasks: gui.yml
-- import_tasks: nvidia.yml
+- import_tasks: intel.yml
 - import_tasks: amd.yml
+- import_tasks: nvidia.yml
 - import_tasks: wine.yml
 
 - import_tasks: syncthing.yml
