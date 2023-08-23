@@ -33,14 +33,8 @@ return {
 	s({ trig = "which", snippetType = "autosnippet" }, {
 		t("\\text{ for which } "),
 	}, { condition = tex.in_mathzone }),
-	s({ trig = "all", snippetType = "autosnippet" }, {
-		t("\\text{ for all } "),
-	}, { condition = tex.in_mathzone }),
 	s({ trig = "and", snippetType = "autosnippet" }, {
 		t("\\quad \\text{and} \\quad"),
-	}, { condition = tex.in_mathzone }),
-	s({ trig = "forall", snippetType = "autosnippet" }, {
-		t("\\text{ for all } "),
 	}, { condition = tex.in_mathzone }),
 	s({ trig = "toc", snippetType = "autosnippet" }, {
 		t("\\tableofcontents"),
