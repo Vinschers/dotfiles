@@ -1,3 +1,5 @@
+user_pref("extensions.zotero.sync.storage.enabled", false);
+user_pref("extensions.zotero.sync.storage.groups.enabled", false);
 user_pref("extensions.zotero.dataDir", "/home/scherer/.local/share/Zotero");
 user_pref("extensions.zotero.fileHandler.pdf", "system");
 
@@ -11,3 +13,5 @@ user_pref("extensions.zotfile.source_dir_ff", false);
 user_pref("extensions.zotfile.subfolder", true);
 user_pref("extensions.zotfile.subfolderFormat", "/%T");
 user_pref("extensions.zotfile.useZoteroToRename", true);
+user_pref("extensions.zotfile.filetypes", "pdf,doc,docx,txt,rtf,djvu,epub,html");
+user_pref("extensions.zotfile.automatic_renaming", 4);
