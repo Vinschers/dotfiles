@@ -36,12 +36,6 @@
       - selectdefaultapplication-git
     state: present
 
-- name: Symlink .librewolf
-  file:
-    src: "{{ ansible_env.HOME }}/.config/librewolf"
-    dest: "{{ ansible_env.HOME }}/.librewolf"
-    state: link
-
 - name: Add user to virtualbox groups
   become: true
   user:

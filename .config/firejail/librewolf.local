@@ -3,5 +3,6 @@ ignore apparmor
 ignore disable-mnt
 
 whitelist ${HOME}/.local/share/jupyter/runtime
+whitelist ${HOME}/.local/share/Zotero
 whitelist ${HOME}/hdd
 whitelist /mnt/hdd
