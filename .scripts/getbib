@@ -14,36 +14,51 @@ check_dependencies() {
 }
 
 check_isbn() {
-    echo "$1" | grep -qPo '^(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[0-9-]+$'
+	echo "$1" | grep -qPo '^(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[0-9-]+$'
+}
+
+check_doi() {
+	echo "$1" | grep -qPo "(10\.[0-9a-zA-Z]+\/(?:(?![\"&\'])\S)+)\b"
 }
 
 clean_isbn() {
-    echo "$1" | sed 's|-||g'
+	echo "$1" | sed 's|-||g'
+}
+
+url_to_bib() {
+    url="$(curl -Ls -o /dev/null -w "%{url_effective}" "$1")"
+	json="$(curl -sd "$url" -H 'Content-Type: text/plain' 'localhost:1969/web')"
+	curl -sd "$json" -H 'Content-Type: application/json' 'localhost:1969/export?format=bibtex' || exit 1
 }
 
 isbn_to_bib() {
-    isbn="$(clean_isbn "$1")"
-    url="$(curl -s "https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn" | jaq -r '.items[0].volumeInfo.infoLink')"
-    json="$(curl -sd "$url" -H 'Content-Type: text/plain' 'localhost:1969/web')"
-    curl -sd "$json" -H 'Content-Type: application/json' 'localhost:1969/export?format=bibtex' || exit 1
+	isbn="$(clean_isbn "$1")"
+	url="$(curl -s "https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn" | jaq -r '.items[0].volumeInfo.infoLink')"
+
+    url_to_bib "$url"
 }
 
 doi_to_bib() {
-    search="$(curl -sd "$1" -H 'Content-Type: text/plain' 'localhost:1969/search')"
-    url="$(echo "$search" | jaq -r '.[]?.url' 2>/dev/null)"
+	search="$(curl -sd "$1" -H 'Content-Type: text/plain' 'localhost:1969/search')"
+	url="$(echo "$search" | jaq -r '.[]?.url' 2>/dev/null)"
 
-    [ -z "$url" ] && return 1
-    [ "$url" = "null" ] && return 1
+	[ -z "$url" ] && return 1
+	[ "$url" = "null" ] && return 1
 
-    json="$(curl -sd "$url" -H 'Content-Type: text/plain' 'localhost:1969/web')"
-    curl -sd "$json" -H 'Content-Type: application/json' 'localhost:1969/export?format=bibtex' || exit 1
+    url_to_bib "$url"
+}
+
+get_bib() {
+	if check_isbn "$1"; then
+		isbn_to_bib "$1"
+	elif check_doi "$1"; then
+		doi_to_bib "$1"
+	else
+		url_to_bib "$1"
+	fi
 }
 
 [ -z "$1" ] && echo "No argument given to getbib." && exit
 check_dependencies || exit 1
 
-if check_isbn "$1"; then
-    isbn_to_bib "$1" || input
-else
-    doi_to_bib "$1" || input
-fi
+get_bib "$1" || input

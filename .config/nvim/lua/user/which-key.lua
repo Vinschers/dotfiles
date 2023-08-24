@@ -95,6 +95,8 @@ function M.config()
 		["n"] = { "<cmd>NoNeckPain<cr>", "No Neck Pain" },
 		["m"] = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
 
+        ["y"] = { "<cmd>YankyRingHistory<CR>", "Yanks" },
+
 		C = {
 			name = "Color picker",
 			c = { "<cmd>CccPick<cr>", "Pick color" },
@@ -201,6 +203,8 @@ function M.config()
 
 		t = {
 			name = "Vimtex",
+            a = { "<cmd>VimtexContextMenu<CR>", "Context Menu" },
+            b = { "<cmd>Telescope bibtex<CR>", "Search bibtex" },
 			c = { "<cmd>VimtexCompile<CR>", "Compile" },
 			f = { "<cmd>VimtexView<CR>", "Forward search" },
 			C = {
