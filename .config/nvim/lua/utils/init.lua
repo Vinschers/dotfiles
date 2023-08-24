@@ -11,7 +11,7 @@ M.lsp_servers = {
 	"yamlls",
 	"clangd",
 	"jdtls",
-	-- "texlab",
+	"texlab",
 	"emmet_ls",
 	"ansiblels",
 	"dockerls",

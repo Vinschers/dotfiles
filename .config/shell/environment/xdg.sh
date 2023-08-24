@@ -37,10 +37,12 @@ mkdir -p "$XDG_CACHE_HOME/zsh"
 
 echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
 
+export CHKTEXRC=$XDG_CONFIG_HOME/chktex
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
 export TEXMFHOME="$XDG_CONFIG_HOME/texmf:"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
+export TEXINPUTS="$XDG_CONFIG_HOME/texmf/templates//:"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export ncmpcpp_directory="$XDG_CONFIG_HOME/ncmpcpp"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"

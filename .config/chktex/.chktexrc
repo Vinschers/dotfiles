@@ -1,0 +1,6 @@
+CmdLine
+{
+    --inputfiles
+    --headererr
+    --nowarn 8
+}
