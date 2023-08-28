@@ -32,7 +32,7 @@ function M.config()
 				.. directory
 				.. "library.bib ] || bibexport --terse --output-file "
 				.. directory
-				.. "library.bib "
+				.. "export.bib "
 				.. latex_cache
 				.. "/*.aux 2>/dev/null"
 			os.execute(update_bib_cmd)
