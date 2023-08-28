@@ -6,7 +6,18 @@ local M = {
 
 function M.config()
 	require("nvim-surround").setup({
-		-- Configuration here, or leave empty to use defaults
+        surrounds = {
+            ["e"] = {
+                add = function ()
+                    local config = require("nvim-surround.config")
+                    local environment = config.get_input("Enter the environment name: ")
+
+                    if environment then
+                        return { {"\\begin{" .. environment .. "}"}, {"\\end{" .. environment .. "}"} }
+                    end
+                end,
+            }
+        }
 	})
 end
 

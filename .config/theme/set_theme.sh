@@ -50,7 +50,6 @@ change_files() {
 	create_symlink "wlogout.css" "wlogout/style.css"
 	create_symlink "wofi.css" "wofi/style.css"
 	create_symlink "zathura" "zathura/theme"
-	create_symlink "bat.tmTheme" "bat/themes/theme.tmTheme"
 	create_symlink "btop.theme" "btop/themes/btop.theme"
 	create_symlink "spicetify" "spicetify/Themes/default"
 
@@ -92,10 +91,6 @@ reload_gtk() {
     nwg-look -a >/dev/null 2>/dev/null
 }
 
-reload_bat() {
-    bat cache --build >/dev/null
-}
-
 reload_all() {
     startup=$1
 
@@ -107,7 +102,6 @@ reload_all() {
     [ "$startup" -eq 0 ] && reload_cava
     reload_dunst
     reload_gtk
-    reload_bat
     reload_spotify
 }
 
