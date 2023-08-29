@@ -44,6 +44,9 @@
       - tree
       - yt-dlp
       - light
+      - bitwarden
+      - rclone
+      - inotify-tools
     state: present
 - name: Install AUR packages
   become: true
