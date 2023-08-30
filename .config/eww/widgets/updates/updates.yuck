@@ -2,10 +2,10 @@
 
 (defwidget updates []
   (custom_widget
+    :visible {updates.pacman > 0 || updates.aur > 0}
 
     (box
       :class "updates"
-      :visible {updates.pacman > 0 || updates.aur > 0}
       :spacing 6
 
       (label
