@@ -1,2 +1,0 @@
-**/.latex-cache/
-bibliography/library.bib

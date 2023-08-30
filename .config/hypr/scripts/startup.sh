@@ -20,5 +20,4 @@ for monitor in $(seq "$(( num_monitors - 1 ))" -1 0); do
     eww open "bar_window$monitor"
 done
 
-# "$HOME"/.config/rclone/startup.sh &
 "$HOME"/.config/theme/switch_theme.sh &
