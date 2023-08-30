@@ -16,9 +16,12 @@ $wifi:              #7aa2f7;
 $bluetooth:         #c0caf5;
 $volume:            #73daca;
 $brightness:        #e0af68;
-$weather:           #c0caf5;
-$weather_bg:        #24283b;
-$weather_fg2:       #565f89;
+
+$weather_min:       #7aa2f7;
+$weather_max:       #f7768e;
+$weather_feels:     #9ece6a;
+$weather_info:      #a9b1d6;
+
 $battery:           #9ece6a;
 $battery_warn:      #e0af68;
 $battery_critical:  #f7768e;
@@ -26,10 +29,7 @@ $battery_critical:  #f7768e;
 $keyboard:          #ff9e64;
 $updates:           #f7768e;
 
-$sysinfo_bg:        #414868;
 $sysinfocp_bg:      #414868;
-
-$sysconfig_bg:      #414868;
 
 $date:              #cfc9c2;
 

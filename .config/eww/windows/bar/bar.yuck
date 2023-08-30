@@ -36,11 +36,10 @@
     :halign "start"
     :space-evenly false
 
-    (workspaces
-      :monitor "${monitor}"
-    )
+    (workspaces :monitor "${monitor}")
     (vol_bright)
     (music)
+    (weather)
   )
 )
 
@@ -62,7 +61,6 @@
     (theme)
     (keyboard)
     (sysinfo)
-    (sysconfig)
     (wifi_bluetooth)
     (time)
   )

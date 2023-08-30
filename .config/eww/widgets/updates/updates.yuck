@@ -2,7 +2,7 @@
 
 (defwidget updates []
   (custom_widget
-    :visible {updates.pacman > 0 || updates.aur > 0}
+    :visible {updates != "" && (updates.pacman > 0 || updates.aur > 0)}
 
     (box
       :class "updates"

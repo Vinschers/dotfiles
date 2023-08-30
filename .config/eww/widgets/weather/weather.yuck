@@ -1,53 +1,73 @@
+(defvar weather_rev false)
+
 (defwidget weather []
-  (box
+  (custom_widget
     :visible {weather != ""}
-    :class "weather"
-    :space-evenly false
 
-    (box
-      :class "weather-info"
-      :hexpand true
-      :space-evenly false
+    (eventbox
+      :onhover "${EWW_CMD} update weather_rev=true"
+      :onhoverlost "${EWW_CMD} update weather_rev=false"
 
       (box
-        :orientation "v"
+        :class "weather"
+        :space-evenly false
+        :spacing 6
 
         (label
-          :class "weather-location"
-          :halign "start"
-          :text {weather.location}
+          :text "${weather.icon}"
         )
-
-        (label 
-          :class "weather-feels"
-          :text "feels like ${weather.feels} °C"
-          :halign "start"
-        )
-      )
-
-      (box
-        :orientation "v"
-        :hexpand true
-        :halign "end"
 
         (label
-          :class "weather-temp"
-          :halign "end"
           :text "${weather.temp} °C"
         )
 
-        (label
-          :halign "end"
-          :class "weather-desc"
-          :text {weather.desc}
+        (revealer
+          :transition "slideright"
+          :reveal weather_rev
+          :duration "350ms"
+
+          (box
+            :class "weather-info"
+            :space-evenly false
+            :spacing 6
+
+            (label
+              :text "🞄"
+            )
+
+            (label
+              :text "${weather.desc}:"
+            )
+
+            (label
+              :class "max-temp"
+              :text "󱦲"
+            )
+
+            (label
+              :text "${weather.max} °C"
+            )
+
+            (label
+              :class "feels-temp"
+              :text "󰔏"
+            )
+
+            (label
+              :text "${weather.feels} °C"
+            )
+
+            (label
+              :class "min-temp"
+              :text "󱦳"
+            )
+
+            (label
+              :text "${weather.min} °C"
+            )
+          )
         )
       )
-    )
-
-    (label 
-      :class "weather-icon"
-      :text {weather.icon} 
-      :halign "center"
     )
   )
 )

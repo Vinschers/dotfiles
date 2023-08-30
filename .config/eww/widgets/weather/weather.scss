@@ -1,32 +1,17 @@
 .weather {
     .weather-info {
-        background-color: $weather_bg;
-        margin-right: 0.5rem;
-        border-radius: 1rem;
-        padding: 1rem;
+        color: $weather_info;
 
-        .weather-location {
-            font-size: 14pt;
-        }
-        .weather-feels {
-            font-size: 12pt;
-            color: $weather_fg2;
+        .max-temp {
+            color: $weather_max;
         }
 
-        .weather-temp {
-            font-size: 14pt;
+        .min-temp {
+            color: $weather_min;
         }
-        .weather-desc {
-            font-size: 12pt;
-            color: $weather_fg2;
+        
+        .feels-temp {
+            color: $weather_feels;
         }
-    }
-
-    .weather-icon {
-        background-color: $weather_bg;
-        margin-left: 0.5rem;
-        border-radius: 1rem;
-        padding: 1rem 1.5rem;
-        font-size: 20pt;
     }
 }

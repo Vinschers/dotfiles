@@ -8,7 +8,6 @@
 (include "widgets/media/media.yuck")
 (include "widgets/music/music.yuck")
 (include "widgets/network/network.yuck")
-(include "widgets/sysconfig/sysconfig.yuck")
 (include "widgets/sysinfo/sysinfo.yuck")
 (include "widgets/theme/theme.yuck")
 (include "widgets/time/time.yuck")
