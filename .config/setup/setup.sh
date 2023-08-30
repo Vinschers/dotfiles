@@ -8,6 +8,7 @@ if ! [ -d "$HOME/.config/.dotfiles-git" ]; then
 
 	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" config --local status.showUntrackedFiles no
 	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.config/shell/environment/local.sh"
+	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.librewolf/profiles.ini"
 	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.config/octave/octaverc"
 fi
 

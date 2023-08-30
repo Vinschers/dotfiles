@@ -7,6 +7,30 @@
   )
 )
 
+(defwidget vol_bright []
+  (custom_widget
+    (box
+      :space-evenly false
+      :spacing 12
+
+      (brightness)
+      (volume)
+    )
+  )
+)
+
+(defwidget wifi_bluetooth []
+  (custom_widget
+    (box
+      :space-evenly false
+      :spacing 24
+
+      (bluetooth)
+      (wifi)
+    )
+  )
+)
+
 (defwidget bar_left [monitor]
   (box
     :halign "start"
@@ -15,6 +39,7 @@
     (workspaces
       :monitor "${monitor}"
     )
+    (vol_bright)
     (music)
   )
 )
@@ -37,25 +62,8 @@
     (theme)
     (keyboard)
     (sysinfo)
-    (custom_widget
-      (box
-        :space-evenly false
-        :spacing 12
-
-        (brightness)
-        (volume)
-      )
-    )
     (sysconfig)
-    (custom_widget
-      (box
-        :space-evenly false
-        :spacing 24
-
-        (bluetooth)
-        (wifi)
-      )
-    )
+    (wifi_bluetooth)
     (time)
   )
 )
