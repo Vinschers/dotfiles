@@ -39,16 +39,17 @@
     (workspaces :monitor "${monitor}")
     (vol_bright)
     (music)
-    (weather)
   )
 )
 
-(defwidget bar_center [monitor]
+(defwidget bar_center []
   (box
     :halign "center"
     :space-evenly false
 
-    (window :monitor "${monitor}")
+    (weather)
+    (ip)
+    (theme)
   )
 )
 
@@ -58,8 +59,6 @@
     :space-evenly false
 
     (updates)
-    (theme)
-    (ip)
     (keyboard)
     (sysinfo)
     (wifi_bluetooth)
@@ -71,10 +70,9 @@
   (box
     :class "bar"
     :orientation "horizontal"
-    :spacing 60
 
     (bar_left :monitor "${monitor}")
-    ; (bar_center :monitor "${monitor}")
+    (bar_center)
     (bar_right)
   )
 )
