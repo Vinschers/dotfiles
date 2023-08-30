@@ -4,6 +4,7 @@
 (include "widgets/brightness/brightness.yuck")
 (include "widgets/datetime-user/datetime-user.yuck")
 (include "widgets/hardware/hardware.yuck")
+(include "widgets/ip/ip.yuck")
 (include "widgets/keyboard/keyboard.yuck")
 (include "widgets/media/media.yuck")
 (include "widgets/music/music.yuck")

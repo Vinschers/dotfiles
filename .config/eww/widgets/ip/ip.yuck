@@ -1,0 +1,10 @@
+(defpoll ip :interval "30m" "scripts/ip.sh")
+
+(defwidget ip []
+  (custom_widget
+    (label
+      :class "ip"
+      :text "󱧐   ${ip.local_ipv4}"
+    )
+  )
+)
