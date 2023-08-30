@@ -1,21 +1,34 @@
+(defvar brightness_rev false)
+
 (defwidget brightness []
-  (box
-    :class "brightness-box"
-    :space-evenly false
+  (eventbox
+    :onhover "${EWW_CMD} update brightness_rev=true"
+    :onhoverlost "${EWW_CMD} update brightness_rev=false"
 
-    (button
-      :class "brightness-icon"
-      "${bright.icon}"
-    )
+    (box
+      :class "brightness-box"
+      :space-evenly false
 
-    (scale
-      :class "brightness-slider"
-      :hexpand true
-      :min 0
-      :max 100
-      :value "${bright.value}"
-      :tooltip "${bright.value}%"
-      :onchange "scripts/bright.sh set {}"
+      (button
+        :class "brightness-icon"
+        "${bright.icon} "
+      )
+
+      (revealer
+        :transition "slideright"
+        :reveal brightness_rev
+        :duration "350ms"
+
+        (scale
+          :class "brightness-slider"
+          :hexpand true
+          :min 0
+          :max 100
+          :value "${bright.value}"
+          :tooltip "${bright.value}%"
+          :onchange "scripts/bright.sh set {}"
+        )
+      )
     )
   )
 )

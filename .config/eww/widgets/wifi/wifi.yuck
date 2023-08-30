@@ -1,0 +1,10 @@
+(defwidget wifi []
+  (button
+    :onclick "iwgtk"
+
+    (box
+      :class "wifi ${wifi.class}"
+      "${wifi.icon}   ${wifi.text}"
+    )
+  )
+)

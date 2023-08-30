@@ -1,0 +1,10 @@
+(defwidget bluetooth []
+  (button
+    :onclick "blueberry"
+
+    (box
+      :class "bluetooth ${bluetooth.class}"
+      "${bluetooth.icon}   ${bluetooth.text}"
+    )
+  )
+)

@@ -19,14 +19,10 @@
         padding-left: 1rem;
         padding-right: 1rem;
 
+        margin-left: 0.4rem;
+        margin-right: 0.4rem;
+
         box-shadow: 0 2px 3px $shadow;
     }
 }
 
-@import "../widgets/workspaces/workspaces";
-@import "../widgets/updates/updates";
-@import "../widgets/theme/theme";
-@import "../widgets/keyboard/keyboard";
-@import "../widgets/sysinfo/sysinfo";
-@import "../widgets/sysconfig/sysconfig";
-@import "../widgets/time/time";

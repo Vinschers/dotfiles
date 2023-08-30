@@ -1,5 +1,3 @@
-(include "widgets/hardware/hardware.yuck")
-
 (defwidget system []
   (box
     :class "system-window"

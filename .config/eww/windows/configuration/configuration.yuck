@@ -1,10 +1,3 @@
-(include "widgets/datetime-user/datetime-user.yuck")
-(include "widgets/network/network.yuck")
-(include "widgets/volume/volume.yuck")
-(include "widgets/brightness/brightness.yuck")
-(include "widgets/weather/weather.yuck")
-(include "widgets/media/media.yuck")
-
 (defwidget configuration []
   (box
     :class "configuration-window"

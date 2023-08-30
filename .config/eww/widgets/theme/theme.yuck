@@ -1,27 +1,30 @@
 (defwidget theme []
-  (box
-    :class "theme-wallpaper"
-    :spacing 10
+  (custom_widget
 
-    ; (button
-    ;   :class "theme"
-    ;   :onclick "$HOME/.config/theme/switch_theme.sh n"
-    ;   :onrightclick "$HOME/.config/theme/switch_theme.sh p"
-    ;
-    ;   (image
-    ;     :path "assets/theme.png"
-    ;     :image-width 18
-    ;   )
-    ; )
+    (box
+      :class "theme-wallpaper"
+      :spacing 10
 
-    (button
-      :class "wallpaper"
-      :onclick "$HOME/.config/theme/update_wallpaper.sh n"
-      :onrightclick "$HOME/.config/theme/update_wallpaper.sh p"
+      ; (button
+      ;   :class "theme"
+      ;   :onclick "$HOME/.config/theme/switch_theme.sh n"
+      ;   :onrightclick "$HOME/.config/theme/switch_theme.sh p"
+      ;
+      ;   (image
+      ;     :path "assets/theme.png"
+      ;     :image-width 18
+      ;   )
+      ; )
 
-      (image
-        :path "assets/wallpaper.png"
-        :image-width 18
+      (button
+        :class "wallpaper"
+        :onclick "$HOME/.config/theme/update_wallpaper.sh n"
+        :onrightclick "$HOME/.config/theme/update_wallpaper.sh p"
+
+        (image
+          :path "assets/wallpaper.png"
+          :image-width 18
+        )
       )
     )
   )

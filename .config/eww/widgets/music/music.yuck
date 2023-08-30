@@ -1,0 +1,55 @@
+(defvar music_rev false)
+
+(defwidget music []
+  (custom_widget
+    :visible "${music != "" ? (music.title != "" ? true : false) : false}"
+
+    (eventbox
+      :onhover "${EWW_CMD} update music_rev=true"
+      :onhoverlost "${EWW_CMD} update music_rev=false"
+
+      (button
+        :onclick "scripts/toggle_window.sh media"
+
+        (box
+          :class "music"
+          :space-evenly false
+
+          (box
+            :class "image"
+            :style "background-image: url('${music.cover}');"
+          )
+
+          (box
+            :class "info"
+            :space-evenly false
+            :spacing 6
+
+            (label
+              :text "${music.title}"
+            )
+
+            (revealer
+              :transition "slideright"
+              :reveal music_rev
+              :duration "350ms"
+
+              (box
+                :space-evenly false
+                :spacing 6
+
+                (label
+                  :text "🞄"
+                )
+
+                (label
+                  :text {music.artist}
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)

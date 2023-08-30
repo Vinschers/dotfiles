@@ -16,7 +16,26 @@
     transition: 200ms ease;
 }
 
-@import "css/bar";
-@import "css/calendar";
-@import "css/configuration";
-@import "css/system";
+@import "widgets/bluetooth/bluetooth";
+@import "widgets/brightness/brightness";
+@import "widgets/datetime-user/datetime-user";
+@import "widgets/hardware/hardware";
+@import "widgets/keyboard/keyboard";
+@import "widgets/media/media";
+@import "widgets/music/music";
+@import "widgets/network/network";
+@import "widgets/sysconfig/sysconfig";
+@import "widgets/sysinfo/sysinfo";
+@import "widgets/theme/theme";
+@import "widgets/time/time";
+@import "widgets/updates/updates";
+@import "widgets/volume/volume";
+@import "widgets/weather/weather";
+@import "widgets/wifi/wifi";
+@import "widgets/workspaces/workspaces";
+
+@import "windows/bar/bar";
+@import "windows/calendar/calendar";
+@import "windows/configuration/configuration";
+@import "windows/media/media";
+@import "windows/system/system";

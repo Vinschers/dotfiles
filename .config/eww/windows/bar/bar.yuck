@@ -1,24 +1,26 @@
-(include "widgets/workspaces/workspaces.yuck")
-(include "widgets/window/window.yuck")
-(include "widgets/updates/updates.yuck")
-(include "widgets/theme/theme.yuck")
-(include "widgets/keyboard/keyboard.yuck")
-(include "widgets/sysconfig/sysconfig.yuck")
-(include "widgets/sysinfo/sysinfo.yuck")
-(include "widgets/time/time.yuck")
+(defwidget custom_widget [?visible]
+  (box
+    :class "bar-part"
+    :visible {visible}
+
+    (children)
+  )
+)
 
 (defwidget bar_left [monitor]
   (box
-    :class "bar-part"
     :halign "start"
+    :space-evenly false
 
-    (workspaces :monitor "${monitor}")
+    (workspaces
+      :monitor "${monitor}"
+    )
+    (music)
   )
 )
 
 (defwidget bar_center [monitor]
   (box
-    :class "bar-part"
     :halign "center"
     :space-evenly false
 
@@ -28,16 +30,32 @@
 
 (defwidget bar_right []
   (box
-    :class "bar-part"
     :halign "end"
     :space-evenly false
-    :spacing 12
 
     (updates)
     (theme)
     (keyboard)
     (sysinfo)
+    (custom_widget
+      (box
+        :space-evenly false
+        :spacing 12
+
+        (brightness)
+        (volume)
+      )
+    )
     (sysconfig)
+    (custom_widget
+      (box
+        :space-evenly false
+        :spacing 24
+
+        (bluetooth)
+        (wifi)
+      )
+    )
     (time)
   )
 )

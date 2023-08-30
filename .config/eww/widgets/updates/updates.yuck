@@ -1,21 +1,24 @@
 (defpoll updates :interval "1m" "scripts/updates.sh")
 
 (defwidget updates []
-  (box
-    :class "updates"
-    :visible {updates.pacman > 0 || updates.aur > 0}
-    :spacing 6
+  (custom_widget
 
-    (label
-      :class "pacman"
-      :visible {updates.pacman > 0}
-      :text "󰮯  ${updates.pacman}"
-    )
+    (box
+      :class "updates"
+      :visible {updates.pacman > 0 || updates.aur > 0}
+      :spacing 6
 
-    (label
-      :class "aur"
-      :visible {updates.aur > 0}
-      :text "  ${updates.aur}"
+      (label
+        :class "pacman"
+        :visible {updates.pacman > 0}
+        :text "󰮯  ${updates.pacman}"
+      )
+
+      (label
+        :class "aur"
+        :visible {updates.aur > 0}
+        :text "  ${updates.aur}"
+      )
     )
   )
 )

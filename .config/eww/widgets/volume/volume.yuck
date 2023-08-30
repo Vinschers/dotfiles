@@ -1,22 +1,35 @@
+(defvar volume_rev false)
+
 (defwidget volume []
-  (box
-    :class "volume-box"
-    :space-evenly false
+  (eventbox
+    :onhover "${EWW_CMD} update volume_rev=true"
+    :onhoverlost "${EWW_CMD} update volume_rev=false"
 
-    (button
-      :class "volume-icon"
-      :onclick "scripts/audio.sh toggle"
-      "${volume.icon}"
-    )
+    (box
+      :class "volume-box"
+      :space-evenly false
 
-    (scale
-      :class "volume-slider"
-      :hexpand true
-      :min 0
-      :max 100
-      :value "${volume.value}"
-      :tooltip "${volume.value}%"
-      :onchange "scripts/audio.sh set {}"
+      (button
+        :class "volume-icon"
+        :onclick "scripts/audio.sh toggle"
+        "${volume.icon} "
+      )
+
+      (revealer
+        :transition "slideright"
+        :reveal volume_rev
+        :duration "350ms"
+
+        (scale
+          :class "volume-slider"
+          :hexpand true
+          :min 0
+          :max 100
+          :value "${volume.value}"
+          :tooltip "${volume.value}%"
+          :onchange "scripts/audio.sh set {}"
+        )
+      )
     )
   )
 )

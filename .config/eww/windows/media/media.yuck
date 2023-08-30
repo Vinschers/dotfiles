@@ -1,0 +1,17 @@
+(defwindow media
+  :stacking "fg" 
+  :geometry (geometry
+             :x "100"
+             :y "0"
+             :anchor "left top")
+  (box
+    :class "media-window"
+
+    (media)
+  )
+)
+
+(defwindow closer_media
+  :geometry (geometry :width "100%" :height "105%" :y "-5%")
+  :stacking "fg"
+  (closer :window "media"))

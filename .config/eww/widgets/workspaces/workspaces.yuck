@@ -2,7 +2,7 @@
 
 (defwidget workspaces [monitor]
   (box
-    :class "workspaces"
+    :class "workspaces bar-part"
     (for ws in "${workspaces['${monitor}']}"
       (button
         :class "workspace status${ws.status}"
