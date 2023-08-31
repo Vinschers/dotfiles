@@ -4,6 +4,7 @@
   (eventbox
     :onhover "${EWW_CMD} update brightness_rev=true"
     :onhoverlost "${EWW_CMD} update brightness_rev=false"
+    :visible {bright.value > 0}
 
     (box
       :class "brightness-box"
