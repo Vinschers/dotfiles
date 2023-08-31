@@ -8,7 +8,6 @@
 (include "widgets/keyboard/keyboard.yuck")
 (include "widgets/media/media.yuck")
 (include "widgets/music/music.yuck")
-(include "widgets/network/network.yuck")
 (include "widgets/sysinfo/sysinfo.yuck")
 (include "widgets/theme/theme.yuck")
 (include "widgets/time/time.yuck")
@@ -22,7 +21,6 @@
 
 (include "windows/bar/bar.yuck")
 (include "windows/calendar/calendar.yuck")
-(include "windows/configuration/configuration.yuck")
 (include "windows/media/media.yuck")
 (include "windows/system/system.yuck")
 

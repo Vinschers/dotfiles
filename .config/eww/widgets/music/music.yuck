@@ -15,7 +15,7 @@
 
         (button
           :class "music"
-          :onclick "scripts/toggle_window.sh media"
+          :onclick "${music.length != "00:00" ? "scripts/toggle_window.sh media" : ""}"
 
           (overlay
 

@@ -36,7 +36,7 @@ get_json() {
 }
 
 get_info() {
-	playerctl -p spotify -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
+	playerctl -F metadata -f '{{title}}\{{artist}}\{{status}}\{{position}}\{{mpris:length}}\{{mpris:artUrl}}' 2>/dev/null | while IFS="$(printf "\\")" read -r title artist status position length cover; do
 		if [ -n "$cover" ] && [ "$cover" != "$prevCover" ]; then
 			cover_img=$(get_cover "$cover")
 			position="0"
@@ -44,8 +44,6 @@ get_info() {
 
         title="$(truncate_string "$title" 30)"
         artist="$(truncate_string "$artist" 30)"
-
-		[ -z "$length" ] && length=$((2 * position))
 
 		position_time="$(date -d@"$((position / 1000000))" +%M:%S)"
 
