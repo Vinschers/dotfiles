@@ -21,7 +21,7 @@
 
             (box
               :class "background"
-              :style "background-image: url('${music.cover}');"
+              :style "background-image: url('${music.cover}'); ${music.status == "󰏦" ? "animation: 60s linear infinite up-down;" : ""}"
             )
 
             (box

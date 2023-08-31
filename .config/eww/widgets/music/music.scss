@@ -11,8 +11,6 @@
             opacity: 0.3;
 
             border-radius: 1rem;
-
-            animation: 60s linear infinite up-down;
         }
 
         .info {
@@ -70,11 +68,5 @@
 
     100% {
         background-position: center center;
-    }
-}
-
-.music-eventbox:hover {
-    .background {
-        // animation: 60s linear infinite up-down;
     }
 }
