@@ -5,6 +5,7 @@
     (label
       :class "ip"
       :text "󱧐   ${ip.local_ipv4}"
+      :tooltip "${ip.global_ipv4}"
     )
   )
 )

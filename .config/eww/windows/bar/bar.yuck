@@ -67,7 +67,7 @@
 )
 
 (defwidget bar [monitor]
-  (box
+  (centerbox
     :class "bar"
     :orientation "horizontal"
 
