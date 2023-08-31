@@ -4,7 +4,17 @@
 
     (box
       :class "bluetooth ${bluetooth.class}"
-      "${bluetooth.icon}   ${bluetooth.text}"
+      :space-evenly false
+
+      (label
+        :text {bluetooth.icon}
+      )
+
+      (label
+        :visible {bluetooth.class != ""}
+        :class "text"
+        :text {bluetooth.text}
+      )
     )
   )
 )

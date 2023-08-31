@@ -1,7 +1,7 @@
 (defwindow media
   :stacking "fg" 
   :geometry (geometry
-             :x "100"
+             :x "345"
              :y "0"
              :anchor "left top")
   (box

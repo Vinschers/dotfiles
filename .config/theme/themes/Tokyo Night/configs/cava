@@ -1,6 +1,10 @@
 [general]
 framerate = 60
 
+[input]
+method = pipewire
+source = auto
+
 [color]
 gradient = 1
 gradient_count = 8
@@ -12,6 +16,3 @@ gradient_color_5 = '#e0af68'
 gradient_color_6 = '#ff9e64'
 gradient_color_7 = '#f7768e'
 gradient_color_8 = '#db4b4b'
-
-[smoothing]
-noise_reduction = 0.77

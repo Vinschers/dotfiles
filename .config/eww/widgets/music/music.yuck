@@ -4,35 +4,40 @@
   (custom_widget
     :visible "${music != "" ? (music.title != "" ? true : false) : false}"
 
-    (eventbox
-      :onhover "${EWW_CMD} update music_rev=true"
-      :onhoverlost "${EWW_CMD} update music_rev=false"
+    (box
+      :class "music-box"
+      :width 300
 
-      (button
-        :onclick "scripts/toggle_window.sh media"
+      (eventbox
+        :class "music-eventbox"
+        :onhover "${EWW_CMD} update music_rev=true"
+        :onhoverlost "${EWW_CMD} update music_rev=false"
 
-        (box
+        (button
           :class "music"
-          :space-evenly false
+          :onclick "scripts/toggle_window.sh media"
 
-          (box
-            :class "image"
-            :style "background-image: url('${music.cover}');"
-          )
+          (overlay
 
-          (box
-            :class "info"
-            :space-evenly false
-            :spacing 6
-
-            (label
-              :text "${music.title}"
+            (box
+              :class "background"
+              :style "background-image: url('${music.cover}');"
             )
 
-            (revealer
-              :transition "slideright"
-              :reveal music_rev
-              :duration "350ms"
+            (box
+              :class "info"
+              :space-evenly false
+              :spacing 6
+
+              (box
+                :class "cover"
+                :style "background-image: url('${music.cover}');"
+              )
+
+              (label
+                :text "${music.title}"
+                :limit-width 20
+              )
 
               (box
                 :space-evenly false
@@ -44,6 +49,7 @@
 
                 (label
                   :text {music.artist}
+                  :limit-width 12
                 )
               )
             )
