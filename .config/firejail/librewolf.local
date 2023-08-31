@@ -1,6 +1,7 @@
 ignore noexec ${HOME}
 ignore apparmor
 ignore disable-mnt
+ignore dbus-user filter
 
 whitelist ${HOME}/.local/share/jupyter/runtime
 whitelist ${HOME}/.local/share/Zotero
