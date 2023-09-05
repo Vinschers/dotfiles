@@ -125,3 +125,4 @@ __pycache__
 .latex-cache
 minix
 mc504-sistemas-operacionais/projeto-1
+.venv

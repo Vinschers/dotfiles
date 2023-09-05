@@ -25,7 +25,7 @@ function M.config()
 		debug = false,
 		sources = {
 			formatting.prettier.with({ extra_args = { "--config", os.getenv("HOME") .. "/.config/.prettierrc.yaml" } }),
-			formatting.black.with({ extra_args = { "--fast", "-l", "130" } }),
+			formatting.black.with({ extra_args = { "--fast", "-l", "150" } }),
 			formatting.isort,
 			formatting.stylua,
 			formatting.clang_format.with({ extra_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4}" } }),
@@ -35,7 +35,7 @@ function M.config()
 			formatting.bibclean,
             formatting.asmfmt,
 
-			diagnostics.flake8.with({ extra_args = { "--max-line-length", "120" } }),
+			diagnostics.flake8.with({ extra_args = { "--max-line-length", "150" } }),
 			diagnostics.shellcheck,
 			diagnostics.yamllint,
 			diagnostics.chktex,
