@@ -30,11 +30,13 @@ function M.config()
 
 			local update_bib_cmd = "[ -f "
 				.. directory
-				.. "library.bib ] || bibexport --terse --output-file "
+				.. "library.bib ] || { rm -f "
+                .. directory
+				.. "export.bib && bibexport --terse --output-file "
 				.. directory
 				.. "export.bib "
 				.. latex_cache
-				.. "/*.aux 2>/dev/null"
+				.. "/*.aux 2>/dev/null; }"
 			os.execute(update_bib_cmd)
 		end,
 	})
