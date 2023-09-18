@@ -20,7 +20,7 @@
       - parted
       - neofetch
       - btop
-      - exa
+      - eza
       - zip
       - ffmpeg
       - playerctl

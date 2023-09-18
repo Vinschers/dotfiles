@@ -101,9 +101,9 @@ keymap("i", "<C-a>", "<ESC>ggVG", opts)
 keymap("i", "<C-t>", ":ene<CR>", opts)
 keymap("i", "<C-w>", "<cmd>Bdelete!<CR>", opts)
 
-keymap(
-	"i",
-	"<C-f>",
-	"<Esc><cmd>silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>'",
-	opts
-)
+-- keymap(
+-- 	"i",
+-- 	"<C-f>",
+-- 	"<Esc><cmd>silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>'",
+-- 	opts
+-- )

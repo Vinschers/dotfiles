@@ -5,7 +5,7 @@ alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -v" \
-	ls="exa --icons --time-style long-iso" \
+	ls="eza --icons --time-style long-iso" \
 	grep="grep --color=auto" \
 	fgrep='fgrep --color=auto' \
 	egrep='egrep --color=auto' \
