@@ -123,6 +123,5 @@
 __pycache__
 .git
 .latex-cache
-minix
-mc504-sistemas-operacionais/projeto-1
+notsync
 .venv
