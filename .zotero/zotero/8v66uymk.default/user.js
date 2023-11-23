@@ -13,7 +13,7 @@ user_pref("extensions.zotfile.source_dir", "/home/scherer/academic/");
 user_pref("extensions.zotfile.source_dir_ff", false);
 user_pref("extensions.zotfile.useZoteroToRename", false);
 user_pref("extensions.zotfile.subfolder", true);
-user_pref("extensions.zotfile.subfolderFormat", "/%c/%T/[%a]{ %t (%y)}");
+user_pref("extensions.zotfile.subfolderFormat", "/%c/%T/{[%a]}{ %t {(%y)}}");
 user_pref("extensions.zotfile.renameFormat", "[%a]{ %t (%y)}");
 user_pref("extensions.zotfile.authors_delimiter", ", ");
 user_pref("extensions.zotfile.max_titlelength", 120);
