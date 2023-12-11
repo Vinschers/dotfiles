@@ -6,10 +6,13 @@ current_mon="$(echo "$json" | jq '.[]? | select(.focused == true) | .id')"
 
 num_monitors="$(echo "$json" | jq 'length')"
 
-[ "$1" = "0" ] && monitor_id="$((current_mon - 1))"
-[ "$1" = "1" ] && monitor_id="$(((current_mon + 1) % num_monitors))"
+opt="$1"
+[ -z "$opt" ] && opt=0
 
-[ "$monitor_id" -lt 0 ] && monitor_id="$((num_monitors - 1))"
+[ "$opt" = "0" ] && monitor_id=$((current_mon - 1))
+[ "$opt" = "1" ] && monitor_id=$(((current_mon + 1) % num_monitors))
 
-focusedws="$(echo "$json" | jq -r ".[] | select(.id == $monitor_id) | .activeWorkspace.id")"
+[ "$monitor_id" -lt 0 ] && monitor_id=$((num_monitors - 1))
+
+focusedws="$(echo "$json" | jq ".[] | select(.id == $monitor_id) | .activeWorkspace.id")"
 hyprctl dispatch movetoworkspace "$focusedws"

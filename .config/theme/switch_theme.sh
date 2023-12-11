@@ -1,25 +1,27 @@
 #!/bin/sh
 
-
 theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
 startup=1
 
+THEMES_DIR="$HOME/.config/theme/themes"
+
 if [ -z "$theme" ]; then
-	theme="$(/bin/ls "$HOME/.config/theme/themes/" | head -1)"
+	if [ -z "$(ls -A "$THEMES_DIR")" ]; then
+        theme=0
+	else
+        theme=1
+	fi
 elif [ -n "$1" ]; then
-	if [ "$1" = "select" ]; then
-		selected_theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | wofi --show dmenu)"
-		[ "$selected_theme" = "$theme" ] && exit 0
-		[ -n "$selected_theme" ] && theme="$selected_theme"
-	elif [ "$1" = "n" ]; then
-		theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | grep -A1 "$theme" | grep -v "$theme")"
-		[ -z "$theme" ] && theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | head -1)"
+    n_themes=$(find "$THEMES_DIR" -mindepth 1 -maxdepth 1 -type d | wc -l)
+
+	if [ "$1" = "n" ]; then
+        theme=$(( 1 + (theme + 1) % n_themes ))
 	elif [ "$1" = "p" ]; then
-		theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | grep -B1 "$theme" | grep -v "$theme")"
-		[ -z "$theme" ] && theme="$(/bin/ls -1 "$HOME/.config/theme/themes" | tail -1)"
+        theme=$((theme - 1))
+        [ $theme -lt 1 ] && theme=$n_themes
 	fi
 
-    startup=0
+	startup=0
 fi
 
 echo "$theme" >"$HOME/.config/theme/current"

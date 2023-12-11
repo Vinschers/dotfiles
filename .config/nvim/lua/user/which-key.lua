@@ -88,7 +88,7 @@ function M.config()
 		["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
 		["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
 
-		["c"] = { "<cmd>set spell! spelllang=en_us,pt<cr>", "Toggle spell check" },
+		["c"] = { "<cmd>set spell! spelllang=en_us,pt,fr<cr>", "Toggle spell check" },
 
 		["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<cr>", "Comment" },
 

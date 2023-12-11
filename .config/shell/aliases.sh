@@ -80,7 +80,7 @@ alias \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
     d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls' \
     sv="sudoedit" \
-    mntdroid="aft-mtp-mount" \
+    android="sudo aft-mtp-mount /mnt/android" \
     train="sl -acdeGF" \
     sctl="sudo systemctl" \
     audio="systemctl --user restart pipewire.service" \
