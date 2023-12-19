@@ -37,8 +37,13 @@ update_theme() {
 startup=$1
 theme="$(cat "$HOME/.config/theme/current" 2>/dev/null)"
 
-[ "$startup" -eq 0 ] && notify-send "$theme"
+if [ "$startup" -eq 0 ]; then
+    "$HOME"/.local/share/wallpapers/update.sh "$theme"
 
+    notify-send "$theme"
+fi
+
+update_theme "hypr" "$theme"
 update_theme "cava" "$theme"
 update_theme "shell" "$theme"
 update_theme "dunst" "$theme"
