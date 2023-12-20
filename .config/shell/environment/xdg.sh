@@ -35,7 +35,7 @@ mkdir -p "$XDG_CACHE_HOME/zsh"
 
 [ -f "$XDG_CONFIG_HOME/octave/octaverc" ] && sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
 
-echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
+# echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
 
 export CHKTEXRC=$XDG_CONFIG_HOME/chktex
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
@@ -80,7 +80,7 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
 export TRAVIS_CONFIG_PATH="$XDG_CONFIG_HOME/travis"
 export UNCRUSTIFY_CONFIG="$XDG_CONFIG_HOME/uncrustify/uncrustify.cfg"
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+# export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 

@@ -1,6 +1,3 @@
-local helpers = require("utils.luasnip-helper-funcs")
-local get_visual = helpers.get_visual
-
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
 -- Environment/syntax context detection
@@ -15,6 +12,10 @@ tex.in_tikz = function()
 	local is_inside = vim.fn["vimtex#env#is_inside"]("tikzpicture")
 	return (is_inside[1] > 0 and is_inside[2] > 0)
 end
+
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
 
 -- Return snippet tables
 return {
