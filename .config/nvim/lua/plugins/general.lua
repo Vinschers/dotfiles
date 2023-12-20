@@ -5,6 +5,8 @@ return {
 	{ import = "lazyvim.plugins.extras.util.dot" },
 	{ import = "lazyvim.plugins.extras.test.core" },
 
+    { "folke/flash.nvim", enabled = false },
+
 	{
 		"akinsho/bufferline.nvim",
 		opts = function(_, opts)
