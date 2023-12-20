@@ -22,7 +22,6 @@ case "$(file --dereference --brief --mime-type -- "$1")" in
 image/*) image "$1" "$2" "$3" "$4" "$5" ;;
 text/html) lynx -width="$4" -display_charset=utf-8 -dump "$1" ;;
 text/troff) man ./ "$1" | col -b ;;
-text/* | */xml | application/json | application/javascript) bat --terminal-width "$(($4 - 2))" -f "$1" ;;
 audio/* | application/octet-stream)
 	info="$(mediainfo "$1" | sed '/^$/q' | head -n -1)"
 	CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
@@ -49,5 +48,6 @@ video/*)
 application/*zip) atool --list -- "$1" ;;
 *opendocument*) odt2txt "$1" ;;
 application/pgp-encrypted) gpg -d -- "$1" ;;
+*) bat --terminal-width "$(($4 - 2))" -f "$1" ;;
 esac
 exit 1
