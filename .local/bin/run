@@ -38,7 +38,7 @@ get_ext_cmd() {
 		echo "$cwd/$fileName.$fileExtension"
 		;;
 
-	python)
+	py)
 		echo "python \"$cwd/$fileName.$fileExtension\""
 		;;
 

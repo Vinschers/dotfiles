@@ -26,5 +26,5 @@ To do so, install the `dhcpcd` and run `sudo systemctl enable dhcpcd.service`.
 
 ## Showcase
 
-![img](.local/share/assets/picture1.png)
-![img](.local/share/assets/picture2.png)
+![img](.local/share/pictures/picture1.png)
+![img](.local/share/pictures/picture2.png)
