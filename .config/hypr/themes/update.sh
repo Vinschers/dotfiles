@@ -1,7 +1,7 @@
 #!/bin/sh
 
 update_theme() {
-    ln -sf "./$1.conf" theme.conf
+    ln -sf "$HOME/.config/hypr/themes/$1.conf" "$HOME/.config/hypr/theme.conf"
 }
 
 if [ -n "$1" ]; then

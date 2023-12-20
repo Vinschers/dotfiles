@@ -1,0 +1,76 @@
+#!/bin/sh
+
+search_file() {
+	searched="$1"
+	path="."
+
+	[ -z "$searched" ] && return 1
+
+	while [ "$path" != / ] && ! [ -e "$path/$searched" ]; do
+		path="$(readlink -f "$path"/..)"
+	done
+
+	[ -e "$path/$searched" ] && echo "$path/$searched"
+}
+
+run_cmd() {
+	cmd="$1"
+
+	printf "\$ %s\n\n" "$cmd"
+	eval "$cmd"
+
+	printf "\nPress any key to exit..." && wait_key_press
+}
+
+get_ext_cmd() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	[ -z "$fileExtension" ] && echo "$cwd/$fileName"
+
+	case "$fileExtension" in
+	s | c | cpp)
+		echo "$cwd/$fileName"
+		;;
+
+	sh)
+		echo "$cwd/$fileName.$fileExtension"
+		;;
+
+	python)
+		echo "python \"$cwd/$fileName.$fileExtension\""
+		;;
+
+	tex)
+		echo "zathura \"$cwd/$fileName.pdf\""
+		;;
+
+	*) ;;
+	esac
+}
+
+main() {
+	file="$1"
+
+	compile "$file"
+
+	makefile="$(search_file "Makefile")"
+
+	if [ -e "$makefile" ]; then
+		cmd="$(make -Bnd -f "$makefile" | grep update | tail -1 | grep -oP "\'\K[a-zA-Z0-9_\-\.]+")"
+	else
+		[ -e "$file" ] || exit
+
+		cwd="$(dirname "$(realpath "$file")")"
+		fileName="$(basename -- "$file")"
+		echo "$file" | grep -qo '\.' && fileExtension="${fileName##*.}"
+		fileName="${fileName%.*}"
+
+		cmd="$(get_ext_cmd "$cwd" "$fileName" "$fileExtension")"
+	fi
+
+	[ -n "$cmd" ] && run_cmd "$cmd"
+}
+
+main "$1"

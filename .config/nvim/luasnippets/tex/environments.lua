@@ -12,6 +12,14 @@ end
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
+local ls = require("luasnip")
+local i = ls.insert_node
+local s = ls.snippet
+local d = ls.dynamic_node
+local f = ls.function_node
+local rep = require("luasnip.extras").rep
+local fmta = require("luasnip.extras.fmt").fmta
+
 -- Return snippet tables
 return {
 	-- GENERIC ENVIRONMENT

@@ -9,6 +9,7 @@ video/quicktime=mpv.desktop
 application/x-keepass2=org.keepassxc.KeePassXC.desktop
 application/sql=nvim.desktop
 application/x-shellscript=nvim.desktop
+application/javascript=nvim.desktop
 application/x-java-archive=java-java-openjdk.desktop
 application/x-xojpp=com.github.xournalpp.xournalpp.desktop
 application/x-xopt=com.github.xournalpp.xournalpp.desktop

@@ -8,7 +8,7 @@ function M.get_ISO_8601_date()
 	return os.date("%Y-%m-%d")
 end
 
-function M.get_visual(args, parent)
+function M.get_visual(_, parent)
 	if #parent.snippet.env.SELECT_RAW > 0 then
 		return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
 	else

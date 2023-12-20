@@ -1,13 +1,6 @@
 local helpers = require("utils.luasnip-helper-funcs")
 local get_visual = helpers.get_visual
 
--- A logical OR of `line_begin` and the regTrig '[^%a]trig'
-function line_begin_or_non_letter(line_to_cursor, matched_trigger)
-	local line_begin = line_to_cursor:sub(1, -(#matched_trigger + 1)):match("^%s*$")
-	local non_letter = line_to_cursor:sub(-(#matched_trigger + 1), -(#matched_trigger + 1)):match("[^%a]")
-	return line_begin or non_letter
-end
-
 -- Math context detection
 local tex = {}
 tex.in_mathzone = function()
@@ -17,10 +10,11 @@ tex.in_text = function()
 	return not tex.in_mathzone()
 end
 
-local line_begin = function(line_to_cursor, matched_trigger)
-	-- +1 because `string.sub("abcd", 1, -2)` -> abc
-	return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("^%s*$")
-end
+local ls = require("luasnip")
+local s = ls.snippet
+local f = ls.function_node
+local d = ls.dynamic_node
+local fmta = require("luasnip.extras.fmt").fmta
 
 -- Return snippet tables
 return {

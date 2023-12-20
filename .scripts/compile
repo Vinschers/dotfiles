@@ -1,0 +1,60 @@
+#!/bin/sh
+
+search_file() {
+	searched="$1"
+	path="."
+
+	[ -z "$searched" ] && return 1
+
+	while [ "$path" != / ] && ! [ -e "$path/$searched" ]; do
+		path="$(readlink -f "$path"/..)"
+	done
+
+	[ -e "$path/$searched" ] && echo "$path/$searched"
+}
+
+compile_file() {
+	cwd="$1"
+	fileName="$2"
+	fileExtension="$3"
+
+	case "$fileExtension" in
+	s | c)
+		gcc -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension" -g -Wall
+		;;
+
+	cpp)
+		g++ -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension" -g -Wall
+		;;
+
+	tex)
+		latexmk -pdf -shell-escape -bibtex "$cwd/$fileName.$fileExtension" >/dev/null && cp "$cwd/.latex-cache/$fileName.pdf" "$cwd"
+		rm -rf "$cwd/.latex-cache"
+		;;
+
+	*) ;;
+	esac
+}
+
+main() {
+	file="$1"
+
+	makefile="$(search_file "Makefile")"
+
+	if [ -e "$makefile" ]; then
+		make --file "$makefile"
+
+		return 0
+	fi
+
+	[ -e "$file" ] || exit
+
+	cwd="$(dirname "$(realpath "$file")")"
+	fileName="$(basename -- "$file")"
+	echo "$file" | grep -qo '\.' && fileExtension="${fileName##*.}"
+	fileName="${fileName%.*}"
+
+	compile_file "$cwd" "$fileName" "$fileExtension"
+}
+
+main "$1"

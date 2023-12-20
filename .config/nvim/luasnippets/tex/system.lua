@@ -12,6 +12,12 @@ tex.in_text = function()
 	return not tex.in_mathzone()
 end
 
+local ls = require("luasnip")
+local i = ls.insert_node
+local s = ls.snippet
+local d = ls.dynamic_node
+local fmta = require("luasnip.extras.fmt").fmta
+
 -- Return snippet tables
 return {
 	-- ANNOTATE (custom command for annotating equation derivations)

@@ -1,6 +1,3 @@
-local helpers = require("utils.luasnip-helper-funcs")
-local get_visual = helpers.get_visual
-
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
 -- Math context detection
@@ -11,6 +8,14 @@ end
 tex.in_text = function()
 	return not tex.in_mathzone()
 end
+
+local ls = require("luasnip")
+local sn = ls.snippet_node
+local i = ls.insert_node
+local s = ls.snippet
+local t = ls.text_node
+local c = ls.choice_node
+local fmta = require("luasnip.extras.fmt").fmta
 
 return {
 
