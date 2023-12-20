@@ -61,4 +61,4 @@ get_battery_info() {
 	fi
 }
 
-get_battery_info | jaq -sc
+get_battery_info | jq -sc
