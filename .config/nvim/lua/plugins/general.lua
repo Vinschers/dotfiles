@@ -5,7 +5,7 @@ return {
 	{ import = "lazyvim.plugins.extras.util.dot" },
 	{ import = "lazyvim.plugins.extras.test.core" },
 
-    { "folke/flash.nvim", enabled = false },
+	{ "folke/flash.nvim", enabled = false },
 
 	{
 		"akinsho/bufferline.nvim",
@@ -108,6 +108,76 @@ return {
 		opts = {
 			size = 16,
 			open_mapping = "<C-\\>",
+		},
+	},
+
+	{
+		"nvim-neotest/neotest",
+		opts = {
+			adapters = {
+				["neotest-python"] = {},
+				["neotest-jest"] = {},
+				["neotest-rust"] = {},
+				["neotest-java"] = {},
+				["neotest-gtest"] = {},
+			},
+		},
+	},
+
+	{
+		"xeluxee/competitest.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			{
+				"folke/which-key.nvim",
+				opts = {
+					defaults = {
+						["<leader>tc"] = { name = "+CompetiTest" },
+					},
+				},
+			},
+		},
+		keys = {
+			{ "<leader>tcr", "<cmd>CompetiTest run<cr>", desc = "CompetiTest run tests" },
+			{ "<leader>tcc", "<cmd>CompetiTest receive contest<cr>", desc = "CompetiTest get contest" },
+			{ "<leader>tcp", "<cmd>CompetiTest receive problem<cr>", desc = "CompetiTest get problem" },
+			{ "<leader>tct", "<cmd>CompetiTest receive testcases<cr>", desc = "CompetiTest get test cases" },
+		},
+		opts = {
+			testcases_directory = "./tests",
+			testcases_input_file_format = "input$(TCNUM)",
+			testcases_output_file_format = "output$(TCNUM)",
+            template_file = {
+                cpp = vim.fn.stdpath("config") .. "/templates/competitest.cpp",
+                py = vim.fn.stdpath("config") .. "/templates/competitest.py",
+            },
+            evaluate_template_modifiers = true,
+		},
+	},
+
+	{
+		"echasnovski/mini.bufremove",
+
+		keys = {
+			{
+				"<C-w>",
+				function()
+					local bd = require("mini.bufremove").delete
+					if vim.bo.modified then
+						local choice =
+							vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+						if choice == 1 then -- Yes
+							vim.cmd.write()
+							bd(0)
+						elseif choice == 2 then -- No
+							bd(0, true)
+						end
+					else
+						bd(0)
+					end
+				end,
+				desc = "Delete Buffer",
+			},
 		},
 	},
 }
