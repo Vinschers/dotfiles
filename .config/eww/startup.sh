@@ -1,10 +1,9 @@
 #!/bin/sh
 
-pgrep eww >/dev/null && eww kill
-eww daemon
+eww daemon || eww reload
 
-num_monitors="$(hyprctl monitors | grep -c Monitor)"
-
-for monitor in $(seq "$(( num_monitors - 1 ))" -1 0); do
-    eww open "bar_window$monitor"
+i="$(hyprctl monitors -j | jq length)"
+while [ "$i" -ge 0 ]; do
+	i=$((i - 1))
+    eww open "bar_window$i"
 done

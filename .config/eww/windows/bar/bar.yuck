@@ -48,7 +48,7 @@
     :space-evenly false
 
     (weather)
-    (ip)
+    ; (ip)
     (theme)
   )
 )
@@ -58,7 +58,7 @@
     :halign "end"
     :space-evenly false
 
-    (updates)
+    ; (updates)
     (keyboard)
     (sysinfo)
     (wifi_bluetooth)
