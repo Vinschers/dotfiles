@@ -4,7 +4,7 @@
 add_to_path() {
     echo "/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools"
     echo "$HOME/.local/bin"
-    echo "$HOME/.scripts"
+    echo "$HOME/.local/scripts"
     echo "$HOME/.local/share/cargo/bin"
 }
 
