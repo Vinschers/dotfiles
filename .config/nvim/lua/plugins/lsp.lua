@@ -9,6 +9,7 @@ return {
 	{ import = "lazyvim.plugins.extras.lang.java" },
 	{ import = "lazyvim.plugins.extras.lang.markdown" },
 	{ import = "lazyvim.plugins.extras.lang.tex" },
+	{ import = "lazyvim.plugins.extras.lang.tailwind" },
 	"elkowar/yuck.vim",
 
 	{ import = "lazyvim.plugins.extras.lsp.none-ls" },

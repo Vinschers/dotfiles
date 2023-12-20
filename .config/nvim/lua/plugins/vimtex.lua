@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		{
 			"nvim-telescope/telescope-bibtex.nvim",
-			opts = function()
+			config = function()
 				require("telescope").load_extension("bibtex")
 			end,
 		},
