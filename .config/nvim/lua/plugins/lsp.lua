@@ -30,8 +30,6 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = function(_, opts)
-			vim.g.autoformat = false
-
 			opts.formatters_by_ft = {
 				c = { "clang_format" },
 			}
