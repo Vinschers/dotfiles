@@ -1,5 +1,13 @@
 return {
 	"lervag/vimtex",
+	dependencies = {
+		"folke/which-key.nvim",
+		opts = {
+			defaults = {
+				["<leader>l"] = { name = "+vimtex" },
+			},
+		},
+	},
 	lazy = false, -- lazy-loading will disable inverse search
 	config = function()
 		vim.api.nvim_create_autocmd({ "FileType" }, {

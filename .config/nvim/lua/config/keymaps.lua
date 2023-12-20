@@ -16,9 +16,11 @@ map({ "n" }, "<leader>h", "<Esc><cmd>noh<cr><cmd>lua require('notify').dismiss()
 
 map({ "v" }, "p", "P")
 
+map({ "n", "i" }, "<F4>", ":! compile " .. vim.fn.expand("%") .. ">/dev/null<cr><cr>", { desc = "Compile file" })
 map({ "n", "i" }, "<F6>", "<cmd>lua require('dap').continue()<cr>")
 map({ "n", "i" }, "<F9>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
 map({ "n", "i" }, "<F10>", "<cmd>lua require('dap').step_over()<cr>")
 map({ "n", "i" }, "<F11>", "<cmd>lua require('dap').step_into()<cr>")
 
 map({ "n" }, "<leader>C", "<cmd>set spell! spelllang=en_us,pt,fr,de<cr>", { desc = "Toggle spell check" })
+

@@ -66,7 +66,43 @@ return {
 
 	{
 		"akinsho/toggleterm.nvim",
+		dependencies = {
+			"folke/which-key.nvim",
+			opts = {
+				defaults = {
+					["<leader>T"] = { name = "+Toggleterm" },
+				},
+			},
+		},
 		event = "VeryLazy",
+		keys = {
+			{
+				"<F5>",
+				function()
+					local Terminal = require("toggleterm.terminal").Terminal
+					local run_code = Terminal:new({
+						cmd = "run '" .. vim.fn.expand("%") .. "'",
+						hidden = true,
+						direction = "float",
+						shading_factor = 2,
+						float_opts = {
+							border = "curved",
+						},
+					})
+					run_code:toggle()
+				end,
+				desc = "Run file",
+			},
+			{
+				"<leader>Tn",
+				function()
+					local Terminal = require("toggleterm.terminal").Terminal
+					local ncdu = Terminal:new({ cmd = "ncdu --color off", hidden = true })
+					ncdu:toggle()
+				end,
+				desc = "NCDU",
+			},
+		},
 		opts = {
 			size = 16,
 			open_mapping = "<C-\\>",
