@@ -1,12 +1,29 @@
 return {
 	"lervag/vimtex",
 	dependencies = {
-		"folke/which-key.nvim",
-		opts = {
-			defaults = {
-				["<leader>l"] = { name = "+vimtex" },
+		{
+			"nvim-telescope/telescope-bibtex.nvim",
+			opts = function()
+				require("telescope").load_extension("bibtex")
+			end,
+		},
+		{
+			"folke/which-key.nvim",
+			opts = {
+				defaults = {
+					["<leader>l"] = { name = "+vimtex" },
+					["<leader>lq"] = {},
+				},
 			},
 		},
+	},
+	keys = {
+		{ "<leader>lb", "<cmd>Telescope bibtex<CR>", desc = "Search BibTeX" },
+		{ "<leader>lf", "<cmd>VimtexView<CR>", desc = "Forward search" },
+		{ "<leader>lm", "<cmd>VimtexToggleMain<CR>", desc = "Change main project file" },
+		{ "<leader>lw", "<cmd>VimtexCountWords!<CR>", desc = "Count number of words" },
+		{ "<leader>lq", false },
+		{ "<leader>lv", false },
 	},
 	lazy = false, -- lazy-loading will disable inverse search
 	config = function()

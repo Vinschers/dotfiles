@@ -1,4 +1,7 @@
 local map = vim.keymap.set
+local del = vim.keymap.del
+
+del({"n"}, "<leader>l")
 
 -- Buffers
 map({ "n", "x", "v" }, "<C-t>", "<cmd>ene<cr>")
