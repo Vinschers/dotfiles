@@ -9,9 +9,9 @@ cleanup() {
 }
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	/bin/lf "$@"
+	lf "$@"
 else
 	[ ! -d "$HOME/.cache/lf" ] && mkdir -p "$HOME/.cache/lf"
 	trap cleanup HUP INT QUIT TERM PWR EXIT
-	/bin/lf "$@" 3>&-
+	lf "$@" 3>&-
 fi

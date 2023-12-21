@@ -61,6 +61,7 @@ alias \
     get-keys="xev" \
     ct="compact_tar" \
     cz="compact_zip" \
+    lf="lfcd" \
     nv="env -u WAYLAND_DISPLAY neovide --multigrid" \
     v="nvim"
 
