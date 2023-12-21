@@ -5,5 +5,5 @@ update_theme() {
 }
 
 if [ -n "$1" ]; then
-    [ "$1" -eq 1 ] && update_theme "KvArcDark"
+    [ "$1" -eq 1 ] && update_theme "KvArcTokyoNight"
 fi
