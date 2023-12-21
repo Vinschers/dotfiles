@@ -18,8 +18,7 @@
 
       (button
         :class "wallpaper"
-        :onclick "$HOME/.config/theme/update_wallpaper.sh n"
-        :onrightclick "$HOME/.config/theme/update_wallpaper.sh p"
+        :onclick "$HOME/.local/share/wallpapers/update.sh"
 
         (image
           :path "assets/wallpaper.png"
