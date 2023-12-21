@@ -13,5 +13,5 @@ done
 . "$HOME/.config/shell/aliases.sh"
 
 if ! env | grep -q '^NVIM=' && [ -z "$SHLVL" ] || [ $SHLVL -lt 2 ]; then
-	neofetch
+    fastfetch
 fi
