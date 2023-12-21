@@ -7,6 +7,7 @@
       - qt5ct
       - qt5-wayland
       - qt6
+      - kvantum
       - xdg-desktop-portal-hyprland
       - dunst
       - polkit-kde-agent
@@ -38,6 +39,7 @@
       - nwg-look
       - spotifywm-git
       - wlrobs-hg
+      - hyprsome-git
     state: present
 
 - name: Install Hyprland with NVIDIA patch
