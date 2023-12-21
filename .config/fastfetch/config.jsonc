@@ -14,7 +14,7 @@
         }
     },
     "display": {
-        "separator": "  "
+        "separator": "    "
     },
     "modules": [
         {
@@ -23,43 +23,43 @@
         },
         {
             "type": "os",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "red",
         },
         {
             "type": "kernel",
-            "key": "   ",
+            "key": "  ",
             "format": "{1} {2}",
             "keyColor": "red"
         },
         {
             "type": "uptime",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "red"
         },
         {
             "type": "packages",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "green"
         },
         {
             "type": "display",
-            "key": "   󰹑",
+            "key": "  󰹑",
             "keyColor": "green"
         },
         {
             "type": "wm",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "yellow"
         },
         {
             "type": "de",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "yellow"
         },
         {
             "type": "terminal",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "yellow"
         },
         {
@@ -72,7 +72,7 @@
         },
         {
             "type": "title",
-            "key": "   ",
+            "key": "  ",
             "format": "{1}@{2}",
             "keyColor": "cyan"
         },
@@ -86,38 +86,38 @@
         },
         {
             "type": "cpu",
-            "key": "   󰍛",
+            "key": "  󰍛",
             "format": "{1}",
             "keyColor": "blue"
         },
         {
             "type": "gpu",
-            "key": "   󱄄",
+            "key": "  󱄄",
             "keyColor": "cyan"
         },
         {
             "type": "memory",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "magenta"
         },
         {
             "type": "disk",
-            "key": "   ",
+            "key": "  ",
             "format": "{10}: {1} ({3})",
             "keyColor": "green"
         },
         {
             "type": "battery",
-            "key": "   ",
+            "key": "  ",
             "keyColor": "yellow"
         },
         {
             "type": "shell",
-            "key": "   "
+            "key": "  "
         },
         {
             "type": "localip",
-            "key": "   󰩟",
+            "key": "  󰩟",
             "compact": true
         },
         {

@@ -19,6 +19,7 @@
       - htop
       - parted
       - neofetch
+      - fastfetch
       - btop
       - eza
       - zip
