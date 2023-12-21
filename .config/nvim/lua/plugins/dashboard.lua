@@ -22,7 +22,7 @@ return {
 		         ⠉⠻⢿⣷⣦⣄⣀⡀       ⢀⣀⣤⣴⣾⠿⠋⠁        
 		            ⠈⠉⠛⠻⠿⠿⢿⣿⣿⣿⠿⠿⠿⠛⠋⠉            
             ]]
-			logo = string.rep("\n", 4) .. logo .. "\n\n"
+			logo = string.rep("\n", 1) .. logo .. "\n\n"
 			opts.config.header = vim.split(logo, "\n")
 
             -- stylua: ignore

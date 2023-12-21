@@ -62,7 +62,6 @@ alias \
     ct="compact_tar" \
     cz="compact_zip" \
     lf="lfcd" \
-    nv="env -u WAYLAND_DISPLAY neovide --multigrid" \
     v="nvim"
 
 # Utils
@@ -83,7 +82,8 @@ alias \
     train="sl -acdeGF" \
     sctl="sudo systemctl" \
     audio="systemctl --user restart pipewire.service" \
-    jn="jupyter notebook"
+    jn="jupyter notebook" \
+    mime="file --dereference --brief --mime-type --"
 
 # Development
 alias \

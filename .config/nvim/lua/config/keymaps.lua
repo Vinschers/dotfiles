@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local del = vim.keymap.del
 
-del({"n"}, "<leader>l")
+del({ "n" }, "<leader>l")
 
 -- Buffers
 map({ "n", "x", "v" }, "<C-t>", "<cmd>ene<cr>")
@@ -27,3 +27,5 @@ map({ "n", "i" }, "<F11>", "<cmd>lua require('dap').step_into()<cr>")
 
 map({ "n" }, "<leader>C", "<cmd>set spell! spelllang=en_us,pt,fr,de<cr>", { desc = "Toggle spell check" })
 
+-- For Neovide
+map({ "i" }, "<C-v>", '<C-r>+')

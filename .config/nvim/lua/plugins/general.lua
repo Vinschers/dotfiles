@@ -25,6 +25,7 @@ return {
 		"karb94/neoscroll.nvim",
 		event = "VeryLazy",
 		opts = {},
+        enabled = not vim.g.neovide
 	},
 
 	{
