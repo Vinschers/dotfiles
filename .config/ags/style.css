@@ -24,6 +24,10 @@ label {
     border-bottom: 3px solid aqua;
 }
 
+.workspaces button.filled {
+    border-bottom: 3px solid red;
+}
+
 .client-title {
     margin-left: 1em;
     color: aqua;

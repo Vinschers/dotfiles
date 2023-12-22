@@ -25,7 +25,6 @@ return {
 		"karb94/neoscroll.nvim",
 		event = "VeryLazy",
 		opts = {},
-        enabled = not vim.g.neovide
 	},
 
 	{
@@ -148,11 +147,11 @@ return {
 			testcases_directory = "./tests",
 			testcases_input_file_format = "input$(TCNUM)",
 			testcases_output_file_format = "output$(TCNUM)",
-            template_file = {
-                cpp = vim.fn.stdpath("config") .. "/templates/competitest.cpp",
-                py = vim.fn.stdpath("config") .. "/templates/competitest.py",
-            },
-            evaluate_template_modifiers = true,
+			template_file = {
+				cpp = vim.fn.stdpath("config") .. "/templates/competitest.cpp",
+				py = vim.fn.stdpath("config") .. "/templates/competitest.py",
+			},
+			evaluate_template_modifiers = true,
 		},
 	},
 

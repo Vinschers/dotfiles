@@ -8,8 +8,10 @@ let active_workspaces = [];
 /**
  * @param {number} monitor
  */
-const Workspaces = (monitor) =>
-    Widget.Box({
+const Workspaces = (monitor) => {
+    active_workspaces.push(1);
+
+    return Widget.Box({
         class_name: "workspaces",
         connections: [
             [
@@ -32,12 +34,15 @@ const Workspaces = (monitor) =>
                             class_name:
                                 active_workspaces[monitor] == i
                                     ? "focused"
-                                    : "",
+                                    : Hyprland.getWorkspace(Number(`${monitor}${i}`))?.windows || 0 > 0
+                                      ? "filled"
+                                      : "",
                         }),
                     );
                 },
             ],
         ],
     });
+};
 
 export default Workspaces;
