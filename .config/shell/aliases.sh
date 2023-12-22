@@ -62,7 +62,8 @@ alias \
     ct="compact_tar" \
     cz="compact_zip" \
     lf="lfcd" \
-    v="nvim"
+    v="nvim" \
+    nv="neovide"
 
 # Utils
 alias \

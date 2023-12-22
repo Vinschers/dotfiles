@@ -22,14 +22,15 @@ if [ -n "$1" ]; then
     [ "$1" -eq 1 ] && echo "tokyonight" > "$HOME/.local/share/wallpapers/current"
 fi
 
+rm -rf "$HOME/.cache/fastfetch"
+
 update_img
 
-rm -rf "$HOME/.cache/fastfetch"
 D=$(convert "$HOME/.config/wallpaper" -format "%[fx:w<h?w:h]" info:)
-convert "$HOME/.config/wallpaper" -gravity center -crop "${D}x${D}+0+0" +repage "$HOME/.config/fastfetch/wallpaper"
+convert "$HOME/.config/wallpaper" -gravity center -crop "${D}x${D}+0+0" +repage "$HOME/.config/fastfetch/wallpaper" &
 
 swww img "$HOME/.config/wallpaper" \
     --transition-bezier .5,.4,.5,1 \
     --transition-type grow \
     --transition-duration 1 \
-    --transition-fps 75
+    --transition-fps 75 &

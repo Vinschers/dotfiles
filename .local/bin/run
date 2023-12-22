@@ -1,5 +1,39 @@
 #!/bin/sh
 
+readc() {
+	if [ -t 0 ]; then
+		# if stdin is a tty device, put it out of icanon, set min and
+		# time to sane value, but don't otherwise touch other input or
+		# or local settings (echo, isig, icrnl...). Take a backup of the
+		# previous settings beforehand.
+		saved_tty_settings=$(stty -g)
+		stty -echo -icanon min 1 time 0
+	fi
+	eval "$1="
+	while
+		# read one byte, using a work around for the fact that command
+		# substitution strips trailing newline characters.
+		c=$(
+			dd bs=1 count=1 2>/dev/null
+			echo .
+		)
+		c=${c%.}
+
+		# break out of the loop on empty input (eof) or if a full character
+		# has been accumulated in the output variable (using "wc -m" to count
+		# the number of characters).
+		[ -n "$c" ] &&
+			eval "$1=\${$1}"'$c
+        [ "$(($(printf %s "${'"$1"'}" | wc -m)))" -eq 0 ]'
+	do
+		continue
+	done
+	if [ -t 0 ]; then
+		# restore settings saved earlier if stdin is a tty device.
+		stty "$saved_tty_settings"
+	fi
+}
+
 search_file() {
 	searched="$1"
 	path="."
@@ -19,7 +53,7 @@ run_cmd() {
 	printf "\$ %s\n\n" "$cmd"
 	eval "$cmd"
 
-	printf "\nPress any key to exit..." && wait_key_press
+	printf "\nPress any key to exit..." && readc key
 }
 
 get_ext_cmd() {
