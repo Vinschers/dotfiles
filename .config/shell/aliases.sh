@@ -61,7 +61,6 @@ alias \
     get-keys="xev" \
     ct="compact_tar" \
     cz="compact_zip" \
-    lf="lfcd" \
     v="nvim" \
     nv="neovide"
 
