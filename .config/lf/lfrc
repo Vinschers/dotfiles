@@ -48,7 +48,7 @@ map O $mimeopen --ask $f
 # text files and a file opener for the rest.
 cmd open &{{
     case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id neovide \$fx";;
+        text/*) lf -remote "send $id \$neovide \$fx";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
