@@ -1,5 +1,1 @@
-import Bar from "./js/main.js";
-
-export default {
-    windows: [Bar(1)],
-};
+export default (await import("./js/main.js")).default;

@@ -2,22 +2,35 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 
-const Workspaces = () =>
+// For each monitor, stores the workspace (1 to 10)
+let active_workspaces = [];
+
+/**
+ * @param {number} monitor
+ */
+const Workspaces = (monitor) =>
     Widget.Box({
         class_name: "workspaces",
         connections: [
             [
                 Hyprland.active.workspace,
                 (self) => {
-                    // generate an array [1..10] then make buttons from the index
                     const arr = Array.from({ length: 10 }, (_, i) => i + 1);
+                    const workspace = Hyprland.getWorkspace(
+                        Hyprland.active.workspace.id,
+                    );
+                    const current_monitor = workspace?.monitorID || 0;
+                    const active_ws = (workspace?.id || 1) % 10 || 10;
+
+                    active_workspaces[current_monitor] = active_ws;
+
                     self.children = arr.map((i) =>
                         Widget.Button({
                             on_clicked: () =>
                                 execAsync(`hyprctl dispatch workspace ${i}`),
                             child: Widget.Label(`${i}`),
                             class_name:
-                                Hyprland.active.workspace.id == i
+                                active_workspaces[monitor] == i
                                     ? "focused"
                                     : "",
                         }),
@@ -27,4 +40,4 @@ const Workspaces = () =>
         ],
     });
 
-export default Workspaces
+export default Workspaces;
