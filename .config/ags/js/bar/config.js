@@ -28,9 +28,10 @@ const Center = () =>
 const Right = () =>
     Widget.Box({
         hpack: "end",
+        spacing: 12,
         children: [
-            Weather(),
             Packages(),
+            Weather(),
             Theme(),
             Keyboard(),
             System(),

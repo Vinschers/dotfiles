@@ -142,15 +142,6 @@
         color: $clock_fg;
     }
 
-    .weather {
-        margin-right: 1rem;
-
-        .weather-icon {
-            margin-right: 0.7rem;
-            font-size: 18pt;
-        }
-    }
-
     .packages {
         margin: 0.8rem;
         padding-left: 0.8rem;
@@ -164,6 +155,40 @@
         label {
             margin-left: 0.5rem;
         }
+    }
+
+    .weather {
+        margin-right: 1rem;
+
+        .weather-icon {
+            margin-right: 0.7rem;
+            font-size: 18pt;
+        }
+    }
+
+    .theme {
+        margin-right: 1rem;
+    }
+
+    .keyboard {
+        margin-right: 1rem;
+
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
+
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+
+        min-width: 2rem;
+        min-height: 2rem;
+
+        font-size: 16px;
+        font-weight: 500;
+
+        border-radius: 100%;
+
+        background: $keyboard_bg;
+        color: $keyboard_fg;
     }
 
     .systray {
