@@ -37,17 +37,22 @@
 }
 
 .bar {
-    padding: 1rem;
-    font-size: 12pt;
     background: $bar_bg;
     color: $bar_fg;
-    border-radius: 0 0 1rem 1rem;
+    opacity: $bar_opacity;
+    // border-radius: 0 0 1rem 1rem;
+
+    font-family: Product Sans;
+    font-size: 12pt;
 
     .workspaces {
-        margin: 0.6rem;
+        margin: 0.8rem;
+
         background: $ws_bg;
         color: $ws_fg;
         border-radius: 1rem;
+
+        font-size: 13pt;
 
         .workspace {
             transition: all 200ms;
@@ -91,7 +96,7 @@
     }
 
     .media {
-        margin-right: 2rem;
+        margin-right: 1rem;
 
         .media-box {
             .media-background {
@@ -100,14 +105,14 @@
                 background-position: center center;
 
                 opacity: 0.3;
-                border-radius: 0.5rem;
+                border-radius: 0.8rem;
             }
 
             .media-buttons {
                 padding-left: 0.5rem;
                 .circprog {
-                    min-width: 2rem;
-                    min-height: 2rem;
+                    min-width: 2.5rem;
+                    min-height: 2.5rem;
 
                     font-size: 2px;
 
@@ -124,5 +129,15 @@
                 margin-left: 1rem;
             }
         }
+    }
+
+    .clock {
+        margin: 0.4rem;
+        padding: 0.8rem;
+
+        border-radius: 5rem;
+
+        background: $clock_bg;
+        color: $clock_fg;
     }
 }

@@ -22,57 +22,64 @@
     background-position: center center; } }
 
 .bar {
-  padding: 1rem;
-  font-size: 12pt;
-  background: #1e1e1e;
-  color: lightgray;
-  border-radius: 0 0 1rem 1rem; }
+  background: #24283b;
+  color: #c0caf5;
+  opacity: 1;
+  font-family: Product Sans;
+  font-size: 12pt; }
   .bar .workspaces {
-    margin: 0.6rem;
-    background: #1e1e1e;
-    color: lightgray;
-    border-radius: 1rem; }
+    margin: 0.8rem;
+    background: #24283b;
+    color: #c0caf5;
+    border-radius: 1rem;
+    font-size: 13pt; }
     .bar .workspaces .workspace {
       transition: all 200ms;
       padding: 0.2rem; }
       .bar .workspaces .workspace.occupied {
-        color: lightgray;
-        background-color: darkblue;
-        border-top: 1px solid lightgray;
-        border-bottom: 1px solid lightgray; }
+        color: #c0caf5;
+        background-color: #414868;
+        border-top: 1px solid #c0caf5;
+        border-bottom: 1px solid #c0caf5; }
         .bar .workspaces .workspace.occupied.occupied-left {
           border-bottom-left-radius: 1rem;
           border-top-left-radius: 1rem;
-          border-left: 1px solid lightgray; }
+          border-left: 1px solid #c0caf5; }
         .bar .workspaces .workspace.occupied.occupied-right {
           border-bottom-right-radius: 1rem;
           border-top-right-radius: 1rem;
-          border-right: 1px solid lightgray; }
+          border-right: 1px solid #c0caf5; }
       .bar .workspaces .workspace:not(.occupied) {
         border-radius: 1rem; }
       .bar .workspaces .workspace.active .workspace-label {
-        background-color: lightgray;
-        color: darkblue;
+        background-color: #c0caf5;
+        color: #414868;
         border-radius: 1rem; }
       .bar .workspaces .workspace .workspace-label {
         min-width: 2rem; }
   .bar .media {
-    margin-right: 2rem; }
+    margin-right: 1rem; }
     .bar .media .media-box .media-background {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
       opacity: 0.3;
-      border-radius: 0.5rem; }
+      border-radius: 0.8rem; }
     .bar .media .media-box .media-buttons {
       padding-left: 0.5rem; }
       .bar .media .media-box .media-buttons .circprog {
-        min-width: 2rem;
-        min-height: 2rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
         font-size: 2px;
-        background-color: darkblue;
-        color: lightgray; }
+        background-color: #565f89;
+        color: #c0caf5; }
         .bar .media .media-box .media-buttons .circprog image {
           font-size: 10pt; }
     .bar .media .media-box .media-text {
       margin-left: 1rem; }
+  .bar .clock {
+    margin: 0.4rem;
+    padding: 0.8rem;
+    border-radius: 5rem;
+    background: #414868;
+    color: #c0caf5; }
