@@ -21,6 +21,10 @@ const SysTray = () =>
                             binds: [["tooltip-markup", item, "tooltip-markup"]],
                         }),
                     );
+
+                    if (self.children.length == 0) {
+                        self.set_visible(false);
+                    }
                 },
             ],
         ],

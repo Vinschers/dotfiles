@@ -1,7 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
 import icons from "../icons.js";
-import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
+import { ensureDirectory, exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 
 const Packages = () => {
     const packages = Widget.Button({
@@ -12,7 +12,10 @@ const Packages = () => {
                 [
                     15000,
                     (self) => {
-                        execAsync("scripts/packages.sh")
+                        const tmp = `/tmp/ags_packages.lock`
+                        exec(`touch ${tmp}`)
+
+                        execAsync(`flock ${tmp} scripts/packages.sh -options`)
                             .then((updates) => {
                                 self.set_opacity(Number(updates) > 0 ? 1 : 0);
                                 self.children[1].label = updates;
