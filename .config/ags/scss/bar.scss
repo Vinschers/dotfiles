@@ -191,6 +191,47 @@
         color: $keyboard_fg;
     }
 
+    .system {
+        .progress-bar {
+            padding: 0rem;
+            border-radius: 10rem;
+
+            trough {
+                min-width: 6rem;
+                border-radius: 10rem;
+                background-color: $system_progress_bg;
+            }
+
+            progress {
+                border-radius: 10rem;
+            }
+        }
+
+        .cpu {
+            progress {
+                background-color: $system_progress_cpu;
+            }
+        }
+
+        .temp {
+            progress {
+                background-color: $system_progress_temp;
+            }
+        }
+
+        .ram {
+            progress {
+                background-color: $system_progress_ram;
+            }
+        }
+
+        .gpu {
+            progress {
+                background-color: $system_progress_gpu;
+            }
+        }
+    }
+
     .systray {
         margin: 0.8rem;
 

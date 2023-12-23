@@ -80,6 +80,8 @@ export default {
         next: "media-skip-forward-symbolic",
     },
     packages: "extract-archive-symbolic",
+    theme: App.configDir + "/icons/theme.png",
+    wallpaper: App.configDir + "/icons/wallpaper.png",
     ui: {
         send: "mail-send-symbolic",
         arrow: {

@@ -1,5 +1,6 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Gtk30 from "gi://Gtk?version=3.0";
+import icons from "../icons.js";
 
 const Theme = () =>
     Widget.Box({
@@ -9,10 +10,10 @@ const Theme = () =>
         spacing: 6,
         children: [
             Widget.Button({
-                child: Widget.Icon("icons/theme.png"),
+                child: Widget.Icon(icons.theme),
             }),
             Widget.Button({
-                child: Widget.Icon("icons/wallpaper.png"),
+                child: Widget.Icon(icons.wallpaper),
             }),
         ],
     });

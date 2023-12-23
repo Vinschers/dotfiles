@@ -113,6 +113,23 @@
     border-radius: 100%;
     background: #414868;
     color: #c0caf5; }
+  .bar .system .progress-bar {
+    padding: 0rem;
+    border-radius: 10rem; }
+    .bar .system .progress-bar trough {
+      min-width: 6rem;
+      border-radius: 10rem;
+      background-color: #414868; }
+    .bar .system .progress-bar progress {
+      border-radius: 10rem; }
+  .bar .system .cpu progress {
+    background-color: #7aa2f7; }
+  .bar .system .temp progress {
+    background-color: #f7768e; }
+  .bar .system .ram progress {
+    background-color: #bb9af7; }
+  .bar .system .gpu progress {
+    background-color: #7dcfff; }
   .bar .systray {
     margin: 0.8rem;
     padding-left: 0.8rem;
