@@ -1,34 +1,40 @@
-$primary_bg: blue;
-$primary_fg: white;
-
 .bar {
+    padding: 1rem;
     font-size: 12pt;
+    background: $bar_bg;
+    color: $bar_fg;
+    // border-radius: 0 0 2rem 2rem;
+    margin-bottom: 1rem;
 
     .workspaces {
         margin-left: 1rem;
         margin-right: 1rem;
-        margin-top: 0.1rem;
-        margin-bottom: 0.1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        background: $ws_bg;
+        color: $ws_fg;
+        border-radius: 1rem;
 
         .workspace {
             transition: all 200ms;
             padding: 0.2rem;
 
             &.occupied {
-                background-color: $primary_bg;
-                border-top: 1px solid $primary_fg;
-                border-bottom: 1px solid $primary_fg;
+                color: $ws_occupied_fg;
+                background-color: $ws_occupied_bg;
+                border-top: 1px solid $ws_occupied_border;
+                border-bottom: 1px solid $ws_occupied_border;
 
                 &.occupied-left {
                     border-bottom-left-radius: 1rem;
                     border-top-left-radius: 1rem;
-                    border-left: 1px solid $primary_fg;
+                    border-left: 1px solid $ws_occupied_border;
                 }
 
                 &.occupied-right {
                     border-bottom-right-radius: 1rem;
                     border-top-right-radius: 1rem;
-                    border-right: 1px solid $primary_fg;
+                    border-right: 1px solid $ws_occupied_border;
                 }
             }
 
@@ -38,8 +44,8 @@ $primary_fg: white;
 
             &.active {
                 .workspace-label {
-                    background-color: $primary_fg;
-                    color: $primary_bg;
+                    background-color: $ws_active_bg;
+                    color: $ws_active_fg;
                     border-radius: 1rem;
                 }
             }
