@@ -132,12 +132,28 @@
     }
 
     .clock {
-        margin: 0.4rem;
-        padding: 0.8rem;
+        margin: 0.5rem;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
 
         border-radius: 5rem;
 
         background: $clock_bg;
         color: $clock_fg;
+    }
+
+    .packages {
+        margin: 0.8rem;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+
+        border-radius: 5rem;
+
+        color: $packages_fg;
+        background-color: $packages_bg;
+
+        label {
+            margin-left: 0.5rem;
+        }
     }
 }

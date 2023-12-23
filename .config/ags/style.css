@@ -78,8 +78,18 @@
     .bar .media .media-box .media-text {
       margin-left: 1rem; }
   .bar .clock {
-    margin: 0.4rem;
-    padding: 0.8rem;
+    margin: 0.5rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
     border-radius: 5rem;
     background: #414868;
     color: #c0caf5; }
+  .bar .packages {
+    margin: 0.8rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    border-radius: 5rem;
+    color: #24283b;
+    background-color: #f7768e; }
+    .bar .packages label {
+      margin-left: 0.5rem; }

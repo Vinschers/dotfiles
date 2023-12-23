@@ -79,6 +79,7 @@ export default {
         prev: "media-skip-backward-symbolic",
         next: "media-skip-forward-symbolic",
     },
+    packages: "extract-archive-symbolic",
     ui: {
         send: "mail-send-symbolic",
         arrow: {
