@@ -1,17 +1,34 @@
 * {
   all: unset; }
 
+@keyframes up-down {
+  0% {
+    background-position: center center; }
+  5% {
+    background-position: center center; }
+  24% {
+    background-position: bottom center; }
+  30% {
+    background-position: bottom center; }
+  50% {
+    background-position: center center; }
+  55% {
+    background-position: center center; }
+  75% {
+    background-position: top center; }
+  80% {
+    background-position: top center; }
+  100% {
+    background-position: center center; } }
+
 .bar {
   padding: 1rem;
   font-size: 12pt;
   background: #1e1e1e;
   color: lightgray;
-  margin-bottom: 1rem; }
+  border-radius: 0 0 1rem 1rem; }
   .bar .workspaces {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin: 0.6rem;
     background: #1e1e1e;
     color: lightgray;
     border-radius: 1rem; }
@@ -39,3 +56,23 @@
         border-radius: 1rem; }
       .bar .workspaces .workspace .workspace-label {
         min-width: 2rem; }
+  .bar .media {
+    margin-right: 2rem; }
+    .bar .media .media-box .media-background {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      opacity: 0.3;
+      border-radius: 0.5rem; }
+    .bar .media .media-box .media-buttons {
+      padding-left: 0.5rem; }
+      .bar .media .media-box .media-buttons .circprog {
+        min-width: 2rem;
+        min-height: 2rem;
+        font-size: 2px;
+        background-color: darkblue;
+        color: lightgray; }
+        .bar .media .media-box .media-buttons .circprog image {
+          font-size: 10pt; }
+    .bar .media .media-box .media-text {
+      margin-left: 1rem; }
