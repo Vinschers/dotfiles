@@ -3,8 +3,8 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import icons from "../icons.js";
 import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 
-const Packages = () =>
-    Widget.Button({
+const Packages = () => {
+    const packages = Widget.Button({
         child: Widget.Box({
             class_name: "packages",
             children: [Widget.Icon(icons.packages), Widget.Label()],
@@ -14,16 +14,21 @@ const Packages = () =>
                     (self) => {
                         execAsync("scripts/packages.sh")
                             .then((updates) => {
-                                self.set_visible(Number(updates) > 0);
+                                self.set_opacity(Number(updates) > 0 ? 1 : 0);
                                 self.children[1].label = updates;
                             })
                             .catch(() => {
-                                self.set_visible(false);
+                                self.set_opacity(0);
                             });
                     },
                 ],
             ],
         }),
     });
+
+    packages.child.set_opacity(0);
+
+    return packages;
+}
 
 export default Packages;
