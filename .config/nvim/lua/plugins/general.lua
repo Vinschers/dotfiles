@@ -15,6 +15,13 @@ return {
 	},
 
 	{
+		"nvim-telescope/telescope.nvim",
+		keys = {
+			{ "<leader>fF", "<cmd>Telescope live_grep<cr>", desc = "Find text" },
+		},
+	},
+
+	{
 		"NvChad/nvim-colorizer.lua",
 		opts = {
 			filetypes = { "*" },

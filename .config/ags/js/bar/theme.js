@@ -1,6 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Gtk30 from "gi://Gtk?version=3.0";
 import icons from "../icons.js";
+import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 
 const Theme = () =>
     Widget.Box({
@@ -13,6 +14,10 @@ const Theme = () =>
                 child: Widget.Icon(icons.theme),
             }),
             Widget.Button({
+                on_primary_click: () =>
+                    execAsync("sh -c \"$HOME/.local/share/wallpapers/update.sh\"").catch(
+                        console.error,
+                    ),
                 child: Widget.Icon(icons.wallpaper),
             }),
         ],

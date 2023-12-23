@@ -58,7 +58,7 @@ function on_change_workspace(monitor, parent_box) {
 const Workspace = (monitor, i) =>
     Widget.Button({
         on_primary_click: () =>
-            execAsync(`hyprctl dispatch workspace ${monitor}${i}`),
+            execAsync(`hyprsome workspace ${i}`),
         child: Widget.Label({
             label: `${i}`,
             class_name: "workspace-label",
