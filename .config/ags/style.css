@@ -1,54 +1,33 @@
-label {
-    font-weight: bold;
-}
+* {
+  all: unset; }
 
-.workspaces button,
-.media {
-    background-color: transparent;
-    color: #eee;
-}
-
-.workspaces button:hover,
-.media:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #efefef;
-}
-
-.workspaces button:active,
-.media:active {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
-
-.workspaces button.focused {
-    border-bottom: 3px solid aqua;
-}
-
-.workspaces button.filled {
-    border-bottom: 3px solid red;
-}
-
-.client-title {
-    margin-left: 1em;
-    color: aqua;
-}
-
-.notification image {
-    color: yellow;
-    margin-left: 1em;
-}
-
-.battery progressbar {
-    margin: 0 6px;
-}
-
-.clock {
-    margin: 0 6px;
-    font-size: 1.1em;
-}
-
-progress,
-highlight {
-    background-color: aqua;
-    min-height: 8px;
-}
+.bar {
+  font-size: 12pt; }
+  .bar .workspaces {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem; }
+    .bar .workspaces .workspace {
+      transition: all 200ms;
+      padding: 0.2rem; }
+      .bar .workspaces .workspace.occupied {
+        background-color: blue;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white; }
+        .bar .workspaces .workspace.occupied.occupied-left {
+          border-bottom-left-radius: 1rem;
+          border-top-left-radius: 1rem;
+          border-left: 1px solid white; }
+        .bar .workspaces .workspace.occupied.occupied-right {
+          border-bottom-right-radius: 1rem;
+          border-top-right-radius: 1rem;
+          border-right: 1px solid white; }
+      .bar .workspaces .workspace:not(.occupied) {
+        border-radius: 1rem; }
+      .bar .workspaces .workspace.active .workspace-label {
+        background-color: white;
+        color: blue;
+        border-radius: 1rem; }
+      .bar .workspaces .workspace .workspace-label {
+        min-width: 2rem; }
