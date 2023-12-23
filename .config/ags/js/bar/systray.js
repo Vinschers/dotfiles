@@ -3,6 +3,8 @@ import SystemTray from "resource:///com/github/Aylur/ags/service/systemtray.js";
 
 const SysTray = () =>
     Widget.Box({
+        class_name: "systray",
+        spacing: 6,
         connections: [
             [
                 SystemTray,

@@ -156,4 +156,19 @@
             margin-left: 0.5rem;
         }
     }
+
+    .systray {
+        margin: 0.8rem;
+
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+
+        border-radius: 5rem;
+
+        background-color: $systray_bg;
+
+        image {
+            font-size: 14pt;
+        }
+    }
 }

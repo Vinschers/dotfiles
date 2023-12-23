@@ -93,3 +93,11 @@
     background-color: #f7768e; }
     .bar .packages label {
       margin-left: 0.5rem; }
+  .bar .systray {
+    margin: 0.8rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    border-radius: 5rem;
+    background-color: #414868; }
+    .bar .systray image {
+      font-size: 14pt; }
