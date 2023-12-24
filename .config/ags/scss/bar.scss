@@ -253,12 +253,28 @@
         }
 
         .battery {
-            font-size: 2px;
-            min-width: 12px;
-            min-height: 12px;
+            margin-top: 0.3rem;
+            margin-bottom: 0.3rem;
 
-            image {
-                font-size: 0.5rem;
+            .circprog {
+                font-size: 2px;
+
+                image {
+                    font-size: 12pt;
+                }
+            }
+
+            .full {
+                color: $battery_full;
+            }
+            .high {
+                color: $battery_high;
+            }
+            .medium {
+                color: $battery_medium;
+            }
+            .low {
+                color: $battery_low;
             }
         }
 
