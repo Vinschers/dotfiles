@@ -17,7 +17,7 @@ const BatteryWidget = () =>
                         [20, "low"],
                     ].find(([threshold]) => Number(threshold) <= bat)[1];
 
-                    classes.push(status.toString())
+                    classes.push(status.toString());
                 }
 
                 return classes.join(" ");
@@ -30,6 +30,10 @@ const BatteryWidget = () =>
             visible: Battery.bind("available"),
             value: Battery.bind("percent").transform((p) =>
                 p > 0 ? p / 100 : 0,
+            ),
+            start_at: 0.75,
+            tooltip_text: Battery.bind("percent").transform((p) =>
+                p.toFixed(2),
             ),
         }),
     });
