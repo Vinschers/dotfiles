@@ -46,8 +46,11 @@
     font-size: 12pt;
 
     .bar-left {
+        margin-left: 1rem;
+
         .workspaces {
-            margin: 0.4rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
 
             background: $ws_bg;
             color: $ws_fg;
@@ -148,6 +151,8 @@
     }
 
     .bar-right {
+        margin-right: 1rem;
+
         .packages {
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
@@ -260,7 +265,6 @@
         .systray {
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
-            margin-right: 0.8rem;
 
             padding-left: 0.8rem;
             padding-right: 0.8rem;
