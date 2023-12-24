@@ -45,205 +45,210 @@
     font-family: Product Sans;
     font-size: 12pt;
 
-    .workspaces {
-        margin: 0.8rem;
+    .bar-left {
+        .workspaces {
+            margin: 0.4rem;
 
-        background: $ws_bg;
-        color: $ws_fg;
-        border-radius: 1rem;
+            background: $ws_bg;
+            color: $ws_fg;
+            border-radius: 1rem;
 
-        font-size: 13pt;
+            font-size: 13pt;
 
-        .workspace {
-            transition: all 200ms;
-            padding: 0.2rem;
+            .workspace {
+                transition: all 200ms;
+                padding: 0.2rem;
 
-            &.occupied {
-                color: $ws_occupied_fg;
-                background-color: $ws_occupied_bg;
-                border-top: 1px solid $ws_occupied_border;
-                border-bottom: 1px solid $ws_occupied_border;
+                &.occupied {
+                    color: $ws_occupied_fg;
+                    background-color: $ws_occupied_bg;
+                    border-top: 1px solid $ws_occupied_border;
+                    border-bottom: 1px solid $ws_occupied_border;
 
-                &.occupied-left {
-                    border-bottom-left-radius: 1rem;
-                    border-top-left-radius: 1rem;
-                    border-left: 1px solid $ws_occupied_border;
-                }
+                    &.occupied-left {
+                        border-bottom-left-radius: 1rem;
+                        border-top-left-radius: 1rem;
+                        border-left: 1px solid $ws_occupied_border;
+                    }
 
-                &.occupied-right {
-                    border-bottom-right-radius: 1rem;
-                    border-top-right-radius: 1rem;
-                    border-right: 1px solid $ws_occupied_border;
-                }
-            }
-
-            &:not(.occupied) {
-                border-radius: 1rem;
-            }
-
-            &.active {
-                .workspace-label {
-                    background-color: $ws_active_bg;
-                    color: $ws_active_fg;
-                    border-radius: 1rem;
-                }
-            }
-
-            .workspace-label {
-                min-width: 2rem;
-            }
-        }
-    }
-
-    .media {
-        margin-right: 1rem;
-
-        .media-box {
-            .media-background {
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center center;
-
-                opacity: 0.3;
-                border-radius: 0.8rem;
-            }
-
-            .media-buttons {
-                padding-left: 0.5rem;
-                .circprog {
-                    min-width: 2.5rem;
-                    min-height: 2.5rem;
-
-                    font-size: 2px;
-
-                    background-color: $media_progress_bg;
-                    color: $media_symbols_fg;
-
-                    image {
-                        font-size: 10pt;
+                    &.occupied-right {
+                        border-bottom-right-radius: 1rem;
+                        border-top-right-radius: 1rem;
+                        border-right: 1px solid $ws_occupied_border;
                     }
                 }
+
+                &:not(.occupied) {
+                    border-radius: 1rem;
+                }
+
+                &.active {
+                    .workspace-label {
+                        background-color: $ws_active_bg;
+                        color: $ws_active_fg;
+                        border-radius: 1rem;
+                    }
+                }
+
+                .workspace-label {
+                    min-width: 2rem;
+                }
             }
+        }
 
-            .media-text {
-                margin-left: 1rem;
+        .media {
+            .media-box {
+                .media-background {
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center center;
+
+                    min-width: 24rem;
+
+                    opacity: 0.3;
+                    border-radius: 0.8rem;
+                }
+
+                .media-buttons {
+                    padding-left: 0.5rem;
+                    .circprog {
+                        min-width: 2.5rem;
+                        min-height: 2.5rem;
+
+                        font-size: 2px;
+
+                        background-color: $media_progress_bg;
+                        color: $media_symbols_fg;
+
+                        image {
+                            font-size: 10pt;
+                        }
+                    }
+                }
+
+                .media-text {
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
             }
         }
     }
 
-    .clock {
-        margin: 0.5rem;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
+    .bar-center {
+        .clock {
+            margin: 0.2rem;
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
 
-        border-radius: 5rem;
+            border-radius: 5rem;
 
-        background: $clock_bg;
-        color: $clock_fg;
-    }
-
-    .packages {
-        margin: 0.8rem;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-
-        border-radius: 5rem;
-
-        color: $packages_fg;
-        background-color: $packages_bg;
-
-        label {
-            margin-left: 0.5rem;
+            background: $clock_bg;
+            color: $clock_fg;
         }
     }
 
-    .weather {
-        margin-right: 1rem;
+    .bar-right {
+        .packages {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
 
-        .weather-icon {
-            margin-right: 0.7rem;
-            font-size: 18pt;
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+
+            border-radius: 5rem;
+
+            color: $packages_fg;
+            background-color: $packages_bg;
+
+            label {
+                margin-left: 0.5rem;
+            }
         }
-    }
 
-    .theme {
-        margin-right: 1rem;
-    }
+        .weather {
+            .weather-icon {
+                margin-right: 0.7rem;
+                font-size: 18pt;
+            }
+        }
 
-    .keyboard {
-        margin-right: 1rem;
+        .theme {
+            margin-top: 0.2rem;
+            margin-bottom: 0.2rem;
+        }
 
-        margin-top: 0.4rem;
-        margin-bottom: 0.4rem;
+        .keyboard {
+            margin: 0.3rem;
 
-        padding-left: 0.4rem;
-        padding-right: 0.4rem;
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
 
-        min-width: 2rem;
-        min-height: 2rem;
+            min-width: 1.6rem;
 
-        font-size: 16px;
-        font-weight: 500;
+            font-size: 13pt;
+            font-weight: 500;
 
-        border-radius: 100%;
+            border-radius: 100%;
 
-        background: $keyboard_bg;
-        color: $keyboard_fg;
-    }
+            background: $keyboard_bg;
+            color: $keyboard_fg;
+        }
 
-    .system {
-        .progress-bar {
-            padding: 0rem;
-            border-radius: 10rem;
-
-            trough {
-                min-width: 6rem;
+        .system {
+            .progress-bar {
                 border-radius: 10rem;
-                background-color: $system_progress_bg;
+
+                trough {
+                    min-width: 6rem;
+                    border-radius: 10rem;
+                    background-color: $system_progress_bg;
+                }
+
+                progress {
+                    border-radius: 10rem;
+                }
             }
 
-            progress {
-                border-radius: 10rem;
+            .cpu {
+                progress {
+                    background-color: $system_progress_cpu;
+                }
+            }
+
+            .temp {
+                progress {
+                    background-color: $system_progress_temp;
+                }
+            }
+
+            .ram {
+                progress {
+                    background-color: $system_progress_ram;
+                }
+            }
+
+            .gpu {
+                progress {
+                    background-color: $system_progress_gpu;
+                }
             }
         }
 
-        .cpu {
-            progress {
-                background-color: $system_progress_cpu;
+        .systray {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            margin-right: 0.8rem;
+
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+
+            border-radius: 5rem;
+
+            background-color: $systray_bg;
+
+            image {
+                font-size: 14pt;
             }
-        }
-
-        .temp {
-            progress {
-                background-color: $system_progress_temp;
-            }
-        }
-
-        .ram {
-            progress {
-                background-color: $system_progress_ram;
-            }
-        }
-
-        .gpu {
-            progress {
-                background-color: $system_progress_gpu;
-            }
-        }
-    }
-
-    .systray {
-        margin: 0.8rem;
-
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-
-        border-radius: 5rem;
-
-        background-color: $systray_bg;
-
-        image {
-            font-size: 14pt;
         }
     }
 }

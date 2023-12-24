@@ -8,8 +8,8 @@ import Gtk30 from "gi://Gtk?version=3.0";
 import Pango10 from "gi://Pango";
 import icons from "../icons.js";
 
-const MAX_ARTISTS = 16;
-const MAX_TITLE = 26;
+const MAX_ARTISTS = 20;
+const MAX_TITLE = 40;
 
 const TrackProgress = (player) => {
     if (!player) return CircularProgress();
@@ -103,7 +103,6 @@ const MediaBackground = (player) => {
     if (!player) return Widget.Box();
 
     return Widget.Box({
-        hexpand: true,
         class_name: "media-background",
         css: `background-image: url('${player.track_cover_url}'); ${
             player.play_back_status === "Playing"
@@ -146,7 +145,6 @@ const Media = () => {
 
     return Widget.Box({
         class_name: "media",
-        hexpand: true,
         connections: [[Mpris, update_mpris]],
     });
 };

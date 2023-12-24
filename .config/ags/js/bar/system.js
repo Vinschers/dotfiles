@@ -17,6 +17,7 @@ const SystemStatus = (variable, class_name) =>
 const System = () =>
     Widget.Button({
         class_name: "system",
+        vpack: "center",
         child: Widget.Box({
             vertical: true,
             vpack: "center",

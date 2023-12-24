@@ -27,114 +27,112 @@
   opacity: 1;
   font-family: Product Sans;
   font-size: 12pt; }
-  .bar .workspaces {
-    margin: 0.8rem;
+  .bar .bar-left .workspaces {
+    margin: 0.4rem;
     background: #24283b;
     color: #c0caf5;
     border-radius: 1rem;
     font-size: 13pt; }
-    .bar .workspaces .workspace {
+    .bar .bar-left .workspaces .workspace {
       transition: all 200ms;
       padding: 0.2rem; }
-      .bar .workspaces .workspace.occupied {
+      .bar .bar-left .workspaces .workspace.occupied {
         color: #c0caf5;
         background-color: #414868;
         border-top: 1px solid #c0caf5;
         border-bottom: 1px solid #c0caf5; }
-        .bar .workspaces .workspace.occupied.occupied-left {
+        .bar .bar-left .workspaces .workspace.occupied.occupied-left {
           border-bottom-left-radius: 1rem;
           border-top-left-radius: 1rem;
           border-left: 1px solid #c0caf5; }
-        .bar .workspaces .workspace.occupied.occupied-right {
+        .bar .bar-left .workspaces .workspace.occupied.occupied-right {
           border-bottom-right-radius: 1rem;
           border-top-right-radius: 1rem;
           border-right: 1px solid #c0caf5; }
-      .bar .workspaces .workspace:not(.occupied) {
+      .bar .bar-left .workspaces .workspace:not(.occupied) {
         border-radius: 1rem; }
-      .bar .workspaces .workspace.active .workspace-label {
+      .bar .bar-left .workspaces .workspace.active .workspace-label {
         background-color: #c0caf5;
         color: #414868;
         border-radius: 1rem; }
-      .bar .workspaces .workspace .workspace-label {
+      .bar .bar-left .workspaces .workspace .workspace-label {
         min-width: 2rem; }
-  .bar .media {
+  .bar .bar-left .media .media-box .media-background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-width: 24rem;
+    opacity: 0.3;
+    border-radius: 0.8rem; }
+  .bar .bar-left .media .media-box .media-buttons {
+    padding-left: 0.5rem; }
+    .bar .bar-left .media .media-box .media-buttons .circprog {
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      font-size: 2px;
+      background-color: #565f89;
+      color: #c0caf5; }
+      .bar .bar-left .media .media-box .media-buttons .circprog image {
+        font-size: 10pt; }
+  .bar .bar-left .media .media-box .media-text {
+    margin-left: 1rem;
     margin-right: 1rem; }
-    .bar .media .media-box .media-background {
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-      opacity: 0.3;
-      border-radius: 0.8rem; }
-    .bar .media .media-box .media-buttons {
-      padding-left: 0.5rem; }
-      .bar .media .media-box .media-buttons .circprog {
-        min-width: 2.5rem;
-        min-height: 2.5rem;
-        font-size: 2px;
-        background-color: #565f89;
-        color: #c0caf5; }
-        .bar .media .media-box .media-buttons .circprog image {
-          font-size: 10pt; }
-    .bar .media .media-box .media-text {
-      margin-left: 1rem; }
-  .bar .clock {
-    margin: 0.5rem;
+  .bar .bar-center .clock {
+    margin: 0.2rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
     border-radius: 5rem;
     background: #414868;
     color: #c0caf5; }
-  .bar .packages {
-    margin: 0.8rem;
+  .bar .bar-right .packages {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
     border-radius: 5rem;
     color: #24283b;
     background-color: #f7768e; }
-    .bar .packages label {
+    .bar .bar-right .packages label {
       margin-left: 0.5rem; }
-  .bar .weather {
-    margin-right: 1rem; }
-    .bar .weather .weather-icon {
-      margin-right: 0.7rem;
-      font-size: 18pt; }
-  .bar .theme {
-    margin-right: 1rem; }
-  .bar .keyboard {
-    margin-right: 1rem;
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
+  .bar .bar-right .weather .weather-icon {
+    margin-right: 0.7rem;
+    font-size: 18pt; }
+  .bar .bar-right .theme {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem; }
+  .bar .bar-right .keyboard {
+    margin: 0.3rem;
     padding-left: 0.4rem;
     padding-right: 0.4rem;
-    min-width: 2rem;
-    min-height: 2rem;
-    font-size: 16px;
+    min-width: 1.6rem;
+    font-size: 13pt;
     font-weight: 500;
     border-radius: 100%;
     background: #414868;
     color: #c0caf5; }
-  .bar .system .progress-bar {
-    padding: 0rem;
+  .bar .bar-right .system .progress-bar {
     border-radius: 10rem; }
-    .bar .system .progress-bar trough {
+    .bar .bar-right .system .progress-bar trough {
       min-width: 6rem;
       border-radius: 10rem;
       background-color: #414868; }
-    .bar .system .progress-bar progress {
+    .bar .bar-right .system .progress-bar progress {
       border-radius: 10rem; }
-  .bar .system .cpu progress {
+  .bar .bar-right .system .cpu progress {
     background-color: #7aa2f7; }
-  .bar .system .temp progress {
+  .bar .bar-right .system .temp progress {
     background-color: #f7768e; }
-  .bar .system .ram progress {
+  .bar .bar-right .system .ram progress {
     background-color: #bb9af7; }
-  .bar .system .gpu progress {
+  .bar .bar-right .system .gpu progress {
     background-color: #7dcfff; }
-  .bar .systray {
-    margin: 0.8rem;
+  .bar .bar-right .systray {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.8rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
     border-radius: 5rem;
-    background-color: #414868; }
-    .bar .systray image {
+    background-color: #24283b; }
+    .bar .bar-right .systray image {
       font-size: 14pt; }

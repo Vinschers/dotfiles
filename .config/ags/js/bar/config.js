@@ -17,18 +17,23 @@ import Packages from "./packages.js";
  */
 const Left = (monitor) =>
     Widget.Box({
+        class_name: "bar-left",
+        hpack: "start",
+        spacing: 16,
         children: [Workspaces(monitor), Media()],
     });
 
 const Center = () =>
     Widget.Box({
+        class_name: "bar-center",
         children: [Clock()],
     });
 
 const Right = () =>
     Widget.Box({
+        class_name: "bar-right",
         hpack: "end",
-        spacing: 12,
+        spacing: 16,
         children: [
             Packages(),
             Weather(),

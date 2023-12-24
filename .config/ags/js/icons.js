@@ -27,8 +27,8 @@ export default {
         search: "folder-saved-search-symbolic",
     },
     bluetooth: {
-        enabled: "bluetooth-active-symbolic",
-        disabled: "bluetooth-disabled-symbolic",
+        enabled: "󰂯",
+        disabled: "󰂲",
     },
     brightness: {
         indicator: "display-brightness-symbolic",
