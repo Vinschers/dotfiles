@@ -234,6 +234,19 @@
             }
         }
 
+        .configurations {
+            margin-top: 0.2rem;
+            margin-bottom: 0.2rem;
+
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+
+            border-radius: 5rem;
+
+            background: $configurations_bg;
+            color: $configurations_fg;
+        }
+
         .systray {
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;

@@ -30,12 +30,12 @@ function on_change_hyprland(monitor, parent_box) {
         //@ts-ignore
         child.toggleClassName(
             "occupied-left",
-            !ws_before || ws_before?.windows <= 0,
+            !ws_before || ws_before?.windows <= 0 || i == 0,
         );
         //@ts-ignore
         child.toggleClassName(
             "occupied-right",
-            !ws_after || ws_after?.windows <= 0,
+            !ws_after || ws_after?.windows <= 0 || i + 1 == NUM_OF_WORKSPACES,
         );
     });
 }
@@ -52,10 +52,9 @@ function on_change_workspace(monitor, parent_box) {
 }
 
 /**
- * @param {number} monitor
  * @param {number} i
  */
-const Workspace = (monitor, i) =>
+const Workspace = (i) =>
     Widget.Button({
         on_primary_click: () =>
             execAsync(`hyprsome workspace ${i}`),
@@ -75,7 +74,7 @@ const Workspaces = (monitor) => {
     return Widget.Box({
         class_name: "workspaces",
         children: Array.from({ length: NUM_OF_WORKSPACES }, (_, i) =>
-            Workspace(monitor, i + 1),
+            Workspace(i + 1),
         ),
         connections: [
             [

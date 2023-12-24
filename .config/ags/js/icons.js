@@ -27,11 +27,17 @@ export default {
         search: "folder-saved-search-symbolic",
     },
     bluetooth: {
-        enabled: "󰂯",
-        disabled: "󰂲",
+        enabled: "bluetooth-active-symbolic",
+        disabled: "bluetooth-disabled-symbolic",
     },
     brightness: {
-        indicator: "display-brightness-symbolic",
+        indicator: {
+            on: "display-brightness-symbolic",
+            high: "display-brightness-high-symbolic",
+            medium: "display-brightness-medium-symbolic",
+            low: "display-brightness-low-symbolic",
+            off: "display-brightness-off-symbolic",
+        },
         keyboard: "keyboard-brightness-symbolic",
         screen: ["󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
     },
