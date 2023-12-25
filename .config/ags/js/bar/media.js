@@ -99,17 +99,6 @@ const MediaText = (player) => {
     });
 };
 
-const MediaBackground = (player) => {
-    if (!player) return Widget.Box();
-
-    return Widget.Box({
-        class_name: "media-background",
-        css: player
-            .bind("track_cover_url")
-            .transform((img) => `background-image: url('${img}');`),
-    });
-};
-
 const update_colors = (image, callback) => {
     execAsync(
         `sh -c "convert '${image}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
@@ -141,7 +130,15 @@ const MediaBox = (player) => {
         children: [
             MediaButtons(player),
             MediaText(player),
-            MediaBackground(player),
+            Widget.Box({
+                class_name: "media-background",
+                css: player.bind("track_cover_url").transform((img) => {
+                    update_colors(img, (new_colors) =>
+                        colors.setValue(new_colors),
+                    );
+                    return `background-image: url('${img}');`;
+                }),
+            }),
         ],
         css: colors.bind().transform((colors) => {
             // @ts-ignore
@@ -173,6 +170,7 @@ const MediaBox = (player) => {
         .hook(
             Mpris,
             (_) => {
+                if (player.position == -1) return;
                 update_colors(player.track_cover_url, (new_colors) =>
                     colors.setValue(new_colors),
                 );
