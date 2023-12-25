@@ -1,25 +1,11 @@
 * {
   all: unset; }
 
-@keyframes up-down {
+@keyframes gradient {
   0% {
-    background-position: center center; }
-  5% {
-    background-position: center center; }
-  24% {
-    background-position: bottom center; }
-  30% {
-    background-position: bottom center; }
-  50% {
-    background-position: center center; }
-  55% {
-    background-position: center center; }
-  75% {
-    background-position: top center; }
-  80% {
-    background-position: top center; }
+    background-position: 0% 0%; }
   100% {
-    background-position: center center; } }
+    background-position: 100% 0%; } }
 
 .bar {
   background: #24283b;
@@ -28,67 +14,71 @@
   font-family: Product Sans;
   font-size: 12pt; }
   .bar .bar-left {
-    margin-left: 1rem; }
-    .bar .bar-left .workspaces {
+    padding-left: 1rem;
+    background-color: #24283b; }
+    .bar .bar-left .media {
+      background-color: #24283b; }
+      .bar .bar-left .media .media-box {
+        border-radius: 0.5rem; }
+        .bar .bar-left .media .media-box .media-background {
+          margin: 0.2rem;
+          border-radius: 0.5rem;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          min-width: 2.5rem;
+          min-height: 2.5rem; }
+        .bar .bar-left .media .media-box .media-buttons {
+          padding-left: 0.5rem; }
+          .bar .bar-left .media .media-box .media-buttons .circprog {
+            min-width: 2.5rem;
+            min-height: 2.5rem;
+            font-size: 2px;
+            background-color: #565f89;
+            color: #c0caf5; }
+            .bar .bar-left .media .media-box .media-buttons .circprog image {
+              font-size: 10pt; }
+        .bar .bar-left .media .media-box .media-text {
+          margin-left: 2rem;
+          margin-right: 1rem; }
+  .bar .bar-center {
+    margin-left: 1rem;
+    margin-right: 1rem; }
+    .bar .bar-center .workspaces {
       margin-top: 0.4rem;
       margin-bottom: 0.4rem;
-      background: #24283b;
       color: #c0caf5;
       border-radius: 1rem;
       font-size: 13pt; }
-      .bar .bar-left .workspaces .workspace {
+      .bar .bar-center .workspaces .workspace {
         transition: all 200ms;
         padding: 0.2rem; }
-        .bar .bar-left .workspaces .workspace.occupied {
+        .bar .bar-center .workspaces .workspace.occupied {
           color: #c0caf5;
           background-color: #414868;
           border-top: 1px solid #c0caf5;
           border-bottom: 1px solid #c0caf5; }
-          .bar .bar-left .workspaces .workspace.occupied.occupied-left {
+          .bar .bar-center .workspaces .workspace.occupied.occupied-left {
             border-bottom-left-radius: 1rem;
             border-top-left-radius: 1rem;
             border-left: 1px solid #c0caf5; }
-          .bar .bar-left .workspaces .workspace.occupied.occupied-right {
+          .bar .bar-center .workspaces .workspace.occupied.occupied-right {
             border-bottom-right-radius: 1rem;
             border-top-right-radius: 1rem;
             border-right: 1px solid #c0caf5; }
-        .bar .bar-left .workspaces .workspace:not(.occupied) {
+        .bar .bar-center .workspaces .workspace:not(.occupied) {
           border-radius: 1rem; }
-        .bar .bar-left .workspaces .workspace.active .workspace-label {
+        .bar .bar-center .workspaces .workspace.active .workspace-label {
           background-color: #c0caf5;
           color: #414868;
           border-radius: 1rem; }
-        .bar .bar-left .workspaces .workspace .workspace-label {
+        .bar .bar-center .workspaces .workspace .workspace-label {
           min-width: 2rem; }
-    .bar .bar-left .media .media-box .media-background {
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-      min-width: 24rem;
-      opacity: 0.3;
-      border-radius: 0.8rem; }
-    .bar .bar-left .media .media-box .media-buttons {
-      padding-left: 0.5rem; }
-      .bar .bar-left .media .media-box .media-buttons .circprog {
-        min-width: 2.5rem;
-        min-height: 2.5rem;
-        font-size: 2px;
-        background-color: #565f89;
-        color: #c0caf5; }
-        .bar .bar-left .media .media-box .media-buttons .circprog image {
-          font-size: 10pt; }
-    .bar .bar-left .media .media-box .media-text {
-      margin-left: 1rem;
-      margin-right: 1rem; }
-  .bar .bar-center .clock {
-    margin: 0.2rem;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-    border-radius: 5rem;
-    background: #414868;
-    color: #c0caf5; }
+    .bar .bar-center .title {
+      font-size: 10pt; }
   .bar .bar-right {
-    margin-right: 1rem; }
+    padding-right: 1rem;
+    background-color: #24283b; }
     .bar .bar-right .packages {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
@@ -154,6 +144,11 @@
         color: #e0af68; }
       .bar .bar-right .battery .low {
         color: #f7768e; }
+    .bar .bar-right .clock {
+      color: #c0caf5; }
+      .bar .bar-right .clock .time {
+        font-size: 16pt;
+        font-weight: bold; }
     .bar .bar-right .systray {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;

@@ -56,8 +56,7 @@ function on_change_workspace(monitor, parent_box) {
  */
 const Workspace = (i) =>
     Widget.Button({
-        on_primary_click: () =>
-            execAsync(`hyprsome workspace ${i}`),
+        on_primary_click: () => execAsync(`hyprsome workspace ${i}`),
         child: Widget.Label({
             label: `${i}`,
             class_name: "workspace-label",
@@ -76,18 +75,15 @@ const Workspaces = (monitor) => {
         children: Array.from({ length: NUM_OF_WORKSPACES }, (_, i) =>
             Workspace(i + 1),
         ),
-        connections: [
-            [
-                Hyprland,
-                (box) => on_change_hyprland(monitor, box),
-                "notify::workspaces",
-            ],
-            [
-                Hyprland.active.workspace,
-                (box) => on_change_workspace(monitor, box),
-            ],
-        ],
-    });
+    })
+        .hook(
+            Hyprland,
+            (box) => on_change_hyprland(monitor, box),
+            "notify::workspaces",
+        )
+        .hook(Hyprland.active.workspace, (box) =>
+            on_change_workspace(monitor, box),
+        );
 };
 
 export default Workspaces;

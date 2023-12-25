@@ -1,38 +1,25 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
 import icons from "../icons.js";
-import { ensureDirectory, exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
+import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
-const Packages = () => {
-    const packages = Widget.Button({
+const updates = new Variable("0", {
+    poll: [30000, `${App.configDir}/scripts/packages.sh`],
+});
+
+const Packages = () =>
+    Widget.Button({
         child: Widget.Box({
             class_name: "packages",
-            children: [Widget.Icon(icons.packages), Widget.Label()],
-            connections: [
-                [
-                    15000,
-                    (self) => {
-                        const tmp = `/tmp/ags_packages.lock`
-                        exec(`touch ${tmp}`)
-
-                        execAsync(`flock ${tmp} ${App.configDir}/scripts/packages.sh -options`)
-                            .then((updates) => {
-                                self.set_opacity(Number(updates) > 0 ? 1 : 0);
-                                self.children[1].label = updates;
-                            })
-                            .catch(() => {
-                                self.set_opacity(0);
-                            });
-                    },
-                ],
+            children: [
+                Widget.Icon(icons.packages),
+                Widget.Label({
+                    label: updates.bind(),
+                }),
             ],
+            visible: updates.bind().transform((ups) => Number(ups) > 0),
         }),
     });
-
-    packages.child.set_opacity(0);
-
-    return packages;
-}
 
 export default Packages;

@@ -50,23 +50,19 @@ const get_initial_layout = () => {
 const Keyboard = () => {
     const keyboard = Widget.Button({
         class_name: "keyboard",
-        child: Widget.Label({
-            connections: [
-                [
-                    Hyprland,
-                    (label, kbName, layoutName) => {
-                        if (!kbName) return;
+        child: Widget.Label().hook(
+            Hyprland,
+            (self, kb_name, layout_name) => {
+                if (!kb_name) return;
 
-                        let lang = languages.find((lang) =>
-                            layoutName.includes(lang.name),
-                        );
+                let lang = languages.find((lang) =>
+                    layout_name.includes(lang.name),
+                );
 
-                        if (lang) label.label = lang.layout;
-                    },
-                    "keyboard-layout",
-                ],
-            ],
-        }),
+                if (lang) self.label = lang.layout;
+            },
+            "keyboard-layout",
+        ),
     });
 
     keyboard.child.label = get_initial_layout();

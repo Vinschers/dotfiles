@@ -1,38 +1,9 @@
-@keyframes up-down {
+@keyframes gradient {
     0% {
-        background-position: center center;
+        background-position: 0% 0%;
     }
-
-    5% {
-        background-position: center center;
-    }
-
-    24% {
-        background-position: bottom center;
-    }
-
-    30% {
-        background-position: bottom center;
-    }
-
-    50% {
-        background-position: center center;
-    }
-
-    55% {
-        background-position: center center;
-    }
-
-    75% {
-        background-position: top center;
-    }
-
-    80% {
-        background-position: top center;
-    }
-
     100% {
-        background-position: center center;
+        background-position: 100% 0%;
     }
 }
 
@@ -40,19 +11,65 @@
     background: $bar_bg;
     color: $bar_fg;
     opacity: $bar_opacity;
-    // border-radius: 0 0 1rem 1rem;
 
     font-family: Product Sans;
     font-size: 12pt;
 
     .bar-left {
+        padding-left: 1rem;
+        background-color: $bar_left_bg;
+
+        .media {
+            background-color: $media_bg;
+
+            .media-box {
+                border-radius: 0.5rem;
+
+                .media-background {
+                    margin: 0.2rem;
+                    border-radius: 0.5rem;
+
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center center;
+
+                    min-width: 2.5rem;
+                    min-height: 2.5rem;
+                }
+
+                .media-buttons {
+                    padding-left: 0.5rem;
+                    .circprog {
+                        min-width: 2.5rem;
+                        min-height: 2.5rem;
+
+                        font-size: 2px;
+
+                        background-color: $media_progress_bg;
+                        color: $media_symbols_fg;
+
+                        image {
+                            font-size: 10pt;
+                        }
+                    }
+                }
+
+                .media-text {
+                    margin-left: 2rem;
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+
+    .bar-center {
         margin-left: 1rem;
+        margin-right: 1rem;
 
         .workspaces {
             margin-top: 0.4rem;
             margin-bottom: 0.4rem;
 
-            background: $ws_bg;
             color: $ws_fg;
             border-radius: 1rem;
 
@@ -99,59 +116,14 @@
             }
         }
 
-        .media {
-            .media-box {
-                .media-background {
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    background-position: center center;
-
-                    min-width: 24rem;
-
-                    opacity: 0.3;
-                    border-radius: 0.8rem;
-                }
-
-                .media-buttons {
-                    padding-left: 0.5rem;
-                    .circprog {
-                        min-width: 2.5rem;
-                        min-height: 2.5rem;
-
-                        font-size: 2px;
-
-                        background-color: $media_progress_bg;
-                        color: $media_symbols_fg;
-
-                        image {
-                            font-size: 10pt;
-                        }
-                    }
-                }
-
-                .media-text {
-                    margin-left: 1rem;
-                    margin-right: 1rem;
-                }
-            }
-        }
-    }
-
-    .bar-center {
-        .clock {
-            margin: 0.2rem;
-            padding-left: 0.8rem;
-            padding-right: 0.8rem;
-
-            border-radius: 5rem;
-
-            background: $clock_bg;
-            color: $clock_fg;
+        .title {
+            font-size: 10pt;
         }
     }
 
     .bar-right {
-        margin-right: 1rem;
+        padding-right: 1rem;
+        background-color: $bar_right_bg;
 
         .packages {
             margin-top: 0.5rem;
@@ -275,6 +247,15 @@
             }
             .low {
                 color: $battery_low;
+            }
+        }
+
+        .clock {
+            color: $clock_fg;
+
+            .time {
+                font-size: 16pt;
+                font-weight: bold;
             }
         }
 

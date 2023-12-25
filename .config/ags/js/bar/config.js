@@ -1,16 +1,17 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
-import Workspaces from "./workspaces.js";
-import Clock from "./clock.js";
-import Media from "./media.js";
 import Battery from "./battery.js";
-import SysTray from "./systray.js";
+import Clock from "./clock.js";
 import Configurations from "./configurations.js";
-import System from "./system.js";
 import Keyboard from "./keyboard.js";
-import Theme from "./theme.js";
-import Weather from "./weather.js";
+import Media from "./media.js";
 import Packages from "./packages.js";
+import System from "./system.js";
+import SysTray from "./systray.js";
+import Theme from "./theme.js";
+import Title from "./title.js";
+import Weather from "./weather.js";
+import Workspaces from "./workspaces.js";
 
 /**
  * @param {number} monitor
@@ -19,17 +20,17 @@ const Left = (monitor) =>
     Widget.Box({
         class_name: "bar-left",
         hpack: "start",
-        spacing: 16,
-        children: [Workspaces(monitor), Media()],
+        children: [Media()],
     });
 
-const Center = () =>
+const Center = (monitor) =>
     Widget.Box({
+        hpack: "center",
         class_name: "bar-center",
-        children: [Clock()],
+        children: [Workspaces(monitor)],
     });
 
-const Right = () =>
+const Right = (monitor) =>
     Widget.Box({
         class_name: "bar-right",
         hpack: "end",
@@ -42,6 +43,7 @@ const Right = () =>
             System(),
             Configurations(),
             Battery(),
+            Clock(),
             SysTray(),
         ],
     });
@@ -58,7 +60,7 @@ export default (monitor) =>
         exclusivity: "exclusive",
         child: Widget.CenterBox({
             start_widget: Left(monitor),
-            center_widget: Center(),
-            end_widget: Right(),
+            center_widget: Center(monitor),
+            end_widget: Right(monitor),
         }),
     });

@@ -7,14 +7,17 @@ import Mpris, {
 import Gtk30 from "gi://Gtk?version=3.0";
 import Pango10 from "gi://Pango";
 import icons from "../icons.js";
+import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
+import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
-const MAX_ARTISTS = 20;
-const MAX_TITLE = 40;
+const MAX_ARTISTS = 15;
+const MAX_TITLE = 20;
+const COLORS_GRADIENT = 3;
 
 const TrackProgress = (player) => {
     if (!player) return CircularProgress();
 
-    const _updateProgress = (circprog) => {
+    const updateProgress = (circprog) => {
         if (!player) return;
 
         circprog.value = player.position / player.length;
@@ -36,12 +39,10 @@ const TrackProgress = (player) => {
             class_name: "circprog",
             start_at: 0.75,
             child: Widget.Icon(),
-            connections: [
-                // Update on change/once every 3 seconds
-                [Mpris, _updateProgress],
-                [1000, _updateProgress],
-            ],
-        }),
+        })
+            .hook(Mpris, updateProgress)
+            .hook(player, updateProgress, "position")
+            .poll(3000, updateProgress),
     });
 };
 
@@ -50,7 +51,7 @@ const MediaButtons = (player) => {
 
     return Widget.CenterBox({
         class_name: "media-buttons",
-        spacing: 8,
+        spacing: 12,
 
         start_widget: Widget.Button({
             child: Widget.Icon(icons.mpris.prev),
@@ -71,9 +72,6 @@ const MediaButtons = (player) => {
 const MediaText = (player) => {
     if (!player) return Widget.Box();
 
-    const artists = player.track_artists.join(", ");
-    const title = player.track_title;
-
     return Widget.Box({
         class_name: "media-text",
         halign: Gtk30.Align.CENTER,
@@ -81,7 +79,9 @@ const MediaText = (player) => {
         children: [
             Widget.Label({
                 class_name: "media-artist",
-                label: artists,
+                label: player
+                    .bind("track_artists")
+                    .transform((artists) => artists.join(", ")),
                 max_width_chars: MAX_ARTISTS,
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
@@ -91,7 +91,7 @@ const MediaText = (player) => {
             }),
             Widget.Label({
                 class_name: "media-title",
-                label: title,
+                label: player.bind("track_title"),
                 max_width_chars: MAX_TITLE,
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
@@ -104,48 +104,87 @@ const MediaBackground = (player) => {
 
     return Widget.Box({
         class_name: "media-background",
-        css: `background-image: url('${player.track_cover_url}'); ${
-            player.play_back_status === "Playing"
-                ? "animation: 60s linear infinite up-down;"
-                : ""
-        }`,
+        css: player
+            .bind("track_cover_url")
+            .transform((img) => `background-image: url('${img}');`),
     });
+};
+
+const update_colors = (image, callback) => {
+    execAsync(
+        `sh -c "convert '${image}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
+    )
+        .then((output) => {
+            if (!output) return;
+
+            const alpha = 0.6;
+            const colors = output.split("\n").map((color, i) => {
+                const color_parts = color
+                    .substring(1, color.length - 2)
+                    .split(",");
+                return `rgba(${color_parts[0]}, ${color_parts[1]}, ${color_parts[2]}, ${alpha})`;
+            });
+
+            callback(colors);
+        })
+        .catch(console.error);
 };
 
 /**
  * @param {MprisPlayer} player
  */
 const MediaBox = (player) => {
-    if (!player) return Widget.Box();
+    const colors = new Variable([]);
 
-    return Widget.Overlay({
+    return Widget.Box({
         class_name: "media-box",
-        child: MediaBackground(player),
-        overlays: [
-            Widget.Box({
-                children: [MediaButtons(player), MediaText(player)],
-            }),
+        children: [
+            MediaButtons(player),
+            MediaText(player),
+            MediaBackground(player),
         ],
-        pass_through: true,
-    });
+        css: colors.bind().transform((colors) => {
+            // @ts-ignore
+            if (colors.length == 0) return "";
+
+            // @ts-ignore
+            const size = 100 * (colors.length + 1);
+            // @ts-ignore
+            colors = colors.concat(colors.slice(0, 2));
+
+            // @ts-ignore
+            const background = `background-image: linear-gradient(to right, ${colors.join(
+                ", ",
+            )}); background-size: ${size}% ${size}%;`;
+
+            const animation = "animation: gradient 12s linear infinite;";
+
+            if (player.play_back_status === "Playing")
+                return background + animation;
+
+            return background;
+        }),
+    })
+        .hook(
+            player,
+            (self) => (self.visible = player.track_title !== ""),
+            "closed",
+        )
+        .hook(
+            Mpris,
+            (_) => {
+                update_colors(player.track_cover_url, (new_colors) =>
+                    colors.setValue(new_colors),
+                );
+            },
+            "player-changed",
+        );
 };
 
 const Media = () => {
-    let prev_player = Mpris.getPlayer("");
-
-    const update_mpris = (media) => {
-        const player =
-            Mpris.players.find((p) => p.play_back_status == "Playing") ||
-            prev_player;
-        if (!player) return;
-
-        prev_player = player;
-        media.children = [MediaBox(player)];
-    };
-
     return Widget.Box({
+        spacing: 12,
         class_name: "media",
-        connections: [[Mpris, update_mpris]],
-    });
+    }).bind("children", Mpris, "players", (players) => players.map(MediaBox));
 };
 export default Media;
