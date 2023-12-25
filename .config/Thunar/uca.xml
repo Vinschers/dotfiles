@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1694887452325950-1</unique-id>
+	<command>foot -D %f -T 'foot - float'</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>nvim</icon>
+	<name>Open with Neovide</name>
+	<submenu></submenu>
+	<unique-id>1653154187810668-1</unique-id>
+	<command>neovide %f</command>
+	<description></description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+</actions>
