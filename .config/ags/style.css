@@ -44,13 +44,19 @@
   .bar .bar-center {
     margin-left: 1rem;
     margin-right: 1rem; }
+    .bar .bar-center .bar-corner {
+      border-radius: 1.4rem;
+      background-color: #1a1b26; }
     .bar .bar-center .workspaces {
-      margin-top: 0.4rem;
-      margin-bottom: 0.4rem;
+      padding-top: 0.4rem;
       color: #c0caf5;
-      border-radius: 1rem;
+      background-color: #1a1b26;
       font-size: 13pt; }
+      .bar .bar-center .workspaces .workspace-corner {
+        border-radius: 1.4rem;
+        background-color: #24283b; }
       .bar .bar-center .workspaces .workspace {
+        margin-bottom: 0.4rem;
         transition: all 200ms;
         padding: 0.2rem; }
         .bar .bar-center .workspaces .workspace.occupied {

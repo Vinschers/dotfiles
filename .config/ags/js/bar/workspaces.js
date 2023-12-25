@@ -1,6 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
+import { RoundedCorner } from "../rounded_corner.js";
 
 const NUM_OF_WORKSPACES = 10;
 
@@ -72,18 +73,24 @@ const Workspaces = (monitor) => {
 
     return Widget.Box({
         class_name: "workspaces",
-        children: Array.from({ length: NUM_OF_WORKSPACES }, (_, i) =>
-            Workspace(i + 1),
-        ),
-    })
-        .hook(
-            Hyprland,
-            (box) => on_change_hyprland(monitor, box),
-            "notify::workspaces",
-        )
-        .hook(Hyprland.active.workspace, (box) =>
-            on_change_workspace(monitor, box),
-        );
+        children: [
+            RoundedCorner("bottomleft", { class_name: "workspace-corner" }),
+            Widget.Box({
+                children: Array.from({ length: NUM_OF_WORKSPACES }, (_, i) =>
+                    Workspace(i + 1),
+                ),
+            })
+                .hook(
+                    Hyprland,
+                    (box) => on_change_hyprland(monitor, box),
+                    "notify::workspaces",
+                )
+                .hook(Hyprland.active.workspace, (box) =>
+                    on_change_workspace(monitor, box),
+                ),
+            RoundedCorner("bottomright", { class_name: "workspace-corner" }),
+        ],
+    });
 };
 
 export default Workspaces;

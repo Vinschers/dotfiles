@@ -12,6 +12,7 @@ import Theme from "./theme.js";
 import Title from "./title.js";
 import Weather from "./weather.js";
 import Workspaces from "./workspaces.js";
+import { RoundedCorner } from "../rounded_corner.js";
 
 /**
  * @param {number} monitor
@@ -20,14 +21,20 @@ const Left = (monitor) =>
     Widget.Box({
         class_name: "bar-left",
         hpack: "start",
-        children: [Media()],
+        children: [
+            Media(),
+        ],
     });
 
 const Center = (monitor) =>
     Widget.Box({
         hpack: "center",
         class_name: "bar-center",
-        children: [Workspaces(monitor)],
+        children: [
+            RoundedCorner("topright", { class_name: "bar-corner" }),
+            Workspaces(monitor),
+            RoundedCorner("topleft", { class_name: "bar-corner" }),
+        ],
     });
 
 const Right = (monitor) =>

@@ -10,8 +10,6 @@ import icons from "../icons.js";
 import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
-const MAX_ARTISTS = 15;
-const MAX_TITLE = 20;
 const COLORS_GRADIENT = 3;
 
 const TrackProgress = (player) => {
@@ -69,8 +67,17 @@ const MediaButtons = (player) => {
     });
 };
 
+/**
+ * @param {MprisPlayer} player
+ */
 const MediaText = (player) => {
     if (!player) return Widget.Box();
+
+    const text = new Variable(["", ""]);
+
+    player.connect("changed", (p) => {
+        text.setValue([p.track_artists.join(", "), p.track_title]);
+    });
 
     return Widget.Box({
         class_name: "media-text",
@@ -79,20 +86,7 @@ const MediaText = (player) => {
         children: [
             Widget.Label({
                 class_name: "media-artist",
-                label: player
-                    .bind("track_artists")
-                    .transform((artists) => artists.join(", ")),
-                max_width_chars: MAX_ARTISTS,
-                ellipsize: Pango10.EllipsizeMode.END,
-            }),
-            Widget.Label({
-                class_name: "media-text-division",
-                label: "🞄",
-            }),
-            Widget.Label({
-                class_name: "media-title",
-                label: player.bind("track_title"),
-                max_width_chars: MAX_TITLE,
+                label: text.bind().transform((info) => info.join(" 🞄 ")),
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
         ],
@@ -124,6 +118,7 @@ const update_colors = (image, callback) => {
  */
 const MediaBox = (player) => {
     const colors = new Variable([]);
+    const css = new Variable("");
 
     return Widget.Box({
         class_name: "media-box",
@@ -140,27 +135,7 @@ const MediaBox = (player) => {
                 }),
             }),
         ],
-        css: colors.bind().transform((colors) => {
-            // @ts-ignore
-            if (colors.length == 0) return "";
-
-            // @ts-ignore
-            const size = 100 * (colors.length + 1);
-            // @ts-ignore
-            colors = colors.concat(colors.slice(0, 2));
-
-            // @ts-ignore
-            const background = `background-image: linear-gradient(to right, ${colors.join(
-                ", ",
-            )}); background-size: ${size}% ${size}%;`;
-
-            const animation = "animation: gradient 12s linear infinite;";
-
-            if (player.play_back_status === "Playing")
-                return background + animation;
-
-            return background;
-        }),
+        css: css.bind(),
     })
         .hook(
             player,
@@ -170,10 +145,24 @@ const MediaBox = (player) => {
         .hook(
             Mpris,
             (_) => {
-                if (player.position == -1) return;
-                update_colors(player.track_cover_url, (new_colors) =>
-                    colors.setValue(new_colors),
-                );
+                // @ts-ignore
+                if (colors.value.length == 0) return "";
+
+                // @ts-ignore
+                const size = 100 * (colors.value.length + 1);
+                // @ts-ignore
+                const css_colors = colors.value.concat(colors.value.slice(0, 2));
+
+                // @ts-ignore
+                const background = `background-image: linear-gradient(to right, ${css_colors.join(
+                    ", ",
+                )}); background-size: ${size}% ${size}%;`;
+
+                const animation = "animation: gradient 12s linear infinite;";
+
+                if (player.play_back_status === "Playing")
+                    css.setValue(background + animation);
+                else css.setValue(background);
             },
             "player-changed",
         );
