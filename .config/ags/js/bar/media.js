@@ -73,10 +73,10 @@ const MediaButtons = (player) => {
 const MediaText = (player) => {
     if (!player) return Widget.Box();
 
-    const text = new Variable(["", ""]);
+    const text = new Variable("");
 
     player.connect("changed", (p) => {
-        text.setValue([p.track_artists.join(", "), p.track_title]);
+        text.setValue(`${p.track_artists.join(", ")} 🞄 ${p.track_title}`);
     });
 
     return Widget.Box({
@@ -86,14 +86,14 @@ const MediaText = (player) => {
         children: [
             Widget.Label({
                 class_name: "media-artist",
-                label: text.bind().transform((info) => info.join(" 🞄 ")),
+                label: text.bind(),
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
         ],
     });
 };
 
-const update_colors = (image, callback) => {
+const update_colors = (image, colors) => {
     execAsync(
         `sh -c "convert '${image}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
     )
@@ -101,16 +101,37 @@ const update_colors = (image, callback) => {
             if (!output) return;
 
             const alpha = 0.6;
-            const colors = output.split("\n").map((color, i) => {
+            const new_colors = output.split("\n").map((color) => {
                 const color_parts = color
                     .substring(1, color.length - 2)
                     .split(",");
                 return `rgba(${color_parts[0]}, ${color_parts[1]}, ${color_parts[2]}, ${alpha})`;
             });
 
-            callback(colors);
+            colors.setValue(new_colors);
         })
         .catch(console.error);
+};
+
+const update_css = (player, colors, css) => {
+    // @ts-ignore
+    if (colors.length == 0) return "";
+
+    // @ts-ignore
+    const size = 100 * (colors.length + 1);
+    // @ts-ignore
+    const css_colors = colors.concat(colors.slice(0, 2));
+
+    // @ts-ignore
+    const background = `background-image: linear-gradient(to right, ${css_colors.join(
+        ", ",
+    )}); background-size: ${size}% ${size}%;`;
+
+    const animation = "animation: gradient 12s linear infinite;";
+
+    if (player.play_back_status === "Playing")
+        css.setValue(background + animation);
+    else css.setValue(background);
 };
 
 /**
@@ -120,52 +141,29 @@ const MediaBox = (player) => {
     const colors = new Variable([]);
     const css = new Variable("");
 
+    player.connect("changed", (p) => {
+        update_css(p, colors.value, css);
+    });
+
     return Widget.Box({
         class_name: "media-box",
         children: [
-            MediaButtons(player),
-            MediaText(player),
             Widget.Box({
                 class_name: "media-background",
                 css: player.bind("track_cover_url").transform((img) => {
-                    update_colors(img, (new_colors) =>
-                        colors.setValue(new_colors),
-                    );
+                    update_colors(img, colors);
                     return `background-image: url('${img}');`;
                 }),
             }),
+            MediaText(player),
+            MediaButtons(player),
         ],
         css: css.bind(),
-    })
-        .hook(
-            player,
-            (self) => (self.visible = player.track_title !== ""),
-            "closed",
-        )
-        .hook(
-            Mpris,
-            (_) => {
-                // @ts-ignore
-                if (colors.value.length == 0) return "";
-
-                // @ts-ignore
-                const size = 100 * (colors.value.length + 1);
-                // @ts-ignore
-                const css_colors = colors.value.concat(colors.value.slice(0, 2));
-
-                // @ts-ignore
-                const background = `background-image: linear-gradient(to right, ${css_colors.join(
-                    ", ",
-                )}); background-size: ${size}% ${size}%;`;
-
-                const animation = "animation: gradient 12s linear infinite;";
-
-                if (player.play_back_status === "Playing")
-                    css.setValue(background + animation);
-                else css.setValue(background);
-            },
-            "player-changed",
-        );
+    }).hook(
+        player,
+        (self) => (self.visible = player.track_title !== ""),
+        "closed",
+    );
 };
 
 const Media = () => {

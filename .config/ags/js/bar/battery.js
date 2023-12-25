@@ -4,6 +4,7 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 const BatteryWidget = () =>
     Widget.Box({
         class_name: "battery",
+        visible: Battery.bind("available"),
         child: Widget.CircularProgress({
             class_name: Battery.bind("percent").transform((bat) => {
                 let classes = ["circprog"];
@@ -27,7 +28,6 @@ const BatteryWidget = () =>
                     (v) => v?.toString() || "object-select-symbolic",
                 ),
             }),
-            visible: Battery.bind("available"),
             value: Battery.bind("percent").transform((p) =>
                 p > 0 ? p / 100 : 0,
             ),

@@ -14,10 +14,7 @@ import Weather from "./weather.js";
 import Workspaces from "./workspaces.js";
 import { RoundedCorner } from "../rounded_corner.js";
 
-/**
- * @param {number} monitor
- */
-const Left = (monitor) =>
+const Left = () =>
     Widget.Box({
         class_name: "bar-left",
         hpack: "start",
@@ -26,6 +23,9 @@ const Left = (monitor) =>
         ],
     });
 
+/**
+ * @param {number} monitor
+ */
 const Center = (monitor) =>
     Widget.Box({
         hpack: "center",
@@ -37,7 +37,7 @@ const Center = (monitor) =>
         ],
     });
 
-const Right = (monitor) =>
+const Right = () =>
     Widget.Box({
         class_name: "bar-right",
         hpack: "end",
