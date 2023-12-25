@@ -66,8 +66,8 @@ export default (monitor) =>
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
-            start_widget: Left(monitor),
+            start_widget: Left(),
             center_widget: Center(monitor),
-            end_widget: Right(monitor),
+            end_widget: Right(),
         }),
     });
