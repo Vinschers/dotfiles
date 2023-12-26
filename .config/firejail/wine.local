@@ -1,0 +1,5 @@
+ignore noinput
+ignore nosound
+ignore novideo
+
+noblacklist ${HOME}/.local/share/lutris

@@ -62,9 +62,7 @@ alias \
     ct="compact_tar" \
     cz="compact_zip" \
     v="nvim" \
-    nv="neovide" \
-    wine="WINEPREFIX=$HOME/.wine wine" \
-    winetricks="WINEPREFIX=$HOME/.wine winetricks"
+    nv="neovide"
 
 # Utils
 alias \
