@@ -65,3 +65,9 @@
       community.general.pacman:
         name: lutris
         state: present
+    - name: Install dxvk
+      become_user: aur_builder
+      kewlfft.aur.aur:
+        name:
+          - dxvk-bin
+        state: present

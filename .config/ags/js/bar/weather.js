@@ -102,7 +102,8 @@ const Weather = () => {
 
     return Widget.Box({
         class_name: "weather",
-        spacing: 5,
+        spacing: 10,
+        visible: weather_service.bind("icon").transform((icon) => icon !== ""),
         children: [
             Widget.Label({
                 class_name: "weather-icon",
