@@ -145,13 +145,17 @@ const MediaBox = (player) => {
         update_css(p, colors.value, css);
     });
 
+    player.connect("changed", (p) => {
+        update_colors(p.track_cover_url, colors);
+        update_css(p, colors.value, css);
+    });
+
     return Widget.Box({
         class_name: "media-box",
         children: [
             Widget.Box({
                 class_name: "media-background",
                 css: player.bind("track_cover_url").transform((img) => {
-                    update_colors(img, colors);
                     return `background-image: url('${img}');`;
                 }),
             }),
