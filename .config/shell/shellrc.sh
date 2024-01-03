@@ -22,5 +22,3 @@ done
 if ! env | grep -q '^NVIM=' && [ -z "$SHLVL" ] || [ $SHLVL -lt 2 ]; then
 	fastfetch
 fi
-
-export WINEPREFIX="$HOME/.local/share/wine"

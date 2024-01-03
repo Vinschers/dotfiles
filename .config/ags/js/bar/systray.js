@@ -5,7 +5,6 @@ const SysTray = () =>
     Widget.Box({
         class_name: "systray",
         spacing: 6,
-        visible: SystemTray.bind("items").transform((items) => items.length > 0),
         // @ts-ignore
         children: SystemTray.bind("items").transform((items) => {
             return items.map((item) =>
@@ -17,6 +16,6 @@ const SysTray = () =>
                 }),
             );
         }),
-    });
+    }).bind("visible", SystemTray, "items", (i) => i.length > 0);
 
 export default SysTray;
