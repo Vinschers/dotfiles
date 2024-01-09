@@ -70,4 +70,5 @@
       kewlfft.aur.aur:
         name:
           - dxvk-bin
+          - vkd3d-proton-bin
         state: present
