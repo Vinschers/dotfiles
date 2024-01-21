@@ -15,6 +15,8 @@
     font-family: Product Sans;
     font-size: 12pt;
 
+    padding-bottom: 2px; // fix eventbox on_hover_lost. Should be removed after GTK-4
+
     .bar-left {
         padding-left: 1rem;
         background-color: $bar_left_bg;
@@ -62,7 +64,6 @@
         }
 
         .systray {
-            padding-left: 1rem;
             border-radius: 5rem;
 
             background-color: $systray_bg;

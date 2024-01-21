@@ -18,10 +18,8 @@ const Left = () =>
     Widget.Box({
         class_name: "bar-left",
         hpack: "start",
-        children: [
-            Media(),
-            SysTray(),
-        ],
+        spacing: 16,
+        children: [Media(), SysTray()],
     });
 
 /**
@@ -61,11 +59,11 @@ const Right = () =>
 export default (monitor) =>
     Widget.Window({
         name: `bar-${monitor}`, // name has to be unique
-        class_name: "bar",
         monitor,
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
+            class_name: "bar",
             start_widget: Left(),
             center_widget: Center(monitor),
             end_widget: Right(),
