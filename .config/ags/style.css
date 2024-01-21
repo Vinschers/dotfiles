@@ -86,8 +86,8 @@
     padding-right: 1rem;
     background-color: #24283b; }
     .bar .bar-right .packages {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
       padding-left: 0.8rem;
       padding-right: 0.8rem;
       border-radius: 5rem;
@@ -110,12 +110,15 @@
       border-radius: 100%;
       background: #414868;
       color: #c0caf5; }
+    .bar .bar-right .system .progress-wrapper {
+      background: linear-gradient(to right, #24283b 1px, transparent 1px);
+      background-size: 25%; }
     .bar .bar-right .system .progress-bar {
-      border-radius: 10rem; }
+      border-radius: 10rem;
+      background-color: #414868; }
       .bar .bar-right .system .progress-bar trough {
         min-width: 6rem;
-        border-radius: 10rem;
-        background-color: #414868; }
+        border-radius: 10rem; }
       .bar .bar-right .system .progress-bar progress {
         border-radius: 10rem; }
     .bar .bar-right .system .cpu progress {
@@ -127,8 +130,8 @@
     .bar .bar-right .system .gpu progress {
       background-color: #7dcfff; }
     .bar .bar-right .configurations {
-      margin-top: 0.2rem;
-      margin-bottom: 0.2rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
       padding-left: 0.8rem;
       padding-right: 0.8rem;
       border-radius: 5rem;

@@ -136,8 +136,8 @@
         background-color: $bar_right_bg;
 
         .packages {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
 
             padding-left: 0.8rem;
             padding-right: 0.8rem;
@@ -181,13 +181,22 @@
         }
 
         .system {
+            .progress-wrapper {
+                background: linear-gradient(
+                    to right,
+                    $system_progress_indicator 1px,
+                    transparent 1px
+                );
+                background-size: 25%;
+            }
+
             .progress-bar {
                 border-radius: 10rem;
+                background-color: $system_progress_bg;
 
                 trough {
                     min-width: 6rem;
                     border-radius: 10rem;
-                    background-color: $system_progress_bg;
                 }
 
                 progress {
@@ -221,8 +230,8 @@
         }
 
         .configurations {
-            margin-top: 0.2rem;
-            margin-bottom: 0.2rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
 
             padding-left: 0.8rem;
             padding-right: 0.8rem;

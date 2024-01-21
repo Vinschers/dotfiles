@@ -19,3 +19,4 @@ vim.opt.wildignore = {
 
 vim.g.maplocalleader = " "
 vim.g.autoformat = false
+vim.g.neovide_remember_window_size = true

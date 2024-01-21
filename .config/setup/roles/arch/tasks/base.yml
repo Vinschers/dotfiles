@@ -92,3 +92,9 @@
   systemd:
     name: bluetooth
     enabled: true
+
+- name: Enable timesync systemd service
+  become: true
+  systemd:
+    name: systemd-timesyncd
+    enabled: true
