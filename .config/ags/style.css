@@ -41,47 +41,50 @@
         .bar .bar-left .media .media-box .media-text {
           margin-left: 1rem;
           margin-right: 1rem; }
-  .bar .bar-center {
-    margin-left: 1rem;
-    margin-right: 1rem; }
-    .bar .bar-center .bar-corner {
+    .bar .bar-left .systray {
+      padding-left: 1rem;
+      border-radius: 5rem;
+      background-color: #24283b; }
+      .bar .bar-left .systray image {
+        font-size: 14pt; }
+  .bar .bar-center .bar-corner {
+    border-radius: 1.4rem;
+    background-color: #1a1b26; }
+  .bar .bar-center .workspaces {
+    padding-top: 0.4rem;
+    color: #c0caf5;
+    background-color: #1a1b26;
+    font-size: 13pt; }
+    .bar .bar-center .workspaces .workspace-corner {
       border-radius: 1.4rem;
-      background-color: #1a1b26; }
-    .bar .bar-center .workspaces {
-      padding-top: 0.4rem;
-      color: #c0caf5;
-      background-color: #1a1b26;
-      font-size: 13pt; }
-      .bar .bar-center .workspaces .workspace-corner {
-        border-radius: 1.4rem;
-        background-color: #24283b; }
-      .bar .bar-center .workspaces .workspace {
-        margin-bottom: 0.4rem;
-        transition: all 200ms;
-        padding: 0.2rem; }
-        .bar .bar-center .workspaces .workspace.occupied {
-          color: #c0caf5;
-          background-color: #414868;
-          border-top: 1px solid #c0caf5;
-          border-bottom: 1px solid #c0caf5; }
-          .bar .bar-center .workspaces .workspace.occupied.occupied-left {
-            border-bottom-left-radius: 1rem;
-            border-top-left-radius: 1rem;
-            border-left: 1px solid #c0caf5; }
-          .bar .bar-center .workspaces .workspace.occupied.occupied-right {
-            border-bottom-right-radius: 1rem;
-            border-top-right-radius: 1rem;
-            border-right: 1px solid #c0caf5; }
-        .bar .bar-center .workspaces .workspace:not(.occupied) {
-          border-radius: 1rem; }
-        .bar .bar-center .workspaces .workspace.active .workspace-label {
-          background-color: #c0caf5;
-          color: #414868;
-          border-radius: 1rem; }
-        .bar .bar-center .workspaces .workspace .workspace-label {
-          min-width: 2rem; }
-    .bar .bar-center .title {
-      font-size: 10pt; }
+      background-color: #24283b; }
+    .bar .bar-center .workspaces .workspace {
+      margin-bottom: 0.4rem;
+      transition: all 200ms;
+      padding: 0.2rem; }
+      .bar .bar-center .workspaces .workspace.occupied {
+        color: #c0caf5;
+        background-color: #414868;
+        border-top: 1px solid #c0caf5;
+        border-bottom: 1px solid #c0caf5; }
+        .bar .bar-center .workspaces .workspace.occupied.occupied-left {
+          border-bottom-left-radius: 1rem;
+          border-top-left-radius: 1rem;
+          border-left: 1px solid #c0caf5; }
+        .bar .bar-center .workspaces .workspace.occupied.occupied-right {
+          border-bottom-right-radius: 1rem;
+          border-top-right-radius: 1rem;
+          border-right: 1px solid #c0caf5; }
+      .bar .bar-center .workspaces .workspace:not(.occupied) {
+        border-radius: 1rem; }
+      .bar .bar-center .workspaces .workspace.active .workspace-label {
+        background-color: #c0caf5;
+        color: #414868;
+        border-radius: 1rem; }
+      .bar .bar-center .workspaces .workspace .workspace-label {
+        min-width: 2rem; }
+  .bar .bar-center .title {
+    font-size: 10pt; }
   .bar .bar-right {
     padding-right: 1rem;
     background-color: #24283b; }
@@ -157,12 +160,3 @@
       .bar .bar-right .clock .time {
         font-size: 16pt;
         font-weight: bold; }
-    .bar .bar-right .systray {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      padding-left: 0.8rem;
-      padding-right: 0.8rem;
-      border-radius: 5rem;
-      background-color: #24283b; }
-      .bar .bar-right .systray image {
-        font-size: 14pt; }

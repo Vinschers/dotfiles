@@ -20,6 +20,7 @@ const Left = () =>
         hpack: "start",
         children: [
             Media(),
+            SysTray(),
         ],
     });
 
@@ -51,7 +52,6 @@ const Right = () =>
             Configurations(),
             Battery(),
             Clock(),
-            SysTray(),
         ],
     });
 

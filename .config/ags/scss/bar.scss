@@ -60,12 +60,20 @@
                 }
             }
         }
+
+        .systray {
+            padding-left: 1rem;
+            border-radius: 5rem;
+
+            background-color: $systray_bg;
+
+            image {
+                font-size: 14pt;
+            }
+        }
     }
 
     .bar-center {
-        margin-left: 1rem;
-        margin-right: 1rem;
-
         .bar-corner {
             border-radius: 1.4rem;
             background-color: $ws_bg;
@@ -274,22 +282,6 @@
             .time {
                 font-size: 16pt;
                 font-weight: bold;
-            }
-        }
-
-        .systray {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-
-            padding-left: 0.8rem;
-            padding-right: 0.8rem;
-
-            border-radius: 5rem;
-
-            background-color: $systray_bg;
-
-            image {
-                font-size: 14pt;
             }
         }
     }

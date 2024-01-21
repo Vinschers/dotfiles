@@ -93,24 +93,26 @@ const MediaText = (player) => {
     });
 };
 
-const update_colors = (image, colors) => {
-    execAsync(
-        `sh -c "convert '${image}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
-    )
-        .then((output) => {
-            if (!output) return;
+const update_colors = (image) => {
+    return new Promise((resolve, reject) => {
+        execAsync(
+            `sh -c "convert '${image}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
+        )
+            .then((output) => {
+                if (!output) return;
 
-            const alpha = 0.6;
-            const new_colors = output.split("\n").map((color) => {
-                const color_parts = color
-                    .substring(1, color.length - 2)
-                    .split(",");
-                return `rgba(${color_parts[0]}, ${color_parts[1]}, ${color_parts[2]}, ${alpha})`;
-            });
+                const alpha = 0.6;
+                const colors = output.split("\n").map((color) => {
+                    const color_parts = color
+                        .substring(1, color.length - 2)
+                        .split(",");
+                    return `rgba(${color_parts[0]}, ${color_parts[1]}, ${color_parts[2]}, ${alpha})`;
+                });
 
-            colors.setValue(new_colors);
-        })
-        .catch(console.error);
+                resolve(colors);
+            })
+            .catch(reject);
+    });
 };
 
 const update_css = (player, colors, css) => {
@@ -138,16 +140,12 @@ const update_css = (player, colors, css) => {
  * @param {MprisPlayer} player
  */
 const MediaBox = (player) => {
-    const colors = new Variable([]);
     const css = new Variable("");
 
     player.connect("changed", (p) => {
-        update_css(p, colors.value, css);
-    });
-
-    player.connect("changed", (p) => {
-        update_colors(p.track_cover_url, colors);
-        update_css(p, colors.value, css);
+        update_colors(p.track_cover_url).then((colors) => {
+            update_css(p, colors, css);
+        }).catch(console.error);
     });
 
     return Widget.Box({
