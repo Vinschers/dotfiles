@@ -19,7 +19,7 @@ const Left = () =>
         class_name: "bar-left",
         hpack: "start",
         spacing: 16,
-        children: [Media(), SysTray()],
+        children: [SysTray(), Media()],
     });
 
 /**
