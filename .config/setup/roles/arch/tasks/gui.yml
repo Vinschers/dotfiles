@@ -21,6 +21,7 @@
       - gimp
       - zathura
       - zathura-pdf-mupdf
+      - speech-dispatcher
     state: present
 
 - name: Install GUI programs from AUR
