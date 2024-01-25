@@ -250,14 +250,12 @@
         }
 
         .battery {
-            margin-top: 0.3rem;
-            margin-bottom: 0.3rem;
-
             .circprog {
+                min-width: 2.3rem;
                 font-size: 2px;
 
                 image {
-                    font-size: 12pt;
+                    font-size: 11pt;
                 }
             }
 
