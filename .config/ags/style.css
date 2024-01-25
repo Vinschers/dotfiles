@@ -159,3 +159,27 @@
       .bar .bar-right .clock .time {
         font-size: 16pt;
         font-weight: bold; }
+
+.configurations-window {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  padding: 2rem;
+  border-radius: 3rem;
+  border: 1px solid red;
+  min-height: 30rem; }
+  .configurations-window .configurations-main .arrow-toggle {
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #c0caf5;
+    padding: 0px;
+    border-radius: 2rem;
+    min-width: 15rem;
+    min-height: 5rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+    .configurations-window .configurations-main .arrow-toggle.active {
+      background-color: #e0af68;
+      color: #1a1b26; }
+    .configurations-window .configurations-main .arrow-toggle image {
+      margin-left: 22px;
+      margin-right: 18px; }
+    .configurations-window .configurations-main .arrow-toggle .title {
+      font-weight: 600; }

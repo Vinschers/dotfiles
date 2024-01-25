@@ -1,4 +1,5 @@
 import icons from "../icons.js";
+import App from "resource:///com/github/Aylur/ags/app.js";
 import Bluetooth from "resource:///com/github/Aylur/ags/service/bluetooth.js";
 import Network from "resource:///com/github/Aylur/ags/service/network.js";
 import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
@@ -80,6 +81,7 @@ const BrightnessIndicator = () =>
 const Configurations = () =>
     Widget.Button({
         class_name: "configurations",
+        on_clicked: () => App.toggleWindow('configurations'),
         child: Widget.Box({
             spacing: 6,
             children: [

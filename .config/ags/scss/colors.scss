@@ -30,8 +30,8 @@ $system_progress_temp: #f7768e;
 $system_progress_ram: #bb9af7;
 $system_progress_gpu: #7dcfff;
 
-$configurations_fg: #c0caf5;
-$configurations_bg: #414868;
+$bar_configurations_fg: #c0caf5;
+$bar_configurations_bg: #414868;
 
 $battery_full: #7aa2f7;
 $battery_high: #9ece6a;
@@ -41,3 +41,13 @@ $battery_low: #f7768e;
 $clock_fg: #c0caf5;
 
 $systray_bg: #24283b;
+
+
+$configurations_bg: #24283b;
+$configurations_border: red;
+
+$arrow_toggle_bg: white;
+$arrow_toggle_fg: #c0caf5;
+$arrow_toggle_active_bg: #e0af68;
+$arrow_toggle_active_fg: #1a1b26;
+$arrow_toggle_active_hover: red;

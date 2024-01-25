@@ -1,0 +1,36 @@
+.configurations-window {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    padding: 2rem;
+    border-radius: 3rem;
+    border: 1px solid $configurations_border;
+    min-height: 30rem;
+
+    .configurations-main {
+        .arrow-toggle {
+            background-color: transparentize($arrow_toggle_bg, 0.93);
+            color: $arrow_toggle_fg;
+            padding: 0px;
+            border-radius: 2rem;
+            min-width: 15rem;
+            min-height: 5rem;
+            transition:
+                background-color 0.3s ease-in-out,
+                color 0.3s ease-in-out;
+
+            &.active {
+                background-color: $arrow_toggle_active_bg;
+                color: $arrow_toggle_active_fg;
+            }
+
+            image {
+                margin-left: 22px;
+                margin-right: 18px;
+            }
+
+            .title {
+                font-weight: 600;
+            }
+        }
+    }
+}

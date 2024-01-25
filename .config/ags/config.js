@@ -6,6 +6,8 @@ import { exec } from "resource:///com/github/Aylur/ags/utils.js";
 import DirectoryMonitorService from "./directoryMonitorService.js";
 
 import Bar from "./js/bar/config.js";
+import Configurations from "./js/configurations/config.js";
+import { WifiSelection } from "./js/configurations/Network.js";
 
 const applyScss = () => {
     // Compile scss
@@ -33,7 +35,7 @@ export function foreachMonitor(widget) {
 DirectoryMonitorService.connect("changed", () => applyScss());
 applyScss();
 
-const windows = () => [foreachMonitor(Bar)];
+const windows = () => [foreachMonitor(Bar), Configurations(), WifiSelection()];
 
 export default {
     windows: windows().flat(1),
