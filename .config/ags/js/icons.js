@@ -21,6 +21,7 @@ export default {
             card: "audio-card-symbolic",
         },
         mixer: "media-playlist-shuffle-symbolic",
+        sink: "",
     },
     apps: {
         apps: "view-app-grid-symbolic",

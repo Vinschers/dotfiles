@@ -54,7 +54,6 @@ const VolumeIndicator = (type = "speaker") =>
 const VolumeSlider = (type = "speaker") =>
     Widget.Slider({
         class_names: ["slider-box", "volume-slider"],
-        hexpand: true,
         draw_value: false,
         //@ts-ignore
         on_change: ({ value }) => (Audio[type].volume = value),
@@ -78,7 +77,7 @@ export const Volume = () =>
                 child: Widget.Button({
                     cursor: "pointer",
                     child: Widget.Icon({
-                        icon: icons.audio.type.card,
+                        icon: icons.audio.type.headset,
                     }),
                     on_clicked: () => App.toggleWindow("sink-selector"),
                 }),

@@ -198,26 +198,24 @@
       margin-right: 1.2rem; }
     .configurations-window .configurations-main .toggle-btn .title {
       font-weight: 600; }
-  .configurations-window .slider-box scale * {
-    border-radius: 10rem;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
-  .configurations-window .slider-box scale slider {
-    min-height: 1rem;
-    background-color: transparent; }
-  .configurations-window .slider-box scale trough {
-    background-color: #414868; }
-  .configurations-window .slider-box scale fill {
-    background-color: transparent; }
+  .configurations-window .slider-box scale {
+    min-width: 24rem; }
+    .configurations-window .slider-box scale * {
+      border-radius: 10rem;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+    .configurations-window .slider-box scale slider {
+      min-height: 1rem;
+      background-color: transparent; }
+    .configurations-window .slider-box scale trough {
+      background-color: #414868; }
+    .configurations-window .slider-box scale fill {
+      background-color: transparent; }
   .configurations-window .slider-box .volume-box highlight, .configurations-window .slider-box .volume-box progress {
     background-color: #7dcfff; }
-  .configurations-window .slider-box .volmicrophone-box {
-    margin-right: 4rem; }
-    .configurations-window .slider-box .volmicrophone-box highlight, .configurations-window .slider-box .volmicrophone-box progress {
-      background-color: #7aa2f7; }
-  .configurations-window .slider-box .brightness-box {
-    margin-right: 4rem; }
-    .configurations-window .slider-box .brightness-box highlight, .configurations-window .slider-box .brightness-box progress {
-      background-color: #f7768e; }
+  .configurations-window .slider-box .volmicrophone-box highlight, .configurations-window .slider-box .volmicrophone-box progress {
+    background-color: #7aa2f7; }
+  .configurations-window .slider-box .brightness-box highlight, .configurations-window .slider-box .brightness-box progress {
+    background-color: #f7768e; }
 
 .menu {
   padding: 2rem;

@@ -6,7 +6,6 @@ const BrightnessSlider = () =>
     Widget.Slider({
         class_name: "brightness-box",
         draw_value: false,
-        hexpand: true,
         binds: [["value", Brightness, "screen"]],
         on_change: ({ value }) => (Brightness.screen = value),
     });

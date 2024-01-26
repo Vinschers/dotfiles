@@ -68,6 +68,7 @@
 
     .slider-box {
         scale {
+            min-width: 24rem;
             * {
                 border-radius: 10rem;
                 transition:
@@ -95,13 +96,11 @@
             }
         }
         .volmicrophone-box {
-            margin-right: 4rem;
             highlight, progress {
                 background-color: $slider_microphone_fg;
             }
         }
         .brightness-box {
-            margin-right: 4rem;
             highlight, progress {
                 background-color: $slider_brightness_fg;
             }
