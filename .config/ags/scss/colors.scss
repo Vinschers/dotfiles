@@ -49,12 +49,12 @@ $configurations_border: #1a1b26;
 
 $toggle_bg: white;
 $toggle_fg: #c0caf5;
-$toggle_active_bg: #7aa2f7;
+$toggle_active_bg: #bb9af7;
 $toggle_active_fg: #1a1b26;
 $toggle_hover: #414868;
 $toggle_arrow_hover: #414868;
-$toggle_active_hover: #7dcfff;
-$toggle_arrow_active_hover: #7dcfff;
+$toggle_active_hover: #bb9af7;
+$toggle_arrow_active_hover: #bb9af7;
 
 
 $menu_bg: #24283b;
@@ -62,9 +62,10 @@ $menu_fg: #c0caf5;
 
 $menu_selection_bg: #414868;
 $menu_nocontent_fg: #565f89;
-$menu_bt_battery: #e0af68;
+$menu_bt_battery: #9ece6a;
 
 $slider_bg: #414868;
 $slider_volume_fg: #7dcfff;
 $slider_microphone_fg: #7aa2f7;
-$slider_brightness_fg: #f7768e;
+$slider_brightness_fg: #e0af68;
+$slider_mixer_fg: #c0caf5;

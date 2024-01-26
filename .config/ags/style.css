@@ -187,12 +187,12 @@
     .configurations-window .configurations-main .toggle-btn .arrow-toggle {
       border-radius: 2rem 0 0 2rem; }
     .configurations-window .configurations-main .toggle-btn.active {
-      background-color: #7aa2f7;
+      background-color: #bb9af7;
       color: #1a1b26; }
       .configurations-window .configurations-main .toggle-btn.active .toggle:hover {
-        background-color: #7dcfff; }
+        background-color: #bb9af7; }
       .configurations-window .configurations-main .toggle-btn.active .arrow:hover {
-        background-color: #7dcfff; }
+        background-color: #bb9af7; }
     .configurations-window .configurations-main .toggle-btn image {
       margin-left: 1.5rem;
       margin-right: 1.2rem; }
@@ -210,12 +210,15 @@
       background-color: #414868; }
     .configurations-window .slider-box scale fill {
       background-color: transparent; }
-  .configurations-window .slider-box .volume-box highlight, .configurations-window .slider-box .volume-box progress {
+  .configurations-window .volume-box highlight,
+  .configurations-window .volume-box progress {
     background-color: #7dcfff; }
-  .configurations-window .slider-box .volmicrophone-box highlight, .configurations-window .slider-box .volmicrophone-box progress {
+  .configurations-window .volmicrophone-box highlight,
+  .configurations-window .volmicrophone-box progress {
     background-color: #7aa2f7; }
-  .configurations-window .slider-box .brightness-box highlight, .configurations-window .slider-box .brightness-box progress {
-    background-color: #f7768e; }
+  .configurations-window .brightness-box highlight,
+  .configurations-window .brightness-box progress {
+    background-color: #e0af68; }
 
 .menu {
   padding: 2rem;
@@ -244,4 +247,22 @@
 
 .bluetooth .bt-battery {
   margin-left: 1rem;
-  color: #e0af68; }
+  color: #9ece6a; }
+
+.app-mixer .mixer-item scale * {
+  border-radius: 10rem;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+
+.app-mixer .mixer-item scale slider {
+  min-height: 0.5rem;
+  background-color: transparent; }
+
+.app-mixer .mixer-item scale trough {
+  background-color: #414868; }
+
+.app-mixer .mixer-item scale highlight,
+.app-mixer .mixer-item scale progress {
+  background-color: #c0caf5; }
+
+.app-mixer .mixer-item scale fill {
+  background-color: transparent; }

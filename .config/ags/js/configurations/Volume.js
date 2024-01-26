@@ -1,5 +1,6 @@
 import icons from "../icons.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
+import Pango10 from "gi://Pango";
 import { Menu } from "./ToggleButton.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
@@ -111,6 +112,7 @@ const MixerItem = (stream) =>
     Widget.Box({
         hexpand: true,
         class_name: "mixer-item horizontal",
+        spacing: 16,
         children: [
             Widget.Icon({
                 binds: [["tooltipText", stream, "name"]],
@@ -126,6 +128,8 @@ const MixerItem = (stream) =>
                         xalign: 0,
                         truncate: "end",
                         binds: [["label", stream, "description"]],
+                        max_width_chars: 60,
+                        ellipsize: Pango10.EllipsizeMode.END,
                     }),
                     Widget.Slider({
                         hexpand: true,
@@ -179,7 +183,6 @@ const SettingsButton = () =>
     Widget.Button({
         cursor: "pointer",
         on_clicked: () => Utils.execAsync("pavucontrol"),
-        hexpand: true,
         child: Widget.Icon(icons.settings),
     });
 

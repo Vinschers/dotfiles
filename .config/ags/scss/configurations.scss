@@ -89,21 +89,23 @@
                 background-color: transparent;
             }
         }
-
-        .volume-box {
-            highlight, progress {
-                background-color: $slider_volume_fg;
-            }
+    }
+    .volume-box {
+        highlight,
+        progress {
+            background-color: $slider_volume_fg;
         }
-        .volmicrophone-box {
-            highlight, progress {
-                background-color: $slider_microphone_fg;
-            }
+    }
+    .volmicrophone-box {
+        highlight,
+        progress {
+            background-color: $slider_microphone_fg;
         }
-        .brightness-box {
-            highlight, progress {
-                background-color: $slider_brightness_fg;
-            }
+    }
+    .brightness-box {
+        highlight,
+        progress {
+            background-color: $slider_brightness_fg;
         }
     }
 }
@@ -158,5 +160,35 @@
     .bt-battery {
         margin-left: 1rem;
         color: $menu_bt_battery;
+    }
+}
+
+.app-mixer {
+    .mixer-item {
+        scale {
+            * {
+                border-radius: 10rem;
+                transition:
+                    background-color 0.3s ease-in-out,
+                    color 0.3s ease-in-out;
+            }
+
+            slider {
+                min-height: 0.5rem;
+                background-color: transparent;
+            }
+
+            trough {
+                background-color: $slider_bg;
+            }
+            highlight,
+            progress {
+                background-color: $slider_mixer_fg;
+            }
+
+            fill {
+                background-color: transparent;
+            }
+        }
     }
 }
