@@ -1,5 +1,5 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
-import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
+import App from "resource:///com/github/Aylur/ags/app.js";
 import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
 const Clock = () => {
@@ -41,6 +41,7 @@ const Clock = () => {
     });
 
     return Widget.EventBox({
+        on_primary_click_release: () => App.toggleWindow('calendar'),
         on_hover: () => hover.setValue(true),
         on_hover_lost: () => hover.setValue(false),
         child: clock_widget,

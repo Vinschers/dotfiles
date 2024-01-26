@@ -7,6 +7,7 @@ import DirectoryMonitorService from "./directoryMonitorService.js";
 
 import Bar from "./js/bar/config.js";
 import Configurations from "./js/configurations/config.js";
+import Calendar from "./js/calendar/config.js";
 import { WifiSelection } from "./js/configurations/Network.js";
 import { BluetoothDevices } from "./js/configurations/Bluetooth.js";
 import { AppMixer, SinkSelector } from "./js/configurations/Volume.js";
@@ -39,6 +40,7 @@ applyScss();
 
 const windows = () => [
     foreachMonitor(Bar),
+    Calendar(),
     Configurations(),
     WifiSelection(),
     BluetoothDevices(),

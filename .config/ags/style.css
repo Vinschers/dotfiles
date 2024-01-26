@@ -158,6 +158,9 @@
         font-size: 16pt;
         font-weight: bold; }
 
+.calendar {
+  background: #24283b; }
+
 .configurations-window {
   margin-top: 1rem;
   margin-right: 1rem;
