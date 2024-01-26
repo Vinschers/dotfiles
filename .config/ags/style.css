@@ -189,7 +189,7 @@
   min-height: 30rem;
   font-family: Product Sans; }
   .configurations-window .configurations-main .toggle-btn {
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: #373d58;
     color: #c0caf5;
     border-radius: 2rem;
     min-width: 15rem;
@@ -218,6 +218,34 @@
       margin-right: 1.2rem; }
     .configurations-window .configurations-main .toggle-btn .title {
       font-weight: 600; }
+  .configurations-window .configurations-main .footer .footer-item {
+    padding: 1rem;
+    border-radius: 2rem;
+    min-width: 1.3rem;
+    min-height: 1.3rem;
+    background-color: #414868;
+    font-size: 12pt;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+    .configurations-window .configurations-main .footer .footer-item:not(:first-child) {
+      margin-left: 1rem; }
+  .configurations-window .configurations-main .footer .wallpaper {
+    background-color: #414868;
+    color: #c0caf5; }
+    .configurations-window .configurations-main .footer .wallpaper:hover {
+      background-color: #9ece6a;
+      color: #1a1b26; }
+  .configurations-window .configurations-main .footer .theme {
+    background-color: #414868;
+    color: #c0caf5; }
+    .configurations-window .configurations-main .footer .theme:hover {
+      background-color: #7aa2f7;
+      color: #1a1b26; }
+  .configurations-window .configurations-main .footer .power {
+    background-color: #414868;
+    color: #c0caf5; }
+    .configurations-window .configurations-main .footer .power:hover {
+      background-color: #f7768e;
+      color: #1a1b26; }
   .configurations-window .slider-box scale {
     min-width: 24rem; }
     .configurations-window .slider-box scale * {

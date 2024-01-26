@@ -64,9 +64,9 @@ export default {
         chat: "notification-symbolic",
         close: "window-close-symbolic",
     },
-    header: {
-        refresh: "view-refresh-symbolic",
-        settings: "settings-symbolic",
+    footer: {
+        theme: "applications-graphics-symbolic",
+        wallpaper: "image-x-generic-symbolic",
         power: "system-shutdown-symbolic",
     },
     trash: {
@@ -91,8 +91,6 @@ export default {
         next: "media-skip-forward-symbolic",
     },
     packages: "system-software-install-symbolic",
-    theme: App.configDir + "/icons/theme.png",
-    wallpaper: App.configDir + "/icons/wallpaper.png",
     ui: {
         send: "mail-send-symbolic",
         arrow: {

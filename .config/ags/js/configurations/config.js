@@ -52,7 +52,7 @@ export default () =>
                         Widget.Box({
                             vexpand: true,
                         }),
-                        // Footer(),
+                        Footer(),
                     ],
                 }),
                 // NotificationsColumn(),

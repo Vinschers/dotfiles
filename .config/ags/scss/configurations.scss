@@ -11,7 +11,7 @@
 
     .configurations-main {
         .toggle-btn {
-            background-color: transparentize($toggle_bg, 0.93);
+            background-color: $toggle_bg;
             color: $toggle_fg;
             border-radius: 2rem;
             min-width: 15rem;
@@ -62,6 +62,52 @@
 
             .title {
                 font-weight: 600;
+            }
+        }
+
+        .footer {
+            .footer-item {
+                padding: 1rem;
+                border-radius: 2rem;
+                min-width: 1.3rem;
+                min-height: 1.3rem;
+                background-color: $footer_bg;
+                font-size: 12pt;
+                transition:
+                    background-color 0.3s ease-in-out,
+                    color 0.3s ease-in-out;
+
+                &:not(:first-child) {
+                    margin-left: 1rem;
+                }
+            }
+
+            .wallpaper{
+                background-color: $footer_wallpaper_bg;
+                color: $footer_wallpaper_fg;
+
+                &:hover {
+                    background-color: $footer_wallpaper_hover_bg;
+                    color: $footer_wallpaper_hover_fg;
+                }
+            }
+            .theme{
+                background-color: $footer_theme_bg;
+                color: $footer_theme_fg;
+
+                &:hover {
+                    background-color: $footer_theme_hover_bg;
+                    color: $footer_theme_hover_fg;
+                }
+            }
+            .power{
+                background-color: $footer_power_bg;
+                color: $footer_power_fg;
+
+                &:hover {
+                    background-color: $footer_power_hover_bg;
+                    color: $footer_power_hover_fg;
+                }
             }
         }
     }

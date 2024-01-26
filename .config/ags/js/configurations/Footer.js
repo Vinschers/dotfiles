@@ -2,14 +2,20 @@ import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
+import icons from "../icons.js";
 
 export default () => {
     const prettyUptime = (str) => {
-        if (str.length >= 4) return str;
+        if (str.length >= 4) {
+            return str
+                .split(":")
+                .map((s) => s.padStart(2, "0"))
+                .join(":");
+        }
 
-        if (str.length === 1) return "0:0" + str;
+        if (str.length === 1) return "00:0" + str;
 
-        if (str.length === 2) return "0:" + str;
+        if (str.length === 2) return "00:" + str;
     };
     const uptime = Variable(0, {
         poll: [
@@ -20,12 +26,13 @@ export default () => {
     });
 
     return Widget.Box({
-        class_name: "controlcenter__header",
+        class_name: "footer",
         children: [
             Widget.Box({
+                class_name: "footer-item",
                 children: [
                     Widget.Label({
-                        class_name: "controlcenter__uptime",
+                        class_name: "uptime",
                         binds: [
                             ["label", uptime, "value", (t) => `uptime ${t}`],
                         ],
@@ -35,23 +42,34 @@ export default () => {
             Widget.Box({
                 hexpand: true,
             }),
+
             Widget.Button({
+                class_names: ["footer-item", "wallpaper"],
                 cursor: "pointer",
-                class_name: "controlcenter__theme",
-                on_primary_click_release: () =>
+                on_primary_click: () =>
                     Utils.execAsync(
-                        `bash -c ${App.configDir}/bin/randomWallpaper`,
-                    ),
-                child: Widget.Icon({
-                    icon: "applications-graphics-symbolic",
-                    size: 16,
-                }),
+                        'sh -c "$HOME/.local/share/wallpapers/update.sh"',
+                    ).catch(console.error),
+                on_secondary_click: () =>
+                    Utils.execAsync(
+                        'sh -c "$HOME/.local/share/wallpapers/update.sh -1"',
+                    ).catch(console.error),
+                child: Widget.Icon(icons.footer.wallpaper),
             }),
             Widget.Button({
+                class_names: ["footer-item", "theme"],
                 cursor: "pointer",
-                class_name: "controlcenter__power",
+                on_primary_click_release: () =>
+                    Utils.execAsync(
+                        `notify-send "TODO"`,
+                    ),
+                child: Widget.Icon(icons.footer.theme),
+            }),
+            Widget.Button({
+                class_names: ["footer-item", "power"],
+                cursor: "pointer",
                 on_primary_click_release: () => {},
-                child: Widget.Icon({ icon: "system-shutdown", size: 16 }),
+                child: Widget.Icon(icons.footer.power),
             }),
         ],
     });
