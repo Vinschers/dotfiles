@@ -22,6 +22,9 @@
       - zathura
       - zathura-pdf-mupdf
       - speech-dispatcher
+      - thunar
+      - tumbler
+      - wf-recorder
     state: present
 
 - name: Install GUI programs from AUR

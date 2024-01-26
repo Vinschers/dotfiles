@@ -6,7 +6,8 @@ import Microphone from "./Microphone.js";
 import DND from "./DND.js";
 import Brightness from "./Brightness.js";
 import NightLight from "./NightLight.js";
-import Header from "./Header.js";
+import Record from "./Record.js";
+import Footer from "./Footer.js";
 
 import { VolMicrophone, Volume } from "./Volume.js";
 import { NetworkToggle } from "./Network.js";
@@ -32,8 +33,9 @@ export default () =>
                     vertical: true,
                     spacing: 16,
                     children: [
-                        Row(NetworkToggle(), BluetoothToggle(), NightLight()),
-                        Row(Microphone(), DND()),
+                        Row(NetworkToggle(), BluetoothToggle()),
+                        Row(NightLight(), DND()),
+                        Row(Microphone(), Record()),
                         Widget.Box(),
                         Row(
                             Widget.Box({
@@ -50,7 +52,7 @@ export default () =>
                         Widget.Box({
                             vexpand: true,
                         }),
-                        // Header(),
+                        // Footer(),
                     ],
                 }),
                 // NotificationsColumn(),

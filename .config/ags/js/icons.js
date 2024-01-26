@@ -55,7 +55,7 @@ export default {
         close: "window-close-symbolic",
     },
     recorder: {
-        recording: "media-record-symbolic",
+        recording: "emblem-videos-symbolic",
     },
     notifications: {
         noisy: "preferences-system-notifications-symbolic",
@@ -90,7 +90,7 @@ export default {
         prev: "media-skip-backward-symbolic",
         next: "media-skip-forward-symbolic",
     },
-    packages: "extract-archive-symbolic",
+    packages: "system-software-install-symbolic",
     theme: App.configDir + "/icons/theme.png",
     wallpaper: App.configDir + "/icons/wallpaper.png",
     ui: {
