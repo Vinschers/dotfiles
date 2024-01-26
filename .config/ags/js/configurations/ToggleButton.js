@@ -4,7 +4,6 @@ import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
-import HoverableButton from "../misc/HoverableButton.js";
 
 export const opened = Variable("");
 App.connect("window-toggled", (_, name, visible) => {
@@ -13,7 +12,8 @@ App.connect("window-toggled", (_, name, visible) => {
 });
 
 export const Arrow = (name) =>
-    HoverableButton({
+    Widget.Button({
+        cursor: "pointer",
         class_name: "arrow",
         child: Widget.Icon({
             icon: icons.ui.arrow.right,
@@ -42,7 +42,8 @@ export const ArrowToggleButton = ({
             ],
         ],
         children: [
-            HoverableButton({
+            Widget.Button({
+                cursor: "pointer",
                 child: Widget.Box({
                     hexpand: true,
                     children: [
@@ -86,7 +87,8 @@ export const SimpleToggleButton = ({
             ],
         ],
         children: [
-            HoverableButton({
+            Widget.Button({
+                cursor: "pointer",
                 child: Widget.Box({
                     hexpand: true,
                     children: [

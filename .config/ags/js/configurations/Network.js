@@ -3,7 +3,6 @@ import { Menu, ArrowToggleButton } from "./ToggleButton.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
 import Applications from "resource:///com/github/Aylur/ags/service/applications.js";
-import HoverableButton from "../misc/HoverableButton.js";
 import Network from "resource:///com/github/Aylur/ags/service/network.js";
 
 export const NetworkToggle = () =>
@@ -66,7 +65,8 @@ export const WifiSelection = () =>
                         (box) =>
                             (box.children = Network.wifi?.access_points?.map(
                                 (ap) =>
-                                    HoverableButton({
+                                    Widget.Button({
+                                        cursor: "pointer",
                                         on_clicked: () =>
                                             Utils.execAsync(
                                                 `nmcli device wifi connect ${ap.bssid}`,
@@ -90,7 +90,8 @@ export const WifiSelection = () =>
                 ],
             }),
             Widget.Separator({}),
-            HoverableButton({
+            Widget.Button({
+                cursor: "pointer",
                 on_clicked: () =>
                     Applications.query("gnome-control-center")?.[0].launch(),
                 child: Widget.Box({

@@ -1,9 +1,10 @@
 import icons from '../icons.js';
+import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
 import Notification from '../notifications/Notification.js';
-import { Widget, Notifications } from '../imports.js';
-import HoverableButton from '../misc/HoverableButton.js';
 
-const ClearButton = () => HoverableButton({
+const ClearButton = () => Widget.Button({
+    cursor: "pointer",
     hpack: 'end',
     class_name: 'notifications__clear-button',
     on_clicked: () => Notifications.clear(),

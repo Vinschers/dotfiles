@@ -1,10 +1,8 @@
 import icons from "../icons.js";
-import FontIcon from "../misc/FontIcon.js";
 import { Arrow, Menu } from "./ToggleButton.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
 import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
-import HoverableButton from "../misc/HoverableButton.js";
 
 const getAudioTypeIcon = (icon) => {
     const substitues = [
@@ -22,24 +20,29 @@ const getAudioTypeIcon = (icon) => {
 
 /** @param {'speaker' | 'microphone'=} type */
 const VolumeIndicator = (type = "speaker") =>
-    HoverableButton({
+    Widget.Button({
+        cursor: "pointer",
         class_name: "slider__tooltip",
-        on_clicked: () => (Audio[type].is_muted = !Audio[type].is_muted),
+        on_clicked: () => {
+            Audio[type].is_muted = !Audio[type].is_muted;
+        },
         child: Widget.Icon({
             connections: [
                 [
                     Audio,
                     (icon) => {
-                        if (!Audio[type]) return;
+                        if (Audio[type]) {
+                            icon.icon =
+                                type === "speaker"
+                                    ? getAudioTypeIcon(
+                                          Audio[type].icon_name || "",
+                                      )
+                                    : icons.audio.mic.high;
 
-                        icon.icon =
-                            type === "speaker"
-                                ? getAudioTypeIcon(Audio[type].icon_name || "")
-                                : icons.audio.mic.high;
-
-                        icon.tooltip_text = `Volume ${Math.floor(
-                            Audio[type].volume * 100,
-                        )}%`;
+                            icon.tooltip_text = `Volume ${Math.floor(
+                                Audio[type].volume * 100,
+                            )}%`;
+                        }
                     },
                     `${type}-changed`,
                 ],
@@ -148,7 +151,8 @@ const MixerItem = (stream) =>
 
 /** @param {import('types/service/audio').Stream} stream */
 const SinkItem = (stream) =>
-    HoverableButton({
+    Widget.Button({
+        cursor: "pointer",
         hexpand: true,
         on_clicked: () => (Audio.speaker = stream),
         child: Widget.Box({
@@ -178,7 +182,8 @@ const SinkItem = (stream) =>
     });
 
 const SettingsButton = () =>
-    HoverableButton({
+    Widget.Button({
+        cursor: "pointer",
         on_clicked: () => Utils.execAsync("pavucontrol"),
         hexpand: true,
         child: Widget.Box({
@@ -189,7 +194,7 @@ const SettingsButton = () =>
 export const AppMixer = () =>
     Menu({
         name: "app-mixer",
-        icon: FontIcon(icons.audio.mixer),
+        icon: Widget.Icon(icons.audio.mixer),
         title: Widget.Label("App Mixer"),
         menu_content: [
             Widget.Box({

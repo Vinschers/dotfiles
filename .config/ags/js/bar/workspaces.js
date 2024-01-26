@@ -1,7 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
-import { RoundedCorner } from "../rounded_corner.js";
+import { RoundedCorner } from "../misc/RoundedCorner.js";
 
 const NUM_OF_WORKSPACES = 10;
 

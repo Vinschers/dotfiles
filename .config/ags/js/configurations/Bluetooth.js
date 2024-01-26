@@ -1,7 +1,6 @@
 import icons from '../icons.js';
 import { Menu, ArrowToggleButton } from './ToggleButton.js';
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
-import HoverableButton from '../misc/HoverableButton.js';
 import Bluetooth from 'resource:///com/github/Aylur/ags/service/bluetooth.js';
 
 export const BluetoothToggle = () => ArrowToggleButton({
@@ -49,7 +48,8 @@ export const BluetoothDevices = () => Menu({
             vertical: true,
             connections: [[Bluetooth, box => box.children = Bluetooth.devices
                 .filter(d => d.name)
-                .map(device => HoverableButton({
+                .map(device => Widget.Button({
+                    cursor: "pointer",
                     class_name: 'bluetooth__entry',
                     on_clicked: () => device.setConnection(!device.connected),
                     child: Widget.Box({

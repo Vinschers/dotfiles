@@ -1,7 +1,6 @@
 import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
-import HoverableButton from "../misc/HoverableButton.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
 
 export default () => {
@@ -36,9 +35,10 @@ export default () => {
             Widget.Box({
                 hexpand: true,
             }),
-            HoverableButton({
+            Widget.Button({
+                cursor: "pointer",
                 class_name: "controlcenter__theme",
-                onPrimaryClickRelease: () =>
+                on_primary_click_release: () =>
                     Utils.execAsync(
                         `bash -c ${App.configDir}/bin/randomWallpaper`,
                     ),
@@ -47,9 +47,10 @@ export default () => {
                     size: 16,
                 }),
             }),
-            HoverableButton({
+            Widget.Button({
+                cursor: "pointer",
                 class_name: "controlcenter__power",
-                onPrimaryClickRelease: () => {},
+                on_primary_click_release: () => {},
                 child: Widget.Icon({ icon: "system-shutdown", size: 16 }),
             }),
         ],

@@ -12,7 +12,7 @@ import Theme from "./theme.js";
 import Title from "./title.js";
 import Weather from "./weather.js";
 import Workspaces from "./workspaces.js";
-import { RoundedCorner } from "../rounded_corner.js";
+import { RoundedCorner } from "../misc/RoundedCorner.js";
 
 const Left = () =>
     Widget.Box({
