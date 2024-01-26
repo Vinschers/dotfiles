@@ -5,6 +5,7 @@ import PopupWindow from "../misc/PopupWindow.js";
 import Microphone from "./Microphone.js";
 import DND from "./DND.js";
 import Brightness from "./Brightness.js";
+import NightLight from "./NightLight.js";
 import Header from "./Header.js";
 
 import { VolMicrophone, Volume } from "./Volume.js";
@@ -31,7 +32,7 @@ export default () =>
                     vertical: true,
                     spacing: 16,
                     children: [
-                        Row(NetworkToggle(), BluetoothToggle()),
+                        Row(NetworkToggle(), BluetoothToggle(), NightLight()),
                         Row(Microphone(), DND()),
                         Widget.Box(),
                         Row(

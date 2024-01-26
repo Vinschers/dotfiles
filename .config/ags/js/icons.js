@@ -31,6 +31,10 @@ export default {
         enabled: "bluetooth-active-symbolic",
         disabled: "bluetooth-disabled-symbolic",
     },
+    nightlight: {
+        enabled: "night-light-symbolic",
+        disabled: "display-brightness-high-symbolic",
+    },
     brightness: {
         indicator: {
             on: "display-brightness-symbolic",
