@@ -44,10 +44,21 @@ $systray_bg: #24283b;
 
 
 $configurations_bg: #24283b;
-$configurations_border: red;
+$configurations_border: #1a1b26;
 
-$arrow_toggle_bg: white;
-$arrow_toggle_fg: #c0caf5;
-$arrow_toggle_active_bg: #e0af68;
-$arrow_toggle_active_fg: #1a1b26;
-$arrow_toggle_active_hover: red;
+$toggle_bg: white;
+$toggle_fg: #c0caf5;
+$toggle_active_bg: #7aa2f7;
+$toggle_active_fg: #1a1b26;
+$toggle_hover: #414868;
+$toggle_arrow_hover: #414868;
+$toggle_active_hover: #7dcfff;
+$toggle_arrow_active_hover: #7dcfff;
+
+
+$menu_bg: #24283b;
+$menu_fg: #c0caf5;
+
+$menu_selection_bg: #414868;
+
+$menu_bt_battery: #e0af68

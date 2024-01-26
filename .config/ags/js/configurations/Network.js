@@ -56,6 +56,13 @@ export const WifiSelection = () =>
             ],
         }),
         title: Widget.Label("Wifi Selection"),
+        settings: Widget.Button({
+            cursor: "pointer",
+            on_clicked: () => Applications.query("iwgtk")?.[0].launch(),
+            child: Widget.Box({
+                child: Widget.Icon(icons.settings),
+            }),
+        }),
         menu_content: [
             Widget.Box({
                 vertical: true,
@@ -88,18 +95,6 @@ export const WifiSelection = () =>
                             )),
                     ],
                 ],
-            }),
-            Widget.Separator({}),
-            Widget.Button({
-                cursor: "pointer",
-                on_clicked: () =>
-                    Applications.query("gnome-control-center")?.[0].launch(),
-                child: Widget.Box({
-                    children: [
-                        Widget.Icon(icons.settings),
-                        Widget.Label("Network"),
-                    ],
-                }),
             }),
         ],
     });

@@ -163,21 +163,63 @@
   margin-right: 1rem;
   padding: 2rem;
   border-radius: 3rem;
-  border: 1px solid red;
+  background-color: #24283b;
+  border: 1px solid #1a1b26;
   min-height: 30rem; }
-  .configurations-window .configurations-main .arrow-toggle {
+  .configurations-window .configurations-main .toggle-btn {
     background-color: rgba(255, 255, 255, 0.07);
     color: #c0caf5;
-    padding: 0px;
     border-radius: 2rem;
     min-width: 15rem;
-    min-height: 5rem;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
-    .configurations-window .configurations-main .arrow-toggle.active {
-      background-color: #e0af68;
+    min-height: 5rem; }
+    .configurations-window .configurations-main .toggle-btn > * {
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+    .configurations-window .configurations-main .toggle-btn .arrow {
+      border-radius: 0 2rem 2rem 0; }
+      .configurations-window .configurations-main .toggle-btn .arrow:hover {
+        background-color: #414868; }
+    .configurations-window .configurations-main .toggle-btn .toggle {
+      border-radius: 2rem; }
+      .configurations-window .configurations-main .toggle-btn .toggle:hover {
+        background-color: #414868; }
+    .configurations-window .configurations-main .toggle-btn .arrow-toggle {
+      border-radius: 2rem 0 0 2rem; }
+    .configurations-window .configurations-main .toggle-btn.active {
+      background-color: #7aa2f7;
       color: #1a1b26; }
-    .configurations-window .configurations-main .arrow-toggle image {
+      .configurations-window .configurations-main .toggle-btn.active .toggle:hover {
+        background-color: #7dcfff; }
+      .configurations-window .configurations-main .toggle-btn.active .arrow:hover {
+        background-color: #7dcfff; }
+    .configurations-window .configurations-main .toggle-btn image {
       margin-left: 22px;
       margin-right: 18px; }
-    .configurations-window .configurations-main .arrow-toggle .title {
+    .configurations-window .configurations-main .toggle-btn .title {
       font-weight: 600; }
+
+.menu {
+  padding: 2rem;
+  border-radius: 3rem;
+  background-color: #24283b;
+  color: #c0caf5;
+  min-width: 24rem; }
+  .menu .horizontal {
+    margin-bottom: 0.2rem; }
+    .menu .horizontal .title label {
+      font-weight: bold;
+      font-size: 16pt; }
+    .menu .horizontal .title image {
+      margin-right: 1rem; }
+  .menu button {
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    margin: 0.2rem 0;
+    transition: background-color 0.1s ease-in-out; }
+    .menu button:hover {
+      background-color: #414868; }
+  .menu .content button image {
+    margin-right: 1rem; }
+
+.bluetooth .bt-battery {
+  margin-left: 1rem;
+  color: #e0af68; }

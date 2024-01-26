@@ -8,6 +8,7 @@ import DirectoryMonitorService from "./directoryMonitorService.js";
 import Bar from "./js/bar/config.js";
 import Configurations from "./js/configurations/config.js";
 import { WifiSelection } from "./js/configurations/Network.js";
+import { BluetoothDevices } from "./js/configurations/Bluetooth.js";
 
 const applyScss = () => {
     // Compile scss
@@ -35,7 +36,7 @@ export function foreachMonitor(widget) {
 DirectoryMonitorService.connect("changed", () => applyScss());
 applyScss();
 
-const windows = () => [foreachMonitor(Bar), Configurations(), WifiSelection()];
+const windows = () => [foreachMonitor(Bar), Configurations(), WifiSelection(), BluetoothDevices()];
 
 export default {
     windows: windows().flat(1),

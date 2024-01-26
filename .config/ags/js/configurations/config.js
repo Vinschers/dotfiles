@@ -14,7 +14,7 @@ import { BluetoothToggle } from "./Bluetooth.js";
 const Row = (...widgets) =>
     Widget.Box({
         class_name: "row",
-        spacing: 6,
+        spacing: 12,
         children: [
             ...widgets,
         ],
@@ -34,7 +34,7 @@ export default () =>
                     spacing: 16,
                     children: [
                         Row(NetworkToggle(), BluetoothToggle()),
-                        // Row(Microphone(), DND()),
+                        Row(Microphone(), DND()),
                         // Row([
                         //     Widget.Box({
                         //         class_name: "slider-box",

@@ -32,7 +32,7 @@ export const ArrowToggleButton = ({
     connection: [service, condition],
 }) =>
     Widget.Box({
-        class_name: "arrow-toggle",
+        class_name: "toggle-btn",
         connections: [
             [
                 service,
@@ -43,6 +43,7 @@ export const ArrowToggleButton = ({
         ],
         children: [
             Widget.Button({
+                class_names: ["toggle", "arrow-toggle"],
                 cursor: "pointer",
                 child: Widget.Box({
                     hexpand: true,
@@ -77,7 +78,7 @@ export const SimpleToggleButton = ({
     connection: [service, condition],
 }) =>
     Widget.Box({
-        class_name: "quicksettings__button",
+        class_name: "toggle-btn",
         connections: [
             [
                 service,
@@ -88,6 +89,7 @@ export const SimpleToggleButton = ({
         ],
         children: [
             Widget.Button({
+                class_name: "toggle",
                 cursor: "pointer",
                 child: Widget.Box({
                     hexpand: true,
@@ -106,7 +108,7 @@ export const SimpleToggleButton = ({
         ],
     });
 
-export const Menu = ({ name, icon, title, menu_content }) =>
+export const Menu = ({ name, icon, title, settings, menu_content }) =>
     PopupWindow({
         name: name,
         layout: "center",
@@ -117,11 +119,20 @@ export const Menu = ({ name, icon, title, menu_content }) =>
             vertical: true,
             children: [
                 Widget.Box({
-                    class_name: "title horizontal",
-                    children: [icon, title],
+                    class_name: "horizontal",
+                    children: [
+                        Widget.Box({
+                            class_name: "title",
+                            children: [icon, title],
+                        }),
+                        Widget.Box({ hexpand: true }),
+                        settings,
+                    ],
                 }),
-                Widget.Separator({}),
-                ...menu_content,
+                Widget.Box({
+                    class_name: "content",
+                    children: menu_content
+                }),
             ],
         }),
     });
