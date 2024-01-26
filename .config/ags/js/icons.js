@@ -20,7 +20,7 @@ export default {
             speaker: "audio-speakers-symbolic",
             card: "audio-card-symbolic",
         },
-        mixer: "tool-symbolic",
+        mixer: "media-playlist-shuffle-symbolic",
     },
     apps: {
         apps: "view-app-grid-symbolic",

@@ -4,8 +4,10 @@
     padding: 2rem;
     border-radius: 3rem;
     background-color: $configurations_bg;
+    color: $configurations_fg;
     border: 1px solid $configurations_border;
     min-height: 30rem;
+    font-family: Product Sans;
 
     .configurations-main {
         .toggle-btn {
@@ -16,7 +18,9 @@
             min-height: 5rem;
 
             > * {
-                transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+                transition:
+                    background-color 0.3s ease-in-out,
+                    color 0.3s ease-in-out;
             }
 
             .arrow {
@@ -52,12 +56,54 @@
             }
 
             image {
-                margin-left: 22px;
-                margin-right: 18px;
+                margin-left: 1.5rem;
+                margin-right: 1.2rem;
             }
 
             .title {
                 font-weight: 600;
+            }
+        }
+    }
+
+    .slider-box {
+        scale {
+            * {
+                border-radius: 10rem;
+                transition:
+                    background-color 0.3s ease-in-out,
+                    color 0.3s ease-in-out;
+            }
+
+            slider {
+                min-height: 1rem;
+                background-color: transparent;
+            }
+
+            trough {
+                background-color: $slider_bg;
+            }
+
+            fill {
+                background-color: transparent;
+            }
+        }
+
+        .volume-box {
+            highlight, progress {
+                background-color: $slider_volume_fg;
+            }
+        }
+        .volmicrophone-box {
+            margin-right: 4rem;
+            highlight, progress {
+                background-color: $slider_microphone_fg;
+            }
+        }
+        .brightness-box {
+            margin-right: 4rem;
+            highlight, progress {
+                background-color: $slider_brightness_fg;
             }
         }
     }
@@ -102,6 +148,10 @@
                 margin-right: 1rem;
             }
         }
+    }
+
+    .no-content {
+        color: $menu_nocontent_fg;
     }
 }
 

@@ -12,8 +12,7 @@ const SysTray = () =>
                     child: Widget.Icon({ binds: [["icon", item, "icon"]] }),
                     on_primary_click: (_, event) => item.activate(event),
                     on_secondary_click: (_, event) => item.openMenu(event),
-                    binds: [["tooltip-markup", item, "tooltip-markup"]],
-                }),
+                }).bind("tooltip-markup", item, "tooltip-markup"),
             );
         }),
     }).bind("visible", SystemTray, "items", (i) => i.length > 0);

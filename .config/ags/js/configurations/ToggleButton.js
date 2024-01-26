@@ -33,14 +33,6 @@ export const ArrowToggleButton = ({
 }) =>
     Widget.Box({
         class_name: "toggle-btn",
-        connections: [
-            [
-                service,
-                (box) => {
-                    box.toggleClassName("active", condition());
-                },
-            ],
-        ],
         children: [
             Widget.Button({
                 class_names: ["toggle", "arrow-toggle"],
@@ -68,6 +60,8 @@ export const ArrowToggleButton = ({
             }),
             Arrow(name, activateOnArrow && activate),
         ],
+    }).hook(service, (box) => {
+        box.toggleClassName("active", condition());
     });
 
 export const SimpleToggleButton = ({
@@ -79,14 +73,6 @@ export const SimpleToggleButton = ({
 }) =>
     Widget.Box({
         class_name: "toggle-btn",
-        connections: [
-            [
-                service,
-                (box) => {
-                    box.toggleClassName("active", condition());
-                },
-            ],
-        ],
         children: [
             Widget.Button({
                 class_name: "toggle",
@@ -106,6 +92,8 @@ export const SimpleToggleButton = ({
                 on_clicked: () => toggle(),
             }),
         ],
+    }).hook(service, (box) => {
+        box.toggleClassName("active", condition());
     });
 
 export const Menu = ({ name, icon, title, settings, menu_content }) =>
@@ -131,7 +119,7 @@ export const Menu = ({ name, icon, title, settings, menu_content }) =>
                 }),
                 Widget.Box({
                     class_name: "content",
-                    children: menu_content
+                    children: menu_content,
                 }),
             ],
         }),

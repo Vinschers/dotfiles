@@ -7,7 +7,7 @@ import DND from "./DND.js";
 import Brightness from "./Brightness.js";
 import Header from "./Header.js";
 
-import { Volume } from "./Volume.js";
+import { VolMicrophone, Volume } from "./Volume.js";
 import { NetworkToggle } from "./Network.js";
 import { BluetoothToggle } from "./Bluetooth.js";
 
@@ -15,9 +15,7 @@ const Row = (...widgets) =>
     Widget.Box({
         class_name: "row",
         spacing: 12,
-        children: [
-            ...widgets,
-        ],
+        children: [...widgets],
     });
 
 export default () =>
@@ -35,16 +33,19 @@ export default () =>
                     children: [
                         Row(NetworkToggle(), BluetoothToggle()),
                         Row(Microphone(), DND()),
-                        // Row([
-                        //     Widget.Box({
-                        //         class_name: "slider-box",
-                        //         vertical: true,
-                        //         children: [
-                        //             Row([Volume()]),
-                        //             Row([Brightness()]),
-                        //         ],
-                        //     }),
-                        // ]),
+                        Widget.Box(),
+                        Row(
+                            Widget.Box({
+                                class_name: "slider-box",
+                                vertical: true,
+                                spacing: 16,
+                                children: [
+                                    Row(Volume()),
+                                    Row(VolMicrophone()),
+                                    Row(Brightness()),
+                                ],
+                            }),
+                        ),
                         Widget.Box({
                             vexpand: true,
                         }),

@@ -1,5 +1,6 @@
 import icons from "../icons.js";
-import { Arrow, Menu } from "./ToggleButton.js";
+import App from "resource:///com/github/Aylur/ags/app.js";
+import { Menu } from "./ToggleButton.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
 import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
@@ -22,82 +23,88 @@ const getAudioTypeIcon = (icon) => {
 const VolumeIndicator = (type = "speaker") =>
     Widget.Button({
         cursor: "pointer",
-        class_name: "slider__tooltip",
+        class_name: "slider-tooltip",
         on_clicked: () => {
+            //@ts-ignore
             Audio[type].is_muted = !Audio[type].is_muted;
         },
-        child: Widget.Icon({
-            connections: [
-                [
-                    Audio,
-                    (icon) => {
-                        if (Audio[type]) {
-                            icon.icon =
-                                type === "speaker"
-                                    ? getAudioTypeIcon(
-                                          Audio[type].icon_name || "",
-                                      )
-                                    : icons.audio.mic.high;
+        child: Widget.Icon({}).hook(
+            Audio,
+            (icon) => {
+                if (Audio[type]) {
+                    icon.icon =
+                        type === "speaker"
+                            ? getAudioTypeIcon(
+                                  //@ts-ignore
+                                  Audio[type].icon_name || "",
+                              )
+                            : icons.audio.mic.unmuted;
 
-                            icon.tooltip_text = `Volume ${Math.floor(
-                                Audio[type].volume * 100,
-                            )}%`;
-                        }
-                    },
-                    `${type}-changed`,
-                ],
-            ],
-        }),
+                    icon.tooltip_text = `Volume ${Math.floor(
+                        //@ts-ignore
+                        Audio[type].volume * 100,
+                    )}%`;
+                }
+            },
+            `${type}-changed`,
+        ),
     });
 
 /** @param {'speaker' | 'microphone'=} type */
 const VolumeSlider = (type = "speaker") =>
     Widget.Slider({
-        class_name: "volume__slider",
+        class_names: ["slider-box", "volume-slider"],
         hexpand: true,
         draw_value: false,
+        //@ts-ignore
         on_change: ({ value }) => (Audio[type].volume = value),
-        connections: [
-            [
-                Audio,
-                (slider) => {
-                    slider.value = Audio[type]?.volume || 0;
-                },
-                `${type}-changed`,
-            ],
-        ],
-    });
+    }).hook(
+        Audio,
+        (slider) => {
+            slider.value = Audio[type]?.volume || 0;
+        },
+        `${type}-changed`,
+    );
 
 export const Volume = () =>
     Widget.Box({
-        class_name: "volume__box",
+        class_name: "volume-box",
+        spacing: 16,
         children: [
             VolumeIndicator("speaker"),
             VolumeSlider("speaker"),
             Widget.Box({
                 vpack: "center",
-                child: Arrow("sink-selector"),
+                child: Widget.Button({
+                    cursor: "pointer",
+                    child: Widget.Icon({
+                        icon: icons.audio.type.card,
+                    }),
+                    on_clicked: () => App.toggleWindow("sink-selector"),
+                }),
             }),
             Widget.Box({
                 vpack: "center",
-                child: Arrow("app-mixer"),
-                connections: [
-                    [
-                        Audio,
-                        (box) => {
-                            box.visible = Audio.apps.length > 0;
-                        },
-                    ],
-                ],
+                child: Widget.Button({
+                    cursor: "pointer",
+                    child: Widget.Icon({
+                        icon: icons.audio.mixer,
+                    }),
+                    on_clicked: () => App.toggleWindow("app-mixer"),
+                }),
+            }).hook(Audio, (box) => {
+                box.visible = Audio.apps.length > 0;
             }),
         ],
     });
 
-export const Microhone = () =>
+export const VolMicrophone = () =>
     Widget.Box({
-        class_name: "slider",
-        binds: [["visible", Audio, "recorders", (r) => r.length > 0]],
+        class_name: "volmicrophone-box",
+        spacing: 16,
         children: [VolumeIndicator("microphone"), VolumeSlider("microphone")],
+    }).hook(Audio, (box) => {
+        box.visible = Audio.recorders.length > 0 || Audio.microphones.length > 0;
     });
 
 /** @param {import('types/service/audio').Stream} stream */
@@ -108,16 +115,10 @@ const MixerItem = (stream) =>
         children: [
             Widget.Icon({
                 binds: [["tooltipText", stream, "name"]],
-                connections: [
-                    [
-                        stream,
-                        (icon) => {
-                            icon.icon = Utils.lookUpIcon(stream.name || "")
-                                ? stream.name || ""
-                                : icons.mpris.fallback;
-                        },
-                    ],
-                ],
+            }).hook(stream, (icon) => {
+                icon.icon = Utils.lookUpIcon(stream.name || "")
+                    ? stream.name || ""
+                    : icons.mpris.fallback;
             }),
             Widget.Box({
                 vertical: true,
@@ -137,14 +138,8 @@ const MixerItem = (stream) =>
             }),
             Widget.Label({
                 xalign: 1,
-                connections: [
-                    [
-                        stream,
-                        (l) => {
-                            l.label = `${Math.floor(stream.volume * 100)}%`;
-                        },
-                    ],
-                ],
+            }).hook(stream, (label) => {
+                label.label = `${Math.floor(stream.volume * 100)}%`;
             }),
         ],
     });
@@ -186,9 +181,7 @@ const SettingsButton = () =>
         cursor: "pointer",
         on_clicked: () => Utils.execAsync("pavucontrol"),
         hexpand: true,
-        child: Widget.Box({
-            children: [Widget.Icon(icons.settings), Widget.Label("Settings")],
-        }),
+        child: Widget.Icon(icons.settings),
     });
 
 export const AppMixer = () =>
@@ -196,13 +189,12 @@ export const AppMixer = () =>
         name: "app-mixer",
         icon: Widget.Icon(icons.audio.mixer),
         title: Widget.Label("App Mixer"),
+        settings: SettingsButton(),
         menu_content: [
             Widget.Box({
                 vertical: true,
                 binds: [["children", Audio, "apps", (a) => a.map(MixerItem)]],
             }),
-            Widget.Separator({}),
-            SettingsButton(),
         ],
     });
 
@@ -211,6 +203,7 @@ export const SinkSelector = () =>
         name: "sink-selector",
         icon: Widget.Icon(icons.audio.type.headset),
         title: Widget.Label("Sink Selector"),
+        settings: SettingsButton(),
         menu_content: [
             Widget.Box({
                 vertical: true,
@@ -218,7 +211,5 @@ export const SinkSelector = () =>
                     ["children", Audio, "speakers", (s) => s.map(SinkItem)],
                 ],
             }),
-            Widget.Separator({}),
-            SettingsButton(),
         ],
     });

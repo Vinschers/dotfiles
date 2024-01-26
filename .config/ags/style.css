@@ -164,8 +164,10 @@
   padding: 2rem;
   border-radius: 3rem;
   background-color: #24283b;
+  color: #c0caf5;
   border: 1px solid #1a1b26;
-  min-height: 30rem; }
+  min-height: 30rem;
+  font-family: Product Sans; }
   .configurations-window .configurations-main .toggle-btn {
     background-color: rgba(255, 255, 255, 0.07);
     color: #c0caf5;
@@ -192,10 +194,30 @@
       .configurations-window .configurations-main .toggle-btn.active .arrow:hover {
         background-color: #7dcfff; }
     .configurations-window .configurations-main .toggle-btn image {
-      margin-left: 22px;
-      margin-right: 18px; }
+      margin-left: 1.5rem;
+      margin-right: 1.2rem; }
     .configurations-window .configurations-main .toggle-btn .title {
       font-weight: 600; }
+  .configurations-window .slider-box scale * {
+    border-radius: 10rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+  .configurations-window .slider-box scale slider {
+    min-height: 1rem;
+    background-color: transparent; }
+  .configurations-window .slider-box scale trough {
+    background-color: #414868; }
+  .configurations-window .slider-box scale fill {
+    background-color: transparent; }
+  .configurations-window .slider-box .volume-box highlight, .configurations-window .slider-box .volume-box progress {
+    background-color: #7dcfff; }
+  .configurations-window .slider-box .volmicrophone-box {
+    margin-right: 4rem; }
+    .configurations-window .slider-box .volmicrophone-box highlight, .configurations-window .slider-box .volmicrophone-box progress {
+      background-color: #7aa2f7; }
+  .configurations-window .slider-box .brightness-box {
+    margin-right: 4rem; }
+    .configurations-window .slider-box .brightness-box highlight, .configurations-window .slider-box .brightness-box progress {
+      background-color: #f7768e; }
 
 .menu {
   padding: 2rem;
@@ -219,6 +241,8 @@
       background-color: #414868; }
   .menu .content button image {
     margin-right: 1rem; }
+  .menu .no-content {
+    color: #565f89; }
 
 .bluetooth .bt-battery {
   margin-left: 1rem;
