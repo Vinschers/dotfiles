@@ -8,6 +8,9 @@ export default () =>
         layout: "top",
         content: Widget.Box({
             class_name: "calendar",
-            child: Widget.Calendar({}),
+            child: Widget.Calendar({
+                hexpand: true,
+                hpack: "center",
+            }),
         }),
     });

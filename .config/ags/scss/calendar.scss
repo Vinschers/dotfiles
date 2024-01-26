@@ -1,3 +1,28 @@
 .calendar {
-    background: $calendar_bg;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 1px solid $calendar_border;
+    background-color: $calendar_bg;
+    color: $calendar_fg;
+    font-family: Product Sans;
+    font-size: 14pt;
+
+    calendar {
+        all: unset;
+
+        &:selected {
+            color: $calendar_selected;
+        }
+
+        &.header {
+            background-color: transparent;
+            border: none;
+            color: $calendar_header;
+        }
+
+        &:indeterminate {
+            color: $calendar_indeterminate;
+        }
+    }
 }

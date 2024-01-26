@@ -159,7 +159,24 @@
         font-weight: bold; }
 
 .calendar {
-  background: #24283b; }
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 1px solid #1a1b26;
+  background-color: #24283b;
+  color: #c0caf5;
+  font-family: Product Sans;
+  font-size: 14pt; }
+  .calendar calendar {
+    all: unset; }
+    .calendar calendar:selected {
+      color: #bb9af7; }
+    .calendar calendar.header {
+      background-color: transparent;
+      border: none;
+      color: #7aa2f7; }
+    .calendar calendar:indeterminate {
+      color: #414868; }
 
 .configurations-window {
   margin-top: 1rem;
