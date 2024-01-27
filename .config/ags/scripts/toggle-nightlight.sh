@@ -1,6 +1,8 @@
 #!/bin/sh
 
-current_shader="$(hyprctl getoption decoration:screen_shader -j | jaq -r '.str')"
+current_shader="$(hyprctl getoption decoration:screen_shader -j | jq -r '.str')"
+
+[ -z "$current_shader" ] && current_shader="nothing.frag"
 
 case "$current_shader" in
     *nothing.frag)
