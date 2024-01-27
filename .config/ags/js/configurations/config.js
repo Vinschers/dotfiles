@@ -1,7 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
 import PopupWindow from "../misc/PopupWindow.js";
-// import NotificationsColumn from './NotificationsColumn.js';
+import NotificationsColumn from './NotificationsColumn.js';
 import Microphone from "./Microphone.js";
 import DND from "./DND.js";
 import Brightness from "./Brightness.js";
@@ -55,7 +55,7 @@ export default () =>
                         Footer(),
                     ],
                 }),
-                // NotificationsColumn(),
+                NotificationsColumn(),
             ],
         }),
     });

@@ -1,7 +1,7 @@
 .configurations-window {
     margin-top: 1rem;
     margin-right: 1rem;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
     border-radius: 3rem;
     background-color: $configurations_bg;
     color: $configurations_fg;
@@ -14,7 +14,7 @@
             background-color: $toggle_bg;
             color: $toggle_fg;
             border-radius: 2rem;
-            min-width: 15rem;
+            min-width: 15.3rem;
             min-height: 5rem;
 
             > * {
@@ -82,7 +82,7 @@
                 }
             }
 
-            .wallpaper{
+            .wallpaper {
                 background-color: $footer_wallpaper_bg;
                 color: $footer_wallpaper_fg;
 
@@ -91,7 +91,7 @@
                     color: $footer_wallpaper_hover_fg;
                 }
             }
-            .theme{
+            .theme {
                 background-color: $footer_theme_bg;
                 color: $footer_theme_fg;
 
@@ -100,7 +100,7 @@
                     color: $footer_theme_hover_fg;
                 }
             }
-            .power{
+            .power {
                 background-color: $footer_power_bg;
                 color: $footer_power_fg;
 
@@ -109,6 +109,64 @@
                     color: $footer_power_hover_fg;
                 }
             }
+        }
+    }
+
+    .notifications {
+        margin-left: 2rem;
+        min-width: 28rem;
+        border-radius: 2.5rem;
+        background-color: $configurations_notifications_bg;
+        color: $configurations_notifications_fg;
+    }
+    .placeholder {
+        > image {
+            font-size: 40pt;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .notification-list {
+        border-radius: 2.5rem;
+        min-height: 20rem;
+    }
+
+    .notification-scrollable {
+        padding: 1.5rem;
+        min-height: 30rem;
+        scrollbar,
+        scrollbar * {
+            all: unset;
+        }
+
+        scrollbar.vertical {
+            &:hover {
+                slider {
+                    background-color: $configurations_notifications_slider_hover;
+                    min-width: 0.6rem;
+                }
+            }
+        }
+
+        scrollbar.vertical slider {
+            background-color: $configurations_notifications_slider;
+            border-radius: 1rem;
+            min-width: 0.4rem;
+            min-height: 2rem;
+        }
+    }
+
+    .notifications__clear-button {
+        background: $configurations_notifications_clear;
+        padding: 1rem 1.5rem;
+        border-radius: 3rem;
+        margin-bottom: 1.2rem;
+        margin-right: 2.2rem;
+        transition:
+            background-color 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+        &:hover {
+            background: $configurations_notifications_clear_hover;
         }
     }
 

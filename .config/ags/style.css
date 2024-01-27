@@ -235,7 +235,7 @@
 .configurations-window {
   margin-top: 1rem;
   margin-right: 1rem;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   border-radius: 3rem;
   background-color: #24283b;
   color: #c0caf5;
@@ -246,7 +246,7 @@
     background-color: #373d58;
     color: #c0caf5;
     border-radius: 2rem;
-    min-width: 15rem;
+    min-width: 15.3rem;
     min-height: 5rem; }
     .configurations-window .configurations-main .toggle-btn > * {
       transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
@@ -300,6 +300,41 @@
     .configurations-window .configurations-main .footer .power:hover {
       background-color: #f7768e;
       color: #1a1b26; }
+  .configurations-window .notifications {
+    margin-left: 2rem;
+    min-width: 28rem;
+    border-radius: 2.5rem;
+    background-color: #1a1b26;
+    color: #c0caf5; }
+  .configurations-window .placeholder > image {
+    font-size: 40pt;
+    margin-bottom: 1.5rem; }
+  .configurations-window .notification-list {
+    border-radius: 2.5rem;
+    min-height: 20rem; }
+  .configurations-window .notification-scrollable {
+    padding: 1.5rem;
+    min-height: 30rem; }
+    .configurations-window .notification-scrollable scrollbar,
+    .configurations-window .notification-scrollable scrollbar * {
+      all: unset; }
+    .configurations-window .notification-scrollable scrollbar.vertical:hover slider {
+      background-color: #c0caf5;
+      min-width: 0.6rem; }
+    .configurations-window .notification-scrollable scrollbar.vertical slider {
+      background-color: #414868;
+      border-radius: 1rem;
+      min-width: 0.4rem;
+      min-height: 2rem; }
+  .configurations-window .notifications__clear-button {
+    background: #24283b;
+    padding: 1rem 1.5rem;
+    border-radius: 3rem;
+    margin-bottom: 1.2rem;
+    margin-right: 2.2rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; }
+    .configurations-window .notifications__clear-button:hover {
+      background: #414868; }
   .configurations-window .slider-box scale {
     min-width: 24rem; }
     .configurations-window .slider-box scale * {

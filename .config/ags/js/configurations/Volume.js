@@ -104,7 +104,9 @@ export const VolMicrophone = () =>
         spacing: 16,
         children: [VolumeIndicator("microphone"), VolumeSlider("microphone")],
     }).hook(Audio, (box) => {
-        box.visible = Audio.recorders.length > 0 || Audio.microphones.length > 0;
+        box.visible =
+            Audio.recorders.length > 0 || Audio.microphones.length > 0;
+        if (Audio["microphone"]) box.visible &&= Audio["microphone"].volume > 0;
     });
 
 /** @param {import('types/service/audio').Stream} stream */
