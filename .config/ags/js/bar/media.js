@@ -143,9 +143,11 @@ const MediaBox = (player) => {
     const css = new Variable("");
 
     player.connect("changed", (p) => {
-        update_colors(p.track_cover_url).then((colors) => {
-            update_css(p, colors, css);
-        }).catch(console.error);
+        update_colors(p.track_cover_url)
+            .then((colors) => {
+                update_css(p, colors, css);
+            })
+            .catch(console.error);
     });
 
     return Widget.Box({

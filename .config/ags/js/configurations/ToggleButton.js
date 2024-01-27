@@ -58,7 +58,8 @@ export const ArrowToggleButton = ({
                     }
                 },
             }),
-            Arrow(name, activateOnArrow && activate),
+            // Arrow(name, activateOnArrow && activate),
+            Arrow(name),
         ],
     }).hook(service, (box) => {
         box.toggleClassName("active", condition());

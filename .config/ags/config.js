@@ -6,6 +6,7 @@ import { exec } from "resource:///com/github/Aylur/ags/utils.js";
 import DirectoryMonitorService from "./directoryMonitorService.js";
 
 import Bar from "./js/bar/config.js";
+import Notifications from "./js/notification/config.js";
 import Configurations from "./js/configurations/config.js";
 import Calendar from "./js/calendar/config.js";
 import { WifiSelection } from "./js/configurations/Network.js";
@@ -40,6 +41,7 @@ applyScss();
 
 const windows = () => [
     foreachMonitor(Bar),
+    foreachMonitor(Notifications),
     Calendar(),
     Configurations(),
     WifiSelection(),
@@ -50,4 +52,6 @@ const windows = () => [
 
 export default {
     windows: windows().flat(1),
+    cacheNotificationActions: true,
+    notificationPopupTimeout: 5000,
 };
