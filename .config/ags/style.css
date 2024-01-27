@@ -103,31 +103,33 @@
       margin-top: 0.2rem;
       margin-bottom: 0.2rem; }
     .bar .bar-right .keyboard {
-      margin: 0.2rem 0;
-      min-width: 2.3rem;
       font-size: 13pt;
-      border-radius: 100%;
+      border-radius: 10rem;
+      margin: 0.2rem 0;
+      min-width: 2.5rem;
       background: #414868;
       color: #c0caf5; }
-    .bar .bar-right .system .progress-wrapper {
-      background: linear-gradient(to right, #24283b 1px, transparent 1px);
-      background-size: 25%; }
-    .bar .bar-right .system .progress-bar {
-      border-radius: 10rem;
-      background-color: #414868; }
-      .bar .bar-right .system .progress-bar trough {
-        min-width: 6rem;
-        border-radius: 10rem; }
-      .bar .bar-right .system .progress-bar progress {
-        border-radius: 10rem; }
-    .bar .bar-right .system .cpu progress {
-      background-color: #7aa2f7; }
-    .bar .bar-right .system .temp progress {
-      background-color: #f7768e; }
-    .bar .bar-right .system .ram progress {
-      background-color: #bb9af7; }
-    .bar .bar-right .system .gpu progress {
-      background-color: #7dcfff; }
+    .bar .bar-right .system {
+      margin: 0.2rem 0; }
+      .bar .bar-right .system .progress-wrapper {
+        background: linear-gradient(to right, #24283b 1px, transparent 1px);
+        background-size: 25%; }
+      .bar .bar-right .system .progress-bar {
+        border-radius: 10rem;
+        background-color: #414868; }
+        .bar .bar-right .system .progress-bar trough {
+          min-width: 6rem;
+          border-radius: 10rem; }
+        .bar .bar-right .system .progress-bar progress {
+          border-radius: 10rem; }
+      .bar .bar-right .system .cpu progress {
+        background-color: #7aa2f7; }
+      .bar .bar-right .system .temp progress {
+        background-color: #f7768e; }
+      .bar .bar-right .system .ram progress {
+        background-color: #bb9af7; }
+      .bar .bar-right .system .gpu progress {
+        background-color: #7dcfff; }
     .bar .bar-right .configurations {
       margin-top: 0.4rem;
       margin-bottom: 0.4rem;

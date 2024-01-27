@@ -47,27 +47,20 @@ const get_initial_layout = () => {
     return "en";
 };
 
-const Keyboard = () => {
-    const keyboard = Widget.Button({
+export default () =>
+    Widget.Label({
         class_name: "keyboard",
-        child: Widget.Label().hook(
-            Hyprland,
-            (self, kb_name, layout_name) => {
-                if (!kb_name) return;
+        yalign: 0.477,
+        xalign: 0.51,
+        label: get_initial_layout(),
+    }).hook(
+        Hyprland,
+        (label, kb_name, layout_name) => {
+            if (!kb_name) return;
 
-                let lang = languages.find((lang) =>
-                    layout_name.includes(lang.name),
-                );
+            let lang = languages.find((lang) => layout_name.includes(lang.name));
 
-                if (lang) self.label = lang.layout;
-            },
-            "keyboard-layout",
-        ),
-    });
-
-    keyboard.child.label = get_initial_layout();
-
-    return keyboard;
-};
-
-export default Keyboard;
+            if (lang) label.label = lang.layout;
+        },
+        "keyboard-layout",
+    );
