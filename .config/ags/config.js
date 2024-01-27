@@ -12,16 +12,16 @@ import Calendar from "./js/calendar/config.js";
 import { WifiSelection } from "./js/configurations/Network.js";
 import { BluetoothDevices } from "./js/configurations/Bluetooth.js";
 import { AppMixer, SinkSelector } from "./js/configurations/Volume.js";
+import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
+import Mpris from "resource:///com/github/Aylur/ags/service/mpris.js";
 
 const applyScss = () => {
     // Compile scss
     exec(`sassc ${App.configDir}/scss/main.scss ${App.configDir}/style.css`);
-    console.log("Scss compiled");
 
     // Apply compiled css
     App.resetCss();
     App.applyCss(`${App.configDir}/style.css`);
-    console.log("Compiled css applied");
 };
 
 /**
@@ -38,6 +38,10 @@ export function foreachMonitor(widget) {
 
 DirectoryMonitorService.connect("changed", () => applyScss());
 applyScss();
+
+globalThis.brightness = (await import("./js/services/brightness.js")).default;
+globalThis.audio = Audio;
+globalThis.mpris = Mpris;
 
 const windows = () => [
     foreachMonitor(Bar),

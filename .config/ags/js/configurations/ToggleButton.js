@@ -104,7 +104,7 @@ export const Menu = ({ name, icon, title, settings, menu_content }) =>
         hexpand: true,
         vexpand: true,
         content: Widget.Box({
-            class_names: ["menu", name],
+            class_names: ["config-menu", name],
             vertical: true,
             children: [
                 Widget.Box({

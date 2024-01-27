@@ -14,7 +14,6 @@
   font-family: Product Sans;
   font-size: 12pt; }
   .bar .bar-left {
-    padding-left: 1rem;
     background-color: #24283b; }
     .bar .bar-left .media {
       background-color: #24283b; }
@@ -42,10 +41,11 @@
           margin-left: 1rem;
           margin-right: 1rem; }
     .bar .bar-left .systray {
-      border-radius: 5rem;
       background-color: #24283b; }
-      .bar .bar-left .systray image {
+      .bar .bar-left .systray .systray-item {
         font-size: 14pt; }
+        .bar .bar-left .systray .systray-item:first-child {
+          margin-left: 1rem; }
   .bar .bar-center .bar-corner {
     border-radius: 1.4rem;
     background-color: #1a1b26; }
@@ -103,12 +103,9 @@
       margin-top: 0.2rem;
       margin-bottom: 0.2rem; }
     .bar .bar-right .keyboard {
-      margin: 0.3rem;
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      min-width: 1.6rem;
+      margin: 0.2rem 0;
+      min-width: 2.5rem;
       font-size: 13pt;
-      font-weight: 500;
       border-radius: 100%;
       background: #414868;
       color: #c0caf5; }
@@ -158,8 +155,22 @@
         font-size: 16pt;
         font-weight: bold; }
 
+.systray-menu {
+  background-color: #414868;
+  color: #c0caf5;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-family: Product Sans; }
+  .systray-menu menuitem {
+    border-radius: 0.3rem;
+    padding: 0.1rem 0.3rem;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
+    .systray-menu menuitem:hover {
+      background-color: #565f89;
+      color: #24283b; }
+
 .notifications-popup-list {
-  margin-top: 1rem;
+  margin-top: 0.2rem;
   min-width: 30rem; }
   .notifications-popup-list .notification > box {
     background-color: rgba(36, 40, 59, 0.8); }
@@ -357,29 +368,29 @@
   .configurations-window .brightness-box progress {
     background-color: #e0af68; }
 
-.menu {
+.config-menu {
   padding: 2rem;
   border-radius: 3rem;
   background-color: #24283b;
   color: #c0caf5;
   min-width: 24rem; }
-  .menu .horizontal {
+  .config-menu .horizontal {
     margin-bottom: 0.2rem; }
-    .menu .horizontal .title label {
+    .config-menu .horizontal .title label {
       font-weight: bold;
       font-size: 16pt; }
-    .menu .horizontal .title image {
+    .config-menu .horizontal .title image {
       margin-right: 1rem; }
-  .menu button {
+  .config-menu button {
     padding: 0.8rem 1rem;
     border-radius: 1rem;
     margin: 0.2rem 0;
     transition: background-color 0.1s ease-in-out; }
-    .menu button:hover {
+    .config-menu button:hover {
       background-color: #414868; }
-  .menu .content button image {
+  .config-menu .content button image {
     margin-right: 1rem; }
-  .menu .no-content {
+  .config-menu .no-content {
     color: #565f89; }
 
 .bluetooth .bt-battery {

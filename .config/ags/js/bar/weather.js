@@ -93,7 +93,9 @@ class WeatherService extends Service {
                         "",
                 );
             })
-            .catch(logError);
+            .catch((err) => {
+                console.error("Could not connect to wttr.in");
+            });
     }
 }
 

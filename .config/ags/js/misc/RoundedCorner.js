@@ -68,3 +68,153 @@ export const RoundedCorner = (place, props) =>
                 );
             }),
     });
+
+/**
+ * @param {string} place
+ * @param {*} props
+ */
+export const RoundedAngleEnd = (place, props) =>
+    Widget.DrawingArea({
+        ...props,
+        setup: (widget) => {
+            const ratio = 1.5;
+            const r = widget.get_allocated_height();
+            widget.set_size_request(ratio * r, r);
+            widget.on("draw", (widget, cr) => {
+                const context = widget.get_style_context();
+                const c = context.get_property(
+                    "background-color",
+                    Gtk.StateFlags.NORMAL,
+                );
+                const border_color = context.get_property(
+                    "color",
+                    Gtk.StateFlags.NORMAL,
+                );
+                const border_width = context.get_border(
+                    Gtk.StateFlags.NORMAL,
+                ).bottom;
+                const r = widget.get_allocated_height();
+                widget.set_size_request(ratio * r, r);
+                switch (place) {
+                    case "topleft":
+                        cr.moveTo(0, 0);
+                        cr.curveTo(
+                            (ratio * r) / 2,
+                            0,
+                            (ratio * r) / 2,
+                            r,
+                            ratio * r,
+                            r,
+                        );
+                        cr.lineTo(ratio * r, 0);
+
+                        cr.moveTo(0, 0);
+                        cr.curveTo(
+                            (ratio * r) / 2,
+                            0,
+                            (ratio * r) / 2,
+                            r,
+                            ratio * r,
+                            r,
+                        );
+                        cr.lineTo(ratio * r, 0);
+                        cr.closePath();
+                        cr.setSourceRGBA(c.red, c.green, c.blue, c.alpha);
+                        cr.fillPreserve();
+                        cr.clip();
+                        cr.moveTo(0, 0);
+                        cr.curveTo(
+                            (ratio * r) / 2,
+                            0,
+                            (ratio * r) / 2,
+                            r,
+                            ratio * r,
+                            r,
+                        );
+                        cr.setLineWidth(border_width * 2);
+                        cr.setSourceRGBA(
+                            border_color.red,
+                            border_color.green,
+                            border_color.blue,
+                            border_color.alpha,
+                        );
+                        cr.stroke();
+                        break;
+
+                    case "topright":
+                        cr.moveTo(ratio * r, 0);
+                        cr.curveTo(
+                            (ratio * r) / 2,
+                            0,
+                            (ratio * r) / 2,
+                            r,
+                            0,
+                            r,
+                        );
+                        cr.lineTo(0, 0);
+                        cr.closePath();
+                        cr.setSourceRGBA(c.red, c.green, c.blue, c.alpha);
+                        cr.fillPreserve();
+                        cr.clip();
+                        cr.moveTo(ratio * r, 0);
+                        cr.curveTo(
+                            (ratio * r) / 2,
+                            0,
+                            (ratio * r) / 2,
+                            r,
+                            0,
+                            r,
+                        );
+                        cr.setLineWidth(border_width * 2);
+                        cr.setSourceRGBA(
+                            border_color.red,
+                            border_color.green,
+                            border_color.blue,
+                            border_color.alpha,
+                        );
+                        cr.stroke();
+                        break;
+                }
+
+                // cr.setLineWidth(border_width);
+                // cr.setSourceRGBA(border_color.red, border_color.green, border_color.blue, border_color.alpha);
+            });
+        },
+    });
+
+export const CornerTopleft = () =>
+    Widget.Window({
+        name: "cornertl",
+        layer: "top",
+        anchor: ["top", "left"],
+        exclusivity: "normal",
+        visible: true,
+        child: RoundedCorner("topleft", { className: "corner" }),
+    });
+export const CornerTopright = () =>
+    Widget.Window({
+        name: "cornertr",
+        layer: "top",
+        anchor: ["top", "right"],
+        exclusivity: "normal",
+        visible: true,
+        child: RoundedCorner("topright", { className: "corner" }),
+    });
+export const CornerBottomleft = () =>
+    Widget.Window({
+        name: "cornerbl",
+        layer: "top",
+        anchor: ["bottom", "left"],
+        exclusivity: "normal",
+        visible: true,
+        child: RoundedCorner("bottomleft", { className: "corner" }),
+    });
+export const CornerBottomright = () =>
+    Widget.Window({
+        name: "cornerbr",
+        layer: "top",
+        anchor: ["bottom", "right"],
+        exclusivity: "normal",
+        visible: true,
+        child: RoundedCorner("bottomright", { className: "corner" }),
+    });
