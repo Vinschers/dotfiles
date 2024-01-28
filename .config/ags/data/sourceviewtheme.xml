@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <style-scheme id="custom" _name="Custom" version="1.0">
-  <author>end_4</author>
-  <_description>Monokai port but very random</_description>
+  <author>Vinschers</author>
+  <_description>tokyonight</_description>
 
   <!-- The scheme tries to look like the default GVim scheme,
        since it is also what the hardwired GtkSourceView 1 color
        scheme did -->
 
   <!-- Palette -->
-  <color name="white"      value="#F8F8F2"/>
-  <color name="blue"       value="#179FFF"/>
-  <color name="magenta"    value="#DA70D6"/>
-  <color name="violet"     value="#AA7FF9"/>
-  <color name="cyan"       value="#66D9EF"/>
-  <color name="grey"       value="#817D69"/>
-  <color name="green"      value="#A0D82E"/>
-  <color name="bordeaux"   value="#B22757"/>
-  <color name="red"        value="#F92672"/>
-  <color name="yellow"     value="#E4D973"/>
-  <color name="purple"     value="#A47AEE"/>
+  <color name="white"      value="#c0caf5"/>
+  <color name="blue"       value="#7aa2f7"/>
+  <color name="magenta"    value="#bb9af7"/>
+  <color name="violet"     value="#bb9af7"/>
+  <color name="cyan"       value="#7dcfff"/>
+  <color name="grey"       value="#a9b1d6"/>
+  <color name="green"      value="#9ece6a"/>
+  <color name="bordeaux"   value="#ff9e64"/>
+  <color name="red"        value="#f7768e"/>
+  <color name="yellow"     value="#e0af68"/>
+  <color name="purple"     value="#bb9af7"/>
 
-  <color name="onSuccess"  value="#D1E8D5"/>
-  <color name="success"    value="#213528"/>
-  <color name="onError"    value="#ffb4a9"/>
-  <color name="error"      value="#680003"/>
+  <color name="onSuccess"  value="#9ece6a"/>
+  <color name="success"    value="#1d202f"/>
+  <color name="onError"    value="#f7768e"/>
+  <color name="error"      value="#a9b1d6"/>
 
   <!-- Global Settings -->
   <style name="current-line"                background="#3E3D32"/>

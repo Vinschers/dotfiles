@@ -7,6 +7,12 @@ import {
     sendMessage as geminiSendMessage,
     geminiTabIcon,
 } from "./gemini.js";
+import {
+    waifuView,
+    waifuCommands,
+    sendMessage as waifuSendMessage,
+    waifuTabIcon,
+} from "./waifu.js";
 import Gemini from "../../services/gemini.js";
 import icons from "../icons.js";
 
@@ -19,6 +25,14 @@ const APIS = [
         tabIcon: geminiTabIcon,
         placeholderText: "Message Gemini...",
     },
+    // {
+    //     name: "Waifus",
+    //     sendCommand: waifuSendMessage,
+    //     contentWidget: waifuView,
+    //     commandBar: waifuCommands,
+    //     tabIcon: waifuTabIcon,
+    //     placeholderText: "Enter tags",
+    // },
 ];
 let currentApiId = 0;
 APIS[currentApiId].tabIcon.toggleClassName(
@@ -101,6 +115,7 @@ const apiSwitcher = Widget.CenterBox({
     center_widget: Widget.Box({
         class_name: "sidebar-chat-apiswitcher",
         hpack: "center",
+        spacing: 12,
         children: APIS.map((api, id) =>
             Widget.Button({
                 child: api.tabIcon,

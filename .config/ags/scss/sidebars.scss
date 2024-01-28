@@ -46,6 +46,7 @@
     .content {
         .sidebar-chat-apiswitcher {
             font-size: 16pt;
+            margin-bottom: 0.7rem;
         }
 
         .sidebar-chat-apiswitcher-icon-enabled {
@@ -87,6 +88,13 @@
                 &:hover {
                     border: 2px solid $sideleft_chip_hover;
                     padding: 0.3rem 2rem;
+                }
+            }
+
+            .tags {
+                margin: 0 2rem;
+                .sidebar-chat-chip {
+                    background-color: $sideleft_tags;
                 }
             }
         }
@@ -232,6 +240,44 @@
                 .sidebar-chat-divider {
                     min-height: 1px;
                     margin: 0rem 0.5rem;
+                }
+
+                .sidebar-waifu-content {
+                    margin-left: 0.7rem;
+                }
+
+                .sidebar-waifu-txt {
+                    margin-right: 0.3rem;
+                }
+
+                .sidebar-waifu-image {
+                    margin-left: 0.7rem;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    border-radius: 2rem;
+                }
+
+                .sidebar-waifu-image-actions {
+                    border-radius: 2rem;
+                    padding: 0.3rem;
+                    margin: 0.3rem 1rem;
+
+                    .sidebar-waifu-image-action {
+                        background-color: $sideleft_waifu_action;
+                        min-width: 2rem;
+                        min-height: 2rem;
+                        border-radius: 2rem;
+                    }
+
+                    .sidebar-waifu-image-action:hover,
+                    .sidebar-waifu-image-action:focus {
+                        background-color: $sideleft_waifu_action_hover;
+                    }
+
+                    .sidebar-waifu-image-action:active {
+                        background-color: $sideleft_waifu_action_active;
+                    }
                 }
             }
         }

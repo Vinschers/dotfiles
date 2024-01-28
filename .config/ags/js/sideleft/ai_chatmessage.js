@@ -171,6 +171,7 @@ const MessageContent = (content) => {
                 let lines = content.split("\n");
                 let lastProcessed = 0;
                 let inCode = false;
+                console.log(lines);
 
                 for (const [index, line] of lines.entries()) {
                     // Code blocks

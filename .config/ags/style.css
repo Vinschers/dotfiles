@@ -451,7 +451,8 @@
       color: #7aa2f7;
       min-height: 0.2rem; }
   .sidebar-left .content .sidebar-chat-apiswitcher {
-    font-size: 16pt; }
+    font-size: 16pt;
+    margin-bottom: 0.7rem; }
   .sidebar-left .content .sidebar-chat-apiswitcher-icon-enabled {
     background: #414868;
     padding: 0.3rem;
@@ -481,6 +482,10 @@
       .sidebar-left .content .commands .sidebar-chat-chip:hover {
         border: 2px solid #c0caf5;
         padding: 0.3rem 2rem; }
+    .sidebar-left .content .commands .tags {
+      margin: 0 2rem; }
+      .sidebar-left .content .commands .tags .sidebar-chat-chip {
+        background-color: #bb9af7; }
   .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-info {
     color: #565f89;
     margin-bottom: 1rem; }
@@ -564,3 +569,27 @@
     .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-divider {
       min-height: 1px;
       margin: 0rem 0.5rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-content {
+      margin-left: 0.7rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-txt {
+      margin-right: 0.3rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image {
+      margin-left: 0.7rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 2rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions {
+      border-radius: 2rem;
+      padding: 0.3rem;
+      margin: 0.3rem 1rem; }
+      .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action {
+        background-color: #24283b;
+        min-width: 2rem;
+        min-height: 2rem;
+        border-radius: 2rem; }
+      .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action:hover,
+      .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action:focus {
+        background-color: #414868; }
+      .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action:active {
+        background-color: #565f89; }

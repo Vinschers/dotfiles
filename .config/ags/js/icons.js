@@ -106,9 +106,15 @@ export default {
         apis: "package-x-generic-symbolic",
         toolbox: "preferences-other-symbolic",
         gemini: "",
+        waifus: "camera-photo-symbolic",
         info: "help-info-symbolic",
         send: "document-send-symbolic",
         copy: "edit-copy-symbolic",
+        download: "browser-download-symbolic",
+        done: "emblem-ok-symbolic",
+        error: "dialog-error-symbolic",
+        link: "link-symbolic",
+        open: "focus-windows-symbolic",
     },
     weather: {
         day: {
