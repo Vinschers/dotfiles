@@ -229,7 +229,7 @@ class GeminiService extends Service {
     _assistantPrompt = true;
     _messages = [];
     _cycleModels = true;
-    _temperature = 0.9;
+    _temperature = 0.5;
     _requestCount = 0;
     _modelIndex = 0;
     _key = "";
