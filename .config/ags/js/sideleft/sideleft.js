@@ -2,7 +2,7 @@ const { Gdk } = imports.gi;
 import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import * as Utils from "resource:///com/github/Aylur/ags/utils.js";
-import { setupCursorHover } from "./cursorhover.js";
+import { setupCursorHover } from "../misc/cursorhover.js";
 import { NavigationIndicator } from "./navigationindicator.js";
 import toolBox from "./toolbox.js";
 import apiWidgets from "./apiwidgets.js";

@@ -10,6 +10,7 @@ import Notifications from "./js/notification/config.js";
 import Configurations from "./js/configurations/config.js";
 import Calendar from "./js/calendar/config.js";
 import SideLeft from "./js/sideleft/config.js";
+import Overview from "./js/overview/config.js";
 
 import { WifiSelection } from "./js/configurations/Network.js";
 import { BluetoothDevices } from "./js/configurations/Bluetooth.js";
@@ -48,6 +49,7 @@ globalThis.mpris = Mpris;
 const windows = () => [
     foreachMonitor(Bar),
     foreachMonitor(Notifications),
+    foreachMonitor(Overview),
     Calendar(),
     Configurations(),
     WifiSelection(),

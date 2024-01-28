@@ -4,7 +4,7 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import * as Utils from "resource:///com/github/Aylur/ags/utils.js";
 
 import Gemini from "../../services/gemini.js";
-import { setupCursorHover, setupCursorHoverInfo } from "./cursorhover.js";
+import { setupCursorHover, setupCursorHoverInfo } from "../misc/cursorhover.js";
 import { SystemMessage, ChatMessage } from "./ai_chatmessage.js";
 import { markdownTest } from "./md2pango.js";
 import icons from "../icons.js";

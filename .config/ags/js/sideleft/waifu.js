@@ -3,7 +3,7 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import * as Utils from "resource:///com/github/Aylur/ags/utils.js";
 const { Box, Button, Label, Overlay, Revealer, Scrollable, Stack } = Widget;
 const { execAsync, exec } = Utils;
-import { setupCursorHover, setupCursorHoverInfo } from "./cursorhover.js";
+import { setupCursorHover, setupCursorHoverInfo } from "../misc/cursorhover.js";
 import WaifuService from "../../services/waifus.js";
 import icons from "../icons.js";
 

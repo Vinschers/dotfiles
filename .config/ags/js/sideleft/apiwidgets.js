@@ -1,6 +1,6 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
-import { setupCursorHover, setupCursorHoverInfo } from "./cursorhover.js";
+import { setupCursorHover } from "../misc/cursorhover.js";
 import {
     geminiView,
     geminiCommands,
