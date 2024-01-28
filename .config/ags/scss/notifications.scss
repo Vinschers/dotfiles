@@ -54,6 +54,14 @@
 
     .action-button {
         margin-top: 1rem;
+        border-radius: 0.4rem;
+        padding: 0.3rem 0;
+        background-color: $notifications_action;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $notifications_action_hover;
+        }
     }
 
     .close-button {

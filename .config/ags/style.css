@@ -94,7 +94,7 @@
       padding-right: 0.8rem;
       border-radius: 5rem;
       color: #24283b;
-      background-color: #f7768e; }
+      background-color: #9ece6a; }
       .bar .bar-right .packages label {
         margin-left: 0.5rem; }
     .bar .bar-right .weather .weather-icon {
@@ -211,7 +211,13 @@
   font-weight: 400; }
 
 .notification .action-button {
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  border-radius: 0.4rem;
+  padding: 0.3rem 0;
+  background-color: #1a1b26;
+  transition: background-color 0.2s ease-in-out; }
+  .notification .action-button:hover {
+    background-color: #414868; }
 
 .notification .close-button {
   margin-left: 0.8rem;
@@ -416,3 +422,145 @@
 
 .app-mixer .mixer-item scale fill {
   background-color: transparent; }
+
+.sidebar-left {
+  margin: 1rem;
+  padding: 1.5rem;
+  border-radius: 2rem;
+  min-width: 40rem;
+  opacity: 0.95;
+  background-color: #24283b;
+  color: #c0caf5;
+  font-family: Product Sans; }
+  .sidebar-left .nav-bar {
+    margin-bottom: 1rem; }
+    .sidebar-left .nav-bar .sidebar-selector-tab {
+      margin: 0 1rem;
+      padding: 0.5rem;
+      border-radius: 1rem;
+      font-size: 13pt;
+      color: #c0caf5; }
+      .sidebar-left .nav-bar .sidebar-selector-tab:hover {
+        background-color: #414868; }
+      .sidebar-left .nav-bar .sidebar-selector-tab image {
+        margin-right: 0.5rem; }
+    .sidebar-left .nav-bar .sidebar-selector-tab-active {
+      color: #7aa2f7; }
+    .sidebar-left .nav-bar .sidebar-selector-highlight {
+      transition: 180ms ease-in-out;
+      color: #7aa2f7;
+      min-height: 0.2rem; }
+  .sidebar-left .content .sidebar-chat-apiswitcher {
+    font-size: 16pt; }
+  .sidebar-left .content .sidebar-chat-apiswitcher-icon-enabled {
+    background: #414868;
+    padding: 0.3rem;
+    min-width: 3rem;
+    border-radius: 2rem; }
+  .sidebar-left .content .sidebar-chat-textarea {
+    background-color: #414868;
+    padding: 0.6rem;
+    border-radius: 0.7rem; }
+    .sidebar-left .content .sidebar-chat-textarea .sidebar-chat-send {
+      padding: 0.4rem;
+      border-radius: 1rem;
+      transition: all 100ms ease-in-out; }
+      .sidebar-left .content .sidebar-chat-textarea .sidebar-chat-send:hover {
+        background-color: #7aa2f7;
+        color: #24283b; }
+  .sidebar-left .content .commands {
+    margin-bottom: 1rem; }
+    .sidebar-left .content .commands .sidebar-chat-chip {
+      padding: 0.3rem 0.8rem;
+      border-radius: 1rem;
+      font-size: 12pt;
+      background-color: #7aa2f7;
+      color: #24283b;
+      border: 2px solid transparent;
+      transition: all 100ms ease-in-out; }
+      .sidebar-left .content .commands .sidebar-chat-chip:hover {
+        border: 2px solid #c0caf5;
+        padding: 0.3rem 2rem; }
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-info {
+    color: #565f89;
+    margin-bottom: 1rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-info .sidebar-chat-welcome-logo {
+      color: #c0caf5;
+      font-size: 64pt;
+      margin-bottom: 1rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-info .sidebar-chat-welcome-txt {
+      color: #c0caf5;
+      font-size: 14pt; }
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings scale {
+    margin-top: 0.3rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings scale * {
+      border-radius: 1rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings scale slider {
+      border-radius: 1rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings scale trough {
+      background-color: #414868;
+      min-height: 0.3rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings scale fill {
+      background-color: transparent; }
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings highlight,
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings progress {
+    background-color: #bb9af7; }
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings .sidebar-chat-settings-toggle {
+    margin-top: 0.8rem;
+    padding: 0.2rem 0.8rem;
+    min-height: 2rem;
+    border-radius: 2rem;
+    border: 2px solid transparent;
+    background-color: #414868; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings .sidebar-chat-settings-toggle image {
+      font-size: 14pt; }
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-settings .sidebar-chat-settings-toggle-active {
+    color: #24283b;
+    background-color: #bb9af7; }
+  .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message {
+    margin: 0.7rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-indicator {
+      border-radius: 1rem;
+      min-width: 0.1rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-indicator-user {
+      background-color: #e0af68; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-indicator-bot {
+      background-color: #c0caf5; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-indicator-System {
+      background-color: #7aa2f7; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-name {
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      font-weight: bold; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-txtblock {
+      padding-left: 0.8rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock {
+      border-radius: 1rem;
+      background-color: #1a1b26;
+      color: #c0caf5;
+      margin: 0rem 0.8rem;
+      border: 0.1rem solid #414868; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar {
+      margin: 0.3rem;
+      margin-bottom: 0rem;
+      background-color: #24283b;
+      color: #c0caf5;
+      border-radius: 0.8rem;
+      border: 0.1rem solid #414868;
+      padding: 0.4rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-txt {
+      padding: 0.3rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-btn {
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.5rem; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-btn:hover,
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-btn:focus {
+      background-color: #414868; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-btn:active {
+      background-color: #565f89; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-code {
+      padding: 0.7rem;
+      font-family: monospace; }
+    .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-divider {
+      min-height: 1px;
+      margin: 0rem 0.5rem; }

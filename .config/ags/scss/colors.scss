@@ -18,7 +18,7 @@ $media_symbols_fg: #c0caf5;
 $media_progress_bg: #565f89;
 
 $packages_fg: #24283b;
-$packages_bg: #f7768e;
+$packages_bg: #9ece6a;
 
 $keyboard_fg: #c0caf5;
 $keyboard_bg: #414868;
@@ -54,6 +54,8 @@ $notifications_close_bg: #414868;
 $notifications_close_fg: #c0caf5;
 $notifications_close_hover_bg: #f7768e;
 $notifications_close_hover_fg: #1a1b26;
+$notifications_action: #1a1b26;
+$notifications_action_hover: #414868;
 
 
 $calendar_bg: #24283b;
@@ -120,3 +122,41 @@ $osd_bg: #24283b;
 $osd_icon: #c0caf5;
 $osd_text: #c0caf5;
 $osd_slider: #c0caf5;
+
+
+$sideleft_bg: #24283b;
+$sideleft_fg: #c0caf5;
+$sideleft_opacity: 0.95;
+
+$sideleft_tab_fg: #c0caf5;
+$sideleft_tab_hover_bg: #414868;
+$sideleft_tab_active_fg: #7aa2f7;
+
+$sideleft_apiswitcher_bg: #414868;
+
+$sideleft_info_fg: #565f89;
+$sideleft_temperature: #bb9af7;
+$sideleft_settings_toggle: #414868;
+$sideleft_settings_toggle_active_bg: #bb9af7;
+$sideleft_settings_toggle_active_fg: #24283b;
+
+$sideleft_text_bg: #414868;
+$sideleft_text_send_bg: #7aa2f7;
+$sideleft_text_send_fg: #24283b;
+
+$sideleft_chip_bg: #7aa2f7;
+$sideleft_chip_fg: #24283b;
+$sideleft_chip_hover: #c0caf5;
+
+$sideleft_bot: #c0caf5;
+$sideleft_user: #e0af68;
+$sideleft_system: #7aa2f7;
+
+$sideleft_cb_bg: #1a1b26;
+$sideleft_cb_fg: #c0caf5;
+$sideleft_cb_border: #414868;
+$sideleft_cb_topbar_bg: #24283b;
+$sideleft_cb_topbar_fg: #c0caf5;
+$sideleft_cb_topbar_border: #414868;
+$sideleft_cb_topbar_btn_hover: #414868;
+$sideleft_cb_topbar_btn_active: #565f89;

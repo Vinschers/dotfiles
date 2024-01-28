@@ -1,0 +1,239 @@
+.sidebar-left {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 2rem;
+
+    min-width: 40rem;
+    opacity: $sideleft_opacity;
+
+    background-color: $sideleft_bg;
+    color: $sideleft_fg;
+
+    font-family: Product Sans;
+
+    .nav-bar {
+        margin-bottom: 1rem;
+
+        .sidebar-selector-tab {
+            margin: 0 1rem;
+            padding: 0.5rem;
+            border-radius: 1rem;
+
+            font-size: 13pt;
+
+            color: $sideleft_tab_fg;
+
+            &:hover {
+                background-color: $sideleft_tab_hover_bg;
+            }
+
+            image {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .sidebar-selector-tab-active {
+            color: $sideleft_tab_active_fg;
+        }
+
+        .sidebar-selector-highlight {
+            transition: 180ms ease-in-out; // Doesn't look that good, but it syncs with GtkStack animation of the actual todo widget content
+            color: $sideleft_tab_active_fg;
+            min-height: 0.2rem;
+        }
+    }
+
+    .content {
+        .sidebar-chat-apiswitcher {
+            font-size: 16pt;
+        }
+
+        .sidebar-chat-apiswitcher-icon-enabled {
+            background: $sideleft_apiswitcher_bg;
+            padding: 0.3rem;
+            min-width: 3rem;
+            border-radius: 2rem;
+        }
+
+        .sidebar-chat-textarea {
+            background-color: $sideleft_text_bg;
+            padding: 0.6rem;
+            border-radius: 0.7rem;
+
+            .sidebar-chat-send {
+                padding: 0.4rem;
+                border-radius: 1rem;
+                transition: all 100ms ease-in-out;
+
+                &:hover {
+                    background-color: $sideleft_text_send_bg;
+                    color: $sideleft_text_send_fg;
+                }
+            }
+        }
+
+        .commands {
+            margin-bottom: 1rem;
+
+            .sidebar-chat-chip {
+                padding: 0.3rem 0.8rem;
+                border-radius: 1rem;
+                font-size: 12pt;
+                background-color: $sideleft_chip_bg;
+                color: $sideleft_chip_fg;
+                border: 2px solid transparent;
+                transition: all 100ms ease-in-out;
+
+                &:hover {
+                    border: 2px solid $sideleft_chip_hover;
+                    padding: 0.3rem 2rem;
+                }
+            }
+        }
+
+        .sidebar-chat-viewport {
+            .sidebar-chat-info {
+                color: $sideleft_info_fg;
+                margin-bottom: 1rem;
+
+                .sidebar-chat-welcome-logo {
+                    color: $sideleft_fg;
+                    font-size: 64pt;
+                    margin-bottom: 1rem;
+                }
+
+                .sidebar-chat-welcome-txt {
+                    color: $sideleft_fg;
+                    font-size: 14pt;
+                }
+            }
+
+            .sidebar-chat-settings {
+                scale {
+                    margin-top: 0.3rem;
+
+                    * {
+                        border-radius: 1rem;
+                    }
+
+                    slider {
+                        border-radius: 1rem;
+                    }
+
+                    trough {
+                        background-color: $slider_bg;
+                        min-height: 0.3rem;
+                    }
+
+                    fill {
+                        background-color: transparent;
+                    }
+                }
+
+                highlight,
+                progress {
+                    background-color: $sideleft_temperature;
+                }
+
+                .sidebar-chat-settings-toggle {
+                    margin-top: 0.8rem;
+                    padding: 0.2rem 0.8rem;
+                    min-height: 2rem;
+                    border-radius: 2rem;
+                    border: 2px solid transparent;
+                    background-color: $sideleft_settings_toggle;
+
+                    image {
+                        font-size: 14pt;
+                    }
+                }
+
+                .sidebar-chat-settings-toggle-active {
+                    color: $sideleft_settings_toggle_active_fg;
+                    background-color: $sideleft_settings_toggle_active_bg;
+                }
+            }
+
+            .sidebar-chat-message {
+                margin: 0.7rem;
+
+                .sidebar-chat-indicator {
+                    border-radius: 1rem;
+                    min-width: 0.1rem;
+                }
+
+                .sidebar-chat-indicator-user {
+                    background-color: $sideleft_user;
+                }
+
+                .sidebar-chat-indicator-bot {
+                    background-color: $sideleft_bot;
+                }
+
+                .sidebar-chat-indicator-System {
+                    background-color: $sideleft_system;
+                }
+
+                .sidebar-chat-name {
+                    margin-bottom: 0.8rem;
+                    padding-left: 0.8rem;
+                    font-weight: bold;
+                }
+
+                .sidebar-chat-txtblock {
+                    padding-left: 0.8rem;
+                }
+
+                .sidebar-chat-txt {
+                }
+
+                .sidebar-chat-codeblock {
+                    border-radius: 1rem;
+                    background-color: $sideleft_cb_bg;
+                    color: $sideleft_cb_fg;
+                    margin: 0rem 0.8rem;
+                    border: 0.1rem solid $sideleft_cb_border;
+                }
+
+                .sidebar-chat-codeblock-topbar {
+                    margin: 0.3rem;
+                    margin-bottom: 0rem;
+
+                    background-color: $sideleft_cb_topbar_bg;
+                    color: $sideleft_cb_topbar_fg;
+                    border-radius: 0.8rem;
+                    border: 0.1rem solid $sideleft_cb_topbar_border;
+                    padding: 0.4rem;
+                }
+
+                .sidebar-chat-codeblock-topbar-txt {
+                    padding: 0.3rem;
+                }
+
+                .sidebar-chat-codeblock-topbar-btn {
+                    padding: 0.3rem 0.5rem;
+                    border-radius: 0.5rem;
+                }
+
+                .sidebar-chat-codeblock-topbar-btn:hover,
+                .sidebar-chat-codeblock-topbar-btn:focus {
+                    background-color: $sideleft_cb_topbar_btn_hover;
+                }
+
+                .sidebar-chat-codeblock-topbar-btn:active {
+                    background-color: $sideleft_cb_topbar_btn_active;
+                }
+
+                .sidebar-chat-codeblock-code {
+                    padding: 0.7rem;
+                    font-family: monospace;
+                }
+
+                .sidebar-chat-divider {
+                    min-height: 1px;
+                    margin: 0rem 0.5rem;
+                }
+            }
+        }
+    }
+}

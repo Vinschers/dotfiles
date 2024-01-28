@@ -9,6 +9,8 @@ import Bar from "./js/bar/config.js";
 import Notifications from "./js/notification/config.js";
 import Configurations from "./js/configurations/config.js";
 import Calendar from "./js/calendar/config.js";
+import SideLeft from "./js/sideleft/config.js";
+
 import { WifiSelection } from "./js/configurations/Network.js";
 import { BluetoothDevices } from "./js/configurations/Bluetooth.js";
 import { AppMixer, SinkSelector } from "./js/configurations/Volume.js";
@@ -39,7 +41,7 @@ export function foreachMonitor(widget) {
 DirectoryMonitorService.connect("changed", () => applyScss());
 applyScss();
 
-globalThis.brightness = (await import("./js/services/brightness.js")).default;
+globalThis.brightness = (await import("./services/brightness.js")).default;
 globalThis.audio = Audio;
 globalThis.mpris = Mpris;
 
@@ -52,6 +54,7 @@ const windows = () => [
     BluetoothDevices(),
     AppMixer(),
     SinkSelector(),
+    SideLeft(),
 ];
 
 export default {

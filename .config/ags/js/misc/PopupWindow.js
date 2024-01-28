@@ -92,6 +92,7 @@ const layouts = {
                 Padding(windowName),
                 Widget.Box({
                     hexpand: false,
+                    vexpand: true,
                     vertical: true,
                     children: [
                         PopupRevealer(windowName, "slide_down", child),

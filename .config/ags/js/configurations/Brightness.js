@@ -1,5 +1,5 @@
 import icons from "../icons.js";
-import Brightness from "../services/brightness.js";
+import Brightness from "../../services/brightness.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
 const BrightnessSlider = () =>

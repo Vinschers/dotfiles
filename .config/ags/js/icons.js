@@ -3,6 +3,8 @@ import App from "resource:///com/github/Aylur/ags/app.js";
 export default {
     settings: "org.gnome.Settings-symbolic",
     tick: "object-select-symbolic",
+    check: "checkbox-symbolic",
+    checked: "checkbox-checked-symbolic",
     audio: {
         mic: {
             muted: "microphone-disabled-symbolic",
@@ -99,6 +101,14 @@ export default {
             down: "pan-down-symbolic",
             up: "pan-up-symbolic",
         },
+    },
+    sideleft: {
+        apis: "package-x-generic-symbolic",
+        toolbox: "preferences-other-symbolic",
+        gemini: "",
+        info: "help-info-symbolic",
+        send: "document-send-symbolic",
+        copy: "edit-copy-symbolic",
     },
     weather: {
         day: {

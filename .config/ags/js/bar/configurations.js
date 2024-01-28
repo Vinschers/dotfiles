@@ -4,7 +4,7 @@ import Bluetooth from "resource:///com/github/Aylur/ags/service/bluetooth.js";
 import Network from "resource:///com/github/Aylur/ags/service/network.js";
 import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
-import Brightness from "../services/brightness.js";
+import Brightness from "../../services/brightness.js";
 
 const BluetoothIndicator = () =>
     Widget.Icon({
