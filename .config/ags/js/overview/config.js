@@ -1,9 +1,9 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { SearchAndWindows } from "./windowcontent.js";
 
-export default () =>
+export default (monitor) =>
     Widget.Window({
-        name: "overview",
+        name: `overview${monitor}`,
         exclusivity: "ignore",
         focusable: true,
         popup: true,

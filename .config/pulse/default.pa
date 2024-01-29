@@ -1,3 +1,0 @@
-pactl load-module module-null-sink sink_name=Combined
-pactl load-module module-loopback sink=Combined source=alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
-pactl load-module module-loopback sink=Combined source=alsa_input.pci-0000_00_1f.3.analog-stereo 

@@ -24,7 +24,7 @@ export default () => {
         toggle: () => {
             record.value = !record.value;
 
-            Utils.execAsync(`sh -c ${App.configDir}/scripts/record.sh`);
+            Utils.execAsync(`sh -c record`);
         },
         connection: [record, () => record.value],
     });
