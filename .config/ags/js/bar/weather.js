@@ -4,7 +4,7 @@ import WeatherService from "../../services/weather.js";
 
 const Weather = () =>
     Widget.Button({
-        on_clicked: () => Utils.execAsync("weather-gtk4"),
+        on_clicked: () => Utils.execAsync("meteo"),
         child: Widget.Box({
             class_name: "weather",
             spacing: 16,
