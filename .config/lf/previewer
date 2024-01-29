@@ -8,7 +8,8 @@ IFS="${IFS%_}"
 
 image() {
 	if [ -f "$1" ] && [ -n "$DISPLAY" ]; then
-        chafa "$1" -f sixel -s "$(($2 - 2))x$(($3 - 2))" | sed 's/#/\n#/g'
+        # chafa "$1" -f sixel -s "$(($2 - 2))x$(($3 - 2))" | sed 's/#/\n#/g'
+        img2sixel "$1" -w "$((10 * ($2 - 12)))"
 	else
 		mediainfo "$1"
 	fi
