@@ -9,14 +9,20 @@ const { execAsync, exec } = Utils;
 import { setupCursorHoverGrab } from "../misc/cursorhover.js";
 import { dumpToWorkspace, swapWorkspace } from "./actions.js";
 
-const SCREEN_WIDTH = Number(exec(`bash -c "xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1 | head -1" | awk '{print $1}'`));
-const SCREEN_HEIGHT = Number(exec(`bash -c "xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2 | head -1" | awk '{print $1}'`));
+const SCREEN_WIDTH = Number(
+    exec(
+        `sh -c "xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1 | head -1" | awk '{print $1}'`,
+    ),
+);
+const SCREEN_HEIGHT = Number(
+    exec(
+        `sh -c "xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2 | head -1" | awk '{print $1}'`,
+    ),
+);
 
 const OVERVIEW_SCALE = 0.18; // = overview workspace box / screen size
 const OVERVIEW_WS_NUM_SCALE = 0.09;
 const OVERVIEW_WS_NUM_MARGIN_SCALE = 0.07;
-const NUM_WS_GROUPS = 3;
-const NUM_OF_WORKSPACES_PER_GROUP = 10;
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)];
 
 const overviewTick = Variable(false);
@@ -70,25 +76,19 @@ function substitute(str) {
     return str;
 }
 
-const ContextMenuWorkspaceArray = ({ label, actionFunc, thisWorkspace }) =>
+const ContextMenuWorkspaceArray = (monitor, { label, actionFunc, thisWorkspace }) =>
     Widget.MenuItem({
         label: `${label}`,
         setup: (menuItem) => {
             let submenu = new Gtk.Menu();
             submenu.class_name = "menu";
-            const startWorkspace =
-                Math.floor((thisWorkspace - 1) / NUM_OF_WORKSPACES_PER_GROUP) *
-                    NUM_OF_WORKSPACES_PER_GROUP +
-                1;
-            const endWorkspace =
-                startWorkspace + NUM_OF_WORKSPACES_PER_GROUP - 1;
-            for (let i = startWorkspace; i <= endWorkspace; i++) {
+            for (let i = 1; i <= 10; i++) {
                 let button = new Gtk.MenuItem({
                     label: `Workspace ${i}`,
                 });
                 button.connect("activate", () => {
                     // execAsync([`${onClickBinary}`, `${thisWorkspace}`, `${i}`]).catch(print);
-                    actionFunc(thisWorkspace, i);
+                    actionFunc(thisWorkspace, Number(`${monitor}${i}`));
                 });
                 submenu.append(button);
             }
@@ -99,6 +99,7 @@ const ContextMenuWorkspaceArray = ({ label, actionFunc, thisWorkspace }) =>
 
 const client = ({
     address,
+    monitor,
     size: [w, h],
     workspace: { id, name },
     class: c,
@@ -114,7 +115,7 @@ const client = ({
         vpack: "center",
         on_clicked: () => {
             Hyprland.sendMessage(`dispatch focuswindow address:${address}`);
-            App.closeWindow("overview");
+            App.closeWindow(`overview${monitor}`);
         },
         on_middle_click_release: () =>
             Hyprland.sendMessage(`dispatch closewindow address:${address}`),
@@ -133,12 +134,12 @@ const client = ({
                                 `dispatch closewindow address:${address}`,
                             ),
                     }),
-                    ContextMenuWorkspaceArray({
+                    ContextMenuWorkspaceArray(monitor, {
                         label: "Dump windows to workspace",
                         actionFunc: dumpToWorkspace,
                         thisWorkspace: Number(id),
                     }),
-                    ContextMenuWorkspaceArray({
+                    ContextMenuWorkspaceArray(monitor, {
                         label: "Swap windows with workspace",
                         actionFunc: swapWorkspace,
                         thisWorkspace: Number(id),
@@ -162,7 +163,6 @@ const client = ({
             child: Widget.Box({
                 vertical: true,
                 vpack: "center",
-                class_name: "spacing-v-5",
                 children: [
                     Widget.Icon({
                         icon: substitute(c),
@@ -174,7 +174,9 @@ const client = ({
                         reveal_child: revealInfoCondition,
                         child: Widget.Label({
                             truncate: "end",
-                            class_name: `${xwayland ? "txt txt-italic" : "txt"}`,
+                            class_name: `${
+                                xwayland ? "xwayland" : ""
+                            }`,
                             css: `
                                 font-size: ${
                                     (Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) *
@@ -219,7 +221,7 @@ const client = ({
     });
 };
 
-const workspace = (index) => {
+const workspace = (monitor, index) => {
     const fixed = Gtk.Fixed.new();
     const WorkspaceNumber = (index) =>
         Widget.Label({
@@ -248,8 +250,8 @@ const workspace = (index) => {
                 hexpand: true,
                 vexpand: true,
                 on_primary_click: () => {
-                    Hyprland.sendMessage(`dispatch workspace ${index}`);
-                    App.closeWindow("overview");
+                    Hyprland.sendMessage(`dispatch workspace ${monitor}${index}`);
+                    App.closeWindow(`overview${monitor}`);
                 },
                 setup: (eventbox) => {
                     eventbox.drag_dest_set(
@@ -261,7 +263,7 @@ const workspace = (index) => {
                         "drag-data-received",
                         (_w, _c, _x, _y, data) => {
                             Hyprland.sendMessage(
-                                `dispatch movetoworkspacesilent ${index},address:${data.get_text()}`,
+                                `dispatch movetoworkspacesilent ${monitor}${index},address:${data.get_text()}`,
                             );
                             overviewTick.setValue(!overviewTick.value);
                         },
@@ -272,13 +274,15 @@ const workspace = (index) => {
         ],
     });
     widget.update = (clients) => {
-        clients = clients.filter(({ workspace: { id } }) => id === index);
+        clients = clients.filter(
+            ({ workspace: { id } }) => id === Number(`${monitor}${index}`),
+        );
 
         // this is for my monitor layout
         // shifts clients back by SCREEN_WIDTHpx if necessary
         clients = clients.map((client) => {
             const [x, y] = client.at;
-            if (x > SCREEN_WIDTH) client.at = [x - SCREEN_WIDTH, y];
+            client.at = [x % SCREEN_WIDTH, y % SCREEN_HEIGHT]
             return client;
         });
 
@@ -312,9 +316,14 @@ const arr = (s, n) => {
     return array;
 };
 
-const OverviewRow = ({ startWorkspace, workspaces, windowName = "overview" }) =>
+const OverviewRow = (
+    monitor,
+    { startWorkspace, workspaces, windowName = "overview0" },
+) =>
     Widget.Box({
-        children: arr(startWorkspace, workspaces).map(workspace),
+        children: arr(startWorkspace, workspaces).map((index) =>
+            workspace(monitor, index),
+        ),
         attribute: {
             update: (box) => {
                 if (!App.getWindow(windowName).visible) return;
@@ -350,12 +359,12 @@ const OverviewRow = ({ startWorkspace, workspaces, windowName = "overview" }) =>
                 )
                 .hook(App, (box, name, visible) => {
                     // Update on open
-                    if (name == "overview" && visible)
+                    if (name == `overview${monitor}` && visible)
                         box.attribute.update(box);
                 }),
     });
 
-export default () => {
+export default (monitor) => {
     const overviewRevealer = Widget.Revealer({
         reveal_child: true,
         transition: "slide_down",
@@ -363,27 +372,20 @@ export default () => {
         child: Widget.Box({
             vertical: true,
             class_name: "overview-tasks",
-            children: Array.from({ length: NUM_WS_GROUPS * 2 }, (_, index) =>
-                OverviewRow({ startWorkspace: 1 + index * 5, workspaces: 5 }),
-            ),
+            children: [
+                OverviewRow(monitor, {
+                    startWorkspace: 1,
+                    workspaces: 5,
+                    windowName: `overview${monitor}`,
+                }),
+                OverviewRow(monitor, {
+                    startWorkspace: 6,
+                    workspaces: 5,
+                    windowName: `overview${monitor}`,
+                }),
+            ],
         }),
-        setup: (self) => {
-            self.hook(Hyprland.active.workspace, (self) => {
-                const ws_group = Math.floor(
-                    (Hyprland.active.workspace.id - 1) /
-                        NUM_OF_WORKSPACES_PER_GROUP,
-                );
-                for (
-                    let i = 0;
-                    i < overviewRevealer.child.children.length;
-                    i++
-                ) {
-                    self.child.children[i].set_visible(
-                        ws_group == Math.floor(i / 2),
-                    );
-                }
-            });
-        },
     });
+
     return overviewRevealer;
 };

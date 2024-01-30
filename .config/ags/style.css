@@ -157,20 +157,6 @@
         font-size: 16pt;
         font-weight: bold; }
 
-.systray-menu {
-  background-color: #414868;
-  color: #c0caf5;
-  padding: 1rem;
-  border-radius: 1rem;
-  font-family: Product Sans; }
-  .systray-menu menuitem {
-    border-radius: 0.3rem;
-    padding: 0.1rem 0.3rem;
-    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
-    .systray-menu menuitem:hover {
-      background-color: #565f89;
-      color: #24283b; }
-
 .notifications-popup-list {
   margin-top: 0.2rem;
   min-width: 30rem; }
@@ -239,7 +225,8 @@
   background-color: #24283b;
   color: #c0caf5;
   font-family: Product Sans;
-  font-size: 14pt; }
+  font-size: 14pt;
+  box-shadow: 0px 2px 3px #1a1b26; }
   .calendar calendar {
     all: unset; }
     .calendar calendar:selected {
@@ -260,7 +247,8 @@
   color: #c0caf5;
   border: 1px solid #1a1b26;
   min-height: 30rem;
-  font-family: Product Sans; }
+  font-family: Product Sans;
+  box-shadow: 0px 2px 3px #1a1b26; }
   .configurations-window .configurations-main .toggle-btn {
     background-color: #373d58;
     color: #c0caf5;
@@ -379,7 +367,7 @@
 .config-menu {
   padding: 2rem;
   border-radius: 3rem;
-  background-color: #24283b;
+  background-color: #414868;
   color: #c0caf5;
   min-width: 24rem; }
   .config-menu .horizontal {
@@ -593,3 +581,81 @@
         background-color: #414868; }
       .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action:active {
         background-color: #565f89; }
+
+.overview-window .bar-height {
+  min-height: 12rem; }
+
+.overview-window .overview {
+  padding: 2rem 0;
+  border-radius: 2rem;
+  box-shadow: 0px 2px 3px #1a1b26;
+  background-color: #24283b;
+  color: #c0caf5;
+  opacity: 0.9;
+  font-family: Product Sans; }
+  .overview-window .overview .overview-search {
+    background-color: #1a1b26;
+    box-shadow: 3px 3px 3px 3px #1a1b26;
+    margin-bottom: 1rem;
+    min-height: 2rem;
+    border-radius: 0.5rem; }
+    .overview-window .overview .overview-search .overview-search-prompt-box {
+      margin-right: 1rem; }
+    .overview-window .overview .overview-search .overview-search-box {
+      padding: 0 2rem;
+      caret-color: transparent; }
+    .overview-window .overview .overview-search .overview-search-box-extended {
+      min-width: 24rem; }
+  .overview-window .overview .overview-search-results-scrollable {
+    min-height: 36rem;
+    min-width: 24rem;
+    background-color: #1a1b26;
+    border-radius: 1rem;
+    margin-bottom: 3rem; }
+  .overview-window .overview .overview-search-results {
+    padding: 1rem;
+    border-radius: 1rem; }
+    .overview-window .overview .overview-search-results .overview-search-results-icon {
+      min-width: 2rem;
+      min-height: 2rem;
+      font-size: 2rem;
+      margin: 0 0.5rem; }
+    .overview-window .overview .overview-search-results .overview-search-result-btn {
+      padding: 0.5rem;
+      border-radius: 0.5rem; }
+      .overview-window .overview .overview-search-results .overview-search-result-btn:hover, .overview-window .overview .overview-search-results .overview-search-result-btn:focus {
+        background: #24283b; }
+    .overview-window .overview .overview-search-results .overview-search-results-txt {
+      margin-right: 1rem; }
+    .overview-window .overview .overview-search-results .overview-search-results-txt-name {
+      font-weight: bold; }
+  .overview-window .overview .overview-tasks .overview-tasks-workspace {
+    border-radius: 1rem;
+    margin: 0.8rem;
+    box-shadow: 3px 3px 3px 3px #1a1b26; }
+    .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window {
+      background: #414868;
+      border-radius: 1rem;
+      margin: 0.5rem; }
+      .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window:hover, .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window:focus {
+        background-color: #444d6f; }
+      .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window:active {
+        background-color: #475176; }
+    .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window-selected {
+      background-color: #475176; }
+    .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window-dragging {
+      opacity: 0.2; }
+
+menu {
+  background-color: #414868;
+  color: #c0caf5;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-family: Product Sans; }
+  menu menuitem {
+    border-radius: 0.3rem;
+    padding: 0.1rem 0.3rem;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
+    menu menuitem:hover {
+      background-color: #565f89;
+      color: #24283b; }

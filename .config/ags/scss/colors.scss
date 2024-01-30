@@ -1,3 +1,5 @@
+$shadow: #1a1b26;
+
 $bar_bg: #24283b;
 $bar_fg: #c0caf5;
 $bar_opacity: 1;
@@ -41,10 +43,6 @@ $battery_low: #f7768e;
 $clock_fg: #c0caf5;
 
 $systray_bg: #24283b;
-$systray_menu_bg: #414868;
-$systray_menu_fg: #c0caf5;
-$systray_menu_hover_bg: #565f89;
-$systray_menu_hover_fg: #24283b;
 
 
 $notifications_bg: #24283b;
@@ -165,3 +163,19 @@ $sideleft_cb_topbar_btn_active: #565f89;
 $sideleft_waifu_action: #24283b;
 $sideleft_waifu_action_hover: #414868;
 $sideleft_waifu_action_active: #565f89;
+
+
+$overview_bg: #24283b;
+$overview_fg: #c0caf5;
+$overview_opacity: 0.9;
+
+$overview_search_bg: #1a1b26;
+$overview_result_bg: #24283b;
+$overview_window_bg: #414868;
+$overview_window_hover: #7aa2f7;
+
+
+$menu_bg: #414868;
+$menu_fg: #c0caf5;
+$menu_hover_bg: #565f89;
+$menu_hover_fg: #24283b;

@@ -1,0 +1,110 @@
+.overview-window {
+    .bar-height {
+        min-height: 12rem;
+    }
+
+    .overview {
+        padding: 2rem 0;
+        border-radius: 2rem;
+
+        box-shadow: 0px 2px 3px $shadow;
+
+        background-color: $overview_bg;
+        color: $overview_fg;
+        opacity: $overview_opacity;
+
+        font-family: Product Sans;
+
+        .overview-search {
+            background-color: $overview_search_bg;
+            box-shadow: 3px 3px 3px 3px $shadow;
+
+            margin-bottom: 1rem;
+            min-height: 2rem;
+            border-radius: 0.5rem;
+
+            .overview-search-prompt-box {
+                margin-right: 1rem;
+            }
+
+            .overview-search-box {
+                padding: 0 2rem;
+                caret-color: transparent;
+            }
+
+            .overview-search-box-extended {
+                min-width: 24rem;
+            }
+        }
+
+        .overview-search-results-scrollable {
+            min-height: 36rem;
+            min-width: 24rem;
+            background-color: $overview_search_bg;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .overview-search-results {
+            padding: 1rem;
+            border-radius: 1rem;
+
+            .overview-search-results-icon {
+                min-width: 2rem;
+                min-height: 2rem;
+                font-size: 2rem;
+
+                margin: 0 0.5rem;
+            }
+
+            .overview-search-result-btn {
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+
+                &:hover,
+                &:focus {
+                    background: $overview_result_bg;
+                }
+            }
+
+            .overview-search-results-txt {
+                margin-right: 1rem;
+            }
+
+            .overview-search-results-txt-name {
+                font-weight: bold;
+            }
+        }
+
+        .overview-tasks {
+            .overview-tasks-workspace {
+                border-radius: 1rem;
+                margin: 0.8rem;
+                box-shadow: 3px 3px 3px 3px $shadow;
+
+                .overview-tasks-window {
+                    background: $overview_window_bg;
+                    border-radius: 1rem;
+                    margin: 0.5rem;
+
+                    &:hover,
+                    &:focus {
+                        background-color: mix($overview_window_bg, $overview_window_hover, 95%);
+                    }
+
+                    &:active {
+                        background-color: mix($overview_window_bg, $overview_window_hover, 90%);
+                    }
+                }
+
+                .overview-tasks-window-selected {
+                    background-color: mix($overview_window_bg, $overview_window_hover, 90%);
+                }
+
+                .overview-tasks-window-dragging {
+                    opacity: 0.2;
+                }
+            }
+        }
+    }
+}

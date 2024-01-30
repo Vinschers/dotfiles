@@ -116,6 +116,14 @@ export default {
         link: "link-symbolic",
         open: "focus-windows-symbolic",
     },
+    overview: {
+        search: "search-symbolic",
+        search_web: "web-browser-symbolic",
+        calculate: "accessories-calculator-symbolic",
+        terminal: "utilities-terminal-symbolic",
+        settings: "preferences-system-symbolic",
+        run: "system-run-symbolic",
+    },
     weather: {
         day: {
             113: "", //"Sunny",

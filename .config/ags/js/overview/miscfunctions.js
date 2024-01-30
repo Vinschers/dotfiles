@@ -101,8 +101,8 @@ export function launchCustomCommand(command) {
     }
 }
 
-export function execAndClose(command, terminal) {
-    App.closeWindow("overview");
+export function execAndClose(monitor, command, terminal) {
+    App.closeWindow(`overview${monitor}`);
     if (terminal) {
         execAsync([`bash`, `-c`, `foot fish -C "${command}"`, `&`]).catch(
             print,

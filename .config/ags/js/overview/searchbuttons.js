@@ -9,14 +9,15 @@ import {
     couldBeMath,
     launchCustomCommand,
 } from "./miscfunctions.js";
+import icons from "../icons.js";
 
-export const DirectoryButton = ({ parentPath, name, type, icon }) => {
+export const DirectoryButton = (monitor, { parentPath, name, type, icon }) => {
     const actionText = Widget.Revealer({
         reveal_child: false,
         transition: "crossfade",
         transition_duration: 200,
         child: Widget.Label({
-            class_name: "overview-search-results-txt txt txt-small txt-action",
+            class_name: "overview-search-results-txt",
             label: "Open",
         }),
     });
@@ -29,9 +30,9 @@ export const DirectoryButton = ({ parentPath, name, type, icon }) => {
     return Widget.Button({
         class_name: "overview-search-result-btn",
         on_clicked: () => {
-            App.closeWindow("overview");
+            App.closeWindow(`overview${monitor}`);
             execAsync([
-                "bash",
+                "sh",
                 "-c",
                 `xdg-open '${parentPath}/${name}'`,
                 `&`,
@@ -67,7 +68,7 @@ export const DirectoryButton = ({ parentPath, name, type, icon }) => {
                         }),
                         Widget.Label({
                             class_name:
-                                "overview-search-results-txt txt txt-norm",
+                                "overview-search-results-txt",
                             label: name,
                         }),
                         Widget.Box({ hexpand: true }),
@@ -89,25 +90,25 @@ export const DirectoryButton = ({ parentPath, name, type, icon }) => {
     });
 };
 
-export const CalculationResultButton = ({ result, text }) =>
+export const CalculationResultButton = (monitor, { result, text }) =>
     searchItem({
-        materialIconName: "calculate",
+        materialIconName: icons.overview.calculate,
         name: `Math result`,
         actionName: "Copy",
         content: `${result}`,
         onActivate: () => {
-            App.closeWindow("overview");
+            App.closeWindow(`overview${monitor}`);
             execAsync(["wl-copy", `${result}`]).catch(print);
         },
     });
 
-export const DesktopEntryButton = (app) => {
+export const DesktopEntryButton = (monitor, app) => {
     const actionText = Widget.Revealer({
         reveal_child: false,
         transition: "crossfade",
         transition_duration: 200,
         child: Widget.Label({
-            class_name: "overview-search-results-txt txt txt-small txt-action",
+            class_name: "overview-search-results-txt",
             label: "Launch",
         }),
     });
@@ -120,7 +121,7 @@ export const DesktopEntryButton = (app) => {
     return Widget.Button({
         class_name: "overview-search-result-btn",
         on_clicked: () => {
-            App.closeWindow("overview");
+            App.closeWindow(`overview${monitor}`);
             app.launch();
         },
         child: Widget.Box({
@@ -153,7 +154,7 @@ export const DesktopEntryButton = (app) => {
                         }),
                         Widget.Label({
                             class_name:
-                                "overview-search-results-txt txt txt-norm",
+                                "overview-search-results-txt",
                             label: app.name,
                         }),
                         Widget.Box({ hexpand: true }),
@@ -175,39 +176,39 @@ export const DesktopEntryButton = (app) => {
     });
 };
 
-export const ExecuteCommandButton = ({ command, terminal = false }) =>
+export const ExecuteCommandButton = (monitor, { command, terminal = false }) =>
     searchItem({
-        materialIconName: `${terminal ? "terminal" : "settings_b_roll"}`,
+        materialIconName: `${terminal ? icons.overview.terminal : icons.overview.run}`,
         name: `Run command`,
         actionName: `Execute ${terminal ? "in terminal" : ""}`,
         content: `${command}`,
-        onActivate: () => execAndClose(command, terminal),
+        onActivate: () => execAndClose(monitor, command, terminal),
     });
 
-export const CustomCommandButton = ({ text = "" }) =>
+export const CustomCommandButton = (monitor, { text = "" }) =>
     searchItem({
-        materialIconName: "settings_suggest",
+        materialIconName: icons.overview.settings,
         name: "Action",
         actionName: "Run",
         content: `${text}`,
         onActivate: () => {
-            App.closeWindow("overview");
+            App.closeWindow(`overview${monitor}`);
             launchCustomCommand(text);
         },
     });
 
-export const SearchButton = ({ text = "" }) =>
+export const SearchButton = (monitor, { text = "" }) =>
     searchItem({
-        materialIconName: "travel_explore",
-        name: "Search Google",
+        materialIconName: icons.overview.search_web,
+        name: "Search DuckDuckGo",
         actionName: "Go",
         content: `${text}`,
         onActivate: () => {
-            App.closeWindow("overview");
+            App.closeWindow(`overview${monitor}`);
             execAsync([
-                "bash",
+                "sh",
                 "-c",
-                `xdg-open 'https://www.google.com/search?q=${text} -site:quora.com' &`,
+                `xdg-open 'https://www.duckduckgo.com/search?q=${text}' &`,
             ]).catch(print); // quora is useless
         },
     });

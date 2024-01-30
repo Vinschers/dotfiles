@@ -8,4 +8,27 @@
 @import "./notifications";
 @import "./calendar";
 @import "./configurations";
-@import "./sidebars.scss";
+@import "./sidebars";
+@import "./overview";
+
+menu {
+    background-color: $menu_bg;
+    color: $menu_fg;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-family: Product Sans;
+
+    menuitem {
+        border-radius: 0.3rem;
+        padding: 0.1rem 0.3rem;
+
+        transition:
+            background-color 0.1s ease-in-out,
+            color 0.1s ease-in-out;
+
+        &:hover {
+            background-color: $menu_hover_bg;
+            color: $menu_hover_fg;
+        }
+    }
+}

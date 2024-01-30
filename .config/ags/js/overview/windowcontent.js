@@ -21,6 +21,8 @@ import {
     ExecuteCommandButton,
     SearchButton,
 } from "./searchbuttons.js";
+import OverviewHyprland from "./overview_hyprland.js";
+import icons from "../icons.js";
 
 // Add math funcs
 const { abs, sin, cos, tan, cot, asin, acos, atan, acot } = Math;
@@ -36,41 +38,36 @@ const atand = (x) => (atan(x) * 180) / pi;
 const acotd = (x) => (acot(x) * 180) / pi;
 
 const MAX_RESULTS = 10;
-const OVERVIEW_SCALE = 0.18; // = overview workspace box / screen size
-const OVERVIEW_WS_NUM_SCALE = 0.09;
-const OVERVIEW_WS_NUM_MARGIN_SCALE = 0.07;
-const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)];
 
 function iconExists(iconName) {
     let iconTheme = Gtk.IconTheme.get_default();
     return iconTheme.has_icon(iconName);
 }
 
-const OptionalOverview = async () => {
+const OptionalOverview = (monitor) => {
     try {
-        return (await import("./overview_hyprland.js")).default();
+        return OverviewHyprland(monitor);
     } catch {
         return Widget.Box({});
         // return (await import('./overview_hyprland.js')).default();
     }
 };
 
-const overviewContent = await OptionalOverview();
+export const SearchAndWindows = (monitor) => {
+    const overviewContent = OptionalOverview(monitor);
 
-export const SearchAndWindows = () => {
     var _appSearchResults = [];
 
     const ClickToClose = ({ ...props }) =>
         Widget.EventBox({
             ...props,
-            on_primary_click: () => App.closeWindow("overview"),
-            on_secondary_click: () => App.closeWindow("overview"),
-            on_middle_click: () => App.closeWindow("overview"),
+            on_primary_click: () => App.closeWindow(`overview${monitor}`),
+            on_secondary_click: () => App.closeWindow(`overview${monitor}`),
+            on_middle_click: () => App.closeWindow(`overview${monitor}`),
         });
     const resultsBox = Widget.Box({
         class_name: "overview-search-results",
         vertical: true,
-        vexpand: true,
     });
     const resultsRevealer = Widget.Revealer({
         transition_duration: 200,
@@ -78,15 +75,19 @@ export const SearchAndWindows = () => {
         transition: "slide_down",
         // duration: 200,
         hpack: "center",
-        child: resultsBox,
+        child: Widget.Scrollable({
+            class_name: "overview-search-results-scrollable",
+            hscroll: "never",
+            child: resultsBox,
+        }),
     });
     const entryPromptRevealer = Widget.Revealer({
+        class_name: "overview-search-prompt",
         transition: "crossfade",
         transition_duration: 150,
-        reveal_child: true,
+        reveal_child: false,
         hpack: "center",
         child: Widget.Label({
-            class_name: "overview-search-prompt txt-small txt",
             label: "Type to search",
         }),
     });
@@ -96,9 +97,9 @@ export const SearchAndWindows = () => {
         transition_duration: 150,
         reveal_child: false,
         hpack: "end",
-        child: Widget.Label({
-            class_name: "txt txt-large icon-material overview-search-icon",
-            label: "search",
+        child: Widget.Icon({
+            class_name: "overview-search-icon",
+            icon: icons.overview.search,
         }),
     });
 
@@ -108,7 +109,7 @@ export const SearchAndWindows = () => {
     });
 
     const entry = Widget.Entry({
-        class_name: "overview-search-box txt-small txt",
+        class_name: "overview-search-box",
         hpack: "center",
         on_accept: (self) => {
             // This is when you hit Enter
@@ -123,16 +124,16 @@ export const SearchAndWindows = () => {
                     const fullResult = eval(text);
                     // copy
                     execAsync(["wl-copy", `${fullResult}`]).catch(print);
-                    App.closeWindow("overview");
+                    App.closeWindow(`overview${monitor}`);
                     return;
                 } catch (e) {
                     // console.log(e);
                 }
             }
             if (isDir) {
-                App.closeWindow("overview");
+                App.closeWindow(`overview${monitor}`);
                 execAsync([
-                    "bash",
+                    "sh",
                     "-c",
                     `xdg-open "${expandTilde(text)}"`,
                     `&`,
@@ -140,26 +141,26 @@ export const SearchAndWindows = () => {
                 return;
             }
             if (_appSearchResults.length > 0) {
-                App.closeWindow("overview");
+                App.closeWindow(`overview${monitor}`);
                 _appSearchResults[0].launch();
                 return;
             } else if (text[0] == ">") {
                 // Custom commands
-                App.closeWindow("overview");
+                App.closeWindow(`overview${monitor}`);
                 launchCustomCommand(text);
                 return;
             }
             // Fallback: Execute command
             if (
                 !isAction &&
-                exec(`bash -c "command -v ${text.split(" ")[0]}"`) != ""
+                exec(`sh -c "command -v ${text.split(" ")[0]}"`) != ""
             ) {
                 if (text.startsWith("sudo")) execAndClose(text, true);
                 else execAndClose(text, false);
             } else {
-                App.closeWindow("overview");
+                App.closeWindow(`overview${monitor}`);
                 execAsync([
-                    "bash",
+                    "sh",
                     "-c",
                     `xdg-open 'https://www.google.com/search?q=${text} -site:quora.com' &`,
                 ]).catch(print); // quora is useless
@@ -194,7 +195,7 @@ export const SearchAndWindows = () => {
                 try {
                     const fullResult = eval(text);
                     resultsBox.add(
-                        CalculationResultButton({
+                        CalculationResultButton(monitor, {
                             result: fullResult,
                             text: text,
                         }),
@@ -207,18 +208,20 @@ export const SearchAndWindows = () => {
                 var contents = [];
                 contents = ls({ path: text, silent: true });
                 contents.forEach((item) => {
-                    resultsBox.add(DirectoryButton(item));
+                    resultsBox.add(DirectoryButton(monitor, item));
                 });
             }
             if (isAction) {
                 // Eval on typing is dangerous, this is a workaround.
-                resultsBox.add(CustomCommandButton({ text: entry.text }));
+                resultsBox.add(
+                    CustomCommandButton(monitor, { text: entry.text }),
+                );
             }
             // Add application entries
             let appsToAdd = MAX_RESULTS;
             _appSearchResults.forEach((app) => {
                 if (appsToAdd == 0) return;
-                resultsBox.add(DesktopEntryButton(app));
+                resultsBox.add(DesktopEntryButton(monitor, app));
                 appsToAdd--;
             });
 
@@ -227,10 +230,10 @@ export const SearchAndWindows = () => {
             if (
                 !isAction &&
                 !hasUnterminatedBackslash(text) &&
-                exec(`bash -c "command -v ${text.split(" ")[0]}"`) != ""
+                exec(`sh -c "command -v ${text.split(" ")[0]}"`) != ""
             ) {
                 resultsBox.add(
-                    ExecuteCommandButton({
+                    ExecuteCommandButton(monitor, {
                         command: entry.text,
                         terminal: entry.text.startsWith("sudo"),
                     }),
@@ -238,7 +241,7 @@ export const SearchAndWindows = () => {
             }
 
             // Add fallback: search
-            resultsBox.add(SearchButton({ text: entry.text }));
+            resultsBox.add(SearchButton(monitor, { text: entry.text }));
             resultsBox.show_all();
         },
     });
@@ -252,24 +255,27 @@ export const SearchAndWindows = () => {
                 }),
             }),
             Widget.Box({
-                hpack: "center",
+                class_name: "overview",
+                vertical: true,
                 children: [
-                    entry,
                     Widget.Box({
-                        class_name: "overview-search-icon-box",
-                        setup: (box) =>
-                            box.pack_start(entryPromptRevealer, true, true, 0),
+                        hpack: "center",
+                        class_name: "overview-search",
+                        child: Widget.Overlay({
+                            child: entry,
+                            hpack: "center",
+                            overlays: [entryPromptRevealer, entryIcon],
+                        }),
                     }),
-                    entryIcon,
+                    overviewContent,
+                    resultsRevealer,
                 ],
             }),
-            overviewContent,
-            resultsRevealer,
         ],
         setup: (self) =>
             self
                 .hook(App, (_b, name, visible) => {
-                    if (name == "overview" && !visible) {
+                    if (name == `overview${monitor}` && !visible) {
                         resultsBox.children = [];
                         entry.set_text("");
                     }

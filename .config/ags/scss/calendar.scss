@@ -7,6 +7,7 @@
     color: $calendar_fg;
     font-family: Product Sans;
     font-size: 14pt;
+    box-shadow: 0px 2px 3px $shadow;
 
     calendar {
         all: unset;
