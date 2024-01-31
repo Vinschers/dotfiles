@@ -33,7 +33,7 @@
             min-width: 2.5rem;
             min-height: 2.5rem;
             font-size: 2px;
-            background-color: #565f89;
+            background-color: #a9b1d6;
             color: #c0caf5; }
             .bar .bar-left .media .media-box .media-buttons .circprog image {
               font-size: 10pt; }
@@ -48,11 +48,11 @@
           margin-left: 1rem; }
   .bar .bar-center .bar-corner {
     border-radius: 1.4rem;
-    background-color: #1a1b26; }
+    background-color: #1d202f; }
   .bar .bar-center .workspaces {
     padding-top: 0.4rem;
     color: #c0caf5;
-    background-color: #1a1b26;
+    background-color: #1d202f;
     font-size: 13pt; }
     .bar .bar-center .workspaces .workspace-corner {
       border-radius: 1.4rem;
@@ -200,7 +200,7 @@
   margin-top: 1rem;
   border-radius: 0.4rem;
   padding: 0.3rem 0;
-  background-color: #1a1b26;
+  background-color: #1d202f;
   transition: background-color 0.2s ease-in-out; }
   .notification .action-button:hover {
     background-color: #414868; }
@@ -215,18 +215,18 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; }
   .notification .close-button:hover {
     background-color: #f7768e;
-    color: #1a1b26; }
+    color: #1d202f; }
 
 .calendar {
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 2rem;
-  border: 1px solid #1a1b26;
+  border: 1px solid #1d202f;
   background-color: #24283b;
   color: #c0caf5;
   font-family: Product Sans;
   font-size: 14pt;
-  box-shadow: 0px 2px 3px #1a1b26; }
+  box-shadow: 0px 2px 3px #1d202f; }
   .calendar calendar {
     all: unset; }
     .calendar calendar:selected {
@@ -245,12 +245,12 @@
   border-radius: 3rem;
   background-color: #24283b;
   color: #c0caf5;
-  border: 1px solid #1a1b26;
+  border: 1px solid #1d202f;
   min-height: 30rem;
   font-family: Product Sans;
-  box-shadow: 0px 2px 3px #1a1b26; }
+  box-shadow: 0px 2px 3px #1d202f; }
   .configurations-window .configurations-main .toggle-btn {
-    background-color: #373d58;
+    background-color: #a9b1d6;
     color: #c0caf5;
     border-radius: 2rem;
     min-width: 15.3rem;
@@ -269,7 +269,7 @@
       border-radius: 2rem 0 0 2rem; }
     .configurations-window .configurations-main .toggle-btn.active {
       background-color: #bb9af7;
-      color: #1a1b26; }
+      color: #1d202f; }
       .configurations-window .configurations-main .toggle-btn.active .toggle:hover {
         background-color: #bb9af7; }
       .configurations-window .configurations-main .toggle-btn.active .arrow:hover {
@@ -294,24 +294,24 @@
     color: #c0caf5; }
     .configurations-window .configurations-main .footer .wallpaper:hover {
       background-color: #9ece6a;
-      color: #1a1b26; }
+      color: #1d202f; }
   .configurations-window .configurations-main .footer .theme {
     background-color: #414868;
     color: #c0caf5; }
     .configurations-window .configurations-main .footer .theme:hover {
       background-color: #7aa2f7;
-      color: #1a1b26; }
+      color: #1d202f; }
   .configurations-window .configurations-main .footer .power {
     background-color: #414868;
     color: #c0caf5; }
     .configurations-window .configurations-main .footer .power:hover {
       background-color: #f7768e;
-      color: #1a1b26; }
+      color: #1d202f; }
   .configurations-window .notifications {
     margin-left: 2rem;
     min-width: 28rem;
     border-radius: 2.5rem;
-    background-color: #1a1b26;
+    background-color: #1d202f;
     color: #c0caf5; }
   .configurations-window .placeholder > image {
     font-size: 40pt;
@@ -387,7 +387,7 @@
   .config-menu .content button image {
     margin-right: 1rem; }
   .config-menu .no-content {
-    color: #565f89; }
+    color: #a9b1d6; }
 
 .bluetooth .bt-battery {
   margin-left: 1rem;
@@ -475,7 +475,7 @@
       .sidebar-left .content .commands .tags .sidebar-chat-chip {
         background-color: #bb9af7; }
   .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-info {
-    color: #565f89;
+    color: #a9b1d6;
     margin-bottom: 1rem; }
     .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-info .sidebar-chat-welcome-logo {
       color: #c0caf5;
@@ -529,7 +529,7 @@
       padding-left: 0.8rem; }
     .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock {
       border-radius: 1rem;
-      background-color: #1a1b26;
+      background-color: #1d202f;
       color: #c0caf5;
       margin: 0rem 0.8rem;
       border: 0.1rem solid #414868; }
@@ -550,7 +550,7 @@
     .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-btn:focus {
       background-color: #414868; }
     .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-topbar-btn:active {
-      background-color: #565f89; }
+      background-color: #a9b1d6; }
     .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-chat-codeblock-code {
       padding: 0.7rem;
       font-family: monospace; }
@@ -580,7 +580,7 @@
       .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action:focus {
         background-color: #414868; }
       .sidebar-left .content .sidebar-chat-viewport .sidebar-chat-message .sidebar-waifu-image-actions .sidebar-waifu-image-action:active {
-        background-color: #565f89; }
+        background-color: #a9b1d6; }
 
 .overview-window .bar-height {
   min-height: 12rem; }
@@ -588,14 +588,14 @@
 .overview-window .overview {
   padding: 2rem 0;
   border-radius: 2rem;
-  box-shadow: 0px 2px 3px #1a1b26;
+  box-shadow: 0px 2px 3px #1d202f;
   background-color: #24283b;
   color: #c0caf5;
   opacity: 0.9;
   font-family: Product Sans; }
   .overview-window .overview .overview-search {
-    background-color: #1a1b26;
-    box-shadow: 3px 3px 3px 3px #1a1b26;
+    background-color: #1d202f;
+    box-shadow: 3px 3px 3px 3px #1d202f;
     margin-bottom: 1rem;
     min-height: 2rem;
     border-radius: 0.5rem; }
@@ -609,7 +609,7 @@
   .overview-window .overview .overview-search-results-scrollable {
     min-height: 36rem;
     min-width: 24rem;
-    background-color: #1a1b26;
+    background-color: #1d202f;
     border-radius: 1rem;
     margin-bottom: 3rem; }
   .overview-window .overview .overview-search-results {
@@ -632,7 +632,7 @@
   .overview-window .overview .overview-tasks .overview-tasks-workspace {
     border-radius: 1rem;
     margin: 0.8rem;
-    box-shadow: 3px 3px 3px 3px #1a1b26; }
+    box-shadow: 3px 3px 3px 3px #1d202f; }
     .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window {
       background: #414868;
       border-radius: 1rem;
@@ -657,5 +657,5 @@ menu {
     padding: 0.1rem 0.3rem;
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
     menu menuitem:hover {
-      background-color: #565f89;
+      background-color: #a9b1d6;
       color: #24283b; }

@@ -1,181 +1,181 @@
-$shadow: #1a1b26;
+$shadow: $black;
 
-$bar_bg: #24283b;
-$bar_fg: #c0caf5;
+$bar_bg: $bg;
+$bar_fg: $fg;
 $bar_opacity: 1;
 
-$bar_right_bg: #24283b;
-$bar_left_bg: #24283b;
+$bar_right_bg: $bg;
+$bar_left_bg: $bg;
 
-$ws_fg: #c0caf5;
-$ws_bg: #1a1b26;
-$ws_occupied_bg: #414868;
-$ws_occupied_fg: #c0caf5;
-$ws_occupied_border: #c0caf5;
-$ws_active_bg: #c0caf5;
-$ws_active_fg: #414868;
+$ws_fg: $fg;
+$ws_bg: $black;
+$ws_occupied_bg: $bright_black;
+$ws_occupied_fg: $fg;
+$ws_occupied_border: $fg;
+$ws_active_bg: $fg;
+$ws_active_fg: $bright_black;
 
-$media_bg: #24283b;
-$media_symbols_fg: #c0caf5;
-$media_progress_bg: #565f89;
+$media_bg: $bg;
+$media_symbols_fg: $fg;
+$media_progress_bg: $white;
 
-$packages_fg: #24283b;
-$packages_bg: #9ece6a;
+$packages_fg: $bg;
+$packages_bg: $green;
 
-$keyboard_fg: #c0caf5;
-$keyboard_bg: #414868;
+$keyboard_fg: $fg;
+$keyboard_bg: $bright_black;
 
-$system_progress_bg: #414868;
-$system_progress_indicator: #24283b;
-$system_progress_cpu: #7aa2f7;
-$system_progress_temp: #f7768e;
-$system_progress_ram: #bb9af7;
-$system_progress_gpu: #7dcfff;
+$system_progress_bg: $bright_black;
+$system_progress_indicator: $bg;
+$system_progress_cpu: $blue;
+$system_progress_temp: $red;
+$system_progress_ram: $magenta;
+$system_progress_gpu: $cyan;
 
-$bar_configurations_fg: #c0caf5;
-$bar_configurations_bg: #414868;
+$bar_configurations_fg: $fg;
+$bar_configurations_bg: $bright_black;
 
-$battery_full: #7aa2f7;
-$battery_high: #9ece6a;
-$battery_medium: #e0af68;
-$battery_low: #f7768e;
+$battery_full: $blue;
+$battery_high: $green;
+$battery_medium: $yellow;
+$battery_low: $red;
 
-$clock_fg: #c0caf5;
+$clock_fg: $fg;
 
-$systray_bg: #24283b;
-
-
-$notifications_bg: #24283b;
-$notifications_fg: #c0caf5;
-$notifications_icon: #414868;
-$notifications_close_bg: #414868;
-$notifications_close_fg: #c0caf5;
-$notifications_close_hover_bg: #f7768e;
-$notifications_close_hover_fg: #1a1b26;
-$notifications_action: #1a1b26;
-$notifications_action_hover: #414868;
+$systray_bg: $bg;
 
 
-$calendar_bg: #24283b;
-$calendar_fg: #c0caf5;
-$calendar_border: #1a1b26;
-$calendar_header: #7aa2f7;
-$calendar_indeterminate: #414868;
-$calendar_selected: #bb9af7;
+$notifications_bg: $bg;
+$notifications_fg: $fg;
+$notifications_icon: $bright_black;
+$notifications_close_bg: $bright_black;
+$notifications_close_fg: $fg;
+$notifications_close_hover_bg: $red;
+$notifications_close_hover_fg: $black;
+$notifications_action: $black;
+$notifications_action_hover: $bright_black;
 
 
-$configurations_bg: #24283b;
-$configurations_fg: #c0caf5;
-$configurations_border: #1a1b26;
-
-$toggle_bg: #373d58;
-$toggle_fg: #c0caf5;
-$toggle_active_bg: #bb9af7;
-$toggle_active_fg: #1a1b26;
-$toggle_hover: #414868;
-$toggle_arrow_hover: #414868;
-$toggle_active_hover: #bb9af7;
-$toggle_arrow_active_hover: #bb9af7;
-
-$footer_bg: #414868;
-
-$footer_power_fg: #c0caf5;
-$footer_power_bg: #414868;
-$footer_power_hover_fg: #1a1b26;
-$footer_power_hover_bg: #f7768e;
-
-$footer_theme_fg: #c0caf5;
-$footer_theme_bg: #414868;
-$footer_theme_hover_fg: #1a1b26;
-$footer_theme_hover_bg: #7aa2f7;
-
-$footer_wallpaper_fg: #c0caf5;
-$footer_wallpaper_bg: #414868;
-$footer_wallpaper_hover_fg: #1a1b26;
-$footer_wallpaper_hover_bg: #9ece6a;
-
-$configurations_notifications_bg: #1a1b26;
-$configurations_notifications_fg: #c0caf5;
-$configurations_notifications_clear: #24283b;
-$configurations_notifications_clear_hover: #414868;
-$configurations_notifications_slider: #414868;
-$configurations_notifications_slider_hover: #c0caf5;
+$calendar_bg: $bg;
+$calendar_fg: $fg;
+$calendar_border: $black;
+$calendar_header: $blue;
+$calendar_indeterminate: $bright_black;
+$calendar_selected: $magenta;
 
 
-$menu_bg: #24283b;
-$menu_fg: #c0caf5;
+$configurations_bg: $bg;
+$configurations_fg: $fg;
+$configurations_border: $black;
 
-$menu_selection_bg: #414868;
-$menu_nocontent_fg: #565f89;
-$menu_bt_battery: #9ece6a;
+$toggle_bg: $white;
+$toggle_fg: $fg;
+$toggle_active_bg: $magenta;
+$toggle_active_fg: $black;
+$toggle_hover: $bright_black;
+$toggle_arrow_hover: $bright_black;
+$toggle_active_hover: $magenta;
+$toggle_arrow_active_hover: $magenta;
 
-$slider_bg: #414868;
-$slider_volume_fg: #7dcfff;
-$slider_microphone_fg: #7aa2f7;
-$slider_brightness_fg: #e0af68;
-$slider_mixer_fg: #c0caf5;
+$footer_bg: $bright_black;
+
+$footer_power_fg: $fg;
+$footer_power_bg: $bright_black;
+$footer_power_hover_fg: $black;
+$footer_power_hover_bg: $red;
+
+$footer_theme_fg: $fg;
+$footer_theme_bg: $bright_black;
+$footer_theme_hover_fg: $black;
+$footer_theme_hover_bg: $blue;
+
+$footer_wallpaper_fg: $fg;
+$footer_wallpaper_bg: $bright_black;
+$footer_wallpaper_hover_fg: $black;
+$footer_wallpaper_hover_bg: $green;
+
+$configurations_notifications_bg: $black;
+$configurations_notifications_fg: $fg;
+$configurations_notifications_clear: $bg;
+$configurations_notifications_clear_hover: $bright_black;
+$configurations_notifications_slider: $bright_black;
+$configurations_notifications_slider_hover: $fg;
 
 
-$osd_bg: #24283b;
-$osd_icon: #c0caf5;
-$osd_text: #c0caf5;
-$osd_slider: #c0caf5;
+$menu_bg: $bg;
+$menu_fg: $fg;
+
+$menu_selection_bg: $bright_black;
+$menu_nocontent_fg: $white;
+$menu_bt_battery: $green;
+
+$slider_bg: $bright_black;
+$slider_volume_fg: $cyan;
+$slider_microphone_fg: $blue;
+$slider_brightness_fg: $yellow;
+$slider_mixer_fg: $fg;
 
 
-$sideleft_bg: #24283b;
-$sideleft_fg: #c0caf5;
+$osd_bg: $bg;
+$osd_icon: $fg;
+$osd_text: $fg;
+$osd_slider: $fg;
+
+
+$sideleft_bg: $bg;
+$sideleft_fg: $fg;
 $sideleft_opacity: 0.95;
 
-$sideleft_tab_fg: #c0caf5;
-$sideleft_tab_hover_bg: #414868;
-$sideleft_tab_active_fg: #7aa2f7;
+$sideleft_tab_fg: $fg;
+$sideleft_tab_hover_bg: $bright_black;
+$sideleft_tab_active_fg: $blue;
 
-$sideleft_apiswitcher_bg: #414868;
+$sideleft_apiswitcher_bg: $bright_black;
 
-$sideleft_info_fg: #565f89;
-$sideleft_temperature: #bb9af7;
-$sideleft_settings_toggle: #414868;
-$sideleft_settings_toggle_active_bg: #bb9af7;
-$sideleft_settings_toggle_active_fg: #24283b;
+$sideleft_info_fg: $white;
+$sideleft_temperature: $magenta;
+$sideleft_settings_toggle: $bright_black;
+$sideleft_settings_toggle_active_bg: $magenta;
+$sideleft_settings_toggle_active_fg: $bg;
 
-$sideleft_text_bg: #414868;
-$sideleft_text_send_bg: #7aa2f7;
-$sideleft_text_send_fg: #24283b;
+$sideleft_text_bg: $bright_black;
+$sideleft_text_send_bg: $blue;
+$sideleft_text_send_fg: $bg;
 
-$sideleft_chip_bg: #7aa2f7;
-$sideleft_chip_fg: #24283b;
-$sideleft_chip_hover: #c0caf5;
-$sideleft_tags: #bb9af7;
+$sideleft_chip_bg: $blue;
+$sideleft_chip_fg: $bg;
+$sideleft_chip_hover: $fg;
+$sideleft_tags: $magenta;
 
-$sideleft_bot: #c0caf5;
-$sideleft_user: #e0af68;
-$sideleft_system: #7aa2f7;
+$sideleft_bot: $fg;
+$sideleft_user: $yellow;
+$sideleft_system: $blue;
 
-$sideleft_cb_bg: #1a1b26;
-$sideleft_cb_fg: #c0caf5;
-$sideleft_cb_border: #414868;
-$sideleft_cb_topbar_bg: #24283b;
-$sideleft_cb_topbar_fg: #c0caf5;
-$sideleft_cb_topbar_border: #414868;
-$sideleft_cb_topbar_btn_hover: #414868;
-$sideleft_cb_topbar_btn_active: #565f89;
+$sideleft_cb_bg: $black;
+$sideleft_cb_fg: $fg;
+$sideleft_cb_border: $bright_black;
+$sideleft_cb_topbar_bg: $bg;
+$sideleft_cb_topbar_fg: $fg;
+$sideleft_cb_topbar_border: $bright_black;
+$sideleft_cb_topbar_btn_hover: $bright_black;
+$sideleft_cb_topbar_btn_active: $white;
 
-$sideleft_waifu_action: #24283b;
-$sideleft_waifu_action_hover: #414868;
-$sideleft_waifu_action_active: #565f89;
+$sideleft_waifu_action: $bg;
+$sideleft_waifu_action_hover: $bright_black;
+$sideleft_waifu_action_active: $white;
 
 
-$overview_bg: #24283b;
-$overview_fg: #c0caf5;
+$overview_bg: $bg;
+$overview_fg: $fg;
 $overview_opacity: 0.9;
 
-$overview_search_bg: #1a1b26;
-$overview_result_bg: #24283b;
-$overview_window_bg: #414868;
-$overview_window_hover: #7aa2f7;
+$overview_search_bg: $black;
+$overview_result_bg: $bg;
+$overview_window_bg: $bright_black;
+$overview_window_hover: $blue;
 
 
-$menu_bg: #414868;
-$menu_fg: #c0caf5;
-$menu_hover_bg: #565f89;
-$menu_hover_fg: #24283b;
+$menu_bg: $bright_black;
+$menu_fg: $fg;
+$menu_hover_bg: $white;
+$menu_hover_fg: $bg;

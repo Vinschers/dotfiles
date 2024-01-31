@@ -8,4 +8,3 @@ foo.*
 data
 lazy-lock.json
 lazyvim.json
-lua/plugins/colorscheme.lua
