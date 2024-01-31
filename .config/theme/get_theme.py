@@ -58,13 +58,10 @@ def main():
     config_dir = os.getenv("XDG_CONFIG_HOME", os.path.join(home_dir, ".config"))
     theme_path = os.path.join(config_dir, "theme/theme.json")
 
-    wallpaper = theme.get("wallpaper", "")
-    del theme["wallpaper"]
+    theme["wallpaper"] = theme.get("wallpaper", "").replace(home_dir, "~")
 
-    with open(theme_path, 'w') as fp:
+    with open(theme_path, "w") as fp:
         json.dump(theme, fp, indent=4)
-
-    print(wallpaper)
 
 
 if __name__ == "__main__":
