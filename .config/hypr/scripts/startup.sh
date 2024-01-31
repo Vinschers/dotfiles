@@ -14,5 +14,3 @@ done
 hyprctl dispatch focusmonitor 0
 
 swww init
-
-"$HOME"/.config/theme/switch_theme.sh
