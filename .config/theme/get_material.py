@@ -6,7 +6,7 @@ def get_color_dict(color):
     return {"value": mc.argbFromHex(color), "blend": False}
 
 
-def get_theme(custom_colors=[]):
+def get_theme(color, custom_colors=[]):
     color = mc.argbFromHex(color)
     custom_colors = [get_color_dict(c) for c in custom_colors]
 
@@ -28,4 +28,4 @@ def get_theme(custom_colors=[]):
     print(json.dumps(theme, indent=4))
 
 
-get_theme("#c0caf5", ["#7aa2f7", "#bb9af7", "#9ece6a", "#f7768e"])
+get_theme("#CDD6F4", ["#89B4FA", "#F5C2E7", "#A6E3A1", "#F38BA8"])
