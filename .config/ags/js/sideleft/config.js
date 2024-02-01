@@ -9,6 +9,6 @@ export default () =>
         child: SidebarLeft(),
         popup: true,
         visible: false,
-        focusable: true,
+        keymode: "exclusive",
         layer: 'top'
     });

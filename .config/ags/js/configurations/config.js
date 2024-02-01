@@ -1,6 +1,5 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
-import PopupWindow from "../misc/PopupWindow.js";
 import NotificationsColumn from './NotificationsColumn.js';
 import Microphone from "./Microphone.js";
 import DND from "./DND.js";
@@ -21,11 +20,13 @@ const Row = (...widgets) =>
     });
 
 export default () =>
-    PopupWindow({
+    Widget.Window({
         name: "configurations",
         anchor: ["top", "right"],
-        layout: "top",
-        content: Widget.Box({
+        popup: true,
+        visible: false,
+        layer: "overlay",
+        child: Widget.Box({
             class_name: "configurations-window",
             children: [
                 Widget.Box({

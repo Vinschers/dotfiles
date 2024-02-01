@@ -142,7 +142,9 @@ export default (notification) => {
             hovered.value = false;
             notification.dismiss();
         },
-        properties: [["hovered", hovered]],
+        attribute: {
+            hovered: hovered,
+        },
         on_hover: hover,
         on_hover_lost: hoverLost,
         child: Widget.Box({

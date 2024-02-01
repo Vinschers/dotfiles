@@ -33,10 +33,7 @@ export default () => {
                 children: [
                     Widget.Label({
                         class_name: "uptime",
-                        binds: [
-                            ["label", uptime, "value", (t) => `uptime ${t}`],
-                        ],
-                    }),
+                    }).bind("label", uptime, "value", (t) => `uptime ${t}`),
                 ],
             }),
             Widget.Box({
@@ -60,9 +57,7 @@ export default () => {
                 class_names: ["footer-item", "theme"],
                 cursor: "pointer",
                 on_primary_click_release: () =>
-                    Utils.execAsync(
-                        `notify-send "TODO"`,
-                    ),
+                    Utils.execAsync(`notify-send "TODO"`),
                 child: Widget.Icon(icons.footer.theme),
             }),
             Widget.Button({

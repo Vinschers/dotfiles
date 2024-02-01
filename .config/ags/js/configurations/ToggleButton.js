@@ -1,5 +1,4 @@
 import icons from "../icons.js";
-import PopupWindow from "../misc/PopupWindow.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
@@ -98,12 +97,14 @@ export const SimpleToggleButton = ({
     });
 
 export const Menu = ({ name, icon, title, settings, menu_content }) =>
-    PopupWindow({
+    Widget.Window({
         name: name,
-        layout: "center",
         hexpand: true,
         vexpand: true,
-        content: Widget.Box({
+        popup: true,
+        visible: false,
+        layer: "overlay",
+        child: Widget.Box({
             class_names: ["config-menu", name],
             vertical: true,
             children: [

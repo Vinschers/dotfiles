@@ -59,8 +59,9 @@ const windows = () => [
     SideLeft(),
 ];
 
+Notifications.popupTimeout = 5000;
+Notifications.cacheActions = true;
+
 export default {
     windows: windows().flat(1),
-    cacheNotificationActions: true,
-    notificationPopupTimeout: 5000,
 };

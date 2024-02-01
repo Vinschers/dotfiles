@@ -6,7 +6,7 @@ export default (monitor) =>
         name: `overview${monitor}`,
         monitor,
         exclusivity: "ignore",
-        focusable: true,
+        keymode: "on-demand",
         popup: true,
         visible: false,
         anchor: ["top"],

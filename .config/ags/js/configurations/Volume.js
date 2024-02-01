@@ -116,29 +116,27 @@ const MixerItem = (stream) =>
         class_name: "mixer-item horizontal",
         spacing: 16,
         children: [
-            Widget.Icon({
-                binds: [["tooltipText", stream, "name"]],
-            }).hook(stream, (icon) => {
-                icon.icon = Utils.lookUpIcon(stream.name || "")
-                    ? stream.name || ""
-                    : icons.mpris.fallback;
-            }),
+            Widget.Icon({})
+                .bind("tooltipText", stream, "name")
+                .hook(stream, (icon) => {
+                    icon.icon = Utils.lookUpIcon(stream.name || "")
+                        ? stream.name || ""
+                        : icons.mpris.fallback;
+                }),
             Widget.Box({
                 vertical: true,
                 children: [
                     Widget.Label({
                         xalign: 0,
                         truncate: "end",
-                        binds: [["label", stream, "description"]],
                         max_width_chars: 60,
                         ellipsize: Pango10.EllipsizeMode.END,
-                    }),
+                    }).bind("label", stream, "description"),
                     Widget.Slider({
                         hexpand: true,
                         draw_value: false,
-                        binds: [["value", stream, "volume"]],
                         on_change: ({ value }) => (stream.volume = value),
-                    }),
+                    }).bind("value", stream, "volume"),
                 ],
             }),
             Widget.Label({
@@ -168,14 +166,8 @@ const SinkItem = (stream) =>
                     icon: icons.tick,
                     hexpand: true,
                     hpack: "end",
-                    connections: [
-                        [
-                            "draw",
-                            (icon) => {
-                                icon.visible = Audio.speaker === stream;
-                            },
-                        ],
-                    ],
+                }).on("draw", (icon) => {
+                    icon.visible = Audio.speaker === stream;
                 }),
             ],
         }),
@@ -197,8 +189,7 @@ export const AppMixer = () =>
         menu_content: [
             Widget.Box({
                 vertical: true,
-                binds: [["children", Audio, "apps", (a) => a.map(MixerItem)]],
-            }),
+            }).bind("children", Audio, "apps", (a) => a.map(MixerItem)),
         ],
     });
 
@@ -211,9 +202,6 @@ export const SinkSelector = () =>
         menu_content: [
             Widget.Box({
                 vertical: true,
-                binds: [
-                    ["children", Audio, "speakers", (s) => s.map(SinkItem)],
-                ],
-            }),
+            }).bind("children", Audio, "speakers", (s) => s.map(SinkItem)),
         ],
     });

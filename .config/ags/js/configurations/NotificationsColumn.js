@@ -9,30 +9,18 @@ const ClearButton = () =>
         hpack: "end",
         class_name: "notifications__clear-button",
         on_clicked: () => Notifications.clear(),
-        binds: [
-            ["sensitive", Notifications, "notifications", (n) => n.length > 0],
-        ],
         child: Widget.Box({
             children: [Widget.Label("Clear all")],
         }),
-    });
+    }).bind("sensitive", Notifications, "notifications", (n) => n.length > 0);
 
 const NotificationList = () =>
     Widget.Box({
         vertical: true,
         vexpand: true,
-        connections: [
-            [
-                Notifications,
-                (box) => {
-                    box.children = Notifications.notifications
-                        .reverse()
-                        .map(Popup);
-
-                    box.visible = Notifications.notifications.length > 0;
-                },
-            ],
-        ],
+    }).hook(Notifications, (box) => {
+        box.children = Notifications.notifications.reverse().map(Popup);
+        box.visible = Notifications.notifications.length > 0;
     });
 
 const Placeholder = () =>
@@ -47,10 +35,7 @@ const Placeholder = () =>
             Widget.Icon(icons.notifications.silent),
             Widget.Label("Your inbox is empty"),
         ],
-        binds: [
-            ["visible", Notifications, "notifications", (n) => n.length === 0],
-        ],
-    });
+    }).bind("visible", Notifications, "notifications", (n) => n.length === 0);
 
 export default () =>
     Widget.Box({
