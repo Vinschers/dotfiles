@@ -41,23 +41,12 @@ export default () => {
             }),
 
             Widget.Button({
-                class_names: ["footer-item", "wallpaper"],
-                cursor: "pointer",
-                on_primary_click: () =>
-                    Utils.execAsync(
-                        'sh -c "$HOME/.local/share/wallpapers/update.sh"',
-                    ).catch(console.error),
-                on_secondary_click: () =>
-                    Utils.execAsync(
-                        'sh -c "$HOME/.local/share/wallpapers/update.sh -1"',
-                    ).catch(console.error),
-                child: Widget.Icon(icons.footer.wallpaper),
-            }),
-            Widget.Button({
                 class_names: ["footer-item", "theme"],
                 cursor: "pointer",
                 on_primary_click_release: () =>
-                    Utils.execAsync(`notify-send "TODO"`),
+                    Utils.execAsync('sh -c "$HOME/.config/theme/change.sh"'),
+                on_secondary_click: () =>
+                    Utils.execAsync('sh -c "$HOME/.config/theme/change.sh -1"'),
                 child: Widget.Icon(icons.footer.theme),
             }),
             Widget.Button({

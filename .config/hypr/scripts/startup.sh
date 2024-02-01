@@ -12,5 +12,3 @@ while [ "$i" -gt 0 ]; do
 done
 
 hyprctl dispatch focusmonitor 0
-
-swww init
