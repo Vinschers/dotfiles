@@ -1,6 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
+import Padding from "../misc/Padding.js";
 
-import NotificationsColumn from './NotificationsColumn.js';
+import NotificationsColumn from "./NotificationsColumn.js";
 import Microphone from "./Microphone.js";
 import DND from "./DND.js";
 import Brightness from "./Brightness.js";
@@ -19,44 +20,53 @@ const Row = (...widgets) =>
         children: [...widgets],
     });
 
+const configurations = Widget.Box({
+    class_name: "configurations-window",
+    children: [
+        Widget.Box({
+            class_name: "configurations-main",
+            vertical: true,
+            spacing: 16,
+            children: [
+                Row(NetworkToggle(), BluetoothToggle()),
+                Row(NightLight(), DND()),
+                Row(Microphone(), Record()),
+                Widget.Box(),
+                Row(
+                    Widget.Box({
+                        class_name: "slider-box",
+                        vertical: true,
+                        spacing: 16,
+                        children: [
+                            Row(Volume()),
+                            Row(VolMicrophone()),
+                            Row(Brightness()),
+                        ],
+                    }),
+                ),
+                Widget.Box({
+                    vexpand: true,
+                }),
+                Footer(),
+            ],
+        }),
+        NotificationsColumn(),
+    ],
+});
+
 export default () =>
     Widget.Window({
         name: "configurations",
         anchor: ["top", "right"],
         popup: true,
         visible: false,
-        layer: "overlay",
-        child: Widget.Box({
-            class_name: "configurations-window",
-            children: [
-                Widget.Box({
-                    class_name: "configurations-main",
-                    vertical: true,
-                    spacing: 16,
-                    children: [
-                        Row(NetworkToggle(), BluetoothToggle()),
-                        Row(NightLight(), DND()),
-                        Row(Microphone(), Record()),
-                        Widget.Box(),
-                        Row(
-                            Widget.Box({
-                                class_name: "slider-box",
-                                vertical: true,
-                                spacing: 16,
-                                children: [
-                                    Row(Volume()),
-                                    Row(VolMicrophone()),
-                                    Row(Brightness()),
-                                ],
-                            }),
-                        ),
-                        Widget.Box({
-                            vexpand: true,
-                        }),
-                        Footer(),
-                    ],
-                }),
-                NotificationsColumn(),
-            ],
+        keymode: "exclusive",
+        child: Widget.CenterBox({
+            start_widget: Padding("configurations"),
+            center_widget: Widget.Box({
+                vertical: true,
+                children: [configurations, Padding("configurations")],
+            }),
+            end_widget: Padding("configurations"),
         }),
     });

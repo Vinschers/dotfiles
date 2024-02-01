@@ -3,6 +3,7 @@ import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Utils from "resource:///com/github/Aylur/ags/utils.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
+import Padding from "../misc/Padding.js";
 
 export const opened = Variable("");
 App.connect("window-toggled", (_, name, visible) => {
@@ -96,6 +97,29 @@ export const SimpleToggleButton = ({
         box.toggleClassName("active", condition());
     });
 
+const menu = (name, icon, title, settings, menu_content) =>
+    Widget.Box({
+        class_names: ["config-menu", name],
+        vertical: true,
+        children: [
+            Widget.Box({
+                class_name: "horizontal",
+                children: [
+                    Widget.Box({
+                        class_name: "title",
+                        children: [icon, title],
+                    }),
+                    Widget.Box({ hexpand: true }),
+                    settings,
+                ],
+            }),
+            Widget.Box({
+                class_name: "content",
+                children: menu_content,
+            }),
+        ],
+    });
+
 export const Menu = ({ name, icon, title, settings, menu_content }) =>
     Widget.Window({
         name: name,
@@ -103,26 +127,16 @@ export const Menu = ({ name, icon, title, settings, menu_content }) =>
         vexpand: true,
         popup: true,
         visible: false,
-        layer: "overlay",
-        child: Widget.Box({
-            class_names: ["config-menu", name],
-            vertical: true,
-            children: [
-                Widget.Box({
-                    class_name: "horizontal",
-                    children: [
-                        Widget.Box({
-                            class_name: "title",
-                            children: [icon, title],
-                        }),
-                        Widget.Box({ hexpand: true }),
-                        settings,
-                    ],
-                }),
-                Widget.Box({
-                    class_name: "content",
-                    children: menu_content,
-                }),
-            ],
+        keymode: "exclusive",
+        child: Widget.CenterBox({
+            css: "min-width: 5000px; min-height: 3000px",
+            startWidget: Padding(name),
+            centerWidget: Widget.CenterBox({
+                vertical: true,
+                startWidget: Padding(name),
+                centerWidget: menu(name, icon, title, settings, menu_content),
+                endWidget: Padding(name),
+            }),
+            endWidget: Padding(name),
         }),
     });

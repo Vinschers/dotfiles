@@ -1,4 +1,13 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
+import Padding from "../misc/Padding.js";
+
+const calendar = Widget.Box({
+    class_name: "calendar",
+    child: Widget.Calendar({
+        hexpand: true,
+        hpack: "center",
+    }),
+});
 
 export default () =>
     Widget.Window({
@@ -6,12 +15,16 @@ export default () =>
         anchor: ["top", "right"],
         popup: true,
         visible: false,
-        layer: "overlay",
-        child: Widget.Box({
-            class_name: "calendar",
-            child: Widget.Calendar({
-                hexpand: true,
-                hpack: "center",
+        keymode: "exclusive",
+        child: Widget.CenterBox({
+            start_widget: Padding("calendar"),
+            center_widget: Widget.Box({
+                vertical: true,
+                children: [
+                    calendar,
+                    Padding("calendar"),
+                ],
             }),
+            end_widget: Padding("calendar"),
         }),
     });
