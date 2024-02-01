@@ -7,7 +7,7 @@ from material_color_utilities_python import Image, themeFromImage, hexFromArgb
 
 
 def get_colors(path, light=False):
-    return pywal.colors.get(path, backend="haishoku", light=light, sat="0.5")
+    return pywal.colors.get(path, backend="wal", light=light)
 
 
 def get_material(path, mode="dark"):

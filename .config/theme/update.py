@@ -76,6 +76,7 @@ def update(theme, config_dir, data_dir):
     run("hyprctl reload")
     update_spotify()
     update_gtk_qt(config_dir, data_dir)
+    run("wal_steam -w")
 
 
 def get_dirs():
