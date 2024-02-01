@@ -1,48 +1,41 @@
-$shadow: $black;
+$shadow: $surface;
 
-$bar_bg: $bg;
-$bar_fg: $fg;
+$bar_bg: $surface;
+$bar_fg: $onSurface;
 $bar_opacity: 1;
 
-$bar_right_bg: $bg;
-$bar_left_bg: $bg;
+$ws_bg: $surfaceVariant;
+$ws_fg: $onSurfaceVariant;
+$ws_occupied_bg: $primary;
+$ws_occupied_fg: $onPrimary;
+$ws_occupied_border: $primaryContainer;
+$ws_active_bg: $primaryContainer;
+$ws_active_fg: $onPrimaryContainer;
+$ws_active_border: $primary;
 
-$ws_fg: $fg;
-$ws_bg: $black;
-$ws_occupied_bg: $bright_black;
-$ws_occupied_fg: $fg;
-$ws_occupied_border: $fg;
-$ws_active_bg: $fg;
-$ws_active_fg: $bright_black;
+$media_symbols_fg: $onSurface;
+$media_progress_bg: $onSurfaceVariant;
 
-$media_bg: $bg;
-$media_symbols_fg: $fg;
-$media_progress_bg: $white;
+$packages_bg: $secondary;
+$packages_fg: $onSecondary;
 
-$packages_fg: $bg;
-$packages_bg: $green;
+$keyboard_bg: $secondary;
+$keyboard_fg: $onSecondary;
 
-$keyboard_fg: $fg;
-$keyboard_bg: $bright_black;
+$system_progress_bg: $surfaceVariant;
+$system_progress_indicator: $surface;
+$system_progress_cpu: $primary;
+$system_progress_temp: $onSurface;
+$system_progress_ram: $secondary;
+$system_progress_gpu: $tertiary;
 
-$system_progress_bg: $bright_black;
-$system_progress_indicator: $bg;
-$system_progress_cpu: $blue;
-$system_progress_temp: $red;
-$system_progress_ram: $magenta;
-$system_progress_gpu: $cyan;
+$bar_configurations_bg: $surfaceVariant;
+$bar_configurations_fg: $onSurfaceVariant;
 
-$bar_configurations_fg: $fg;
-$bar_configurations_bg: $bright_black;
-
-$battery_full: $blue;
-$battery_high: $green;
-$battery_medium: $yellow;
-$battery_low: $red;
-
-$clock_fg: $fg;
-
-$systray_bg: $bg;
+$battery_full: $primary;
+$battery_high: $secondary;
+$battery_medium: $tertiary;
+$battery_low: $error;
 
 
 $notifications_bg: $bg;

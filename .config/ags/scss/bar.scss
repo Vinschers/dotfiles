@@ -16,11 +16,7 @@
     font-size: 12pt;
 
     .bar-left {
-        background-color: $bar_left_bg;
-
         .media {
-            background-color: $media_bg;
-
             .media-box {
                 border-radius: 0.5rem;
 
@@ -61,8 +57,6 @@
         }
 
         .systray {
-            background-color: $systray_bg;
-
             .systray-item {
                 &:first-child {
                     margin-left: 1rem;
@@ -123,12 +117,15 @@
                     .workspace-label {
                         background-color: $ws_active_bg;
                         color: $ws_active_fg;
+                        border: 1px solid $ws_active_border;
                         border-radius: 1rem;
                     }
                 }
 
                 .workspace-label {
                     min-width: 2rem;
+                    border-radius: 1rem;
+                    border: 1px solid transparent;
                 }
             }
         }
@@ -140,7 +137,6 @@
 
     .bar-right {
         padding-right: 1rem;
-        background-color: $bar_right_bg;
 
         .packages {
             margin-top: 0.4rem;
@@ -174,7 +170,7 @@
             font-size: 13pt;
             border-radius: 10rem;
             margin: 0.2rem 0;
-            min-width: 2.5rem;
+            min-width: 2.6rem;
 
             background: $keyboard_bg;
             color: $keyboard_fg;
@@ -268,8 +264,6 @@
         }
 
         .clock {
-            color: $clock_fg;
-
             .time {
                 font-size: 16pt;
                 font-weight: bold;

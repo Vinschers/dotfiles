@@ -13,46 +13,40 @@
   opacity: 1;
   font-family: Product Sans;
   font-size: 12pt; }
-  .bar .bar-left {
-    background-color: #24283b; }
-    .bar .bar-left .media {
-      background-color: #24283b; }
-      .bar .bar-left .media .media-box {
-        border-radius: 0.5rem; }
-        .bar .bar-left .media .media-box .media-background {
-          margin: 0.2rem;
-          border-radius: 0.5rem;
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-position: center center;
-          min-width: 2.5rem;
-          min-height: 2.5rem; }
-        .bar .bar-left .media .media-box .media-buttons {
-          padding-right: 0.5rem; }
-          .bar .bar-left .media .media-box .media-buttons .circprog {
-            min-width: 2.5rem;
-            min-height: 2.5rem;
-            font-size: 2px;
-            background-color: #a9b1d6;
-            color: #c0caf5; }
-            .bar .bar-left .media .media-box .media-buttons .circprog image {
-              font-size: 10pt; }
-        .bar .bar-left .media .media-box .media-text {
-          margin-left: 1rem;
-          margin-right: 1rem; }
-    .bar .bar-left .systray {
-      background-color: #24283b; }
-      .bar .bar-left .systray .systray-item {
-        font-size: 14pt; }
-        .bar .bar-left .systray .systray-item:first-child {
-          margin-left: 1rem; }
+  .bar .bar-left .media .media-box {
+    border-radius: 0.5rem; }
+    .bar .bar-left .media .media-box .media-background {
+      margin: 0.2rem;
+      border-radius: 0.5rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      min-width: 2.5rem;
+      min-height: 2.5rem; }
+    .bar .bar-left .media .media-box .media-buttons {
+      padding-right: 0.5rem; }
+      .bar .bar-left .media .media-box .media-buttons .circprog {
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        font-size: 2px;
+        background-color: #a9b1d6;
+        color: #c0caf5; }
+        .bar .bar-left .media .media-box .media-buttons .circprog image {
+          font-size: 10pt; }
+    .bar .bar-left .media .media-box .media-text {
+      margin-left: 1rem;
+      margin-right: 1rem; }
+  .bar .bar-left .systray .systray-item {
+    font-size: 14pt; }
+    .bar .bar-left .systray .systray-item:first-child {
+      margin-left: 1rem; }
   .bar .bar-center .bar-corner {
     border-radius: 1.4rem;
-    background-color: #1d202f; }
+    background-color: #414868; }
   .bar .bar-center .workspaces {
     padding-top: 0.4rem;
-    color: #c0caf5;
-    background-color: #1d202f;
+    color: #a9b1d6;
+    background-color: #414868;
     font-size: 13pt; }
     .bar .bar-center .workspaces .workspace-corner {
       border-radius: 1.4rem;
@@ -62,39 +56,41 @@
       transition: all 200ms;
       padding: 0.2rem; }
       .bar .bar-center .workspaces .workspace.occupied {
-        color: #c0caf5;
-        background-color: #414868;
-        border-top: 1px solid #c0caf5;
-        border-bottom: 1px solid #c0caf5; }
+        color: #002d6e;
+        background-color: #acc6ff;
+        border-top: 1px solid #0c4393;
+        border-bottom: 1px solid #0c4393; }
         .bar .bar-center .workspaces .workspace.occupied.occupied-left {
           border-bottom-left-radius: 1rem;
           border-top-left-radius: 1rem;
-          border-left: 1px solid #c0caf5; }
+          border-left: 1px solid #0c4393; }
         .bar .bar-center .workspaces .workspace.occupied.occupied-right {
           border-bottom-right-radius: 1rem;
           border-top-right-radius: 1rem;
-          border-right: 1px solid #c0caf5; }
+          border-right: 1px solid #0c4393; }
       .bar .bar-center .workspaces .workspace:not(.occupied) {
         border-radius: 1rem; }
       .bar .bar-center .workspaces .workspace.active .workspace-label {
-        background-color: #c0caf5;
-        color: #414868;
+        background-color: #0c4393;
+        color: #d7e2ff;
+        border: 1px solid #acc6ff;
         border-radius: 1rem; }
       .bar .bar-center .workspaces .workspace .workspace-label {
-        min-width: 2rem; }
+        min-width: 2rem;
+        border-radius: 1rem;
+        border: 1px solid transparent; }
   .bar .bar-center .title {
     font-size: 10pt; }
   .bar .bar-right {
-    padding-right: 1rem;
-    background-color: #24283b; }
+    padding-right: 1rem; }
     .bar .bar-right .packages {
       margin-top: 0.4rem;
       margin-bottom: 0.4rem;
       padding-left: 0.8rem;
       padding-right: 0.8rem;
       border-radius: 5rem;
-      color: #24283b;
-      background-color: #9ece6a; }
+      color: #3c1b72;
+      background-color: #d5baff; }
       .bar .bar-right .packages label {
         margin-left: 0.5rem; }
     .bar .bar-right .weather .weather-icon {
@@ -106,9 +102,9 @@
       font-size: 13pt;
       border-radius: 10rem;
       margin: 0.2rem 0;
-      min-width: 2.5rem;
-      background: #414868;
-      color: #c0caf5; }
+      min-width: 2.6rem;
+      background: #d5baff;
+      color: #3c1b72; }
     .bar .bar-right .system {
       margin: 0.2rem 0; }
       .bar .bar-right .system .progress-wrapper {
@@ -123,13 +119,13 @@
         .bar .bar-right .system .progress-bar progress {
           border-radius: 10rem; }
       .bar .bar-right .system .cpu progress {
-        background-color: #7aa2f7; }
+        background-color: #acc6ff; }
       .bar .bar-right .system .temp progress {
-        background-color: #f7768e; }
+        background-color: #c0caf5; }
       .bar .bar-right .system .ram progress {
-        background-color: #bb9af7; }
+        background-color: #d5baff; }
       .bar .bar-right .system .gpu progress {
-        background-color: #7dcfff; }
+        background-color: #a5d570; }
     .bar .bar-right .configurations {
       margin-top: 0.4rem;
       margin-bottom: 0.4rem;
@@ -137,25 +133,23 @@
       padding-right: 0.8rem;
       border-radius: 5rem;
       background: #414868;
-      color: #c0caf5; }
+      color: #a9b1d6; }
     .bar .bar-right .battery .circprog {
       min-width: 2.3rem;
       font-size: 2px; }
       .bar .bar-right .battery .circprog image {
         font-size: 11pt; }
     .bar .bar-right .battery .full {
-      color: #7aa2f7; }
+      color: #acc6ff; }
     .bar .bar-right .battery .high {
-      color: #9ece6a; }
+      color: #d5baff; }
     .bar .bar-right .battery .medium {
-      color: #e0af68; }
+      color: #a5d570; }
     .bar .bar-right .battery .low {
-      color: #f7768e; }
-    .bar .bar-right .clock {
-      color: #c0caf5; }
-      .bar .bar-right .clock .time {
-        font-size: 16pt;
-        font-weight: bold; }
+      color: #ffb2be; }
+    .bar .bar-right .clock .time {
+      font-size: 16pt;
+      font-weight: bold; }
 
 .notifications-popup-list {
   margin-top: 0.2rem;
@@ -226,7 +220,7 @@
   color: #c0caf5;
   font-family: Product Sans;
   font-size: 14pt;
-  box-shadow: 0px 2px 3px #1d202f; }
+  box-shadow: 0px 2px 3px #24283b; }
   .calendar calendar {
     all: unset; }
     .calendar calendar:selected {
@@ -248,7 +242,7 @@
   border: 1px solid #1d202f;
   min-height: 30rem;
   font-family: Product Sans;
-  box-shadow: 0px 2px 3px #1d202f; }
+  box-shadow: 0px 2px 3px #24283b; }
   .configurations-window .configurations-main .toggle-btn {
     background-color: #1d202f;
     color: #c0caf5;
@@ -588,14 +582,14 @@
 .overview-window .overview {
   padding: 2rem 0;
   border-radius: 2rem;
-  box-shadow: 0px 2px 3px #1d202f;
+  box-shadow: 0px 2px 3px #24283b;
   background-color: #24283b;
   color: #c0caf5;
   opacity: 0.9;
   font-family: Product Sans; }
   .overview-window .overview .overview-search {
     background-color: #1d202f;
-    box-shadow: 3px 3px 3px 3px #1d202f;
+    box-shadow: 3px 3px 3px 3px #24283b;
     margin-bottom: 1rem;
     min-height: 2rem;
     border-radius: 0.5rem; }
@@ -632,7 +626,7 @@
   .overview-window .overview .overview-tasks .overview-tasks-workspace {
     border-radius: 1rem;
     margin: 0.8rem;
-    box-shadow: 3px 3px 3px 3px #1d202f; }
+    box-shadow: 3px 3px 3px 3px #24283b; }
     .overview-window .overview .overview-tasks .overview-tasks-workspace .overview-tasks-window {
       background: #414868;
       border-radius: 1rem;

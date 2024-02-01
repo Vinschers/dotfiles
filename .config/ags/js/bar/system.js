@@ -25,7 +25,7 @@ const System = () =>
             spacing: 4,
             children: [
                 SystemStatus(cpu, "cpu"),
-                SystemStatus(temp, "temp"),
+                // SystemStatus(temp, "temp"),
                 SystemStatus(ram, "ram"),
                 SystemStatus(gpu, "gpu"),
             ],

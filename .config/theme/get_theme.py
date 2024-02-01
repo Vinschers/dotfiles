@@ -5,6 +5,7 @@ import json
 import pywal
 from material_color_utilities_python import Image, themeFromImage, hexFromArgb
 
+# print(json.dumps({k: mc.hexFromArgb(v) for k, v in mc.themeFromSourceColor(0xff7aa2f7)["schemes"]["dark"].props.items()}, indent=4))
 
 def get_colors(path, light=False):
     return pywal.colors.get(path, backend="wal", light=light)
@@ -55,13 +56,9 @@ def main():
     theme = get_theme(path, mode)
 
     home_dir = os.getenv("HOME", os.getenv("USERPROFILE", ""))
-    config_dir = os.getenv("XDG_CONFIG_HOME", os.path.join(home_dir, ".config"))
-    theme_path = os.path.join(config_dir, "theme/theme.json")
-
     theme["wallpaper"] = theme.get("wallpaper", "").replace(home_dir, "~")
 
-    with open(theme_path, "w") as fp:
-        json.dump(theme, fp, indent=4)
+    print(json.dumps(theme, indent=4))
 
 
 if __name__ == "__main__":
