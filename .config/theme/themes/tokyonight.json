@@ -1,11 +1,29 @@
 {
-    "wallpaper": "~/.local/share/wallpapers/reg_faputa.png",
+    "wallpaper": "~/.local/share/wallpapers/tokyonight.png",
     "alpha": "100",
     "special": {
         "neovim": "tokyonight",
         "background": "#24283b",
         "foreground": "#c0caf5",
-        "cursor": "#c0caf5",
+        "cursor": "#c0caf5"
+    },
+    "colors": {
+        "color0": "#1d202f",
+        "color1": "#f7768e",
+        "color2": "#9ece6a",
+        "color3": "#e0af68",
+        "color4": "#7aa2f7",
+        "color5": "#bb9af7",
+        "color6": "#7dcfff",
+        "color7": "#a9b1d6",
+        "color8": "#414868",
+        "color9": "#f52a65",
+        "color10": "#587539",
+        "color11": "#8c6c3e",
+        "color12": "#2e7de9",
+        "color13": "#9854f1",
+        "color14": "#007197",
+        "color15": "#c0caf5",
         "primary": "#acc6ff",
         "onPrimary": "#002d6e",
         "primaryContainer": "#0c4393",
@@ -26,23 +44,5 @@
         "onSurface": "#c0caf5",
         "surfaceVariant": "#414868",
         "onSurfaceVariant": "#a9b1d6"
-    },
-    "colors": {
-        "color0": "#1d202f",
-        "color1": "#f7768e",
-        "color2": "#9ece6a",
-        "color3": "#e0af68",
-        "color4": "#7aa2f7",
-        "color5": "#bb9af7",
-        "color6": "#7dcfff",
-        "color7": "#a9b1d6",
-        "color8": "#414868",
-        "color9": "#f52a65",
-        "color10": "#587539",
-        "color11": "#8c6c3e",
-        "color12": "#2e7de9",
-        "color13": "#9854f1",
-        "color14": "#007197",
-        "color15": "#c0caf5"
     }
 }

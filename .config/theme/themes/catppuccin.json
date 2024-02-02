@@ -1,11 +1,29 @@
 {
-    "wallpaper": "~/.local/share/wallpapers/cross.png",
+    "wallpaper": "~/.local/share/wallpapers/catppuccin.png",
     "alpha": "100",
     "special": {
         "neovim": "catppuccin",
         "background": "#1E1E2E",
         "foreground": "#CDD6F4",
-        "cursor": "#CDD6F4",
+        "cursor": "#CDD6F4"
+    },
+    "colors": {
+        "color0": "#45475A",
+        "color1": "#F38BA8",
+        "color2": "#A6E3A1",
+        "color3": "#F9E2AF",
+        "color4": "#89B4FA",
+        "color5": "#F5C2E7",
+        "color6": "#94E2D5",
+        "color7": "#BAC2DE",
+        "color8": "#585B70",
+        "color9": "#E78284",
+        "color10": "#A6D189",
+        "color11": "#E5C890",
+        "color12": "#8CAAEE",
+        "color13": "#F4B8E4",
+        "color14": "#81C8BE",
+        "color15": "#A6ADC8",
         "primary": "#a7c8ff",
         "onPrimary": "#003064",
         "primaryContainer": "#00468c",
@@ -26,23 +44,5 @@
         "onSurface": "#CDD6F4",
         "surfaceVariant": "#585B70",
         "onSurfaceVariant": "#BAC2DE"
-    },
-    "colors": {
-        "color0": "#45475A",
-        "color1": "#F38BA8",
-        "color2": "#A6E3A1",
-        "color3": "#F9E2AF",
-        "color4": "#89B4FA",
-        "color5": "#F5C2E7",
-        "color6": "#94E2D5",
-        "color7": "#BAC2DE",
-        "color8": "#585B70",
-        "color9": "#E78284",
-        "color10": "#A6D189",
-        "color11": "#E5C890",
-        "color12": "#8CAAEE",
-        "color13": "#F4B8E4",
-        "color14": "#81C8BE",
-        "color15": "#A6ADC8"
     }
 }

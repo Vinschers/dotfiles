@@ -1,5 +1,5 @@
 from os import scandir, walk, getenv
-from os.path import join
+from os.path import join, isfile
 import pathlib
 import json
 import subprocess
@@ -37,11 +37,11 @@ def get_dirs():
     pathlib.Path(templates_dir).mkdir(parents=True, exist_ok=True)
     pathlib.Path(wal_cache_dir).mkdir(parents=True, exist_ok=True)
 
-    return config_dir, templates_dir, wal_cache_dir
+    return config_dir, cache_dir, templates_dir, wal_cache_dir
 
 
 def main():
-    config_dir, templates_dir, wal_cache_dir = get_dirs()
+    config_dir, cache_dir, templates_dir, wal_cache_dir = get_dirs()
 
     with open(join(config_dir, "theme/theme.json")) as fp:
         theme = json.load(fp)
@@ -49,13 +49,24 @@ def main():
     if not theme:
         exit(1)
 
+    old_theme_path = join(cache_dir, "old_theme.json")
+    if isfile(old_theme_path):
+        with open(old_theme_path) as fp:
+            old_theme = json.load(fp)
+    else:
+        old_theme = {}
+
     flatten_theme = pywal.export.flatten_colors(theme)
 
     _export_default(flatten_theme, wal_cache_dir)
     _export_user(flatten_theme, templates_dir, config_dir)
 
-    subprocess.run(join(config_dir, "theme/update.sh").split())
-    pywal.sequences.send(theme)
+    if theme.get("colors", {}) != old_theme.get("colors", {}):
+        subprocess.run(join(config_dir, "theme/utils/reload_colors.sh").split())
+        pywal.sequences.send(theme)
+
+    if theme.get("wallpaper", "") != old_theme.get("wallpaper", ""):
+        subprocess.run(join(config_dir, "theme/utils/reload_wallpaper.sh").split())
 
 
 if __name__ == "__main__":

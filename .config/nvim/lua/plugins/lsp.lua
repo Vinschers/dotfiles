@@ -47,6 +47,10 @@ return {
 			opts.formatters.black = {
 				prepend_args = { "--fast", "-l", "150" },
 			}
+
+			opts.formatters.shfmt = {
+				prepend_args = { "--indent", "4" },
+			}
 		end,
 	},
 

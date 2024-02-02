@@ -30,6 +30,13 @@ update_theme() {
 }
 
 new_theme="$(update_theme "$1")"
+
+if [ -f "$HOME/.config/theme/theme.json" ]; then
+	cp "$HOME/.config/theme/theme.json" "$HOME/.cache/old_theme.json"
+else
+	echo "{}" >"$HOME/.cache/old_theme.json"
+fi
+
 ln -sf "$new_theme" "$HOME/.config/theme/theme.json"
 
-python "$HOME/.config/theme/update.py"
+python "$HOME/.config/theme/utils/update.py"
