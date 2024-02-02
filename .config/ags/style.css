@@ -213,9 +213,10 @@
 
 .calendar {
   margin-top: 1rem;
+  margin-right: 1rem;
   padding: 1rem;
   border-radius: 2rem;
-  border: 1px solid #1d202f;
+  border: 1px solid #414868;
   background-color: #24283b;
   color: #c0caf5;
   font-family: Product Sans;
@@ -239,13 +240,13 @@
   border-radius: 3rem;
   background-color: #24283b;
   color: #c0caf5;
-  border: 1px solid #1d202f;
+  border: 1px solid #414868;
   min-height: 30rem;
   font-family: Product Sans;
   box-shadow: 0px 2px 3px #24283b; }
   .configurations-window .configurations-main .toggle-btn {
-    background-color: #1d202f;
-    color: #c0caf5;
+    background-color: #414868;
+    color: #a9b1d6;
     border-radius: 2rem;
     min-width: 15.3rem;
     min-height: 5rem; }
@@ -254,20 +255,24 @@
     .configurations-window .configurations-main .toggle-btn .arrow {
       border-radius: 0 2rem 2rem 0; }
       .configurations-window .configurations-main .toggle-btn .arrow:hover {
-        background-color: #414868; }
+        background-color: #d5baff;
+        color: #3c1b72; }
     .configurations-window .configurations-main .toggle-btn .toggle {
       border-radius: 2rem; }
       .configurations-window .configurations-main .toggle-btn .toggle:hover {
-        background-color: #414868; }
+        background-color: #d5baff;
+        color: #3c1b72; }
     .configurations-window .configurations-main .toggle-btn .arrow-toggle {
       border-radius: 2rem 0 0 2rem; }
     .configurations-window .configurations-main .toggle-btn.active {
-      background-color: #bb9af7;
-      color: #1d202f; }
+      background-color: #54358a;
+      color: #ecdcff; }
       .configurations-window .configurations-main .toggle-btn.active .toggle:hover {
-        background-color: #bb9af7; }
+        background-color: #d5baff;
+        color: #3c1b72; }
       .configurations-window .configurations-main .toggle-btn.active .arrow:hover {
-        background-color: #bb9af7; }
+        background-color: #d5baff;
+        color: #3c1b72; }
     .configurations-window .configurations-main .toggle-btn image {
       margin-left: 1.5rem;
       margin-right: 1.2rem; }
@@ -279,34 +284,29 @@
     min-width: 1.3rem;
     min-height: 1.3rem;
     background-color: #414868;
+    color: #a9b1d6;
     font-size: 12pt;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
     .configurations-window .configurations-main .footer .footer-item:not(:first-child) {
       margin-left: 1rem; }
-  .configurations-window .configurations-main .footer .wallpaper {
-    background-color: #414868;
-    color: #c0caf5; }
-    .configurations-window .configurations-main .footer .wallpaper:hover {
-      background-color: #9ece6a;
-      color: #1d202f; }
   .configurations-window .configurations-main .footer .theme {
     background-color: #414868;
-    color: #c0caf5; }
+    color: #a9b1d6; }
     .configurations-window .configurations-main .footer .theme:hover {
-      background-color: #7aa2f7;
-      color: #1d202f; }
+      background-color: #acc6ff;
+      color: #002d6e; }
   .configurations-window .configurations-main .footer .power {
     background-color: #414868;
-    color: #c0caf5; }
+    color: #a9b1d6; }
     .configurations-window .configurations-main .footer .power:hover {
-      background-color: #f7768e;
-      color: #1d202f; }
+      background-color: #acc6ff;
+      color: #002d6e; }
   .configurations-window .notifications {
     margin-left: 2rem;
     min-width: 28rem;
     border-radius: 2.5rem;
-    background-color: #1d202f;
-    color: #c0caf5; }
+    background-color: #414868;
+    color: #a9b1d6; }
   .configurations-window .placeholder > image {
     font-size: 40pt;
     margin-bottom: 1.5rem; }
@@ -320,10 +320,10 @@
     .configurations-window .notification-scrollable scrollbar * {
       all: unset; }
     .configurations-window .notification-scrollable scrollbar.vertical:hover slider {
-      background-color: #c0caf5;
+      background-color: #a9b1d6;
       min-width: 0.6rem; }
     .configurations-window .notification-scrollable scrollbar.vertical slider {
-      background-color: #414868;
+      background-color: #a9b1d6;
       border-radius: 1rem;
       min-width: 0.4rem;
       min-height: 2rem; }
@@ -335,7 +335,8 @@
     margin-right: 2.2rem;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; }
     .configurations-window .notifications__clear-button:hover {
-      background: #414868; }
+      background-color: #a5d570;
+      color: #1b3700; }
   .configurations-window .slider-box scale {
     min-width: 24rem; }
     .configurations-window .slider-box scale * {

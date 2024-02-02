@@ -51,48 +51,49 @@ $notifications_action_hover: $onSurfaceVariant;
 
 $calendar_bg: $surface;
 $calendar_fg: $onSurface;
-$calendar_border: $black;
+$calendar_border: $surfaceVariant;
 $calendar_header: $primary;
 $calendar_indeterminate: $surfaceVariant;
 $calendar_selected: $primary;
 
 
-$configurations_bg: $bg;
-$configurations_fg: $fg;
-$configurations_border: $black;
+$configurations_bg: $surface;
+$configurations_fg: $onSurface;
+$configurations_border: $surfaceVariant;
 
-$toggle_bg: $black;
-$toggle_fg: $fg;
-$toggle_active_bg: $magenta;
-$toggle_active_fg: $black;
-$toggle_hover: $bright_black;
-$toggle_arrow_hover: $bright_black;
-$toggle_active_hover: $magenta;
-$toggle_arrow_active_hover: $magenta;
+$toggle_bg: $surfaceVariant;
+$toggle_fg: $onSurfaceVariant;
+$toggle_active_bg: $primaryContainer;
+$toggle_active_fg: $onPrimaryContainer;
+$toggle_hover_bg: $primary;
+$toggle_hover_fg: $onPrimary;
+$toggle_arrow_hover_bg: $primary;
+$toggle_arrow_hover_fg: $onPrimary;
+$toggle_active_hover_bg: $primary;
+$toggle_active_hover_fg: $onPrimary;
+$toggle_arrow_active_hover_bg: $primary;
+$toggle_arrow_active_hover_fg: $onPrimary;
 
-$footer_bg: $bright_black;
+$footer_bg: $surfaceVariant;
+$footer_fg: $onSurfaceVariant;
 
-$footer_power_fg: $fg;
-$footer_power_bg: $bright_black;
-$footer_power_hover_fg: $black;
-$footer_power_hover_bg: $red;
+$footer_power_fg: $onSurfaceVariant;
+$footer_power_bg: $surfaceVariant;
+$footer_power_hover_fg: $onSecondary;
+$footer_power_hover_bg: $secondary;
 
-$footer_theme_fg: $fg;
-$footer_theme_bg: $bright_black;
-$footer_theme_hover_fg: $black;
-$footer_theme_hover_bg: $blue;
+$footer_theme_fg: $onSurfaceVariant;
+$footer_theme_bg: $surfaceVariant;
+$footer_theme_hover_fg: $onSecondary;
+$footer_theme_hover_bg: $secondary;
 
-$footer_wallpaper_fg: $fg;
-$footer_wallpaper_bg: $bright_black;
-$footer_wallpaper_hover_fg: $black;
-$footer_wallpaper_hover_bg: $green;
-
-$configurations_notifications_bg: $black;
-$configurations_notifications_fg: $fg;
-$configurations_notifications_clear: $bg;
-$configurations_notifications_clear_hover: $bright_black;
-$configurations_notifications_slider: $bright_black;
-$configurations_notifications_slider_hover: $fg;
+$configurations_notifications_bg: $surfaceVariant;
+$configurations_notifications_fg: $onSurfaceVariant;
+$configurations_notifications_clear: $surface;
+$configurations_notifications_clear_hover_bg: $tertiary;
+$configurations_notifications_clear_hover_fg: $onTertiary;
+$configurations_notifications_slider: $onSurfaceVariant;
+$configurations_notifications_slider_hover: $onSurfaceVariant;
 
 
 $menu_bg: $bg;

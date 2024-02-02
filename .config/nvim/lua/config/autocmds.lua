@@ -17,3 +17,10 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         os.execute("eww reload")
     end,
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "*/ags/*.scss" },
+    callback = function()
+        os.execute("ags --run-js \"scss();\"")
+    end,
+})
