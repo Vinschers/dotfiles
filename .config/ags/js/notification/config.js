@@ -7,9 +7,9 @@ const Popups = () => {
     const map = new Map();
 
     const onDismissed = (box, id, force = false) => {
-        if (!id || !map.has(id)) return;
+        if (id == undefined || !map.has(id)) return;
 
-        if (map.get(id)._hovered.value && !force) return;
+        if (map.get(id).attribute.hovered.value && !force) return;
 
         if (map.size - 1 === 0) box.get_parent().revealChild = false;
 
@@ -20,7 +20,7 @@ const Popups = () => {
     };
 
     const onNotified = (box, id) => {
-        if (!id || Notifications.dnd) return;
+        if (id == undefined || Notifications.dnd) return;
         const notification = Notifications.getNotification(id);
 
         map.delete(id);

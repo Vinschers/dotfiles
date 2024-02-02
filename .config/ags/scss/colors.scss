@@ -38,23 +38,23 @@ $battery_medium: $tertiary;
 $battery_low: $error;
 
 
-$notifications_bg: $bg;
-$notifications_fg: $fg;
-$notifications_icon: $bright_black;
-$notifications_close_bg: $bright_black;
-$notifications_close_fg: $fg;
-$notifications_close_hover_bg: $red;
-$notifications_close_hover_fg: $black;
-$notifications_action: $black;
-$notifications_action_hover: $bright_black;
+$notifications_bg: $surface;
+$notifications_fg: $onSurface;
+$notifications_icon: $surfaceVariant;
+$notifications_close_bg: $surfaceVariant;
+$notifications_close_fg: $onSurfaceVariant;
+$notifications_close_hover_bg: $error;
+$notifications_close_hover_fg: $onError;
+$notifications_action: $surfaceVariant;
+$notifications_action_hover: $onSurfaceVariant;
 
 
-$calendar_bg: $bg;
-$calendar_fg: $fg;
+$calendar_bg: $surface;
+$calendar_fg: $onSurface;
 $calendar_border: $black;
-$calendar_header: $blue;
-$calendar_indeterminate: $bright_black;
-$calendar_selected: $magenta;
+$calendar_header: $primary;
+$calendar_indeterminate: $surfaceVariant;
+$calendar_selected: $primary;
 
 
 $configurations_bg: $bg;
