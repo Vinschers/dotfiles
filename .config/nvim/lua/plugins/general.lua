@@ -6,6 +6,7 @@ return {
 	{ import = "lazyvim.plugins.extras.test.core" },
 
     { "sainnhe/everforest" },
+    { "shaunsingh/nord.nvim" },
 
 	{ "folke/flash.nvim", enabled = false },
 

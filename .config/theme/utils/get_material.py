@@ -28,4 +28,4 @@ def get_theme(color, custom_colors=[]):
     print(json.dumps(theme, indent=4))
 
 
-get_theme("#d3c6aa", ["#a7c080", "#83c092", "#7fbbb3", "#e67e80"])
+get_theme("#d8dee9", ["#81a1c1", "#b48ead", "#a3be8c", "#bf616a"])
