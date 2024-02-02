@@ -56,24 +56,24 @@
       transition: all 200ms;
       padding: 0.2rem; }
       .bar .bar-center .workspaces .workspace.occupied {
-        color: #002d6e;
-        background-color: #acc6ff;
-        border-top: 1px solid #0c4393;
-        border-bottom: 1px solid #0c4393; }
+        color: #3c1b72;
+        background-color: #d5baff;
+        border-top: 1px solid #54358a;
+        border-bottom: 1px solid #54358a; }
         .bar .bar-center .workspaces .workspace.occupied.occupied-left {
           border-bottom-left-radius: 1rem;
           border-top-left-radius: 1rem;
-          border-left: 1px solid #0c4393; }
+          border-left: 1px solid #54358a; }
         .bar .bar-center .workspaces .workspace.occupied.occupied-right {
           border-bottom-right-radius: 1rem;
           border-top-right-radius: 1rem;
-          border-right: 1px solid #0c4393; }
+          border-right: 1px solid #54358a; }
       .bar .bar-center .workspaces .workspace:not(.occupied) {
         border-radius: 1rem; }
       .bar .bar-center .workspaces .workspace.active .workspace-label {
-        background-color: #0c4393;
-        color: #d7e2ff;
-        border: 1px solid #acc6ff;
+        background-color: #54358a;
+        color: #ecdcff;
+        border: 1px solid #d5baff;
         border-radius: 1rem; }
       .bar .bar-center .workspaces .workspace .workspace-label {
         min-width: 2rem;
@@ -89,8 +89,8 @@
       padding-left: 0.8rem;
       padding-right: 0.8rem;
       border-radius: 5rem;
-      color: #3c1b72;
-      background-color: #d5baff; }
+      color: #002d6e;
+      background-color: #acc6ff; }
       .bar .bar-right .packages label {
         margin-left: 0.5rem; }
     .bar .bar-right .weather .weather-icon {
@@ -103,8 +103,8 @@
       border-radius: 10rem;
       margin: 0.2rem 0;
       min-width: 2.5rem;
-      background: #d5baff;
-      color: #3c1b72; }
+      background: #acc6ff;
+      color: #002d6e; }
     .bar .bar-right .system {
       margin: 0.2rem 0; }
       .bar .bar-right .system .progress-wrapper {
@@ -119,11 +119,11 @@
         .bar .bar-right .system .progress-bar progress {
           border-radius: 10rem; }
       .bar .bar-right .system .cpu progress {
-        background-color: #acc6ff; }
+        background-color: #d5baff; }
       .bar .bar-right .system .temp progress {
         background-color: #c0caf5; }
       .bar .bar-right .system .ram progress {
-        background-color: #d5baff; }
+        background-color: #acc6ff; }
       .bar .bar-right .system .gpu progress {
         background-color: #a5d570; }
     .bar .bar-right .configurations {
@@ -140,9 +140,9 @@
       .bar .bar-right .battery .circprog image {
         font-size: 11pt; }
     .bar .bar-right .battery .full {
-      color: #acc6ff; }
-    .bar .bar-right .battery .high {
       color: #d5baff; }
+    .bar .bar-right .battery .high {
+      color: #acc6ff; }
     .bar .bar-right .battery .medium {
       color: #a5d570; }
     .bar .bar-right .battery .low {

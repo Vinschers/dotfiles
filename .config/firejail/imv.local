@@ -1,3 +1,4 @@
 whitelist ${HOME}/.cache
 
 ignore private-cache
+whitelist ${HOME}/.local/share
