@@ -351,13 +351,13 @@
       background-color: transparent; }
   .configurations-window .volume-box highlight,
   .configurations-window .volume-box progress {
-    background-color: #7dcfff; }
+    background-color: #acc6ff; }
   .configurations-window .volmicrophone-box highlight,
   .configurations-window .volmicrophone-box progress {
-    background-color: #7aa2f7; }
+    background-color: #acc6ff; }
   .configurations-window .brightness-box highlight,
   .configurations-window .brightness-box progress {
-    background-color: #e0af68; }
+    background-color: #acc6ff; }
 
 .config-menu {
   padding: 2rem;
@@ -401,7 +401,7 @@
 
 .app-mixer .mixer-item scale highlight,
 .app-mixer .mixer-item scale progress {
-  background-color: #c0caf5; }
+  background-color: #a9b1d6; }
 
 .app-mixer .mixer-item scale fill {
   background-color: transparent; }

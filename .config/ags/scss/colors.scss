@@ -74,6 +74,12 @@ $toggle_active_hover_fg: $onPrimary;
 $toggle_arrow_active_hover_bg: $primary;
 $toggle_arrow_active_hover_fg: $onPrimary;
 
+$slider_bg: $surfaceVariant;
+$slider_volume_fg: $secondary;
+$slider_microphone_fg: $secondary;
+$slider_brightness_fg: $secondary;
+$slider_mixer_fg: $onSurfaceVariant;
+
 $footer_bg: $surfaceVariant;
 $footer_fg: $onSurfaceVariant;
 
@@ -102,12 +108,6 @@ $menu_fg: $fg;
 $menu_selection_bg: $bright_black;
 $menu_nocontent_fg: $white;
 $menu_bt_battery: $green;
-
-$slider_bg: $bright_black;
-$slider_volume_fg: $cyan;
-$slider_microphone_fg: $blue;
-$slider_brightness_fg: $yellow;
-$slider_mixer_fg: $fg;
 
 
 $osd_bg: $bg;
