@@ -39,12 +39,14 @@ export function foreachMonitor(widget) {
     );
 }
 
-DirectoryMonitorService.connect("changed", () => applyScss());
+// Disable when not debugging to align with theme changes
+// DirectoryMonitorService.connect("changed", () => applyScss());
 applyScss();
 
 globalThis.brightness = (await import("./services/brightness.js")).default;
 globalThis.audio = Audio;
 globalThis.mpris = Mpris;
+globalThis.scss = applyScss;
 
 const windows = () => [
     foreachMonitor(Bar),

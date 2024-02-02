@@ -18,6 +18,8 @@ ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
 	nvim --server "$nvim_socket" --remote-send "<esc>:Lazy reload LazyVim<cr>"
 done
 
+ags --run-js "scss();"
+
 gsettings set org.gnome.desktop.interface gtk-theme wal
 
 hyprctl reload
