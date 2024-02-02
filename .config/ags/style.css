@@ -25,14 +25,14 @@
       min-height: 2.5rem; }
     .bar .bar-left .media .media-box .media-buttons {
       padding-right: 0.5rem; }
+      .bar .bar-left .media .media-box .media-buttons image {
+        font-size: 16pt; }
       .bar .bar-left .media .media-box .media-buttons .circprog {
         min-width: 2.5rem;
         min-height: 2.5rem;
         font-size: 2px;
         background-color: #a9b1d6;
         color: #c0caf5; }
-        .bar .bar-left .media .media-box .media-buttons .circprog image {
-          font-size: 10pt; }
     .bar .bar-left .media .media-box .media-text {
       margin-left: 1rem;
       margin-right: 1rem; }
@@ -133,7 +133,8 @@
       padding-right: 0.8rem;
       border-radius: 5rem;
       background: #414868;
-      color: #a9b1d6; }
+      color: #a9b1d6;
+      font-size: 14pt; }
     .bar .bar-right .battery .circprog {
       min-width: 2.3rem;
       font-size: 2px; }

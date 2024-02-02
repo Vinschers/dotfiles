@@ -34,6 +34,11 @@
 
                 .media-buttons {
                     padding-right: 0.5rem;
+
+                    image {
+                        font-size: 16pt;
+                    }
+
                     .circprog {
                         min-width: 2.5rem;
                         min-height: 2.5rem;
@@ -42,10 +47,6 @@
 
                         background-color: $media_progress_bg;
                         color: $media_symbols_fg;
-
-                        image {
-                            font-size: 10pt;
-                        }
                     }
                 }
 
@@ -237,6 +238,8 @@
 
             background: $bar_configurations_bg;
             color: $bar_configurations_fg;
+
+            font-size: 14pt;
         }
 
         .battery {

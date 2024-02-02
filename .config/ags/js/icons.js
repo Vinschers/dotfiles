@@ -1,7 +1,7 @@
 import App from "resource:///com/github/Aylur/ags/app.js";
 
 export default {
-    settings: "org.gnome.Settings-symbolic",
+    settings: "gnome-settings",
     tick: "object-select-symbolic",
     check: "checkbox-symbolic",
     checked: "checkbox-checked-symbolic",
@@ -43,7 +43,6 @@ export default {
             high: "display-brightness-high-symbolic",
             medium: "display-brightness-medium-symbolic",
             low: "display-brightness-low-symbolic",
-            off: "display-brightness-off-symbolic",
         },
         keyboard: "keyboard-brightness-symbolic",
         screen: ["󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
@@ -107,7 +106,7 @@ export default {
         toolbox: "preferences-other-symbolic",
         gemini: "",
         waifus: "camera-photo-symbolic",
-        info: "help-info-symbolic",
+        info: "help-about",
         send: "document-send-symbolic",
         copy: "edit-copy-symbolic",
         download: "browser-download-symbolic",
@@ -117,7 +116,7 @@ export default {
         open: "focus-windows-symbolic",
     },
     overview: {
-        search: "search-symbolic",
+        search: "search",
         search_web: "web-browser-symbolic",
         calculate: "accessories-calculator-symbolic",
         terminal: "utilities-terminal-symbolic",

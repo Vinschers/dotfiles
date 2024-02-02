@@ -64,7 +64,10 @@ const VolumeIndicator = () =>
 const BrightnessIndicator = () =>
     Widget.Icon().hook(Brightness, (self) => {
         let value = Brightness.screen;
-        if (!Brightness.screen) value = 0;
+        if (!Brightness.screen) {
+            self.visible = false;
+            return;
+        }
 
         // @ts-ignore
         const icon = [
@@ -72,7 +75,6 @@ const BrightnessIndicator = () =>
             [67, icons.brightness.indicator.high],
             [34, icons.brightness.indicator.medium],
             [1, icons.brightness.indicator.low],
-            [0, icons.brightness.indicator.off],
         ].find(([threshold]) => Number(threshold) <= value)[1];
 
         self.icon = icon.toString();
@@ -81,7 +83,7 @@ const BrightnessIndicator = () =>
 const Configurations = () =>
     Widget.Button({
         class_name: "configurations",
-        on_clicked: () => App.toggleWindow('configurations'),
+        on_clicked: () => App.toggleWindow("configurations"),
         child: Widget.Box({
             spacing: 6,
             children: [
