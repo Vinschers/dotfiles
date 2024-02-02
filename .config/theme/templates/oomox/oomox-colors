@@ -1,14 +1,14 @@
 BG={background.strip}
 ICONS_DARK={color0.strip}
 MENU_BG={color0.strip}
-SEL_FG={foreground.strip}
+SEL_FG={color0.strip}
 SPOTIFY_PROTO_BG={color0.strip}
 TERMINAL_BACKGROUND={background.strip}
 TXT_BG={color0.strip}
 WM_BORDER_UNFOCUS={color0.strip}
 FG={foreground.strip}
 MENU_FG={foreground.strip}
-ICONS_MEDIUM={color15.strip}
+ICONS_MEDIUM={foreground.strip}
 SPOTIFY_PROTO_FG={foreground.strip}
 SEL_BG={color8.strip}
 SPOTIFY_PROTO_SEL={color8.strip}
