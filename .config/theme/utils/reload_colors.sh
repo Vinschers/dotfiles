@@ -28,7 +28,8 @@ gsettings set org.gnome.desktop.interface gtk-theme "$theme"
 
 wal_steam -w
 
-sleep 1
-ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
-	nvim --server "$nvim_socket" --remote-send "<esc>:Lazy reload LazyVim<cr>"
+editor_pid=$(pgrep "${EDITOR:-nvim}")
+for pid in $editor_pid; do
+	kill -28 "$pid"
+    echo "$pid"
 done
