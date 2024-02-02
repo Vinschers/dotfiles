@@ -1,4 +1,6 @@
 whitelist ${HOME}/.cache
+whitelist ${HOME}/.local/share
+whitelist ${HOME}/Downloads
 
 ignore private-cache
-whitelist ${HOME}/.local/share
+ignore private-home

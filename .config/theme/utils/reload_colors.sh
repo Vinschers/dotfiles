@@ -18,6 +18,8 @@ ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
 	nvim --server "$nvim_socket" --remote-send "<esc>:Lazy reload LazyVim<cr>"
 done
 
+pywalfox update
+
 ags --run-js "scss();"
 
 hyprctl reload
