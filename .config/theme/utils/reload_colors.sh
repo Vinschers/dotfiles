@@ -1,8 +1,11 @@
 #!/bin/sh
 
 themes_dir="$HOME/.local/share/themes"
+icons_dir="$HOME/.local/share/icons/wal"
 oomox_colors="$HOME/.config/oomox/oomox-colors"
+
 /opt/oomox/plugins/theme_oomox/change_color.sh --target-dir "$themes_dir" --output wal "$oomox_colors"
+/opt/oomox/plugins/icons_archdroid/archdroid-icon-theme/change_color.sh --destdir "$icons_dir" --output wal "$oomox_colors"
 gsettings set org.gnome.desktop.interface gtk-theme ''
 
 killall -s USR1 cava
