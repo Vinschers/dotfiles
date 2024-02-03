@@ -18,7 +18,7 @@ update_theme() {
 	if [ "$1" = "-1" ]; then
 		theme_num=$((theme_num - 1))
 		[ "$theme_num" -eq 0 ] && theme_num="$total"
-	else
+	elif [ "$1" = "1" ]; then
 		theme_num=$((theme_num + 1))
 		[ "$theme_num" -gt "$total" ] && theme_num="1"
 	fi

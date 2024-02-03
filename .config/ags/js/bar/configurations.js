@@ -63,7 +63,7 @@ const VolumeIndicator = () =>
 
 const BrightnessIndicator = () =>
     Widget.Icon().hook(Brightness, (self) => {
-        let value = Brightness.screen;
+        let value = Brightness.screen * 100;
         if (!Brightness.screen) {
             self.visible = false;
             return;

@@ -44,7 +44,7 @@ export default () => {
                 class_names: ["footer-item", "theme"],
                 cursor: "pointer",
                 on_primary_click_release: () =>
-                    Utils.execAsync('sh -c "$HOME/.config/theme/change.sh"'),
+                    Utils.execAsync('sh -c "$HOME/.config/theme/change.sh 1"'),
                 on_secondary_click: () =>
                     Utils.execAsync('sh -c "$HOME/.config/theme/change.sh -1"'),
                 child: Widget.Icon(icons.footer.theme),

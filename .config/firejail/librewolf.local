@@ -2,9 +2,13 @@ ignore noexec ${HOME}
 ignore apparmor
 ignore disable-mnt
 ignore dbus-user filter
+ignore private-cache
+
+include allow-python3.inc
 
 whitelist ${HOME}/.local/share/jupyter/runtime
 whitelist ${HOME}/.local/share/Zotero
+whitelist ${HOME}/.cache
 whitelist ${HOME}/hdd
 whitelist ${HOME}/academic
 whitelist /mnt/hdd
