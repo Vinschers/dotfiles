@@ -54,7 +54,9 @@
     .bar .bar-center .workspaces .workspace {
       margin-bottom: 0.4rem;
       transition: all 200ms;
-      padding: 0.2rem; }
+      padding: 0.2rem;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent; }
       .bar .bar-center .workspaces .workspace.occupied {
         color: #3c1b72;
         background-color: #d5baff;
@@ -134,7 +136,7 @@
       border-radius: 5rem;
       background: #414868;
       color: #a9b1d6;
-      font-size: 11pt; }
+      font-size: 1.1rem; }
     .bar .bar-right .battery .circprog {
       min-width: 2.3rem;
       font-size: 2px; }

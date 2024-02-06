@@ -90,6 +90,8 @@
                 margin-bottom: 0.4rem;
                 transition: all 200ms;
                 padding: 0.2rem;
+                border-top: 1px solid transparent;
+                border-bottom: 1px solid transparent;
 
                 &.occupied {
                     color: $ws_occupied_fg;
@@ -239,7 +241,7 @@
             background: $bar_configurations_bg;
             color: $bar_configurations_fg;
 
-            font-size: 11pt;
+            font-size: 1.1rem;
         }
 
         .battery {
