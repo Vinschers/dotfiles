@@ -17,6 +17,8 @@ map({ "n", "i" }, "<C-a>", "ggVG")
 map({ "n" }, "<Esc>", "<Esc><cmd>noh<cr><cmd>lua require('notify').dismiss()<cr>")
 map({ "n" }, "<leader>h", "<Esc><cmd>noh<cr><cmd>lua require('notify').dismiss()<cr>", { desc = "Clear highlights" })
 
+map({ "n" }, "<C-r>", "<Esc><cmd>Lazy reload LazyVim<cr>")
+
 map({ "v" }, "p", "P")
 
 map({ "n", "i" }, "<F4>", ":! compile " .. vim.fn.expand("%") .. ">/dev/null<cr><cr>", { desc = "Compile file" })

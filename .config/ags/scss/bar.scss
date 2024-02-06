@@ -17,6 +17,10 @@
 
     .bar-left {
         .media {
+            &:first-child {
+                margin-left: 1rem;
+            }
+
             .media-box {
                 border-radius: 0.5rem;
 
@@ -36,7 +40,7 @@
                     padding-right: 0.5rem;
 
                     image {
-                        font-size: 12pt;
+                        font-size: 1.25rem;
                     }
 
                     .circprog {
@@ -54,15 +58,6 @@
                     margin-left: 1rem;
                     margin-right: 1rem;
                 }
-            }
-        }
-
-        .systray {
-            .systray-item {
-                &:first-child {
-                    margin-left: 1rem;
-                }
-                font-size: 14pt;
             }
         }
     }
@@ -90,6 +85,8 @@
                 margin-bottom: 0.4rem;
                 transition: all 200ms;
                 padding: 0.2rem;
+                border-top: 1px solid transparent;
+                border-bottom: 1px solid transparent;
 
                 &.occupied {
                     color: $ws_occupied_fg;
@@ -138,6 +135,12 @@
 
     .bar-right {
         padding-right: 1rem;
+
+        .systray {
+            .systray-item {
+                font-size: 14pt;
+            }
+        }
 
         .packages {
             margin-top: 0.4rem;
@@ -239,7 +242,7 @@
             background: $bar_configurations_bg;
             color: $bar_configurations_fg;
 
-            font-size: 11pt;
+            font-size: 1.25rem;
         }
 
         .battery {

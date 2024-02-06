@@ -13,6 +13,8 @@
   opacity: 1;
   font-family: Product Sans;
   font-size: 12pt; }
+  .bar .bar-left .media:first-child {
+    margin-left: 1rem; }
   .bar .bar-left .media .media-box {
     border-radius: 0.5rem; }
     .bar .bar-left .media .media-box .media-background {
@@ -26,7 +28,7 @@
     .bar .bar-left .media .media-box .media-buttons {
       padding-right: 0.5rem; }
       .bar .bar-left .media .media-box .media-buttons image {
-        font-size: 12pt; }
+        font-size: 1.25rem; }
       .bar .bar-left .media .media-box .media-buttons .circprog {
         min-width: 2.5rem;
         min-height: 2.5rem;
@@ -36,10 +38,6 @@
     .bar .bar-left .media .media-box .media-text {
       margin-left: 1rem;
       margin-right: 1rem; }
-  .bar .bar-left .systray .systray-item {
-    font-size: 14pt; }
-    .bar .bar-left .systray .systray-item:first-child {
-      margin-left: 1rem; }
   .bar .bar-center .bar-corner {
     border-radius: 1.4rem;
     background-color: #414868; }
@@ -54,7 +52,9 @@
     .bar .bar-center .workspaces .workspace {
       margin-bottom: 0.4rem;
       transition: all 200ms;
-      padding: 0.2rem; }
+      padding: 0.2rem;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent; }
       .bar .bar-center .workspaces .workspace.occupied {
         color: #3c1b72;
         background-color: #d5baff;
@@ -83,6 +83,8 @@
     font-size: 10pt; }
   .bar .bar-right {
     padding-right: 1rem; }
+    .bar .bar-right .systray .systray-item {
+      font-size: 14pt; }
     .bar .bar-right .packages {
       margin-top: 0.4rem;
       margin-bottom: 0.4rem;
@@ -134,7 +136,7 @@
       border-radius: 5rem;
       background: #414868;
       color: #a9b1d6;
-      font-size: 11pt; }
+      font-size: 1.25rem; }
     .bar .bar-right .battery .circprog {
       min-width: 2.3rem;
       font-size: 2px; }
