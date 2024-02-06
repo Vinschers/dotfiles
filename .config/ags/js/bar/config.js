@@ -18,7 +18,7 @@ const Left = () =>
         class_name: "bar-left",
         hpack: "start",
         spacing: 16,
-        children: [SysTray(), Media()],
+        children: [Media()],
     });
 
 /**
@@ -38,16 +38,24 @@ const Center = (monitor) =>
 const Right = () =>
     Widget.Box({
         class_name: "bar-right",
-        hpack: "end",
-        spacing: 16,
         children: [
-            Packages(),
-            Weather(),
-            Keyboard(),
-            System(),
-            Configurations(),
-            Battery(),
-            Clock(),
+            Widget.CenterBox({
+                hexpand: true,
+                start_widget: SysTray(),
+                end_widget: Widget.Box({
+                    hpack: "end",
+                    spacing: 16,
+                    children: [
+                        Packages(),
+                        Weather(),
+                        Keyboard(),
+                        System(),
+                        Configurations(),
+                        Battery(),
+                        Clock(),
+                    ],
+                }),
+            }),
         ],
     });
 
