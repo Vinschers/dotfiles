@@ -11,7 +11,7 @@ oomox_colors="$HOME/.config/oomox/oomox-colors"
 
 killall -s USR1 cava
 
-spicetify config color_scheme "default" -q
+spicetify config color_scheme Pywal -q
 [ -d "$HOME/.config/spicetify/Backup" ] || spicetify backup -q
 if pgrep spotify >/dev/null; then
 	spicetify -s watch -q &
