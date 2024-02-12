@@ -8,13 +8,16 @@ const NUM_OF_WORKSPACES = 10;
 // For each monitor, stores the workspace (1 to 10)
 let active_workspaces = [];
 
-function get_active_monitor_ws() {
-    const workspace = Hyprland.getWorkspace(Hyprland.active.workspace.id);
-    const monitor = workspace?.monitorID || 0;
-    const active_ws = (workspace?.id || 1) % 10 || 10;
+const get_current_ws = (monitor) => {
+    const monitor_obj = Hyprland.getMonitor(monitor);
+    if (!monitor_obj) return undefined;
 
-    return [monitor, active_ws];
-}
+    let id = monitor_obj.activeWorkspace.id || 1;
+
+    if (id > 10) id = Number(id.toString().substring(1));
+
+    return id;
+};
 
 function on_change_hyprland(monitor, parent_box) {
     const children = parent_box.children;
@@ -43,9 +46,10 @@ function on_change_hyprland(monitor, parent_box) {
 
 function on_change_workspace(monitor, parent_box) {
     const children = parent_box.children;
-    const [current_monitor, active_ws] = get_active_monitor_ws();
+    const new_ws = get_current_ws(monitor);
 
-    active_workspaces[current_monitor] = active_ws;
+    if (new_ws)
+        active_workspaces[monitor] = new_ws;
 
     children.forEach((child, i) => {
         child.toggleClassName("active", active_workspaces[monitor] == i + 1);
@@ -69,7 +73,7 @@ const Workspace = (i) =>
  * @param {number} monitor
  */
 const Workspaces = (monitor) => {
-    active_workspaces.push(1);
+    active_workspaces.push(get_current_ws(monitor));
 
     return Widget.Box({
         class_name: "workspaces",

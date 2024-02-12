@@ -73,7 +73,9 @@ const MediaButtons = (player) => {
 const MediaText = (player) => {
     if (!player) return Widget.Box();
 
-    const text = new Variable("");
+    const text = new Variable(
+        `${player.track_artists.join(", ")} 🞄 ${player.track_title}`,
+    );
 
     player.connect("changed", (p) => {
         text.setValue(`${p.track_artists.join(", ")} 🞄 ${p.track_title}`);
@@ -136,6 +138,14 @@ const update_css = (player, colors, css) => {
     else css.setValue(background);
 };
 
+const on_player_changed = (player, css) => {
+    update_colors(player.track_cover_url)
+        .then((colors) => {
+            update_css(player, colors, css);
+        })
+        .catch(console.error);
+};
+
 /**
  * @param {MprisPlayer} player
  */
@@ -143,12 +153,10 @@ const MediaBox = (player) => {
     const css = new Variable("");
 
     player.connect("changed", (p) => {
-        update_colors(p.track_cover_url)
-            .then((colors) => {
-                update_css(p, colors, css);
-            })
-            .catch(console.error);
+        on_player_changed(p, css);
     });
+
+    on_player_changed(player, css);
 
     return Widget.Box({
         class_name: "media-box",

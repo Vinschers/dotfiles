@@ -5,8 +5,9 @@ return {
 	{ import = "lazyvim.plugins.extras.util.dot" },
 	{ import = "lazyvim.plugins.extras.test.core" },
 
-    { "sainnhe/everforest" },
-    { "shaunsingh/nord.nvim" },
+	{ "sainnhe/everforest" },
+	{ "shaunsingh/nord.nvim" },
+	{ "catppuccin/nvim" },
 
 	{ "folke/flash.nvim", enabled = false },
 

@@ -20,10 +20,6 @@ fi
 
 pywalfox update
 
-ags --run-js "scss();"
-
-hyprctl reload
-
 gsettings set org.gnome.desktop.interface gtk-theme "$theme"
 
 wal_steam -w
@@ -33,3 +29,5 @@ for pid in $editor_pid; do
 	kill -28 "$pid"
     echo "$pid"
 done
+
+hyprctl reload

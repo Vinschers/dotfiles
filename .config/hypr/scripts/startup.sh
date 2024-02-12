@@ -1,14 +1,16 @@
 #!/bin/sh
 
-hyprctl dispatch focusmonitor 0
-
 i=$(hyprctl monitors -j | jq length)
 
 while [ "$i" -gt 0 ]; do
-	hyprctl dispatch exec hyprsome workspace 1
+	current_ws="$(hyprctl activeworkspace -j | jq -r '.id')"
+	[ "$current_ws" -gt 10 ] && current_ws="${current_ws#?}"
+
+	hyprsome workspace 1
+
 	hyprctl dispatch focusmonitor +1
 
 	i=$((i - 1))
 done
 
-hyprctl dispatch focusmonitor 0
+hyprctl dispatch exec ags
