@@ -20,6 +20,8 @@ fi
 
 pywalfox update
 
+ags --run-js "scss();"
+
 gsettings set org.gnome.desktop.interface gtk-theme "$theme"
 
 wal_steam -w
