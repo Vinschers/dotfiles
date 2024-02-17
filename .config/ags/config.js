@@ -3,7 +3,6 @@
 import Gdk from "gi://Gdk";
 import App from "resource:///com/github/Aylur/ags/app.js";
 import { exec } from "resource:///com/github/Aylur/ags/utils.js";
-import DirectoryMonitorService from "./directoryMonitorService.js";
 
 import Bar from "./js/bar/config.js";
 import Notifications from "./js/notification/config.js";
@@ -39,8 +38,6 @@ export function foreachMonitor(widget) {
     );
 }
 
-// Disable when not debugging to align with theme changes
-// DirectoryMonitorService.connect("changed", () => applyScss());
 applyScss();
 
 globalThis.brightness = (await import("./services/brightness.js")).default;

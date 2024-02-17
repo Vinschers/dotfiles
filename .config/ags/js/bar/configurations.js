@@ -31,10 +31,10 @@ const WiredIndicator = () =>
 
 const NetworkIndicator = () =>
     Widget.Stack({
-        items: [
-            ["wifi", WifiIndicator()],
-            ["wired", WiredIndicator()],
-        ],
+        children: {
+            wifi: WifiIndicator(),
+            wired: WiredIndicator(),
+        },
         shown: Network.bind("primary")
             .transform((p) => p || "wifi")
             .transform((v) => v?.toString() || ""),

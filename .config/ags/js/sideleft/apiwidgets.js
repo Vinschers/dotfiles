@@ -88,12 +88,18 @@ const textboxArea = Widget.Box({
 const apiContentStack = Widget.Stack({
     vexpand: true,
     transition: "slide_left_right",
-    items: APIS.map((api) => [api.name, api.contentWidget]),
+    children: APIS.reduce(
+        (obj, api) => Object.assign(obj, { [api.name]: api.contentWidget }),
+        {},
+    ),
 });
 
 const apiCommandStack = Widget.Stack({
     transition: "slide_up_down",
-    items: APIS.map((api) => [api.name, api.commandBar]),
+    children: APIS.reduce(
+        (obj, api) => Object.assign(obj, { [api.name]: api.commandBar }),
+        {},
+    ),
 });
 
 function switchToTab(id) {

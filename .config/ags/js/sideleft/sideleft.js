@@ -28,7 +28,10 @@ let currentTabId = 0;
 const contentStack = Widget.Stack({
     vexpand: true,
     transition: "slide_left_right",
-    items: contents.map((item) => [item.name, item.content]),
+    children: contents.reduce(
+        (obj, item) => Object.assign(obj, { [item.name]: item.content }),
+        {},
+    ),
 });
 
 function switchToTab(id) {
@@ -78,9 +81,7 @@ const SidebarTabButton = (navIndex) =>
 
 const navTabs = Widget.Box({
     homogeneous: true,
-    children: contents.map((item, id) =>
-        SidebarTabButton(id),
-    ),
+    children: contents.map((item, id) => SidebarTabButton(id)),
 });
 
 const navIndicator = NavigationIndicator(2, false, {
