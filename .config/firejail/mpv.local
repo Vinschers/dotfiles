@@ -3,3 +3,5 @@ ignore disable-mnt
 whitelist ${HOME}/hdd
 whitelist /mnt/hdd
 whitelist /mnt/usb
+whitelist /mnt/usb1
+whitelist /mnt/usb2
