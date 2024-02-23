@@ -30,4 +30,10 @@ map({ "n", "i" }, "<F11>", "<cmd>lua require('dap').step_into()<cr>")
 map({ "n" }, "<leader>C", "<cmd>set spell! spelllang=en_us,pt,fr,de<cr>", { desc = "Toggle spell check" })
 
 -- For Neovide
-map({ "i" }, "<C-v>", '<C-r>+')
+map({ "n" }, "<c-c>", '"+y')
+map({ "v" }, "<c-c>", '"+y')
+
+map({ "n" }, "<c-v>", '"+p')
+map({ "i" }, "<c-v>", '<c-r>+', {noremap = true})
+map({ "c" }, "<c-v>", '<c-r>+', {noremap = true})
+map({ "i" }, "<c-r>", '<c-v>', {noremap = true})
