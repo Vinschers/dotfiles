@@ -25,13 +25,15 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-local function reload_colorscheme()
-	local theme = require("plugins.colorscheme")[1].opts.colorscheme
-	vim.notify(theme)
-	vim.cmd.colorscheme(theme)
-end
-
 vim.api.nvim_create_autocmd("Signal", {
 	pattern = "SIGWINCH",
-	callback = reload_colorscheme,
+	callback = function()
+		package.loaded["plugins.colorscheme"] = nil
+		package.loaded["config.keymaps"] = nil
+
+		local theme = require("plugins.colorscheme")[1].opts.colorscheme
+
+		vim.cmd.colorscheme(theme)
+		vim.keymap.set({ "n" }, "<S-r>", "<Esc><cmd>colorscheme " .. theme .. "<cr>")
+	end,
 })
