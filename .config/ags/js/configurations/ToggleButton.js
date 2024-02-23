@@ -125,7 +125,6 @@ export const Menu = ({ name, icon, title, settings, menu_content }) =>
         name: name,
         hexpand: true,
         vexpand: true,
-        popup: true,
         visible: false,
         keymode: "exclusive",
         child: Widget.CenterBox({
@@ -139,4 +138,7 @@ export const Menu = ({ name, icon, title, settings, menu_content }) =>
             }),
             endWidget: Padding(name),
         }),
+        setup: (self) => {
+            self.keybind("Escape", () => App.closeWindow(name));
+        },
     });

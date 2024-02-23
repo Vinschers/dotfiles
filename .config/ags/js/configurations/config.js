@@ -58,7 +58,6 @@ export default () =>
     Widget.Window({
         name: "configurations",
         anchor: ["top", "right"],
-        popup: true,
         visible: false,
         keymode: "exclusive",
         child: Widget.CenterBox({
@@ -69,4 +68,7 @@ export default () =>
             }),
             end_widget: Padding("configurations"),
         }),
+        setup: (self) => {
+            self.keybind("Escape", () => App.closeWindow("configurations"));
+        },
     });

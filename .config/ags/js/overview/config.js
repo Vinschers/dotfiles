@@ -7,7 +7,6 @@ export default (monitor) =>
         monitor,
         exclusivity: "ignore",
         keymode: "on-demand",
-        popup: true,
         visible: false,
         anchor: ["top"],
         layer: "overlay",
@@ -16,4 +15,7 @@ export default (monitor) =>
             vertical: true,
             children: [SearchAndWindows(monitor)],
         }),
+        setup: (self) => {
+            self.keybind("Escape", () => App.closeWindow(`overview${monitor}`));
+        },
     });

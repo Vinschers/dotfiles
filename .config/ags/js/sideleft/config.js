@@ -1,4 +1,4 @@
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import SidebarLeft from "./sideleft.js";
 
 export default () =>
@@ -6,8 +6,10 @@ export default () =>
         name: "sideleft",
         anchor: ["left", "top", "bottom"],
         child: SidebarLeft(),
-        popup: true,
         visible: false,
         keymode: "exclusive",
-        layer: 'top'
+        layer: "top",
+        setup: (self) => {
+            self.keybind("Escape", () => App.closeWindow("sideleft"));
+        },
     });

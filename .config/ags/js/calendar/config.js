@@ -13,18 +13,17 @@ export default () =>
     Widget.Window({
         name: "calendar",
         anchor: ["top", "right"],
-        popup: true,
         visible: false,
         keymode: "exclusive",
         child: Widget.CenterBox({
             start_widget: Padding("calendar"),
             center_widget: Widget.Box({
                 vertical: true,
-                children: [
-                    calendar,
-                    Padding("calendar"),
-                ],
+                children: [calendar, Padding("calendar")],
             }),
             end_widget: Padding("calendar"),
         }),
+        setup: (self) => {
+            self.keybind("Escape", () => App.closeWindow("calendar"));
+        },
     });
