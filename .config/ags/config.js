@@ -61,6 +61,6 @@ const windows = () => [
 Notifications.popupTimeout = 5000;
 Notifications.cacheActions = true;
 
-export default {
+App.config({
     windows: windows().flat(1),
-};
+});

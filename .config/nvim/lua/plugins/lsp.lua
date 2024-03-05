@@ -102,7 +102,7 @@ return {
 						cwd = "${workspaceFolder}",
 						program = "${fileDirname}/${fileBasenameNoExtension}",
 						initCommands = {
-							"platform shell compile ${file}", -- Custom script to compile file
+							"platform shell compile \"${file}\"", -- Custom script to compile file
 						},
 						env = {
 							PATH = "${env:PATH}",

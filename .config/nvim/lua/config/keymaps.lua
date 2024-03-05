@@ -31,7 +31,7 @@ map({ "n" }, "<leader>C", "<cmd>set spell! spelllang=en_us,pt,fr,de<cr>", { desc
 map({ "n" }, "<c-c>", '"+y')
 map({ "v" }, "<c-c>", '"+y')
 
-map({ "n" }, "<c-v>", '"+p')
+-- map({ "n" }, "<c-v>", '"+p')
 map({ "i" }, "<c-v>", '<c-r>+', {noremap = true})
 map({ "c" }, "<c-v>", '<c-r>+', {noremap = true})
 map({ "i" }, "<c-r>", '<c-v>', {noremap = true})

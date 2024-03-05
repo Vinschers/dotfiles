@@ -193,6 +193,9 @@ return {
 			{ "<leader>tct", "<cmd>CompetiTest receive testcases<cr>", desc = "CompetiTest get test cases" },
 		},
 		opts = {
+            received_problems_path = "$(CWD)/$(PROBLEM)/main.$(FEXT)",
+            received_contests_directory = "$(CWD)",
+            received_contests_problems_path = "$(PROBLEM)/main.$(FEXT)",
 			testcases_directory = "./tests",
 			testcases_input_file_format = "input$(TCNUM)",
 			testcases_output_file_format = "output$(TCNUM)",
@@ -201,6 +204,7 @@ return {
 				py = vim.fn.stdpath("config") .. "/templates/competitest.py",
 			},
 			evaluate_template_modifiers = true,
+            date_format = "%d/%m/%Y %X",
 		},
 	},
 
