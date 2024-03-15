@@ -20,7 +20,7 @@ compile_file() {
 
 	case "$fileExtension" in
 	s | c)
-		gcc -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension" -g -Wall
+		gcc -o "$cwd/$fileName" "$cwd/$fileName.$fileExtension" -g -Wall -O2
 		;;
 
 	cpp)

@@ -51,7 +51,7 @@ run_cmd() {
 	cmd="$1"
 
 	printf "\$ %s\n\n" "$cmd"
-	eval "time --format=\"Command ran for '%E' (%e seconds)\" \"$cmd\""
+	eval "time --format=\"Command ran for '%E' (%e seconds)\" $cmd"
 
 	printf "\nPress any key to exit..." && readc key
 }
