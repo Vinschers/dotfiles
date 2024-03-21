@@ -33,3 +33,8 @@ for pid in $editor_pid; do
 done
 
 hyprctl reload
+
+sleep 1
+ss -a | grep nvim | awk '{print $5}' | while read -r nvim_socket; do
+	nvim --server "$nvim_socket" --remote-send "<Esc>R"
+done

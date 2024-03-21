@@ -33,7 +33,6 @@ vim.api.nvim_create_autocmd("Signal", {
 
 		local theme = require("plugins.colorscheme")[1].opts.colorscheme
 
-		vim.cmd.colorscheme(theme)
 		vim.keymap.set({ "n" }, "<S-r>", "<Esc><cmd>colorscheme " .. theme .. "<cr>")
 	end,
 })
