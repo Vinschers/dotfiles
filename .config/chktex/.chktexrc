@@ -3,4 +3,5 @@ CmdLine
     --inputfiles
     --headererr
     --nowarn 8
+    --nowarn 13
 }

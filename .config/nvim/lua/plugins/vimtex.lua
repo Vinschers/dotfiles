@@ -71,7 +71,7 @@ return {
 					.. "export.bib "
 					.. latex_cache
 					.. "/*.aux 2>/dev/null; }"
-				os.execute(update_bib_cmd)
+				-- os.execute(update_bib_cmd)
 			end,
 		})
 

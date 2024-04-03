@@ -138,10 +138,16 @@ const update_css = (player, colors, css) => {
     else css.setValue(background);
 };
 
-const on_player_changed = (player, css) => {
+const on_player_changed = (player, css, updating) => {
+    if (updating.getValue())
+        return;
+
+    updating.setValue(true);
+
     update_colors(player.track_cover_url)
         .then((colors) => {
             update_css(player, colors, css);
+            updating.setValue(false);
         })
         .catch(console.error);
 };
@@ -151,12 +157,13 @@ const on_player_changed = (player, css) => {
  */
 const MediaBox = (player) => {
     const css = new Variable("");
+    const updating = new Variable(false);
 
     player.connect("changed", (p) => {
-        on_player_changed(p, css);
+        on_player_changed(p, css, updating);
     });
 
-    on_player_changed(player, css);
+    on_player_changed(player, css, updating);
 
     return Widget.Box({
         class_name: "media-box",

@@ -41,4 +41,4 @@ ln -sf "$new_theme" "$HOME/.config/theme/theme.json"
 
 python "$HOME/.config/theme/utils/update.py"
 
-[ -z "$1" ] && swww init
+[ -z "$1" ] && swww-daemon
