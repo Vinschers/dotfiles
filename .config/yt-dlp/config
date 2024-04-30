@@ -1,0 +1,7 @@
+--embed-thumbnail
+--embed-metadata
+--embed-info-json
+--merge-output-format mp4
+--default-search ytsearch
+--audio-format mp3
+--output "%(title)s.mp3"
