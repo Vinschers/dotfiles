@@ -1,7 +1,0 @@
----
-- name: Install yay
-  become: true
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    name: yay
-    state: present

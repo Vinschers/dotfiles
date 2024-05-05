@@ -2,10 +2,6 @@
 - name: Bootstrap personal environment
   hosts: localhost
   vars_prompt:
-    - name: ssd_trim
-      prompt: Setup SSD trim? [y/N]
-      private: false
-
     - name: github_email
       prompt: Github email
       private: false

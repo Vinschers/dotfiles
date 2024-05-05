@@ -1,0 +1,12 @@
+---
+- name: Create user groups
+  become: true
+  group:
+    name: "{{ user_groups }}"
+    state: present
+- name: Add user to groups
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups: "{{ user_groups }}"
+    append: true

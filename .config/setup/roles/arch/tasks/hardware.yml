@@ -1,4 +1,39 @@
 ---
+- name: Setup Intel GPU
+  when: amd.stdout == "" and nvidia.stdout == "" and intel.stdout != ""
+  become: true
+  block:
+    - name: Install Intel GPU packages from pacman
+      community.general.pacman:
+        name: intel-gpu-tools
+        state: present
+    - name: Setup cap_perfmon
+      shell: setcap cap_perfmon=+ep /usr/bin/intel_gpu_top
+
+- name: Install AMD packages from pacman
+  when: amd.stdout != ""
+  become: true
+  community.general.pacman:
+    name:
+      - vulkan-radeon
+      - lib32-vulkan-radeon
+      - mesa
+      - mesa-utils
+      - libva-mesa-driver
+      - lib32-libva-mesa-driver
+      - radeontop
+    state: present
+
+- name: Install AMD packages from AUR
+  when: amd.stdout != ""
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - amdgpu_top
+      - amdguid-wayland-bin
+    state: present
+
 - name: Install NVIDIA packages from pacman
   when: nvidia.stdout != ""
   become: true

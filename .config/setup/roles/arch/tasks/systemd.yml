@@ -1,0 +1,23 @@
+---
+- name: Enable user systemd services
+  systemd:
+    name: "{{ item }}"
+    enabled: true
+    scope: user
+  loop: "{{ systemd_user_services }}"
+
+- name: Enable system systemd services
+  systemd:
+    name: "{{ item }}"
+    enabled: true
+  loop: "{{ systemd_system_services }}"
+
+- name: Setup SSD Trim
+  become: true
+  systemd:
+    name: "{{ item }}"
+    enabled: true
+  loop:
+    - fstrim.timer
+    - fstrim.service
+  when: ssd_trim|bool

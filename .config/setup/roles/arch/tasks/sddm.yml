@@ -1,17 +1,4 @@
 ---
-- name: Install sddm
-  become: true
-  community.general.pacman:
-    name: sddm
-    state: present
-
-- name: Download sddm theme
-  become: true
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    name: sddm-theme-corners-git
-    state: present
-
 - name: Change config in sddm-corners
   become: true
   block:
@@ -37,9 +24,3 @@
   copy:
     src: icon.png
     dest: "/usr/share/sddm/faces/{{ ansible_env.USER }}.face.icon"
-
-- name: Enable sddm service
-  become: true
-  systemd:
-    name: sddm
-    enabled: true

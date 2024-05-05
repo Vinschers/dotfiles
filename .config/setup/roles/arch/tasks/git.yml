@@ -17,10 +17,3 @@
     eval "$(ssh-agent -s)"
     ssh-add "{{ ansible_env.HOME }}/.ssh/id_ed25519"
   when: github_email != ""
-
-- name: Install Gitmoji
-  become: true
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    name: nodejs-gitmoji-cli
-    state: present

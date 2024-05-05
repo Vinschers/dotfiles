@@ -1,0 +1,134 @@
+---
+- name: Install yay
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: yay
+    state: present
+
+- name: Install pacman packages
+  become: true
+  community.general.pacman:
+    name: "{{ pacman_packages }}"
+    state: present
+
+- name: Install AUR packages
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: "{{ aur_packages }}"
+    state: present
+
+- name: Remove packages
+  become: true
+  community.general.pacman:
+    name: "{{ remove_packages }}"
+    state: absent
+
+- name: Install Hyprland with NVIDIA patch
+  become: true
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: hyprland-nvidia
+    state: present
+  when: nvidia.stdout != ""
+
+- name: Install Hyprland
+  become: true
+  community.general.pacman:
+    name: hyprland
+    state: present
+  when: nvidia.stdout == ""
+
+- name: Install jaq
+  become: true
+  become_user: aur_builder
+  block:
+    - name: Run rustup
+      shell: rustup default stable
+    - name: Install jaq from AUR
+      kewlfft.aur.aur:
+        name: jaq
+        state: present
+
+- name: Run rustup in current user
+  shell: rustup default stable
+
+- name: Install "neovim" node.js package globally.
+  become: true
+  npm:
+    name: neovim
+    global: true
+
+- name: Create .local/state/zsh directory
+  file:
+    path: "{{ ansible_env.HOME }}/.local/state/zsh"
+    state: directory
+
+- name: Change shell to zsh
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /bin/zsh
+
+- name: Add v4l2loopback module
+  become: true
+  lineinfile:
+    path: /etc/modules-load.d/v4l2loopback.conf
+    line: "v4l2loopback"
+    create: true
+
+- name: Deny everything with UFW
+  community.general.ufw:
+    state: enabled
+    default: deny
+
+- name: Setup firejail
+  become: true
+  block:
+    - name: Disable zathura
+      lineinfile:
+        path: /etc/firejail/firecfg.config
+        regexp: 'zathura'
+        line: '#zathura'
+    - name: Run firecfg
+      shell: firecfg
+
+- name: Setup Imagemagick
+  become: true
+  lineinfile:
+    path: /etc/ImageMagick-7/policy.xml
+    regexp: 'name="memory"'
+    line: '  <policy domain="resource" name="memory" value="2GiB"/>'
+
+- name: Install makefile2graph
+  become: true
+  make:
+    chdir: "{{ ansible_env.HOME }}/.config/setup/programs/makefile2graph"
+
+- name: Change Spotify directories group
+  become: true
+  block:
+    - name: Change /opt/spotify group
+      file:
+        path: /opt/spotify
+        state: directory
+        group: spicetify
+        mode: '0775'
+    - name: Change /opt/spotify/Apps group
+      file:
+        path: /opt/spotify/Apps
+        recurse: true
+        state: directory
+        group: spicetify
+        mode: '0775'
+
+- name: Create Spicetify Themes directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/spicetify/Themes/default"
+    state: directory
+
+- name: Create .config/btop/themes directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/btop/themes"
+    state: directory
