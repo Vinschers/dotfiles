@@ -11,9 +11,7 @@ alias \
 	egrep='egrep --color=auto' \
 	diff="diff --color=auto" \
     yay='yay --sudoloop' \
-    dmenu='dmenu -x 12 -y 12 -z 1896' \
     bash='bash --rcfile $BASHDIR/bashrc.sh' \
-    yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 # Shortenings
 alias \
@@ -31,7 +29,6 @@ alias \
 alias \
 	g="git" \
     dotfiles='git --git-dir=$XDG_CONFIG_HOME/.dotfiles-git/ --work-tree=$HOME' \
-    xfce4='git --git-dir=$HOME/.rice-xfce4-git/ --work-tree=$HOME' \
     ds='dotfiles status' \
     da='dotfiles add' \
     ddiff="dotfiles diff" \
@@ -58,9 +55,6 @@ alias \
     c='compile' \
     ex='extract' \
     o='xdg-open' \
-    get-keys="xev" \
-    ct="compact_tar" \
-    cz="compact_zip" \
     v="nvim" \
     nv="neovide"
 

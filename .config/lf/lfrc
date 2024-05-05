@@ -31,6 +31,9 @@ set period 1
 # Automatically quit server when there are no clients left connected.
 set autoquit on
 
+# Use Sixel
+set sixel on
+
 # use enter for shell commands
 map <enter> shell
 
