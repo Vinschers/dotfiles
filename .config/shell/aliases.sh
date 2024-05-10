@@ -68,7 +68,7 @@ alias \
     se='sudoedit' \
     cv='cd $HOME/.config/nvim/' \
     cs='cd $HOME/.config/suckless/' \
-    vpn='sudo openvpn $ACADEMIC_DIRECTORY/unicamp.ovpn' \
+    vpn='sudo openvpn $HOME/academic/unicamp.ovpn' \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
     d='cd $ACADEMIC_DIRECTORY/unicamp/disciplinas && ls' \
     sv="sudoedit" \
