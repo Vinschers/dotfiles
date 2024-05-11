@@ -35,10 +35,20 @@
 
 - name: Install Hyprland
   become: true
-  community.general.pacman:
-    name: hyprland
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: hyprland-git
     state: present
   when: nvidia.stdout == ""
+
+- name: Install Hyprland Plugins
+  block:
+    - name: Update hyprpm
+      shell: hyprpm update
+    - name: split-monitor-workspaces
+      shell: |
+        echo "y" | hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
+        hyprpm enable split-monitor-workspaces
 
 - name: Install jaq
   become: true

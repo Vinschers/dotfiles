@@ -12,20 +12,21 @@ const get_current_ws = (monitor) => {
     const monitor_obj = Hyprland.getMonitor(monitor);
     if (!monitor_obj) return undefined;
 
-    let id = monitor_obj.activeWorkspace.id || 1;
-
-    if (id > 10) id = Number(id.toString().substring(1));
-
-    return id;
+    const id = monitor_obj.activeWorkspace.id || 1;
+    return 1 + (id - 1) % 10;
 };
+
+const get_ws_id = (monitor, i) => {
+    return 10 * monitor + i
+}
 
 function on_change_hyprland(monitor, parent_box) {
     const children = parent_box.children;
 
     children.forEach((child, i) => {
-        const ws_before = Hyprland.getWorkspace(Number(`${monitor}${i}`));
-        const ws = Hyprland.getWorkspace(Number(`${monitor}${i + 1}`));
-        const ws_after = Hyprland.getWorkspace(Number(`${monitor}${i + 2}`));
+        const ws_before = Hyprland.getWorkspace(get_ws_id(monitor, i));
+        const ws = Hyprland.getWorkspace(get_ws_id(monitor, i + 1));
+        const ws_after = Hyprland.getWorkspace(get_ws_id(monitor, i + 2));
 
         //toggleClassName is not part od Gtk.Widget, but we know box.children only includes AgsWidgets
 
@@ -61,7 +62,7 @@ function on_change_workspace(monitor, parent_box) {
  */
 const Workspace = (i) =>
     Widget.Button({
-        on_primary_click: () => execAsync(`hyprsome workspace ${i}`),
+        on_primary_click: () => execAsync(`hyprctl dispatch split-workspace ${i}`),
         child: Widget.Label({
             label: `${i}`,
             class_name: "workspace-label",
