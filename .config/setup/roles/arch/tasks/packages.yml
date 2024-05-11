@@ -9,21 +9,24 @@
 - name: Install pacman packages
   become: true
   community.general.pacman:
-    name: "{{ pacman_packages }}"
+    name: "{{ item }}"
     state: present
+  loop: "{{ pacman_packages }}"
 
 - name: Install AUR packages
   become: true
   become_user: aur_builder
   kewlfft.aur.aur:
-    name: "{{ aur_packages }}"
+    name: "{{ item }}"
     state: present
+  loop: "{{ aur_packages }}"
 
 - name: Remove packages
   become: true
   community.general.pacman:
-    name: "{{ remove_packages }}"
+    name: "{{ item }}"
     state: absent
+  loop: "{{ remove_packages }}"
 
 - name: Install Hyprland with NVIDIA patch
   become: true

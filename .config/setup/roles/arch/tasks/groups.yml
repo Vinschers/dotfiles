@@ -2,11 +2,13 @@
 - name: Create user groups
   become: true
   group:
-    name: "{{ user_groups }}"
+    name: "{{ item }}"
     state: present
+  loop: "{{ user_groups }}"
 - name: Add user to groups
   become: true
   user:
     name: "{{ ansible_env.USER }}"
-    groups: "{{ user_groups }}"
+    groups: "{{ item }}"
     append: true
+  loop: "{{ user_groups }}"
