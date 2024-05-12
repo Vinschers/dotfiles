@@ -46,7 +46,6 @@ pacman_packages:
   - nvtop
   - tree
   - yt-dlp
-  - light
   - bitwarden
   - inotify-tools
   - alsa-firmware
@@ -229,6 +228,7 @@ aur_packages:
   - dxvk-bin
   - vkd3d-proton-bin
   - spicetify-cli
+  - light
 remove_packages:
   - networkmanager
   - libnm
