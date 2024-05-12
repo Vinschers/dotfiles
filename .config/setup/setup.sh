@@ -4,6 +4,7 @@ clone_git() {
 	[ -d "$HOME/.config/.dotfiles-git" ] && rm -rf "$HOME/.config/.dotfiles-git"
 
 	git clone --bare --recursive https://github.com/Vinschers/dotfiles.git "$HOME/.config/.dotfiles-git"
+	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" reset hard
 
 	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" config --local status.showUntrackedFiles no
 	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.config/shell/environment/local.sh"
