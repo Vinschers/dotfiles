@@ -227,7 +227,7 @@ aur_packages:
   # - networkmanager-iwd
 remove_packages:
   # - networkmanager
-  - libnm
+  # - libnm
   - xdg-desktop-portal-gnome
 systemd_user_services:
   - pipewire
