@@ -193,7 +193,7 @@ pacman_packages:
   # - docker-compose
   # - easytag
 aur_packages:
-  - cava
+  - cava-git
   - python-pip
   # - python-bibtexparser
   # - python-inkscape-figures
