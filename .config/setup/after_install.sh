@@ -1,5 +1,11 @@
 #!/bin/sh
 
+hyprland() {
+    hyprpm update
+    echo "y" | hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
+    hyprpm enable split-monitor-workspaces
+}
+
 wine() {
 	export WINEDEBUG=-all
 	export WINEPREFIX="$HOME/.wine"
@@ -18,5 +24,6 @@ photoshop() {
     "$HOME/.config/setup/programs/photoshop2021install.sh" "$HOME/.local/share/photoshop"
 }
 
+hyprland
 wine
 photoshop

@@ -40,18 +40,9 @@
   become: true
   become_user: aur_builder
   kewlfft.aur.aur:
-    name: hyprland-git
+    name: hyprland
     state: present
   when: nvidia.stdout == ""
-
-- name: Install Hyprland Plugins
-  block:
-    - name: Update hyprpm
-      shell: hyprpm update
-    - name: split-monitor-workspaces
-      shell: |
-        echo "y" | hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
-        hyprpm enable split-monitor-workspaces
 
 - name: Install jaq
   become: true
@@ -70,8 +61,11 @@
 - name: Install "neovim" node.js package globally.
   become: true
   npm:
-    name: neovim
+    name: "{{ item }}"
     global: true
+  loop:
+    - neovim
+    - tree-sitter-cli
 
 - name: Create .local/state/zsh directory
   file:
