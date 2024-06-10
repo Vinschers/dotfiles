@@ -58,7 +58,7 @@
 - name: Run rustup in current user
   shell: rustup default stable
 
-- name: Install "neovim" node.js package globally.
+- name: Install neovim node.js packages globally.
   become: true
   npm:
     name: "{{ item }}"
