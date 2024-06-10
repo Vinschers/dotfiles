@@ -51,6 +51,10 @@ return {
 			opts.formatters.shfmt = {
 				prepend_args = { "--indent", "4" },
 			}
+
+            opts.formatters.stylua = {
+                prepend_args = { "--config-path", os.getenv("HOME") .. "/.config/.stylua.toml" },
+            }
 		end,
 	},
 
