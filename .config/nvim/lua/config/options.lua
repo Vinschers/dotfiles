@@ -20,3 +20,6 @@ vim.opt.wildignore = {
 vim.g.maplocalleader = " "
 vim.g.autoformat = false
 vim.g.neovide_remember_window_size = true
+
+
+vim.g.lazyvim_python_lsp = "basedpyright"

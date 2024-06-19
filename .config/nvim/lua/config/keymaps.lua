@@ -7,9 +7,6 @@ local del = vim.keymap.del
 map({ "n", "x", "v" }, "<C-t>", "<cmd>ene<cr>")
 map({ "n" }, "<F1>", "")
 
-map({ "n", "v", "x" }, "c", '"_c')
-map({ "n", "v", "x" }, "C", '"_C')
-
 map({ "n" }, "Ç", ":")
 map({ "i" }, "<C-l>", "\\")
 map({ "n", "i" }, "<C-a>", "ggVG")
@@ -32,6 +29,6 @@ map({ "n" }, "<c-c>", '"+y')
 map({ "v" }, "<c-c>", '"+y')
 
 -- map({ "n" }, "<c-v>", '"+p')
-map({ "i" }, "<c-v>", '<c-r>+', {noremap = true})
-map({ "c" }, "<c-v>", '<c-r>+', {noremap = true})
-map({ "i" }, "<c-r>", '<c-v>', {noremap = true})
+map({ "i" }, "<c-v>", "<c-r>+", { noremap = true })
+map({ "c" }, "<c-v>", "<c-r>+", { noremap = true })
+map({ "i" }, "<c-r>", "<c-v>", { noremap = true })

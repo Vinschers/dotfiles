@@ -12,7 +12,7 @@ using namespace std;
 /* clang-format off */
 
 #define ll long long
-#define PI 3.1415926535897932384626433832795
+#define PI acos(-1)
 
 long long min(ll a,int b) { if (a<b) return a; return b; }
 long long min(int a,ll b) { if (a<b) return a; return b; }

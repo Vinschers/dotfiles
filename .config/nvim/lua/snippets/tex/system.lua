@@ -1,4 +1,4 @@
-local helpers = require("utils.luasnip-helper-funcs")
+local helpers = require("snippets.utils")
 local get_visual = helpers.get_visual
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
