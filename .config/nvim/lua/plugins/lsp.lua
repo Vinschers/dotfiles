@@ -1,18 +1,22 @@
 return {
+    { import = "lazyvim.plugins.extras.lang.ansible" },
+    { import = "lazyvim.plugins.extras.lang.git" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.docker" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.java" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.tex" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
-    "elkowar/yuck.vim",
+    { import = "lazyvim.plugins.extras.lang.sql" },
 
     -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
+    { import = "lazyvim.plugins.extras.editor.refactoring" },
 
     { import = "lazyvim.plugins.extras.coding.luasnip" },
 
@@ -44,6 +48,9 @@ return {
             opts.formatters_by_ft = {
                 c = { "clang_format" },
                 cpp = { "clang_format" },
+                html = { "prettier" },
+                css = { "prettier" },
+                js = { "prettier" },
             }
 
             opts.formatters.clang_format = {
@@ -79,8 +86,8 @@ return {
             },
 
             linters = {
-                markdownlint = {
-                    args = { "--disable", "MD013", "--" },
+                ["markdownlint-cli2"] = {
+                    args = { "--config", os.getenv("HOME") .. "/.config/.markdownlint.jsonc" },
                 },
             },
         },
