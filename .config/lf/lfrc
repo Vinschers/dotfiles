@@ -32,7 +32,7 @@ set period 1
 set autoquit on
 
 # Use Sixel
-set sixel on
+set sixel true
 
 # use enter for shell commands
 map <enter> shell
