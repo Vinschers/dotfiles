@@ -1,0 +1,11 @@
+[manager]
+linemode = "size"
+show_hidden = true
+
+[preview]
+image_quality = 50
+
+[opener]
+edit = [{ run = 'neovide "$@"', orphan = true }]
+play = [{ run = 'mpv "$@"', orphan = true }]
+open = [{ run = 'xdg-open "$@"', desc = "Open" }]

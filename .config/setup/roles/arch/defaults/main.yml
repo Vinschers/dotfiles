@@ -75,7 +75,12 @@ pacman_packages:
   - imlib2
   - libsixel
   - libxcrypt-compat
-  - lf
+  - unarchiver
+  - poppler
+  - fd
+  - fzf
+  - zoxide
+  - yazi
   # - texlive
   # - texlive-lang
   # - bibtool

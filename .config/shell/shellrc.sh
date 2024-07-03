@@ -16,9 +16,6 @@ done
 # shellcheck disable=1091
 . "$HOME/.config/shell/aliases.sh"
 
-# shellcheck disable=1091
-[ -e "$HOME/.config/lf/lfcd.sh" ] && . "$HOME/.config/lf/lfcd.sh"
-
 if ! env | grep -q '^NVIM=' && [ -z "$SHLVL" ] || [ $SHLVL -lt 2 ]; then
 	fastfetch
 fi
