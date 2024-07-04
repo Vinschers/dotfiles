@@ -58,13 +58,7 @@ export default {
     recorder: {
         recording: "emblem-videos-symbolic",
     },
-    notifications: {
-        noisy: "preferences-system-notifications-symbolic",
-        silent: "notifications-disabled-symbolic",
-        critical: "messagebox_critical-symbolic",
-        chat: "notification-symbolic",
-        close: "window-close-symbolic",
-    },
+    notifications: "󰂚",
     footer: {
         theme: "applications-graphics-symbolic",
         wallpaper: "image-x-generic-symbolic",

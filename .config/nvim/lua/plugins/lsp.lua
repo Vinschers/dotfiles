@@ -50,6 +50,7 @@ return {
                 cpp = { "clang_format" },
                 html = { "prettier" },
                 css = { "prettier" },
+                scss = { "prettier" },
                 js = { "prettier" },
             }
 

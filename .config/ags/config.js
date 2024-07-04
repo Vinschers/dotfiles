@@ -5,10 +5,8 @@ import App from "resource:///com/github/Aylur/ags/app.js";
 import { exec } from "resource:///com/github/Aylur/ags/utils.js";
 
 import Bar from "./js/bar/config.js";
-import Notifications from "./js/notification/config.js";
 import Configurations from "./js/configurations/config.js";
 import Calendar from "./js/calendar/config.js";
-import SideLeft from "./js/sideleft/config.js";
 import Overview from "./js/overview/config.js";
 
 import { WifiSelection } from "./js/configurations/Network.js";
@@ -47,7 +45,6 @@ globalThis.scss = applyScss;
 
 const windows = () => [
     foreachMonitor(Bar),
-    foreachMonitor(Notifications),
     foreachMonitor(Overview),
     Calendar(),
     Configurations(),
@@ -55,11 +52,7 @@ const windows = () => [
     BluetoothDevices(),
     AppMixer(),
     SinkSelector(),
-    SideLeft(),
 ];
-
-Notifications.popupTimeout = 5000;
-Notifications.cacheActions = true;
 
 App.config({
     windows: windows().flat(1),

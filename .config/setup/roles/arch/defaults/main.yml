@@ -197,6 +197,7 @@ pacman_packages:
   # - docker
   # - docker-compose
   # - easytag
+  - swaync
 aur_packages:
   - cava-git
   - python-pip

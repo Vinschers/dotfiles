@@ -8,6 +8,7 @@ import Media from "./media.js";
 import Packages from "./packages.js";
 import System from "./system.js";
 import SysTray from "./systray.js";
+import Notifications from "./notifications.js";
 import Title from "./title.js";
 import Weather from "./weather.js";
 import Workspaces from "./workspaces.js";
@@ -52,6 +53,7 @@ const Right = () =>
                         System(),
                         Configurations(),
                         Battery(),
+                        Notifications(),
                         Clock(),
                     ],
                 }),

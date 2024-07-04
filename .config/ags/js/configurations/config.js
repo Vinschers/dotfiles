@@ -1,12 +1,9 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Padding from "../misc/Padding.js";
 
-import NotificationsColumn from "./NotificationsColumn.js";
 import Microphone from "./Microphone.js";
-import DND from "./DND.js";
 import Brightness from "./Brightness.js";
 import NightLight from "./NightLight.js";
-import Record from "./Record.js";
 import Footer from "./Footer.js";
 
 import { VolMicrophone, Volume } from "./Volume.js";
@@ -29,8 +26,7 @@ const configurations = Widget.Box({
             spacing: 16,
             children: [
                 Row(NetworkToggle(), BluetoothToggle()),
-                Row(NightLight(), DND()),
-                Row(Microphone(), Record()),
+                Row(NightLight(), Microphone()),
                 Widget.Box(),
                 Row(
                     Widget.Box({
@@ -50,7 +46,6 @@ const configurations = Widget.Box({
                 Footer(),
             ],
         }),
-        NotificationsColumn(),
     ],
 });
 

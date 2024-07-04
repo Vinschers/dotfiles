@@ -38,17 +38,6 @@ $battery_medium: $tertiary;
 $battery_low: $error;
 
 
-$notifications_bg: $surface;
-$notifications_fg: $onSurface;
-$notifications_icon: $surfaceVariant;
-$notifications_close_bg: $surfaceVariant;
-$notifications_close_fg: $onSurfaceVariant;
-$notifications_close_hover_bg: $error;
-$notifications_close_hover_fg: $onError;
-$notifications_action: $surfaceVariant;
-$notifications_action_hover: $onSurfaceVariant;
-
-
 $calendar_bg: $surface;
 $calendar_fg: $onSurface;
 $calendar_border: $surfaceVariant;
@@ -92,15 +81,6 @@ $footer_theme_fg: $onSurfaceVariant;
 $footer_theme_bg: $surfaceVariant;
 $footer_theme_hover_fg: $onSecondary;
 $footer_theme_hover_bg: $secondary;
-
-$configurations_notifications_bg: $surfaceVariant;
-$configurations_notifications_fg: $onSurfaceVariant;
-$configurations_notifications_clear: $surface;
-$configurations_notifications_clear_hover_bg: $tertiary;
-$configurations_notifications_clear_hover_fg: $onTertiary;
-$configurations_notifications_slider: $onSurfaceVariant;
-$configurations_notifications_slider_hover: $onSurfaceVariant;
-
 
 $menu_bg: $bg;
 $menu_fg: $fg;

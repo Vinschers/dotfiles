@@ -269,6 +269,14 @@
             }
         }
 
+        .notifications {
+          padding-left: 0.25rem;
+          padding-right: 0.3rem;
+          .notifications-icon {
+            font-size: 15pt;
+          }
+        }
+
         .clock {
             .time {
                 font-size: 16pt;
