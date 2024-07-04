@@ -95,10 +95,10 @@ const MediaText = (player) => {
     });
 };
 
-const update_colors = (image) => {
+const update_colors = (image_url) => {
     return new Promise((resolve, reject) => {
         execAsync(
-            `sh -c "convert '${image}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
+            `sh -c "convert '${image_url}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
         )
             .then((output) => {
                 if (!output) return;
@@ -117,7 +117,7 @@ const update_colors = (image) => {
     });
 };
 
-const update_css = (player, colors, css) => {
+const update_css = (player_status, colors) => {
     // @ts-ignore
     if (colors.length == 0) return "";
 
@@ -133,23 +133,9 @@ const update_css = (player, colors, css) => {
 
     const animation = "animation: gradient 12s linear infinite;";
 
-    if (player.play_back_status === "Playing")
-        css.setValue(background + animation);
-    else css.setValue(background);
-};
-
-const on_player_changed = (player, css, updating) => {
-    if (updating.getValue())
-        return;
-
-    updating.setValue(true);
-
-    update_colors(player.track_cover_url)
-        .then((colors) => {
-            update_css(player, colors, css);
-            updating.setValue(false);
-        })
-        .catch(console.error);
+    if (player_status === "Playing")
+        return background + animation;
+    return background;
 };
 
 /**
@@ -157,13 +143,8 @@ const on_player_changed = (player, css, updating) => {
  */
 const MediaBox = (player) => {
     const css = new Variable("");
-    const updating = new Variable(false);
-
-    player.connect("changed", (p) => {
-        on_player_changed(p, css, updating);
-    });
-
-    on_player_changed(player, css, updating);
+    const image_url = new Variable("");
+    const colors = new Variable([]);
 
     return Widget.Box({
         class_name: "media-box",
@@ -182,7 +163,18 @@ const MediaBox = (player) => {
         player,
         (self) => (self.visible = player.track_title !== ""),
         "closed",
-    );
+    ).hook(player, () => {
+        if (image_url.getValue() !== player.track_cover_url) {
+            image_url.setValue(player.track_cover_url);
+
+            update_colors(image_url.getValue()).then(new_colors => {
+                colors.setValue(new_colors);
+                css.setValue(update_css(player.play_back_status, colors.getValue()));
+            }).catch(console.error);
+        } else {
+            css.setValue(update_css(player.play_back_status, colors.getValue()));
+        }
+    }, "changed");
 };
 
 const Media = () => {
