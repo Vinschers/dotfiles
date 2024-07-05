@@ -123,7 +123,7 @@
       .bar .bar-right .system .cpu progress {
         background-color: #d5baff; }
       .bar .bar-right .system .temp progress {
-        background-color: #c0caf5; }
+        background-color: #ffb2be; }
       .bar .bar-right .system .ram progress {
         background-color: #acc6ff; }
       .bar .bar-right .system .gpu progress {
@@ -180,6 +180,33 @@
       color: #d5baff; }
     .calendar calendar:indeterminate {
       color: #414868; }
+
+.system-graphs {
+  margin-top: 1rem;
+  margin-right: 6rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 1px solid #414868;
+  background-color: #24283b;
+  color: #c0caf5;
+  font-family: Product Sans;
+  font-size: 14pt;
+  box-shadow: 0px 2px 3px #24283b; }
+  .system-graphs .graph .graph-box {
+    background-color: #24283b;
+    border: 1px solid #414868;
+    border-radius: 1rem; }
+    .system-graphs .graph .graph-box .drawing-area {
+      border-color: #414868;
+      border-radius: 1rem; }
+    .system-graphs .graph .graph-box .cpu {
+      color: #d5baff; }
+    .system-graphs .graph .graph-box .ram {
+      color: #acc6ff; }
+    .system-graphs .graph .graph-box .gpu {
+      color: #a5d570; }
+    .system-graphs .graph .graph-box .temp {
+      color: #ffb2be; }
 
 .configurations-window {
   margin-top: 1rem;

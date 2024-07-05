@@ -25,7 +25,7 @@ $keyboard_fg: $onSecondary;
 $system_progress_bg: $surfaceVariant;
 $system_progress_indicator: $surface;
 $system_progress_cpu: $primary;
-$system_progress_temp: $onSurface;
+$system_progress_temp: $error;
 $system_progress_ram: $secondary;
 $system_progress_gpu: $tertiary;
 
@@ -82,6 +82,11 @@ $footer_theme_bg: $surfaceVariant;
 $footer_theme_hover_fg: $onSecondary;
 $footer_theme_hover_bg: $secondary;
 
+
+$system_graph_bg: $surface;
+$system_graph_border: $surfaceVariant;
+
+
 $menu_bg: $bg;
 $menu_fg: $fg;
 
@@ -89,54 +94,6 @@ $menu_selection_bg: $bright_black;
 $menu_nocontent_fg: $white;
 $menu_bt_battery: $green;
 
-
-$osd_bg: $bg;
-$osd_icon: $fg;
-$osd_text: $fg;
-$osd_slider: $fg;
-
-
-$sideleft_bg: $bg;
-$sideleft_fg: $fg;
-$sideleft_opacity: 0.95;
-
-$sideleft_tab_fg: $fg;
-$sideleft_tab_hover_bg: $bright_black;
-$sideleft_tab_active_fg: $blue;
-
-$sideleft_apiswitcher_bg: $bright_black;
-
-$sideleft_info_fg: $white;
-$sideleft_temperature: $magenta;
-$sideleft_settings_toggle: $bright_black;
-$sideleft_settings_toggle_active_bg: $magenta;
-$sideleft_settings_toggle_active_fg: $bg;
-
-$sideleft_text_bg: $bright_black;
-$sideleft_text_send_bg: $blue;
-$sideleft_text_send_fg: $bg;
-
-$sideleft_chip_bg: $blue;
-$sideleft_chip_fg: $bg;
-$sideleft_chip_hover: $fg;
-$sideleft_tags: $magenta;
-
-$sideleft_bot: $fg;
-$sideleft_user: $yellow;
-$sideleft_system: $blue;
-
-$sideleft_cb_bg: $black;
-$sideleft_cb_fg: $fg;
-$sideleft_cb_border: $bright_black;
-$sideleft_cb_topbar_bg: $bg;
-$sideleft_cb_topbar_fg: $fg;
-$sideleft_cb_topbar_border: $bright_black;
-$sideleft_cb_topbar_btn_hover: $bright_black;
-$sideleft_cb_topbar_btn_active: $white;
-
-$sideleft_waifu_action: $bg;
-$sideleft_waifu_action_hover: $bright_black;
-$sideleft_waifu_action_active: $white;
 
 
 $overview_bg: $bg;

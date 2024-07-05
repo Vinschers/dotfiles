@@ -1,0 +1,41 @@
+.system-graphs {
+    margin-top: 1rem;
+    margin-right: 6rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 1px solid $calendar_border;
+    background-color: $calendar_bg;
+    color: $calendar_fg;
+    font-family: Product Sans;
+    font-size: 14pt;
+    box-shadow: 0px 2px 3px $shadow;
+
+    .graph {
+        .graph-box {
+            background-color: $system_graph_bg;
+            border: 1px solid $system_graph_border;
+            border-radius: 1rem;
+
+            .drawing-area {
+                border-color: $system_graph_border;
+                border-radius: 1rem;
+            }
+
+            .cpu {
+                color: $system_progress_cpu;
+            }
+
+            .ram {
+                color: $system_progress_ram;
+            }
+
+            .gpu {
+                color: $system_progress_gpu;
+            }
+
+            .temp {
+                color: $system_progress_temp;
+            }
+        }
+    }
+}

@@ -7,6 +7,7 @@ import { exec } from "resource:///com/github/Aylur/ags/utils.js";
 import Bar from "./js/bar/config.js";
 import Configurations from "./js/configurations/config.js";
 import Calendar from "./js/calendar/config.js";
+import System from "./js/system/config.js";
 import Overview from "./js/overview/config.js";
 
 import { WifiSelection } from "./js/configurations/Network.js";
@@ -47,6 +48,7 @@ const windows = () => [
     foreachMonitor(Bar),
     foreachMonitor(Overview),
     Calendar(),
+    System(),
     Configurations(),
     WifiSelection(),
     BluetoothDevices(),

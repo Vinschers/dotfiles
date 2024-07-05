@@ -4,6 +4,7 @@ import { cpu, temp, ram, gpu } from "../variables.js";
 const SystemStatus = (variable, class_name) =>
     Widget.Overlay({
         class_name: class_name,
+        pass_through: true,
         child: Widget.ProgressBar({
             class_name: "progress-bar",
             value: variable.bind().transform((value) => Number(value) / 100),
@@ -17,6 +18,7 @@ const SystemStatus = (variable, class_name) =>
 
 const System = () =>
     Widget.Button({
+        on_clicked: () => App.toggleWindow("system"),
         class_name: "system",
         vpack: "center",
         child: Widget.Box({
