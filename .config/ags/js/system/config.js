@@ -17,14 +17,14 @@ const system = Widget.Box({
             spacing: 12,
             children: [
                 GraphWidget(WIDTH, HEIGHT, cpu, HISTORY_COUNT, "cpu", "CPU"),
-                GraphWidget(WIDTH, HEIGHT, ram, HISTORY_COUNT, "ram", "RAM")
+                GraphWidget(WIDTH, HEIGHT, temp, HISTORY_COUNT, "temp", "Temperature"),
             ],
         }),
         Widget.Box({
             spacing: 12,
             children: [
+                GraphWidget(WIDTH, HEIGHT, ram, HISTORY_COUNT, "ram", "RAM"),
                 GraphWidget(WIDTH, HEIGHT, gpu, HISTORY_COUNT, "gpu", "GPU"),
-                GraphWidget(WIDTH, HEIGHT, temp, HISTORY_COUNT, "temp", "Temperature")
             ],
         }),
     ],

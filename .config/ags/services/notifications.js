@@ -8,19 +8,29 @@ class NotificationsService extends Service {
             {},
             {
                 count: ["int", "rw"],
+                dnd: ["boolean", "rw"],
             },
         );
     }
 
     _count = 0;
+    _dnd = false;
 
     get count() {
         return this._count;
     }
 
+    get dnd() {
+        return this._dnd;
+    }
+
     _getCount() {
         execAsync("swaync-client --count").then(n => {
             this.updateProperty("count", n);
+        });
+
+        execAsync("swaync-client --get-dnd").then(dnd => {
+            this.updateProperty("dnd", dnd == "true");
         });
     }
 

@@ -29,6 +29,10 @@ $system_progress_temp: $error;
 $system_progress_ram: $secondary;
 $system_progress_gpu: $tertiary;
 
+$disk_bg: $surfaceVariant;
+$disk_fg: $onSurfaceVariant;
+$disk_icon_fg: $onSurface;
+
 $bar_configurations_bg: $surfaceVariant;
 $bar_configurations_fg: $onSurfaceVariant;
 

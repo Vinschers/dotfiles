@@ -58,7 +58,10 @@ export default {
     recorder: {
         recording: "emblem-videos-symbolic",
     },
-    notifications: "󰂚",
+    notifications: {
+        default: "󱅫",
+        dnd: "",
+    },
     footer: {
         theme: "applications-graphics-symbolic",
         wallpaper: "image-x-generic-symbolic",
@@ -95,20 +98,7 @@ export default {
             up: "pan-up-symbolic",
         },
     },
-    sideleft: {
-        apis: "package-x-generic-symbolic",
-        toolbox: "preferences-other-symbolic",
-        gemini: "",
-        waifus: "camera-photo-symbolic",
-        info: "help-about",
-        send: "document-send-symbolic",
-        copy: "edit-copy-symbolic",
-        download: "browser-download-symbolic",
-        done: "emblem-ok-symbolic",
-        error: "dialog-error-symbolic",
-        link: "link-symbolic",
-        open: "focus-windows-symbolic",
-    },
+    disk: "drive-harddisk-solidstate-symbolic",
     overview: {
         search: "search",
         search_web: "web-browser-symbolic",

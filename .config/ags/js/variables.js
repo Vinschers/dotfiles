@@ -16,3 +16,7 @@ export const ram = Variable(0, {
 export const gpu = Variable(0, {
     listen: App.configDir + "/scripts/gpu.sh",
 });
+
+export const disk = Variable(0, {
+    listen: App.configDir + "/scripts/disk.sh",
+});

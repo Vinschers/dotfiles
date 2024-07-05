@@ -1,5 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
-import { cpu, temp, ram, gpu } from "../variables.js";
+
+import icons from "../icons.js";
+import { cpu, temp, ram, gpu, disk } from "../variables.js";
 
 const SystemStatus = (variable, class_name) =>
     Widget.Overlay({
@@ -16,7 +18,7 @@ const SystemStatus = (variable, class_name) =>
         ],
     });
 
-const System = () =>
+const SystemHardware = () =>
     Widget.Button({
         on_clicked: () => App.toggleWindow("system"),
         class_name: "system",
@@ -24,14 +26,32 @@ const System = () =>
         child: Widget.Box({
             vertical: true,
             vpack: "center",
-            spacing: 4,
+            spacing: 2,
             children: [
                 SystemStatus(cpu, "cpu"),
-                // SystemStatus(temp, "temp"),
+                SystemStatus(temp, "temp"),
                 SystemStatus(ram, "ram"),
                 SystemStatus(gpu, "gpu"),
             ],
         }),
     });
+
+const DiskUsage = () =>
+    Widget.CircularProgress({
+        class_name: "disk",
+        rounded: false,
+        inverted: false,
+        startAt: 0.75,
+        value: disk.bind().as(value => Number(value) / 100),
+        child: Widget.Icon({
+            class_name: "disk-icon",
+            icon: icons.disk,
+        }),
+    })
+
+const System = () => Widget.Box({
+    spacing: 12,
+    children: [DiskUsage(), SystemHardware()],
+});
 
 export default System;

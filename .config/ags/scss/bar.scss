@@ -230,6 +230,18 @@
             }
         }
 
+        .disk {
+            min-width: 36px;
+            font-size: 3px;
+            background-color: $disk_bg;
+            color: $disk_fg;
+
+            .disk-icon {
+                color: $disk_icon_fg;
+                font-size: 14pt;
+            }
+        }
+
         .configurations {
             margin-top: 0.4rem;
             margin-bottom: 0.4rem;
@@ -270,11 +282,11 @@
         }
 
         .notifications {
-          padding-left: 0.25rem;
-          padding-right: 0.3rem;
-          .notifications-icon {
-            font-size: 15pt;
-          }
+            padding-left: 0.25rem;
+            padding-right: 0.3rem;
+            .notifications-icon {
+                font-size: 15pt;
+            }
         }
 
         .clock {
