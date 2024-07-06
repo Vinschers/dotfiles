@@ -231,6 +231,7 @@ aur_packages:
   # - spicetify-cli
   # - light
   # - networkmanager-iwd
+  - swayosd-git
 remove_packages:
   # - networkmanager
   # - libnm
@@ -245,3 +246,4 @@ systemd_system_services:
   - systemd-timesyncd
   - sddm
   - docker
+  - swayosd-libinput-backend
