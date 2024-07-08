@@ -57,6 +57,11 @@
                 .media-text {
                     margin-left: 1rem;
                     margin-right: 1rem;
+
+                    .media-artist {
+                        font-size: 10pt;
+                        color: $media_artist_fg;
+                    }
                 }
             }
         }

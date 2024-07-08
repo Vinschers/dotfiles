@@ -73,22 +73,28 @@ const MediaButtons = (player) => {
 const MediaText = (player) => {
     if (!player) return Widget.Box();
 
-    const text = new Variable(
-        `${player.track_artists.join(", ")} 🞄 ${player.track_title}`,
-    );
-
-    player.connect("changed", (p) => {
-        text.setValue(`${p.track_artists.join(", ")} 🞄 ${p.track_title}`);
-    });
+    // const text = new Variable(
+    //     `${player.track_artists.join(", ")} 🞄 ${player.track_title}`,
+    // );
+    //
+    // player.connect("changed", (p) => {
+    //     text.setValue(`${p.track_artists.join(", ")} 🞄 ${p.track_title}`);
+    // });
 
     return Widget.Box({
         class_name: "media-text",
-        halign: Gtk30.Align.CENTER,
+        vertical: true,
 
         children: [
             Widget.Label({
+                class_name: "media-title",
+                label: player.bind("track_title"),
+                ellipsize: Pango10.EllipsizeMode.END,
+            }),
+            Widget.Label({
                 class_name: "media-artist",
-                label: text.bind(),
+                hpack: "start",
+                label: player.bind("track_artists").as(artists => artists.join(", ")),
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
         ],

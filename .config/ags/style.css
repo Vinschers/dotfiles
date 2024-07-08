@@ -38,6 +38,9 @@
     .bar .bar-left .media .media-box .media-text {
       margin-left: 1rem;
       margin-right: 1rem; }
+      .bar .bar-left .media .media-box .media-text .media-artist {
+        font-size: 10pt;
+        color: #a9b1d6; }
   .bar .bar-center .bar-corner {
     border-radius: 1.4rem;
     background-color: #414868; }
