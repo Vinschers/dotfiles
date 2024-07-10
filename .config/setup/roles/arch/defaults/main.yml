@@ -80,6 +80,10 @@ pacman_packages:
   - fd
   - fzf
   - zoxide
+  - miller
+  - perl-image-exiftool
+  - ouch
+  - transmission-cli
   - yazi
   # - texlive
   # - texlive-lang
@@ -106,6 +110,7 @@ pacman_packages:
   - qt6
   - xdg-desktop-portal-hyprland
   - polkit-kde-agent
+  - inetutils
   - foot
   - slurp
   - grim

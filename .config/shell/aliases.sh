@@ -56,7 +56,8 @@ alias \
     ex='extract' \
     o='xdg-open' \
     v="nvim" \
-    nv="neovide"
+    nv="neovide" \
+    cv="convert_video"
 
 # Utils
 alias \
@@ -66,7 +67,6 @@ alias \
     books='cd $HOME/hdd/books/ && ls' \
     b='books' \
     se='sudoedit' \
-    cv='cd $HOME/.config/nvim/' \
     cs='cd $HOME/.config/suckless/' \
     vpn='sudo openvpn $HOME/academic/unicamp.ovpn' \
     bib='cd $ACADEMIC_DIRECTORY/bibliography && ls' \
@@ -83,10 +83,3 @@ alias \
 alias \
     gcc='gcc -g -std=c99 -Wall -lm' \
     g++='gcc -g -std=c99 -Wall -lm'
-
-
-if lspci -k 2>/dev/null | grep -A 2 -E "(VGA|3D)" | grep -qi 'nvidia\|amd'; then
-    alias ffmpeg='ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -hide_banner'
-else
-    alias ffmpeg='ffmpeg -hide_banner'
-fi
