@@ -1,3 +1,21 @@
 [submodule ".config/setup/linux-install"]
 	path = .config/setup/linux-install
 	url = git@github.com:Vinschers/linux-install.git
+[submodule ".config/yazi/plugins/glow.yazi"]
+	path = .config/yazi/plugins/glow.yazi
+	url = https://github.com/Reledia/glow.yazi
+[submodule ".config/yazi/plugins/miller.yazi"]
+	path = .config/yazi/plugins/miller.yazi
+	url = https://github.com/Reledia/miller.yazi
+[submodule ".config/yazi/plugins/exifaudio.yazi"]
+	path = .config/yazi/plugins/exifaudio.yazi
+	url = https://github.com/Sonico98/exifaudio.yazi
+[submodule ".config/yazi/plugins/ouch.yazi"]
+	path = .config/yazi/plugins/ouch.yazi
+	url = https://github.com/ndtoan96/ouch.yazi
+[submodule ".config/yazi/plugins/torrent-preview.yazi"]
+	path = .config/yazi/plugins/torrent-preview.yazi
+	url = https://github.com/kirasok/torrent-preview.yazi
+[submodule ".config/yazi/plugins/starship.yazi"]
+	path = .config/yazi/plugins/starship.yazi
+	url = https://github.com/Rolv-Apneseth/starship.yazi

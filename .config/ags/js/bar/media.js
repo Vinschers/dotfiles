@@ -73,14 +73,6 @@ const MediaButtons = (player) => {
 const MediaText = (player) => {
     if (!player) return Widget.Box();
 
-    // const text = new Variable(
-    //     `${player.track_artists.join(", ")} 🞄 ${player.track_title}`,
-    // );
-    //
-    // player.connect("changed", (p) => {
-    //     text.setValue(`${p.track_artists.join(", ")} 🞄 ${p.track_title}`);
-    // });
-
     return Widget.Box({
         class_name: "media-text",
         vertical: true,
@@ -94,7 +86,9 @@ const MediaText = (player) => {
             Widget.Label({
                 class_name: "media-artist",
                 hpack: "start",
-                label: player.bind("track_artists").as(artists => artists.join(", ")),
+                label: player
+                    .bind("track_artists")
+                    .as((artists) => artists.join(", ")),
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
         ],
@@ -135,13 +129,13 @@ const update_css = (player_status, colors) => {
     // @ts-ignore
     const background = `background-image: linear-gradient(to right, ${css_colors.join(
         ", ",
-    )}); background-size: ${size}% ${size}%;`;
+    )}); background-size: ${size}% ${size}%; animation: gradient 12s linear infinite;`;
 
-    const animation = "animation: gradient 12s linear infinite;";
-
-    if (player_status === "Playing")
-        return background + animation;
-    return background;
+    if (player_status === "Playing") {
+        return background + "animation-play-state: running;";
+    } else {
+        return background + "animation-play-state: paused;";
+    }
 };
 
 /**
@@ -165,22 +159,37 @@ const MediaBox = (player) => {
             MediaButtons(player),
         ],
         css: css.bind(),
-    }).hook(
-        player,
-        (self) => (self.visible = player.track_title !== ""),
-        "closed",
-    ).hook(player, () => {
-        if (image_url.getValue() !== player.track_cover_url) {
-            image_url.setValue(player.track_cover_url);
+    })
+        .hook(
+            player,
+            (self) => (self.visible = player.track_title !== ""),
+            "closed",
+        )
+        .hook(
+            player,
+            () => {
+                if (image_url.getValue() !== player.track_cover_url) {
+                    image_url.setValue(player.track_cover_url);
 
-            update_colors(image_url.getValue()).then(new_colors => {
-                colors.setValue(new_colors);
-                css.setValue(update_css(player.play_back_status, colors.getValue()));
-            }).catch(console.error);
-        } else {
-            css.setValue(update_css(player.play_back_status, colors.getValue()));
-        }
-    }, "changed");
+                    update_colors(image_url.getValue())
+                        .then((new_colors) => {
+                            colors.setValue(new_colors);
+                            css.setValue(
+                                update_css(
+                                    player.play_back_status,
+                                    colors.getValue(),
+                                ),
+                            );
+                        })
+                        .catch(console.error);
+                } else {
+                    css.setValue(
+                        update_css(player.play_back_status, colors.getValue()),
+                    );
+                }
+            },
+            "changed",
+        );
 };
 
 const Media = () => {

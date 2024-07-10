@@ -36,7 +36,7 @@ class NotificationsService extends Service {
 
     constructor() {
         super();
-        interval(1000 * 2, this._getCount.bind(this)); // every 2 seconds
+        interval(500, this._getCount.bind(this)); // every 500 ms
     }
 }
 

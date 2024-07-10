@@ -1,8 +1,8 @@
 @keyframes gradient {
-    0% {
+    from {
         background-position: 0% 0%;
     }
-    100% {
+    to {
         background-position: 100% 0%;
     }
 }

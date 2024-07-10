@@ -44,36 +44,34 @@ return {
 
     {
         "stevearc/conform.nvim",
-        opts = function(_, opts)
-            opts.formatters_by_ft = {
+        opts = {
+            formatters_by_fg = {
                 c = { "clang_format" },
                 cpp = { "clang_format" },
                 html = { "prettier" },
                 css = { "prettier" },
                 scss = { "prettier" },
                 js = { "prettier" },
-            }
+            },
+            formatters = {
+                clang_format = {
+                    prepend_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4, BreakBeforeBraces: Allman}" },
+                },
+                prettier = {
+                    prepend_args = { "--config", os.getenv("HOME") .. "/.config/.prettierrc.yaml" },
+                },
+                black = {
+                    prepend_args = { "--fast", "-l", "150" },
+                },
+                shfmt = {
+                    prepend_args = { "--indent", "4" },
+                },
+                stylua = {
+                    prepend_args = { "--config-path", os.getenv("HOME") .. "/.config/.stylua.toml" },
 
-            opts.formatters.clang_format = {
-                prepend_args = { "--style", "{BasedOnStyle: gnu, IndentWidth: 4, BreakBeforeBraces: Allman}" },
+                },
             }
-
-            opts.formatters.prettier = {
-                prepend_args = { "--config", os.getenv("HOME") .. "/.config/.prettierrc.yaml" },
-            }
-
-            opts.formatters.black = {
-                prepend_args = { "--fast", "-l", "150" },
-            }
-
-            opts.formatters.shfmt = {
-                prepend_args = { "--indent", "4" },
-            }
-
-            opts.formatters.stylua = {
-                prepend_args = { "--config-path", os.getenv("HOME") .. "/.config/.stylua.toml" },
-            }
-        end,
+        },
     },
 
     {
