@@ -12,5 +12,10 @@ convert_video() {
     ffmpeg -i "$1" -c copy "$2"
 }
 
+embed_subtitles() {
+    /bin/ffmpeg -i "$1" -vf "subtitles='${1}':si=0" -c:v libx265 -c:a copy -map 0:v -map 0:a:0 "${2:-output.mp4}"
+}
+
 export ffmpeg
 export convert_video
+export embed_subtitles
