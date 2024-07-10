@@ -67,11 +67,30 @@ const MediaButtons = (player) => {
     });
 };
 
+const get_player_info = (track_artists, track_album) => {
+    if (track_artists.length == 0 || track_artists[0].length == 0) {
+        if (track_album === "") return "";
+        return track_album;
+    }
+
+    let info = track_artists.join(", ");
+    if (track_album !== "") info += " 🞄 " + track_album;
+    return info;
+};
+
 /**
  * @param {MprisPlayer} player
  */
 const MediaText = (player) => {
     if (!player) return Widget.Box();
+
+    const pinfo = new Variable(
+        get_player_info(player.track_artists, player.track_album),
+    );
+
+    player.connect("changed", (p) => {
+        pinfo.setValue(get_player_info(p.track_artists, p.track_album));
+    });
 
     return Widget.Box({
         class_name: "media-text",
@@ -87,13 +106,9 @@ const MediaText = (player) => {
             Widget.Label({
                 class_name: "media-artist",
                 hpack: "start",
-                label: player
-                    .bind("track_artists")
-                    .as((artists) => artists.join(", ")),
+                label: pinfo.bind(),
                 ellipsize: Pango10.EllipsizeMode.END,
-                visible: player
-                    .bind("track_artists")
-                    .as((ta) => ta.length > 0 && ta[0].length > 0),
+                visible: pinfo.bind().as((info) => info.length > 0),
             }),
         ],
     });
