@@ -76,6 +76,7 @@ const MediaText = (player) => {
     return Widget.Box({
         class_name: "media-text",
         vertical: true,
+        vpack: "center",
 
         children: [
             Widget.Label({
@@ -90,6 +91,9 @@ const MediaText = (player) => {
                     .bind("track_artists")
                     .as((artists) => artists.join(", ")),
                 ellipsize: Pango10.EllipsizeMode.END,
+                visible: player
+                    .bind("track_artists")
+                    .as((ta) => ta.length > 0 && ta[0].length > 0),
             }),
         ],
     });
