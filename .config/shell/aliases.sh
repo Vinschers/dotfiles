@@ -24,6 +24,7 @@ alias \
     mc="make clean" \
     mic="make install clean" \
     mcic="make clean install && make clean" \
+    dmusic="yt-dlp -x"
 
 # Git
 alias \

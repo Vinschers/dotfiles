@@ -4,10 +4,9 @@ import Widget, {
 import Mpris, {
     MprisPlayer,
 } from "resource:///com/github/Aylur/ags/service/mpris.js";
-import Gtk30 from "gi://Gtk?version=3.0";
 import Pango10 from "gi://Pango";
 import icons from "../icons.js";
-import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
+import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
 const COLORS_GRADIENT = 3;
@@ -100,6 +99,7 @@ const MediaText = (player) => {
         children: [
             Widget.Label({
                 class_name: "media-title",
+                hpack: "start",
                 label: player.bind("track_title"),
                 ellipsize: Pango10.EllipsizeMode.END,
             }),
@@ -117,20 +117,22 @@ const MediaText = (player) => {
 const update_colors = (image_url) => {
     return new Promise((resolve, reject) => {
         execAsync(
-            `sh -c "convert '${image_url}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
+            `sh -c "magick '${image_url}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
         )
             .then((output) => {
-                if (!output) return;
+                if (output) {
+                    const alpha = 0.6;
+                    const colors = output.split("\n").map((color) => {
+                        const color_parts = color
+                            .substring(1, color.length - 2)
+                            .split(",");
+                        return `rgba(${color_parts[0]}, ${color_parts[1]}, ${color_parts[2]}, ${alpha})`;
+                    });
 
-                const alpha = 0.6;
-                const colors = output.split("\n").map((color) => {
-                    const color_parts = color
-                        .substring(1, color.length - 2)
-                        .split(",");
-                    return `rgba(${color_parts[0]}, ${color_parts[1]}, ${color_parts[2]}, ${alpha})`;
-                });
-
-                resolve(colors);
+                    resolve(colors);
+                } else {
+                    resolve([]);
+                }
             })
             .catch(reject);
     });
@@ -138,7 +140,7 @@ const update_colors = (image_url) => {
 
 const update_css = (player_status, colors) => {
     // @ts-ignore
-    if (colors.length == 0) return "";
+    if (colors.length == 0) return "background-image: none;";
 
     // @ts-ignore
     const size = 100 * (colors.length + 1);
@@ -170,9 +172,11 @@ const MediaBox = (player) => {
         children: [
             Widget.Box({
                 class_name: "media-background",
-                css: player.bind("track_cover_url").transform((img) => {
-                    return `background-image: url('${img}');`;
+                css: image_url.bind().transform((img) => {
+                    if (img) return `background-image: url('${img}');`;
+                    return "background-image: none;";
                 }),
+                visible: image_url.bind().as((img) => img.length > 0),
             }),
             MediaText(player),
             MediaButtons(player),
@@ -187,8 +191,27 @@ const MediaBox = (player) => {
         .hook(
             player,
             () => {
-                if (image_url.getValue() !== player.track_cover_url) {
-                    image_url.setValue(player.track_cover_url);
+                let track_url = player.track_cover_url;
+                if (track_url === "" && player.trackid.includes("/local/")) {
+                    const home = exec("sh -c 'echo $HOME'");
+
+                    const files = exec(
+                        `find "${home}/Music" -name "*${player.track_title}*"`,
+                    ).split("\n");
+
+                    if (files.length > 0) {
+                        exec(`sh -c "rm ${home}/.cache/ags/*.jpg"`);
+                        const cover_path = `${home}/.cache/ags/${player.track_title}.jpg`;
+                        exec(
+                            `ffmpeg -i "${files[0]}" -an -c:v copy "${cover_path}" -y`,
+                        );
+                        track_url = cover_path;
+                    }
+                }
+
+                if (image_url.getValue() !== track_url) {
+                    image_url.setValue("");
+                    image_url.setValue(track_url);
 
                     update_colors(image_url.getValue())
                         .then((new_colors) => {

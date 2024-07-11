@@ -12,3 +12,6 @@ whitelist ${HOME}/.cache
 whitelist ${HOME}/hdd
 whitelist ${HOME}/academic
 whitelist /mnt/hdd
+whitelist ${HOME}/Music
+whitelist ${HOME}/Games
+whitelist ${HOME}/Videos
