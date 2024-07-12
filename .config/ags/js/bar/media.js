@@ -9,7 +9,8 @@ import icons from "../icons.js";
 import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
-const COLORS_GRADIENT = 3;
+const COLORS_GRADIENT = 4;
+const DURATION = 10;
 
 const TrackProgress = (player) => {
     if (!player) return CircularProgress();
@@ -117,7 +118,7 @@ const MediaText = (player) => {
 const update_colors = (image_url) => {
     return new Promise((resolve, reject) => {
         execAsync(
-            `sh -c "magick '${image_url}' -colors ${COLORS_GRADIENT} -format '%c' histogram:info: | awk '{print $2}'"`,
+            `sh -c "magick \\"${image_url}\\" -colors ${COLORS_GRADIENT} -format \\"%c\\" histogram:info: | awk '{print $2}'"`,
         )
             .then((output) => {
                 if (output) {
@@ -150,7 +151,7 @@ const update_css = (player_status, colors) => {
     // @ts-ignore
     const background = `background-image: linear-gradient(to right, ${css_colors.join(
         ", ",
-    )}); background-size: ${size}% ${size}%; animation: gradient 12s linear infinite;`;
+    )}); background-size: ${size}% ${size}%; animation: gradient ${DURATION}s linear infinite;`;
 
     if (player_status === "Playing") {
         return background + "animation-play-state: running;";
@@ -173,7 +174,7 @@ const MediaBox = (player) => {
             Widget.Box({
                 class_name: "media-background",
                 css: image_url.bind().transform((img) => {
-                    if (img) return `background-image: url('${img}');`;
+                    if (img) return `background-image: url("${img}");`;
                     return "background-image: none;";
                 }),
                 visible: image_url.bind().as((img) => img.length > 0),
@@ -196,7 +197,7 @@ const MediaBox = (player) => {
                     const home = exec("sh -c 'echo $HOME'");
 
                     const files = exec(
-                        `find "${home}/Music" -name "*${player.track_title}*"`,
+                        `sh -c "find \\"${home}/Music\\" -name \\"*${player.track_title.replaceAll("'", "\\'")}*\\""`,
                     ).split("\n");
 
                     if (files.length > 0) {
