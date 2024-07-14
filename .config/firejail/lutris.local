@@ -1,1 +1,2 @@
+whitelist ${HOME}/.local/share/wineprefixes
 whitelist ${HOME}/hdd

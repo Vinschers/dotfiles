@@ -3,4 +3,5 @@ ignore nosound
 ignore novideo
 
 noblacklist ${HOME}/.local/share/lutris
-whitelist ${HOME}/hdd/games
+noblacklist ${HOME}/.local/share/wineprefixes
+noblacklist ${HOME}/hdd/games
