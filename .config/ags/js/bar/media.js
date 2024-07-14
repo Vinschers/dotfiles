@@ -200,11 +200,19 @@ const MediaBox = (player) => {
                         `sh -c "find \\"${home}/Music\\" -name \\"*${player.track_title.replaceAll("'", "\\'")}*\\""`,
                     ).split("\n");
 
+                    let file = "";
+                    for (let i = 0; i < files.length; i++) {
+                        if (files[i].includes(".mp3")) {
+                            file = files[i];
+                            break;
+                        }
+                    }
+
                     if (files.length > 0) {
                         exec(`sh -c "rm ${home}/.cache/ags/*.jpg"`);
                         const cover_path = `${home}/.cache/ags/${player.track_title}.jpg`;
                         exec(
-                            `ffmpeg -i "${files[0]}" -an -c:v copy "${cover_path}" -y`,
+                            `ffmpeg -i "${file}" -an -c:v copy "${cover_path}" -y`,
                         );
                         track_url = cover_path;
                     }

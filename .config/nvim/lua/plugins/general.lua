@@ -86,7 +86,7 @@ return {
         dependencies = {
             "folke/which-key.nvim",
             opts = {
-                defaults = {
+                spec = {
                     ["<leader>T"] = { name = "+Toggleterm" },
                 },
             },
@@ -146,7 +146,7 @@ return {
             {
                 "folke/which-key.nvim",
                 opts = {
-                    defaults = {
+                    spec = {
                         ["<leader>tc"] = { name = "+CompetiTest" },
                     },
                 },
