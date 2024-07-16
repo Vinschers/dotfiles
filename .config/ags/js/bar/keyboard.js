@@ -33,13 +33,11 @@ const languages = [
 const get_initial_layout = () => {
     const keyboards = JSON.parse(exec("hyprctl -j devices")).keyboards;
 
-    const layouts = {};
+    let keymap = "English";
     keyboards.forEach((keyboard) => {
-        layouts[keyboard.layout] = keyboard.active_keymap;
+        if (keyboard.main)
+            keymap = keyboard.active_keymap;
     });
-
-    delete layouts["us"];
-    let keymap = layouts[Object.keys(layouts)[0]] || "English";
 
     let lang = languages.find((lang) => keymap.includes(lang.name));
     if (lang) return lang.layout;

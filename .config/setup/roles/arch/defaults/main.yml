@@ -203,8 +203,8 @@ pacman_packages:
   # - docker-compose
   # - easytag
   - swaync
+  - cava
 aur_packages:
-  - cava-git
   - python-pip
   # - python-bibtexparser
   # - python-inkscape-figures
