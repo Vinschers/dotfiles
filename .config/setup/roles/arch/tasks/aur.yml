@@ -10,14 +10,14 @@
   become: true
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
-    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     create: true
-    validate: 'visudo -cf %s'
+    validate: "visudo -cf %s"
 
 - name: Allow the `aur_builder` user to run `sudo archlinux-java` without a password
   become: true
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
-    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/archlinux-java'
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/archlinux-java"
     create: true
-    validate: 'visudo -cf %s'
+    validate: "visudo -cf %s"
