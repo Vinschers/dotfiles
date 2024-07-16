@@ -26,8 +26,7 @@ Download the Photoshop 2021 archive [here](https://qiwi.gg/file/kMnq2220-AdobePh
 [ "$(sha256sum AdobePhotoshop2021.tar.xz | awk '{print $1}')" = "8321b969161f2d2ad736067320d493c5b6ae579eaab9400cd1fda6871af2c033" ] && echo ok
 ```
 
-Extract the archive to `.config/setup/programs/`
-Run the script at `.config/setup/after_install.sh`
+Extract the archive to `.config/setup/programs/` and run the script at `.config/setup/post_install.sh`
 
 ## Setup wi-fi
 

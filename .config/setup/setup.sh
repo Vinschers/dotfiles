@@ -1,14 +1,20 @@
 #!/bin/sh
 
+dotfiles() {
+    git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" "$@"
+}
+
 clone_git() {
 	[ -d "$HOME/.config/.dotfiles-git" ] && rm -rf "$HOME/.config/.dotfiles-git"
 
 	git clone --bare --recursive https://github.com/Vinschers/dotfiles.git "$HOME/.config/.dotfiles-git"
-	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" reset --hard
+    dotfiles reset --hard
 
-	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" config --local status.showUntrackedFiles no
-	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.config/shell/environment/local.sh"
-	git --git-dir="$HOME/.config/.dotfiles-git/" --work-tree="$HOME" update-index --assume-unchanged "$HOME/.config/octave/octaverc"
+    dotfiles config --local status.showUntrackedFiles no
+	dotfiles update-index --assume-unchanged "$HOME/.config/shell/environment/local.sh"
+	dotfiles update-index --assume-unchanged "$HOME/.config/octave/octaverc"
+
+    dotfiles submodule update --init
 }
 
 run_ansible() {
