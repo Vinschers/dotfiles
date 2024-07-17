@@ -52,7 +52,7 @@ export default () => {
             Widget.Button({
                 class_names: ["footer-item", "power"],
                 cursor: "pointer",
-                on_primary_click_release: () => {},
+                on_primary_click_release: () => Utils.execAsync("sh -c 'pgrep wlogout || wlogout -b 2 -c 0 -r 0 -L 400 -R 400 --protocol layer-shell'"),
                 child: Widget.Icon(icons.footer.power),
             }),
         ],
