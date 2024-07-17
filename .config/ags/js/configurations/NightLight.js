@@ -29,7 +29,7 @@ export default () => {
             nightlight.value = !nightlight.value;
 
             Utils.execAsync(
-                `sh -c ${App.configDir}/scripts/toggle-nightlight.sh`,
+                `sh -c '${App.configDir}/scripts/toggle-nightlight.sh ${nightlight.value}'`,
             );
         },
         connection: [nightlight, () => nightlight.value],
