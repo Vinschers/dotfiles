@@ -143,3 +143,6 @@
   file:
     path: "{{ ansible_env.HOME }}/.config/btop/themes"
     state: directory
+
+- name: Setup pywalfox
+  shell: pywalfox install --browser librewolf

@@ -237,6 +237,7 @@ aur_packages:
   # - light
   # - networkmanager-iwd
   - swayosd-git
+  - python-pywalfox-librewolf
 remove_packages:
   # - networkmanager
   # - libnm
