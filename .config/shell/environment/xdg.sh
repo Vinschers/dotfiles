@@ -39,17 +39,6 @@ mkdir -p "$XDG_CACHE_HOME/zsh"
 # echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
 
 
-if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
-    SSH_CONFIG="-F ${XDG_CONFIG_HOME}/ssh/config"
-fi
-if [ -s "${XDG_CONFIG_HOME}/ssh/id_dsa" ]; then
-    SSH_ID="-i ${XDG_CONFIG_HOME}/ssh/id_dsa"
-fi
-
-alias ssh="ssh \$SSH_CONFIG \$SSH_ID"
-alias ssh-copy-id="ssh-copy-id \$SSH_ID"
-
-
 export CHKTEXRC=$XDG_CONFIG_HOME/chktex
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
