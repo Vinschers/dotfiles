@@ -115,7 +115,7 @@ pacman_packages:
   - slurp
   - grim
   - wl-clipboard
-  # - waylock
+  # - hyprlock
   - cpio
   - jq
   - cmake

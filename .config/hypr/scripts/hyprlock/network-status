@@ -1,0 +1,27 @@
+#!/bin/sh
+
+status="$(nmcli general status | grep -oh "\w*connect\w*")"
+
+if [ "$status" = "disconnected" ]; then
+    echo "󰤮 "
+elif [ "$status" = "connecting" ]; then
+    echo "󱍸 "
+elif [ "$status" = "connected" ]; then
+    # strength="$(nmcli -f IN-USE,SIGNAL device wifi | grep '*' | awk '{print $2}')"
+    strength="$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $8}}')"
+    if [ -n "$strength" ]; then
+        if [ "$strength" -eq "0" ]; then
+            echo "󰤯 "
+        elif [ "$strength" -le "25" ]; then
+            echo "󰤟 "
+        elif [ "$strength" -le "50" ]; then
+            echo "󰤢 "
+        elif [ "$strength" -le "75" ]; then
+            echo "󰤥 "
+        else
+            echo "󰤨 "
+        fi
+    else
+        echo "󰈀 "
+    fi
+fi
