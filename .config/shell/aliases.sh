@@ -2,16 +2,17 @@
 
 # Default arguments
 alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -v" \
-	ls="eza --icons --time-style long-iso" \
-	grep="grep --color=auto" \
-	fgrep='fgrep --color=auto' \
-	egrep='egrep --color=auto' \
-	diff="diff --color=auto" \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -v" \
+    ls="eza --icons --time-style long-iso" \
+    grep="grep --color=auto" \
+    fgrep='fgrep --color=auto' \
+    egrep='egrep --color=auto' \
+    diff="diff --color=auto" \
     yay='yay --sudoloop' \
     bash='bash --rcfile $BASHDIR/bashrc.sh' \
+    discord="discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy"
 
 # Shortenings
 alias \
@@ -28,7 +29,7 @@ alias \
 
 # Git
 alias \
-	g="git" \
+    g="git" \
     dotfiles='git --git-dir=$XDG_CONFIG_HOME/.dotfiles-git/ --work-tree=$HOME' \
     ds='dotfiles status' \
     da='dotfiles add' \
@@ -44,7 +45,7 @@ alias \
     gr='git restore' \
     gC='gitmoji -c' \
     gP='git push' \
-    gp='git pull' \
+    gp='git pull'
 
 # Actual aliases
 alias \
@@ -78,7 +79,8 @@ alias \
     sctl="sudo systemctl" \
     audio="systemctl --user restart pipewire.service" \
     jn="jupyter notebook" \
-    mime="file --dereference --brief --mime-type --"
+    mime="file --dereference --brief --mime-type --" \
+    webcam='mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam "$(ls /dev/video* | tail -2 | head -1)"'
 
 # Development
 alias \

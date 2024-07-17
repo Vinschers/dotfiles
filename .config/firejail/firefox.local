@@ -1,0 +1,7 @@
+quiet
+
+ignore mkdir ${HOME}/.pki
+ignore mkdir ${HOME}/.mozilla
+
+mkdir ${HOME}/.local/share/firefox
+private ${HOME}/.local/share/firefox

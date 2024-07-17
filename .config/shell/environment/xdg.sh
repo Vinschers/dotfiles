@@ -24,6 +24,7 @@ mkdir -p "$XDG_CONFIG_HOME/pg"
 mkdir -p "$XDG_CONFIG_HOME/simplescreenrecorder"
 mkdir -p "$XDG_CONFIG_HOME/wakatime"
 mkdir -p "$XDG_CONFIG_HOME/yarn"
+mkdir -p "$XDG_CONFIG_HOME/ssh"
 
 mkdir -p "$XDG_DATA_HOME/gnupg"
 mkdir -p "$XDG_DATA_HOME/wineprefixes"
@@ -36,6 +37,18 @@ mkdir -p "$XDG_CACHE_HOME/zsh"
 [ -f "$XDG_CONFIG_HOME/octave/octaverc" ] && sed -i "s|USER|$USER|g" "$XDG_CONFIG_HOME/octave/octaverc"
 
 # echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" > "$XDG_CONFIG_HOME/wgetrc"
+
+
+if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
+    SSH_CONFIG="-F ${XDG_CONFIG_HOME}/ssh/config"
+fi
+if [ -s "${XDG_CONFIG_HOME}/ssh/id_dsa" ]; then
+    SSH_ID="-i ${XDG_CONFIG_HOME}/ssh/id_dsa"
+fi
+
+alias ssh="ssh \$SSH_CONFIG \$SSH_ID"
+alias ssh-copy-id="ssh-copy-id \$SSH_ID"
+
 
 export CHKTEXRC=$XDG_CONFIG_HOME/chktex
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
@@ -83,6 +96,8 @@ export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 # export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+export CURLOPT_NETRC_FILE="$XDG_CONFIG_HOME/.netrc"
+export NETRC="$XDG_CONFIG_HOME/.netrc"
 
 export M2_HOME="$XDG_DATA_HOME"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
