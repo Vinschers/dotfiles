@@ -44,6 +44,7 @@
         {
             "type": "display",
             "key": "  󰹑",
+            "format": "{1}x{2} @ {3} Hz",
             "keyColor": "green"
         },
         {
@@ -92,6 +93,7 @@
         {
             "type": "gpu",
             "key": "  󱄄",
+            "format": "{1} {2}",
             "keyColor": "cyan"
         },
         {
