@@ -36,3 +36,10 @@ vim.api.nvim_create_autocmd("Signal", {
         vim.keymap.set({ "n" }, "<S-r>", "<Esc><cmd>colorscheme " .. theme .. "<cr>")
     end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+    pattern = { "*/librewolf.overrides.cfg" },
+    callback = function()
+        vim.bo.filetype = "js"
+    end,
+})
