@@ -86,6 +86,7 @@
     create: true
 
 - name: Deny everything with UFW
+  become: true
   community.general.ufw:
     state: enabled
     default: deny

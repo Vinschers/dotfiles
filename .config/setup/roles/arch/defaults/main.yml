@@ -26,6 +26,7 @@ pacman_packages:
   - eza
   - zip
   - ffmpeg
+  - ffmpeg4.4
   - playerctl
   - tldr
   - openvpn
