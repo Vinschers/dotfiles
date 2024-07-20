@@ -110,33 +110,33 @@
       min-width: 2.5rem;
       background: #acc6ff;
       color: #002d6e; }
-    .bar .bar-right .system {
+    .bar .bar-right .system .system-stats {
       margin: 0.2rem 0; }
-      .bar .bar-right .system .progress-wrapper {
+      .bar .bar-right .system .system-stats .progress-wrapper {
         background: linear-gradient(to right, #24283b 1px, transparent 1px);
         background-size: 25%; }
-      .bar .bar-right .system .progress-bar {
+      .bar .bar-right .system .system-stats .progress-bar {
         border-radius: 10rem;
         background-color: #414868; }
-        .bar .bar-right .system .progress-bar trough {
+        .bar .bar-right .system .system-stats .progress-bar trough {
           min-width: 6rem;
           border-radius: 10rem; }
-        .bar .bar-right .system .progress-bar progress {
+        .bar .bar-right .system .system-stats .progress-bar progress {
           border-radius: 10rem; }
-      .bar .bar-right .system .cpu progress {
+      .bar .bar-right .system .system-stats .cpu progress {
         background-color: #d5baff; }
-      .bar .bar-right .system .temp progress {
+      .bar .bar-right .system .system-stats .temp progress {
         background-color: #ffb2be; }
-      .bar .bar-right .system .ram progress {
+      .bar .bar-right .system .system-stats .ram progress {
         background-color: #acc6ff; }
-      .bar .bar-right .system .gpu progress {
+      .bar .bar-right .system .system-stats .gpu progress {
         background-color: #a5d570; }
-    .bar .bar-right .disk {
+    .bar .bar-right .system .disk {
       min-width: 36px;
       font-size: 3px;
       background-color: #414868;
       color: #a9b1d6; }
-      .bar .bar-right .disk .disk-icon {
+      .bar .bar-right .system .disk .disk-icon {
         color: #c0caf5;
         font-size: 14pt; }
     .bar .bar-right .configurations {

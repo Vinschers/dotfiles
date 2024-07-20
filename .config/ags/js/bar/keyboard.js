@@ -1,6 +1,7 @@
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { exec } from "resource:///com/github/Aylur/ags/utils.js";
+import { Variable } from "resource:///com/github/Aylur/ags/variable.js";
 
 const languages = [
     {
@@ -30,23 +31,25 @@ const languages = [
     },
 ];
 
-const get_initial_layout = () => {
+const get_layout = () => {
     const keyboards = JSON.parse(exec("hyprctl -j devices")).keyboards;
 
-    let keymap = "English";
+    let keymap = "";
     keyboards.forEach((keyboard) => {
-        if (keyboard.main)
+        if (keyboard.main && keyboard.name.includes("button"))
             keymap = keyboard.active_keymap;
     });
 
     let lang = languages.find((lang) => keymap.includes(lang.name));
     if (lang) return lang.layout;
 
-    return "en";
+    return "";
 };
 
-export default () =>
-    Widget.Button({
+export default () => {
+    const layout = new Variable(get_layout());
+
+    return Widget.Button({
         on_clicked: () => {
             const devicesObj = JSON.parse(exec("hyprctl devices -j"));
             let keyboard = "";
@@ -58,25 +61,22 @@ export default () =>
                 }
             }
 
-            if (keyboard == "")
-                return;
+            if (keyboard == "") return;
 
             exec(`hyprctl switchxkblayout ${keyboard} next`);
         },
+        visible: layout.bind().as((layout) => layout.length > 0),
         child: Widget.Label({
             class_name: "keyboard",
             yalign: 0.477,
             xalign: 0.51,
-            label: get_initial_layout(),
+            label: layout.bind(),
         }).hook(
             Hyprland,
-            (label, kb_name, layout_name) => {
-                if (!kb_name) return;
-
-                let lang = languages.find((lang) => layout_name.includes(lang.name));
-
-                if (lang) label.label = lang.layout;
+            (label, _, __) => {
+                layout.setValue(get_layout());
             },
             "keyboard-layout",
-        )
+        ),
     });
+};

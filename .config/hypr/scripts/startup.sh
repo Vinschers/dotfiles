@@ -1,6 +1,8 @@
 #!/bin/sh
 
 hyprpm reload -n
+hyprctl dismissnotify
+
 sleep 0.2
 mainMod="SUPER"
 

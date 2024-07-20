@@ -21,7 +21,7 @@ const SystemStatus = (variable, class_name) =>
 const SystemHardware = () =>
     Widget.Button({
         on_clicked: () => App.toggleWindow("system"),
-        class_name: "system",
+        class_name: "system-stats",
         vpack: "center",
         child: Widget.Box({
             vertical: true,
@@ -50,6 +50,7 @@ const DiskUsage = () =>
     })
 
 const System = () => Widget.Box({
+    class_name: "system",
     spacing: 12,
     children: [DiskUsage(), SystemHardware()],
 });

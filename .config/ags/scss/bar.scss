@@ -186,64 +186,66 @@
         }
 
         .system {
-            margin: 0.2rem 0;
-            .progress-wrapper {
-                background: linear-gradient(
-                    to right,
-                    $system_progress_indicator 1px,
-                    transparent 1px
-                );
-                background-size: 25%;
-            }
+            .system-stats {
+                margin: 0.2rem 0;
+                .progress-wrapper {
+                    background: linear-gradient(
+                        to right,
+                        $system_progress_indicator 1px,
+                        transparent 1px
+                    );
+                    background-size: 25%;
+                }
 
-            .progress-bar {
-                border-radius: 10rem;
-                background-color: $system_progress_bg;
-
-                trough {
-                    min-width: 6rem;
+                .progress-bar {
                     border-radius: 10rem;
+                    background-color: $system_progress_bg;
+
+                    trough {
+                        min-width: 6rem;
+                        border-radius: 10rem;
+                    }
+
+                    progress {
+                        border-radius: 10rem;
+                    }
                 }
 
-                progress {
-                    border-radius: 10rem;
+                .cpu {
+                    progress {
+                        background-color: $system_progress_cpu;
+                    }
+                }
+
+                .temp {
+                    progress {
+                        background-color: $system_progress_temp;
+                    }
+                }
+
+                .ram {
+                    progress {
+                        background-color: $system_progress_ram;
+                    }
+                }
+
+                .gpu {
+                    progress {
+                        background-color: $system_progress_gpu;
+                    }
                 }
             }
 
-            .cpu {
-                progress {
-                    background-color: $system_progress_cpu;
+            .disk {
+                min-width: 36px;
+                font-size: 3px;
+                background-color: $disk_bg;
+                color: $disk_fg;
+
+                .disk-icon {
+                    color: $disk_icon_fg;
+                    font-size: 14pt;
                 }
-            }
-
-            .temp {
-                progress {
-                    background-color: $system_progress_temp;
-                }
-            }
-
-            .ram {
-                progress {
-                    background-color: $system_progress_ram;
-                }
-            }
-
-            .gpu {
-                progress {
-                    background-color: $system_progress_gpu;
-                }
-            }
-        }
-
-        .disk {
-            min-width: 36px;
-            font-size: 3px;
-            background-color: $disk_bg;
-            color: $disk_fg;
-
-            .disk-icon {
-                color: $disk_icon_fg;
-                font-size: 14pt;
             }
         }
 
