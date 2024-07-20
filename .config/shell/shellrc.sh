@@ -17,7 +17,11 @@ done
 . "$HOME/.config/shell/aliases.sh"
 
 osc7_cd() {
-    cd "$1" || return $?
+    if [ -n "$1" ]; then
+        cd "$1" || return $?
+    else
+        cd "$HOME" || return $?
+    fi
 
     tmp="$PWD"
     encoded=""

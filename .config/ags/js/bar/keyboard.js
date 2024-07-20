@@ -36,7 +36,7 @@ const get_layout = () => {
 
     let keymap = "";
     keyboards.forEach((keyboard) => {
-        if (keyboard.main && keyboard.name.includes("button"))
+        if (keyboard.main && !keyboard.name.includes("button"))
             keymap = keyboard.active_keymap;
     });
 
@@ -47,7 +47,9 @@ const get_layout = () => {
 };
 
 export default () => {
-    const layout = new Variable(get_layout());
+    const layout = new Variable(get_layout(), {
+        poll: [1000, get_layout],
+    });
 
     return Widget.Button({
         on_clicked: () => {
