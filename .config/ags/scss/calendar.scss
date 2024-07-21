@@ -15,6 +15,7 @@
 
         &:selected {
             color: $calendar_selected;
+            font-weight: bold;
         }
 
         &.header {

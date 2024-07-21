@@ -184,7 +184,8 @@
   .calendar calendar {
     all: unset; }
     .calendar calendar:selected {
-      color: #d5baff; }
+      color: #a5d570;
+      font-weight: bold; }
     .calendar calendar.header {
       background-color: transparent;
       border: none;
