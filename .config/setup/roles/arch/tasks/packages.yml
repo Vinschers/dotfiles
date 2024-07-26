@@ -147,3 +147,10 @@
 
 - name: Setup pywalfox
   shell: pywalfox install --browser librewolf
+
+- name: Setup printer discovery throught network
+  become: true
+  lineinfile:
+    path: /etc/nsswitch.conf
+    regexp: '^hosts:'
+    line: 'hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns'

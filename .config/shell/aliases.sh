@@ -64,7 +64,7 @@ alias \
 # Utils
 alias \
     alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"' \
-    i='yay --needed --sudoloop --cleanafter --answerclean None --answerdiff None --editmenu --removemake -S' \
+    i='yay --needed --sudoloop --cleanafter --answerclean All --answerdiff None --removemake -S' \
     up='rustup update && yay --devel --cleanafter --answerclean None --answerdiff None' \
     books='cd $HOME/hdd/books/ && ls' \
     b='books' \

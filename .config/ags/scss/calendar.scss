@@ -11,11 +11,8 @@
     box-shadow: 0px 2px 3px $shadow;
 
     calendar {
-        all: unset;
-
         &:selected {
             color: $calendar_selected;
-            font-weight: bold;
         }
 
         &.header {

@@ -181,17 +181,14 @@
   font-family: Product Sans;
   font-size: 14pt;
   box-shadow: 0px 2px 3px #24283b; }
-  .calendar calendar {
-    all: unset; }
-    .calendar calendar:selected {
-      color: #a5d570;
-      font-weight: bold; }
-    .calendar calendar.header {
-      background-color: transparent;
-      border: none;
-      color: #d5baff; }
-    .calendar calendar:indeterminate {
-      color: #414868; }
+  .calendar calendar:selected {
+    color: #a5d570; }
+  .calendar calendar.header {
+    background-color: transparent;
+    border: none;
+    color: #d5baff; }
+  .calendar calendar:indeterminate {
+    color: #414868; }
 
 .system-graphs {
   margin-top: 1rem;

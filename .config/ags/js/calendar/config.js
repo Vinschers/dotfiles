@@ -6,6 +6,9 @@ const calendar = Widget.Box({
     child: Widget.Calendar({
         hexpand: true,
         hpack: "center",
+        showDayNames: true,
+        showDetails: true,
+        showHeading: true,
     }),
 });
 
